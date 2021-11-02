@@ -1,0 +1,35 @@
+{
+  "name": "Auto.js-TypeScript-Declarations",
+  "main": "manual.js",
+  "ignore": [
+    "build"
+  ],
+  "packageName": "com.sm003.autojs.d.ts",
+  "versionName": "1.0.0",
+  "versionCode": 4,
+  "launchConfig": {
+    "displaySplash": false,
+    "hideLogs": false,
+    "splashText": "",
+    "stableMode": false
+  },
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "optimization": {
+    "removeAccessibilityService": false,
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "permissionConfig": {
+    "requestListOnStartup": [
+      "android.permission.WRITE_EXTERNAL_STORAGE"
+    ]
+  },
+  "scripts": {}
+}

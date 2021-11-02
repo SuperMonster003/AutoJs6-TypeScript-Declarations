@@ -1,0 +1,7 @@
+test*.js
+*.apk
+*.zip
+/.bak
+/.git
+/.github
+/.idea

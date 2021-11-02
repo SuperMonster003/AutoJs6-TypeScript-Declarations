@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "ES5",
+      "ES6"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    ".bak",
+    ".test"
+  ]
+}
