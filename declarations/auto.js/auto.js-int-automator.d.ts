@@ -276,6 +276,39 @@ declare namespace Internal {
     }
 
     interface Auto {
+        /**
+         * Set accessibility (aka a11y) service mode and make sure it's enabled.
+         * An exception will be thrown and a11y configuration page will be prompted without the service running normally.
+         * zh-CN: 设置无障碍模式并确保无障碍服务启动; 如果无障碍服务未启用, 则抛出异常并跳转到无障碍服务启用界面
+         * @param [mode="normal"]
+         * @example
+         * // normal mode (default)
+         * // zh-CN: 正常模式 (默认)
+         * auto();
+         * auto("normal"); // same as above
+         *
+         * // fast mode
+         * // inspect screen layout at a faster speed in this mode
+         * // zh-CN: 快速模式
+         * // 该模式下会启用控件缓存, 从而选择器获取屏幕控件更快
+         * // 对于需要快速的控件操作的脚本可以使用该模式, 一般脚本则没有必要使用该函数
+         * auto("fast");
+         *
+         * // the additional
+         * // auto.waitFor() and auto.setMode() are recommended,
+         * // as auto() may interrupt the current script
+         * // zh-CN: 附加说明
+         * // 建议使用 auto.waitFor() 和 auto.setMode() 代替该方法
+         * // 若无障碍服务未启动, 使用 auto() 后脚本会立即停止运行
+         * // 而 auto.waitFor() 在无障碍服务启动后使脚本继续运行
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * if (mode) {
+         *    global.auto.setMode(mode);
+         * }
+         * runtime.accessibilityBridge.ensureServiceEnabled();
+         * @see auto.waitFor
+         * @see com.stardust.autojs.core.accessibility.AccessibilityBridge.ensureServiceEnabled
+         */
         (mode?: Automator.Mode): void;
 
         /**
@@ -318,42 +351,6 @@ declare namespace Internal {
          * @see com.stardust.automator.UiObject.Companion.createRoot
          */
         windowRoots: UiObject$[];
-
-        /**
-         * Set accessibility (aka a11y) service mode and make sure it's enabled.
-         * An exception will be thrown and a11y configuration page will be prompted without the service running normally.
-         * zh-CN: 设置无障碍模式并确保无障碍服务启动; 如果无障碍服务未启用, 则抛出异常并跳转到无障碍服务启用界面
-         * @param thisArg
-         * @param [mode="normal"]
-         * @example
-         * // normal mode (default)
-         * // zh-CN: 正常模式 (默认)
-         * auto();
-         * auto("normal"); // same as above
-         *
-         * // fast mode
-         * // inspect screen layout at a faster speed in this mode
-         * // zh-CN: 快速模式
-         * // 该模式下会启用控件缓存, 从而选择器获取屏幕控件更快
-         * // 对于需要快速的控件操作的脚本可以使用该模式, 一般脚本则没有必要使用该函数
-         * auto("fast");
-         *
-         * // the additional
-         * // auto.waitFor() and auto.setMode() are recommended,
-         * // as auto() may interrupt the current script
-         * // zh-CN: 附加说明
-         * // 建议使用 auto.waitFor() 和 auto.setMode() 代替该方法
-         * // 若无障碍服务未启动, 使用 auto() 后脚本会立即停止运行
-         * // 而 auto.waitFor() 在无障碍服务启动后使脚本继续运行
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * if (mode) {
-         *    global.auto.setMode(mode);
-         * }
-         * runtime.accessibilityBridge.ensureServiceEnabled();
-         * @see auto.waitFor
-         * @see com.stardust.autojs.core.accessibility.AccessibilityBridge.ensureServiceEnabled
-         */
-        call(thisArg: org.mozilla.javascript.Scriptable, mode?: Automator.Mode): void;
 
         /**
          * @example

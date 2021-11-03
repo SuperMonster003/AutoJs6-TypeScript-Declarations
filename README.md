@@ -12,10 +12,10 @@
     <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/releases/latest"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/Auto.js-TypeScript-Declarations"/></a>
     <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/Auto.js-TypeScript-Declarations?color=009688"/></a>
     <a href="https://github.com/hyb1996/Auto.js"><img alt="GitHub Auto.js repository" src="https://img.shields.io/badge/auto.js-4.1.1 alpha2-67a91b"/></a>
-    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/find/master"><img alt="GitHub Code Lines" src="https://img.shields.io/tokei/lines/github/SuperMonster003/Auto.js-TypeScript-Declarations?color=37474F"/></a>
-    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/Auto.js-TypeScript-Declarations?color=534BAE"/></a>
+    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/find/main"><img alt="GitHub Code Lines" src="https://img.shields.io/tokei/lines/github/SuperMonster003/Auto.js-TypeScript-Declarations?color=37474F"/></a>
+    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/Auto.js-TypeScript-Declarations?color=534BAE"/></a>
     <a href="https://www.jetbrains.com/?from=Auto.js-TypeScript-Declarations"><img alt="JetBrains supporter" src="https://img.shields.io/badge/supporter-JetBrains-ee4677"/></a>
-    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/master/docs/TODO.md"><img alt="Todo list" src="https://img.shields.io/badge/todo-5-C63F17"/></a>
+    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/main/docs/TODO.md"><img alt="Todo list" src="https://img.shields.io/badge/todo-5-C63F17"/></a>
   </p>
 </div>
 
@@ -31,7 +31,7 @@
 | ✒️ | Release 增加 full 和 lite 版本区分 | 2021-11-02 23:28:49 | 4 | 0.00 |
 | ✒️ | 完成 manual.js | 2021-11-02 23:30:23 | 6 | 0.00 |
 
-> 全部待办事项可参阅 [TODO.md](https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/master/docs/TODO.md) (共计 5 项)
+> 全部待办事项可参阅 [TODO.md](https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/main/docs/TODO.md) (共计 5 项)
 
 ******
 
@@ -167,7 +167,7 @@
 
 ##### 更多版本历史可参阅
 
-* [CHANGELOG.md](https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/master/docs/CHANGELOG.md)
+* [CHANGELOG.md](https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/main/docs/CHANGELOG.md)
 
 ******
 
