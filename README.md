@@ -57,7 +57,7 @@
 
 ******
 
-1. [下载最新项目数据包](https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/archive/master.zip) (`*.zip`)
+1. [下载最新项目数据包](https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/archive/main.zip) (`*.zip`)
 2. 解压并得到 `declarations` 文件夹
 3. 将上述文件夹放置到项目的任意目录中
 
