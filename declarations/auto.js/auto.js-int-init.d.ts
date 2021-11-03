@@ -39,9 +39,13 @@ declare let ui: Internal.UI;
 declare let util: Internal.Util;
 
 declare class Canvas extends com.stardust.autojs.core.graphics.ScriptCanvas {}
+
 declare class Image extends com.stardust.autojs.core.image.ImageWrapper {}
+
 declare class Shell extends com.stardust.autojs.core.util.Shell {}
+
 declare class Paint extends android.graphics.Paint {}
+
 declare class KeyEvent extends android.view.KeyEvent {}
 
 /**
@@ -55,7 +59,7 @@ declare class KeyEvent extends android.view.KeyEvent {}
  * @see com.stardust.autojs.core.accessibility.AccessibilityBridge
  * @see com.stardust.autojs.core.accessibility.UiSelector
  */
-declare function selector(): com.stardust.autojs.core.accessibility.UiSelector;
+declare function selector(): Internal.Selector;
 
 /**
  * @example Source code summary (zh-CN: 源代码摘要)
@@ -136,6 +140,7 @@ declare namespace Internal {
     class Activity extends com.stardust.autojs.execution.ScriptExecuteActivity {
         window: Activity.PhoneWindow;
     }
+
     class Context extends android.content.Context {
         public ACCESSIBILITY_SERVICE: string;
         public ACCOUNT_SERVICE: string;
@@ -287,6 +292,7 @@ declare namespace Internal {
         /** @deprecated */
         public wallpaperDesiredMinimumWidth: number;
     }
+
     class Runtime extends com.stardust.autojs.runtime.ScriptRuntime {
         public accessibilityBridge: com.stardust.autojs.core.accessibility.AccessibilityBridge;
         public applicationContext: globalAndroid.content.Context;
@@ -318,7 +324,7 @@ declare namespace Internal {
          *     let capt = java_images.captureScreen();
          *     console.log(capt.width + " × " + capt.height); // e.g. 720 × 1280
          * } else {
-         *     console.error("request screen capture permission failed");
+         *     console.error('request screen capture permission failed');
          * }
          */
         public images: com.stardust.autojs.runtime.api.Images;
@@ -327,6 +333,8 @@ declare namespace Internal {
         public topLevelScope: com.stardust.autojs.rhino.TopLevelScope;
         public uiHandler: com.stardust.util.UiHandler;
     }
+
+    class Selector extends com.stardust.autojs.core.accessibility.UiSelector {}
 }
 
 declare namespace Activity {
@@ -338,43 +346,79 @@ declare namespace Activity {
 // @Supplement
 
 declare let web: undefined;
+
 declare class Intent extends android.content.Intent {}
 
 declare class Address extends okhttp3.Address {}
+
 declare class Authenticator extends okhttp3.Authenticator {}
+
 declare class Cache extends okhttp3.Cache {}
+
 declare class Call extends okhttp3.Call {}
+
 declare class CertificatePinner extends okhttp3.CertificatePinner {}
+
 declare class Challenge extends okhttp3.Challenge {}
+
 declare class CipherSuite extends okhttp3.CipherSuite {}
+
 declare class Connection extends okhttp3.Connection {}
+
 declare class ConnectionSpec extends okhttp3.ConnectionSpec {}
+
 declare class ConnectionPool extends okhttp3.ConnectionPool {}
+
 declare class Callback extends okhttp3.Callback {}
+
 declare class CacheControl extends okhttp3.CacheControl {}
+
 declare class Cookie extends okhttp3.Cookie {}
+
 declare class CookieJar extends okhttp3.CookieJar {}
+
 declare class Credentials extends okhttp3.Credentials {}
+
 declare class Dns extends okhttp3.Dns {}
+
 declare class Dispatcher extends okhttp3.Dispatcher {}
+
 declare class EventListener extends okhttp3.EventListener {}
+
 declare class FormBody extends okhttp3.FormBody {}
+
 declare class Handshake extends okhttp3.Handshake {}
+
 declare class Headers extends okhttp3.Headers {}
+
 declare class HttpUrl extends okhttp3.HttpUrl {}
+
 declare class Interceptor extends okhttp3.Interceptor {}
+
 declare class MultipartReader extends okhttp3.MultipartReader {}
+
 declare class MediaType extends okhttp3.MediaType {}
+
 declare class MultipartBody extends okhttp3.MultipartBody {}
+
 declare class OkHttp extends okhttp3.OkHttp {}
+
 declare class OkHttpClient extends okhttp3.OkHttpClient {}
+
 declare class Protocol extends okhttp3.Protocol {}
+
 declare class Request extends okhttp3.Request {}
+
 declare class ResponseBody extends okhttp3.ResponseBody {}
+
 declare class Response extends okhttp3.Response {}
+
 declare class RequestBody extends okhttp3.RequestBody {}
+
 declare class TlsVersion extends okhttp3.TlsVersion {}
+
 declare class WebSocket extends okhttp3.WebSocket {}
+
 declare class WebSocketListener extends okhttp3.WebSocketListener {}
 
 declare class __engine__ extends com.stardust.autojs.engine.LoopBasedJavaScriptEngine {}

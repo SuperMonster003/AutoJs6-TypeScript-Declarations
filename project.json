@@ -5,8 +5,8 @@
     "build"
   ],
   "packageName": "com.sm003.autojs.d.ts",
-  "versionName": "1.0.0",
-  "versionCode": 4,
+  "versionName": "1.0.1",
+  "versionCode": 6,
   "launchConfig": {
     "displaySplash": false,
     "hideLogs": false,

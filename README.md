@@ -12,16 +12,10 @@
     <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/releases/latest"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/Auto.js-TypeScript-Declarations"/></a>
     <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/Auto.js-TypeScript-Declarations?color=009688"/></a>
     <a href="https://github.com/hyb1996/Auto.js"><img alt="GitHub Auto.js repository" src="https://img.shields.io/badge/auto.js-4.1.1 alpha2-67a91b"/></a>
-    <a href="https://github.com/topics/javascript"><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/SuperMonster003/Auto.js-TypeScript-Declarations?color=eb8031"/></a>
-    <a href="https://www.codefactor.io/repository/github/SuperMonster003/Auto.js-TypeScript-Declarations"><img alt="CodeFactor Grade" src="https://www.codefactor.io/repository/github/SuperMonster003/Auto.js-TypeScript-Declarations/badge"/></a>
-    <a href="https://lgtm.com/projects/g/SuperMonster003/Auto.js-TypeScript-Declarations/?mode=list"><img alt="LGTM Grade" src="https://img.shields.io/lgtm/grade/javascript/github/SuperMonster003/Auto.js-TypeScript-Declarations?label=lgtm"/></a>
-    <br>
-    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/commit/f8250babdb161e12ad2e14c73e8aa2b5d7d89cbc"><img alt="Created" src="https://img.shields.io/date/1635813883?color=2e7d32&label=created"/></a>
-    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/find/master"><img alt="GitHub Code Size" src="https://img.shields.io/github/languages/code-size/SuperMonster003/Auto.js-TypeScript-Declarations?color=795548"/></a>
     <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/find/master"><img alt="GitHub Code Lines" src="https://img.shields.io/tokei/lines/github/SuperMonster003/Auto.js-TypeScript-Declarations?color=37474F"/></a>
     <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/Auto.js-TypeScript-Declarations?color=534BAE"/></a>
     <a href="https://www.jetbrains.com/?from=Auto.js-TypeScript-Declarations"><img alt="JetBrains supporter" src="https://img.shields.io/badge/supporter-JetBrains-ee4677"/></a>
-    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/master/docs/TODO.md"><img alt="Todo list" src="https://img.shields.io/badge/todo-0-C63F17"/></a>
+    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/master/docs/TODO.md"><img alt="Todo list" src="https://img.shields.io/badge/todo-5-C63F17"/></a>
   </p>
 </div>
 
@@ -33,10 +27,11 @@
 
 | Status | Task | Date | Cost | Progress |
 | :---: | --- | :---: | :---: | :---: |
-| ✒️ | Release 增加 full 和 lite 版本区分 | 2021-11-02 23:28:49 | 4 | - |
-| ✒️ | README.md 增加示例 | 2021-11-02 23:30:23 | 6 | - |
+| ✔ | README.md 增加样例展示 | 2021-11-03 10:56:37 | 6 | 1 |
+| ✒️ | Release 增加 full 和 lite 版本区分 | 2021-11-02 23:28:49 | 4 | 0.00 |
+| ✒️ | 完成 manual.js | 2021-11-02 23:30:23 | 6 | 0.00 |
 
-> 全部待办事项可参阅 [TODO.md](https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/master/docs/TODO.md) (共计 0 项)
+> 全部待办事项可参阅 [TODO.md](https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/master/docs/TODO.md) (共计 5 项)
 
 ******
 
@@ -48,6 +43,13 @@
 
 * Auto.js 版本: [4.1.1 Alpha2](https://github.com/SuperMonster002/Hello-Sockpuppet/raw/master/%5Bauto.js%5D%5B4.1.1_alpha2%5D%5Barm-v7%5D(b69a4e23).apk?raw=true)
 * 支持的开发工具: [VSCode](https://code.visualstudio.com/download) / [WebStorm](https://www.jetbrains.com/webstorm/download/) / [HBuilderX](https://www.dcloud.io/hbuilderx.html) ...
+
+<details open><summary>点击收起样例展示</summary>
+   <div align="center">
+      <br>
+      <img alt="Demo" src="https://github.com/SuperMonster002/Hello-Sockpuppet/blob/master/auto.js-ts-declarations-demo.gif"/>
+   </div>
+</details>
 
 ******
 
@@ -98,6 +100,13 @@
 ******
 
 [comment]: <> (Version history only shows last 3 versions)
+
+# v1.0.1
+
+###### 2021/11/03
+
+* `新增` README.md增加样例展示
+* `优化` 将selector()返回类型移入Internal命名空间
 
 # v1.0.0
 
