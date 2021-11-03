@@ -179,7 +179,7 @@
     - `A tool that generates TypeScript declaration files (.d.ts) from Jars`
 * [Auto.js](https://github.com/hyb1996/Auto.js) { author: [hyb1996](https://github.com/hyb1996) }
     - `安卓平台上的 JavaScript 自动化工具`
-* [蚂蚁森林](https://github.com/SuperMonster003/Ant-Forest) { author: [SuperMonster003](https://github.com/SuperMonster003) }
+* [Ant-Forest](https://github.com/SuperMonster003/Ant-Forest) { author: [SuperMonster003](https://github.com/SuperMonster003) }
     - `基于 Auto.js 的蚂蚁森林能量自动收取脚本`
 
 ******
