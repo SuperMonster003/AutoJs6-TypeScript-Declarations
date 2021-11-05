@@ -9,13 +9,17 @@
   <p>Auto.js TypeScript Declarations</p>
 
   <p>
-    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/releases/latest"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/Auto.js-TypeScript-Declarations"/></a>
+    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/releases/latest"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/Auto.js-TypeScript-Declarations?color=534BAE"/></a>
     <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/Auto.js-TypeScript-Declarations?color=009688"/></a>
     <a href="https://github.com/hyb1996/Auto.js"><img alt="GitHub Auto.js repository" src="https://img.shields.io/badge/auto.js-4.1.1 alpha2-67a91b"/></a>
+    <a href="https://github.com/topics/javascript"><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/SuperMonster003/Auto.js-TypeScript-Declarations?color=3178C6"/></a>
+    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/commit/f8250babdb161e12ad2e14c73e8aa2b5d7d89cbc"><img alt="Created" src="https://img.shields.io/date/1635813883?color=2e7d32&label=created"/></a>
+   <br>
+    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/Auto.js-TypeScript-Declarations?color=C63F17"/></a>
+    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/find/master"><img alt="GitHub Code Size" src="https://img.shields.io/github/languages/code-size/SuperMonster003/Auto.js-TypeScript-Declarations?color=795548"/></a>
     <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/find/main"><img alt="GitHub Code Lines" src="https://img.shields.io/tokei/lines/github/SuperMonster003/Auto.js-TypeScript-Declarations?color=37474F"/></a>
-    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/Auto.js-TypeScript-Declarations?color=534BAE"/></a>
     <a href="https://www.jetbrains.com/?from=Auto.js-TypeScript-Declarations"><img alt="JetBrains supporter" src="https://img.shields.io/badge/supporter-JetBrains-ee4677"/></a>
-    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/main/docs/TODO.md"><img alt="Todo list" src="https://img.shields.io/badge/todo-5-C63F17"/></a>
+    <a href="https://github.com/SuperMonster003/Auto.js-TypeScript-Declarations/blob/main/docs/TODO.md"><img alt="Todo list" src="https://img.shields.io/badge/todo-5-B64FC8"/></a>
   </p>
 </div>
 
@@ -100,6 +104,16 @@
 ******
 
 [comment]: <> (Version history only shows last 3 versions)
+
+# v1.0.2
+
+###### 2021/11/05
+
+* `新增` Error实例的javaException/rhinoException属性描述
+* `修复` auto()方法描述指向错误
+* `优化` 方法签名完善
+  · android.content.pm.PackageManager.getApplicationInfo
+  · android.content.pm.PackageManager.getApplicationLabel
 
 # v1.0.1
 

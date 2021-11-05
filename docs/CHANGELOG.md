@@ -4,6 +4,23 @@
 
 ******
 
+# v1.0.2
+
+###### 2021/11/05
+
+* `新增` Error实例的javaException/rhinoException属性描述
+* `修复` auto()方法描述指向错误
+* `优化` 方法签名完善
+  · android.content.pm.PackageManager.getApplicationInfo
+  · android.content.pm.PackageManager.getApplicationLabel
+
+# v1.0.1
+
+###### 2021/11/03
+
+* `新增` README.md增加样例展示
+* `优化` 将selector()返回类型移入Internal命名空间
+
 # v1.0.0
 
 ###### 2021/11/02
