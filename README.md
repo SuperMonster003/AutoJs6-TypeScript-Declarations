@@ -2,7 +2,7 @@
 
 <div align="center">
   <p>
-    <img alt="AJ_DTS_Banner" src="https://github.com/SuperMonster002/Hello-Sockpuppet/raw/master/auto.js-ts-declarations-banner_1024×310.png" width="512"/>
+    <img alt="AJ_DTS_Banner" src="https://raw.githubusercontent.com/SuperMonster002/Hello-Sockpuppet/master/auto.js-ts-declarations-banner_1024%C3%97310.png" width="512"/>
   </p>
 
   <p>Auto.js 声明文件 (.d.ts)</p>
@@ -45,13 +45,13 @@
 
 实现或增强开发工具的代码智能提示
 
-* Auto.js 版本: [4.1.1 Alpha2](https://github.com/SuperMonster002/Hello-Sockpuppet/raw/master/%5Bauto.js%5D%5B4.1.1_alpha2%5D%5Barm-v7%5D(b69a4e23).apk?raw=true)
+* Auto.js 版本: [4.1.1 Alpha2](https://raw.githubusercontent.com/SuperMonster002/Hello-Sockpuppet/master/%5Bauto.js%5D%5B4.1.1_alpha2%5D%5Barm-v7%5D(b69a4e23).apk)
 * 支持的开发工具: [VSCode](https://code.visualstudio.com/download) / [WebStorm](https://www.jetbrains.com/webstorm/download/) / [HBuilderX](https://www.dcloud.io/hbuilderx.html) ...
 
 <details open><summary>点击收起样例展示</summary>
    <div align="center">
       <br>
-      <img alt="Demo" src="https://github.com/SuperMonster002/Hello-Sockpuppet/blob/master/auto.js-ts-declarations-demo.gif"/>
+      <img alt="Demo" src="https://raw.githubusercontent.com/SuperMonster002/Hello-Sockpuppet/master/auto.js-ts-declarations-demo.gif"/>
    </div>
 </details>
 
