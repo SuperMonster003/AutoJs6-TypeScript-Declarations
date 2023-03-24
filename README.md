@@ -2,7 +2,7 @@
 
 <div align="center">
   <p>
-    <img src="https://s1.imagehub.cc/images/2023/03/24/c5f6f649b6ed3aae341966a92fca2747.md.png" alt="c5f6f649b6ed3aae341966a92fca2747.png" border="0" height="150" />
+    <img src="https://s1.imagehub.cc/images/2023/03/24/c5f6f649b6ed3aae341966a92fca2747.md.png" alt="autojs6-ts-declarations-banner_1024×310" border="0" width="496" />
   </p>
 
   <p>AutoJs6 声明文件 (d.ts)</p>
@@ -142,8 +142,6 @@ npm i @sm003/autojs6-dts
 
 * `新增` README.md 增加样例展示
 * `优化` 将 selector() 返回类型移入 Internal 命名空间
-
-<br>
 
 ##### 更多版本历史可参阅
 
