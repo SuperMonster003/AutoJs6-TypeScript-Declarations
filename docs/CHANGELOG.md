@@ -4,12 +4,21 @@
 
 ******
 
+# v2.0.0
+
+###### 2023/03/24
+
+* `优化` 适配 AutoJs6 6.2.1 Alpha2
+* `优化` android platform 27 声明文件升级为 33 版本
+* `优化` 还原方法签名中 param0/param1/... 的原始参数名称
+* `管理` 项目已发布至 NPM (@sm003/autojs6-dts)
+
 # v1.0.2
 
 ###### 2021/11/05
 
-* `新增` Error实例的javaException/rhinoException属性描述
-* `修复` auto()方法描述指向错误
+* `新增` Error 实例的 javaException/rhinoException 属性描述
+* `修复` auto() 方法描述指向错误
 * `优化` 方法签名完善
   · android.content.pm.PackageManager.getApplicationInfo
   · android.content.pm.PackageManager.getApplicationLabel
@@ -18,8 +27,8 @@
 
 ###### 2021/11/03
 
-* `新增` README.md增加样例展示
-* `优化` 将selector()返回类型移入Internal命名空间
+* `新增` README.md 增加样例展示
+* `优化` 将 selector() 返回类型移入 Internal 命名空间
 
 # v1.0.0
 
