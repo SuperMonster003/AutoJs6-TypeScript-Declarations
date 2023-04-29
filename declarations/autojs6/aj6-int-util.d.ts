@@ -462,47 +462,47 @@ declare namespace Internal {
         /**
          * @throws TypeError
          */
-        ensureStringType(o: any): void;
+        ensureStringType(...o: any[]): void;
 
         /**
          * @throws TypeError
          */
-        ensureNumberType(o: any): void;
+        ensureNumberType(...o: any[]): void;
 
         /**
          * @throws TypeError
          */
-        ensureUndefinedType(o: any): void;
+        ensureUndefinedType(...o: any[]): void;
 
         /**
          * @throws TypeError
          */
-        ensureBooleanType(o: any): void;
+        ensureBooleanType(...o: any[]): void;
 
         /**
          * @throws TypeError
          */
-        ensureSymbolType(o: any): void;
+        ensureSymbolType(...o: any[]): void;
 
         /**
          * @throws TypeError
          */
-        ensureBigintType(o: any): void;
+        ensureBigintType(...o: any[]): void;
 
         /**
          * @throws TypeError
          */
-        ensureObjectType(o: any): void;
+        ensureObjectType(...o: any[]): void;
 
         /**
          * @throws TypeError
          */
-        ensureNonNullObjectType(o: any): void;
+        ensureNonNullObjectType(...o: any[]): void;
 
         /**
          * @throws TypeError
          */
-        ensureArrayType(o: any): void;
+        ensureArrayType(...o: any[]): void;
 
         /**
          * Converts a function into regular form

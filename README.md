@@ -117,6 +117,13 @@ npm i @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v2.0.1
+
+###### 2023/04/29
+
+* `新增` s13n 模块声明文件
+* `优化` 适配 AutoJs6 6.3.0
+
 # v2.0.0
 
 ###### 2023/03/24
@@ -135,13 +142,6 @@ npm i @sm003/autojs6-dts
 * `优化` 方法签名完善
   · android.content.pm.PackageManager.getApplicationInfo
   · android.content.pm.PackageManager.getApplicationLabel
-
-# v1.0.1
-
-###### 2021/11/03
-
-* `新增` README.md 增加样例展示
-* `优化` 将 selector() 返回类型移入 Internal 命名空间
 
 ##### 更多版本历史可参阅
 

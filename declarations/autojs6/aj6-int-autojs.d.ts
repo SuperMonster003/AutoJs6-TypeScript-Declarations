@@ -68,6 +68,8 @@ declare namespace Internal {
 
         getLanguageTag(): string;
 
+        get themeColor(): org.autojs.autojs.theme.ThemeColor;
+
     }
 
     interface AutojsVersion {
