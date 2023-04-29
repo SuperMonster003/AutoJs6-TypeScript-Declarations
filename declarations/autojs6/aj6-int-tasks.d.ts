@@ -17,8 +17,6 @@ declare namespace Internal {
 
     interface Tasks {
 
-        timedTaskManager: org.autojs.autojs.timing.TimedTaskManager;
-
         addTask<T extends TimedTask$ | IntentTask$>(task: T): T;
 
         /**

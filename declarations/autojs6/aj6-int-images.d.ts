@@ -507,7 +507,7 @@ declare namespace Internal {
             similarity?: number,
             threshold?: number,
             region?: Images.Options.Region,
-        }): OpenCV.Point;
+        }): OpenCV.Point | null;
 
         /**
          * @param img
@@ -532,7 +532,7 @@ declare namespace Internal {
          * };
          * @see findColor
          */
-        findColorEquals(img: ImageWrapper, color: Color$, x, y, width, height): OpenCV.Point;
+        findColorEquals(img: ImageWrapper, color: Color$, x, y, width, height): OpenCV.Point | null;
 
         /**
          * @param img
@@ -561,7 +561,7 @@ declare namespace Internal {
         findColorInRegion(
             img: ImageWrapper, color: Color$, x?: X, y?: Y,
             width?: Width, height?: Height, threshold?: number,
-        ): OpenCV.Point;
+        ): OpenCV.Point | null;
 
         /**
          * @param img
@@ -621,7 +621,7 @@ declare namespace Internal {
             weakThreshold?: number,
             level?: number,
             region?: Images.Options.Region,
-        }): OpenCV.Point;
+        }): OpenCV.Point | null;
 
         /**
          * @param image
@@ -643,7 +643,7 @@ declare namespace Internal {
         findImageInRegion(
             image: ImageWrapper, template: ImageWrapper, x?: X, y?: Y,
             width?: Width, height?: Height, threshold?: number,
-        ): OpenCV.Point;
+        ): OpenCV.Point | null;
 
         /**
          * @example
@@ -704,7 +704,7 @@ declare namespace Internal {
                 region?: Images.Options.Region;
                 threshold?: number;
             },
-        ): OpenCV.Point;
+        ): OpenCV.Point | null;
 
         // noinspection SpellCheckingInspection
         /**

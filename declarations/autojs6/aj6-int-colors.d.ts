@@ -13,12 +13,12 @@
 
 declare namespace Internal {
 
-    import ColorHex = Colors.ColorHex;
     import ColorInt = Colors.ColorInt;
-    import ColorName = Colors.ColorName;
     import DetectionAlgorithm = Colors.DetectionAlgorithm;
     import ColorComponent = Colors.ColorComponent;
     import ColorHueComponent = Colors.ColorHueComponent;
+    import ComponentOptions = Colors.ComponentOptions;
+    import ToComponentOptions = Colors.ToComponentOptions;
 
     class Colors extends org.autojs.autojs.core.image.Colors {
 
@@ -5785,9 +5785,11 @@ declare namespace Internal {
          *     return color;
          * }
          */
-        alpha(color: ColorHex | ColorInt | ColorName, options?: Colors.ComponentOptions): ColorInt;
+        alpha(color: OmniColor, options?: ComponentOptions): ColorInt;
+        getAlpha(color: OmniColor, options?: ComponentOptions): ColorInt;
 
-        alphaDouble(color: ColorHex | ColorInt | ColorName): ColorInt;
+        alphaDouble(color: OmniColor): ColorInt;
+        getAlphaDouble(color: OmniColor): ColorInt;
 
         /**
          * @example
@@ -5805,9 +5807,11 @@ declare namespace Internal {
          *     return color;
          * }
          */
-        red(color: ColorHex | ColorInt | ColorName, options?: Colors.ComponentOptions): ColorInt;
+        red(color: OmniColor, options?: ComponentOptions): ColorInt;
+        getRed(color: OmniColor, options?: ComponentOptions): ColorInt;
 
-        redDouble(color: ColorHex | ColorInt | ColorName): ColorInt;
+        redDouble(color: OmniColor): ColorInt;
+        getRedDouble(color: OmniColor): ColorInt;
 
         /**
          * @example
@@ -5825,9 +5829,11 @@ declare namespace Internal {
          *     return color;
          * }
          */
-        green(color: ColorHex | ColorInt | ColorName, options?: Colors.ComponentOptions): ColorInt;
+        green(color: OmniColor, options?: ComponentOptions): ColorInt;
+        getGreen(color: OmniColor, options?: ComponentOptions): ColorInt;
 
-        greenDouble(color: ColorHex | ColorInt | ColorName): ColorInt;
+        greenDouble(color: OmniColor): ColorInt;
+        getGreenDouble(color: OmniColor): ColorInt;
 
         /**
          * @example
@@ -5845,22 +5851,47 @@ declare namespace Internal {
          *     return color;
          * }
          */
-        blue(color: ColorHex | ColorInt | ColorName, options?: Colors.ComponentOptions): ColorInt;
+        blue(color: OmniColor, options?: ComponentOptions): ColorInt;
+        getBlue(color: OmniColor, options?: ComponentOptions): ColorInt;
 
-        blueDouble(color: ColorHex | ColorInt | ColorName): ColorInt;
+        blueDouble(color: OmniColor): ColorInt;
+        getBlueDouble(color: OmniColor): ColorInt;
 
-        toInt(color: ColorHex | ColorInt | ColorName): number;
+        setAlpha(color: OmniColor, alpha: ColorComponent): number;
+
+        removeAlpha(color: OmniColor): number;
+
+        setRed(color: OmniColor, red: ColorComponent): number;
+
+        removeRed(color: OmniColor): number;
+
+        setGreen(color: OmniColor, green: ColorComponent): number;
+
+        removeGreen(color: OmniColor): number;
+
+        setBlue(color: OmniColor, blue: ColorComponent): number;
+
+        removeBlue(color: OmniColor): number;
+
+        toInt(color: OmniColor): number;
+
+        /**
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * public int parseColor(String colorString) {
+         *     return Color.parseColor(colorString);
+         * }
+         * @see android.graphics.Color.parseColor
+         */
+        parseColor(colorString: string): number;
 
         /**
          * Get hex code string of a color.
          */
-        toHex(color: ColorHex | ColorInt | ColorName, alpha?: boolean | 'auto' | 'none' | 'keep'): string;
+        toHex(color: OmniColor, alpha?: boolean | 'auto' | 'none' | 'keep'): string;
         /**
          * Get hex code string of a color.
          */
-        toHex(color: ColorHex | ColorInt | ColorName, length: 8 | 6 | 3): string;
-
-        toFullHex(color: ColorHex | ColorInt | ColorName): string;
+        toHex(color: OmniColor, length: 8 | 6 | 3): string;
 
         /**
          * Get hex code string of a color.
@@ -5869,7 +5900,7 @@ declare namespace Internal {
          * @replaceWith colors.toHex
          */
         // @ts-ignore
-        toString(color: ColorHex | ColorInt | ColorName, alpha?: boolean | 'auto' | 'none' | 'keep'): string;
+        toString(color: OmniColor, alpha?: boolean | 'auto' | 'none' | 'keep'): string;
         /**
          * Get hex code string of a color.
          *
@@ -5877,7 +5908,9 @@ declare namespace Internal {
          * @replaceWith colors.toHex
          */
         // @ts-ignore
-        toString(color: ColorHex | ColorInt | ColorName, length: 8 | 6 | 3): string;
+        toString(color: OmniColor, length: 8 | 6 | 3): string;
+
+        toFullHex(color: OmniColor): string;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -5887,8 +5920,8 @@ declare namespace Internal {
          * @see android.graphics.Color
          */
         rgb(red: ColorComponent, green: ColorComponent, blue: ColorComponent): number;
-        rgb(rgb: [ ColorComponent, ColorComponent, ColorComponent ]): number;
-        rgb(color: ColorHex | ColorInt | ColorName): number;
+        rgb(rgb: [ColorComponent, ColorComponent, ColorComponent]): number;
+        rgb(color: OmniColor): number;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -5933,26 +5966,26 @@ declare namespace Internal {
         hsla(hsl: (ColorHueComponent | ColorComponent)[], a: ColorComponent): number;
         hsla(components: (ColorComponent | ColorHueComponent)[]): number;
 
-        toRgb(color: ColorHex | ColorInt | ColorName): number[];
+        toRgb(color: OmniColor): number[];
 
-        toRgba(color: ColorHex | ColorInt | ColorName, options?: Colors.ToComponentOptions): number[];
+        toRgba(color: OmniColor, options?: ToComponentOptions): number[];
 
-        toArgb(color: ColorHex | ColorInt | ColorName, options?: Colors.ToComponentOptions): number[];
+        toArgb(color: OmniColor, options?: ToComponentOptions): number[];
 
-        toHsv(color: ColorHex | ColorInt | ColorName): number[];
-        toHsv(color: ColorHex | ColorInt | ColorName, hsvResultContainer: java.lang.Float[]): number[];
+        toHsv(color: OmniColor): number[];
+        toHsv(color: OmniColor, hsvResultContainer: java.lang.Float[]): number[];
         toHsv(r: ColorComponent, g: ColorComponent, b: ColorComponent): number[];
         toHsv(r: ColorComponent, g: ColorComponent, b: ColorComponent, hsvResultContainer: java.lang.Float[]): number[];
 
-        toHsva(color: ColorHex | ColorInt | ColorName): number[];
-        toHsva(color: ColorHex | ColorInt | ColorName, hsvaResultContainer: java.lang.Float[]): number[];
+        toHsva(color: OmniColor): number[];
+        toHsva(color: OmniColor, hsvaResultContainer: java.lang.Float[]): number[];
         toHsva(r: ColorComponent, g: ColorComponent, b: ColorComponent, a: ColorComponent): number[];
         toHsva(r: ColorComponent, g: ColorComponent, b: ColorComponent, a: ColorComponent, hsvaResultContainer: java.lang.Float[]): number[];
 
-        toHsl(color: ColorHex | ColorInt | ColorName): number[];
+        toHsl(color: OmniColor): number[];
         toHsl(r: ColorComponent, g: ColorComponent, b: ColorComponent): number[];
 
-        toHsla(color: ColorHex | ColorInt | ColorName): number[];
+        toHsla(color: OmniColor): number[];
         toHsla(r: ColorComponent, g: ColorComponent, b: ColorComponent, a: ColorComponent): number[];
 
         /**
@@ -5993,14 +6026,14 @@ declare namespace Internal {
          * @param [threshold=4]
          * @param [algorithm="diff"]
          */
-        isSimilar(colorA: ColorHex | ColorInt | ColorName, colorB: ColorHex | ColorInt | ColorName, threshold?: number, algorithm?: DetectionAlgorithm): boolean;
-        isSimilar(colorA: ColorHex | ColorInt | ColorName, colorB: ColorHex | ColorInt | ColorName, options: {
+        isSimilar(colorA: OmniColor, colorB: OmniColor, threshold?: number, algorithm?: DetectionAlgorithm): boolean;
+        isSimilar(colorA: OmniColor, colorB: OmniColor, options: {
             threshold?: number; /* [0..255] */
             similarity?: number; /* [0..1] */
             algorithm?: DetectionAlgorithm;
         }): boolean;
 
-        isEqual(colorA: ColorHex | ColorInt | ColorName, colorB: ColorHex | ColorInt | ColorName, alphaMatters?: boolean): boolean;
+        isEqual(colorA: OmniColor, colorB: OmniColor, alphaMatters?: boolean): boolean;
 
         /**
          * @deprecated Use `colors.isEqual` instead.
@@ -6023,7 +6056,7 @@ declare namespace Internal {
          * @see android.graphics.Color
          */
         // @ts-ignore
-        equals(colorA: ColorHex | ColorInt | ColorName, colorB: ColorHex | ColorInt | ColorName): boolean;
+        equals(colorA: OmniColor, colorB: OmniColor): boolean;
 
         /**
          * @description Luminance is defined using a standard model of human vision
@@ -6054,20 +6087,139 @@ declare namespace Internal {
          * @see https://en.wikipedia.org/wiki/Grayscale
          */
         // @ts-ignore
-        luminance(color: ColorHex | ColorInt | ColorName): number;
+        luminance(color: OmniColor): number;
 
-        /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * public int parseColor(String colorString) {
-         *     return Color.parseColor(colorString);
-         * }
-         * @see android.graphics.Color.parseColor
-         */
-        parseColor(colorString: string): number;
+        toColorStateList(...color: (OmniColor)[]): android.content.res.ColorStateList;
 
-        toColorStateList(...color: (ColorHex | ColorInt | ColorName)[]): android.content.res.ColorStateList;
+        setPaintColor(paint: Paint, color: OmniColor): void;
 
-        setPaintColor(paint: Paint, color: ColorHex | ColorInt | ColorName): void;
+        build(): Color;
+        build(color: OmniColor): Color;
+        build(r: ColorComponent, g: ColorComponent, b: ColorComponent): Color;
+        build(r: ColorComponent, g: ColorComponent, b: ColorComponent, a: ColorComponent): Color;
+
+        digest(color: OmniColor): string;
+
+    }
+
+    interface Color {
+
+        new(color?: OmniColor);
+        new(r: ColorComponent, g: ColorComponent, b: ColorComponent, a?: ColorComponent);
+
+        (color?: OmniColor): Color;
+        (r: ColorComponent, g: ColorComponent, b: ColorComponent, a?: ColorComponent): Color;
+
+        color: ColorInt;
+
+        digest(): string;
+
+        toHex(alpha?: boolean | 'auto' | 'none' | 'keep'): string;
+        toHex(length: 8 | 6 | 3): string;
+
+        toFullHex(): string;
+
+        toInt(): number;
+
+        alpha(options?: ComponentOptions): ColorInt;
+        getAlpha(options?: ComponentOptions): ColorInt;
+
+        alphaDouble(): ColorInt;
+        getAlphaDouble(): ColorInt;
+
+        red(options?: ComponentOptions): ColorInt;
+        getRed(options?: ComponentOptions): ColorInt;
+
+        redDouble(): ColorInt;
+        getRedDouble(): ColorInt;
+
+        green(options?: ComponentOptions): ColorInt;
+        getGreen(options?: ComponentOptions): ColorInt;
+
+        greenDouble(): ColorInt;
+        getGreenDouble(): ColorInt;
+
+        blue(options?: ComponentOptions): ColorInt;
+        getBlue(options?: ComponentOptions): ColorInt;
+
+        blueDouble(): ColorInt;
+        getBlueDouble(): ColorInt;
+
+        setAlpha(alpha: ColorComponent): this;
+
+        removeAlpha(): this;
+
+        setRed(red: ColorComponent): this;
+
+        removeRed(): this;
+
+        setGreen(green: ColorComponent): this;
+
+        removeGreen(): this;
+
+        setBlue(blue: ColorComponent): this;
+
+        removeBlue(): this;
+
+        setRgb(red: ColorComponent, green: ColorComponent, blue: ColorComponent): this;
+        setRgb(rgb: [ColorComponent, ColorComponent, ColorComponent]): this;
+        setRgb(color: OmniColor): this;
+
+        setArgb(alpha: ColorComponent, red: ColorComponent, green: ColorComponent, blue: ColorComponent): this;
+        setArgb(components: ColorComponent[]): this;
+        setArgb(colorHex: '#AARRGGBB' | string): this;
+
+        setRgba(red: ColorComponent, green: ColorComponent, blue: ColorComponent, alpha: ColorComponent): this;
+        setRgba(rgb: ColorComponent[], alpha: ColorComponent): this;
+        setRgba(components: ColorComponent[]): this;
+        setRgba(colorHex: '#RRGGBBAA' | string): this;
+
+        setHsv(h: ColorHueComponent, s: ColorComponent, v: ColorComponent): this;
+        setHsv(components: (ColorComponent | ColorHueComponent)[]): this;
+
+        setHsva(h: ColorHueComponent, s: ColorComponent, v: ColorComponent, a: ColorComponent): this;
+        setHsva(hsv: (ColorHueComponent | ColorComponent)[], a: ColorComponent): this;
+        setHsva(components: (ColorComponent | ColorHueComponent)[]): this;
+
+        setHsl(h: ColorHueComponent, s: ColorComponent, l: ColorComponent): this;
+        setHsl(components: (ColorComponent | ColorHueComponent)[]): this;
+
+        setHsla(h: ColorHueComponent, s: ColorComponent, l: ColorComponent, a: ColorComponent): this;
+        setHsla(hsl: (ColorHueComponent | ColorComponent)[], a: ColorComponent): this;
+        setHsla(components: (ColorComponent | ColorHueComponent)[]): this;
+
+        toRgb(): number[];
+
+        toRgba(options?: ToComponentOptions): number[];
+
+        toArgb(options?: ToComponentOptions): number[];
+
+        toHsv(): number[];
+
+        toHsva(): number[];
+
+        toHsl(): number[];
+
+        toHsla(): number[];
+
+        isSimilar(other: OmniColor, threshold?: number, algorithm?: DetectionAlgorithm): boolean;
+        isSimilar(other: OmniColor, options: {
+            threshold?: number; /* [0..255] */
+            similarity?: number; /* [0..1] */
+            algorithm?: DetectionAlgorithm;
+        }): boolean;
+
+        isEqual(other: OmniColor, alphaMatters?: boolean): boolean;
+
+        // @ts-ignore
+        equals(other: OmniColor): boolean;
+
+        // @ts-ignore
+        luminance(): number;
+
+        toColorStateList(): android.content.res.ColorStateList;
+
+        setPaintColor(paint: Paint): this;
 
     }
 
@@ -6192,6 +6344,7 @@ declare namespace Colors {
 
     type DetectionAlgorithm = 'diff' | 'rgb' | 'equal' | 'rgb+' | 'hs' | 'h';
 
+    // noinspection SpellCheckingInspection
     type ConversionCodes =
         'BGR2BGRA'
         | 'RGB2RGBA'

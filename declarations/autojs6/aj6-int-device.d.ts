@@ -41,9 +41,9 @@ declare namespace Internal {
 
         get density(): number;
 
-        get summary(): string;
+        summary(): string;
 
-        get digest(): string;
+        digest(): string;
 
         /**
          * Either a changelist number, or a label like "M4-rc20"
@@ -1072,7 +1072,8 @@ declare namespace Internal {
 
         /**
          * @param pattern – The pattern of alternating on-off timings, starting with off.
-         * @example
+         *
+         * @example number[]
          * // 0: off, 200: on, 400: off, ...
          * let pattern = [0, 200, 400, 200, 400, 200, 100, 200, 100, 200];
          * device.vibrate(pattern);
@@ -1081,8 +1082,13 @@ declare namespace Internal {
          * device.vibrate([0, 100, 60, 100, 60, 100, 200, 200, 60, 200, 60, 200, 200, 100, 60, 100, 60, 100]);
          * // Also, you can use vibrate(text: string) for an easier way.
          * device.vibrate('SOS');
+         *
+         * @example string
+         * // case-insensitive
+         * device.vibrate('love');
+         * @see Util.MorseCode.vibrate
          */
-        vibrate(pattern: number[]): void;
+        vibrate(pattern: OmniVibrationPattern, delay?: number): void;
 
         /**
          * @example
@@ -1101,14 +1107,6 @@ declare namespace Internal {
          * device.vibrate(1e3, 800); // vibrate for 0.8 seconds after 1 second's off
          */
         vibrate(off: number, millis: number): void;
-
-        /**
-         * @example
-         * // case-insensitive
-         * device.vibrate('love');
-         * @see Util.MorseCode.vibrate
-         */
-        vibrate(text: string, delay?: number): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)

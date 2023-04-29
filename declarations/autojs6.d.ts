@@ -29,6 +29,7 @@
 /// <reference path="./autojs6/aj6-int-result-adapter.d.ts" />
 /// <reference path="./autojs6/aj6-int-rhino.d.ts" />
 /// <reference path="./autojs6/aj6-int-root-automator.d.ts" />
+/// <reference path="./autojs6/aj6-int-s13n.d.ts" />
 /// <reference path="./autojs6/aj6-int-selector.d.ts" />
 /// <reference path="./autojs6/aj6-int-sensors.d.ts" />
 /// <reference path="./autojs6/aj6-int-shell.d.ts" />

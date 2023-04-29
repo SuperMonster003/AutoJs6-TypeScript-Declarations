@@ -33,6 +33,7 @@ declare let images: Internal.Images;
 declare let media: Internal.Media;
 declare let notice: Internal.Notice;
 declare let ocr: Internal.Ocr;
+declare let s13n: Internal.S13n;
 declare let plugins: Internal.Plugins;
 declare let recorder: Internal.Recorder;
 declare let require: Internal.Require;
@@ -48,6 +49,7 @@ declare let web: Internal.Web;
 declare let Mathx: Internal.Mathx;
 declare let Numberx: Internal.Numberx;
 declare let Arrayx: Internal.Arrayx;
+declare let Color: Internal.Color;
 
 /**
  * Objects can change the behavior of Object.prototype.toString() by defining
@@ -1109,5 +1111,41 @@ declare class PendingIntent extends android.app.PendingIntent {
 }
 
 declare class GlobalAppContext extends org.autojs.autojs.app.GlobalAppContext {
+    // Empty class body.
+}
+
+declare class DisplayUtils extends org.autojs.autojs.util.DisplayUtils {
+    // Empty class body.
+}
+
+declare class ColorUtils extends org.autojs.autojs.util.ColorUtils {
+    // Empty class body.
+}
+
+declare class StringUtils extends org.autojs.autojs.util.StringUtils {
+    // Empty class body.
+}
+
+declare class ProxyObject extends org.autojs.autojs.rhino.ProxyObject {
+    // Empty class body.
+}
+
+declare class ProxyJavaObject extends org.autojs.autojs.rhino.ProxyJavaObject {
+    // Empty class body.
+}
+
+declare class NotificationCompat extends androidx.core.app.NotificationCompat {
+    // Empty class body.
+}
+
+declare class NotificationManagerCompat extends androidx.core.app.NotificationManagerCompat {
+    // Empty class body.
+}
+
+declare class URI extends java.net.URI {
+    // Empty class body.
+}
+
+declare class File extends java.io.File {
     // Empty class body.
 }
