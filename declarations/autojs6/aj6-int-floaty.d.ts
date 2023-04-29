@@ -44,10 +44,6 @@ declare namespace Internal {
 
         rawWindow(layout: android.view.View): org.autojs.autojs.runtime.api.Floaty.JsRawWindow;
 
-        hasPermission(): boolean;
-
-        requestPermission(): void;
-
         closeAll(): void;
 
     }

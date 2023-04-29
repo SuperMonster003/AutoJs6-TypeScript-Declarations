@@ -14,7 +14,18 @@
 
 declare namespace Internal {
 
-    class Console extends org.autojs.autojs.core.console.GlobalConsole {
+    class Console extends org.autojs.autojs.runtime.api.Console {
+
+        /**
+         * @example
+         * console.log("Hello");
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * console.log = function () {
+         *     runtime.console.log(util.format.apply(util, arguments));
+         * };
+         * @see org.autojs.autojs.core.console.ConsoleImpl.log
+         */
+        log(...text): void;
 
         /**
          * @example
@@ -59,18 +70,15 @@ declare namespace Internal {
          * }；
          * @see org.autojs.autojs.core.console.ConsoleImpl.verbose
          */
-        verbose(data?: any, ...text): void;
+        verbose(...text): void;
 
         /**
-         * @example
-         * console.log("Hello");
          * @example Source code summary (zh-CN: 源代码摘要)
-         * console.log = function () {
-         *     runtime.console.log(util.format.apply(util, arguments));
+         * console.print = function () {
+         *     runtime.console.print(android.util.Log.DEBUG, util.format.apply(util, arguments));
          * };
-         * @see org.autojs.autojs.core.console.ConsoleImpl.log
          */
-        log(data?: any, ...text): void;
+        print(...text): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -79,7 +87,7 @@ declare namespace Internal {
          * }；
          * @see org.autojs.autojs.core.console.ConsoleImpl.into
          */
-        info(data?: any, ...text): void;
+        info(...text): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -88,7 +96,7 @@ declare namespace Internal {
          * }；
          * @see org.autojs.autojs.core.console.ConsoleImpl.warn
          */
-        warn(data?: any, ...text): void;
+        warn(...text): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -97,16 +105,7 @@ declare namespace Internal {
          * }；
          * @see org.autojs.autojs.core.console.ConsoleImpl.error
          */
-        error(data?: any, ...text): void;
-
-        /**
-         * @deprecated
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * console.print = function () {
-         *     runtime.console.print(android.util.Log.DEBUG, util.format.apply(util, arguments));
-         * };
-         */
-        print(data?: any, ...text): void;
+        error(...text): void;
 
         /**
          * @polyfill
@@ -174,8 +173,7 @@ declare namespace Internal {
          *     };
          * })()
          */
-        trace(message: string, ...args): void;
-        trace(message: string, level: 'verbose' | 'debug' | 'info' | 'warn' | 'error' | number): void;
+        trace(message: string, level?: 'verbose' | 'debug' | 'info' | 'warn' | 'error' | number): void;
 
         /**
          * Configuration of saving Auto.js logs to local storage (path, file name, etc...)
@@ -239,38 +237,17 @@ declare namespace Internal {
          */
         setGlobalLogConfig(config: Console.GlobalLogConfig): void;
 
-        show(): this;
-
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
          * runtime.console.hide.bind(runtime.console);
          */
-        hide(): this;
+        hide(): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
          * runtime.console.clear.bind(runtime.console);
          */
-        clear(): this;
-
-        reset(): this;
-
-        expand(): this;
-
-        collapse(): this;
-
-        launch(): void;
-
-        build(options: Console.BuildOptions): org.autojs.autojs.core.console.ConsoleImpl.Configurator;
-
-        /**
-         * @example
-         * console.show();
-         * console.setSize(device.width / 2, device.height / 2);
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * runtime.console.setSize.bind(runtime.console);
-         */
-        setSize(width: number, height: number): this;
+        clear(): void;
 
         /**
          * @example
@@ -279,56 +256,24 @@ declare namespace Internal {
          * @example Source code summary (zh-CN: 源代码摘要)
          * runtime.console.setPosition.bind(runtime.console);
          */
-        setPosition(x: number, y: number): this;
+        setPosition(x: number, y: number): void;
+
+        /**
+         * @example
+         * console.show();
+         * console.setSize(device.width / 2, device.height / 2);
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * runtime.console.setSize.bind(runtime.console);
+         */
+        setSize(width: number, height: number): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
          * runtime.console.setTitle.bind(runtime.console);
          */
-        setTitle(title: string): this;
+        setTitle(title: string): void;
 
-        setTitleTextSize(size: number): this;
-
-        setTitleTextColor(color: OmniColor): this;
-
-        setTitleBackgroundColor(color: OmniColor): this;
-
-        setTitleBackgroundAlpha(alpha: number): this;
-
-        setTitleIconsTint(color: OmniColor): this;
-
-        setContentTextSize(size: number): this;
-
-        // @ts-ignore
-        setContentTextColor(colors: OmniColor): this;
-        // @ts-ignore
-        setContentTextColor(colors: OmniColor[]): this;
-        // @ts-ignore
-        setContentTextColor(colors: {
-            verbose?: OmniColor;
-            log?: OmniColor;
-            info?: OmniColor;
-            warn?: OmniColor;
-            error?: OmniColor;
-            assert?: OmniColor;
-        }): this;
-
-        setContentBackgroundColor(color: OmniColor): this;
-
-        setContentBackgroundAlpha(alpha: number): this;
-
-        setTextSize(size: number): this;
-
-        setTextColor(color: OmniColor): this;
-
-        setBackgroundColor(color: OmniColor): this;
-
-        setBackgroundAlpha(alpha: number): this;
-
-        setExitOnClose(timeout: number): this;
-        setExitOnClose(exitOnClose?: boolean): this;
-
-        printAllStackTrace(t: OmniThrowable): void;
+        launch(): void;
 
     }
 
@@ -353,33 +298,6 @@ declare namespace Internal {
             resetConfiguration?: boolean;
         };
 
-        type BuildOptions = {
-            size?: [width: number, height: number];
-            position?: [x: number, y: number];
-            title?: string;
-            titleTextSize?: number;
-            titleTextColor?: OmniColor;
-            titleBackgroundColor?: OmniColor;
-            titleBackgroundAlpha?: number;
-            titleIconsTint?: OmniColor;
-            contentTextSize?: number;
-            contentTextColor?: OmniColor | OmniColor[] | {
-                verbose?: OmniColor;
-                log?: OmniColor;
-                info?: OmniColor;
-                warn?: OmniColor;
-                error?: OmniColor;
-                assert?: OmniColor;
-            };
-            contentBackgroundColor?: OmniColor;
-            contentBackgroundAlpha?: number;
-            textSize?: number;
-            textColor?: OmniColor;
-            backgroundColor?: OmniColor;
-            backgroundAlpha?: number;
-            exitOnClose?: number | boolean;
-        }
-
     }
 
 }
@@ -391,27 +309,26 @@ declare namespace Internal {
  * scope.log = console.log.bind(console);
  * @see console.log
  */
-declare function log(data?: any, ...text): void;
+declare function log(...text): void;
 
 /**
- * @deprecated
  * @example Source code summary (zh-CN: 源代码摘要)
  * scope.print = console.print.bind(console);
  * @see console.print
  */
-declare function print(data?: any, ...text): void;
+declare function print(...text): void;
 
 /**
  * @example Source code summary (zh-CN: 源代码摘要)
  * scope.err = console.error.bind(console);
  * @see console.error
  */
-declare function err(data?: any, ...text): void;
+declare function err(...text): void;
 
 /**
  * @see console.warn
  */
-declare function warn(data?: any, ...text): void;
+declare function warn(...text): void;
 
 /**
  * @example Source code summary (zh-CN: 源代码摘要)

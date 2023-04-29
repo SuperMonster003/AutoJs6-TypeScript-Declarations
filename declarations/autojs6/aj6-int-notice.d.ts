@@ -15,24 +15,16 @@ declare namespace Internal {
 
     interface Notice {
 
-        (title: string, content: string, options?: Notice.Options): number;
-        (content: string, options?: Notice.Options): number;
-        (options?: Notice.Options): number;
-        (builder: androidx.core.app.NotificationCompat.Builder, options?: Notice.Options): number;
+        (title: string, content: string, options?: Notice.Options): void;
+        (content: string, options?: Notice.Options): void;
+        (options?: Notice.Options): void;
+        (builder: androidx.core.app.NotificationCompat.Builder, options?: Notice.Options): void;
 
         channel: Notice.Channel;
 
         getBuilder(): androidx.core.app.NotificationCompat.Builder;
 
-        isEnabled(): boolean;
-
-        ensureEnabled(): void;
-
-        launchSettings(): void;
-
         config(preset: Notice.Config): void;
-
-        cancel(id: number): void;
 
     }
 
@@ -87,7 +79,7 @@ declare namespace Notice {
             enableVibration?: boolean;
             vibrationPattern?: number[] | string;
             enableLights?: boolean;
-            lightColor?: OmniColor;
+            lightColor?: Colors.ColorHex | Colors.ColorInt | Colors.ColorName;
             lockscreenVisibility?: Options.LockscreenVisibility;
 
         }
@@ -157,7 +149,7 @@ declare namespace Notice {
         /**
          * @default null
          */
-        intent?: Intent.Common | Intent | Intent.ShortForm.Activity | Intent.UriString | null;
+        intent?: Intent.Common | Intent | Intent.ShortForm.Activity | Intent.URI.Any | null;
         /**
          * @default varies by (System.currentTimeMillis() % Int.MAX_VALUE).toInt()
          */
@@ -200,7 +192,7 @@ declare namespace Notice {
         defaultEnableVibrationForChannel: boolean;
         defaultVibrationPatternForChannel: number[];
         defaultEnableLightsForChannel: boolean;
-        defaultLightColorForChannel: OmniColor;
+        defaultLightColorForChannel: Colors.ColorHex | Colors.ColorInt | Colors.ColorName;
         /**
          * @default Notification.VISIBILITY_PUBLIC (1)
          */

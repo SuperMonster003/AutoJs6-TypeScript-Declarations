@@ -145,7 +145,7 @@ declare namespace Internal {
          *     }
          * };
          */
-        startActivity(o: Intent.CommonWithRoot | Intent.ShortForm.Activity | Intent | URI): void;
+        startActivity(o: Intent.CommonWithRoot | Intent.ShortForm.Activity | Intent): void;
 
         /**
          * @example
@@ -238,7 +238,7 @@ declare namespace Internal {
          * @see app.getUriForFile
          * @see android.net.Uri.parse
          */
-        parseUri(uri: string | URI): android.net.Uri | null;
+        parseUri(uri: string): android.net.Uri;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -389,7 +389,7 @@ declare namespace Internal {
          * @see android.net.Uri
          * @see android.content.Intent
          */
-        openUrl(url: string | URI): void;
+        openUrl(url: string): void;
 
         /**
          * @example
@@ -434,14 +434,6 @@ declare namespace Internal {
         getAppName(app: App | App.Alias | App.PackageName): string;
 
         /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * Log.d("App", "getCurrentActivity: " + mCurrentActivity.get());
-         * return mCurrentActivity.get();
-         * @see android.util.Log
-         */
-        getCurrentActivity(): android.app.Activity;
-
-        /**
          * @example
          * app.editFile("/sdcard/1.txt/);
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -450,7 +442,15 @@ declare namespace Internal {
          * @see org.autojs.autojs.util.IntentUtils
          * @see java.lang.NullPointerException
          */
-        editFile(path: string): boolean;
+        editFile(path: string): void;
+
+        /**
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * Log.d("App", "getCurrentActivity: " + mCurrentActivity.get());
+         * return mCurrentActivity.get();
+         * @see android.util.Log
+         */
+        getCurrentActivity(): android.app.Activity;
 
         /**
          * @example
@@ -461,7 +461,7 @@ declare namespace Internal {
          * @see org.autojs.autojs.util.IntentUtils
          * @see java.lang.NullPointerException
          */
-        viewFile(path: string): boolean;
+        viewFile(path: string): void;
 
         /**
          * Use with caution as it might be time-consuming
@@ -515,7 +515,7 @@ declare namespace Internal {
 
         /**
          * @deprecated
-         * @replaceWith launchSettings
+         * @replaceWith openAppSettings
          * @example Source code summary (zh-CN: 源代码摘要)
          * return IntentUtil.goToAppDetailSettings(context, packageName);
          * @see org.autojs.autojs.util.IntentUtils
@@ -527,7 +527,7 @@ declare namespace Internal {
          * return IntentUtil.goToAppDetailSettings(context, packageName);
          * @see org.autojs.autojs.util.IntentUtils
          */
-        launchSettings(app: App | App.Alias | App.PackageName): boolean;
+        openAppSettings(app: App | App.Alias | App.PackageName): boolean;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -564,17 +564,26 @@ declare namespace Intent {
 
     }
 
-    /**
-     * @example with protocol
-     * "http://www.msn.com"
-     * "https://www.msn.com"
-     * "ftp://someFtpAddress"
-     *
-     * @example without protocol
-     * "www.msn.com"
-     * "msn.com"
-     */
-    type UriString = string;
+    namespace URI {
+
+        /**
+         * @example
+         * "http://www.msn.com"
+         * "https://www.msn.com"
+         * "ftp://someFtpAddress"
+         */
+        type WithProtocol = string;
+
+        /**
+         * @example
+         * "www.msn.com"
+         * "msn.com"
+         */
+        type WithoutProtocol = string;
+
+        type Any = WithProtocol | WithoutProtocol;
+
+    }
 
     interface URI {
         src: Alipay.URI.StartApp | string;
@@ -644,12 +653,12 @@ declare function getPackageName(app: App | App.Alias | App.AppName): string;
 
 /**
  * @deprecated
- * @replaceWith launchSettings
+ * @replaceWith openAppSettings
  * @see app.openAppSetting
  */
 declare function openAppSetting(app: App | App.Alias | App.PackageName): boolean;
 
 /**
- * @see app.launchSettings
+ * @see app.openAppSettings
  */
-declare function launchSettings(app: App | App.Alias | App.PackageName): boolean;
+declare function openAppSettings(app: App | App.Alias | App.PackageName): boolean;

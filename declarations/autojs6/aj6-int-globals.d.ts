@@ -46,7 +46,7 @@ declare function toastLog(msg: string | any, isLong?: Toast.IsLong, isForcible?:
  * runtime.exit.bind(runtime)
  * @see runtime.exit
  */
-declare function exit(e?: OmniThrowable): void;
+declare function exit(e?: java.lang.Throwable): void;
 
 /**
  * @deprecated use exit() instead
