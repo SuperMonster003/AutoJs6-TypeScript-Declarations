@@ -14,8 +14,13 @@
 declare namespace Internal {
 
     interface Web {
+
         newInjectableWebView(activity?: android.app.Activity): org.autojs.autojs.core.web.InjectableWebView;
+
         newInjectableWebClient(): org.autojs.autojs.core.web.InjectableWebClient;
+
+        newWebSocket(url: string): org.autojs.autojs.core.web.WebSocket;
+
     }
 
 }
@@ -35,3 +40,5 @@ declare function newInjectableWebClient(): org.autojs.autojs.core.web.Injectable
  * };
  */
 declare function newInjectableWebView(activity?: android.app.Activity): org.autojs.autojs.core.web.InjectableWebView;
+
+declare function newWebSocket(url: string): org.autojs.autojs.core.web.WebSocket;

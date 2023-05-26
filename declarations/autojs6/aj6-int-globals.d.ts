@@ -283,3 +283,8 @@ declare namespace Wait {
     type Condition<T> = Pickup.Selector | (() => T);
 
 }
+
+/**
+ * @deprecated Use {@link Species.isObject} instead.
+ */
+declare function isObjectSpecies(o: any): boolean;

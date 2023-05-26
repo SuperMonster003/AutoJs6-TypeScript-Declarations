@@ -239,6 +239,8 @@ declare namespace Internal {
          */
         setGlobalLogConfig(config: Console.GlobalLogConfig): void;
 
+        resetGlobalLogConfig(): void;
+
         show(): this;
 
         /**

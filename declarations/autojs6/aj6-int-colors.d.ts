@@ -5859,17 +5859,25 @@ declare namespace Internal {
 
         setAlpha(color: OmniColor, alpha: ColorComponent): number;
 
+        setAlphaRelative(color: OmniColor, percentage: number | PercentString): number;
+
         removeAlpha(color: OmniColor): number;
 
         setRed(color: OmniColor, red: ColorComponent): number;
+
+        setRedRelative(color: OmniColor, percentage: number | PercentString): number;
 
         removeRed(color: OmniColor): number;
 
         setGreen(color: OmniColor, green: ColorComponent): number;
 
+        setGreenRelative(color: OmniColor, percentage: number | PercentString): number;
+
         removeGreen(color: OmniColor): number;
 
         setBlue(color: OmniColor, blue: ColorComponent): number;
+
+        setBlueRelative(color: OmniColor, percentage: number | PercentString): number;
 
         removeBlue(color: OmniColor): number;
 
@@ -6147,17 +6155,25 @@ declare namespace Internal {
 
         setAlpha(alpha: ColorComponent): this;
 
+        setAlphaRelative(percentage: number | PercentString): this;
+
         removeAlpha(): this;
 
         setRed(red: ColorComponent): this;
+
+        setRedRelative(percentage: number | PercentString): this;
 
         removeRed(): this;
 
         setGreen(green: ColorComponent): this;
 
+        setGreenRelative(percentage: number | PercentString): this;
+
         removeGreen(): this;
 
         setBlue(blue: ColorComponent): this;
+
+        setBlueRelative(percentage: number | PercentString): this;
 
         removeBlue(): this;
 

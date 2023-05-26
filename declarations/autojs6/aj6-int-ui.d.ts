@@ -54,6 +54,8 @@ declare namespace Internal {
             (): void;
         };
 
+        useAndroidLayout(b: boolean | null): void;
+
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
          * ui.__defineGetter__("emitter", () => activity ? activity.getEventEmitter() : null);
@@ -231,7 +233,9 @@ declare namespace Internal {
          *     }
          * };
          */
-        statusBarColor(color: Color$): void;
+        statusBarColor(color: OmniColor): void;
+
+        backgroundColor(color: OmniColor): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)

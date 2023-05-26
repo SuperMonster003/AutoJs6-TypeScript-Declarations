@@ -59,13 +59,16 @@ declare let Packages: {
     com: typeof com;
     net: typeof net;
     de: typeof de;
+    // @ts-ignore
+    okio: typeof okio;
     ezy: typeof ezy;
     kotlin: typeof kotlin;
     okhttp3: typeof okhttp3;
     io: typeof io;
 };
 
-declare class Continuation extends org.mozilla.javascript.NativeContinuation {}
+declare class Continuation extends org.mozilla.javascript.NativeContinuation {
+}
 
 /**
  * @example
@@ -86,35 +89,50 @@ declare class JavaImporter {
     constructor(...content: (org.mozilla.javascript.NativeJavaClass | org.mozilla.javascript.NativeJavaPackage)[]);
 }
 
-declare class XML extends org.mozilla.javascript.xml.XMLLib {}
+declare class XML extends org.mozilla.javascript.xml.XMLLib {
+}
 
-declare class XMLList extends org.mozilla.javascript.xml.XMLLib {}
+declare class XMLList extends org.mozilla.javascript.xml.XMLLib {
+}
 
-declare class Namespace extends org.mozilla.javascript.xml.XMLLib {}
+declare class Namespace extends org.mozilla.javascript.xml.XMLLib {
+}
 
-declare class QName extends org.mozilla.javascript.xml.XMLLib {}
+declare class QName extends org.mozilla.javascript.xml.XMLLib {
+}
 
-declare class ArrayBuffer extends org.mozilla.javascript.typedarrays.NativeArrayBuffer {}
+declare class ArrayBuffer extends org.mozilla.javascript.typedarrays.NativeArrayBuffer {
+}
 
-declare class Int8Array extends org.mozilla.javascript.typedarrays.NativeInt8Array {}
+declare class Int8Array extends org.mozilla.javascript.typedarrays.NativeInt8Array {
+}
 
-declare class Uint8Array extends org.mozilla.javascript.typedarrays.NativeUint8Array {}
+declare class Uint8Array extends org.mozilla.javascript.typedarrays.NativeUint8Array {
+}
 
-declare class Uint8ClampedArray extends org.mozilla.javascript.typedarrays.NativeUint8ClampedArray {}
+declare class Uint8ClampedArray extends org.mozilla.javascript.typedarrays.NativeUint8ClampedArray {
+}
 
-declare class Int16Array extends org.mozilla.javascript.typedarrays.NativeInt16Array {}
+declare class Int16Array extends org.mozilla.javascript.typedarrays.NativeInt16Array {
+}
 
-declare class Uint16Array extends org.mozilla.javascript.typedarrays.NativeUint16Array {}
+declare class Uint16Array extends org.mozilla.javascript.typedarrays.NativeUint16Array {
+}
 
-declare class Int32Array extends org.mozilla.javascript.typedarrays.NativeInt32Array {}
+declare class Int32Array extends org.mozilla.javascript.typedarrays.NativeInt32Array {
+}
 
-declare class Uint32Array extends org.mozilla.javascript.typedarrays.NativeUint32Array {}
+declare class Uint32Array extends org.mozilla.javascript.typedarrays.NativeUint32Array {
+}
 
-declare class Float32Array extends org.mozilla.javascript.typedarrays.NativeFloat32Array {}
+declare class Float32Array extends org.mozilla.javascript.typedarrays.NativeFloat32Array {
+}
 
-declare class Float64Array extends org.mozilla.javascript.typedarrays.NativeFloat64Array {}
+declare class Float64Array extends org.mozilla.javascript.typedarrays.NativeFloat64Array {
+}
 
-declare class DataView extends org.mozilla.javascript.typedarrays.NativeDataView {}
+declare class DataView extends org.mozilla.javascript.typedarrays.NativeDataView {
+}
 
 // @ts-ignore
 declare let Error: AutoJsError;
@@ -137,4 +155,89 @@ interface AutoJsError extends ErrorConstructor {
 // Object.xxx
 declare interface ObjectConstructor {
     hasOwn(o: object, v: PropertyKey);
+}
+
+declare module android {
+
+    export module view {
+
+        import EventEmitter = org.autojs.autojs.core.eventloop.EventEmitter;
+
+        // @ts-ignore
+        export class View extends java.lang.Object {
+
+            public widget: any;
+            public readonly maxListeners: number;
+
+            public attr(name: string, value: any): void;
+
+            public attr(name: string): any;
+
+            public click(listener?: ViewPrototype.OnClickListener): void;
+
+            public longClick(listener?: ViewPrototype.OnLongClickListener): void;
+
+            public once(eventName: ViewPrototype.EventNames, listener: ViewPrototype.EventListeners): EventEmitter;
+
+            public on(eventName: ViewPrototype.EventNames, listener: ViewPrototype.EventListeners): EventEmitter;
+
+            public addListener(eventName: ViewPrototype.EventNames, listener: ViewPrototype.EventListeners): EventEmitter;
+
+            public emit(eventName: ViewPrototype.EventNames, ...args: any[]): boolean;
+
+            public eventNames(): string[];
+
+            public listenerCount(eventName: ViewPrototype.EventNames): number;
+
+            public listeners(eventName: ViewPrototype.EventNames): any[];
+
+            public prependListener(eventName: ViewPrototype.EventNames, listener: ViewPrototype.EventListeners): EventEmitter;
+
+            public prependOnceListener(eventName: ViewPrototype.EventNames, listener: ViewPrototype.EventListeners): EventEmitter;
+
+            public removeAllListeners(): EventEmitter;
+
+            public removeAllListeners(eventName: ViewPrototype.EventNames): EventEmitter;
+
+            public removeListener(eventName: ViewPrototype.EventNames, listener: ViewPrototype.EventListeners): EventEmitter;
+
+            public setMaxListeners(n: number): EventEmitter;
+
+            public static defaultMaxListeners(): number;
+
+        }
+
+    }
+
+}
+
+declare namespace ViewPrototype {
+
+    import View = android.view.View;
+    import MotionEvent = android.view.MotionEvent;
+    import CompoundButton = android.widget.CompoundButton;
+    import KeyEvent = android.view.KeyEvent;
+    import BaseEvent = org.autojs.autojs.core.ui.BaseEvent;
+    import JsListView = org.autojs.autojs.core.ui.widget.JsListView;
+
+    type EventNames = 'touch' | 'touch_down' | 'touch_up' | 'touch_move' | 'click' | 'long_click' | 'key' | 'key_up' | 'key_down' | 'scroll_change' | 'check' | 'item_click' | 'item_long_click';
+
+    type EventListeners = OnClickListener | OnLongClickListener | OnTouchListener | OnKeyListener | OnScrollPageListener | OnCheckListener | OnItemClickListener | OnItemLongClickListener;
+
+    type OnClickListener = (v: View) => void;
+
+    type OnLongClickListener = (e: BaseEvent, v: View) => void;
+
+    type OnTouchListener = (v: View, event: MotionEvent) => void;
+
+    type OnKeyListener = (v: View, keyCode: number, event: KeyEvent) => void;
+
+    type OnScrollPageListener = (e: BaseEvent, v: View) => void;
+
+    type OnCheckListener = (isChecked: boolean, buttonView: CompoundButton) => void;
+
+    type OnItemClickListener = (item: any, pos: number, itemView: View, listView: JsListView) => void;
+
+    type OnItemLongClickListener = (e: BaseEvent, item: any, pos: number, itemView: View, listView: JsListView) => void;
+
 }

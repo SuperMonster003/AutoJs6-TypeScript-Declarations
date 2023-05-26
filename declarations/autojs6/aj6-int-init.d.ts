@@ -249,6 +249,10 @@ declare class KeyEvent extends android.view.KeyEvent {
     // Empty class body.
 }
 
+declare class MotionEvent extends android.view.MotionEvent {
+    // Empty class body.
+}
+
 declare class UiObject extends org.autojs.autojs.core.automator.UiObject {
     // Empty class body.
 }
@@ -1066,6 +1070,10 @@ declare class Intent extends android.content.Intent {
     // Empty class body.
 }
 
+declare class Context extends android.content.Context {
+    // Empty class body.
+}
+
 declare class OkHttpClient extends okhttp3.OkHttpClient {
     // Empty class body.
 }
@@ -1147,5 +1155,139 @@ declare class URI extends java.net.URI {
 }
 
 declare class File extends java.io.File {
+    // Empty class body.
+}
+
+/* View classes. */
+
+declare class JsAppBarLayout extends org.autojs.autojs.core.ui.widget.JsAppBarLayout {
+    // Empty class body.
+}
+
+declare class JsButton extends org.autojs.autojs.core.ui.widget.JsButton {
+    // Empty class body.
+}
+
+declare class JsCanvasView extends org.autojs.autojs.core.ui.widget.JsCanvasView {
+    // Empty class body.
+}
+
+declare class JsCardView extends org.autojs.autojs.core.ui.widget.JsCardView {
+    // Empty class body.
+}
+
+declare class JsCheckBox extends org.autojs.autojs.core.ui.widget.JsCheckBox {
+    // Empty class body.
+}
+
+declare class JsConsoleView extends org.autojs.autojs.core.ui.widget.JsConsoleView {
+    // Empty class body.
+}
+
+declare class JsDatePicker extends org.autojs.autojs.core.ui.widget.JsDatePicker {
+    // Empty class body.
+}
+
+declare class JsDrawerLayout extends org.autojs.autojs.core.ui.widget.JsDrawerLayout {
+    // Empty class body.
+}
+
+declare class JsEditText extends org.autojs.autojs.core.ui.widget.JsEditText {
+    // Empty class body.
+}
+
+declare class JsFloatingActionButton extends org.autojs.autojs.core.ui.widget.JsFloatingActionButton {
+    // Empty class body.
+}
+
+declare class JsFrameLayout extends org.autojs.autojs.core.ui.widget.JsFrameLayout {
+    // Empty class body.
+}
+
+declare class JsGridView extends org.autojs.autojs.core.ui.widget.JsGridView {
+    // Empty class body.
+}
+
+declare class JsImageButton extends org.autojs.autojs.core.ui.widget.JsImageButton {
+    // Empty class body.
+}
+
+declare class JsImageView extends org.autojs.autojs.core.ui.widget.JsImageView {
+    // Empty class body.
+}
+
+declare class JsLinearLayout extends org.autojs.autojs.core.ui.widget.JsLinearLayout {
+    // Empty class body.
+}
+
+declare class JsListView extends org.autojs.autojs.core.ui.widget.JsListView {
+    // Empty class body.
+}
+
+declare class JsProgressBar extends org.autojs.autojs.core.ui.widget.JsProgressBar {
+    // Empty class body.
+}
+
+declare class JsRadioButton extends org.autojs.autojs.core.ui.widget.JsRadioButton {
+    // Empty class body.
+}
+
+declare class JsRadioGroup extends org.autojs.autojs.core.ui.widget.JsRadioGroup {
+    // Empty class body.
+}
+
+declare class JsRatingBar extends org.autojs.autojs.core.ui.widget.JsRatingBar {
+    // Empty class body.
+}
+
+declare class JsRelativeLayout extends org.autojs.autojs.core.ui.widget.JsRelativeLayout {
+    // Empty class body.
+}
+
+declare class JsScrollView extends org.autojs.autojs.core.ui.widget.JsScrollView {
+    // Empty class body.
+}
+
+declare class JsSeekBar extends org.autojs.autojs.core.ui.widget.JsSeekBar {
+    // Empty class body.
+}
+
+declare class JsSpinner extends org.autojs.autojs.core.ui.widget.JsSpinner {
+    // Empty class body.
+}
+
+declare class JsSwitch extends org.autojs.autojs.core.ui.widget.JsSwitch {
+    // Empty class body.
+}
+
+declare class JsTabLayout extends org.autojs.autojs.core.ui.widget.JsTabLayout {
+    // Empty class body.
+}
+
+declare class JsTextClock extends org.autojs.autojs.core.ui.widget.JsTextClock {
+    // Empty class body.
+}
+
+declare class JsTextView extends org.autojs.autojs.core.ui.widget.JsTextView {
+    // Empty class body.
+}
+
+declare class JsTimePicker extends org.autojs.autojs.core.ui.widget.JsTimePicker {
+    // Empty class body.
+}
+
+declare class JsToggleButton extends org.autojs.autojs.core.ui.widget.JsToggleButton {
+    // Empty class body.
+}
+
+declare class JsToolbar extends org.autojs.autojs.core.ui.widget.JsToolbar {
+    // Empty class body.
+}
+
+declare class JsViewPager extends org.autojs.autojs.core.ui.widget.JsViewPager {
+    // Empty class body.
+}
+
+declare class JsWebView extends org.autojs.autojs.core.ui.widget.JsWebView {
     // Empty class body.
 }

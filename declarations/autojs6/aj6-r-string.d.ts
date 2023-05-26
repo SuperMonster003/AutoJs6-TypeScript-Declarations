@@ -220,6 +220,7 @@ declare module org {
                     public static key_dialog_manage_all_files_permission: number;
                     public static key_documentation_launcher_icon: number;
                     public static key_documentation_launcher_icon_hide: number;
+                    public static key_post_notification_permission_requested: number;
                     public static key_documentation_launcher_icon_show: number;
                     public static key_documentation_source: number;
                     public static key_documentation_source_local: number;
@@ -522,7 +523,7 @@ declare module org {
                     public static text_execution_finished: number;
                     public static text_exit: number;
                     public static text_exit_directly: number;
-                    public static text_exit_floating_window: number;
+                    public static text_close_floating_button: number;
                     public static text_extending_js_build_in_objects: number;
                     public static text_extensibility: number;
                     public static text_failed: number;
@@ -551,7 +552,7 @@ declare module org {
                     public static text_find_next_simplified: number;
                     public static text_find_or_replace: number;
                     public static text_find_prev_simplified: number;
-                    public static text_floating_window: number;
+                    public static text_floating_button: number;
                     public static text_force_stop: number;
                     public static text_foreground_service: number;
                     public static text_foreground_service_description: number;
@@ -638,7 +639,8 @@ declare module org {
                     public static text_not_granted: number;
                     public static text_not_showing_main_activity: number;
                     public static text_notification: number;
-                    public static text_notification_permission: number;
+                    public static text_post_notifications_permission: number;
+                    public static text_notification_access_permission: number;
                     public static text_notification_service_disabled: number;
                     public static text_null: number;
                     public static text_number_format_error: number;
@@ -836,6 +838,7 @@ declare module org {
                     public static value_app_language_english: number;
                     public static value_app_language_follow_system: number;
                     public static value_app_language_simplified_chinese: number;
+                    public static error_abandoned_method: number;
                     public static css_style_license_dialog_notices: number;
                 }
             }

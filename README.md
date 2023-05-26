@@ -11,9 +11,8 @@
   <p>
     <a href="http://dts-project.autojs6.com/blob/main/package.json"><img alt="Version name" src="https://img.shields.io/badge/dynamic/json?color=534BAE&label=version&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2FSuperMonster003%2FAutoJs6-TypeScript-Declarations%2Fmaster%2Fpackage.json"/></a>
     <a href="http://dts-issues.autojs6.com"><img alt="GitHub issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-TypeScript-Declarations?color=009688"/></a>
-    <a href="http://project.autojs6.com"><img alt="GitHub AutoJs6 repository" src="https://img.shields.io/badge/autojs6-6.2.1--alpha2-388E3C"/></a>
+    <a href="http://project.autojs6.com"><img alt="GitHub AutoJs6 repository" src="https://img.shields.io/badge/autojs6-6.3.0-388E3C"/></a>
     <a href="https://github.com/topics/javascript"><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/SuperMonster003/AutoJs6-TypeScript-Declarations?color=3178C6"/></a>
-    <a href="https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/TODO.md"><img alt="Todo list" src="https://img.shields.io/badge/todo-1-B64FC8"/></a>
    <br>
     <a href="https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/commit/f8250babdb161e12ad2e14c73e8aa2b5d7d89cbc"><img alt="Created" src="https://img.shields.io/date/1635813883?color=C56000&label=created"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-TypeScript-Declarations?color=C63F17"/></a>
@@ -24,25 +23,13 @@
 
 ******
 
-### 待办事项
-
-******
-
-| Status | Task    |        Date         | Cost | Progress |
-|:------:|---------|:-------------------:|:----:|:--------:|
-|   ✔    | 发布至 NPM | 2023-03-24 16:01:36 |  4   |   100%   |
-
-> 全部待办事项可参阅 [TODO.md](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/TODO.md) (共计 1 项)
-
-******
-
 ### 功能简介
 
 ******
 
 实现或增强开发工具的代码智能补全功能:
 
-* AutoJs6 版本: [6.2.1 Alpha2](http://download.autojs6.com)
+* AutoJs6 版本: [6.3.0](http://download.autojs6.com)
 * 支持的开发工具: [VSCode](https://code.visualstudio.com/download) / [WebStorm](https://www.jetbrains.com/webstorm/download/) / [HBuilderX](https://www.dcloud.io/hbuilderx.html) ...
 
 ******
@@ -153,10 +140,13 @@ npm i @sm003/autojs6-dts
 
 ******
 
-| 项目                                                                              | 简介                        | 开发者                                                   |
-|---------------------------------------------------------------------------------|---------------------------|-------------------------------------------------------|
-| [Android d.ts Generator](https://github.com/NativeScript/android-dts-generator) | 由 jar 文件生成 d.ts 声明文件的工具   | [NativeScript](https://github.com/NativeScript)       |
-| [AutoJs6-VSCode-Extension](http://vscext-project.autojs6.com)                   | AutoJs6 调试器 (VSCode 平台插件) | [SuperMonster003](https://github.com/SuperMonster003) |
+[Android d.ts Generator](https://github.com/NativeScript/android-dts-generator) by [NativeScript](https://github.com/NativeScript)
+
+- 由 jar 文件生成 d.ts 声明文件的工具
+
+[AutoJs6-VSCode-Extension](http://vscext-project.autojs6.com) by [SuperMonster003](https://github.com/SuperMonster003)
+
+- AutoJs6 调试器 (VSCode 平台插件)
 
 ******
 
