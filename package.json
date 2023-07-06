@@ -1,6 +1,6 @@
 {
   "name": "@sm003/autojs6-dts",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepack": "npmignore --auto"
@@ -14,7 +14,7 @@
     "autojs6",
     "declarations"
   ],
-  "homepage": "http://project.autojs6.com",
+  "homepage": "http://autojs6.com",
   "license": "MPL-2.0",
   "author": {
     "name": "SuperMonster003",
@@ -29,6 +29,6 @@
     "url": "https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/issues"
   },
   "dependencies": {
-    "@sm003/autojs6-dts": "^2.0.0"
+    "@sm003/autojs6-dts": "2.0.2"
   }
 }

@@ -9,7 +9,7 @@
 
 /// <reference path="../android.d.ts"/>
 /// <reference path="../libraries.d.ts"/>
-/// <reference path="../autojs6.d.ts" />
+/// <reference path="../index.d.ts" />
 
 /**
  * @Source %AutoJs6Assets%/modules/__ui__.js

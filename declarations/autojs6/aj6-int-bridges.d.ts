@@ -5,7 +5,7 @@
 //
 // Last modified: Nov 11, 2021
 
-/// <reference path="../autojs6.d.ts" />
+/// <reference path="../index.d.ts" />
 
 /**
  * @Source %AutoJs6Assets%/modules/__bridges__.js

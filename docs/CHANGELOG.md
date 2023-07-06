@@ -4,6 +4,24 @@
 
 ******
 
+# v2.1.0
+
+###### 2023/07/06
+
+* `新增` crypto 模块声明文件
+* `优化` README.md 增加 VSCode 配置说明
+* `优化` jsconfig.json 指定声明文件根目录以增加适配性
+* `优化` 内置模块支持 "$" 前缀
+* `优化` base64.encode/decode 支持字节数组
+* `优化` 适配 AutoJs6 6.3.2
+
+# v2.0.2
+
+###### 2023/05/26
+
+* `新增` ViewPrototype 原型声明
+* `优化` 适配 AutoJs6 6.3.1
+
 # v2.0.1
 
 ###### 2023/04/29
@@ -26,8 +44,8 @@
 
 * `新增` Error 实例的 javaException/rhinoException 属性描述
 * `修复` auto() 方法描述指向错误
-* `优化` 方法签名完善
-  · android.content.pm.PackageManager.getApplicationInfo
+* `优化` 方法签名完善  
+  · android.content.pm.PackageManager.getApplicationInfo  
   · android.content.pm.PackageManager.getApplicationLabel
 
 # v1.0.1

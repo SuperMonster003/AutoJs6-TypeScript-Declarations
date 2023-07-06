@@ -1,6 +1,6 @@
 /// <reference path="../android.d.ts"/> 
 /// <reference path="../libraries.d.ts"/> 
-/// <reference path="../autojs6.d.ts"/>
+/// <reference path="../index.d.ts"/>
 
 declare module org {
     export module autojs {
@@ -132,6 +132,7 @@ declare module org {
                     public static error_empty_github_release_assets: number;
                     public static error_empty_shell_command: number;
                     public static error_enable_server: number;
+                    public static error_failed_to_convert_into_drawable: number;
                     public static error_function_called_in_ui_thread: number;
                     public static error_function_called_more_than_once: number;
                     public static error_get_github_latest_release: number;
@@ -214,6 +215,7 @@ declare module org {
                     public static key_auto_night_mode_enabled: number;
                     public static key_change_working_dir: number;
                     public static key_check_for_updates: number;
+                    public static key_client_socket_normally_closed: number;
                     public static key_compatibility_with_classes_for_ver_4_x: number;
                     public static key_dialog_check_display_over_other_apps: number;
                     public static key_dialog_foreground_svc: number;
@@ -272,6 +274,7 @@ declare module org {
                     public static key_root_record_out_file_type_binary: number;
                     public static key_root_record_out_file_type_js: number;
                     public static key_server_address: number;
+                    public static key_server_socket_normally_closed: number;
                     public static key_stable_mode: number;
                     public static key_theme_color: number;
                     public static key_theme_color_accent: number;
@@ -282,6 +285,7 @@ declare module org {
                     public static key_use_volume_control_running: number;
                     public static key_working_directory: number;
                     public static key_working_directory_histories: number;
+                    public static key_pc_server_address_histories: number;
                     public static key_working_directory_initialized: number;
                     public static mt_color_picker_title: number;
                     public static mt_custom: number;
@@ -446,6 +450,7 @@ declare module org {
                     public static text_console: number;
                     public static text_continue: number;
                     public static text_copy: number;
+                    public static text_export: number;
                     public static text_copy_all: number;
                     public static text_copy_all_files_to_new_directory: number;
                     public static text_copy_command: number;
@@ -834,12 +839,28 @@ declare module org {
                     public static url_github_autojs6: number;
                     public static url_github_autojs6_issues: number;
                     public static url_github_autojs6_vscode_extension_usage: number;
+                    public static url_github_autojs6_vscode_extension_repo: number;
                     public static value_app_language_default: number;
                     public static value_app_language_english: number;
                     public static value_app_language_follow_system: number;
                     public static value_app_language_simplified_chinese: number;
                     public static error_abandoned_method: number;
+                    public static text_vsc_ext_version_not_meet_requirement: number;
+                    public static text_min_version: number;
+                    public static text_current_version: number;
+                    public static text_lower_than: number;
+                    public static text_repo_url_of_vscode_vsc_ext: number;
+                    public static text_connection_cannot_be_established: number;
+                    public static text_min_version_of_vscode_vsc_ext: number;
                     public static css_style_license_dialog_notices: number;
+                    public static error_invalid_ip_address: number;
+                    public static error_ip_address_should_not_be_empty: number;
+                    public static error_unacceptable_character: number;
+                    public static error_port_num_over_65535: number;
+                    public static error_dot_decimal_notation_num_over_255: number;
+                    public static error_colon_must_follow_a_valid_ip_address: number;
+                    public static error_repeated_dot_symbol: number;
+                    public static error_repeated_colon_symbol: number;
                 }
             }
         }

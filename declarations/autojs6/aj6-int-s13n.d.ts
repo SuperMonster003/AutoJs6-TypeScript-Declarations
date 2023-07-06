@@ -5,7 +5,7 @@
 //
 // Last modified: Apr 9, 2023
 
-/// <reference path="../autojs6.d.ts" />
+/// <reference path="../index.d.ts" />
 /// <reference no-default-lib="true" />
 
 /**

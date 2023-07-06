@@ -8,7 +8,9 @@
 test*.js
 *.apk
 *.zip
+*.ffs_db
 desktop.ini
+package-lock.json
 
 /declarations/ant-forest/
 

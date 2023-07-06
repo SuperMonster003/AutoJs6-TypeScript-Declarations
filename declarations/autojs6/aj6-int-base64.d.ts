@@ -5,7 +5,7 @@
 //
 // Last modified: Apr 19, 2022
 
-/// <reference path="../autojs6.d.ts" />
+/// <reference path="../index.d.ts" />
 
 /**
  * @Source %AutoJs6Assets%/modules/__base64__.js
@@ -15,8 +15,8 @@ declare namespace Internal {
     interface Base64 {
         ();
 
-        encode(str: string, encoding?: StandardCharset): string;
+        encode(str: string | { toString(): string } | number[], encoding?: StandardCharset): string;
 
-        decode(str: string, encoding?: StandardCharset): string;
+        decode(str: string | { toString(): string } | number[], encoding?: StandardCharset): string;
     }
 }

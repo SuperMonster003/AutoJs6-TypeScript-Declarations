@@ -5,7 +5,7 @@
 //
 // Last modified: Mar 13, 2023
 
-/// <reference path="../autojs6.d.ts" />
+/// <reference path="../index.d.ts" />
 
 /**
  * @Source %AutoJs6Assets%/modules/__notice__.js

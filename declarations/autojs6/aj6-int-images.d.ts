@@ -5,7 +5,7 @@
 //
 // Last modified: Oct 21, 2021
 
-/// <reference path="../autojs6.d.ts" />
+/// <reference path="../index.d.ts" />
 
 /**
  * @Source %AutoJs6Assets%/modules/__images__.js
@@ -342,7 +342,7 @@ declare namespace Internal {
          *     }
          *     return arr;
          * }
-         * @see org.autojs.autojs.core.image.ColorFinder.findAllPointsForColor
+         * @see findPointsByColor
          */
         findAllPointsForColor(img: ImageWrapper, color: Color$, options?: {
             similarity?: number,

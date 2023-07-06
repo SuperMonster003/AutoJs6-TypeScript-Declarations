@@ -2,7 +2,7 @@
 
 /// <reference path="../android.d.ts"/>
 /// <reference path="../libraries.d.ts"/>
-/// <reference path="../autojs6.d.ts" />
+/// <reference path="../index.d.ts" />
 
 /**
  * @Source %RhinoJar%/org/mozilla/javascript/ImporterTopLevel
@@ -172,6 +172,8 @@ declare module android {
             public attr(name: string, value: any): void;
 
             public attr(name: string): any;
+
+            public attrReset(name: string): any;
 
             public click(listener?: ViewPrototype.OnClickListener): void;
 

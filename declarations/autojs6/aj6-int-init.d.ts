@@ -7,45 +7,114 @@
 //
 // noinspection JSUnusedGlobalSymbols
 
-/// <reference path="../autojs6.d.ts" />
+/// <reference path="../index.d.ts" />
 
 /**
  * @Source %AutoJs6Assets%/init.js
  */
 
 declare let app: Internal.App;
+declare let $app: Internal.App;
+
 declare let auto: Internal.Auto;
+declare let $auto: Internal.Auto;
+
 declare let autojs: Internal.Autojs;
+declare let $autojs: Internal.Autojs;
+
 declare let automator: Internal.Automator;
+declare let $automator: Internal.Automator;
+
 declare let base64: Internal.Base64;
+declare let $base64: Internal.Base64;
+
 declare let colors: Internal.Colors;
+declare let $colors: Internal.Colors;
+
 declare let console: Internal.Console;
+declare let $console: Internal.Console;
+
 declare let continuation: Internal.Continuation;
+declare let $continuation: Internal.Continuation;
+
+declare let crypto: Internal.Crypto;
+declare let $crypto: Internal.Crypto;
+
 declare let device: Internal.Device;
+declare let $device: Internal.Device;
+
 declare let dialogs: Internal.Dialogs;
+declare let $dialogs: Internal.Dialogs;
+
 declare let engines: Internal.Engines;
+declare let $engines: Internal.Engines;
+
 declare let events: Internal.Events;
+declare let $events: Internal.Events;
+
 declare let files: Internal.Files;
+declare let $files: Internal.Files;
+
 declare let floaty: Internal.Floaty;
+declare let $floaty: Internal.Floaty;
+
 declare let http: Internal.Http;
+declare let $http: Internal.Http;
+
 declare let i18n: Internal.I18n;
+declare let $i18n: Internal.I18n;
+
 declare let images: Internal.Images;
+declare let $images: Internal.Images;
+
 declare let media: Internal.Media;
+declare let $media: Internal.Media;
+
 declare let notice: Internal.Notice;
+declare let $notice: Internal.Notice;
+
 declare let ocr: Internal.Ocr;
+declare let $ocr: Internal.Ocr;
+
 declare let s13n: Internal.S13n;
+declare let $s13n: Internal.S13n;
+
 declare let plugins: Internal.Plugins;
+declare let $plugins: Internal.Plugins;
+
 declare let recorder: Internal.Recorder;
+declare let $recorder: Internal.Recorder;
+
 declare let require: Internal.Require;
+declare let $require: Internal.Require;
+
 declare let sensors: Internal.Sensors;
+declare let $sensors: Internal.Sensors;
+
 declare let storages: Internal.Storages;
+declare let $storages: Internal.Storages;
+
 declare let tasks: Internal.Tasks;
+declare let $tasks: Internal.Tasks;
+
 declare let threads: Internal.Threads;
+declare let $threads: Internal.Threads;
+
 declare let timers: Internal.Timers;
+declare let $timers: Internal.Timers;
+
 declare let toast: Internal.Toast;
+declare let $toast: Internal.Toast;
+
 declare let ui: Internal.UI;
+declare let $ui: Internal.UI;
+
 declare let util: Internal.Util;
+declare let $util: Internal.Util;
+
 declare let web: Internal.Web;
+declare let $web: Internal.Web;
+
 declare let Mathx: Internal.Mathx;
 declare let Numberx: Internal.Numberx;
 declare let Arrayx: Internal.Arrayx;
@@ -1122,6 +1191,10 @@ declare class GlobalAppContext extends org.autojs.autojs.app.GlobalAppContext {
     // Empty class body.
 }
 
+declare class ArrayUtils extends org.autojs.autojs.util.ArrayUtils {
+    // Empty class body.
+}
+
 declare class DisplayUtils extends org.autojs.autojs.util.DisplayUtils {
     // Empty class body.
 }
@@ -1289,5 +1362,17 @@ declare class JsViewPager extends org.autojs.autojs.core.ui.widget.JsViewPager {
 }
 
 declare class JsWebView extends org.autojs.autojs.core.ui.widget.JsWebView {
+    // Empty class body.
+}
+
+declare class JsVideoView extends org.autojs.autojs.core.ui.widget.JsVideoView {
+    // Empty class body.
+}
+
+declare class JsViewFlipper extends org.autojs.autojs.core.ui.widget.JsViewFlipper {
+    // Empty class body.
+}
+
+declare class JsViewSwitcher extends org.autojs.autojs.core.ui.widget.JsViewSwitcher {
     // Empty class body.
 }

@@ -2,10 +2,13 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "CommonJS",
-    "allowSyntheticDefaultImports": true,
     "lib": [
       "ES5",
       "ES6"
+    ],
+    "typeRoots": [
+      "./node_modules/@sm003/autojs6-dts/declarations",
+      "./declarations"
     ]
   },
   "exclude": [

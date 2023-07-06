@@ -5,7 +5,7 @@
 //
 // Last modified: Apr 25, 2022
 
-/// <reference path="../autojs6.d.ts" />
+/// <reference path="../index.d.ts" />
 
 /**
  * @Source %AutoJs6Assets%/modules/__files__.js
