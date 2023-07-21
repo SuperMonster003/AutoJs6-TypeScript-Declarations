@@ -1,6 +1,6 @@
 /// <reference path="../android.d.ts"/> 
 /// <reference path="../libraries.d.ts"/> 
-/// <reference path="../index.d.ts"/>
+/// <reference path="../autojs6.d.ts"/>
 
 declare module org {
     export module autojs {
@@ -8,6 +8,7 @@ declare module org {
             export module R {
                 export class strings extends java.lang.Object {
                     public static class: java.lang.Class<org.autojs.autojs6.R.strings>;
+                    public static css_style_license_dialog_notices: number;
                     public static apk_builder_build: number;
                     public static apk_builder_clean: number;
                     public static apk_builder_package: number;
@@ -185,7 +186,7 @@ declare module org {
                     public static foreground_notification_channel_name: number;
                     public static foreground_notification_text: number;
                     public static foreground_notification_title: number;
-                    public static format_build_successfully: number;
+                    public static format_build_succeeded: number;
                     public static format_debug_bar_title: number;
                     public static format_default_package_name: number;
                     public static format_dialog_progress_number_format_kilo_bytes: number;
@@ -420,7 +421,7 @@ declare module org {
                     public static text_broadcast_action_prefix: number;
                     public static text_broadcast_task: number;
                     public static text_build_apk: number;
-                    public static text_build_successfully: number;
+                    public static text_build_succeeded: number;
                     public static text_cancel: number;
                     public static text_cancel_simplified: number;
                     public static text_cannot_read_file: number;
@@ -440,6 +441,7 @@ declare module org {
                     public static text_close: number;
                     public static text_code: number;
                     public static text_code_beautify: number;
+                    public static text_comment: number;
                     public static text_command_already_copied_to_clip: number;
                     public static text_compatibility: number;
                     public static text_compatibility_with_classes_for_ver_4_x: number;
@@ -692,7 +694,7 @@ declare module org {
                     public static text_project_media_access: number;
                     public static text_project_media_access_description: number;
                     public static text_project_save_error: number;
-                    public static text_project_save_success: number;
+                    public static text_project_save_succeeded: number;
                     public static text_prompt: number;
                     public static text_quit: number;
                     public static text_record_finished: number;
@@ -758,7 +760,7 @@ declare module org {
                     public static text_save_to: number;
                     public static text_script_record: number;
                     public static text_script_running: number;
-                    public static text_script_save_successfully: number;
+                    public static text_script_save_succeeded: number;
                     public static text_search: number;
                     public static text_select: number;
                     public static text_select_by_exists: number;
@@ -852,7 +854,6 @@ declare module org {
                     public static text_repo_url_of_vscode_vsc_ext: number;
                     public static text_connection_cannot_be_established: number;
                     public static text_min_version_of_vscode_vsc_ext: number;
-                    public static css_style_license_dialog_notices: number;
                     public static error_invalid_ip_address: number;
                     public static error_ip_address_should_not_be_empty: number;
                     public static error_unacceptable_character: number;
@@ -861,6 +862,9 @@ declare module org {
                     public static error_colon_must_follow_a_valid_ip_address: number;
                     public static error_repeated_dot_symbol: number;
                     public static error_repeated_colon_symbol: number;
+                    public static text_function: number;
+                    public static text_formatting_completed: number;
+                    public static text_failed_to_format: number;
                 }
             }
         }

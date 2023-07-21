@@ -1,6 +1,6 @@
 {
   "name": "@sm003/autojs6-dts",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepack": "npmignore --auto"
@@ -29,6 +29,6 @@
     "url": "https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/issues"
   },
   "dependencies": {
-    "@sm003/autojs6-dts": "2.0.2"
+    "@sm003/autojs6-dts": "2.1.1"
   }
 }

@@ -11,7 +11,7 @@
   <p>
     <a href="http://dts-project.autojs6.com/blob/main/package.json"><img alt="Version name" src="https://img.shields.io/badge/dynamic/json?color=534BAE&label=version&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2FSuperMonster003%2FAutoJs6-TypeScript-Declarations%2Fmaster%2Fpackage.json"/></a>
     <a href="http://dts-issues.autojs6.com"><img alt="GitHub issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-TypeScript-Declarations?color=009688"/></a>
-    <a href="http://project.autojs6.com"><img alt="GitHub AutoJs6 repository" src="https://img.shields.io/badge/autojs6-6.3.0-388E3C"/></a>
+    <a href="http://project.autojs6.com"><img alt="GitHub AutoJs6 repository" src="https://img.shields.io/badge/autojs6-6.3.3-388E3C"/></a>
     <a href="https://github.com/topics/javascript"><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/SuperMonster003/AutoJs6-TypeScript-Declarations?color=3178C6"/></a>
    <br>
     <a href="https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/commit/f8250babdb161e12ad2e14c73e8aa2b5d7d89cbc"><img alt="Created" src="https://img.shields.io/date/1635813883?color=C56000&label=created"/></a>
@@ -29,7 +29,7 @@
 
 实现或增强开发工具的代码智能补全功能:
 
-* AutoJs6 版本: [6.3.2](http://download.autojs6.com)
+* AutoJs6 版本: [6.3.3](http://download.autojs6.com)
 * 支持的开发工具: [VSCode](https://code.visualstudio.com/download) / [WebStorm](https://www.jetbrains.com/webstorm/download/) / [HBuilderX](https://www.dcloud.io/hbuilderx.html) ...
 
 ******
@@ -146,6 +146,12 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v2.1.1
+
+###### 2023/07/21
+
+* `优化` 适配 AutoJs6 6.3.3
+
 # v2.1.0
 
 ###### 2023/07/06
@@ -163,13 +169,6 @@ npm update @sm003/autojs6-dts
 
 * `新增` ViewPrototype 原型声明
 * `优化` 适配 AutoJs6 6.3.1
-
-# v2.0.1
-
-###### 2023/04/29
-
-* `新增` s13n 模块声明文件
-* `优化` 适配 AutoJs6 6.3.0
 
 ##### 更多版本历史可参阅
 
