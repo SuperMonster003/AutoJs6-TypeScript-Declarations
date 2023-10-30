@@ -4673,7 +4673,7 @@ declare module org {
 						public size(): number;
 						public replace(key: any, value: any): any;
 						public put(key: any, value: any): any;
-						public replaceAll(function: any /* any<any,any,any>*/): void;
+						public replaceAll(_function_: any /* any<any,any,any>*/): void;
 						public computeIfPresent(key: any, remappingFunction: any /* any<any,any,any>*/): any;
 						public containsValue(value: any): boolean;
 						public get(param0: any): any;

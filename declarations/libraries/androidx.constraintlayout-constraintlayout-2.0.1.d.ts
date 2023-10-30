@@ -474,7 +474,7 @@ declare module androidx {
 					public getKeyFramePosition(param0: any, param1: number, param2: number, param3: number): number;
 					public getKeyframe(view: any, type: number, position: number): any;
 					public constructor(motionLayout: androidx.constraintlayout.motion.widget.MotionLayout);
-					public designAccess(cmd: number, type: string, viewObject: any, in: number[], inLength: number, out: number[], outLength: number): number;
+					public designAccess(cmd: number, type: string, viewObject: any, _in_: number[], inLength: number, out: number[], outLength: number): number;
 					public setKeyFramePosition(param0: any, param1: number, param2: number, param3: number, param4: number): boolean;
 					public isInTransition(): boolean;
 					public setTransition(start: string, end: string): void;

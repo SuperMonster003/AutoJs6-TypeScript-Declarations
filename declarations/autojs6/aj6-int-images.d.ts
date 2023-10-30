@@ -16,7 +16,6 @@ declare namespace Internal {
     import ColorInt = Colors.ColorInt;
     import DetectionAlgorithm = Colors.DetectionAlgorithm;
     import ConversionCodes = Colors.ConversionCodes;
-    import ImageWrapper = org.autojs.autojs.core.image.ImageWrapper;
 
     interface Images {
 
@@ -51,7 +50,7 @@ declare namespace Internal {
          * @see org.autojs.autojs.runtime.api.Images.clip
          */
         clip(image: ImageWrapper, x: number, y: number, w: number, h: number): ImageWrapper;
-        clip(image: ImageWrapper, region: Images.Options.Region): ImageWrapper;
+        clip(image: ImageWrapper, region: OmniRegion): ImageWrapper;
 
         /**
          * @see org.autojs.autojs.runtime.api.Images.pixel
@@ -347,7 +346,7 @@ declare namespace Internal {
         findAllPointsForColor(img: ImageWrapper, color: Color$, options?: {
             similarity?: number,
             threshold?: number,
-            region?: Images.Options.Region,
+            region?: OmniRegion,
         }): OpenCV.Points;
 
         /**
@@ -506,7 +505,7 @@ declare namespace Internal {
         findColor(img: ImageWrapper, color: Color$, options?: {
             similarity?: number,
             threshold?: number,
-            region?: Images.Options.Region,
+            region?: OmniRegion,
         }): OpenCV.Point | null;
 
         /**
@@ -532,7 +531,7 @@ declare namespace Internal {
          * };
          * @see findColor
          */
-        findColorEquals(img: ImageWrapper, color: Color$, x, y, width, height): OpenCV.Point | null;
+        findColorEquals(img: ImageWrapper, color: Color$, x?: X, y?: Y, width?: Width, height?: Height): OpenCV.Point | null;
 
         /**
          * @param img
@@ -558,10 +557,7 @@ declare namespace Internal {
          * };
          * @see findColor
          */
-        findColorInRegion(
-            img: ImageWrapper, color: Color$, x?: X, y?: Y,
-            width?: Width, height?: Height, threshold?: number,
-        ): OpenCV.Point | null;
+        findColorInRegion(img: ImageWrapper, color: Color$, x?: X, y?: Y, width?: Width, height?: Height, threshold?: number): OpenCV.Point | null;
 
         /**
          * @param img
@@ -620,7 +616,7 @@ declare namespace Internal {
             threshold?: number,
             weakThreshold?: number,
             level?: number,
-            region?: Images.Options.Region,
+            region?: OmniRegion,
         }): OpenCV.Point | null;
 
         /**
@@ -701,7 +697,7 @@ declare namespace Internal {
         findMultiColors(
             img: ImageWrapper, firstColor: Color$, paths: [X, Y, Color$][],
             options?: {
-                region?: Images.Options.Region;
+                region?: OmniRegion;
                 threshold?: number;
             },
         ): OpenCV.Point | null;
@@ -933,7 +929,7 @@ declare namespace Internal {
             threshold?: number;
             weakThreshold?: number;
             level?: number;
-            region?: Images.Options.Region;
+            region?: OmniRegion;
             max?: number;
         }): Images.MatchingResult;
 
@@ -1201,8 +1197,8 @@ declare namespace Internal {
 
         /**
          * @param img
-         * @param [format?="png"]
-         * @param [quality?=100]
+         * @param [format="png"]
+         * @param [quality=100]
          * @example
          * images.requestScreenCapture(false);
          * console.log(images.toBytes(images.capt()).slice(0, 20));
@@ -1235,7 +1231,7 @@ declare namespace Internal {
 
         getHeight(img: ImageWrapper | android.graphics.Bitmap | org.opencv.core.Mat | string): number;
 
-        buildRegion(img: ImageWrapper, region: Images.Options.Region): org.opencv.core.Rect | null;
+        buildRegion(img: ImageWrapper, region: OmniRegion): org.opencv.core.Rect | null;
 
     }
 
@@ -1254,12 +1250,6 @@ declare namespace Images {
     type ThresholdTypes = 'BINARY' | 'BINARY_INV' | 'TRUNC' | 'TOZERO' | 'TOZERO_INV' | 'MASK' | 'OTSU' | 'TRIANGLE';
     type AdaptiveThresholdTypes = 'MEAN_C' | 'GAUSSIAN_C';
     type BorderTypes = 'CONSTANT' | 'REPLICATE' | 'REFLECT' | 'WRAP' | 'REFLECT_101' | 'TRANSPARENT' | 'REFLECT101' | 'DEFAULT' | 'ISOLATED';
-
-    namespace Options {
-
-        type Region = [X?, Y?, Width?, Height?] | org.opencv.core.Rect | android.graphics.Rect;
-
-    }
 
     class MatchingResult {
         /**
@@ -1297,8 +1287,6 @@ declare namespace Images {
          */
         constructor(list: Images.TemplateMatch[]);
 
-        list: Images.TemplateMatch | Images.TemplateMatch[];
-
         /**
          * @example
          * let result = images.matchTemplate(img, template, {max: 100});
@@ -1318,7 +1306,7 @@ declare namespace Images {
          *     });
          * }
          */
-        get matches(): Images.TemplateMatch[];
+        matches: Images.TemplateMatch[];
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -1378,7 +1366,7 @@ declare namespace Images {
          * };
          * @see matches
          */
-        findMax(compareFn?: (a, b) => number): Images.TemplateMatch;
+        findMax(compareFn?: (a: Images.TemplateMatch, b: Images.TemplateMatch) => number): Images.TemplateMatch;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -1495,7 +1483,7 @@ declare namespace Images {
          *     return new MatchingResult(clone);
          * };
          */
-        sortBy(compareFn?: ((a, b) => number) | Images.MatchingResultSortStrategy): this;
+        sortBy(compareFn?: ((a: Images.TemplateMatch, b: Images.TemplateMatch) => number) | Images.MatchingResultSortStrategy): this;
     }
 
     interface BitmapFactoryOptions {
@@ -1529,7 +1517,7 @@ declare namespace Images {
         type Result = { x: number, y: number, radius: number }[];
 
         type Options = {
-            region?: Images.Options.Region;
+            region?: OmniRegion;
             dp?: number;
             minDst?: number;
             param1?: number;
@@ -1560,7 +1548,7 @@ declare function requestScreenCapture(landscape?: boolean): boolean;
 /**
  * @see images.captureScreen
  */
-declare function captureScreen(path?: string): org.autojs.autojs.core.image.ImageWrapper;
+declare function captureScreen(path?: string): ImageWrapper;
 
 /**
  * @param img
@@ -1572,11 +1560,11 @@ declare function captureScreen(path?: string): org.autojs.autojs.core.image.Imag
  * @param [options.region]
  * @see images.findImage
  */
-declare function findImage(img: org.autojs.autojs.core.image.ImageWrapper, template: org.autojs.autojs.core.image.ImageWrapper, options?: {
+declare function findImage(img: ImageWrapper, template: ImageWrapper, options?: {
     threshold?: number;
     weakThreshold?: number;
     level?: number;
-    region?: Images.Options.Region;
+    region?: OmniRegion;
 }): OpenCV.Point;
 
 /**
@@ -1589,15 +1577,15 @@ declare function findImage(img: org.autojs.autojs.core.image.ImageWrapper, templ
  * @param [threshold=4]
  * @see images.findImageInRegion
  */
-declare function findImageInRegion(image: org.autojs.autojs.core.image.ImageWrapper, template: org.autojs.autojs.core.image.ImageWrapper, x?: X, y?: Y, width?: Width, height?: Height, threshold?: number): OpenCV.Point;
+declare function findImageInRegion(image: ImageWrapper, template: ImageWrapper, x?: X, y?: Y, width?: Width, height?: Height, threshold?: number): OpenCV.Point;
 
 /**
  * @see images.findColor
  */
-declare function findColor(img: org.autojs.autojs.core.image.ImageWrapper, color: Color$, options?: {
+declare function findColor(img: ImageWrapper, color: Color$, options?: {
     similarity?: number;
     threshold?: number;
-    region?: Images.Options.Region;
+    region?: OmniRegion;
 }): OpenCV.Point;
 
 /**
@@ -1609,7 +1597,7 @@ declare function findColor(img: org.autojs.autojs.core.image.ImageWrapper, color
  * @param [height=img.getHeight()-y]
  * @see images.findColorEquals
  */
-declare function findColorEquals(img: org.autojs.autojs.core.image.ImageWrapper, color: Color$, x, y, width, height): OpenCV.Point;
+declare function findColorEquals(img: ImageWrapper, color: Color$, x?: X, y?: Y, width?: Width, height?: Height): OpenCV.Point;
 
 /**
  * @param img
@@ -1621,13 +1609,13 @@ declare function findColorEquals(img: org.autojs.autojs.core.image.ImageWrapper,
  * @param [threshold=4]
  * @see images.findColorInRegion
  */
-declare function findColorInRegion(img: org.autojs.autojs.core.image.ImageWrapper, color: Color$, x?: X, y?: Y, width?: Width, height?: Height, threshold?: number): OpenCV.Point;
+declare function findColorInRegion(img: ImageWrapper, color: Color$, x?: X, y?: Y, width?: Width, height?: Height, threshold?: number): OpenCV.Point;
 
 /**
  * @see images.findMultiColors
  */
-declare function findMultiColors(img: org.autojs.autojs.core.image.ImageWrapper, firstColor: Color$, paths: [X, Y, Color$][], options?: {
-    region?: Images.Options.Region;
+declare function findMultiColors(img: ImageWrapper, firstColor: Color$, paths: [X, Y, Color$][], options?: {
+    region?: OmniRegion;
     threshold?: number;
 }): OpenCV.Point;
 
@@ -1650,6 +1638,10 @@ declare class ImageWrapper extends org.autojs.autojs.core.image.ImageWrapper {
      */
     public height: number;
 
+    public oneShot(): ImageWrapper;
+
+    public setOneShot(b: boolean): ImageWrapper;
+
     /**
      * @example Source code summary (zh-CN: 源代码摘要)
      * private int mWidth;
@@ -1668,6 +1660,8 @@ declare class ImageWrapper extends org.autojs.autojs.core.image.ImageWrapper {
      * }
      * @see android.graphics.Bitmap
      */
-    public static ofBitmap(bitmap: android.graphics.Bitmap): org.autojs.autojs.core.image.ImageWrapper;
+    public static ofBitmap(bitmap: android.graphics.Bitmap): ImageWrapper;
+    public static ofImage(image: android.media.Image): ImageWrapper;
+    public static ofMat(mat: org.autojs.autojs.core.opencv.Mat): ImageWrapper;
 
 }

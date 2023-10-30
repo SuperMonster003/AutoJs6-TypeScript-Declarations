@@ -810,6 +810,7 @@ declare module org {
 				public put(name: string, start: org.mozilla.javascript.Scriptable, value: any): void;
 				public execIdCall(f: org.mozilla.javascript.IdFunctionObject, cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, thisObj: org.mozilla.javascript.Scriptable, args: any[]): any;
 				public construct(param0: org.mozilla.javascript.Context, param1: org.mozilla.javascript.Scriptable, param2: any[]): org.mozilla.javascript.Scriptable;
+				public getFunctionName(): string;
 				public has(param0: string, param1: org.mozilla.javascript.Scriptable): boolean;
 				public constructor();
 				public execIdCall(param0: org.mozilla.javascript.IdFunctionObject, param1: org.mozilla.javascript.Context, param2: org.mozilla.javascript.Scriptable, param3: org.mozilla.javascript.Scriptable, param4: any[]): any;
@@ -1096,7 +1097,7 @@ declare module org {
 				public getE4xImplementationFactory(): org.mozilla.javascript.xml.XMLLib.Factory;
 				public static toNumber(value: any): number;
 				/** @deprecated */
-				public compileReader(scope: org.mozilla.javascript.Scriptable, in: java.io.Reader, sourceName: string, lineno: number, securityDomain: any): org.mozilla.javascript.Script;
+				public compileReader(scope: org.mozilla.javascript.Scriptable, _in_: java.io.Reader, sourceName: string, lineno: number, securityDomain: any): org.mozilla.javascript.Script;
 				public static isCurrentContextStrict(): boolean;
 				public getImplementationVersion(): string;
 				public compileFunction(scope: org.mozilla.javascript.Scriptable, source: string, sourceName: string, lineno: number, securityDomain: any): org.mozilla.javascript.Function;
@@ -1126,7 +1127,7 @@ declare module org {
 				/** @deprecated */
 				public static addContextListener(listener: org.mozilla.javascript.ContextListener): void;
 				public stringIsCompilableUnit(source: string): boolean;
-				public callFunctionWithContinuations(function: org.mozilla.javascript.Callable, scope: org.mozilla.javascript.Scriptable, args: any[]): any;
+				public callFunctionWithContinuations(_function_: org.mozilla.javascript.Callable, scope: org.mozilla.javascript.Scriptable, args: any[]): any;
 				public newObject(scope: org.mozilla.javascript.Scriptable, constructorName: string, args: any[]): org.mozilla.javascript.Scriptable;
 				public static checkLanguageVersion(version: number): void;
 				public executeScriptWithContinuations(script: org.mozilla.javascript.Script, scope: org.mozilla.javascript.Scriptable): any;
@@ -1142,7 +1143,7 @@ declare module org {
 				public initSafeStandardObjects(scope: org.mozilla.javascript.ScriptableObject, sealed: boolean): org.mozilla.javascript.ScriptableObject;
 				public captureContinuation(): org.mozilla.javascript.ContinuationPending;
 				public static reportRuntimeError(message: string): org.mozilla.javascript.EvaluatorException;
-				public compileReader(in: java.io.Reader, sourceName: string, lineno: number, securityDomain: any): org.mozilla.javascript.Script;
+				public compileReader(_in_: java.io.Reader, sourceName: string, lineno: number, securityDomain: any): org.mozilla.javascript.Script;
 				public getLanguageVersion(): number;
 				public isSealed(): boolean;
 				public removePropertyChangeListener(l: java.beans.PropertyChangeListener): void;
@@ -1163,7 +1164,7 @@ declare module org {
 				public getApplicationClassLoader(): java.lang.ClassLoader;
 				public setLanguageVersion(version: number): void;
 				public static call(factory: org.mozilla.javascript.ContextFactory, callable: org.mozilla.javascript.Callable, scope: org.mozilla.javascript.Scriptable, thisObj: org.mozilla.javascript.Scriptable, args: any[]): any;
-				public evaluateReader(scope: org.mozilla.javascript.Scriptable, in: java.io.Reader, sourceName: string, lineno: number, securityDomain: any): any;
+				public evaluateReader(scope: org.mozilla.javascript.Scriptable, _in_: java.io.Reader, sourceName: string, lineno: number, securityDomain: any): any;
 				public static javaToJS(value: any, scope: org.mozilla.javascript.Scriptable, cx: org.mozilla.javascript.Context): any;
 				public static javaToJS(value: any, scope: org.mozilla.javascript.Scriptable): any;
 				public getFactory(): org.mozilla.javascript.ContextFactory;
@@ -1536,7 +1537,7 @@ declare module org {
 				public findPrototypeId(k: org.mozilla.javascript.Symbol): number;
 				public put(index: number, start: org.mozilla.javascript.Scriptable, value: any): void;
 				public getParentScope(): org.mozilla.javascript.Scriptable;
-				public constructor(scope: org.mozilla.javascript.Scriptable, function: org.mozilla.javascript.NativeFunction, savedState: any);
+				public constructor(scope: org.mozilla.javascript.Scriptable, _function_: org.mozilla.javascript.NativeFunction, savedState: any);
 				public static getDefaultValue(object: org.mozilla.javascript.Scriptable, typeHint: java.lang.Class<any>): any;
 				public get(param0: string, param1: org.mozilla.javascript.Scriptable): any;
 				public getIds(): any[];
@@ -1990,6 +1991,7 @@ declare module org {
 				public createObject(cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable): org.mozilla.javascript.Scriptable;
 				public construct(cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, args: any[]): org.mozilla.javascript.Scriptable;
 				public constructor(isGenerator: boolean);
+				public addAsConstructor(scope: org.mozilla.javascript.Scriptable, prototype: org.mozilla.javascript.Scriptable, attributes: number): void;
 				public has(name: string, start: org.mozilla.javascript.Scriptable): boolean;
 				public delete(param0: string): void;
 				public putConst(param0: string, param1: org.mozilla.javascript.Scriptable, param2: any): void;
@@ -2694,7 +2696,7 @@ declare module org {
 				public static init(cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, sealed: boolean): void;
 				public static getAdapterSelf(adapterClass: java.lang.Class<any>, adapter: any): any;
 				public static writeAdapterObject(javaObject: any, out: java.io.ObjectOutputStream): void;
-				public static readAdapterObject(self: org.mozilla.javascript.Scriptable, in: java.io.ObjectInputStream): any;
+				public static readAdapterObject(self: org.mozilla.javascript.Scriptable, _in_: java.io.ObjectInputStream): any;
 				public static createAdapterCode(functionNames: org.mozilla.javascript.ObjToIntMap, adapterName: string, superClass: java.lang.Class<any>, interfaces: java.lang.Class<any>[], scriptClassName: string): number[];
 				public static getFunction(obj: org.mozilla.javascript.Scriptable, functionName: string): org.mozilla.javascript.Function;
 			}
@@ -4021,7 +4023,7 @@ declare module org {
 				public put(key: org.mozilla.javascript.Symbol, start: org.mozilla.javascript.Scriptable, value: any): void;
 				public put(index: number, start: org.mozilla.javascript.Scriptable, value: any): void;
 				public getParentScope(): org.mozilla.javascript.Scriptable;
-				public constructor(scope: org.mozilla.javascript.Scriptable, function: org.mozilla.javascript.NativeFunction, savedState: any);
+				public constructor(scope: org.mozilla.javascript.Scriptable, _function_: org.mozilla.javascript.NativeFunction, savedState: any);
 				public static getDefaultValue(object: org.mozilla.javascript.Scriptable, typeHint: java.lang.Class<any>): any;
 				public get(param0: string, param1: org.mozilla.javascript.Scriptable): any;
 				public getIds(): any[];
@@ -4189,7 +4191,7 @@ declare module org {
 					public delete(param0: string): void;
 					public getAllIds(): any[];
 					public hashCode(): number;
-					public replaceAll(function: any /* any<any,any,any>*/): void;
+					public replaceAll(_function_: any /* any<any,any,any>*/): void;
 					public execIdCall(f: org.mozilla.javascript.IdFunctionObject, cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, thisObj: org.mozilla.javascript.Scriptable, args: any[]): any;
 					public get(key: org.mozilla.javascript.Symbol, start: org.mozilla.javascript.Scriptable): any;
 					public hasInstance(param0: org.mozilla.javascript.Scriptable): boolean;
@@ -5174,7 +5176,7 @@ declare module org {
 				public getDefaultValue(param0: java.lang.Class<any>): any;
 				public fillConstructorProperties(ctor: org.mozilla.javascript.IdFunctionObject): void;
 				public isConst(name: string): boolean;
-				public replaceAll(function: any /* any<any,any,any>*/): void;
+				public replaceAll(_function_: any /* any<any,any,any>*/): void;
 				public defineConst(name: string, start: org.mozilla.javascript.Scriptable): void;
 				public findPrototypeId(key: org.mozilla.javascript.Symbol): number;
 				public remove(key: any): any;
@@ -6460,10 +6462,13 @@ declare module org {
 				public static refSet(ref: org.mozilla.javascript.Ref, value: any, cx: org.mozilla.javascript.Context): any;
 				public static wrapException(t: java.lang.Throwable, scope: org.mozilla.javascript.Scriptable, cx: org.mozilla.javascript.Context): org.mozilla.javascript.Scriptable;
 				/** @deprecated */
+				public static setFunctionProtoAndParent(fn: org.mozilla.javascript.BaseFunction, scope: org.mozilla.javascript.Scriptable): void;
+				/** @deprecated */
 				public static getElemFunctionAndThis(obj: any, elem: any, cx: org.mozilla.javascript.Context): org.mozilla.javascript.Callable;
 				public static toBoolean(val: any): boolean;
 				/** @deprecated */
 				public static delete(obj: any, id: any, cx: org.mozilla.javascript.Context, isName: boolean): any;
+				public static setFunctionProtoAndParent(fn: org.mozilla.javascript.BaseFunction, cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable): void;
 				public static strictSetName(bound: org.mozilla.javascript.Scriptable, value: any, cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, id: string): any;
 				public static toUint32(val: any): number;
 				public static propIncrDecr(obj: any, id: string, cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, incrDecrMask: number): any;
@@ -6472,7 +6477,7 @@ declare module org {
 				/** @deprecated */
 				public static toObject(cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, val: any, staticClass: java.lang.Class<any>): org.mozilla.javascript.Scriptable;
 				public static toInteger(val: any): number;
-				public static initFunction(cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, function: org.mozilla.javascript.NativeFunction, type: number, fromEvalCode: boolean): void;
+				public static initFunction(cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, _function_: org.mozilla.javascript.NativeFunction, type: number, fromEvalCode: boolean): void;
 				public static toObject(scope: org.mozilla.javascript.Scriptable, val: any): org.mozilla.javascript.Scriptable;
 				public static typeErrorThrower(cx: org.mozilla.javascript.Context): org.mozilla.javascript.BaseFunction;
 				public static checkRegExpProxy(cx: org.mozilla.javascript.Context): org.mozilla.javascript.RegExpProxy;
@@ -6504,8 +6509,8 @@ declare module org {
 				public static toInteger(args: any[], index: number): number;
 				public static subtract(val1: java.lang.Number, val2: java.lang.Number): java.lang.Number;
 				public static divide(val1: java.lang.Number, val2: java.lang.Number): java.lang.Number;
+				public static setFunctionProtoAndParent(fn: org.mozilla.javascript.BaseFunction, cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, es6GeneratorFunction: boolean): void;
 				public static signedRightShift(val1: java.lang.Number, val2: java.lang.Number): java.lang.Number;
-				public static setFunctionProtoAndParent(fn: org.mozilla.javascript.BaseFunction, scope: org.mozilla.javascript.Scriptable): void;
 				public static leaveDotQuery(scope: org.mozilla.javascript.Scriptable): org.mozilla.javascript.Scriptable;
 				public static enumValue(enumObj: any, cx: org.mozilla.javascript.Context): any;
 				public static specialRef(obj: any, specialProperty: string, cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable): org.mozilla.javascript.Ref;
@@ -6546,6 +6551,7 @@ declare module org {
 				public static toLength(args: any[], index: number): number;
 				public static leftShift(val1: java.lang.Number, val2: java.lang.Number): java.lang.Number;
 				public static applyOrCall(isApply: boolean, cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, thisObj: org.mozilla.javascript.Scriptable, args: any[]): any;
+				/** @deprecated */
 				public static setFunctionProtoAndParent(fn: org.mozilla.javascript.BaseFunction, scope: org.mozilla.javascript.Scriptable, es6GeneratorFunction: boolean): void;
 				public static enumId(enumObj: any, cx: org.mozilla.javascript.Context): any;
 				public static setBuiltinProtoAndParent(object: org.mozilla.javascript.ScriptableObject, scope: org.mozilla.javascript.Scriptable, type: org.mozilla.javascript.TopLevel.Builtins): void;
@@ -6555,7 +6561,7 @@ declare module org {
 				public static typeError3(messageId: string, arg1: string, arg2: string, arg3: string): org.mozilla.javascript.EcmaError;
 				public static setObjectElem(obj: org.mozilla.javascript.Scriptable, elem: any, value: any, cx: org.mozilla.javascript.Context): any;
 				public static getObjectProp(obj: any, property: string, cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable): any;
-				public static callRef(function: org.mozilla.javascript.Callable, thisObj: org.mozilla.javascript.Scriptable, args: any[], cx: org.mozilla.javascript.Context): org.mozilla.javascript.Ref;
+				public static callRef(_function_: org.mozilla.javascript.Callable, thisObj: org.mozilla.javascript.Scriptable, args: any[], cx: org.mozilla.javascript.Context): org.mozilla.javascript.Ref;
 				public static wrapNumber(x: number): java.lang.Number;
 				/** @deprecated */
 				public static enumInit(value: any, cx: org.mozilla.javascript.Context, enumValues: boolean): any;
@@ -11458,7 +11464,7 @@ declare module org {
 					public static newArrayLiteral(objects: any[], encodedInts: string, skipCount: number, cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable): org.mozilla.javascript.Scriptable;
 					public static add(val1: any, val2: any, cx: org.mozilla.javascript.Context): any;
 					public static elemIncrDecr(obj: any, index: any, cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, incrDecrMask: number): any;
-					public static initFunction(cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, function: org.mozilla.javascript.NativeFunction, type: number, fromEvalCode: boolean): void;
+					public static initFunction(cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, _function_: org.mozilla.javascript.NativeFunction, type: number, fromEvalCode: boolean): void;
 					/** @deprecated */
 					public static elemIncrDecr(obj: any, index: number, param2: org.mozilla.javascript.Context, cx: number): any;
 					public static callN(fun: org.mozilla.javascript.Callable, thisObj: org.mozilla.javascript.Scriptable, args: any[], cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable): any;
@@ -11893,12 +11899,12 @@ declare module org {
 					public static class: java.lang.Class<org.mozilla.javascript.serialize.ScriptableInputStream>;
 					public read(): number;
 					public resolveClass(desc: java.io.ObjectStreamClass): java.lang.Class<any>;
-					public constructor(in: java.io.InputStream, scope: org.mozilla.javascript.Scriptable);
+					public constructor(_in_: java.io.InputStream, scope: org.mozilla.javascript.Scriptable);
 					public skip(param0: number): number;
 					public read(buf: number[], off: number, len: number): number;
 					public read(param0: number[], param1: number, param2: number): number;
 					public available(): number;
-					public constructor(in: java.io.InputStream);
+					public constructor(_in_: java.io.InputStream);
 					public constructor();
 					public read(b: number[]): number;
 					public readObject(): any;
@@ -12248,7 +12254,7 @@ declare module org {
 						public has(name: string, start: org.mozilla.javascript.Scriptable): boolean;
 						public init(factory: org.mozilla.javascript.ContextFactory): void;
 						public get(key: any): any;
-						public setIn(in: java.io.InputStream): void;
+						public setIn(_in_: java.io.InputStream): void;
 						public setErr(err: java.io.PrintStream): void;
 						public getConsole(cs: java.nio.charset.Charset): org.mozilla.javascript.tools.shell.ShellConsole;
 						public isConst(name: string): boolean;
@@ -12350,7 +12356,7 @@ declare module org {
 						public static exec(origArgs: string[]): number;
 						public static processFile(cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, filename: string): void;
 						public static processSource(cx: org.mozilla.javascript.Context, filename: string): void;
-						public static setIn(in: java.io.InputStream): void;
+						public static setIn(_in_: java.io.InputStream): void;
 						public static processFileNoThrow(cx: org.mozilla.javascript.Context, scope: org.mozilla.javascript.Scriptable, filename: string): void;
 						public static getErr(): java.io.PrintStream;
 						public static getIn(): java.io.InputStream;
@@ -12394,7 +12400,7 @@ declare module org {
 							public forEach(action: any /* any<any,any>*/): void;
 							public getOrDefault(key: any, defaultValue: any): any;
 							public containsValue(value: any): boolean;
-							public replaceAll(function: any /* any<any,any,any>*/): void;
+							public replaceAll(_function_: any /* any<any,any,any>*/): void;
 							public replace(key: any, value: any): any;
 							public isEmpty(): boolean;
 							public equals(param0: any): boolean;
@@ -12495,7 +12501,7 @@ declare module org {
 						public flush(): void;
 						public println(): void;
 						public println(param0: string): void;
-						public static getConsole(in: java.io.InputStream, ps: java.io.PrintStream, cs: java.nio.charset.Charset): org.mozilla.javascript.tools.shell.ShellConsole;
+						public static getConsole(_in_: java.io.InputStream, ps: java.io.PrintStream, cs: java.nio.charset.Charset): org.mozilla.javascript.tools.shell.ShellConsole;
 						public print(param0: string): void;
 						public readLine(): string;
 					}

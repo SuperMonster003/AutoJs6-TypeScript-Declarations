@@ -15,7 +15,7 @@ declare namespace Internal {
 
     class Engines extends org.autojs.autojs.runtime.api.Engines {
 
-        public constructor(engineService: org.autojs.autojs.engine.ScriptEngineService, scriptRuntime: org.autojs.autojs.runtime.ScriptRuntime);
+        public constructor(engineService: org.autojs.autojs.engine.ScriptEngineService, scriptRuntime: ScriptRuntime);
 
         /**
          * @example

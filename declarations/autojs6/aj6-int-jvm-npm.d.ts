@@ -73,7 +73,65 @@ declare namespace Internal {
 
         type Result = Internal.Events | any;
 
-        type InternalModule = '__app__.js' | '__automator__.js' | '__bridges__.js' | '__console__.js' | '__continuation__.js' | '__device__' | '__dialogs__.js' | '__engines__.js' | '__events__.js' | '__floaty__.js' | '__globals__.js' | '__http__.js' | '__images__.js' | '__files__.js' | '__media__.js' | '__plugins__.js' | '__RootAutomator__.js' | '__selector__.js' | '__sensors__.js' | '__shell__.js' | '__storages__.js' | '__threads__.js' | '__timers__.js' | '__ui__.js' | '__util__.js' | '__web__.js' | 'array-observe.min.js' | 'jvm-npm.js' | 'object-observe-lite.min.js' | 'promise.js' | 'result-adapter.js' | '__app__' | '__automator__' | '__bridges__' | '__console__' | '__continuation__' | '__dialogs__' | '__engines__' | '__events__' | '__floaty__' | '__globals__' | '__http__' | '__images__' | '__files__' | '__media__' | '__plugins__' | '__web__' | '__RootAutomator__' | 'promise' | '__selector__' | '__sensors__' | '__shell__' | '__storages__' | '__threads__' | '__timers__' | '__ui__' | '__unit_test__' | '__util__' | 'array-observe.min' | 'jvm-npm' | 'object-observe-lite.min' | 'result-adapter';
+        type InternalModuleWithDoubleUnderlines =
+            'Arrayx' |
+            'Mathx' |
+            'Numberx' |
+            'RootAutomator' |
+            'app' |
+            'autojs' |
+            'automator' |
+            'base64' |
+            'bridges' |
+            'colors' |
+            'console' |
+            'continuation' |
+            'crypto' |
+            'device' |
+            'dialogs' |
+            'engines' |
+            'events' |
+            'files' |
+            'floaty' |
+            'globals' |
+            'http' |
+            'i18n' |
+            'images' |
+            'media' |
+            'notice' |
+            'plugins' |
+            'recorder' |
+            's13n' |
+            'selector' |
+            'sensors' |
+            'shell' |
+            'storages' |
+            'tasks' |
+            'threads' |
+            'timers' |
+            'toast' |
+            'ui' |
+            'util' |
+            'web';
+
+        type InternalModuleWithoutDoubleUnderlines =
+            'array-observe.min' |
+            'banana-i18n' |
+            'cheerio' |
+            'jvm-npm' |
+            'lodash' |
+            'ocr-mlkit' |
+            'ocr-paddle' |
+            'object-observe-lite.min' |
+            'paddle-ocr' |
+            'polyfill' |
+            'promise' |
+            'redirect' |
+            'result-adapter';
+
+        type InternalModule =
+            `__${InternalModuleWithDoubleUnderlines}__${'.js' | ''}` |
+            `${InternalModuleWithoutDoubleUnderlines}${'.js' | ''}`;
 
         class Module {
 

@@ -69,7 +69,7 @@ declare module androidx {
 			public describeContents(): number;
 			public writeToParcel(param0: android.os.Parcel, param1: number): void;
 			public getVersionedParcel(): androidx.versionedparcelable.VersionedParcelable;
-			public constructor(in: android.os.Parcel);
+			public constructor(_in_: android.os.Parcel);
 		}
 	}
 }

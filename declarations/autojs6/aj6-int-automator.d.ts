@@ -45,7 +45,7 @@ declare namespace Internal {
          */
         click(left: number, top: number, right: number, bottom: number): boolean;
 
-        click(widget: org.autojs.autojs.core.automator.UiObject): boolean;
+        click(widget: UiObject): boolean;
 
         click(bounds: android.graphics.Rect): boolean;
 
@@ -113,7 +113,7 @@ declare namespace Internal {
          * @example Source code summary (zh-CN: 源代码摘要)
          * gesture(0, delay, intArrayOf(x1, y1), intArrayOf(x2, y2));
          */
-        swipe(x1: number, y1: number, x2: number, y2: number, delay: number): boolean;
+        swipe(x1: number, y1: number, x2: number, y2: number, duration: number): boolean;
 
         /**
          * @example
@@ -151,7 +151,7 @@ declare namespace Internal {
          *     return strokes;
          * }
          */
-        gestures(...groups: (number | number[])[]): boolean;
+        gestures(...strokes: ([startTime: number, duration: number, ...points: [x: number, y: number][]] | [duration: number, ...points: [x: number, y: number][]])[]): boolean;
 
         /**
          * @example
@@ -250,7 +250,7 @@ declare namespace Internal {
          * @example Source code summary (zh-CN: 源代码摘要)
          * runtime.automator.setText(runtime.automator.editable(-1), text);
          */
-        setText(text: string);
+        setText(text: string): void;
 
         /**
          * Replace old text with new one
@@ -259,7 +259,7 @@ declare namespace Internal {
          * @example Source code summary (zh-CN: 源代码摘要)
          * runtime.automator.setText(runtime.automator.editable(index), text);
          */
-        setText(index: number, text: string);
+        setText(index: number, text: string): void;
 
         /**
          * Append text to old text
@@ -268,7 +268,7 @@ declare namespace Internal {
          * @example Source code summary (zh-CN: 源代码摘要)
          * runtime.automator.appendText(runtime.automator.editable(-1), text);
          */
-        input(text: string);
+        input(text: string): void;
 
         /**
          * Append text to old text
@@ -277,9 +277,9 @@ declare namespace Internal {
          * @example Source code summary (zh-CN: 源代码摘要)
          * runtime.automator.appendText(runtime.automator.editable(index), text);
          */
-        input(index: number, text: string);
+        input(index: number, text: string): void;
 
-        captureScreen(): org.autojs.autojs.core.image.ImageWrapper;
+        captureScreen(): ImageWrapper;
 
         isServiceRunning(): boolean;
 
@@ -483,114 +483,114 @@ declare function splitScreen(): boolean;
 
 declare function click(bounds: android.graphics.Rect): boolean;
 
-declare function click(widget: org.autojs.autojs.core.automator.UiObject): boolean;
+declare function click(widget: UiObject): boolean;
 
 /**
  * @param text
  * @param [index=0]
- * @see automator.click
+ * @see Internal.Automator.click
  */
 declare function click(text: string, index?: number): boolean;
 
 /**
- * @see automator.click
+ * @see Internal.Automator.click
  */
 declare function click(x: number, y: number): boolean;
 
 /**
- * @see automator.click
+ * @see Internal.Automator.click
  */
 declare function click(left: number, top: number, right: number, bottom: number): boolean;
 
 /**
- * @see automator.longClick
+ * @see Internal.Automator.longClick
  */
 declare function longClick(x: number, y: number): boolean;
 /**
  * @param text
  * @param [index=0]
- * @see automator.longClick
+ * @see Internal.Automator.longClick
  */
 declare function longClick(text: string, index?: number): boolean;
 /**
- * @see automator.longClick
+ * @see Internal.Automator.longClick
  */
 declare function longClick(left: number, top: number, right: number, bottom: number): boolean;
 
 /**
- * @see automator.press
+ * @see Internal.Automator.press
  */
 declare function press(x: number, y: number, delay: number): boolean;
 
 /**
- * @see automator.gesture
+ * @see Internal.Automator.gesture
  */
 declare function gesture(duration: number, ...points: [X, Y][]): boolean;
 
 /**
- * @see automator.gestureAsync
+ * @see Internal.Automator.gestureAsync
  */
 declare function gestureAsync(duration: number, ...points: [X, Y][]): void;
 
 /**
- * @see automator.swipe
+ * @see Internal.Automator.swipe
  */
-declare function swipe(x1: number, y1: number, x2: number, y2: number, delay: number): boolean;
+declare function swipe(x1: number, y1: number, x2: number, y2: number, duration: number): boolean;
 
 /**
- * @see automator.gestures
+ * @see Internal.Automator.gestures
  */
-declare function gestures(...groups: (number | number[])[]): boolean;
+declare function gestures(...strokes: ([startTime: number, duration: number, ...points: [x: number, y: number][]] | [duration: number, ...points: [x: number, y: number][]])[]): boolean;
 
 /**
- * @see automator.gesturesAsync
+ * @see Internal.Automator.gesturesAsync
  */
 declare function gesturesAsync(...groups: (number | number[])[]): void;
 
 /**
- * @see automator.scrollDown
+ * @see Internal.Automator.scrollDown
  */
 declare function scrollDown(index?: number): boolean;
 /**
  * @param text
  * @param [index=0]
- * @see automator.scrollDown
+ * @see Internal.Automator.scrollDown
  */
 declare function scrollDown(text: string, index?: number): boolean;
 /**
- * @see automator.scrollDown
+ * @see Internal.Automator.scrollDown
  */
 declare function scrollDown(left: number, top: number, right: number, bottom: number): boolean;
 
 /**
- * @see automator.scrollUp
+ * @see Internal.Automator.scrollUp
  */
 declare function scrollUp(index?: number): boolean;
 /**
  * @param text
  * @param [index=0]
- * @see automator.scrollUp
+ * @see Internal.Automator.scrollUp
  */
 declare function scrollUp(text: string, index?: number): boolean;
 /**
- * @see automator.scrollUp
+ * @see Internal.Automator.scrollUp
  */
 declare function scrollUp(left: number, top: number, right: number, bottom: number): boolean;
 
 /**
- * @see automator.setText
+ * @see Internal.Automator.setText
  */
-declare function setText(text: string);
+declare function setText(text: string): void;
 /**
- * @see automator.setText
+ * @see Internal.Automator.setText
  */
-declare function setText(index: number, text: string);
+declare function setText(index: number, text: string): void;
 
 /**
- * @see automator.input
+ * @see Internal.Automator.input
  */
-declare function input(text: string);
+declare function input(text: string): void;
 /**
- * @see automator.input
+ * @see Internal.Automator.input
  */
-declare function input(index: number, text: string);
+declare function input(index: number, text: string): void;

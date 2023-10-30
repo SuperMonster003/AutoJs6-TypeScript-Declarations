@@ -462,7 +462,7 @@ declare module androidx {
 				hashCode(): number;
 				getOrDefault(key: any, defaultValue: any): any;
 				forEach(action: any /* any<any,any>*/): void;
-				replaceAll(function: any /* any<any,any,any>*/): void;
+				replaceAll(_function_: any /* any<any,any,any>*/): void;
 				putIfAbsent(key: any, value: any): any;
 				remove(key: any, value: any): boolean;
 				replace(key: any, oldValue: any, newValue: any): boolean;
@@ -485,7 +485,7 @@ declare module androidx {
 			public putIfAbsent(key: any, value: any): any;
 			public remove(param0: any): any;
 			public putAll(param0: java.util.Map<any,any>): void;
-			public replaceAll(function: any /* any<any,any,any>*/): void;
+			public replaceAll(_function_: any /* any<any,any,any>*/): void;
 			public values(): java.util.Collection<any>;
 			public addOnMapChangedCallback(param0: androidx.databinding.ObservableMap.OnMapChangedCallback<any,any,any>): void;
 			public merge(key: any, value: any, remappingFunction: any /* any<any,any,any>*/): any;

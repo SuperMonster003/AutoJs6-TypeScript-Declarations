@@ -1373,7 +1373,7 @@ declare module jackpal {
 					public merge(key: any, value: any, remappingFunction: any /* any<any,any,any>*/): any;
 					public hashCode(): number;
 					public replace(key: any, oldValue: any, newValue: any): boolean;
-					public replaceAll(function: any /* any<any,any,any>*/): void;
+					public replaceAll(_function_: any /* any<any,any,any>*/): void;
 					public remove(key: any): any;
 					public constructor(t: java.util.Map<any,any>);
 					public values(): java.util.Collection<any>;

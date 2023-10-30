@@ -134,7 +134,7 @@ declare module com {
 				public computeChecksum(): number;
 				public classDefs(): java.lang.Iterable<com.android.dex.ClassDef>;
 				public computeSignature(): number[];
-				public constructor(in: java.io.InputStream);
+				public constructor(_in_: java.io.InputStream);
 				public readClassData(classDef: com.android.dex.ClassDef): com.android.dex.ClassData;
 				public descriptorIndexFromTypeIndex(typeIndex: number): number;
 				public annotationDirectoryOffsetFromClassDefIndex(classDefIndex: number): number;
@@ -594,13 +594,13 @@ declare module com {
 		export module dex {
 			export class EncodedValueCodec extends java.lang.Object {
 				public static class: java.lang.Class<com.android.dex.EncodedValueCodec>;
-				public static readUnsignedInt(in: com.android.dex.util.ByteInput, zwidth: number, fillOnRight: boolean): number;
-				public static readSignedLong(in: com.android.dex.util.ByteInput, zwidth: number): number;
-				public static readUnsignedLong(in: com.android.dex.util.ByteInput, zwidth: number, fillOnRight: boolean): number;
+				public static readUnsignedInt(_in_: com.android.dex.util.ByteInput, zwidth: number, fillOnRight: boolean): number;
+				public static readSignedLong(_in_: com.android.dex.util.ByteInput, zwidth: number): number;
+				public static readUnsignedLong(_in_: com.android.dex.util.ByteInput, zwidth: number, fillOnRight: boolean): number;
 				public static writeUnsignedIntegralValue(out: com.android.dex.util.ByteOutput, type: number, value: number): void;
 				public static writeSignedIntegralValue(out: com.android.dex.util.ByteOutput, type: number, value: number): void;
 				public static writeRightZeroExtendedValue(out: com.android.dex.util.ByteOutput, type: number, value: number): void;
-				public static readSignedInt(in: com.android.dex.util.ByteInput, zwidth: number): number;
+				public static readSignedInt(_in_: com.android.dex.util.ByteInput, zwidth: number): number;
 			}
 		}
 	}
@@ -627,7 +627,7 @@ declare module com {
 				public static ENCODED_ANNOTATION: number;
 				public static ENCODED_NULL: number;
 				public static ENCODED_BOOLEAN: number;
-				public in: com.android.dex.util.ByteInput;
+				public _in_: com.android.dex.util.ByteInput;
 				public readFloat(): number;
 				public readType(): number;
 				public readEnum(): number;
@@ -635,17 +635,17 @@ declare module com {
 				public readArray(): number;
 				public readChar(): string;
 				public readInt(): number;
-				public constructor(in: com.android.dex.util.ByteInput);
+				public constructor(_in_: com.android.dex.util.ByteInput);
 				public getAnnotationType(): number;
 				public readAnnotation(): number;
-				public constructor(in: com.android.dex.util.ByteInput, knownType: number);
+				public constructor(_in_: com.android.dex.util.ByteInput, knownType: number);
 				public readString(): number;
-				public constructor(in: com.android.dex.EncodedValue, knownType: number);
+				public constructor(_in_: com.android.dex.EncodedValue, knownType: number);
 				public readNull(): void;
 				public readByte(): number;
 				public skipValue(): void;
 				public readField(): number;
-				public constructor(in: com.android.dex.EncodedValue);
+				public constructor(_in_: com.android.dex.EncodedValue);
 				public readShort(): number;
 				public readAnnotationName(): number;
 				public readMethod(): number;
@@ -680,10 +680,10 @@ declare module com {
 			export class Leb128 extends java.lang.Object {
 				public static class: java.lang.Class<com.android.dex.Leb128>;
 				public static unsignedLeb128Size(value: number): number;
-				public static readSignedLeb128(in: com.android.dex.util.ByteInput): number;
+				public static readSignedLeb128(_in_: com.android.dex.util.ByteInput): number;
 				public static writeSignedLeb128(out: com.android.dex.util.ByteOutput, value: number): void;
 				public static signedLeb128Size(value: number): number;
-				public static readUnsignedLeb128(in: com.android.dex.util.ByteInput): number;
+				public static readUnsignedLeb128(_in_: com.android.dex.util.ByteInput): number;
 				public static writeUnsignedLeb128(out: com.android.dex.util.ByteOutput, value: number): void;
 			}
 		}
@@ -713,7 +713,7 @@ declare module com {
 			export class Mutf8 extends java.lang.Object {
 				public static class: java.lang.Class<com.android.dex.Mutf8>;
 				public static encode(dst: number[], offset: number, s: string): void;
-				public static decode(in: com.android.dex.util.ByteInput, out: string[]): string;
+				public static decode(_in_: com.android.dex.util.ByteInput, out: string[]): string;
 				public static encode(s: string): number[];
 			}
 		}
@@ -7708,7 +7708,7 @@ declare module com {
 						public getD(): number;
 						public getOpcode(): number;
 						public getFormat(): com.android.dx.io.instructions.InstructionCodec;
-						public static decode(in: com.android.dx.io.instructions.CodeInput): com.android.dx.io.instructions.DecodedInstruction;
+						public static decode(_in_: com.android.dx.io.instructions.CodeInput): com.android.dx.io.instructions.DecodedInstruction;
 						public getDNibble(): number;
 						public getTarget(baseAddress: number): number;
 						public getTargetByte(baseAddress: number): number;
@@ -11525,7 +11525,7 @@ declare module com {
 						public readFully(param0: number[], param1: number, param2: number): void;
 						public readUnsignedByte(): number;
 						public readUTF(): string;
-						public static readUTF(in: java.io.DataInput): string;
+						public static readUTF(_in_: java.io.DataInput): string;
 						public readChar(): string;
 						public readFully(param0: number[]): void;
 						public skipBytes(n: number): number;
@@ -11533,7 +11533,7 @@ declare module com {
 						public constructor(wrapped: com.android.dx.util.ByteArray.MyInputStream);
 						public readShort(): number;
 						public readByte(): number;
-						public constructor(in: java.io.InputStream);
+						public constructor(_in_: java.io.InputStream);
 						public readBoolean(): boolean;
 						public readUnsignedShort(): number;
 						/** @deprecated */

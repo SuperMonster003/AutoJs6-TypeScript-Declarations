@@ -21,7 +21,7 @@ declare module androidx {
 			public remove(param0: any): any;
 			public putAll(param0: java.util.Map<any,any>): void;
 			public retainAll(collection: java.util.Collection<any>): boolean;
-			public replaceAll(function: any /* any<any,any,any>*/): void;
+			public replaceAll(_function_: any /* any<any,any,any>*/): void;
 			public values(): java.util.Collection<any>;
 			public merge(key: any, value: any, remappingFunction: any /* any<any,any,any>*/): any;
 			public clear(): void;

@@ -14,7 +14,7 @@
 declare namespace Internal {
 
     class Media extends org.autojs.autojs.runtime.api.Media {
-        // Empty class body.
+        /* Empty body. */
     }
 
 }

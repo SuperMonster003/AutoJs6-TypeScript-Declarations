@@ -30,6 +30,8 @@ declare namespace Internal {
 
 declare type OmniColor = ColorHex | ColorInt | ColorName | Internal.Color | org.autojs.autojs.theme.ThemeColor;
 
+declare type OmniRegion = [X?, Y?, Width?, Height?] | org.opencv.core.Rect | android.graphics.Rect;
+
 declare type OmniThrowable = java.lang.Throwable | string | AutoJsError | Error;
 
 declare type OmniVibrationPattern = number[] | string;

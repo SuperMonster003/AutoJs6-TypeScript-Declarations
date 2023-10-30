@@ -46,7 +46,7 @@ declare module androidx {
 				public static class: java.lang.Class<androidx.fragment.app.BackStackState>;
 				public static CREATOR: android.os.Parcelable.Creator<androidx.fragment.app.BackStackState>;
 				public constructor(bse: androidx.fragment.app.BackStackRecord);
-				public constructor(in: android.os.Parcel);
+				public constructor(_in_: android.os.Parcel);
 				public writeToParcel(dest: android.os.Parcel, flags: number): void;
 				public writeToParcel(param0: android.os.Parcel, param1: number): void;
 				public describeContents(): number;
@@ -997,7 +997,7 @@ declare module androidx {
 			export class FragmentManagerState extends java.lang.Object implements android.os.Parcelable {
 				public static class: java.lang.Class<androidx.fragment.app.FragmentManagerState>;
 				public static CREATOR: android.os.Parcelable.Creator<androidx.fragment.app.FragmentManagerState>;
-				public constructor(in: android.os.Parcel);
+				public constructor(_in_: android.os.Parcel);
 				public writeToParcel(dest: android.os.Parcel, flags: number): void;
 				public writeToParcel(param0: android.os.Parcel, param1: number): void;
 				public describeContents(): number;

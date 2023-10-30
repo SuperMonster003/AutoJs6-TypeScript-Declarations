@@ -19,7 +19,7 @@ declare namespace Internal {
          * @Overrides for JSDoc or more specific types
          */
 
-        constructor(runtime: org.autojs.autojs.runtime.ScriptRuntime);
+        constructor(runtime: ScriptRuntime);
 
         /**
          * @example

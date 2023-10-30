@@ -78,7 +78,7 @@ declare namespace Internal {
         }
 
         interface DigestOptions extends InputDigestOptions, OutputDigestOptions, BaseDigestOptions {
-            // Empty interface body.
+            /* Empty body. */
         }
 
         // @ts-ignore

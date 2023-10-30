@@ -221,7 +221,7 @@ declare module pxb {
 			public removeAll(c: java.util.Collection<any>): boolean;
 			public indexOf(o: any): number;
 			public write(out: java.nio.ByteBuffer): void;
-			public static read(in: java.nio.ByteBuffer): string[];
+			public static read(_in_: java.nio.ByteBuffer): string[];
 			public listIterator(): java.util.ListIterator<any>;
 			public containsAll(c: java.util.Collection<any>): boolean;
 			public add(index: number, element: any): void;
@@ -480,7 +480,7 @@ declare module pxb {
 				public getNamespaceUri(): string;
 				public getText(): string;
 				public getNamespacePrefix(): string;
-				public constructor(in: java.nio.ByteBuffer);
+				public constructor(_in_: java.nio.ByteBuffer);
 				public getAttrResId(i: number): number;
 				public constructor(data: number[]);
 				public getAttrCount(): number;
@@ -638,7 +638,7 @@ declare module pxb {
 				public static writeFile(data: number[], out: java.io.File): void;
 				public static readIs(is: java.io.InputStream): number[];
 				public static readProguardConfig(config: java.io.File): java.util.Map<string,string>;
-				public static readFile(in: java.io.File): number[];
+				public static readFile(_in_: java.io.File): number[];
 				public static copy(is: java.io.InputStream, os: java.io.OutputStream): void;
 				public constructor();
 			}
@@ -768,7 +768,7 @@ declare module zhao {
 					public byte2: number;
 					public chunkSize: number;
 					public type: number;
-					public static read(in: zhao.arsceditor.ResDecoder.IO.LEDataInputStream): zhao.arsceditor.ResDecoder.ARSCDecoder.Header;
+					public static read(_in_: zhao.arsceditor.ResDecoder.IO.LEDataInputStream): zhao.arsceditor.ResDecoder.ARSCDecoder.Header;
 					public constructor(type: number, size: number, byte1: number, byte2: number);
 				}
 			}
@@ -841,7 +841,7 @@ declare module zhao {
 					public readShort(): number;
 					public mark(readlimit: number): void;
 					public readFully(ba: number[]): void;
-					public constructor(in: java.io.InputStream);
+					public constructor(_in_: java.io.InputStream);
 					public readFully(ba: number[], off: number, len: number): void;
 					public skipBytes(n: number): void;
 					public close(): void;

@@ -228,7 +228,7 @@ declare module androidx {
 					public static CREATOR: android.os.Parcelable.Creator<androidx.drawerlayout.widget.DrawerLayout.SavedState>;
 					public constructor(param0: android.os.Parcel);
 					public constructor(superState: android.os.Parcelable);
-					public constructor(in: android.os.Parcel, loader: java.lang.ClassLoader);
+					public constructor(_in_: android.os.Parcel, loader: java.lang.ClassLoader);
 					public constructor(param0: android.os.Parcelable);
 					public describeContents(): number;
 					public constructor(param0: android.os.Parcel, param1: java.lang.ClassLoader);

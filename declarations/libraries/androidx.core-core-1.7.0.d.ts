@@ -5219,7 +5219,7 @@ declare module androidx {
 		export module os {
 			export class ParcelCompat extends java.lang.Object {
 				public static class: java.lang.Class<androidx.core.os.ParcelCompat>;
-				public static readBoolean(in: android.os.Parcel): boolean;
+				public static readBoolean(_in_: android.os.Parcel): boolean;
 				public static writeBoolean(out: android.os.Parcel, value: boolean): void;
 			}
 		}
@@ -5237,8 +5237,8 @@ declare module androidx {
 			export module ParcelableCompat {
 				export class ParcelableCompatCreatorHoneycombMR2<T>  extends android.os.Parcelable.ClassLoaderCreator<any> {
 					public static class: java.lang.Class<androidx.core.os.ParcelableCompat.ParcelableCompatCreatorHoneycombMR2<any>>;
-					public createFromParcel(in: android.os.Parcel): any;
-					public createFromParcel(in: android.os.Parcel, loader: java.lang.ClassLoader): any;
+					public createFromParcel(_in_: android.os.Parcel): any;
+					public createFromParcel(_in_: android.os.Parcel, loader: java.lang.ClassLoader): any;
 					public createFromParcel(param0: android.os.Parcel): any;
 					public newArray(param0: number): any[];
 					public createFromParcel(param0: android.os.Parcel, param1: java.lang.ClassLoader): any;

@@ -76,6 +76,12 @@ declare let $notice: Internal.Notice;
 declare let ocr: Internal.Ocr;
 declare let $ocr: Internal.Ocr;
 
+declare let barcode: Internal.Barcode;
+declare let $barcode: Internal.Barcode;
+
+declare let qrcode: Internal.QrCode;
+declare let $qrcode: Internal.QrCode;
+
 declare let s13n: Internal.S13n;
 declare let $s13n: Internal.S13n;
 
@@ -90,6 +96,9 @@ declare let $require: Internal.Require;
 
 declare let sensors: Internal.Sensors;
 declare let $sensors: Internal.Sensors;
+
+declare let shizuku: Internal.Shizuku;
+declare let $shizuku: Internal.Shizuku;
 
 declare let storages: Internal.Storages;
 declare let $storages: Internal.Storages;
@@ -250,27 +259,27 @@ declare interface Species {
 declare function unwrapJavaObject(o: { getClass(): java.lang.Class<any> }): any;
 
 declare class RootAutomator extends Internal.RootAutomator {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class App extends org.autojs.autojs.util.App {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class RootMode extends org.autojs.autojs.util.RootUtils.RootMode {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class Version extends io.github.g00fy2.versioncompare.Version {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class ColorTable extends org.autojs.autojs.core.image.ColorTable {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class R extends org.autojs.autojs6.R {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare module org {
@@ -283,7 +292,7 @@ declare module org {
 
                 // @ts-ignore
                 export class App extends java.lang.Enum<org.autojs.autojs.util.App> {
-                    // Empty class body.
+                    /* Empty body. */
                 }
 
             }
@@ -295,51 +304,51 @@ declare module org {
 }
 
 declare class Pref extends org.autojs.autojs.pref.Pref {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class Canvas extends org.autojs.autojs.core.graphics.ScriptCanvas {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class Image extends ImageWrapper {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class Shell extends org.autojs.autojs.runtime.api.Shell {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class Paint extends android.graphics.Paint {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class KeyEvent extends android.view.KeyEvent {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class MotionEvent extends android.view.MotionEvent {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class UiObject extends org.autojs.autojs.core.automator.UiObject {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class UiObjectCollection extends org.autojs.autojs.core.automator.UiObjectCollection {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class UiSelector extends org.autojs.autojs.core.accessibility.UiSelector {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class ScriptInterruptedException extends org.autojs.autojs.runtime.exception.ScriptInterruptedException {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class Toast extends android.widget.Toast {
-    // Empty class body.
+    /* Empty body. */
 }
 
 /**
@@ -1136,243 +1145,267 @@ declare namespace Activity {
 // @Supplement
 
 declare class Intent extends android.content.Intent {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class Context extends android.content.Context {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class OkHttpClient extends okhttp3.OkHttpClient {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class __engine__ extends org.autojs.autojs.engine.LoopBasedJavaScriptEngine {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class MutableOkHttp extends org.autojs.autojs.core.http.MutableOkHttp {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class VolatileBox<T> extends org.autojs.autojs.concurrent.VolatileBox<T> {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class ReentrantLock extends java.util.concurrent.locks.ReentrantLock {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class ScreenMetrics extends org.autojs.autojs.runtime.api.ScreenMetrics {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class WebView extends android.webkit.WebView {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class WebViewClient extends android.webkit.WebViewClient {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class WebChromeClient extends android.webkit.WebChromeClient {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class StandardCharsets extends java.nio.charset.StandardCharsets {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class PendingIntent extends android.app.PendingIntent {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class GlobalAppContext extends org.autojs.autojs.app.GlobalAppContext {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class ArrayUtils extends org.autojs.autojs.util.ArrayUtils {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class DisplayUtils extends org.autojs.autojs.util.DisplayUtils {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class ColorUtils extends org.autojs.autojs.util.ColorUtils {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class StringUtils extends org.autojs.autojs.util.StringUtils {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class ProxyObject extends org.autojs.autojs.rhino.ProxyObject {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class ProxyJavaObject extends org.autojs.autojs.rhino.ProxyJavaObject {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class NotificationCompat extends androidx.core.app.NotificationCompat {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class NotificationManagerCompat extends androidx.core.app.NotificationManagerCompat {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class URI extends java.net.URI {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class File extends java.io.File {
-    // Empty class body.
+    /* Empty body. */
 }
 
 /* View classes. */
 
 declare class JsAppBarLayout extends org.autojs.autojs.core.ui.widget.JsAppBarLayout {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsButton extends org.autojs.autojs.core.ui.widget.JsButton {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsCanvasView extends org.autojs.autojs.core.ui.widget.JsCanvasView {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsCardView extends org.autojs.autojs.core.ui.widget.JsCardView {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsCheckBox extends org.autojs.autojs.core.ui.widget.JsCheckBox {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsConsoleView extends org.autojs.autojs.core.ui.widget.JsConsoleView {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsDatePicker extends org.autojs.autojs.core.ui.widget.JsDatePicker {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsDrawerLayout extends org.autojs.autojs.core.ui.widget.JsDrawerLayout {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsEditText extends org.autojs.autojs.core.ui.widget.JsEditText {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsFloatingActionButton extends org.autojs.autojs.core.ui.widget.JsFloatingActionButton {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsFrameLayout extends org.autojs.autojs.core.ui.widget.JsFrameLayout {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsGridView extends org.autojs.autojs.core.ui.widget.JsGridView {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsImageButton extends org.autojs.autojs.core.ui.widget.JsImageButton {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsImageView extends org.autojs.autojs.core.ui.widget.JsImageView {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsLinearLayout extends org.autojs.autojs.core.ui.widget.JsLinearLayout {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsListView extends org.autojs.autojs.core.ui.widget.JsListView {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsProgressBar extends org.autojs.autojs.core.ui.widget.JsProgressBar {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsRadioButton extends org.autojs.autojs.core.ui.widget.JsRadioButton {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsRadioGroup extends org.autojs.autojs.core.ui.widget.JsRadioGroup {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsRatingBar extends org.autojs.autojs.core.ui.widget.JsRatingBar {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsRelativeLayout extends org.autojs.autojs.core.ui.widget.JsRelativeLayout {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsScrollView extends org.autojs.autojs.core.ui.widget.JsScrollView {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsSeekBar extends org.autojs.autojs.core.ui.widget.JsSeekBar {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsSpinner extends org.autojs.autojs.core.ui.widget.JsSpinner {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsSwitch extends org.autojs.autojs.core.ui.widget.JsSwitch {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsTabLayout extends org.autojs.autojs.core.ui.widget.JsTabLayout {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsTextClock extends org.autojs.autojs.core.ui.widget.JsTextClock {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsTextView extends org.autojs.autojs.core.ui.widget.JsTextView {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsTimePicker extends org.autojs.autojs.core.ui.widget.JsTimePicker {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsToggleButton extends org.autojs.autojs.core.ui.widget.JsToggleButton {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsToolbar extends org.autojs.autojs.core.ui.widget.JsToolbar {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsViewPager extends org.autojs.autojs.core.ui.widget.JsViewPager {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsWebView extends org.autojs.autojs.core.ui.widget.JsWebView {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsVideoView extends org.autojs.autojs.core.ui.widget.JsVideoView {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsViewFlipper extends org.autojs.autojs.core.ui.widget.JsViewFlipper {
-    // Empty class body.
+    /* Empty body. */
 }
 
 declare class JsViewSwitcher extends org.autojs.autojs.core.ui.widget.JsViewSwitcher {
-    // Empty class body.
+    /* Empty body. */
+}
+
+declare class ScriptRuntime extends org.autojs.autojs.runtime.ScriptRuntime {
+    /* Empty body. */
+}
+
+declare class EventEmitter extends org.autojs.autojs.core.eventloop.EventEmitter {
+    /* Empty body. */
+}
+
+declare class FileProvider extends androidx.core.content.FileProvider {
+    /* Empty body. */
+}
+
+declare class AppUtils extends org.autojs.autojs.runtime.api.AppUtils {
+    /* Empty body. */
+}
+
+declare class Uri extends android.net.Uri {
+    /* Empty body. */
+}
+
+declare class JavaScriptSource extends org.autojs.autojs.script.JavaScriptSource {
+    /* Empty body. */
 }

@@ -3727,7 +3727,7 @@ declare module android {
 										public computeIfPresent(key: any, remappingFunction: any /* any<any,any,any>*/): any;
 										public constructor(comparator: android.databinding.internal.org.antlr.v4.runtime.misc.AbstractEqualityComparator<any>);
 										public keySet(): java.util.Set<any>;
-										public replaceAll(function: any /* any<any,any,any>*/): void;
+										public replaceAll(_function_: any /* any<any,any,any>*/): void;
 										public computeIfAbsent(key: any, mappingFunction: any /* any<any,any>*/): any;
 										public compute(key: any, remappingFunction: any /* any<any,any,any>*/): any;
 										public constructor(comparator: android.databinding.internal.org.antlr.v4.runtime.misc.AbstractEqualityComparator<any>, initialCapacity: number, initialBucketCapacity: number);
@@ -4527,7 +4527,7 @@ declare module android {
 									public remove(key: any): any;
 									public getBucket(key: any): number;
 									public get(key: any): any;
-									public replaceAll(function: any /* any<any,any,any>*/): void;
+									public replaceAll(_function_: any /* any<any,any,any>*/): void;
 									public equals(o: any): boolean;
 									public getOrDefault(key: any, defaultValue: any): any;
 									public get(param0: any): any;
@@ -4881,7 +4881,7 @@ declare module android {
 									public remove(key: any): any;
 									public constructor(initialCapacity: number, loadFactor: number);
 									public get(key: any): any;
-									public replaceAll(function: any /* any<any,any,any>*/): void;
+									public replaceAll(_function_: any /* any<any,any,any>*/): void;
 									public map(key: any, value: any): void;
 									public equals(o: any): boolean;
 									public getOrDefault(key: any, defaultValue: any): any;
@@ -9506,7 +9506,7 @@ declare module android {
 						public read(param0: number[]): number;
 						public skip(n: number): number;
 						public available(): number;
-						public constructor(in: java.io.InputStream);
+						public constructor(_in_: java.io.InputStream);
 						public read(param0: number[], param1: number, param2: number): number;
 						public readObject(): any;
 					}

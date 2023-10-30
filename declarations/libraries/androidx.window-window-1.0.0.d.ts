@@ -424,7 +424,7 @@ declare module androidx {
 				public unregisterRule(rule: androidx.window.embedding.EmbeddingRule): void;
 				public isSplitSupported(): boolean;
 				public unregisterSplitListenerForActivity(consumer: androidx.core.util.Consumer<java.util.List<androidx.window.embedding.SplitInfo>>): void;
-				public setEmbeddingExtension(<set-?>: androidx.window.embedding.EmbeddingInterfaceCompat): void;
+				public setEmbeddingExtension(_set_: androidx.window.embedding.EmbeddingInterfaceCompat): void;
 				public setSplitRules(param0: java.util.Set<any>): void;
 				public unregisterSplitListenerForActivity(param0: androidx.core.util.Consumer<java.util.List<androidx.window.embedding.SplitInfo>>): void;
 				public getEmbeddingExtension(): androidx.window.embedding.EmbeddingInterfaceCompat;
@@ -439,7 +439,7 @@ declare module androidx {
 					public static class: java.lang.Class<androidx.window.embedding.ExtensionEmbeddingBackend.EmbeddingCallbackImpl>;
 					public onSplitInfoChanged(param0: java.util.List<androidx.window.embedding.SplitInfo>): void;
 					public getLastInfo(): java.util.List<androidx.window.embedding.SplitInfo>;
-					public setLastInfo(<set-?>: java.util.List<androidx.window.embedding.SplitInfo>): void;
+					public setLastInfo(_set_: java.util.List<androidx.window.embedding.SplitInfo>): void;
 					public constructor(this$0: androidx.window.embedding.ExtensionEmbeddingBackend);
 					public onSplitInfoChanged(splitInfo: java.util.List<androidx.window.embedding.SplitInfo>): void;
 				}
@@ -988,7 +988,7 @@ declare module androidx {
 			export class SidecarWindowBackend extends java.lang.Object implements androidx.window.layout.WindowBackend {
 				public static class: java.lang.Class<androidx.window.layout.SidecarWindowBackend>;
 				public static DEBUG: boolean;
-				public setWindowExtension(<set-?>: androidx.window.layout.ExtensionInterfaceCompat): void;
+				public setWindowExtension(_set_: androidx.window.layout.ExtensionInterfaceCompat): void;
 				public unregisterLayoutChangeCallback(callback: androidx.core.util.Consumer<androidx.window.layout.WindowLayoutInfo>): void;
 				public constructor(windowExtension: androidx.window.layout.ExtensionInterfaceCompat);
 				public getWindowExtension(): androidx.window.layout.ExtensionInterfaceCompat;
@@ -1013,7 +1013,7 @@ declare module androidx {
 				}
 				export class WindowLayoutChangeCallbackWrapper extends java.lang.Object {
 					public static class: java.lang.Class<androidx.window.layout.SidecarWindowBackend.WindowLayoutChangeCallbackWrapper>;
-					public setLastInfo(<set-?>: androidx.window.layout.WindowLayoutInfo): void;
+					public setLastInfo(_set_: androidx.window.layout.WindowLayoutInfo): void;
 					public getLastInfo(): androidx.window.layout.WindowLayoutInfo;
 					public getActivity(): android.app.Activity;
 					public getCallback(): androidx.core.util.Consumer<androidx.window.layout.WindowLayoutInfo>;

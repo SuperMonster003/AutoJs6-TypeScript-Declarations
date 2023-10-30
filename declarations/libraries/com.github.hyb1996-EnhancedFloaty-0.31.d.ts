@@ -140,7 +140,7 @@ declare module com {
 				public requestWindowFocus(): void;
 				public getExpandedViewX(): number;
 				public setExpandedViewX(expandedViewX: number): void;
-				public getViewSwitcher(): org.autojs.autojs.ui.widget.ViewSwitcher;
+				public getViewSwitcher(): com.stardust.widget.ViewSwitcher;
 				public setExpandedViewY(expandedViewY: number): void;
 				public onCreateView(service: com.stardust.enhancedfloaty.FloatyService): android.view.View;
 				public setInitialState(): void;
@@ -448,9 +448,9 @@ declare module com {
 	export module stardust {
 		export module widget {
 			export class ViewSupplier extends java.lang.Object implements java.io.Serializable {
-				public static class: java.lang.Class<org.autojs.autojs.ui.widget.ViewSupplier>;
+				public static class: java.lang.Class<com.stardust.widget.ViewSupplier>;
 				/**
-				 * Constructs a new instance of the org.autojs.autojs.ui.widget.ViewSupplier interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+				 * Constructs a new instance of the com.stardust.widget.ViewSupplier interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
 				 */
 				public constructor(implementation: {
 					inflateView(param0: android.content.Context): android.view.View;
@@ -466,7 +466,7 @@ declare module com {
 	export module stardust {
 		export module widget {
 			export class ViewSwitcher extends android.widget.ViewSwitcher {
-				public static class: java.lang.Class<org.autojs.autojs.ui.widget.ViewSwitcher>;
+				public static class: java.lang.Class<com.stardust.widget.ViewSwitcher>;
 				public addView(child: android.view.View, width: number, height: number): void;
 				public startActionModeForChild(param0: android.view.View, param1: android.view.ActionMode.Callback): android.view.ActionMode;
 				public startActionModeForChild(param0: android.view.View, param1: android.view.ActionMode.Callback, param2: number): android.view.ActionMode;

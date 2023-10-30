@@ -20738,7 +20738,7 @@ declare module io {
 						public source(): io.reactivex.ObservableSource<any>;
 						public subscribeActual(t: io.reactivex.Observer<any>): void;
 						public subscribe(param0: io.reactivex.Observer<any>): void;
-						public constructor(source: io.reactivex.ObservableSource<any>, function: io.reactivex.functions.Function<any,any>);
+						public constructor(source: io.reactivex.ObservableSource<any>, _function_: io.reactivex.functions.Function<any,any>);
 						public subscribeActual(param0: io.reactivex.Observer<any>): void;
 						public subscribe(): io.reactivex.disposables.Disposable;
 						public subscribe(onNext: io.reactivex.functions.Consumer<any>, onError: io.reactivex.functions.Consumer<any>): io.reactivex.disposables.Disposable;

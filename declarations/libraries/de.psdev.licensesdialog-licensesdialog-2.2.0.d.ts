@@ -485,7 +485,7 @@ declare module de {
 				export class Notice extends java.lang.Object implements android.os.Parcelable {
 					public static class: java.lang.Class<de.psdev.licensesdialog.model.Notice>;
 					public static CREATOR: android.os.Parcelable.Creator<de.psdev.licensesdialog.model.Notice>;
-					public constructor(in: android.os.Parcel);
+					public constructor(_in_: android.os.Parcel);
 					public setCopyright(copyright: string): void;
 					public setLicense(license: de.psdev.licensesdialog.licenses.License): void;
 					public getCopyright(): string;
@@ -512,7 +512,7 @@ declare module de {
 				export class Notices extends java.lang.Object implements android.os.Parcelable {
 					public static class: java.lang.Class<de.psdev.licensesdialog.model.Notices>;
 					public static CREATOR: android.os.Parcelable.Creator<de.psdev.licensesdialog.model.Notices>;
-					public constructor(in: android.os.Parcel);
+					public constructor(_in_: android.os.Parcel);
 					public constructor();
 					public describeContents(): number;
 					public addNotice(notice: de.psdev.licensesdialog.model.Notice): void;

@@ -6106,7 +6106,7 @@ declare namespace Internal {
         build(r: ColorComponent, g: ColorComponent, b: ColorComponent): Color;
         build(r: ColorComponent, g: ColorComponent, b: ColorComponent, a: ColorComponent): Color;
 
-        digest(color: OmniColor): string;
+        summary(color: OmniColor): string;
 
     }
 
@@ -6120,7 +6120,7 @@ declare namespace Internal {
 
         color: ColorInt;
 
-        digest(): string;
+        summary(): string;
 
         toHex(alpha?: boolean | 'auto' | 'none' | 'keep'): string;
         toHex(length: 8 | 6 | 3): string;
