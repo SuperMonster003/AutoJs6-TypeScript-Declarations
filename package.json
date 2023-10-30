@@ -3,7 +3,7 @@
   "version": "2.1.2",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepack": "npmignore --auto"
+    "prepack": ""
   },
   "publishConfig": {
     "ignore": []
@@ -23,12 +23,12 @@
   "main": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations.git"
+    "url": "git+https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations.git"
   },
   "bugs": {
     "url": "https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/issues"
   },
   "dependencies": {
-    "@sm003/autojs6-dts": "2.1.1"
+    "@sm003/autojs6-dts": "2.1.2"
   }
 }
