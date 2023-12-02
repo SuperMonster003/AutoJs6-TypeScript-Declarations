@@ -229,6 +229,7 @@ declare module org {
                     public static key_compatibility_with_classes_for_ver_4_x: number;
                     public static key_dialog_check_display_over_other_apps: number;
                     public static key_dialog_num_of_log_entries_exceeds_limit_for_sending: number;
+                    public static key_dialog_selected_abi_is_unavailable: number;
                     public static key_dialog_foreground_svc: number;
                     public static key_dialog_log_entries_exported: number;
                     public static key_dialog_manage_all_files_permission: number;
@@ -247,6 +248,7 @@ declare module org {
                     public static key_extending_js_build_in_objects: number;
                     public static key_floating_menu_shown: number;
                     public static key_foreground_service: number;
+                    public static key_a11y_service: number;
                     public static key_gesture_observing: number;
                     public static key_guard_mode: number;
                     public static key_hidden_files: number;
@@ -327,8 +329,10 @@ declare module org {
                     public static text_a11y_service_enabled_but_not_running: number;
                     public static text_a11y_service_may_be_needed: number;
                     public static text_abis: number;
-                    public static text_abis_32bit: number;
-                    public static text_abis_64bit: number;
+                    public static text_supported_libraries_short: number;
+                    public static text_supported_abis_short: number;
+                    public static text_supported_abis_short_32bit: number;
+                    public static text_supported_abis_short_64bit: number;
                     public static text_about: number;
                     public static text_about_all_files_access: number;
                     public static text_about_app_and_developer: number;
@@ -422,8 +426,6 @@ declare module org {
                     public static text_auto_check_for_updates: number;
                     public static text_auto_check_for_updates_and_show_snackbar: number;
                     public static text_auto_night_mode: number;
-                    public static text_auto_operate_service: number;
-                    public static text_auto_operate_service_enabled_but_not_working: number;
                     public static text_back: number;
                     public static text_broadcast_action: number;
                     public static text_broadcast_action_prefix: number;
@@ -888,8 +890,6 @@ declare module org {
                     public static description_launcher_shortcuts: number;
                     public static summary_text_launcher_shortcuts: number;
                     public static text_pin_shortcut_not_unsupported: number;
-                    public static text_template_apk_path: number;
-                    public static path_android_asset_template: number;
                     public static text_shizuku_access_description: number;
                     public static text_shizuku_access: number;
                     public static text_grant_autojs6_access_in_shizuku_app: number;
@@ -900,6 +900,19 @@ declare module org {
                     public static error_failed_to_revoke_shizuku_access: number;
                     public static error_failed_to_grant_shizuku_access: number;
                     public static error_unable_to_use_shizuku_service: number;
+                    public static error_input_fields_check_failed: number;
+                    public static error_at_least_one_abi_needs_to_be_selected: number;
+                    public static text_malfunctioning: number;
+                    public static error_module_does_not_work_due_to_the_lack_of_necessary_library_files: number;
+                    public static uri_autojs6_download_link: number;
+                    public static text_unavailable: number;
+                    public static text_unable_to_build_apk_as_autojs6_does_not_include_selected_abi: number;
+                    public static text_the_following_solutions_can_be_referred_to: number;
+                    public static text_download_and_install_autojs6_including_above_abi: number;
+                    public static text_download_and_install_autojs6_including_all_abis: number;
+                    public static text_recommended: number;
+                    public static text_download_link_for_autojs6: number;
+                    public static text_unavailable_abi_for: number;
                 }
             }
         }

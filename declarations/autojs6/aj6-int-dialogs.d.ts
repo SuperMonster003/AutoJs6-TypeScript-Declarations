@@ -761,6 +761,7 @@ declare namespace Dialogs {
             autoDismiss?: boolean;
             inputHint?: string;
             inputPrefill?: string;
+            inputSingleLine?: boolean;
             customView?: View;
             wrapInScrollView?: boolean;
             stubborn?: boolean;

@@ -181,12 +181,12 @@ declare namespace Internal {
          * Configuration of saving Auto.js logs to local storage (path, file name, etc...)
          * @param {{
          *     file?: string,
-         *     filePattern?: "%m%n"|"%d - [%p::%c::%C] - %m%n"|string,
+         *     filePattern?: '%m%n'|'%d - [%p::%c::%C] - %m%n'|string,
          *     immediateFlush?: boolean,
          *     maxBackupSize?: number,
          *     maxFileSize?: number,
          *     resetConfiguration?: boolean,
-         *     rootLevel?: "OFF"|"FATAL"|"ERROR"|"WARN"|"INFO"|"DEBUG"|"TRACE"|"ALL",
+         *     rootLevel?: 'OFF'|'FATAL'|'ERROR'|'WARN'|'INFO'|'DEBUG'|'TRACE'|'ALL',
          * }} [config={
          *     filePattern: "%m%n",
          *     immediateFlush: true,
@@ -330,6 +330,8 @@ declare namespace Internal {
         setExitOnClose(timeout: number): this;
         setExitOnClose(exitOnClose?: boolean): this;
 
+        setTouchable(touchable?: boolean): this;
+
         printAllStackTrace(t: OmniThrowable): void;
 
     }
@@ -380,6 +382,7 @@ declare namespace Internal {
             backgroundColor?: OmniColor;
             backgroundAlpha?: number;
             exitOnClose?: number | boolean;
+            touchable?: boolean;
         }
 
     }

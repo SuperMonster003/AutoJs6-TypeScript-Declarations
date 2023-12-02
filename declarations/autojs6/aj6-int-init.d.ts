@@ -124,6 +124,9 @@ declare let $util: Internal.Util;
 declare let web: Internal.Web;
 declare let $web: Internal.Web;
 
+declare let opencc: Internal.OpenCC;
+declare let $opencc: Internal.OpenCC;
+
 declare let Mathx: Internal.Mathx;
 declare let Numberx: Internal.Numberx;
 declare let Arrayx: Internal.Arrayx;
@@ -1407,5 +1410,205 @@ declare class Uri extends android.net.Uri {
 }
 
 declare class JavaScriptSource extends org.autojs.autojs.script.JavaScriptSource {
+    /* Empty body. */
+}
+
+declare class Looper extends android.os.Looper {
+    /* Empty body. */
+}
+
+declare class Runnable extends java.lang.Runnable {
+    /* Empty body. */
+}
+
+declare class Build extends android.os.Build {
+    /* Empty body. */
+}
+
+declare class Manifest extends android.Manifest {
+    /* Empty body. */
+}
+
+declare class BuildConfig extends org.autojs.autojs6.BuildConfig {
+    /* Empty body. */
+}
+
+declare class PackageManager extends android.content.pm.PackageManager {
+    /* Empty body. */
+}
+
+declare class NetworkUtils extends org.autojs.autojs.util.NetworkUtils {
+    /* Empty body. */
+}
+
+declare class DeviceUtils extends org.autojs.autojs.util.DeviceUtils {
+    /* Empty body. */
+}
+
+declare class JavaUtils extends org.autojs.autojs.util.JavaUtils {
+    /* Empty body. */
+}
+
+declare class RootUtils extends org.autojs.autojs.util.RootUtils {
+    /* Empty body. */
+}
+
+declare class InputType extends android.text.InputType {
+    /* Empty body. */
+}
+
+declare class TextWatcher extends android.text.TextWatcher {
+    /* Empty body. */
+}
+
+declare class AccessibilityBridge extends org.autojs.autojs.core.accessibility.AccessibilityBridge {
+    /* Empty body. */
+}
+
+declare class Base64 extends android.util.Base64 {
+    /* Empty body. */
+}
+
+declare class ColorStateList extends android.content.res.ColorStateList {
+    /* Empty body. */
+}
+
+declare class ColorDetector extends org.autojs.autojs.core.image.ColorDetector {
+    /* Empty body. */
+}
+
+declare class ThemeColor extends org.autojs.autojs.theme.ThemeColor {
+    /* Empty body. */
+}
+
+declare class AtomicLong extends java.util.concurrent.atomic.AtomicLong {
+    /* Empty body. */
+}
+
+declare class BigTextStyle extends androidx.core.app.NotificationCompat.BigTextStyle {
+    /* Empty body. */
+}
+
+declare class Bitmap extends android.graphics.Bitmap {
+    /* Empty body. */
+}
+
+declare class BitmapFactory extends android.graphics.BitmapFactory {
+    /* Empty body. */
+}
+
+declare class ByteArrayOutputStream extends java.io.ByteArrayOutputStream {
+    /* Empty body. */
+}
+
+declare class Callback extends okhttp3.Callback {
+    /* Empty body. */
+}
+
+declare class ColorDrawable extends android.graphics.drawable.ColorDrawable {
+    /* Empty body. */
+}
+
+declare class ConsoleUtils extends org.autojs.autojs.util.ConsoleUtils {
+    /* Empty body. */
+}
+
+declare class ContextThemeWrapper extends android.view.ContextThemeWrapper {
+    /* Empty body. */
+}
+
+declare class DynamicLayoutInflater extends org.autojs.autojs.core.ui.inflater.DynamicLayoutInflater {
+    /* Empty body. */
+}
+
+declare class FormBody extends okhttp3.FormBody {
+    /* Empty body. */
+}
+
+declare class Gravity extends android.view.Gravity {
+    /* Empty body. */
+}
+
+declare class Imgproc extends org.opencv.imgproc.Imgproc {
+    /* Empty body. */
+}
+
+declare class JavaScriptEngine extends org.autojs.autojs.engine.JavaScriptEngine {
+    /* Empty body. */
+}
+
+declare class LayoutParams extends android.view.WindowManager.LayoutParams {
+    /* Empty body. */
+}
+
+declare class Level extends org.apache.log4j.Level {
+    /* Empty body. */
+}
+
+declare class Linkify extends android.text.util.Linkify {
+    /* Empty body. */
+}
+
+declare class Log extends android.util.Log {
+    /* Empty body. */
+}
+
+declare class LogConfigurator extends de.mindpipe.android.logging.log4j.LogConfigurator {
+    /* Empty body. */
+}
+
+declare class LogManager extends org.apache.log4j.LogManager {
+    /* Empty body. */
+}
+
+declare class Mat extends org.autojs.autojs.core.opencv.Mat {
+    /* Empty body. */
+}
+
+declare class MediaType extends okhttp3.MediaType {
+    /* Empty body. */
+}
+
+declare class MimeTypeMap extends android.webkit.MimeTypeMap {
+    /* Empty body. */
+}
+
+declare class MultipartBody extends okhttp3.MultipartBody {
+    /* Empty body. */
+}
+
+declare class Notification extends android.app.Notification {
+    /* Empty body. */
+}
+
+declare class NotificationUtils extends org.autojs.autojs.util.NotificationUtils {
+    /* Empty body. */
+}
+
+declare class PFile extends org.autojs.autojs.pio.PFile {
+    /* Empty body. */
+}
+
+declare class Request extends okhttp3.Request {
+    /* Empty body. */
+}
+
+declare class RequestBody extends okhttp3.RequestBody {
+    /* Empty body. */
+}
+
+declare class Snackbar extends com.google.android.material.snackbar.Snackbar {
+    /* Empty body. */
+}
+
+declare class Thread extends java.lang.Thread {
+    /* Empty body. */
+}
+
+declare class Throwable extends java.lang.Throwable {
+    /* Empty body. */
+}
+
+declare class ApkBuilder extends org.autojs.autojs.apkbuilder.ApkBuilder {
     /* Empty body. */
 }

@@ -20,23 +20,51 @@ declare namespace Internal {
     import DetectMethod = Internal.Ocr.DetectMethod;
     import Mode = Internal.Ocr.Mode;
 
-    interface OcrMLKit {
+    interface OcrMLKit extends OcrMethodCreator, OcrDetector {
 
         recognizeTextMethodCreator(options: DetectOptionsMLKit): RecognizeTextMethod;
 
         detectMethodCreator(options: DetectOptionsMLKit): DetectMethod;
 
+        recognizeText(options?: DetectOptionsMLKit): string[];
+        recognizeText(region: OmniRegion): string[];
+        recognizeText(img: ImageWrapper | string, options?: DetectOptionsMLKit): string[];
+        recognizeText(img: ImageWrapper | string, region: OmniRegion): string[];
+
+        detect(options?: DetectOptionsMLKit): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(img: ImageWrapper | string, options?: DetectOptionsMLKit): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(img: ImageWrapper | string, region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
+
     }
 
-    interface OcrPaddle {
+    interface OcrPaddle extends OcrMethodCreator, OcrDetector {
 
         recognizeTextMethodCreator(options: DetectOptionsPaddle): RecognizeTextMethod;
 
         detectMethodCreator(options: DetectOptionsPaddle): DetectMethod;
 
+        recognizeText(options?: DetectOptionsPaddle): string[];
+        recognizeText(region: OmniRegion): string[];
+        recognizeText(img: ImageWrapper | string, options?: DetectOptionsPaddle): string[];
+        recognizeText(img: ImageWrapper | string, region: OmniRegion): string[];
+
+        detect(options?: DetectOptionsPaddle): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(img: ImageWrapper | string, options?: DetectOptionsPaddle): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(img: ImageWrapper | string, region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
+
     }
 
-    interface Ocr {
+    interface OcrMethodCreator {
+
+        recognizeTextMethodCreator(options: Ocr.DetectOptions): RecognizeTextMethod;
+
+        detectMethodCreator(options: Ocr.DetectOptions): DetectMethod;
+
+    }
+
+    interface Ocr extends OcrDetector {
 
         paddle: OcrPaddle;
         mlkit: OcrMLKit;
@@ -62,6 +90,20 @@ declare namespace Internal {
         tap(mode: Mode): void;
 
         summary(): string;
+
+    }
+
+    interface OcrDetector {
+
+        recognizeText(options?: Ocr.DetectOptions): string[];
+        recognizeText(region: OmniRegion): string[];
+        recognizeText(img: ImageWrapper | string, options?: Ocr.DetectOptions): string[];
+        recognizeText(img: ImageWrapper | string, region: OmniRegion): string[];
+
+        detect(options?: Ocr.DetectOptions): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(img: ImageWrapper | string, options?: Ocr.DetectOptions): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(img: ImageWrapper | string, region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
 
     }
 

@@ -4,6 +4,18 @@
 
 ******
 
+# v2.1.3
+
+###### 2023/12/02
+
+* `新增` opencc 模块声明文件
+* `优化` 完善 ocr 章节缺失的 detect 及 recognizeText 声明
+* `优化` 适配 AutoJs6 6.5.0
+* `依赖` 附加 Android OpenCC 声明文件版本 1.2.0
+* `依赖` 升级 Android dx 声明版本 1.11 -> 1.14
+* `依赖` 降级 Jackson DataBind 声明版本 2.14.3 -> 2.13.3
+* `依赖` 降级 Apache Commons IO 声明文件版本 2.14.0 -> 2.8.0
+
 # v2.1.2
 
 ###### 2023/10/30

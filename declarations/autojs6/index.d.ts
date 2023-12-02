@@ -25,6 +25,7 @@
 /// <reference path="./aj6-int-notice.d.ts" />
 /// <reference path="./aj6-int-object-observe.d.ts" />
 /// <reference path="./aj6-int-ocr.d.ts" />
+/// <reference path="./aj6-int-opencc.d.ts" />
 /// <reference path="./aj6-int-plugins.d.ts" />
 /// <reference path="./aj6-int-qrcode.d.ts" />
 /// <reference path="./aj6-int-recorder.d.ts" />

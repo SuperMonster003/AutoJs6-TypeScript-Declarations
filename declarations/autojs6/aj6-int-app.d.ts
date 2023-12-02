@@ -560,7 +560,7 @@ declare namespace Intent {
 
         type Activity = 'settings' | 'preferences' | 'pref' | 'console' | 'log' | 'homepage' | 'home' | 'about' | 'build' | 'documentation' | 'doc' | 'docs';
 
-        type Broadcast = 'inspect_layout_bounds' | 'bounds' | 'inspect_layout_hierarchy' | 'hierarchy';
+        type Broadcast = 'inspect_layout_bounds' | 'layout_bounds' | 'bounds' | 'inspect_layout_hierarchy' | 'layout_hierarchy' | 'hierarchy';
 
     }
 

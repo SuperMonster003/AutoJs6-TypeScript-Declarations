@@ -319,6 +319,7 @@ declare namespace Internal {
          * An exception will be thrown and a11y configuration page will be prompted without the service running normally.
          * zh-CN: 设置无障碍模式并确保无障碍服务启动; 如果无障碍服务未启用, 则抛出异常并跳转到无障碍服务启用界面
          * @param [mode="normal"]
+         * @param [isForcibleRestart=false]
          * @example
          * // normal mode (default)
          * // zh-CN: 正常模式 (默认)
@@ -345,9 +346,10 @@ declare namespace Internal {
          * }
          * runtime.accessibilityBridge.ensureServiceEnabled();
          * @see auto.waitFor
-         * @see org.autojs.autojs.core.accessibility.AccessibilityBridge.ensureServiceEnabled
+         * @see ensureServiceStarted
          */
-        (mode?: Automator.Mode): void;
+        (mode?: Automator.Mode, isForcibleRestart?: boolean): void;
+        (isForcibleRestart: boolean): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
