@@ -69,7 +69,97 @@ declare namespace Internal {
          * };
          * @see request
          */
-        get(url: string, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+        get(url: string): Http.WrappedResponse;
+
+        /**
+         * @example
+         * let r = http.get("www.baidu.com");
+         * log("code = " + r.statusCode);
+         * log("html length = " + r.body.string().length);
+         * @example
+         * http.get("www.baidu.com", {}, function (res, err) {
+         *     if (err) {
+         *         throw err;
+         *     }
+         *     log("code = " + res.statusCode);
+         *     log("html length = " + res.body.string().length);
+         * });
+         * @example
+         * let r = http.get("www.baidu.com", {
+         *     headers: {
+         *         'Accept-Language': 'zh-cn,zh;q=0.5',
+         *         'User-Agent': 'Mozilla/5.0(Macintosh;IntelMacOSX10_7_0)AppleWebKit/535.11(KHTML,likeGecko)Chrome/17.0.963.56Safari/535.11'
+         *     }
+         * });
+         * log("code = " + r.statusCode);
+         * log("html length = " + r.body.string().length);
+         * @example
+         * let res = http.get("http://t.weather.sojson.com/api/weather/city/101010100");
+         * if (res.statusCode !== 200) {
+         *     throw Error("请求失败: " + res.statusCode + " " + res.statusMessage);
+         * }
+         * let weather = res.body.json();
+         * toastLog(util.format(
+         *     "城市: %s\n温度: %s°C\n湿度: %s\n空气质量: %s",
+         *     weather.cityInfo.city,
+         *     weather.data.wendu,
+         *     weather.data.shidu,
+         *     weather.data.quality
+         * ));
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * http.get = function (url, options, callback) {
+         *     options = options || {};
+         *     options.method = "GET";
+         *     return http.request(url, options, callback);
+         * };
+         * @see request
+         */
+        get(url: string, options: Http.RequestBuilderOptions): Http.WrappedResponse;
+
+        /**
+         * @example
+         * let r = http.get("www.baidu.com");
+         * log("code = " + r.statusCode);
+         * log("html length = " + r.body.string().length);
+         * @example
+         * http.get("www.baidu.com", {}, function (res, err) {
+         *     if (err) {
+         *         throw err;
+         *     }
+         *     log("code = " + res.statusCode);
+         *     log("html length = " + res.body.string().length);
+         * });
+         * @example
+         * let r = http.get("www.baidu.com", {
+         *     headers: {
+         *         'Accept-Language': 'zh-cn,zh;q=0.5',
+         *         'User-Agent': 'Mozilla/5.0(Macintosh;IntelMacOSX10_7_0)AppleWebKit/535.11(KHTML,likeGecko)Chrome/17.0.963.56Safari/535.11'
+         *     }
+         * });
+         * log("code = " + r.statusCode);
+         * log("html length = " + r.body.string().length);
+         * @example
+         * let res = http.get("http://t.weather.sojson.com/api/weather/city/101010100");
+         * if (res.statusCode !== 200) {
+         *     throw Error("请求失败: " + res.statusCode + " " + res.statusMessage);
+         * }
+         * let weather = res.body.json();
+         * toastLog(util.format(
+         *     "城市: %s\n温度: %s°C\n湿度: %s\n空气质量: %s",
+         *     weather.cityInfo.city,
+         *     weather.data.wendu,
+         *     weather.data.shidu,
+         *     weather.data.quality
+         * ));
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * http.get = function (url, options, callback) {
+         *     options = options || {};
+         *     options.method = "GET";
+         *     return http.request(url, options, callback);
+         * };
+         * @see request
+         */
+        get(url: string, options: Http.RequestBuilderOptions, callback: Http.Callback): void;
 
         /**
          * @example
@@ -112,7 +202,93 @@ declare namespace Internal {
          *     }
          * }
          */
-        post(url: string, data: object | string, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+        post(url: string, data: object | string): Http.WrappedResponse;
+
+        /**
+         * @example
+         * let url = "https://login.taobao.com/member/login.jhtml";
+         * let username = "你的用户名";
+         * let password = "你的密码";
+         * let res = http.post(url, {
+         *     "TPL_username": username,
+         *     "TPL_password": password
+         * });
+         * let html = res.body.string();
+         * if (~html.indexOf("页面跳转中")) {
+         *     toast('登录成功');
+         * } else {
+         *     toast('登录失败');
+         * }
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * http.post = function (url, data, options, callback) {
+         *     options = options || {};
+         *     options.method = "POST";
+         *     options.contentType = options.contentType || "application/x-www-form-urlencoded";
+         *     if (data) {
+         *         fillPostData(options, data);
+         *     }
+         *     return http.request(url, options, callback);
+         * };
+         * function fillPostData(options, data) {
+         *     if (options.contentType === "application/x-www-form-urlencoded") {
+         *         let b = new FormBody.Builder();
+         *         for (let key in data) {
+         *             if (data.hasOwnProperty(key)) {
+         *                 b.add(key, data[key]);
+         *             }
+         *         }
+         *         options.body = b.build();
+         *     } else if (options.contentType === "application/json") {
+         *         options.body = JSON.stringify(data);
+         *     } else {
+         *         options.body = data;
+         *     }
+         * }
+         */
+        post(url: string, data: object | string, options: Http.RequestBuilderOptions): Http.WrappedResponse;
+
+        /**
+         * @example
+         * let url = "https://login.taobao.com/member/login.jhtml";
+         * let username = "你的用户名";
+         * let password = "你的密码";
+         * let res = http.post(url, {
+         *     "TPL_username": username,
+         *     "TPL_password": password
+         * });
+         * let html = res.body.string();
+         * if (~html.indexOf("页面跳转中")) {
+         *     toast('登录成功');
+         * } else {
+         *     toast('登录失败');
+         * }
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * http.post = function (url, data, options, callback) {
+         *     options = options || {};
+         *     options.method = "POST";
+         *     options.contentType = options.contentType || "application/x-www-form-urlencoded";
+         *     if (data) {
+         *         fillPostData(options, data);
+         *     }
+         *     return http.request(url, options, callback);
+         * };
+         * function fillPostData(options, data) {
+         *     if (options.contentType === "application/x-www-form-urlencoded") {
+         *         let b = new FormBody.Builder();
+         *         for (let key in data) {
+         *             if (data.hasOwnProperty(key)) {
+         *                 b.add(key, data[key]);
+         *             }
+         *         }
+         *         options.body = b.build();
+         *     } else if (options.contentType === "application/json") {
+         *         options.body = JSON.stringify(data);
+         *     } else {
+         *         options.body = data;
+         *     }
+         * }
+         */
+        post(url: string, data: object | string, options: Http.RequestBuilderOptions, callback: Http.Callback): void;
 
         /**
          * @example
@@ -129,7 +305,41 @@ declare namespace Internal {
          *     return http.post(url, data, options, callback);
          * };
          */
-        postJson(url: string, data: object, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+        postJson(url: string, data: object): Http.WrappedResponse;
+
+        /**
+         * @example
+         * let r = http.postJson("http://www.tuling123.com/openapi/api", {
+         *     key: "65458a5df537443b89b31f1c03202a80",
+         *     info: "你好",
+         *     userid: "1",
+         * });
+         * toastLog(r.body.json().text);
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * http.postJson = function (url, data, options, callback) {
+         *     options = options || {};
+         *     options.contentType = "application/json";
+         *     return http.post(url, data, options, callback);
+         * };
+         */
+        postJson(url: string, data: object, options: Http.RequestBuilderOptions): Http.WrappedResponse;
+
+        /**
+         * @example
+         * let r = http.postJson("http://www.tuling123.com/openapi/api", {
+         *     key: "65458a5df537443b89b31f1c03202a80",
+         *     info: "你好",
+         *     userid: "1",
+         * });
+         * toastLog(r.body.json().text);
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * http.postJson = function (url, data, options, callback) {
+         *     options = options || {};
+         *     options.contentType = "application/json";
+         *     return http.post(url, data, options, callback);
+         * };
+         */
+        postJson(url: string, data: object, options: Http.RequestBuilderOptions, callback: Http.Callback): void;
 
         /**
          * @example
@@ -165,7 +375,79 @@ declare namespace Internal {
         postMultipart(url: string, files: {
             appId?: string;
             file: string | string[] | org.autojs.autojs.pio.PReadableTextFile | org.autojs.autojs.pio.PWritableTextFile;
-        }, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+        }): Http.WrappedResponse;
+
+        /**
+         * @example
+         * let res = http.postMultipart(url, {
+         *     file: open('/sdcard/1.txt'), // PReadableTextFile | PWritableTextFile
+         * });
+         * log(res.body.string());
+         * @example
+         * let res = http.postMultipart(url, {
+         *     file: ["1.txt", "/sdcard/1.txt"], // [fileName, filePath]
+         * });
+         * log(res.body.string());
+         * @example
+         * let res = http.postMultipart(url, {
+         *     file: ["1.txt", "text/plain", "/sdcard/1.txt"], // [fileName, mimeType, filePath]
+         * });
+         * log(res.body.string());
+         * @example
+         * let res = http.postMultipart(url, {
+         *     appId: "abc",
+         *     file: open('/sdcard/1.txt')
+         * });
+         * log(res.body.string());
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * http.postMultipart = function (url, files, options, callback) {
+         *     options = options || {};
+         *     options.method = "POST";
+         *     options.contentType = "multipart/form-data";
+         *     options.files = files;
+         *     return http.request(url, options, callback);
+         * };
+         */
+        postMultipart(url: string, files: {
+            appId?: string;
+            file: string | string[] | org.autojs.autojs.pio.PReadableTextFile | org.autojs.autojs.pio.PWritableTextFile;
+        }, options: Http.RequestBuilderOptions): Http.WrappedResponse;
+
+        /**
+         * @example
+         * let res = http.postMultipart(url, {
+         *     file: open('/sdcard/1.txt'), // PReadableTextFile | PWritableTextFile
+         * });
+         * log(res.body.string());
+         * @example
+         * let res = http.postMultipart(url, {
+         *     file: ["1.txt", "/sdcard/1.txt"], // [fileName, filePath]
+         * });
+         * log(res.body.string());
+         * @example
+         * let res = http.postMultipart(url, {
+         *     file: ["1.txt", "text/plain", "/sdcard/1.txt"], // [fileName, mimeType, filePath]
+         * });
+         * log(res.body.string());
+         * @example
+         * let res = http.postMultipart(url, {
+         *     appId: "abc",
+         *     file: open('/sdcard/1.txt')
+         * });
+         * log(res.body.string());
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * http.postMultipart = function (url, files, options, callback) {
+         *     options = options || {};
+         *     options.method = "POST";
+         *     options.contentType = "multipart/form-data";
+         *     options.files = files;
+         *     return http.request(url, options, callback);
+         * };
+         */
+        postMultipart(url: string, files: {
+            appId?: string;
+            file: string | string[] | org.autojs.autojs.pio.PReadableTextFile | org.autojs.autojs.pio.PWritableTextFile;
+        }, options: Http.RequestBuilderOptions, callback: Http.Callback): void;
 
         /**
          * @example
@@ -257,7 +539,191 @@ declare namespace Internal {
          *     return r;
          * }
          */
-        request(url: string, options?: Http.RequestBuilderOptions, callback?: Callback): Http.WrappedResponse | void;
+        request(url: string): Http.WrappedResponse;
+
+        /**
+         * @example
+         * let data = {wd: 'time'};
+         * let b = new FormBody.Builder();
+         * for (let key in data) {
+         *     if (data.hasOwnProperty(key)) {
+         *         b.add(key, data[key]);
+         *     }
+         * }
+         * let body = b.build();
+         * let res = http.request("www.baidu.com", {
+         *     method: "POST",
+         *     body: body,
+         * });
+         * log(res.statusCode);
+         * log(res.body.string().length);
+         * @example
+         * let data = {wd: 'time'};
+         * let b = new FormBody.Builder();
+         * for (let key in data) {
+         *     if (data.hasOwnProperty(key)) {
+         *         b.add(key, data[key]);
+         *     }
+         * }
+         * let body = b.build();
+         * http.request("www.baidu.com", {
+         *     method: "POST",
+         *     body: body,
+         * }, function (res, ex) {
+         *     log(res.statusCode);
+         *     log(res.body.string().length);
+         * });
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * http.request = function (url, options, callback) {
+         *     let cont;
+         *     if (!callback && ui.isUiThread() && continuation.enabled) {
+         *         cont = continuation.create();
+         *     }
+         *     let call = http.client().newCall(http.buildRequest(url, options));
+         *     if (!callback && !cont) {
+         *         return wrapResponse(call.execute());
+         *     }
+         *     call.enqueue(new Callback({
+         *         onResponse: function (call, res) {
+         *             res = wrapResponse(res);
+         *             cont && cont.resume(res);
+         *             callback && callback(res);
+         *         },
+         *         onFailure: function (call, ex) {
+         *             cont && cont.resumeError(ex);
+         *             callback && callback(null, ex);
+         *         }
+         *     }));
+         *     if (cont) {
+         *         return cont.await();
+         *     }
+         * };
+         * function wrapResponse(res) {
+         *     let r = {};
+         *     r.statusCode = res.code();
+         *     r.statusMessage = res.message();
+         *     let headers = res.headers();
+         *     r.headers = {};
+         *     for (let i = 0; i < headers.size(); i++) {
+         *         let name = headers.name(i);
+         *         let value = headers.value(i);
+         *         if (r.headers.hasOwnProperty(name)) {
+         *             let origin = r.headers[name];
+         *             if (!Array.isArray(origin)) {
+         *                 r.headers[name] = [origin];
+         *             }
+         *             r.headers[name].push(value);
+         *         } else {
+         *             r.headers[name] = value;
+         *         }
+         *     }
+         *     r.body = {};
+         *     let body = res.body();
+         *     r.body.string = body.string.bind(body);
+         *     r.body.bytes = body.bytes.bind(body);
+         *     r.body.json = function () {
+         *         return JSON.parse(r.body.string());
+         *     };
+         *     r.body.contentType = body.contentType();
+         *     r.request = res.request();
+         *     r.url = r.request.url();
+         *     r.method = r.request.method();
+         *     return r;
+         * }
+         */
+        request(url: string, options: Http.RequestBuilderOptions): Http.WrappedResponse;
+
+        /**
+         * @example
+         * let data = {wd: 'time'};
+         * let b = new FormBody.Builder();
+         * for (let key in data) {
+         *     if (data.hasOwnProperty(key)) {
+         *         b.add(key, data[key]);
+         *     }
+         * }
+         * let body = b.build();
+         * let res = http.request("www.baidu.com", {
+         *     method: "POST",
+         *     body: body,
+         * });
+         * log(res.statusCode);
+         * log(res.body.string().length);
+         * @example
+         * let data = {wd: 'time'};
+         * let b = new FormBody.Builder();
+         * for (let key in data) {
+         *     if (data.hasOwnProperty(key)) {
+         *         b.add(key, data[key]);
+         *     }
+         * }
+         * let body = b.build();
+         * http.request("www.baidu.com", {
+         *     method: "POST",
+         *     body: body,
+         * }, function (res, ex) {
+         *     log(res.statusCode);
+         *     log(res.body.string().length);
+         * });
+         * @example Source code summary (zh-CN: 源代码摘要)
+         * http.request = function (url, options, callback) {
+         *     let cont;
+         *     if (!callback && ui.isUiThread() && continuation.enabled) {
+         *         cont = continuation.create();
+         *     }
+         *     let call = http.client().newCall(http.buildRequest(url, options));
+         *     if (!callback && !cont) {
+         *         return wrapResponse(call.execute());
+         *     }
+         *     call.enqueue(new Callback({
+         *         onResponse: function (call, res) {
+         *             res = wrapResponse(res);
+         *             cont && cont.resume(res);
+         *             callback && callback(res);
+         *         },
+         *         onFailure: function (call, ex) {
+         *             cont && cont.resumeError(ex);
+         *             callback && callback(null, ex);
+         *         }
+         *     }));
+         *     if (cont) {
+         *         return cont.await();
+         *     }
+         * };
+         * function wrapResponse(res) {
+         *     let r = {};
+         *     r.statusCode = res.code();
+         *     r.statusMessage = res.message();
+         *     let headers = res.headers();
+         *     r.headers = {};
+         *     for (let i = 0; i < headers.size(); i++) {
+         *         let name = headers.name(i);
+         *         let value = headers.value(i);
+         *         if (r.headers.hasOwnProperty(name)) {
+         *             let origin = r.headers[name];
+         *             if (!Array.isArray(origin)) {
+         *                 r.headers[name] = [origin];
+         *             }
+         *             r.headers[name].push(value);
+         *         } else {
+         *             r.headers[name] = value;
+         *         }
+         *     }
+         *     r.body = {};
+         *     let body = res.body();
+         *     r.body.string = body.string.bind(body);
+         *     r.body.bytes = body.bytes.bind(body);
+         *     r.body.json = function () {
+         *         return JSON.parse(r.body.string());
+         *     };
+         *     r.body.contentType = body.contentType();
+         *     r.request = res.request();
+         *     r.url = r.request.url();
+         *     r.method = r.request.method();
+         *     return r;
+         * }
+         */
+        request(url: string, options: Http.RequestBuilderOptions, callback: Callback): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
