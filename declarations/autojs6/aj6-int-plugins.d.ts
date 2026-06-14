@@ -27,48 +27,6 @@ declare namespace Internal {
          */
         load(packageName: string): any;
 
-        extend: Plugins.Extend;
-
-        extendAll(): void;
-
-        extendAllBut(...moduleNames: (Plugins.ExtendModules.Names | Plugins.ExtendModules.Names[])[]): void;
-
-    }
-
-    namespace Plugins {
-
-        namespace ExtendModules {
-
-            type Names = 'Array' | 'Arrayx' | 'Number' | 'Numberx' | 'Math' | 'Mathx';
-
-            type Interface = {
-
-                protoKeys?: { [keys: string]: number | null | (() => any) };
-
-                extendJsBuildInObjects: () => void;
-
-            };
-
-        }
-
-        interface Extend {
-
-            (...moduleNames: (ExtendModules.Names | ExtendModules.Names[])[]): void;
-
-            /**
-             * @internal
-             */
-            exclude(...moduleNames: (ExtendModules.Names | ExtendModules.Names[])[]): void;
-
-            /**
-             * @internal
-             */
-            registerModule(module: {
-                [moduleName: string]: ExtendModules.Interface;
-            });
-
-        }
-
     }
 
 }

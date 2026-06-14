@@ -3,18 +3,25 @@
 // Type definitions for AutoJs6 internal module globals
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 15, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__globals__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/global/Global.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/global/Legacy.kt
  */
+
+declare let isAutoJs6: boolean;
 
 declare let HEIGHT: number;
 declare let WIDTH: number;
+
+declare let axios: any;
+declare let cheerio: any;
+declare let dayjs: any;
 
 /**
  * @see runtime.sleep
@@ -32,7 +39,20 @@ declare function sleep(millis: number, bounds: string): void;
  * @see runtime.toast
  * @see log
  */
-declare function toastLog(msg: string | any, isLong?: Toast.IsLong, isForcible?: Toast.IsForcible): void;
+declare function toastVerbose(msg: any, isLong?: Toast.IsLong, isForcible?: Toast.IsForcible): void;
+declare function toastverbose(msg: any, isLong?: Toast.IsLong, isForcible?: Toast.IsForcible): void;
+
+declare function toastLog(msg?: any, isLong?: Toast.IsLong, isForcible?: Toast.IsForcible): void;
+declare function toastlog(msg?: any, isLong?: Toast.IsLong, isForcible?: Toast.IsForcible): void;
+
+declare function toastInfo(msg: any, isLong?: Toast.IsLong, isForcible?: Toast.IsForcible): void;
+declare function toastinfo(msg: any, isLong?: Toast.IsLong, isForcible?: Toast.IsForcible): void;
+
+declare function toastWarn(msg: any, isLong?: Toast.IsLong, isForcible?: Toast.IsForcible): void;
+declare function toastwarn(msg: any, isLong?: Toast.IsLong, isForcible?: Toast.IsForcible): void;
+
+declare function toastError(msg: any, isLong?: Toast.IsLong, isForcible?: Toast.IsForcible): void;
+declare function toasterror(msg: any, isLong?: Toast.IsLong, isForcible?: Toast.IsForcible): void;
 
 /**
  * @example
@@ -96,7 +116,7 @@ declare function getClip(): string;
  * @see auto
  * @see runtime.info.getLatestPackage
  */
-declare function currentPackage(): string;
+declare function currentPackage(mode?: Global.ComponentFetchMode | Global.ComponentFetchOptions): string;
 
 /**
  * @example
@@ -111,7 +131,9 @@ declare function currentPackage(): string;
  * @see auto
  * @see runtime.info.getLatestActivity
  */
-declare function currentActivity(): string;
+declare function currentActivity(mode?: Global.ComponentFetchMode | Global.ComponentFetchOptions): string;
+
+declare function currentComponent(mode?: Global.ComponentFetchMode | Global.ComponentFetchOptions): string;
 
 declare function waitForActivity<R>(activityName: string, limit: number, interval: number, callback: Wait.Callback<string, R>): R extends void ? boolean : R;
 declare function waitForActivity<R>(activityName: string, limit: number, callback: Wait.Callback<string, R>): R extends void ? boolean : R;
@@ -199,6 +221,18 @@ declare function requiresApi(api: number): void;
  */
 declare function requiresAutojsVersion(version: string | number): void;
 
+declare function getScaleBases(): Global.ScaleBases;
+
+declare function getScaleBaseX(): number;
+
+declare function getScaleBaseY(): number;
+
+declare function setScaleBases(baseX: number, baseY: number): void;
+
+declare function setScaleBaseX(baseX: number): void;
+
+declare function setScaleBaseY(baseY: number): void;
+
 /**
  * @example
  * let amount = 3;
@@ -223,19 +257,19 @@ declare function random(min: number, max: number): number;
  */
 declare function random(): number;
 
-declare function cX(num: number, base: number, isRatio?: boolean | 'auto');
-declare function cX(num: number, isRatio?: boolean | 'auto');
-declare function cX();
+declare function cX(num: number, base: number, isRatio?: boolean | 'auto'): number;
+declare function cX(num: number, isRatio?: boolean | 'auto'): number;
+declare function cX(): number;
 
-declare function cY(num: number, base: number, isRatio?: boolean | 'auto');
-declare function cY(num: number, isRatio?: boolean | 'auto');
-declare function cY();
+declare function cY(num: number, base: number, isRatio?: boolean | 'auto'): number;
+declare function cY(num: number, isRatio?: boolean | 'auto'): number;
+declare function cY(): number;
 
-declare function cYx(num: number, base: number | string, isRatio?: boolean | 'auto');
-declare function cYx(num: number, isRatio?: boolean | 'auto');
+declare function cYx(num: number, base: number | string, isRatio?: boolean | 'auto'): number;
+declare function cYx(num: number, isRatio?: boolean | 'auto'): number;
 
-declare function cXy(num: number, base: number | string, isRatio?: boolean | 'auto');
-declare function cXy(num: number, isRatio?: boolean | 'auto');
+declare function cXy(num: number, base: number | string, isRatio?: boolean | 'auto'): number;
+declare function cXy(num: number, isRatio?: boolean | 'auto'): number;
 
 /**
  * Wait a period of time until a condition is met
@@ -284,7 +318,43 @@ declare namespace Wait {
 
 }
 
+declare namespace Global {
+
+    type ComponentFetchMode = 'auto' | 'automatic' | 'automatism' | 'a11y' | 'accessibility' | 'shizuku' | 'root';
+
+    interface ComponentFetchOptions {
+        by?: ComponentFetchMode;
+        mode?: ComponentFetchMode;
+    }
+
+    interface ScaleBases {
+        x: number;
+        y: number;
+    }
+
+}
+
 /**
  * @deprecated Use {@link Species.isObject} instead.
  */
 declare function isObjectSpecies(o: any): boolean;
+
+/**
+ * @throws org.autojs.autojs.runtime.exception.NotImplementedError
+ * @function
+ */
+declare function TODO(reason?: string): void;
+
+declare function unwrapJavaObject(o: { getClass(): java.lang.Class<any> }): any;
+
+declare function isJavaObject(o: any): boolean;
+
+declare function isPrimitive(arg: any): boolean;
+
+declare function isReference(arg: any): boolean;
+
+declare function isEmptyObject(arg: any): boolean;
+
+declare function isInteger(arg: any): boolean;
+
+declare function isBigInt(arg: any): boolean;

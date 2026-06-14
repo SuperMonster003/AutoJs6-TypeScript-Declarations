@@ -1,55 +1,49 @@
-// Type definitions for AutoJs6 internal module http
+// Type definitions for AutoJs6 internal module qrcode
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Oct 11, 2023
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__qrcode__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/barcode/QrCode.kt
  */
 
 declare namespace Internal {
 
     import DetectOptions = Internal.QrCode.DetectOptions;
-    import DetectOptionsWithoutIsAll = Internal.QrCode.DetectOptionsWithoutIsAll;
 
     interface QrCode {
 
         (options?: DetectOptions): string | string[] | null;
-        (isAll: boolean): string | string[] | null;
+        (isAll: true): string[];
+        (isAll: false): string | null;
         (img: ImageWrapper | string, options?: DetectOptions): string | string[] | null;
-        (img: ImageWrapper | string, isAll: boolean): string | string[] | null;
 
         detect(options?: DetectOptions): QrCode.Result | QrCode.Result[] | null;
-        detect(isAll: boolean): QrCode.Result | QrCode.Result[] | null;
         detect(img: ImageWrapper | string, options?: DetectOptions): QrCode.Result | QrCode.Result[] | null;
-        detect(img: ImageWrapper | string, isAll: boolean): QrCode.Result | QrCode.Result[] | null;
 
-        detectAll(options?: DetectOptionsWithoutIsAll): QrCode.Result[];
-        detectAll(img: ImageWrapper | string, options?: DetectOptionsWithoutIsAll): QrCode.Result[];
+        detectAll(options?: DetectOptions): QrCode.Result[];
+        detectAll(img: ImageWrapper | string, options?: DetectOptions): QrCode.Result[];
 
         recognizeText(options?: DetectOptions): string | string[] | null;
-        recognizeText(isAll: boolean): string | string[] | null;
         recognizeText(img: ImageWrapper | string, options?: DetectOptions): string | string[] | null;
-        recognizeText(img: ImageWrapper | string, isAll: boolean): string | string[] | null;
 
-        recognizeTexts(options?: DetectOptionsWithoutIsAll): string[];
-        recognizeTexts(img: ImageWrapper | string, options?: DetectOptionsWithoutIsAll): string[];
+        recognizeTexts(options?: DetectOptions): string[];
+        recognizeTexts(img: ImageWrapper | string, options?: DetectOptions): string[];
 
     }
 
     namespace QrCode {
 
-        interface DetectOptions extends DetectOptionsWithoutIsAll {
+        interface DetectOptions {
             /** @default false */
             isAll?: boolean;
-        }
-
-        interface DetectOptionsWithoutIsAll {
             /** @default false */
+            enableAllPotentialQrCodes?: boolean;
+            /** Compatibility alias accepted by the shared barcode parser. */
             enableAllPotentialBarcodes?: boolean;
         }
 

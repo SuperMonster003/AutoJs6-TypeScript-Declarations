@@ -1,21 +1,23 @@
 // Type definitions for AutoJs6 internal module web
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.7.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__web__.js
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/web/Web.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/web/WebSocket.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/web/WebSocketFields.kt
  */
 
 declare namespace Internal {
 
     interface Web {
 
-        newInjectableWebView(activity?: android.app.Activity): org.autojs.autojs.core.web.InjectableWebView;
+        newInjectableWebView(context?: android.content.Context | string, url?: string): org.autojs.autojs.core.web.InjectableWebView;
 
         newInjectableWebClient(): org.autojs.autojs.core.web.InjectableWebClient;
 
@@ -39,7 +41,7 @@ declare function newInjectableWebClient(): org.autojs.autojs.core.web.Injectable
  *     return new org.autojs.autojs.core.web.InjectableWebView(scope.activity, org.mozilla.javascript.Context.getCurrentContext(), scope);
  * };
  */
-declare function newInjectableWebView(activity?: android.app.Activity): org.autojs.autojs.core.web.InjectableWebView;
+declare function newInjectableWebView(context?: android.content.Context | string, url?: string): org.autojs.autojs.core.web.InjectableWebView;
 
 declare function newWebSocket(url: string): org.autojs.autojs.core.web.WebSocket;
 
@@ -167,5 +169,21 @@ declare class WebSocket extends org.autojs.autojs.core.web.WebSocket {
      * @const
      */
     static CODE_TLS_HANDSHAKE_FAIL: number
+
+    static EVENT_CLOSED: string
+
+    static EVENT_CLOSING: string
+
+    static EVENT_FAILURE: string
+
+    static EVENT_TEXT: string
+
+    static EVENT_MESSAGE: string
+
+    static EVENT_BYTES: string
+
+    static EVENT_OPEN: string
+
+    static EVENT_MAX_REBUILDS: string
 
 }

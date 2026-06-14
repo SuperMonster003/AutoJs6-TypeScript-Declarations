@@ -1,21 +1,27 @@
 // Type definitions for AutoJs6 internal module http
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.7.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__http__.js
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/http/Http.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/http/RequestBuilder.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/http/RequestBuilderHelper.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/http/ResponseWrapper.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/http/ResponseBodyNativeObject.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/http/HttpSaveResult.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/Http.kt
  */
 
 declare namespace Internal {
 
     interface Http {
 
-        __okhttp__: MutableOkHttp;
+        readonly __okhttp__: MutableOkHttp;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -71,6 +77,12 @@ declare namespace Internal {
          */
         get(url: string, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
 
+        getAsync(url: string, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
+
+        head(url: string, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+
+        headAsync(url: string, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
+
         /**
          * @example
          * let url = "https://login.taobao.com/member/login.jhtml";
@@ -112,7 +124,9 @@ declare namespace Internal {
          *     }
          * }
          */
-        post(url: string, data: object | string, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+        post(url: string, data?: Http.RequestData, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+
+        postAsync(url: string, data?: Http.RequestData, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
 
         /**
          * @example
@@ -129,7 +143,9 @@ declare namespace Internal {
          *     return http.post(url, data, options, callback);
          * };
          */
-        postJson(url: string, data: object, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+        postJson(url: string, data?: any, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+
+        postJsonAsync(url: string, data?: any, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
 
         /**
          * @example
@@ -162,10 +178,9 @@ declare namespace Internal {
          *     return http.request(url, options, callback);
          * };
          */
-        postMultipart(url: string, files: {
-            appId?: string;
-            file: string | string[] | org.autojs.autojs.pio.PReadableTextFile | org.autojs.autojs.pio.PWritableTextFile;
-        }, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+        postMultipart(url: string, files: Http.MultipartFiles, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+
+        postMultipartAsync(url: string, files: Http.MultipartFiles, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
 
         /**
          * @example
@@ -257,7 +272,21 @@ declare namespace Internal {
          *     return r;
          * }
          */
-        request(url: string, options?: Http.RequestBuilderOptions, callback?: Callback): Http.WrappedResponse | void;
+        request(url: string, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+
+        requestAsync(url: string, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
+
+        put(url: string, data?: Http.RequestData, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+
+        putAsync(url: string, data?: Http.RequestData, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
+
+        delete(url: string, data?: Http.RequestData, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+
+        del(url: string, data?: Http.RequestData, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+
+        deleteAsync(url: string, data?: Http.RequestData, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
+
+        delAsync(url: string, data?: Http.RequestData, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -354,7 +383,30 @@ declare namespace Internal {
 
 declare namespace Http {
 
-    type Callback = (response: Http.WrappedResponse, ex?: java.io.IOException) => void;
+    type Callback = (response: Http.WrappedResponse | null, ex?: java.io.IOException | null) => void;
+
+    type Method = 'GET' | 'POST' | 'HEAD' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
+
+    type RequestData = any;
+
+    type BodyWriter = (bufferedSink: okio.BufferedSink) => void;
+
+    type MultipartFileValue =
+        | string
+        | number
+        | [fileName: string, path: string | java.net.URI]
+        | [fileName: string, mimeType: string, path: string | java.net.URI]
+        | org.autojs.autojs.pio.PFileInterface
+        | org.autojs.autojs.pio.PReadableTextFile
+        | org.autojs.autojs.pio.PWritableTextFile;
+
+    interface MultipartFiles {
+        [name: string]: MultipartFileValue;
+    }
+
+    interface ClientBuilderOptions {
+        [methodName: string]: any;
+    }
 
     // noinspection SpellCheckingInspection
     type ContentType = 'application/atom+xml' | 'application/fractals' | 'application/futuresplash' | 'application/hta' | 'application/json' | 'application/mac-binhex40' | 'application/msaccess' | 'application/msword' | 'application/octet-stream' | 'application/pdf' | 'application/pics-rules' | 'application/pkcs10' | 'application/pkcs7-mime' | 'application/pkcs7-signature' | 'application/pkix-crl' | 'application/postscript' | 'application/rat-file' | 'application/sdp' | 'application/smil' | 'application/streamingmedia' | 'application/vnd.adobe.edn' | 'application/vnd.adobe.pdx' | 'application/vnd.adobe.rmf' | 'application/vnd.adobe.workflow' | 'application/vnd.adobe.xdp' | 'application/vnd.adobe.xfd' | 'application/vnd.adobe.xfdf' | 'application/vnd.android.package-archive' | 'application/vnd.fdf' | 'application/vnd.iphone' | 'application/vnd.ms-excel' | 'application/vnd.ms-pki.certstore' | 'application/vnd.ms-pki.pko' | 'application/vnd.ms-pki.seccat' | 'application/vnd.ms-pki.stl' | 'application/vnd.ms-powerpoint' | 'application/vnd.ms-project' | 'application/vnd.ms-wpl' | 'application/vnd.rn-realmedia' | 'application/vnd.rn-realmedia-secure' | 'application/vnd.rn-realmedia-vbr' | 'application/vnd.rn-realplayer' | 'application/vnd.rn-realsystem-rjs' | 'application/vnd.rn-realsystem-rjt' | 'application/vnd.rn-realsystem-rmj' | 'application/vnd.rn-realsystem-rmx' | 'application/vnd.rn-recording' | 'application/vnd.rn-rn_music_package' | 'application/vnd.rn-rsml' | 'application/vnd.symbian.install' | 'application/vnd.visio' | 'application/x-' | 'application/x-001' | 'application/x-301' | 'application/x-906' | 'application/x-a11' | 'application/x-anv' | 'application/x-bittorrent' | 'application/x-bmp' | 'application/x-bot' | 'application/x-c4t' | 'application/x-c90' | 'application/x-cals' | 'application/x-cdr' | 'application/x-cel' | 'application/x-cgm' | 'application/x-cit' | 'application/x-cmp' | 'application/x-cmx' | 'application/x-cot' | 'application/x-csi' | 'application/x-cut' | 'application/x-dbf' | 'application/x-dbm' | 'application/x-dbx' | 'application/x-dcx' | 'application/x-dgn' | 'application/x-dib' | 'application/x-drw' | 'application/x-dwf' | 'application/x-dwg' | 'application/x-dxb' | 'application/x-dxf' | 'application/x-ebx' | 'application/x-emf' | 'application/x-epi' | 'application/x-frm' | 'application/x-g4' | 'application/x-gbr' | 'application/x-gl2' | 'application/x-gp4' | 'application/x-hgl' | 'application/x-hmr' | 'application/x-hpgl' | 'application/x-hpl' | 'application/x-hrf' | 'application/x-icb' | 'application/x-ico' | 'application/x-icq' | 'application/x-iff' | 'application/x-igs' | 'application/x-img' | 'application/x-internet-signup' | 'application/x-iphone' | 'application/x-javascript' | 'application/x-jpe' | 'application/x-jpg' | 'application/x-laplayer-reg' | 'application/x-latex' | 'application/x-lbm' | 'application/x-ltr' | 'application/x-mac' | 'application/x-mdb' | 'application/x-mi' | 'application/x-mil' | 'application/x-mmxp' | 'application/x-ms-wmd' | 'application/x-ms-wmz' | 'application/x-msdownload' | 'application/x-netcdf' | 'application/x-nrf' | 'application/x-out' | 'application/x-pc5' | 'application/x-pci' | 'application/x-pcl' | 'application/x-pcx' | 'application/x-perl' | 'application/x-pgl' | 'application/x-pic' | 'application/x-pkcs12' | 'application/x-pkcs7-certificates' | 'application/x-pkcs7-certreqresp' | 'application/x-plt' | 'application/x-png' | 'application/x-ppm' | 'application/x-ppt' | 'application/x-pr' | 'application/x-prn' | 'application/x-prt' | 'application/x-ps' | 'application/x-ptn' | 'application/x-ras' | 'application/x-red' | 'application/x-rgb' | 'application/x-rlc' | 'application/x-rle' | 'application/x-rtf' | 'application/x-sam' | 'application/x-sat' | 'application/x-sdw' | 'application/x-shockwave-flash' | 'application/x-silverlight-app' | 'application/x-slb' | 'application/x-sld' | 'application/x-smk' | 'application/x-stuffit' | 'application/x-sty' | 'application/x-tdf' | 'application/x-tg4' | 'application/x-tga' | 'application/x-tif' | 'application/x-troff-man' | 'application/x-vda' | 'application/x-vpeg005' | 'application/x-vsd' | 'application/x-vst' | 'application/x-wb1' | 'application/x-wb2' | 'application/x-wb3' | 'application/x-wk3' | 'application/x-wk4' | 'application/x-wkq' | 'application/x-wks' | 'application/x-wmf' | 'application/x-wp6' | 'application/x-wpd' | 'application/x-wpg' | 'application/x-wq1' | 'application/x-wr1' | 'application/x-wri' | 'application/x-wrk' | 'application/x-ws' | 'application/x-www-form-urlencoded' | 'application/x-x509-ca-cert' | 'application/x-xls' | 'application/x-xlw' | 'application/x-xwd' | 'application/x-x_b' | 'application/x-x_t' | 'application/xhtml+xml' | 'application/xml' | 'audio/aiff' | 'audio/basic' | 'audio/mid' | 'audio/mp1' | 'audio/mp2' | 'audio/mp3' | 'audio/mpegurl' | 'audio/rn-mpeg' | 'audio/scpls' | 'audio/vnd.rn-realaudio' | 'audio/wav' | 'audio/x-la-lms' | 'audio/x-liquid-file' | 'audio/x-liquid-secure' | 'audio/x-mei-aac' | 'audio/x-ms-wax' | 'audio/x-ms-wma' | 'audio/x-musicnet-download' | 'audio/x-musicnet-stream' | 'audio/x-pn-realaudio' | 'audio/x-pn-realaudio-plugin' | 'drawing/907' | 'drawing/x-slk' | 'drawing/x-top' | 'image/fax' | 'image/gif' | 'image/jpeg' | 'image/pnetvue' | 'image/png' | 'image/tiff' | 'image/vnd.rn-realpix' | 'image/vnd.wap.wbmp' | 'image/x-icon' | 'java/*' | 'message/rfc822' | 'Model/vnd.dwf' | 'multipart/form-data' | 'text/asa' | 'text/asp' | 'text/css' | 'text/h323' | 'text/html' | 'text/iuls' | 'text/plain' | 'text/scriptlet' | 'text/vnd.rn-realtext' | 'text/vnd.rn-realtext3d' | 'text/vnd.wap.wml' | 'text/webviewhtml' | 'text/x-component' | 'text/x-ms-odc' | 'text/x-vcard' | 'text/xml' | 'video/avi' | 'video/mpeg' | 'video/mpeg4' | 'video/mpg' | 'video/vnd.rn-realvideo' | 'video/x-ivf' | 'video/x-mpeg' | 'video/x-mpg' | 'video/x-ms-asf' | 'video/x-ms-wm' | 'video/x-ms-wmv' | 'video/x-ms-wmx' | 'video/x-ms-wvx' | 'video/x-sgi-movie';
@@ -399,15 +451,33 @@ declare namespace Http {
             'Via'?: string;
             'Warning'?: string;
         };
-        body?: string | okhttp3.RequestBody | ((bufferedSink: okio.BufferedSink) => void) | { [prop: string]: string };
-        method?: 'GET' | 'POST' | 'HEAD' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
-        files?: object;
-        contentType?: Http.ContentType;
+        body?: string | okhttp3.RequestBody | Http.BodyWriter;
+        method?: Http.Method;
+        files?: Http.MultipartFiles;
+        contentType?: Http.ContentType | string;
+        client?: Http.ClientBuilderOptions;
+        isInsecure?: boolean;
+        insecure?: boolean;
         /**
          * Timeout (milliseconds) for readTimeout/writeTimeout/connectTimeout.
          * @default 30e3
          */
         timeout?: number;
+        /**
+         * Max retries for making the request.
+         * @default 3
+         */
+        maxRetries?: number;
+        /**
+         * Cache response body content after reading string() or bytes().
+         * @default false
+         */
+        cacheBody?: boolean;
+        /**
+         * Max body size allowed for response body cache.
+         * @default 8 * 1024 * 1024
+         */
+        bodyCacheThresholdBytes?: number;
     }
 
     interface WrappedResponse {
@@ -447,17 +517,45 @@ declare namespace Http {
              */
             json(): any;
             /**
+             * Returns the response body stream. Caller owns closing the stream/body.
+             */
+            stream(): java.io.InputStream;
+            /**
+             * Saves the response body directly to a file path.
+             */
+            saveToFile(path: string, bufferSize?: number): Http.SaveResult;
+            /**
+             * Explicitly closes the response body.
+             */
+            close(): void;
+            /**
              * @example Source code summary (zh-CN: 源代码摘要)
              * r.body = {};
              * let body = res.body();
              * r.body.contentType = body.contentType();
              * @see okhttp3.ResponseBody.contentType
              */
-            contentType: okhttp3.MediaType;
+            contentType: okhttp3.MediaType | null;
         };
         request: okhttp3.Request;
         url: okhttp3.HttpUrl;
         method: string;
+    }
+
+    interface SaveResult extends org.mozilla.javascript.NativeObject {
+
+        readonly code: number;
+
+        readonly path: string | null;
+
+        readonly bytesCopied: number;
+
+        readonly success: boolean;
+
+        readonly error: java.lang.Throwable | null;
+
+        isSuccess(): boolean;
+
     }
 
 }

@@ -8,23 +8,6 @@
  * @Source %RhinoJar%/org/mozilla/javascript/ImporterTopLevel
  */
 
-// @ts-ignore
-declare let constructor: ConstructorConstructor<any>;
-
-interface ConstructorConstructor<T> {
-    /**
-     * @Dubious by SuperMonster003 as of May 7, 2022.
-     *  ! Dunno the real meaning of this interface.
-     *
-     * @example
-     * let o = Object.create({a: 1}); // or any
-     * constructor(o) === new constructor(o); // true
-     * constructor(o) === o; // true
-     */
-    (o: T): T;
-    new(o: T): T;
-}
-
 declare let JavaAdapter: JavaAdapterConstructor;
 
 declare interface JavaAdapterConstructor {

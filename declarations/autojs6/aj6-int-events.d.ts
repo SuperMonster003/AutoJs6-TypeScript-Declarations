@@ -1,21 +1,26 @@
 // Type definitions for AutoJs6 internal module events
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__events__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/events/Events.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/events/Keys.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/Events.java
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/eventloop/EventEmitter.java
  */
 
 declare namespace Internal {
 
     class Events extends org.autojs.autojs.runtime.api.Events {
 
-        __asEmitter__(obj: object, thread?: java.lang.Thread): object;
+        __asEmitter__(): EventEmitter$;
+        __asEmitter__(obj: null | undefined, thread?: Events.ThreadTarget | null): EventEmitter$;
+        __asEmitter__<T extends object>(obj: T, thread?: Events.ThreadTarget | null): T & EventEmitter$;
 
         /**
          * @Overrides for JSDoc or more specific types
@@ -46,7 +51,9 @@ declare namespace Internal {
          *     sum.emit('result', s);
          * });
          */
-        emitter(thread?: java.lang.Thread): EventEmitter$;
+        emitter(): EventEmitter$;
+        emitter(thread: java.lang.Thread): EventEmitter$;
+        emitter(thread: org.autojs.autojs.core.looper.MainThreadProxy): EventEmitter$;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -141,6 +148,14 @@ declare namespace Internal {
          * @see org.autojs.autojs.core.looper.Loopers
          */
         observeTouch(): void;
+
+        observeNotification(): void;
+
+        removeNotificationObserver(): void;
+
+        observeToast(): void;
+
+        removeToastObserver(): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -501,24 +516,37 @@ declare namespace Internal {
          * android.view.KeyEvent.KEYCODE_HOME // 3
          */
         home: number;
+        HOME: number;
         /**
          * android.view.KeyEvent.KEYCODE_MENU // 82
          */
         menu: number;
+        MENU: number;
         /**
          * android.view.KeyEvent.KEYCODE_BACK // 4
          */
         back: number;
+        BACK: number;
         /**
          * android.view.KeyEvent.KEYCODE_VOLUME_UP // 24
          */
+        volumeUp: number;
         volume_up: number;
+        VOLUME_UP: number;
         /**
          * android.view.KeyEvent.KEYCODE_VOLUME_DOWN // 25
          */
+        volumeDown: number;
         volume_down: number;
+        VOLUME_DOWN: number;
 
     }
+
+}
+
+declare namespace Events {
+
+    type ThreadTarget = java.lang.Thread | org.autojs.autojs.core.looper.MainThreadProxy;
 
 }
 
@@ -529,6 +557,7 @@ declare namespace Keys {
 }
 
 declare let keys: Internal.Keys;
+declare let $keys: Internal.Keys;
 
 declare class EventEmitter$ extends org.autojs.autojs.core.eventloop.EventEmitter {
 
@@ -657,5 +686,17 @@ declare class EventEmitter$ extends org.autojs.autojs.core.eventloop.EventEmitte
      * exit();
      */
     public once(eventName: 'exit', listener: () => void): this;
+
+    public emit(eventName: string, ...args: any[]): boolean;
+    public emitSticky(eventName: string, ...args: any[]): boolean;
+    public eventNames(): string[];
+    public getMaxListeners(): number;
+    public listenerCount(eventName: string): number;
+    public listeners(eventName: string): any[];
+    public prependListener(eventName: string, listener: any): this;
+    public prependOnceListener(eventName: string, listener: any): this;
+    public removeAllListeners(eventName?: string): this;
+    public removeListener(eventName: string, listener: any): this;
+    public setMaxListeners(maxListeners: number): this;
 
 }

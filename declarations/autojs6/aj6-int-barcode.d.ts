@@ -1,44 +1,39 @@
-// Type definitions for AutoJs6 internal module http
+// Type definitions for AutoJs6 internal module barcode
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Oct 11, 2023
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__barcode__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/barcode/Barcode.kt
  */
 
 declare namespace Internal {
 
     import DetectOptions = Internal.Barcode.DetectOptions;
-    import DetectOptionsWithoutIsAll = Internal.Barcode.DetectOptionsWithoutIsAll;
     import MLKitBarcode = com.google.mlkit.vision.barcode.common.Barcode;
 
     interface Barcode {
 
         (options?: DetectOptions): string | string[] | null;
-        (isAll: boolean): string | string[] | null;
+        (isAll: true): string[];
+        (isAll: false): string | null;
         (img: ImageWrapper | string, options?: DetectOptions): string | string[] | null;
-        (img: ImageWrapper | string, isAll: boolean): string | string[] | null;
 
         detect(options?: DetectOptions): Barcode.Result | Barcode.Result[] | null;
-        detect(isAll: boolean): Barcode.Result | Barcode.Result[] | null;
         detect(img: ImageWrapper | string, options?: DetectOptions): Barcode.Result | Barcode.Result[] | null;
-        detect(img: ImageWrapper | string, isAll: boolean): Barcode.Result | Barcode.Result[] | null;
 
-        detectAll(options?: DetectOptionsWithoutIsAll): Barcode.Result[];
-        detectAll(img: ImageWrapper | string, options?: DetectOptionsWithoutIsAll): Barcode.Result[];
+        detectAll(options?: DetectOptions): Barcode.Result[];
+        detectAll(img: ImageWrapper | string, options?: DetectOptions): Barcode.Result[];
 
         recognizeText(options?: DetectOptions): string | string[] | null;
-        recognizeText(isAll: boolean): string | string[] | null;
         recognizeText(img: ImageWrapper | string, options?: DetectOptions): string | string[] | null;
-        recognizeText(img: ImageWrapper | string, isAll: boolean): string | string[] | null;
 
-        recognizeTexts(options?: DetectOptionsWithoutIsAll): string[];
-        recognizeTexts(img: ImageWrapper | string, options?: DetectOptionsWithoutIsAll): string[];
+        recognizeTexts(options?: DetectOptions): string[];
+        recognizeTexts(img: ImageWrapper | string, options?: DetectOptions): string[];
 
     }
 
@@ -59,12 +54,9 @@ declare namespace Internal {
 
         type Format = FormatUppercaseLong | FormatUppercaseShort | FormatLowercaseLong | FormatLowercaseShort;
 
-        interface DetectOptions extends DetectOptionsWithoutIsAll {
+        interface DetectOptions {
             /** @default false */
             isAll?: boolean;
-        }
-
-        interface DetectOptionsWithoutIsAll {
             /** @default false */
             enableAllPotentialBarcodes?: boolean;
             /**

@@ -1,3 +1,6 @@
+/// <reference path="../android.d.ts"/>
+/// <reference path="../libraries.d.ts"/>
+
 declare module com {
 	export module android {
 		export module dex {

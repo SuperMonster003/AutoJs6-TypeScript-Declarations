@@ -13,7 +13,7 @@
 
 declare namespace Internal {
 
-    class Engines extends org.autojs.autojs.runtime.api.Engines {
+    class Engines {
 
         public constructor(engineService: org.autojs.autojs.engine.ScriptEngineService, scriptRuntime: ScriptRuntime);
 
@@ -285,20 +285,6 @@ declare namespace Internal {
          * @see org.autojs.autojs.script.AutoFileSource
          */
         public execAutoFile(path: string, config: org.autojs.autojs.execution.ExecutionConfig): org.autojs.autojs.execution.ScriptExecution;
-
-        /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * private ScriptEngineService mEngineService;
-         * private JavaScriptEngine mScriptEngine;
-         * public void setCurrentEngine(JavaScriptEngine engine) {
-         *     if (mScriptEngine != null)
-         *         throw new IllegalStateException();
-         *     mScriptEngine = engine;
-         * }
-         * @see org.autojs.autojs.engine.ScriptEngineService
-         * @see org.autojs.autojs.engine.JavaScriptEngine
-         */
-        public setCurrentEngine(engine: org.autojs.autojs.engine.JavaScriptEngine): void;
 
     }
 

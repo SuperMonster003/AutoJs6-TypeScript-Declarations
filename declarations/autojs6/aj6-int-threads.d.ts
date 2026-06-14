@@ -1,14 +1,16 @@
 // Type definitions for AutoJs6 internal module threads
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__threads__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/threads/Threads.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/threads/VolatileDisposeNativeObject.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/Threads.kt
  */
 
 declare namespace Internal {
@@ -65,7 +67,9 @@ declare namespace Internal {
          * @see org.autojs.autojs.runtime.ScriptRuntime
          * @see java.util.HashSet
          */
-        start(runnable: java.lang.Runnable | Func): org.autojs.autojs.core.looper.TimerThread;
+        start(runnable: java.lang.Runnable | Func): org.autojs.autojs.runtime.api.Threads.Companion.TimerThread | undefined;
+
+        pool(options?: Threads.PoolOptions | null): java.util.concurrent.ThreadPoolExecutor;
 
         /**
          * @example
@@ -172,7 +176,7 @@ declare namespace Internal {
          * }
          * @see org.autojs.autojs.concurrent.VolatileDispose
          */
-        disposable(): org.autojs.autojs.concurrent.VolatileDispose<any>;
+        disposable(): Threads.Disposable;
 
         /**
          * @example
@@ -259,3 +263,21 @@ declare namespace Internal {
  * @see org.mozilla.javascript.Synchronizer
  */
 declare function sync<T extends org.mozilla.javascript.Scriptable, U = (Func)>(func: T | U, lock?: any): org.mozilla.javascript.Synchronizer | T | U;
+
+declare namespace Threads {
+
+    interface PoolOptions {
+        corePoolSize?: number;
+        maxPoolSize?: number;
+        keepAliveTime?: number;
+    }
+
+    interface Disposable extends org.autojs.autojs.runtime.api.augment.threads.VolatileDisposeNativeObject {
+        blockedGet(timeout?: number | null): any;
+
+        blockedGetOrThrow<T = any>(exception: java.lang.Class<java.lang.RuntimeException>, timeout?: number | null, defaultValue?: T): T;
+
+        setAndNotify(value: any): void;
+    }
+
+}

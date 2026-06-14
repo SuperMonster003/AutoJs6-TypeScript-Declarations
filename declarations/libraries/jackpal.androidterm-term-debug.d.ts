@@ -1,3 +1,6 @@
+/// <reference path="../android.d.ts"/>
+/// <reference path="../libraries.d.ts"/>
+
 declare module jackpal {
 	export module androidterm {
 		export class BoundSession extends jackpal.androidterm.GenericTermSession {

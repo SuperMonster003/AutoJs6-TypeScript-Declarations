@@ -1,15 +1,15 @@
 // Type definitions for AutoJs6 internal module console
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
-/// <reference no-default-lib="true" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__console__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/console/Console.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/console/ConsoleImpl.kt
  */
 
 declare namespace Internal {
@@ -241,7 +241,7 @@ declare namespace Internal {
 
         resetGlobalLogConfig(): void;
 
-        show(): this;
+        show(isAutoExpand?: boolean): this;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -263,7 +263,7 @@ declare namespace Internal {
 
         launch(): void;
 
-        build(options: Console.BuildOptions): org.autojs.autojs.core.console.ConsoleImpl.Configurator;
+        build(options?: Console.BuildOptions): org.autojs.autojs.core.console.ConsoleImpl.Configurator;
 
         /**
          * @example
@@ -295,7 +295,11 @@ declare namespace Internal {
 
         setTitleBackgroundColor(color: OmniColor): this;
 
+        setTitleBackgroundTint(color: OmniColor): this;
+
         setTitleBackgroundAlpha(alpha: number): this;
+
+        resetTitleBackgroundAlpha(): this;
 
         setTitleIconsTint(color: OmniColor): this;
 
@@ -314,10 +318,16 @@ declare namespace Internal {
             error?: OmniColor;
             assert?: OmniColor;
         }): this;
+        // @ts-ignore
+        setContentTextColor(verbose: OmniColor, log?: OmniColor, info?: OmniColor, warn?: OmniColor, error?: OmniColor, assert?: OmniColor): this;
 
         setContentBackgroundColor(color: OmniColor): this;
 
+        setContentBackgroundTint(color: OmniColor): this;
+
         setContentBackgroundAlpha(alpha: number): this;
+
+        resetContentBackgroundAlpha(): this;
 
         setTextSize(size: number): this;
 
@@ -325,7 +335,11 @@ declare namespace Internal {
 
         setBackgroundColor(color: OmniColor): this;
 
+        setBackgroundTint(color: OmniColor): this;
+
         setBackgroundAlpha(alpha: number): this;
+
+        resetBackgroundAlpha(): this;
 
         setExitOnClose(timeout: number): this;
         setExitOnClose(exitOnClose?: boolean): this;
@@ -364,6 +378,7 @@ declare namespace Internal {
             titleTextSize?: number;
             titleTextColor?: OmniColor;
             titleBackgroundColor?: OmniColor;
+            titleBackgroundTint?: OmniColor;
             titleBackgroundAlpha?: number;
             titleIconsTint?: OmniColor;
             contentTextSize?: number;
@@ -376,10 +391,12 @@ declare namespace Internal {
                 assert?: OmniColor;
             };
             contentBackgroundColor?: OmniColor;
+            contentBackgroundTint?: OmniColor;
             contentBackgroundAlpha?: number;
             textSize?: number;
             textColor?: OmniColor;
             backgroundColor?: OmniColor;
+            backgroundTint?: OmniColor;
             backgroundAlpha?: number;
             exitOnClose?: number | boolean;
             touchable?: boolean;
@@ -424,6 +441,11 @@ declare function warn(data?: any, ...text): void;
  * @see console.show
  */
 declare function openConsole(): void;
+
+/**
+ * @see console.show
+ */
+declare function showConsole(): void;
 
 /**
  * @example Source code summary (zh-CN: 源代码摘要)

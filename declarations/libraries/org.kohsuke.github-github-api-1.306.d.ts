@@ -1,3 +1,6 @@
+/// <reference path="../android.d.ts"/>
+/// <reference path="../libraries.d.ts"/>
+
 declare module org {
 	export module kohsuke {
 		export module github {

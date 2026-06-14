@@ -1,14 +1,15 @@
-// Type definitions for Auto.js internal global object device
+// Type definitions for AutoJs6 internal module device
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__device__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/device/Device.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/Device.java
  */
 
 declare namespace Internal {
@@ -38,6 +39,8 @@ declare namespace Internal {
         get height(): number;
 
         get rotation(): number;
+
+        get orientation(): number;
 
         get density(): number;
 
@@ -692,6 +695,10 @@ declare namespace Internal {
 
         isScreenOff(): boolean;
 
+        isScreenPortrait(): boolean;
+
+        isScreenLandscape(): boolean;
+
         /**
          * @example
          * let PowerManager = android.os.PowerManager;
@@ -1160,7 +1167,7 @@ declare namespace Internal {
          */
         wakeUpIfNeeded(): void;
 
-        getIpAddress(useIPv4?: boolean): string;
+        getIpAddress(useIPv4?: boolean | null): string;
 
         getIpv6Address(): string;
 
@@ -1171,6 +1178,20 @@ declare namespace Internal {
         isConnectedOrConnecting(): boolean;
 
         isWifiAvailable(): boolean;
+
+        getSharedDeviceId(): string | null;
+
+        setPointerLocation(enabled: boolean): boolean;
+
+        setPointerLocationEnabled(): boolean;
+
+        setPointerLocationDisabled(): boolean;
+
+        isPointerLocationEnabled(): boolean;
+
+        isPointerLocationDisabled(): boolean;
+
+        togglePointerLocation(): boolean;
 
     }
 

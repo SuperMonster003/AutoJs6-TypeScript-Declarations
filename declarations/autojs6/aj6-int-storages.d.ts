@@ -1,156 +1,76 @@
 // Type definitions for AutoJs6 internal module storages
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__storages__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/storages/Storages.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/storages/StorageNativeObject.kt
  */
 
 declare namespace Internal {
 
     interface Storages {
 
-        /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * let storages = {};
-         * storages.create = function (name) {
-         *     return new LocalStorage(name);
-         * };
-         * function LocalStorage(name) {
-         *     this._storage = new org.autojs.autojs.core.storage.LocalStorage(context, name);
-         *     this.put = function (key, value) {
-         *         if (typeof (value) == 'undefined') {
-         *             throw new TypeError('value cannot be undefined');
-         *         }
-         *         this._storage.put(key, JSON.stringify(value));
-         *     };
-         *     this.get = function (key, defaultValue) {
-         *         let value = this._storage.getString(key, null);
-         *         if (!value) {
-         *             return defaultValue;
-         *         }
-         *         return JSON.parse(value);
-         *     };
-         *     this.remove = function (key) {
-         *         this._storage.remove(key);
-         *     };
-         *     this.contains = function (key) {
-         *         return this._storage.contains(key);
-         *     };
-         *     this.clear = function () {
-         *         this._storage.clear();
-         *     };
-         * }
-         */
-        create(name: string): LocalStorage;
+        create(name: string | number | boolean): Storages.Storage;
 
-        /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * let storages = {};
-         * storages.remove = function (name) {
-         *     this.create(name).clear();
-         * };
-         * function LocalStorage(name) {
-         *     this._storage = new org.autojs.autojs.core.storage.LocalStorage(context, name);
-         *     this.put = function (key, value) {
-         *         if (typeof (value) == 'undefined') {
-         *             throw new TypeError('value cannot be undefined');
-         *         }
-         *         this._storage.put(key, JSON.stringify(value));
-         *     };
-         *     this.get = function (key, defaultValue) {
-         *         let value = this._storage.getString(key, null);
-         *         if (!value) {
-         *             return defaultValue;
-         *         }
-         *         return JSON.parse(value);
-         *     };
-         *     this.remove = function (key) {
-         *         this._storage.remove(key);
-         *     };
-         *     this.contains = function (key) {
-         *         return this._storage.contains(key);
-         *     };
-         *     this.clear = function () {
-         *         this._storage.clear();
-         *     };
-         * }
-         */
-        remove(name: string): void;
+        remove(name: string | number | boolean): void;
+
+        removeSync(name: string | number | boolean): boolean;
+
+        all(): Storages.Storage[];
+
+        names(): string[];
 
     }
 
-    interface LocalStorage {
+}
 
-        _storage: org.autojs.autojs.core.storage.LocalStorage;
+declare namespace Storages {
 
-        /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * function LocalStorage(name) {
-         *     this._storage = new org.autojs.autojs.core.storage.LocalStorage(context, name);
-         *     this.put = function (key, value) {
-         *         if (typeof (value) == 'undefined') {
-         *             throw new TypeError('value cannot be undefined');
-         *         }
-         *         this._storage.put(key, JSON.stringify(value));
-         *     };
-         * }
-         */
-        put(key: string, value: any): LocalStorage;
+    type StorageKey = string | number | boolean;
 
-        /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * function LocalStorage(name) {
-         *     this._storage = new org.autojs.autojs.core.storage.LocalStorage(context, name);
-         *     this.get = function (key, defaultValue) {
-         *         let value = this._storage.getString(key, null);
-         *         if (!value) {
-         *             return defaultValue;
-         *         }
-         *         return JSON.parse(value);
-         *     };
-         * }
-         */
-        get(key: string, defaultValue?: any): any;
+    interface Storage extends org.mozilla.javascript.NativeObject {
+
+        readonly name: string;
+
+        readonly size: number;
+
+        get<T = any>(key: StorageKey, defaultValue?: T): T;
+
+        put(key: StorageKey, value: any): this;
+
+        putSync(key: StorageKey, value: any): this;
+
+        remove(key: StorageKey): this;
+
+        removeSync(key: StorageKey): this;
 
         /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * function LocalStorage(name) {
-         *     this._storage = new org.autojs.autojs.core.storage.LocalStorage(context, name);
-         *     this.remove = function (key) {
-         *         this._storage.remove(key);
-         *     };
-         * }
+         * Current Kotlin NativeObject implementation returns the storage object.
          */
-        remove(key: string): LocalStorage;
+        contains(key: StorageKey): this;
 
-        /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * function LocalStorage(name) {
-         *     this._storage = new org.autojs.autojs.core.storage.LocalStorage(context, name);
-         *     this.contains = function (key) {
-         *         return this._storage.contains(key);
-         *     };
-         * }
-         */
-        contains(key: string): boolean;
+        clear(): this;
 
-        /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * function LocalStorage(name) {
-         *     this._storage = new org.autojs.autojs.core.storage.LocalStorage(context, name);
-         *     this.clear = function () {
-         *         this._storage.clear();
-         *     }
-         * }
-         */
-        clear(): void;
+        clearSync(): this;
 
+        selfRemove(name: StorageKey): this;
+
+        selfRemoveSync(name: StorageKey): this;
+
+    }
+
+}
+
+declare namespace Internal {
+
+    interface LocalStorage extends Storages.Storage {
+        /* Compatibility alias for older declaration users. */
     }
 
 }

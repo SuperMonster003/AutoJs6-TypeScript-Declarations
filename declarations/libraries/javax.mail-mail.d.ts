@@ -1,3 +1,6 @@
+/// <reference path="../android.d.ts"/>
+/// <reference path="../libraries.d.ts"/>
+
 declare module com {
 	export module sun {
 		export module mail {
@@ -142,11 +145,14 @@ declare module com {
 	export module sun {
 		export module mail {
 			export module dsn {
-				export class message_deliverystatus extends java.lang.Object {
+				export class message_deliverystatus extends java.lang.Object implements javax.activation.DataContentHandler {
 					public static class: java.lang.Class<com.sun.mail.dsn.message_deliverystatus>;
+					public getContent(param0: javax.activation.DataSource): any;
 					public constructor();
 					public getTransferData(df: myjava.awt.datatransfer.DataFlavor, ds: javax.activation.DataSource): any;
 					public getTransferDataFlavors(): myjava.awt.datatransfer.DataFlavor[];
+					public getTransferData(param0: myjava.awt.datatransfer.DataFlavor, param1: javax.activation.DataSource): any;
+					public writeTo(param0: any, param1: string, param2: java.io.OutputStream): void;
 					public writeTo(obj: any, mimeType: string, os: java.io.OutputStream): void;
 					public getContent(ds: javax.activation.DataSource): any;
 				}
@@ -159,11 +165,14 @@ declare module com {
 	export module sun {
 		export module mail {
 			export module dsn {
-				export class multipart_report extends java.lang.Object {
+				export class multipart_report extends java.lang.Object implements javax.activation.DataContentHandler {
 					public static class: java.lang.Class<com.sun.mail.dsn.multipart_report>;
+					public getContent(param0: javax.activation.DataSource): any;
 					public constructor();
 					public getTransferData(df: myjava.awt.datatransfer.DataFlavor, ds: javax.activation.DataSource): any;
 					public getTransferDataFlavors(): myjava.awt.datatransfer.DataFlavor[];
+					public getTransferData(param0: myjava.awt.datatransfer.DataFlavor, param1: javax.activation.DataSource): any;
+					public writeTo(param0: any, param1: string, param2: java.io.OutputStream): void;
 					public writeTo(obj: any, mimeType: string, os: java.io.OutputStream): void;
 					public getContent(ds: javax.activation.DataSource): any;
 				}
@@ -176,12 +185,15 @@ declare module com {
 	export module sun {
 		export module mail {
 			export module dsn {
-				export class text_rfc822headers extends java.lang.Object {
+				export class text_rfc822headers extends java.lang.Object implements javax.activation.DataContentHandler {
 					public static class: java.lang.Class<com.sun.mail.dsn.text_rfc822headers>;
+					public getContent(param0: javax.activation.DataSource): any;
 					public constructor();
 					public writeTo(obj: any, type: string, os: java.io.OutputStream): void;
 					public getTransferData(df: myjava.awt.datatransfer.DataFlavor, ds: javax.activation.DataSource): any;
 					public getTransferDataFlavors(): myjava.awt.datatransfer.DataFlavor[];
+					public getTransferData(param0: myjava.awt.datatransfer.DataFlavor, param1: javax.activation.DataSource): any;
+					public writeTo(param0: any, param1: string, param2: java.io.OutputStream): void;
 					public getContent(ds: javax.activation.DataSource): any;
 				}
 			}
@@ -193,11 +205,14 @@ declare module com {
 	export module sun {
 		export module mail {
 			export module handlers {
-				export class message_rfc822 extends java.lang.Object {
+				export class message_rfc822 extends java.lang.Object implements javax.activation.DataContentHandler {
 					public static class: java.lang.Class<com.sun.mail.handlers.message_rfc822>;
+					public getContent(param0: javax.activation.DataSource): any;
 					public constructor();
 					public getTransferData(df: myjava.awt.datatransfer.DataFlavor, ds: javax.activation.DataSource): any;
 					public getTransferDataFlavors(): myjava.awt.datatransfer.DataFlavor[];
+					public getTransferData(param0: myjava.awt.datatransfer.DataFlavor, param1: javax.activation.DataSource): any;
+					public writeTo(param0: any, param1: string, param2: java.io.OutputStream): void;
 					public writeTo(obj: any, mimeType: string, os: java.io.OutputStream): void;
 					public getContent(ds: javax.activation.DataSource): any;
 				}
@@ -210,11 +225,14 @@ declare module com {
 	export module sun {
 		export module mail {
 			export module handlers {
-				export class multipart_mixed extends java.lang.Object {
+				export class multipart_mixed extends java.lang.Object implements javax.activation.DataContentHandler {
 					public static class: java.lang.Class<com.sun.mail.handlers.multipart_mixed>;
+					public getContent(param0: javax.activation.DataSource): any;
 					public constructor();
 					public getTransferData(df: myjava.awt.datatransfer.DataFlavor, ds: javax.activation.DataSource): any;
 					public getTransferDataFlavors(): myjava.awt.datatransfer.DataFlavor[];
+					public getTransferData(param0: myjava.awt.datatransfer.DataFlavor, param1: javax.activation.DataSource): any;
+					public writeTo(param0: any, param1: string, param2: java.io.OutputStream): void;
 					public writeTo(obj: any, mimeType: string, os: java.io.OutputStream): void;
 					public getContent(ds: javax.activation.DataSource): any;
 				}
@@ -229,8 +247,15 @@ declare module com {
 			export module handlers {
 				export class text_html extends com.sun.mail.handlers.text_plain {
 					public static class: java.lang.Class<com.sun.mail.handlers.text_html>;
+					public getContent(param0: javax.activation.DataSource): any;
 					public constructor();
+					public writeTo(obj: any, type: string, os: java.io.OutputStream): void;
 					public getDF(): javax.activation.ActivationDataFlavor;
+					public getTransferData(df: myjava.awt.datatransfer.DataFlavor, ds: javax.activation.DataSource): any;
+					public getTransferDataFlavors(): myjava.awt.datatransfer.DataFlavor[];
+					public getTransferData(param0: myjava.awt.datatransfer.DataFlavor, param1: javax.activation.DataSource): any;
+					public writeTo(param0: any, param1: string, param2: java.io.OutputStream): void;
+					public getContent(ds: javax.activation.DataSource): any;
 				}
 			}
 		}
@@ -241,13 +266,16 @@ declare module com {
 	export module sun {
 		export module mail {
 			export module handlers {
-				export class text_plain extends java.lang.Object {
+				export class text_plain extends java.lang.Object implements javax.activation.DataContentHandler {
 					public static class: java.lang.Class<com.sun.mail.handlers.text_plain>;
+					public getContent(param0: javax.activation.DataSource): any;
 					public constructor();
 					public writeTo(obj: any, type: string, os: java.io.OutputStream): void;
 					public getDF(): javax.activation.ActivationDataFlavor;
 					public getTransferData(df: myjava.awt.datatransfer.DataFlavor, ds: javax.activation.DataSource): any;
 					public getTransferDataFlavors(): myjava.awt.datatransfer.DataFlavor[];
+					public getTransferData(param0: myjava.awt.datatransfer.DataFlavor, param1: javax.activation.DataSource): any;
+					public writeTo(param0: any, param1: string, param2: java.io.OutputStream): void;
 					public getContent(ds: javax.activation.DataSource): any;
 				}
 			}
@@ -261,8 +289,15 @@ declare module com {
 			export module handlers {
 				export class text_xml extends com.sun.mail.handlers.text_plain {
 					public static class: java.lang.Class<com.sun.mail.handlers.text_xml>;
+					public getContent(param0: javax.activation.DataSource): any;
 					public constructor();
+					public writeTo(obj: any, type: string, os: java.io.OutputStream): void;
 					public getDF(): javax.activation.ActivationDataFlavor;
+					public getTransferData(df: myjava.awt.datatransfer.DataFlavor, ds: javax.activation.DataSource): any;
+					public getTransferDataFlavors(): myjava.awt.datatransfer.DataFlavor[];
+					public getTransferData(param0: myjava.awt.datatransfer.DataFlavor, param1: javax.activation.DataSource): any;
+					public writeTo(param0: any, param1: string, param2: java.io.OutputStream): void;
+					public getContent(ds: javax.activation.DataSource): any;
 				}
 			}
 		}
@@ -1043,7 +1078,11 @@ declare module com {
 					public getCount(): number;
 					public getBodyPart(index: number): javax.mail.BodyPart;
 					public constructor(part: javax.mail.internet.MimePart, bs: com.sun.mail.imap.protocol.BODYSTRUCTURE[], sectionId: string, msg: com.sun.mail.imap.IMAPMessage);
+					public getName(): string;
 					public getBodyPart(param0: number): javax.mail.BodyPart;
+					public getOutputStream(): java.io.OutputStream;
+					public getInputStream(): java.io.InputStream;
+					public getContentType(): string;
 					public constructor(part: javax.mail.internet.MimePart);
 				}
 			}
@@ -3298,7 +3337,7 @@ declare module javax {
 
 declare module javax {
 	export module mail {
-		export class MultipartDataSource extends java.lang.Object {
+		export class MultipartDataSource extends java.lang.Object implements javax.activation.DataSource {
 			public static class: java.lang.Class<javax.mail.MultipartDataSource>;
 			/**
 			 * Constructs a new instance of the javax.mail.MultipartDataSource interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
@@ -3306,10 +3345,18 @@ declare module javax {
 			public constructor(implementation: {
 				getCount(): number;
 				getBodyPart(param0: number): javax.mail.BodyPart;
+				getInputStream(): java.io.InputStream;
+				getOutputStream(): java.io.OutputStream;
+				getContentType(): string;
+				getName(): string;
 			});
 			public constructor();
 			public getBodyPart(param0: number): javax.mail.BodyPart;
+			public getInputStream(): java.io.InputStream;
+			public getName(): string;
+			public getOutputStream(): java.io.OutputStream;
 			public getCount(): number;
+			public getContentType(): string;
 		}
 	}
 }
@@ -4640,7 +4687,7 @@ declare module javax {
 declare module javax {
 	export module mail {
 		export module internet {
-			export class MimePartDataSource extends java.lang.Object implements javax.mail.MessageAware {
+			export class MimePartDataSource extends java.lang.Object implements javax.activation.DataSource, javax.mail.MessageAware {
 				public static class: java.lang.Class<javax.mail.internet.MimePartDataSource>;
 				public part: javax.mail.internet.MimePart;
 				public constructor(part: javax.mail.internet.MimePart);
@@ -5356,7 +5403,7 @@ declare module javax {
 declare module javax {
 	export module mail {
 		export module util {
-			export class ByteArrayDataSource extends java.lang.Object {
+			export class ByteArrayDataSource extends java.lang.Object implements javax.activation.DataSource {
 				public static class: java.lang.Class<javax.mail.util.ByteArrayDataSource>;
 				public getContentType(): string;
 				public constructor(data: number[], type: string);

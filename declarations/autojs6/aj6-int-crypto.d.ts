@@ -1,39 +1,44 @@
-// Type definitions for AutoJs6 internal module console
+// Type definitions for AutoJs6 internal module crypto
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.8.4
+// TypeScript Version: 5.7.3
 //
-// Last modified: Jun 15, 2023
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 /// <reference lib="es2022" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__crypto__.js
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/cryptyo/Crypto.kt
+ * @Source /src/main/java/org/autojs/autojs/core/crypto/Crypto.kt
  */
 
 declare namespace Internal {
 
     interface Crypto {
 
-        Key: typeof Crypto.Key;
+        readonly Key: typeof Crypto.Key;
 
-        KeyPair: typeof Crypto.KeyPair;
+        readonly KeyPair: typeof Crypto.KeyPair;
 
-        digest(message: string, algorithm?: Crypto.DigestAlgorithm, options?: Crypto.DigestOptions): string | number[];
-        digest(message: string, options: Crypto.DigestOptions): string | number[];
+        fromHex(hex: string): number[];
 
-        encrypt(data: string | number[],
-                key: Crypto.Key,
+        toHex(bytes: number[]): string;
+
+        digest(message: string, algorithm?: Crypto.DigestAlgorithm, options?: Crypto.DigestOptions): Crypto.Output;
+        digest(message: string, options: Crypto.DigestOptions): Crypto.Output;
+
+        encrypt(data: Crypto.Input,
+                key: Crypto.Key | java.security.Key,
                 transformation: Crypto.CipherTransformation.All,
                 options?: Crypto.CipherOptions,
-        ): string | number[];
+        ): Crypto.Output;
 
-        decrypt(data: string | number[],
-                key: Crypto.Key,
+        decrypt(data: Crypto.Input,
+                key: Crypto.Key | java.security.Key,
                 transformation: Crypto.CipherTransformation.All,
                 options?: Crypto.CipherOptions,
-        ): string | number[];
+        ): Crypto.Output;
 
         generateKeyPair(algorithm: Crypto.KeyPairGeneratorAlgorithm, length?: number): Crypto.KeyPair;
 
@@ -43,15 +48,15 @@ declare namespace Internal {
 
         class Key extends org.autojs.autojs.core.crypto.Crypto.Key {
 
-            constructor(data: string | number[], options?: Crypto.KeyOptions);
+            constructor(data: Crypto.Input, options?: Crypto.KeyOptions);
 
-            toKeySpec(algorithm: CipherTransformation.RSA): java.security.Key;
+            toKeySpec(transformation: Crypto.CipherTransformation.All | string): java.security.Key;
 
         }
 
         class KeyPair extends org.autojs.autojs.core.crypto.Crypto.KeyPair {
 
-            constructor(publicKeyParam: string | number[], privateKeyParam: string | number[], options?: Crypto.KeyOptions);
+            constructor(publicKeyParam: Crypto.Input, privateKeyParam: Crypto.Input, options?: Crypto.KeyOptions);
 
             publicKey: org.autojs.autojs.core.crypto.Crypto.Key;
             privateKey: org.autojs.autojs.core.crypto.Crypto.Key;
@@ -84,7 +89,7 @@ declare namespace Internal {
         // @ts-ignore
         interface CipherOptions extends DigestOptions {
 
-            iv?: java.security.spec.AlgorithmParameterSpec;
+            iv?: string | number[] | java.security.spec.AlgorithmParameterSpec;
 
             output?: 'bytes' | 'base64' | 'hex' | 'string' | 'file';
 
@@ -95,6 +100,10 @@ declare namespace Internal {
         interface KeyOptions extends InputDigestOptions {
             keyPair?: 'public' | 'private';
         }
+
+        type Input = string | number[];
+
+        type Output = string | number[];
 
         type DigestAlgorithm = 'MD5' | `SHA-${1 | 224 | 256 | 384 | 512}`;
 

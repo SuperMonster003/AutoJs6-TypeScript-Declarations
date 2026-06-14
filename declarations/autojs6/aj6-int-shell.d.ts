@@ -1,28 +1,65 @@
 // Type definitions for AutoJs6 internal module shell
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__shell__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/shell/Shell.kt
  */
 
 declare namespace Internal {
 
+    import AbstractShell = org.autojs.autojs.runtime.api.AbstractShell;
+
     interface Shell {
 
-        (cmd: string, withRoot?: boolean): org.autojs.autojs.runtime.api.AbstractShell.Result;
+        (command: Shell.Command): AbstractShell.Result;
+        (command: Shell.Command, withRoot: boolean | number): AbstractShell.Result;
+        (command: Shell.Command, commandArgument: Shell.CommandArguments): AbstractShell.Result;
+        (command: Shell.Command, commandArgument: Shell.CommandArguments, withRoot: boolean | number): AbstractShell.Result;
+
+        execCommand(command: Shell.Command): AbstractShell.Result;
+        execCommand(command: Shell.Command, withRoot: boolean | number): AbstractShell.Result;
+        execCommand(command: Shell.Command, commandArgument: Shell.CommandArguments): AbstractShell.Result;
+        execCommand(command: Shell.Command, commandArgument: Shell.CommandArguments, withRoot: boolean | number): AbstractShell.Result;
+
+        getCommand(command: Shell.Command): string;
+        getCommand(command: Shell.Command, withRoot: boolean | number): string;
+        getCommand(command: Shell.Command, commandArgument: Shell.CommandArguments): string;
+        getCommand(command: Shell.Command, commandArgument: Shell.CommandArguments, withRoot: boolean | number): string;
 
         /**
          * @see app.intentToShell
          */
         fromIntent(i: Intent.Common): string;
 
+        kill(app: org.autojs.autojs.util.App | string): boolean;
+
+        currentPackage(): string;
+
+        currentActivity(): string;
+
+        currentComponent(): string;
+
     }
+
+}
+
+declare namespace Shell {
+
+    type Command = string | string[];
+
+    interface CommandArgumentMap {
+        root?: boolean;
+        exit?: boolean;
+        [name: string]: string | number | boolean | null | undefined;
+    }
+
+    type CommandArguments = string | CommandArgumentMap;
 
 }
 

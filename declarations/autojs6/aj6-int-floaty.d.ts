@@ -1,14 +1,15 @@
 // Type definitions for AutoJs6 internal module floaty
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__floaty__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/floaty/Floaty.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/Floaty.kt
  */
 
 declare namespace Internal {
@@ -48,7 +49,11 @@ declare namespace Internal {
 
         requestPermission(): void;
 
+        ensurePermission(): void;
+
         closeAll(): void;
+
+        getClip(maxDelayAfterWindowReady?: number): string;
 
     }
 

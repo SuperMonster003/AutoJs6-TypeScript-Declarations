@@ -1,14 +1,17 @@
-// Type definitions for AutoJs6 internal module images
+// Type definitions for AutoJs6 internal module colors
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.8.4
 //
-// Last modified: Feb 5, 2023
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__colors__.js
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/colors/Colors.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/colors/Color.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/colors/ColorNativeObject.kt
+ * @Source /src/main/java/org/autojs/autojs/core/image/ColorTable.kt
  */
 
 declare namespace Internal {
@@ -19,6 +22,8 @@ declare namespace Internal {
     import ColorHueComponent = Colors.ColorHueComponent;
     import ComponentOptions = Colors.ComponentOptions;
     import ToComponentOptions = Colors.ToComponentOptions;
+    import StringOptions = Colors.StringOptions;
+    import FloatArray = Colors.FloatArray;
 
     class Colors extends org.autojs.autojs.core.image.Colors {
 
@@ -26,9 +31,11 @@ declare namespace Internal {
         css: typeof org.autojs.autojs.core.image.ColorTable.Css;
         material: typeof org.autojs.autojs.core.image.ColorTable.Material;
         android: typeof org.autojs.autojs.core.image.ColorTable.Android;
+        all: Colors.ColorMap;
+        themeColor: org.autojs.autojs.theme.ThemeColor;
 
         /**
-         * <p style="background-color: #F0F8FF">　　　</p>
+         * <p style="background-color: #F0F8FF">#F0F8FF</p>
          * <p>Name (en): <b>Alice Blue</b></p>
          * <p>Name (zh): <b>爱丽丝蓝</b></p>
          * <p>Hex: <b>#F0F8FF</b></p>
@@ -39,7 +46,7 @@ declare namespace Internal {
         ALICE_BLUE: number;
 
         /**
-         * <p style="background-color: #E32636">　　　</p>
+         * <p style="background-color: #E32636">#E32636</p>
          * <p>Name (en): <b>Alizarin Crimson</b></p>
          * <p>Name (zh): <b>茜红 / 深茜红</b></p>
          * <p>Hex: <b>#E32636</b></p>
@@ -50,7 +57,7 @@ declare namespace Internal {
         ALIZARIN_CRIMSON: number;
 
         /**
-         * <p style="background-color: #FFBF00">　　　</p>
+         * <p style="background-color: #FFBF00">#FFBF00</p>
          * <p>Name (en): <b>Amber</b></p>
          * <p>Name (zh): <b>琥珀</b></p>
          * <p>Hex: <b>#FFBF00</b></p>
@@ -61,7 +68,7 @@ declare namespace Internal {
         AMBER: number;
 
         /**
-         * <p style="background-color: #FFF8E1">　　　</p>
+         * <p style="background-color: #FFF8E1">#FFF8E1</p>
          * <p>Name (en): <b>Amber (50)</b></p>
          * <p>Name (zh): <b>琥珀 (50)</b></p>
          * <p>Hex: <b>#FFF8E1</b></p>
@@ -72,7 +79,7 @@ declare namespace Internal {
         AMBER_50: number;
 
         /**
-         * <p style="background-color: #FFECB3">　　　</p>
+         * <p style="background-color: #FFECB3">#FFECB3</p>
          * <p>Name (en): <b>Amber (100)</b></p>
          * <p>Name (zh): <b>琥珀 (100)</b></p>
          * <p>Hex: <b>#FFECB3</b></p>
@@ -83,7 +90,7 @@ declare namespace Internal {
         AMBER_100: number;
 
         /**
-         * <p style="background-color: #FFE082">　　　</p>
+         * <p style="background-color: #FFE082">#FFE082</p>
          * <p>Name (en): <b>Amber (200)</b></p>
          * <p>Name (zh): <b>琥珀 (200)</b></p>
          * <p>Hex: <b>#FFE082</b></p>
@@ -94,7 +101,7 @@ declare namespace Internal {
         AMBER_200: number;
 
         /**
-         * <p style="background-color: #FFD54F">　　　</p>
+         * <p style="background-color: #FFD54F">#FFD54F</p>
          * <p>Name (en): <b>Amber (300)</b></p>
          * <p>Name (zh): <b>琥珀 (300)</b></p>
          * <p>Hex: <b>#FFD54F</b></p>
@@ -105,7 +112,7 @@ declare namespace Internal {
         AMBER_300: number;
 
         /**
-         * <p style="background-color: #FFCA28">　　　</p>
+         * <p style="background-color: #FFCA28">#FFCA28</p>
          * <p>Name (en): <b>Amber (400)</b></p>
          * <p>Name (zh): <b>琥珀 (400)</b></p>
          * <p>Hex: <b>#FFCA28</b></p>
@@ -116,7 +123,7 @@ declare namespace Internal {
         AMBER_400: number;
 
         /**
-         * <p style="background-color: #FFC107">　　　</p>
+         * <p style="background-color: #FFC107">#FFC107</p>
          * <p>Name (en): <b>Amber (500)</b></p>
          * <p>Name (zh): <b>琥珀 (500)</b></p>
          * <p>Hex: <b>#FFC107</b></p>
@@ -127,7 +134,7 @@ declare namespace Internal {
         AMBER_500: number;
 
         /**
-         * <p style="background-color: #FFB300">　　　</p>
+         * <p style="background-color: #FFB300">#FFB300</p>
          * <p>Name (en): <b>Amber (600)</b></p>
          * <p>Name (zh): <b>琥珀 (600)</b></p>
          * <p>Hex: <b>#FFB300</b></p>
@@ -138,7 +145,7 @@ declare namespace Internal {
         AMBER_600: number;
 
         /**
-         * <p style="background-color: #FFA000">　　　</p>
+         * <p style="background-color: #FFA000">#FFA000</p>
          * <p>Name (en): <b>Amber (700)</b></p>
          * <p>Name (zh): <b>琥珀 (700)</b></p>
          * <p>Hex: <b>#FFA000</b></p>
@@ -149,7 +156,7 @@ declare namespace Internal {
         AMBER_700: number;
 
         /**
-         * <p style="background-color: #FF8F00">　　　</p>
+         * <p style="background-color: #FF8F00">#FF8F00</p>
          * <p>Name (en): <b>Amber (800)</b></p>
          * <p>Name (zh): <b>琥珀 (800)</b></p>
          * <p>Hex: <b>#FF8F00</b></p>
@@ -160,7 +167,7 @@ declare namespace Internal {
         AMBER_800: number;
 
         /**
-         * <p style="background-color: #FF6F00">　　　</p>
+         * <p style="background-color: #FF6F00">#FF6F00</p>
          * <p>Name (en): <b>Amber (900)</b></p>
          * <p>Name (zh): <b>琥珀 (900)</b></p>
          * <p>Hex: <b>#FF6F00</b></p>
@@ -171,7 +178,7 @@ declare namespace Internal {
         AMBER_900: number;
 
         /**
-         * <p style="background-color: #FFE57F">　　　</p>
+         * <p style="background-color: #FFE57F">#FFE57F</p>
          * <p>Name (en): <b>Amber (A100)</b></p>
          * <p>Name (zh): <b>琥珀 (A100)</b></p>
          * <p>Hex: <b>#FFE57F</b></p>
@@ -182,7 +189,7 @@ declare namespace Internal {
         AMBER_A100: number;
 
         /**
-         * <p style="background-color: #FFD740">　　　</p>
+         * <p style="background-color: #FFD740">#FFD740</p>
          * <p>Name (en): <b>Amber (A200)</b></p>
          * <p>Name (zh): <b>琥珀 (A200)</b></p>
          * <p>Hex: <b>#FFD740</b></p>
@@ -193,7 +200,7 @@ declare namespace Internal {
         AMBER_A200: number;
 
         /**
-         * <p style="background-color: #FFC400">　　　</p>
+         * <p style="background-color: #FFC400">#FFC400</p>
          * <p>Name (en): <b>Amber (A400)</b></p>
          * <p>Name (zh): <b>琥珀 (A400)</b></p>
          * <p>Hex: <b>#FFC400</b></p>
@@ -204,7 +211,7 @@ declare namespace Internal {
         AMBER_A400: number;
 
         /**
-         * <p style="background-color: #FFAB00">　　　</p>
+         * <p style="background-color: #FFAB00">#FFAB00</p>
          * <p>Name (en): <b>Amber (A700)</b></p>
          * <p>Name (zh): <b>琥珀 (A700)</b></p>
          * <p>Hex: <b>#FFAB00</b></p>
@@ -215,7 +222,7 @@ declare namespace Internal {
         AMBER_A700: number;
 
         /**
-         * <p style="background-color: #9966CC">　　　</p>
+         * <p style="background-color: #9966CC">#9966CC</p>
          * <p>Name (en): <b>Amethyst</b></p>
          * <p>Name (zh): <b>紫水晶</b></p>
          * <p>Hex: <b>#9966CC</b></p>
@@ -226,7 +233,7 @@ declare namespace Internal {
         AMETHYST: number;
 
         /**
-         * <p style="background-color: #FAEBD7">　　　</p>
+         * <p style="background-color: #FAEBD7">#FAEBD7</p>
          * <p>Name (en): <b>Antique White</b></p>
          * <p>Name (zh): <b>古董白</b></p>
          * <p>Hex: <b>#FAEBD7</b></p>
@@ -237,7 +244,7 @@ declare namespace Internal {
         ANTIQUE_WHITE: number;
 
         /**
-         * <p style="background-color: #8CE600">　　　</p>
+         * <p style="background-color: #8CE600">#8CE600</p>
          * <p>Name (en): <b>Apple Green</b></p>
          * <p>Name (zh): <b>苹果绿</b></p>
          * <p>Hex: <b>#8CE600</b></p>
@@ -248,7 +255,7 @@ declare namespace Internal {
         APPLE_GREEN: number;
 
         /**
-         * <p style="background-color: #E69966">　　　</p>
+         * <p style="background-color: #E69966">#E69966</p>
          * <p>Name (en): <b>Apricot</b></p>
          * <p>Name (zh): <b>杏黄</b></p>
          * <p>Hex: <b>#E69966</b></p>
@@ -259,7 +266,7 @@ declare namespace Internal {
         APRICOT: number;
 
         /**
-         * <p style="background-color: #00FFFF">　　　</p>
+         * <p style="background-color: #00FFFF">#00FFFF</p>
          * <p>Name (en): <b>Aqua</b></p>
          * <p>Name (zh): <b>青</b></p>
          * <p>Hex: <b>#00FFFF</b></p>
@@ -270,7 +277,7 @@ declare namespace Internal {
         AQUA: number;
 
         /**
-         * <p style="background-color: #7FFFD4">　　　</p>
+         * <p style="background-color: #7FFFD4">#7FFFD4</p>
          * <p>Name (en): <b>Aquamarine</b></p>
          * <p>Name (zh): <b>蓝绿 / 碧蓝</b></p>
          * <p>Hex: <b>#7FFFD4</b></p>
@@ -281,7 +288,7 @@ declare namespace Internal {
         AQUAMARINE: number;
 
         /**
-         * <p style="background-color: #66FFE6">　　　</p>
+         * <p style="background-color: #66FFE6">#66FFE6</p>
          * <p>Name (en): <b>Aqua Blue</b></p>
          * <p>Name (zh): <b>水蓝</b></p>
          * <p>Hex: <b>#66FFE6</b></p>
@@ -292,7 +299,7 @@ declare namespace Internal {
         AQUA_BLUE: number;
 
         /**
-         * <p style="background-color: #F0FFFF">　　　</p>
+         * <p style="background-color: #F0FFFF">#F0FFFF</p>
          * <p>Name (en): <b>Azure</b></p>
          * <p>Name (zh): <b>湛蓝</b></p>
          * <p>Hex: <b>#F0FFFF</b></p>
@@ -303,7 +310,7 @@ declare namespace Internal {
         AZURE: number;
 
         /**
-         * <p style="background-color: #89CFF0">　　　</p>
+         * <p style="background-color: #89CFF0">#89CFF0</p>
          * <p>Name (en): <b>Baby Blue</b></p>
          * <p>Name (zh): <b>浅蓝</b></p>
          * <p>Hex: <b>#89CFF0</b></p>
@@ -314,7 +321,7 @@ declare namespace Internal {
         BABY_BLUE: number;
 
         /**
-         * <p style="background-color: #FFD9E6">　　　</p>
+         * <p style="background-color: #FFD9E6">#FFD9E6</p>
          * <p>Name (en): <b>Baby Pink</b></p>
          * <p>Name (zh): <b>浅粉红</b></p>
          * <p>Hex: <b>#FFD9E6</b></p>
@@ -325,7 +332,7 @@ declare namespace Internal {
         BABY_PINK: number;
 
         /**
-         * <p style="background-color: #F5F5DC">　　　</p>
+         * <p style="background-color: #F5F5DC">#F5F5DC</p>
          * <p>Name (en): <b>Beige</b></p>
          * <p>Name (zh): <b>米黄</b></p>
          * <p>Hex: <b>#F5F5DC</b></p>
@@ -336,7 +343,7 @@ declare namespace Internal {
         BEIGE: number;
 
         /**
-         * <p style="background-color: #FFE4C4">　　　</p>
+         * <p style="background-color: #FFE4C4">#FFE4C4</p>
          * <p>Name (en): <b>Bisque</b></p>
          * <p>Name (zh): <b>陶坯黄</b></p>
          * <p>Hex: <b>#FFE4C4</b></p>
@@ -347,7 +354,7 @@ declare namespace Internal {
         BISQUE: number;
 
         /**
-         * <p style="background-color: #000000">　　　</p>
+         * <p style="background-color: #000000">#000000</p>
          * <p>Name (en): <b>Black</b></p>
          * <p>Name (zh): <b>黑</b></p>
          * <p>Hex: <b>#000000</b></p>
@@ -358,7 +365,7 @@ declare namespace Internal {
         BLACK: number;
 
         /**
-         * <p style="background-color: #000000">　　　</p>
+         * <p style="background-color: #000000">#000000</p>
          * <p>Name (en): <b>Black 1000</b></p>
          * <p>Name (zh): <b>黑</b></p>
          * <p>Hex: <b>#000000</b></p>
@@ -369,7 +376,7 @@ declare namespace Internal {
         BLACK_1000: number;
 
         /**
-         * <p style="background-color: #FFEBCD">　　　</p>
+         * <p style="background-color: #FFEBCD">#FFEBCD</p>
          * <p>Name (en): <b>Blanched Almond</b></p>
          * <p>Name (zh): <b>杏仁白</b></p>
          * <p>Hex: <b>#FFEBCD</b></p>
@@ -380,7 +387,7 @@ declare namespace Internal {
         BLANCHED_ALMOND: number;
 
         /**
-         * <p style="background-color: #0000FF">　　　</p>
+         * <p style="background-color: #0000FF">#0000FF</p>
          * <p>Name (en): <b>Blue</b></p>
          * <p>Name (zh): <b>蓝</b></p>
          * <p>Hex: <b>#0000FF</b></p>
@@ -391,7 +398,7 @@ declare namespace Internal {
         BLUE: number;
 
         /**
-         * <p style="background-color: #E3F2FD">　　　</p>
+         * <p style="background-color: #E3F2FD">#E3F2FD</p>
          * <p>Name (en): <b>Blue (50)</b></p>
          * <p>Name (zh): <b>蓝 (50)</b></p>
          * <p>Hex: <b>#E3F2FD</b></p>
@@ -402,7 +409,7 @@ declare namespace Internal {
         BLUE_50: number;
 
         /**
-         * <p style="background-color: #BBDEFB">　　　</p>
+         * <p style="background-color: #BBDEFB">#BBDEFB</p>
          * <p>Name (en): <b>Blue (100)</b></p>
          * <p>Name (zh): <b>蓝 (100)</b></p>
          * <p>Hex: <b>#BBDEFB</b></p>
@@ -413,7 +420,7 @@ declare namespace Internal {
         BLUE_100: number;
 
         /**
-         * <p style="background-color: #90CAF9">　　　</p>
+         * <p style="background-color: #90CAF9">#90CAF9</p>
          * <p>Name (en): <b>Blue (200)</b></p>
          * <p>Name (zh): <b>蓝 (200)</b></p>
          * <p>Hex: <b>#90CAF9</b></p>
@@ -424,7 +431,7 @@ declare namespace Internal {
         BLUE_200: number;
 
         /**
-         * <p style="background-color: #64B5F6">　　　</p>
+         * <p style="background-color: #64B5F6">#64B5F6</p>
          * <p>Name (en): <b>Blue (300)</b></p>
          * <p>Name (zh): <b>蓝 (300)</b></p>
          * <p>Hex: <b>#64B5F6</b></p>
@@ -435,7 +442,7 @@ declare namespace Internal {
         BLUE_300: number;
 
         /**
-         * <p style="background-color: #42A5F5">　　　</p>
+         * <p style="background-color: #42A5F5">#42A5F5</p>
          * <p>Name (en): <b>Blue (400)</b></p>
          * <p>Name (zh): <b>蓝 (400)</b></p>
          * <p>Hex: <b>#42A5F5</b></p>
@@ -446,7 +453,7 @@ declare namespace Internal {
         BLUE_400: number;
 
         /**
-         * <p style="background-color: #2196F3">　　　</p>
+         * <p style="background-color: #2196F3">#2196F3</p>
          * <p>Name (en): <b>Blue (500)</b></p>
          * <p>Name (zh): <b>蓝 (500)</b></p>
          * <p>Hex: <b>#2196F3</b></p>
@@ -457,7 +464,7 @@ declare namespace Internal {
         BLUE_500: number;
 
         /**
-         * <p style="background-color: #1E88E5">　　　</p>
+         * <p style="background-color: #1E88E5">#1E88E5</p>
          * <p>Name (en): <b>Blue (600)</b></p>
          * <p>Name (zh): <b>蓝 (600)</b></p>
          * <p>Hex: <b>#1E88E5</b></p>
@@ -468,7 +475,7 @@ declare namespace Internal {
         BLUE_600: number;
 
         /**
-         * <p style="background-color: #1976D2">　　　</p>
+         * <p style="background-color: #1976D2">#1976D2</p>
          * <p>Name (en): <b>Blue (700)</b></p>
          * <p>Name (zh): <b>蓝 (700)</b></p>
          * <p>Hex: <b>#1976D2</b></p>
@@ -479,7 +486,7 @@ declare namespace Internal {
         BLUE_700: number;
 
         /**
-         * <p style="background-color: #1565C0">　　　</p>
+         * <p style="background-color: #1565C0">#1565C0</p>
          * <p>Name (en): <b>Blue (800)</b></p>
          * <p>Name (zh): <b>蓝 (800)</b></p>
          * <p>Hex: <b>#1565C0</b></p>
@@ -490,7 +497,7 @@ declare namespace Internal {
         BLUE_800: number;
 
         /**
-         * <p style="background-color: #0D47A1">　　　</p>
+         * <p style="background-color: #0D47A1">#0D47A1</p>
          * <p>Name (en): <b>Blue (900)</b></p>
          * <p>Name (zh): <b>蓝 (900)</b></p>
          * <p>Hex: <b>#0D47A1</b></p>
@@ -501,7 +508,7 @@ declare namespace Internal {
         BLUE_900: number;
 
         /**
-         * <p style="background-color: #82B1FF">　　　</p>
+         * <p style="background-color: #82B1FF">#82B1FF</p>
          * <p>Name (en): <b>Blue (A100)</b></p>
          * <p>Name (zh): <b>蓝 (A100)</b></p>
          * <p>Hex: <b>#82B1FF</b></p>
@@ -512,7 +519,7 @@ declare namespace Internal {
         BLUE_A100: number;
 
         /**
-         * <p style="background-color: #448AFF">　　　</p>
+         * <p style="background-color: #448AFF">#448AFF</p>
          * <p>Name (en): <b>Blue (A200)</b></p>
          * <p>Name (zh): <b>蓝 (A200)</b></p>
          * <p>Hex: <b>#448AFF</b></p>
@@ -523,7 +530,7 @@ declare namespace Internal {
         BLUE_A200: number;
 
         /**
-         * <p style="background-color: #2979FF">　　　</p>
+         * <p style="background-color: #2979FF">#2979FF</p>
          * <p>Name (en): <b>Blue (A400)</b></p>
          * <p>Name (zh): <b>蓝 (A400)</b></p>
          * <p>Hex: <b>#2979FF</b></p>
@@ -534,7 +541,7 @@ declare namespace Internal {
         BLUE_A400: number;
 
         /**
-         * <p style="background-color: #2962FF">　　　</p>
+         * <p style="background-color: #2962FF">#2962FF</p>
          * <p>Name (en): <b>Blue (A700)</b></p>
          * <p>Name (zh): <b>蓝 (A700)</b></p>
          * <p>Hex: <b>#2962FF</b></p>
@@ -545,7 +552,7 @@ declare namespace Internal {
         BLUE_A700: number;
 
         /**
-         * <p style="background-color: #607D8B">　　　</p>
+         * <p style="background-color: #607D8B">#607D8B</p>
          * <p>Name (en): <b>Blue Grey (500)</b></p>
          * <p>Name (zh): <b>蓝灰 (500)</b></p>
          * <p>Hex: <b>#607D8B</b></p>
@@ -554,9 +561,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         BLUE_GREY: number;
+        BLUE_GRAY: number;
 
         /**
-         * <p style="background-color: #ECEFF1">　　　</p>
+         * <p style="background-color: #ECEFF1">#ECEFF1</p>
          * <p>Name (en): <b>Blue Grey (50)</b></p>
          * <p>Name (zh): <b>蓝灰 (50)</b></p>
          * <p>Hex: <b>#ECEFF1</b></p>
@@ -565,9 +573,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         BLUE_GREY_50: number;
+        BLUE_GRAY_50: number;
 
         /**
-         * <p style="background-color: #CFD8DC">　　　</p>
+         * <p style="background-color: #CFD8DC">#CFD8DC</p>
          * <p>Name (en): <b>Blue Grey (100)</b></p>
          * <p>Name (zh): <b>蓝灰 (100)</b></p>
          * <p>Hex: <b>#CFD8DC</b></p>
@@ -576,9 +585,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         BLUE_GREY_100: number;
+        BLUE_GRAY_100: number;
 
         /**
-         * <p style="background-color: #B0BBC5">　　　</p>
+         * <p style="background-color: #B0BBC5">#B0BBC5</p>
          * <p>Name (en): <b>Blue Grey (200)</b></p>
          * <p>Name (zh): <b>蓝灰 (200)</b></p>
          * <p>Hex: <b>#B0BBC5</b></p>
@@ -587,9 +597,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         BLUE_GREY_200: number;
+        BLUE_GRAY_200: number;
 
         /**
-         * <p style="background-color: #90A4AE">　　　</p>
+         * <p style="background-color: #90A4AE">#90A4AE</p>
          * <p>Name (en): <b>Blue Grey (300)</b></p>
          * <p>Name (zh): <b>蓝灰 (300)</b></p>
          * <p>Hex: <b>#90A4AE</b></p>
@@ -598,9 +609,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         BLUE_GREY_300: number;
+        BLUE_GRAY_300: number;
 
         /**
-         * <p style="background-color: #78909C">　　　</p>
+         * <p style="background-color: #78909C">#78909C</p>
          * <p>Name (en): <b>Blue Grey (400)</b></p>
          * <p>Name (zh): <b>蓝灰 (400)</b></p>
          * <p>Hex: <b>#78909C</b></p>
@@ -609,9 +621,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         BLUE_GREY_400: number;
+        BLUE_GRAY_400: number;
 
         /**
-         * <p style="background-color: #607D8B">　　　</p>
+         * <p style="background-color: #607D8B">#607D8B</p>
          * <p>Name (en): <b>Blue Grey (500)</b></p>
          * <p>Name (zh): <b>蓝灰 (500)</b></p>
          * <p>Hex: <b>#607D8B</b></p>
@@ -620,9 +633,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         BLUE_GREY_500: number;
+        BLUE_GRAY_500: number;
 
         /**
-         * <p style="background-color: #546E7A">　　　</p>
+         * <p style="background-color: #546E7A">#546E7A</p>
          * <p>Name (en): <b>Blue Grey (600)</b></p>
          * <p>Name (zh): <b>蓝灰 (600)</b></p>
          * <p>Hex: <b>#546E7A</b></p>
@@ -631,9 +645,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         BLUE_GREY_600: number;
+        BLUE_GRAY_600: number;
 
         /**
-         * <p style="background-color: #455A64">　　　</p>
+         * <p style="background-color: #455A64">#455A64</p>
          * <p>Name (en): <b>Blue Grey (700)</b></p>
          * <p>Name (zh): <b>蓝灰 (700)</b></p>
          * <p>Hex: <b>#455A64</b></p>
@@ -642,9 +657,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         BLUE_GREY_700: number;
+        BLUE_GRAY_700: number;
 
         /**
-         * <p style="background-color: #37474F">　　　</p>
+         * <p style="background-color: #37474F">#37474F</p>
          * <p>Name (en): <b>Blue Grey (800)</b></p>
          * <p>Name (zh): <b>蓝灰 (800)</b></p>
          * <p>Hex: <b>#37474F</b></p>
@@ -653,9 +669,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         BLUE_GREY_800: number;
+        BLUE_GRAY_800: number;
 
         /**
-         * <p style="background-color: #263238">　　　</p>
+         * <p style="background-color: #263238">#263238</p>
          * <p>Name (en): <b>Blue Grey (900)</b></p>
          * <p>Name (zh): <b>蓝灰 (900)</b></p>
          * <p>Hex: <b>#263238</b></p>
@@ -664,9 +681,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         BLUE_GREY_900: number;
+        BLUE_GRAY_900: number;
 
         /**
-         * <p style="background-color: #8A2BE2">　　　</p>
+         * <p style="background-color: #8A2BE2">#8A2BE2</p>
          * <p>Name (en): <b>Blue Violet</b></p>
          * <p>Name (zh): <b>蓝紫</b></p>
          * <p>Hex: <b>#8A2BE2</b></p>
@@ -677,7 +695,7 @@ declare namespace Internal {
         BLUE_VIOLET: number;
 
         /**
-         * <p style="background-color: #66FF00">　　　</p>
+         * <p style="background-color: #66FF00">#66FF00</p>
          * <p>Name (en): <b>Bright Green</b></p>
          * <p>Name (zh): <b>黄绿 / 明绿</b></p>
          * <p>Hex: <b>#66FF00</b></p>
@@ -688,7 +706,7 @@ declare namespace Internal {
         BRIGHT_GREEN: number;
 
         /**
-         * <p style="background-color: #CD7F32">　　　</p>
+         * <p style="background-color: #CD7F32">#CD7F32</p>
          * <p>Name (en): <b>Bronze</b></p>
          * <p>Name (zh): <b>铜</b></p>
          * <p>Hex: <b>#CD7F32</b></p>
@@ -699,7 +717,7 @@ declare namespace Internal {
         BRONZE: number;
 
         /**
-         * <p style="background-color: #A52A2A">　　　</p>
+         * <p style="background-color: #A52A2A">#A52A2A</p>
          * <p>Name (en): <b>Brown</b></p>
          * <p>Name (zh): <b>褐</b></p>
          * <p>Hex: <b>#A52A2A</b></p>
@@ -710,7 +728,7 @@ declare namespace Internal {
         BROWN: number;
 
         /**
-         * <p style="background-color: #EFEBE9">　　　</p>
+         * <p style="background-color: #EFEBE9">#EFEBE9</p>
          * <p>Name (en): <b>Brown (50)</b></p>
          * <p>Name (zh): <b>棕 (50)</b></p>
          * <p>Hex: <b>#EFEBE9</b></p>
@@ -721,7 +739,7 @@ declare namespace Internal {
         BROWN_50: number;
 
         /**
-         * <p style="background-color: #D7CCC8">　　　</p>
+         * <p style="background-color: #D7CCC8">#D7CCC8</p>
          * <p>Name (en): <b>Brown (100)</b></p>
          * <p>Name (zh): <b>棕 (100)</b></p>
          * <p>Hex: <b>#D7CCC8</b></p>
@@ -732,7 +750,7 @@ declare namespace Internal {
         BROWN_100: number;
 
         /**
-         * <p style="background-color: #BCAAA4">　　　</p>
+         * <p style="background-color: #BCAAA4">#BCAAA4</p>
          * <p>Name (en): <b>Brown (200)</b></p>
          * <p>Name (zh): <b>棕 (200)</b></p>
          * <p>Hex: <b>#BCAAA4</b></p>
@@ -743,7 +761,7 @@ declare namespace Internal {
         BROWN_200: number;
 
         /**
-         * <p style="background-color: #A1887F">　　　</p>
+         * <p style="background-color: #A1887F">#A1887F</p>
          * <p>Name (en): <b>Brown (300)</b></p>
          * <p>Name (zh): <b>棕 (300)</b></p>
          * <p>Hex: <b>#A1887F</b></p>
@@ -754,7 +772,7 @@ declare namespace Internal {
         BROWN_300: number;
 
         /**
-         * <p style="background-color: #8D6E63">　　　</p>
+         * <p style="background-color: #8D6E63">#8D6E63</p>
          * <p>Name (en): <b>Brown (400)</b></p>
          * <p>Name (zh): <b>棕 (400)</b></p>
          * <p>Hex: <b>#8D6E63</b></p>
@@ -765,7 +783,7 @@ declare namespace Internal {
         BROWN_400: number;
 
         /**
-         * <p style="background-color: #795548">　　　</p>
+         * <p style="background-color: #795548">#795548</p>
          * <p>Name (en): <b>Brown (500)</b></p>
          * <p>Name (zh): <b>棕 (500)</b></p>
          * <p>Hex: <b>#795548</b></p>
@@ -776,7 +794,7 @@ declare namespace Internal {
         BROWN_500: number;
 
         /**
-         * <p style="background-color: #6D4C41">　　　</p>
+         * <p style="background-color: #6D4C41">#6D4C41</p>
          * <p>Name (en): <b>Brown (600)</b></p>
          * <p>Name (zh): <b>棕 (600)</b></p>
          * <p>Hex: <b>#6D4C41</b></p>
@@ -787,7 +805,7 @@ declare namespace Internal {
         BROWN_600: number;
 
         /**
-         * <p style="background-color: #5D4037">　　　</p>
+         * <p style="background-color: #5D4037">#5D4037</p>
          * <p>Name (en): <b>Brown (700)</b></p>
          * <p>Name (zh): <b>棕 (700)</b></p>
          * <p>Hex: <b>#5D4037</b></p>
@@ -798,7 +816,7 @@ declare namespace Internal {
         BROWN_700: number;
 
         /**
-         * <p style="background-color: #4E342E">　　　</p>
+         * <p style="background-color: #4E342E">#4E342E</p>
          * <p>Name (en): <b>Brown (800)</b></p>
          * <p>Name (zh): <b>棕 (800)</b></p>
          * <p>Hex: <b>#4E342E</b></p>
@@ -809,7 +827,7 @@ declare namespace Internal {
         BROWN_800: number;
 
         /**
-         * <p style="background-color: #3E2723">　　　</p>
+         * <p style="background-color: #3E2723">#3E2723</p>
          * <p>Name (en): <b>Brown (900)</b></p>
          * <p>Name (zh): <b>棕 (900)</b></p>
          * <p>Hex: <b>#3E2723</b></p>
@@ -820,7 +838,7 @@ declare namespace Internal {
         BROWN_900: number;
 
         /**
-         * <p style="background-color: #800020">　　　</p>
+         * <p style="background-color: #800020">#800020</p>
          * <p>Name (en): <b>Burgundy</b></p>
          * <p>Name (zh): <b>勃艮第酒红</b></p>
          * <p>Hex: <b>#800020</b></p>
@@ -831,7 +849,7 @@ declare namespace Internal {
         BURGUNDY: number;
 
         /**
-         * <p style="background-color: #DEB887">　　　</p>
+         * <p style="background-color: #DEB887">#DEB887</p>
          * <p>Name (en): <b>Burly Wood</b></p>
          * <p>Name (zh): <b>硬木</b></p>
          * <p>Hex: <b>#DEB887</b></p>
@@ -842,7 +860,7 @@ declare namespace Internal {
         BURLY_WOOD: number;
 
         /**
-         * <p style="background-color: #CC5500">　　　</p>
+         * <p style="background-color: #CC5500">#CC5500</p>
          * <p>Name (en): <b>Burnt Orange</b></p>
          * <p>Name (zh): <b>燃橙</b></p>
          * <p>Hex: <b>#CC5500</b></p>
@@ -853,7 +871,7 @@ declare namespace Internal {
         BURNT_ORANGE: number;
 
         /**
-         * <p style="background-color: #5F9EA0">　　　</p>
+         * <p style="background-color: #5F9EA0">#5F9EA0</p>
          * <p>Name (en): <b>Cadet Blue</b></p>
          * <p>Name (zh): <b>军服蓝</b></p>
          * <p>Hex: <b>#5F9EA0</b></p>
@@ -864,7 +882,7 @@ declare namespace Internal {
         CADET_BLUE: number;
 
         /**
-         * <p style="background-color: #A16B47">　　　</p>
+         * <p style="background-color: #A16B47">#A16B47</p>
          * <p>Name (en): <b>Camel</b></p>
          * <p>Name (zh): <b>驼</b></p>
          * <p>Hex: <b>#A16B47</b></p>
@@ -875,7 +893,7 @@ declare namespace Internal {
         CAMEL: number;
 
         /**
-         * <p style="background-color: #E63995">　　　</p>
+         * <p style="background-color: #E63995">#E63995</p>
          * <p>Name (en): <b>Camellia</b></p>
          * <p>Name (zh): <b>山茶红</b></p>
          * <p>Hex: <b>#E63995</b></p>
@@ -886,7 +904,7 @@ declare namespace Internal {
         CAMELLIA: number;
 
         /**
-         * <p style="background-color: #FFEF00">　　　</p>
+         * <p style="background-color: #FFEF00">#FFEF00</p>
          * <p>Name (en): <b>Canary Yellow</b></p>
          * <p>Name (zh): <b>鲜黄</b></p>
          * <p>Hex: <b>#FFEF00</b></p>
@@ -897,7 +915,7 @@ declare namespace Internal {
         CANARY_YELLOW: number;
 
         /**
-         * <p style="background-color: #990036">　　　</p>
+         * <p style="background-color: #990036">#990036</p>
          * <p>Name (en): <b>Cardinal Red</b></p>
          * <p>Name (zh): <b>枢机红</b></p>
          * <p>Hex: <b>#990036</b></p>
@@ -908,7 +926,7 @@ declare namespace Internal {
         CARDINAL_RED: number;
 
         /**
-         * <p style="background-color: #E6005C">　　　</p>
+         * <p style="background-color: #E6005C">#E6005C</p>
          * <p>Name (en): <b>Carmine</b></p>
          * <p>Name (zh): <b>胭脂红</b></p>
          * <p>Hex: <b>#E6005C</b></p>
@@ -919,7 +937,7 @@ declare namespace Internal {
         CARMINE: number;
 
         /**
-         * <p style="background-color: #ACE1AF">　　　</p>
+         * <p style="background-color: #ACE1AF">#ACE1AF</p>
          * <p>Name (en): <b>Celadon</b></p>
          * <p>Name (zh): <b>青瓷绿</b></p>
          * <p>Hex: <b>#ACE1AF</b></p>
@@ -930,7 +948,7 @@ declare namespace Internal {
         CELADON: number;
 
         /**
-         * <p style="background-color: #DE3163">　　　</p>
+         * <p style="background-color: #DE3163">#DE3163</p>
          * <p>Name (en): <b>Cerise</b></p>
          * <p>Name (zh): <b>樱桃红 / 樱桃</b></p>
          * <p>Hex: <b>#DE3163</b></p>
@@ -941,7 +959,7 @@ declare namespace Internal {
         CERISE: number;
 
         /**
-         * <p style="background-color: #2A52BE">　　　</p>
+         * <p style="background-color: #2A52BE">#2A52BE</p>
          * <p>Name (en): <b>Cerulean Blue</b></p>
          * <p>Name (zh): <b>蔚蓝 / 天青蓝</b></p>
          * <p>Hex: <b>#2A52BE</b></p>
@@ -952,7 +970,7 @@ declare namespace Internal {
         CERULEAN_BLUE: number;
 
         /**
-         * <p style="background-color: #FFFF99">　　　</p>
+         * <p style="background-color: #FFFF99">#FFFF99</p>
          * <p>Name (en): <b>Champagne Yellow</b></p>
          * <p>Name (zh): <b>香槟黄</b></p>
          * <p>Hex: <b>#FFFF99</b></p>
@@ -963,7 +981,7 @@ declare namespace Internal {
         CHAMPAGNE_YELLOW: number;
 
         /**
-         * <p style="background-color: #7FFF00">　　　</p>
+         * <p style="background-color: #7FFF00">#7FFF00</p>
          * <p>Name (en): <b>Chartreuse</b></p>
          * <p>Name (zh): <b>查特酒绿</b></p>
          * <p>Hex: <b>#7FFF00</b></p>
@@ -974,7 +992,7 @@ declare namespace Internal {
         CHARTREUSE: number;
 
         /**
-         * <p style="background-color: #D2691E">　　　</p>
+         * <p style="background-color: #D2691E">#D2691E</p>
          * <p>Name (en): <b>Chocolate</b></p>
          * <p>Name (zh): <b>巧克力</b></p>
          * <p>Hex: <b>#D2691E</b></p>
@@ -985,7 +1003,7 @@ declare namespace Internal {
         CHOCOLATE: number;
 
         /**
-         * <p style="background-color: #E6B800">　　　</p>
+         * <p style="background-color: #E6B800">#E6B800</p>
          * <p>Name (en): <b>Chrome Yellow</b></p>
          * <p>Name (zh): <b>铬黄</b></p>
          * <p>Hex: <b>#E6B800</b></p>
@@ -996,7 +1014,7 @@ declare namespace Internal {
         CHROME_YELLOW: number;
 
         /**
-         * <p style="background-color: #CCA3CC">　　　</p>
+         * <p style="background-color: #CCA3CC">#CCA3CC</p>
          * <p>Name (en): <b>Clematis</b></p>
          * <p>Name (zh): <b>铁线莲紫</b></p>
          * <p>Hex: <b>#CCA3CC</b></p>
@@ -1007,7 +1025,7 @@ declare namespace Internal {
         CLEMATIS: number;
 
         /**
-         * <p style="background-color: #0047AB">　　　</p>
+         * <p style="background-color: #0047AB">#0047AB</p>
          * <p>Name (en): <b>Cobalt Blue</b></p>
          * <p>Name (zh): <b>钴蓝</b></p>
          * <p>Hex: <b>#0047AB</b></p>
@@ -1018,7 +1036,7 @@ declare namespace Internal {
         COBALT_BLUE: number;
 
         /**
-         * <p style="background-color: #66FF59">　　　</p>
+         * <p style="background-color: #66FF59">#66FF59</p>
          * <p>Name (en): <b>Cobalt Green</b></p>
          * <p>Name (zh): <b>钴绿</b></p>
          * <p>Hex: <b>#66FF59</b></p>
@@ -1029,7 +1047,7 @@ declare namespace Internal {
         COBALT_GREEN: number;
 
         /**
-         * <p style="background-color: #4D1F00">　　　</p>
+         * <p style="background-color: #4D1F00">#4D1F00</p>
          * <p>Name (en): <b>Coconut Brown</b></p>
          * <p>Name (zh): <b>椰褐</b></p>
          * <p>Hex: <b>#4D1F00</b></p>
@@ -1040,7 +1058,7 @@ declare namespace Internal {
         COCONUT_BROWN: number;
 
         /**
-         * <p style="background-color: #4D3900">　　　</p>
+         * <p style="background-color: #4D3900">#4D3900</p>
          * <p>Name (en): <b>Coffee</b></p>
          * <p>Name (zh): <b>咖啡</b></p>
          * <p>Hex: <b>#4D3900</b></p>
@@ -1051,7 +1069,7 @@ declare namespace Internal {
         COFFEE: number;
 
         /**
-         * <p style="background-color: #FF7F50">　　　</p>
+         * <p style="background-color: #FF7F50">#FF7F50</p>
          * <p>Name (en): <b>Coral</b></p>
          * <p>Name (zh): <b>珊瑚红</b></p>
          * <p>Hex: <b>#FF7F50</b></p>
@@ -1062,7 +1080,7 @@ declare namespace Internal {
         CORAL: number;
 
         /**
-         * <p style="background-color: #FF80BF">　　　</p>
+         * <p style="background-color: #FF80BF">#FF80BF</p>
          * <p>Name (en): <b>Coral Pink</b></p>
          * <p>Name (zh): <b>浅珊瑚红</b></p>
          * <p>Hex: <b>#FF80BF</b></p>
@@ -1073,7 +1091,7 @@ declare namespace Internal {
         CORAL_PINK: number;
 
         /**
-         * <p style="background-color: #6495ED">　　　</p>
+         * <p style="background-color: #6495ED">#6495ED</p>
          * <p>Name (en): <b>Cornflower Blue</b></p>
          * <p>Name (zh): <b>矢车菊蓝</b></p>
          * <p>Hex: <b>#6495ED</b></p>
@@ -1084,7 +1102,7 @@ declare namespace Internal {
         CORNFLOWER_BLUE: number;
 
         /**
-         * <p style="background-color: #FFF8DC">　　　</p>
+         * <p style="background-color: #FFF8DC">#FFF8DC</p>
          * <p>Name (en): <b>Corn Silk</b></p>
          * <p>Name (zh): <b>玉米丝</b></p>
          * <p>Hex: <b>#FFF8DC</b></p>
@@ -1095,7 +1113,7 @@ declare namespace Internal {
         CORN_SILK: number;
 
         /**
-         * <p style="background-color: #FFFDD0">　　　</p>
+         * <p style="background-color: #FFFDD0">#FFFDD0</p>
          * <p>Name (en): <b>Cream</b></p>
          * <p>Name (zh): <b>奶油</b></p>
          * <p>Hex: <b>#FFFDD0</b></p>
@@ -1106,7 +1124,7 @@ declare namespace Internal {
         CREAM: number;
 
         /**
-         * <p style="background-color: #DC143C">　　　</p>
+         * <p style="background-color: #DC143C">#DC143C</p>
          * <p>Name (en): <b>Crimson</b></p>
          * <p>Name (zh): <b>绯红</b></p>
          * <p>Hex: <b>#DC143C</b></p>
@@ -1117,7 +1135,7 @@ declare namespace Internal {
         CRIMSON: number;
 
         /**
-         * <p style="background-color: #00FFFF">　　　</p>
+         * <p style="background-color: #00FFFF">#00FFFF</p>
          * <p>Name (en): <b>Cyan</b></p>
          * <p>Name (zh): <b>青</b></p>
          * <p>Hex: <b>#00FFFF</b></p>
@@ -1128,7 +1146,7 @@ declare namespace Internal {
         CYAN: number;
 
         /**
-         * <p style="background-color: #E0F7FA">　　　</p>
+         * <p style="background-color: #E0F7FA">#E0F7FA</p>
          * <p>Name (en): <b>Cyan (50)</b></p>
          * <p>Name (zh): <b>青 (50)</b></p>
          * <p>Hex: <b>#E0F7FA</b></p>
@@ -1139,7 +1157,7 @@ declare namespace Internal {
         CYAN_50: number;
 
         /**
-         * <p style="background-color: #B2EBF2">　　　</p>
+         * <p style="background-color: #B2EBF2">#B2EBF2</p>
          * <p>Name (en): <b>Cyan (100)</b></p>
          * <p>Name (zh): <b>青 (100)</b></p>
          * <p>Hex: <b>#B2EBF2</b></p>
@@ -1150,7 +1168,7 @@ declare namespace Internal {
         CYAN_100: number;
 
         /**
-         * <p style="background-color: #80DEEA">　　　</p>
+         * <p style="background-color: #80DEEA">#80DEEA</p>
          * <p>Name (en): <b>Cyan (200)</b></p>
          * <p>Name (zh): <b>青 (200)</b></p>
          * <p>Hex: <b>#80DEEA</b></p>
@@ -1161,7 +1179,7 @@ declare namespace Internal {
         CYAN_200: number;
 
         /**
-         * <p style="background-color: #4DD0E1">　　　</p>
+         * <p style="background-color: #4DD0E1">#4DD0E1</p>
          * <p>Name (en): <b>Cyan (300)</b></p>
          * <p>Name (zh): <b>青 (300)</b></p>
          * <p>Hex: <b>#4DD0E1</b></p>
@@ -1172,7 +1190,7 @@ declare namespace Internal {
         CYAN_300: number;
 
         /**
-         * <p style="background-color: #26C6DA">　　　</p>
+         * <p style="background-color: #26C6DA">#26C6DA</p>
          * <p>Name (en): <b>Cyan (400)</b></p>
          * <p>Name (zh): <b>青 (400)</b></p>
          * <p>Hex: <b>#26C6DA</b></p>
@@ -1183,7 +1201,7 @@ declare namespace Internal {
         CYAN_400: number;
 
         /**
-         * <p style="background-color: #00BCD4">　　　</p>
+         * <p style="background-color: #00BCD4">#00BCD4</p>
          * <p>Name (en): <b>Cyan (500)</b></p>
          * <p>Name (zh): <b>青 (500)</b></p>
          * <p>Hex: <b>#00BCD4</b></p>
@@ -1194,7 +1212,7 @@ declare namespace Internal {
         CYAN_500: number;
 
         /**
-         * <p style="background-color: #00ACC1">　　　</p>
+         * <p style="background-color: #00ACC1">#00ACC1</p>
          * <p>Name (en): <b>Cyan (600)</b></p>
          * <p>Name (zh): <b>青 (600)</b></p>
          * <p>Hex: <b>#00ACC1</b></p>
@@ -1205,7 +1223,7 @@ declare namespace Internal {
         CYAN_600: number;
 
         /**
-         * <p style="background-color: #0097A7">　　　</p>
+         * <p style="background-color: #0097A7">#0097A7</p>
          * <p>Name (en): <b>Cyan (700)</b></p>
          * <p>Name (zh): <b>青 (700)</b></p>
          * <p>Hex: <b>#0097A7</b></p>
@@ -1216,7 +1234,7 @@ declare namespace Internal {
         CYAN_700: number;
 
         /**
-         * <p style="background-color: #00838F">　　　</p>
+         * <p style="background-color: #00838F">#00838F</p>
          * <p>Name (en): <b>Cyan (800)</b></p>
          * <p>Name (zh): <b>青 (800)</b></p>
          * <p>Hex: <b>#00838F</b></p>
@@ -1227,7 +1245,7 @@ declare namespace Internal {
         CYAN_800: number;
 
         /**
-         * <p style="background-color: #006064">　　　</p>
+         * <p style="background-color: #006064">#006064</p>
          * <p>Name (en): <b>Cyan (900)</b></p>
          * <p>Name (zh): <b>青 (900)</b></p>
          * <p>Hex: <b>#006064</b></p>
@@ -1238,7 +1256,7 @@ declare namespace Internal {
         CYAN_900: number;
 
         /**
-         * <p style="background-color: #84FFFF">　　　</p>
+         * <p style="background-color: #84FFFF">#84FFFF</p>
          * <p>Name (en): <b>Cyan (A100)</b></p>
          * <p>Name (zh): <b>青 (A100)</b></p>
          * <p>Hex: <b>#84FFFF</b></p>
@@ -1249,7 +1267,7 @@ declare namespace Internal {
         CYAN_A100: number;
 
         /**
-         * <p style="background-color: #18FFFF">　　　</p>
+         * <p style="background-color: #18FFFF">#18FFFF</p>
          * <p>Name (en): <b>Cyan (A200)</b></p>
          * <p>Name (zh): <b>青 (A200)</b></p>
          * <p>Hex: <b>#18FFFF</b></p>
@@ -1260,7 +1278,7 @@ declare namespace Internal {
         CYAN_A200: number;
 
         /**
-         * <p style="background-color: #00E5FF">　　　</p>
+         * <p style="background-color: #00E5FF">#00E5FF</p>
          * <p>Name (en): <b>Cyan (A400)</b></p>
          * <p>Name (zh): <b>青 (A400)</b></p>
          * <p>Hex: <b>#00E5FF</b></p>
@@ -1271,7 +1289,7 @@ declare namespace Internal {
         CYAN_A400: number;
 
         /**
-         * <p style="background-color: #00B8D4">　　　</p>
+         * <p style="background-color: #00B8D4">#00B8D4</p>
          * <p>Name (en): <b>Cyan (A700)</b></p>
          * <p>Name (zh): <b>青 (A700)</b></p>
          * <p>Hex: <b>#00B8D4</b></p>
@@ -1282,7 +1300,7 @@ declare namespace Internal {
         CYAN_A700: number;
 
         /**
-         * <p style="background-color: #0DBF8C">　　　</p>
+         * <p style="background-color: #0DBF8C">#0DBF8C</p>
          * <p>Name (en): <b>Cyan Blue</b></p>
          * <p>Name (zh): <b>青蓝</b></p>
          * <p>Hex: <b>#0DBF8C</b></p>
@@ -1293,7 +1311,7 @@ declare namespace Internal {
         CYAN_BLUE: number;
 
         /**
-         * <p style="background-color: #00008B">　　　</p>
+         * <p style="background-color: #00008B">#00008B</p>
          * <p>Name (en): <b>Dark Blue</b></p>
          * <p>Name (zh): <b>暗蓝</b></p>
          * <p>Hex: <b>#00008B</b></p>
@@ -1304,7 +1322,7 @@ declare namespace Internal {
         DARK_BLUE: number;
 
         /**
-         * <p style="background-color: #008B8B">　　　</p>
+         * <p style="background-color: #008B8B">#008B8B</p>
          * <p>Name (en): <b>Dark Cyan</b></p>
          * <p>Name (zh): <b>暗青</b></p>
          * <p>Hex: <b>#008B8B</b></p>
@@ -1315,7 +1333,7 @@ declare namespace Internal {
         DARK_CYAN: number;
 
         /**
-         * <p style="background-color: #B8860B">　　　</p>
+         * <p style="background-color: #B8860B">#B8860B</p>
          * <p>Name (en): <b>Dark Goldenrod</b></p>
          * <p>Name (zh): <b>暗金菊</b></p>
          * <p>Hex: <b>#B8860B</b></p>
@@ -1326,7 +1344,7 @@ declare namespace Internal {
         DARK_GOLDENROD: number;
 
         /**
-         * <p style="background-color: #444444">　　　</p>
+         * <p style="background-color: #444444">#444444</p>
          * <p>Name (en): <b>Dark Gray</b></p>
          * <p>Name (zh): <b>暗灰</b></p>
          * <p>Hex: <b>#444444</b></p>
@@ -1337,7 +1355,7 @@ declare namespace Internal {
         DARK_GRAY: number;
 
         /**
-         * <p style="background-color: #006400">　　　</p>
+         * <p style="background-color: #006400">#006400</p>
          * <p>Name (en): <b>Dark Green</b></p>
          * <p>Name (zh): <b>暗绿</b></p>
          * <p>Hex: <b>#006400</b></p>
@@ -1348,7 +1366,7 @@ declare namespace Internal {
         DARK_GREEN: number;
 
         /**
-         * <p style="background-color: #444444">　　　</p>
+         * <p style="background-color: #444444">#444444</p>
          * <p>Name (en): <b>Dark Grey</b></p>
          * <p>Name (zh): <b>暗灰</b></p>
          * <p>Hex: <b>#444444</b></p>
@@ -1359,7 +1377,7 @@ declare namespace Internal {
         DARK_GREY: number;
 
         /**
-         * <p style="background-color: #BDB76B">　　　</p>
+         * <p style="background-color: #BDB76B">#BDB76B</p>
          * <p>Name (en): <b>Dark Khaki</b></p>
          * <p>Name (zh): <b>暗卡其</b></p>
          * <p>Hex: <b>#BDB76B</b></p>
@@ -1370,7 +1388,7 @@ declare namespace Internal {
         DARK_KHAKI: number;
 
         /**
-         * <p style="background-color: #8B008B">　　　</p>
+         * <p style="background-color: #8B008B">#8B008B</p>
          * <p>Name (en): <b>Dark Magenta</b></p>
          * <p>Name (zh): <b>暗洋红</b></p>
          * <p>Hex: <b>#8B008B</b></p>
@@ -1381,7 +1399,7 @@ declare namespace Internal {
         DARK_MAGENTA: number;
 
         /**
-         * <p style="background-color: #24367D">　　　</p>
+         * <p style="background-color: #24367D">#24367D</p>
          * <p>Name (en): <b>Dark Mineral Blue</b></p>
          * <p>Name (zh): <b>暗矿蓝</b></p>
          * <p>Hex: <b>#24367D</b></p>
@@ -1392,7 +1410,7 @@ declare namespace Internal {
         DARK_MINERAL_BLUE: number;
 
         /**
-         * <p style="background-color: #556B2F">　　　</p>
+         * <p style="background-color: #556B2F">#556B2F</p>
          * <p>Name (en): <b>Dark Olive Green</b></p>
          * <p>Name (zh): <b>暗橄榄绿</b></p>
          * <p>Hex: <b>#556B2F</b></p>
@@ -1403,7 +1421,7 @@ declare namespace Internal {
         DARK_OLIVE_GREEN: number;
 
         /**
-         * <p style="background-color: #FF8C00">　　　</p>
+         * <p style="background-color: #FF8C00">#FF8C00</p>
          * <p>Name (en): <b>Dark Orange</b></p>
          * <p>Name (zh): <b>暗橙</b></p>
          * <p>Hex: <b>#FF8C00</b></p>
@@ -1414,7 +1432,7 @@ declare namespace Internal {
         DARK_ORANGE: number;
 
         /**
-         * <p style="background-color: #9932CC">　　　</p>
+         * <p style="background-color: #9932CC">#9932CC</p>
          * <p>Name (en): <b>Dark Orchid</b></p>
          * <p>Name (zh): <b>暗兰紫</b></p>
          * <p>Hex: <b>#9932CC</b></p>
@@ -1425,7 +1443,7 @@ declare namespace Internal {
         DARK_ORCHID: number;
 
         /**
-         * <p style="background-color: #003399">　　　</p>
+         * <p style="background-color: #003399">#003399</p>
          * <p>Name (en): <b>Dark Powder Blue</b></p>
          * <p>Name (zh): <b>暗粉蓝</b></p>
          * <p>Hex: <b>#003399</b></p>
@@ -1436,7 +1454,7 @@ declare namespace Internal {
         DARK_POWDER_BLUE: number;
 
         /**
-         * <p style="background-color: #8B0000">　　　</p>
+         * <p style="background-color: #8B0000">#8B0000</p>
          * <p>Name (en): <b>Dark Red</b></p>
          * <p>Name (zh): <b>暗红</b></p>
          * <p>Hex: <b>#8B0000</b></p>
@@ -1447,7 +1465,7 @@ declare namespace Internal {
         DARK_RED: number;
 
         /**
-         * <p style="background-color: #E9967A">　　　</p>
+         * <p style="background-color: #E9967A">#E9967A</p>
          * <p>Name (en): <b>Dark Salmon</b></p>
          * <p>Name (zh): <b>暗鲑红</b></p>
          * <p>Hex: <b>#E9967A</b></p>
@@ -1458,7 +1476,7 @@ declare namespace Internal {
         DARK_SALMON: number;
 
         /**
-         * <p style="background-color: #8FBC8F">　　　</p>
+         * <p style="background-color: #8FBC8F">#8FBC8F</p>
          * <p>Name (en): <b>Dark Sea Green</b></p>
          * <p>Name (zh): <b>暗海绿</b></p>
          * <p>Hex: <b>#8FBC8F</b></p>
@@ -1469,7 +1487,7 @@ declare namespace Internal {
         DARK_SEA_GREEN: number;
 
         /**
-         * <p style="background-color: #483D8B">　　　</p>
+         * <p style="background-color: #483D8B">#483D8B</p>
          * <p>Name (en): <b>Dark Slate Blue</b></p>
          * <p>Name (zh): <b>暗岩蓝</b></p>
          * <p>Hex: <b>#483D8B</b></p>
@@ -1480,7 +1498,7 @@ declare namespace Internal {
         DARK_SLATE_BLUE: number;
 
         /**
-         * <p style="background-color: #2F4F4F">　　　</p>
+         * <p style="background-color: #2F4F4F">#2F4F4F</p>
          * <p>Name (en): <b>Dark Slate Gray</b></p>
          * <p>Name (zh): <b>暗岩灰</b></p>
          * <p>Hex: <b>#2F4F4F</b></p>
@@ -1491,7 +1509,7 @@ declare namespace Internal {
         DARK_SLATE_GRAY: number;
 
         /**
-         * <p style="background-color: #2F4F4F">　　　</p>
+         * <p style="background-color: #2F4F4F">#2F4F4F</p>
          * <p>Name (en): <b>Dark Slate Grey</b></p>
          * <p>Name (zh): <b>暗岩灰</b></p>
          * <p>Hex: <b>#2F4F4F</b></p>
@@ -1502,7 +1520,7 @@ declare namespace Internal {
         DARK_SLATE_GREY: number;
 
         /**
-         * <p style="background-color: #00CED1">　　　</p>
+         * <p style="background-color: #00CED1">#00CED1</p>
          * <p>Name (en): <b>Dark Turquoise</b></p>
          * <p>Name (zh): <b>暗绿松石</b></p>
          * <p>Hex: <b>#00CED1</b></p>
@@ -1513,7 +1531,7 @@ declare namespace Internal {
         DARK_TURQUOISE: number;
 
         /**
-         * <p style="background-color: #9400D3">　　　</p>
+         * <p style="background-color: #9400D3">#9400D3</p>
          * <p>Name (en): <b>Dark Violet</b></p>
          * <p>Name (zh): <b>暗紫</b></p>
          * <p>Hex: <b>#9400D3</b></p>
@@ -1524,7 +1542,7 @@ declare namespace Internal {
         DARK_VIOLET: number;
 
         /**
-         * <p style="background-color: #FF5722">　　　</p>
+         * <p style="background-color: #FF5722">#FF5722</p>
          * <p>Name (en): <b>Deep Orange</b></p>
          * <p>Name (zh): <b>深橙 (500)</b></p>
          * <p>Hex: <b>#FF5722</b></p>
@@ -1535,7 +1553,7 @@ declare namespace Internal {
         DEEP_ORANGE: number;
 
         /**
-         * <p style="background-color: #FBE9A7">　　　</p>
+         * <p style="background-color: #FBE9A7">#FBE9A7</p>
          * <p>Name (en): <b>Deep Orange (50)</b></p>
          * <p>Name (zh): <b>深橙 (50)</b></p>
          * <p>Hex: <b>#FBE9A7</b></p>
@@ -1546,7 +1564,7 @@ declare namespace Internal {
         DEEP_ORANGE_50: number;
 
         /**
-         * <p style="background-color: #FFCCBC">　　　</p>
+         * <p style="background-color: #FFCCBC">#FFCCBC</p>
          * <p>Name (en): <b>Deep Orange (100)</b></p>
          * <p>Name (zh): <b>深橙 (100)</b></p>
          * <p>Hex: <b>#FFCCBC</b></p>
@@ -1557,7 +1575,7 @@ declare namespace Internal {
         DEEP_ORANGE_100: number;
 
         /**
-         * <p style="background-color: #FFAB91">　　　</p>
+         * <p style="background-color: #FFAB91">#FFAB91</p>
          * <p>Name (en): <b>Deep Orange (200)</b></p>
          * <p>Name (zh): <b>深橙 (200)</b></p>
          * <p>Hex: <b>#FFAB91</b></p>
@@ -1568,7 +1586,7 @@ declare namespace Internal {
         DEEP_ORANGE_200: number;
 
         /**
-         * <p style="background-color: #FF8A65">　　　</p>
+         * <p style="background-color: #FF8A65">#FF8A65</p>
          * <p>Name (en): <b>Deep Orange (300)</b></p>
          * <p>Name (zh): <b>深橙 (300)</b></p>
          * <p>Hex: <b>#FF8A65</b></p>
@@ -1579,7 +1597,7 @@ declare namespace Internal {
         DEEP_ORANGE_300: number;
 
         /**
-         * <p style="background-color: #FF7043">　　　</p>
+         * <p style="background-color: #FF7043">#FF7043</p>
          * <p>Name (en): <b>Deep Orange (400)</b></p>
          * <p>Name (zh): <b>深橙 (400)</b></p>
          * <p>Hex: <b>#FF7043</b></p>
@@ -1590,7 +1608,7 @@ declare namespace Internal {
         DEEP_ORANGE_400: number;
 
         /**
-         * <p style="background-color: #FF5722">　　　</p>
+         * <p style="background-color: #FF5722">#FF5722</p>
          * <p>Name (en): <b>Deep Orange (500)</b></p>
          * <p>Name (zh): <b>深橙 (500)</b></p>
          * <p>Hex: <b>#FF5722</b></p>
@@ -1601,7 +1619,7 @@ declare namespace Internal {
         DEEP_ORANGE_500: number;
 
         /**
-         * <p style="background-color: #F4511E">　　　</p>
+         * <p style="background-color: #F4511E">#F4511E</p>
          * <p>Name (en): <b>Deep Orange (600)</b></p>
          * <p>Name (zh): <b>深橙 (600)</b></p>
          * <p>Hex: <b>#F4511E</b></p>
@@ -1612,7 +1630,7 @@ declare namespace Internal {
         DEEP_ORANGE_600: number;
 
         /**
-         * <p style="background-color: #E64A19">　　　</p>
+         * <p style="background-color: #E64A19">#E64A19</p>
          * <p>Name (en): <b>Deep Orange (700)</b></p>
          * <p>Name (zh): <b>深橙 (700)</b></p>
          * <p>Hex: <b>#E64A19</b></p>
@@ -1623,7 +1641,7 @@ declare namespace Internal {
         DEEP_ORANGE_700: number;
 
         /**
-         * <p style="background-color: #D84315">　　　</p>
+         * <p style="background-color: #D84315">#D84315</p>
          * <p>Name (en): <b>Deep Orange (800)</b></p>
          * <p>Name (zh): <b>深橙 (800)</b></p>
          * <p>Hex: <b>#D84315</b></p>
@@ -1634,7 +1652,7 @@ declare namespace Internal {
         DEEP_ORANGE_800: number;
 
         /**
-         * <p style="background-color: #BF360C">　　　</p>
+         * <p style="background-color: #BF360C">#BF360C</p>
          * <p>Name (en): <b>Deep Orange (900)</b></p>
          * <p>Name (zh): <b>深橙 (900)</b></p>
          * <p>Hex: <b>#BF360C</b></p>
@@ -1645,7 +1663,7 @@ declare namespace Internal {
         DEEP_ORANGE_900: number;
 
         /**
-         * <p style="background-color: #FF9E80">　　　</p>
+         * <p style="background-color: #FF9E80">#FF9E80</p>
          * <p>Name (en): <b>Deep Orange (A100)</b></p>
          * <p>Name (zh): <b>深橙 (A100)</b></p>
          * <p>Hex: <b>#FF9E80</b></p>
@@ -1656,7 +1674,7 @@ declare namespace Internal {
         DEEP_ORANGE_A100: number;
 
         /**
-         * <p style="background-color: #FF6E40">　　　</p>
+         * <p style="background-color: #FF6E40">#FF6E40</p>
          * <p>Name (en): <b>Deep Orange (A200)</b></p>
          * <p>Name (zh): <b>深橙 (A200)</b></p>
          * <p>Hex: <b>#FF6E40</b></p>
@@ -1667,7 +1685,7 @@ declare namespace Internal {
         DEEP_ORANGE_A200: number;
 
         /**
-         * <p style="background-color: #FF3D00">　　　</p>
+         * <p style="background-color: #FF3D00">#FF3D00</p>
          * <p>Name (en): <b>Deep Orange (A400)</b></p>
          * <p>Name (zh): <b>深橙 (A400)</b></p>
          * <p>Hex: <b>#FF3D00</b></p>
@@ -1678,7 +1696,7 @@ declare namespace Internal {
         DEEP_ORANGE_A400: number;
 
         /**
-         * <p style="background-color: #DD2600">　　　</p>
+         * <p style="background-color: #DD2600">#DD2600</p>
          * <p>Name (en): <b>Deep Orange (A700)</b></p>
          * <p>Name (zh): <b>深橙 (A700)</b></p>
          * <p>Hex: <b>#DD2600</b></p>
@@ -1689,7 +1707,7 @@ declare namespace Internal {
         DEEP_ORANGE_A700: number;
 
         /**
-         * <p style="background-color: #FF1493">　　　</p>
+         * <p style="background-color: #FF1493">#FF1493</p>
          * <p>Name (en): <b>Deep Pink</b></p>
          * <p>Name (zh): <b>深粉红</b></p>
          * <p>Hex: <b>#FF1493</b></p>
@@ -1700,7 +1718,7 @@ declare namespace Internal {
         DEEP_PINK: number;
 
         /**
-         * <p style="background-color: #673AB7">　　　</p>
+         * <p style="background-color: #673AB7">#673AB7</p>
          * <p>Name (en): <b>Deep Purple (500)</b></p>
          * <p>Name (zh): <b>深紫 (500)</b></p>
          * <p>Hex: <b>#673AB7</b></p>
@@ -1711,7 +1729,7 @@ declare namespace Internal {
         DEEP_PURPLE: number;
 
         /**
-         * <p style="background-color: #EDE7F6">　　　</p>
+         * <p style="background-color: #EDE7F6">#EDE7F6</p>
          * <p>Name (en): <b>Deep Purple (50)</b></p>
          * <p>Name (zh): <b>深紫 (50)</b></p>
          * <p>Hex: <b>#EDE7F6</b></p>
@@ -1722,7 +1740,7 @@ declare namespace Internal {
         DEEP_PURPLE_50: number;
 
         /**
-         * <p style="background-color: #D1C4E9">　　　</p>
+         * <p style="background-color: #D1C4E9">#D1C4E9</p>
          * <p>Name (en): <b>Deep Purple (100)</b></p>
          * <p>Name (zh): <b>深紫 (100)</b></p>
          * <p>Hex: <b>#D1C4E9</b></p>
@@ -1733,7 +1751,7 @@ declare namespace Internal {
         DEEP_PURPLE_100: number;
 
         /**
-         * <p style="background-color: #B39DDB">　　　</p>
+         * <p style="background-color: #B39DDB">#B39DDB</p>
          * <p>Name (en): <b>Deep Purple (200)</b></p>
          * <p>Name (zh): <b>深紫 (200)</b></p>
          * <p>Hex: <b>#B39DDB</b></p>
@@ -1744,7 +1762,7 @@ declare namespace Internal {
         DEEP_PURPLE_200: number;
 
         /**
-         * <p style="background-color: #9575CD">　　　</p>
+         * <p style="background-color: #9575CD">#9575CD</p>
          * <p>Name (en): <b>Deep Purple (300)</b></p>
          * <p>Name (zh): <b>深紫 (300)</b></p>
          * <p>Hex: <b>#9575CD</b></p>
@@ -1755,7 +1773,7 @@ declare namespace Internal {
         DEEP_PURPLE_300: number;
 
         /**
-         * <p style="background-color: #7E57C2">　　　</p>
+         * <p style="background-color: #7E57C2">#7E57C2</p>
          * <p>Name (en): <b>Deep Purple (400)</b></p>
          * <p>Name (zh): <b>深紫 (400)</b></p>
          * <p>Hex: <b>#7E57C2</b></p>
@@ -1766,7 +1784,7 @@ declare namespace Internal {
         DEEP_PURPLE_400: number;
 
         /**
-         * <p style="background-color: #673AB7">　　　</p>
+         * <p style="background-color: #673AB7">#673AB7</p>
          * <p>Name (en): <b>Deep Purple (500)</b></p>
          * <p>Name (zh): <b>深紫 (500)</b></p>
          * <p>Hex: <b>#673AB7</b></p>
@@ -1777,7 +1795,7 @@ declare namespace Internal {
         DEEP_PURPLE_500: number;
 
         /**
-         * <p style="background-color: #5E35B1">　　　</p>
+         * <p style="background-color: #5E35B1">#5E35B1</p>
          * <p>Name (en): <b>Deep Purple (600)</b></p>
          * <p>Name (zh): <b>深紫 (600)</b></p>
          * <p>Hex: <b>#5E35B1</b></p>
@@ -1788,7 +1806,7 @@ declare namespace Internal {
         DEEP_PURPLE_600: number;
 
         /**
-         * <p style="background-color: #512DA8">　　　</p>
+         * <p style="background-color: #512DA8">#512DA8</p>
          * <p>Name (en): <b>Deep Purple (700)</b></p>
          * <p>Name (zh): <b>深紫 (700)</b></p>
          * <p>Hex: <b>#512DA8</b></p>
@@ -1799,7 +1817,7 @@ declare namespace Internal {
         DEEP_PURPLE_700: number;
 
         /**
-         * <p style="background-color: #4527A0">　　　</p>
+         * <p style="background-color: #4527A0">#4527A0</p>
          * <p>Name (en): <b>Deep Purple (800)</b></p>
          * <p>Name (zh): <b>深紫 (800)</b></p>
          * <p>Hex: <b>#4527A0</b></p>
@@ -1810,7 +1828,7 @@ declare namespace Internal {
         DEEP_PURPLE_800: number;
 
         /**
-         * <p style="background-color: #311B92">　　　</p>
+         * <p style="background-color: #311B92">#311B92</p>
          * <p>Name (en): <b>Deep Purple (900)</b></p>
          * <p>Name (zh): <b>深紫 (900)</b></p>
          * <p>Hex: <b>#311B92</b></p>
@@ -1821,7 +1839,7 @@ declare namespace Internal {
         DEEP_PURPLE_900: number;
 
         /**
-         * <p style="background-color: #B388FF">　　　</p>
+         * <p style="background-color: #B388FF">#B388FF</p>
          * <p>Name (en): <b>Deep Purple (A100)</b></p>
          * <p>Name (zh): <b>深紫 (A100)</b></p>
          * <p>Hex: <b>#B388FF</b></p>
@@ -1832,7 +1850,7 @@ declare namespace Internal {
         DEEP_PURPLE_A100: number;
 
         /**
-         * <p style="background-color: #7C4DFF">　　　</p>
+         * <p style="background-color: #7C4DFF">#7C4DFF</p>
          * <p>Name (en): <b>Deep Purple (A200)</b></p>
          * <p>Name (zh): <b>深紫 (A200)</b></p>
          * <p>Hex: <b>#7C4DFF</b></p>
@@ -1843,7 +1861,7 @@ declare namespace Internal {
         DEEP_PURPLE_A200: number;
 
         /**
-         * <p style="background-color: #651FFF">　　　</p>
+         * <p style="background-color: #651FFF">#651FFF</p>
          * <p>Name (en): <b>Deep Purple (A400)</b></p>
          * <p>Name (zh): <b>深紫 (A400)</b></p>
          * <p>Hex: <b>#651FFF</b></p>
@@ -1854,7 +1872,7 @@ declare namespace Internal {
         DEEP_PURPLE_A400: number;
 
         /**
-         * <p style="background-color: #6200EA">　　　</p>
+         * <p style="background-color: #6200EA">#6200EA</p>
          * <p>Name (en): <b>Deep Purple (A700)</b></p>
          * <p>Name (zh): <b>深紫 (A700)</b></p>
          * <p>Hex: <b>#6200EA</b></p>
@@ -1865,7 +1883,7 @@ declare namespace Internal {
         DEEP_PURPLE_A700: number;
 
         /**
-         * <p style="background-color: #00BFFF">　　　</p>
+         * <p style="background-color: #00BFFF">#00BFFF</p>
          * <p>Name (en): <b>Deep Sky Blue</b></p>
          * <p>Name (zh): <b>深天蓝</b></p>
          * <p>Hex: <b>#00BFFF</b></p>
@@ -1876,7 +1894,7 @@ declare namespace Internal {
         DEEP_SKY_BLUE: number;
 
         /**
-         * <p style="background-color: #696969">　　　</p>
+         * <p style="background-color: #696969">#696969</p>
          * <p>Name (en): <b>Dim Gray</b></p>
          * <p>Name (zh): <b>昏灰</b></p>
          * <p>Hex: <b>#696969</b></p>
@@ -1887,7 +1905,7 @@ declare namespace Internal {
         DIM_GRAY: number;
 
         /**
-         * <p style="background-color: #696969">　　　</p>
+         * <p style="background-color: #696969">#696969</p>
          * <p>Name (en): <b>Dim Grey</b></p>
          * <p>Name (zh): <b>昏灰</b></p>
          * <p>Hex: <b>#696969</b></p>
@@ -1898,7 +1916,7 @@ declare namespace Internal {
         DIM_GREY: number;
 
         /**
-         * <p style="background-color: #444444">　　　</p>
+         * <p style="background-color: #444444">#444444</p>
          * <p>Name (en): <b>Dkgray</b></p>
          * <p>Name (zh): <b>暗灰</b></p>
          * <p>Hex: <b>#444444</b></p>
@@ -1909,7 +1927,7 @@ declare namespace Internal {
         DKGRAY: number;
 
         /**
-         * <p style="background-color: #1E90FF">　　　</p>
+         * <p style="background-color: #1E90FF">#1E90FF</p>
          * <p>Name (en): <b>Dodger Blue</b></p>
          * <p>Name (zh): <b>道奇蓝</b></p>
          * <p>Hex: <b>#1E90FF</b></p>
@@ -1920,7 +1938,7 @@ declare namespace Internal {
         DODGER_BLUE: number;
 
         /**
-         * <p style="background-color: #50C878">　　　</p>
+         * <p style="background-color: #50C878">#50C878</p>
          * <p>Name (en): <b>Emerald</b></p>
          * <p>Name (zh): <b>碧绿</b></p>
          * <p>Hex: <b>#50C878</b></p>
@@ -1931,7 +1949,7 @@ declare namespace Internal {
         EMERALD: number;
 
         /**
-         * <p style="background-color: #B22222">　　　</p>
+         * <p style="background-color: #B22222">#B22222</p>
          * <p>Name (en): <b>Fire Brick</b></p>
          * <p>Name (zh): <b>砖红</b></p>
          * <p>Hex: <b>#B22222</b></p>
@@ -1942,7 +1960,7 @@ declare namespace Internal {
         FIRE_BRICK: number;
 
         /**
-         * <p style="background-color: #E68AB8">　　　</p>
+         * <p style="background-color: #E68AB8">#E68AB8</p>
          * <p>Name (en): <b>Flamingo</b></p>
          * <p>Name (zh): <b>火鹤红</b></p>
          * <p>Hex: <b>#E68AB8</b></p>
@@ -1953,7 +1971,7 @@ declare namespace Internal {
         FLAMINGO: number;
 
         /**
-         * <p style="background-color: #FFFAF0">　　　</p>
+         * <p style="background-color: #FFFAF0">#FFFAF0</p>
          * <p>Name (en): <b>Floral White</b></p>
          * <p>Name (zh): <b>花卉白</b></p>
          * <p>Hex: <b>#FFFAF0</b></p>
@@ -1964,7 +1982,7 @@ declare namespace Internal {
         FLORAL_WHITE: number;
 
         /**
-         * <p style="background-color: #73B839">　　　</p>
+         * <p style="background-color: #73B839">#73B839</p>
          * <p>Name (en): <b>Foliage Green</b></p>
          * <p>Name (zh): <b>叶绿</b></p>
          * <p>Hex: <b>#73B839</b></p>
@@ -1975,7 +1993,7 @@ declare namespace Internal {
         FOLIAGE_GREEN: number;
 
         /**
-         * <p style="background-color: #228B22">　　　</p>
+         * <p style="background-color: #228B22">#228B22</p>
          * <p>Name (en): <b>Forest Green</b></p>
          * <p>Name (zh): <b>森林绿</b></p>
          * <p>Hex: <b>#228B22</b></p>
@@ -1986,7 +2004,7 @@ declare namespace Internal {
         FOREST_GREEN: number;
 
         /**
-         * <p style="background-color: #99FF4D">　　　</p>
+         * <p style="background-color: #99FF4D">#99FF4D</p>
          * <p>Name (en): <b>Fresh Leaves</b></p>
          * <p>Name (zh): <b>嫩绿</b></p>
          * <p>Hex: <b>#99FF4D</b></p>
@@ -1997,7 +2015,7 @@ declare namespace Internal {
         FRESH_LEAVES: number;
 
         /**
-         * <p style="background-color: #FF00FF">　　　</p>
+         * <p style="background-color: #FF00FF">#FF00FF</p>
          * <p>Name (en): <b>Fuchsia</b></p>
          * <p>Name (zh): <b>品红 / 洋红</b></p>
          * <p>Hex: <b>#FF00FF</b></p>
@@ -2008,7 +2026,7 @@ declare namespace Internal {
         FUCHSIA: number;
 
         /**
-         * <p style="background-color: #DCDCDC">　　　</p>
+         * <p style="background-color: #DCDCDC">#DCDCDC</p>
          * <p>Name (en): <b>Gainsboro</b></p>
          * <p>Name (zh): <b>庚斯博罗灰</b></p>
          * <p>Hex: <b>#DCDCDC</b></p>
@@ -2019,7 +2037,7 @@ declare namespace Internal {
         GAINSBORO: number;
 
         /**
-         * <p style="background-color: #F8F8FF">　　　</p>
+         * <p style="background-color: #F8F8FF">#F8F8FF</p>
          * <p>Name (en): <b>Ghost White</b></p>
          * <p>Name (zh): <b>幽灵白</b></p>
          * <p>Hex: <b>#F8F8FF</b></p>
@@ -2030,7 +2048,7 @@ declare namespace Internal {
         GHOST_WHITE: number;
 
         /**
-         * <p style="background-color: #FFD700">　　　</p>
+         * <p style="background-color: #FFD700">#FFD700</p>
          * <p>Name (en): <b>Gold</b></p>
          * <p>Name (zh): <b>金</b></p>
          * <p>Hex: <b>#FFD700</b></p>
@@ -2041,7 +2059,7 @@ declare namespace Internal {
         GOLD: number;
 
         /**
-         * <p style="background-color: #FFD700">　　　</p>
+         * <p style="background-color: #FFD700">#FFD700</p>
          * <p>Name (en): <b>Golden</b></p>
          * <p>Name (zh): <b>金</b></p>
          * <p>Hex: <b>#FFD700</b></p>
@@ -2052,7 +2070,7 @@ declare namespace Internal {
         GOLDEN: number;
 
         /**
-         * <p style="background-color: #DAA520">　　　</p>
+         * <p style="background-color: #DAA520">#DAA520</p>
          * <p>Name (en): <b>Goldenrod</b></p>
          * <p>Name (zh): <b>金菊</b></p>
          * <p>Hex: <b>#DAA520</b></p>
@@ -2063,7 +2081,7 @@ declare namespace Internal {
         GOLDENROD: number;
 
         /**
-         * <p style="background-color: #99E64D">　　　</p>
+         * <p style="background-color: #99E64D">#99E64D</p>
          * <p>Name (en): <b>Grass Green</b></p>
          * <p>Name (zh): <b>草绿</b></p>
          * <p>Hex: <b>#99E64D</b></p>
@@ -2074,7 +2092,7 @@ declare namespace Internal {
         GRASS_GREEN: number;
 
         /**
-         * <p style="background-color: #888888">　　　</p>
+         * <p style="background-color: #888888">#888888</p>
          * <p>Name (en): <b>Gray</b></p>
          * <p>Name (zh): <b>灰</b></p>
          * <p>Hex: <b>#888888</b></p>
@@ -2085,7 +2103,7 @@ declare namespace Internal {
         GRAY: number;
 
         /**
-         * <p style="background-color: #8674A1">　　　</p>
+         * <p style="background-color: #8674A1">#8674A1</p>
          * <p>Name (en): <b>Grayish Purple</b></p>
          * <p>Name (zh): <b>浅灰紫</b></p>
          * <p>Hex: <b>#8674A1</b></p>
@@ -2096,7 +2114,7 @@ declare namespace Internal {
         GRAYISH_PURPLE: number;
 
         /**
-         * <p style="background-color: #00FF00">　　　</p>
+         * <p style="background-color: #00FF00">#00FF00</p>
          * <p>Name (en): <b>Green</b></p>
          * <p>Name (zh): <b>绿</b></p>
          * <p>Hex: <b>#00FF00</b></p>
@@ -2107,7 +2125,7 @@ declare namespace Internal {
         GREEN: number;
 
         /**
-         * <p style="background-color: #E8F5E9">　　　</p>
+         * <p style="background-color: #E8F5E9">#E8F5E9</p>
          * <p>Name (en): <b>Green (50)</b></p>
          * <p>Name (zh): <b>绿 (50)</b></p>
          * <p>Hex: <b>#E8F5E9</b></p>
@@ -2118,7 +2136,7 @@ declare namespace Internal {
         GREEN_50: number;
 
         /**
-         * <p style="background-color: #C8E6C9">　　　</p>
+         * <p style="background-color: #C8E6C9">#C8E6C9</p>
          * <p>Name (en): <b>Green (100)</b></p>
          * <p>Name (zh): <b>绿 (100)</b></p>
          * <p>Hex: <b>#C8E6C9</b></p>
@@ -2129,7 +2147,7 @@ declare namespace Internal {
         GREEN_100: number;
 
         /**
-         * <p style="background-color: #A5D6A7">　　　</p>
+         * <p style="background-color: #A5D6A7">#A5D6A7</p>
          * <p>Name (en): <b>Green (200)</b></p>
          * <p>Name (zh): <b>绿 (200)</b></p>
          * <p>Hex: <b>#A5D6A7</b></p>
@@ -2140,7 +2158,7 @@ declare namespace Internal {
         GREEN_200: number;
 
         /**
-         * <p style="background-color: #81C784">　　　</p>
+         * <p style="background-color: #81C784">#81C784</p>
          * <p>Name (en): <b>Green (300)</b></p>
          * <p>Name (zh): <b>绿 (300)</b></p>
          * <p>Hex: <b>#81C784</b></p>
@@ -2151,7 +2169,7 @@ declare namespace Internal {
         GREEN_300: number;
 
         /**
-         * <p style="background-color: #66BB6A">　　　</p>
+         * <p style="background-color: #66BB6A">#66BB6A</p>
          * <p>Name (en): <b>Green (400)</b></p>
          * <p>Name (zh): <b>绿 (400)</b></p>
          * <p>Hex: <b>#66BB6A</b></p>
@@ -2162,7 +2180,7 @@ declare namespace Internal {
         GREEN_400: number;
 
         /**
-         * <p style="background-color: #4CAF50">　　　</p>
+         * <p style="background-color: #4CAF50">#4CAF50</p>
          * <p>Name (en): <b>Green (500)</b></p>
          * <p>Name (zh): <b>绿 (500)</b></p>
          * <p>Hex: <b>#4CAF50</b></p>
@@ -2173,7 +2191,7 @@ declare namespace Internal {
         GREEN_500: number;
 
         /**
-         * <p style="background-color: #43A047">　　　</p>
+         * <p style="background-color: #43A047">#43A047</p>
          * <p>Name (en): <b>Green (600)</b></p>
          * <p>Name (zh): <b>绿 (600)</b></p>
          * <p>Hex: <b>#43A047</b></p>
@@ -2184,7 +2202,7 @@ declare namespace Internal {
         GREEN_600: number;
 
         /**
-         * <p style="background-color: #388E3C">　　　</p>
+         * <p style="background-color: #388E3C">#388E3C</p>
          * <p>Name (en): <b>Green (700)</b></p>
          * <p>Name (zh): <b>绿 (700)</b></p>
          * <p>Hex: <b>#388E3C</b></p>
@@ -2195,7 +2213,7 @@ declare namespace Internal {
         GREEN_700: number;
 
         /**
-         * <p style="background-color: #2E7D32">　　　</p>
+         * <p style="background-color: #2E7D32">#2E7D32</p>
          * <p>Name (en): <b>Green (800)</b></p>
          * <p>Name (zh): <b>绿 (800)</b></p>
          * <p>Hex: <b>#2E7D32</b></p>
@@ -2206,7 +2224,7 @@ declare namespace Internal {
         GREEN_800: number;
 
         /**
-         * <p style="background-color: #1B5E20">　　　</p>
+         * <p style="background-color: #1B5E20">#1B5E20</p>
          * <p>Name (en): <b>Green (900)</b></p>
          * <p>Name (zh): <b>绿 (900)</b></p>
          * <p>Hex: <b>#1B5E20</b></p>
@@ -2217,7 +2235,7 @@ declare namespace Internal {
         GREEN_900: number;
 
         /**
-         * <p style="background-color: #B9F6CA">　　　</p>
+         * <p style="background-color: #B9F6CA">#B9F6CA</p>
          * <p>Name (en): <b>Green (A100)</b></p>
          * <p>Name (zh): <b>绿 (A100)</b></p>
          * <p>Hex: <b>#B9F6CA</b></p>
@@ -2228,7 +2246,7 @@ declare namespace Internal {
         GREEN_A100: number;
 
         /**
-         * <p style="background-color: #69F0AE">　　　</p>
+         * <p style="background-color: #69F0AE">#69F0AE</p>
          * <p>Name (en): <b>Green (A200)</b></p>
          * <p>Name (zh): <b>绿 (A200)</b></p>
          * <p>Hex: <b>#69F0AE</b></p>
@@ -2239,7 +2257,7 @@ declare namespace Internal {
         GREEN_A200: number;
 
         /**
-         * <p style="background-color: #00E676">　　　</p>
+         * <p style="background-color: #00E676">#00E676</p>
          * <p>Name (en): <b>Green (A400)</b></p>
          * <p>Name (zh): <b>绿 (A400)</b></p>
          * <p>Hex: <b>#00E676</b></p>
@@ -2250,7 +2268,7 @@ declare namespace Internal {
         GREEN_A400: number;
 
         /**
-         * <p style="background-color: #00C853">　　　</p>
+         * <p style="background-color: #00C853">#00C853</p>
          * <p>Name (en): <b>Green (A700)</b></p>
          * <p>Name (zh): <b>绿 (A700)</b></p>
          * <p>Hex: <b>#00C853</b></p>
@@ -2261,7 +2279,7 @@ declare namespace Internal {
         GREEN_A700: number;
 
         /**
-         * <p style="background-color: #ADFF2F">　　　</p>
+         * <p style="background-color: #ADFF2F">#ADFF2F</p>
          * <p>Name (en): <b>Green Yellow</b></p>
          * <p>Name (zh): <b>绿黄</b></p>
          * <p>Hex: <b>#ADFF2F</b></p>
@@ -2272,7 +2290,7 @@ declare namespace Internal {
         GREEN_YELLOW: number;
 
         /**
-         * <p style="background-color: #888888">　　　</p>
+         * <p style="background-color: #888888">#888888</p>
          * <p>Name (en): <b>Grey</b></p>
          * <p>Name (zh): <b>灰</b></p>
          * <p>Hex: <b>#888888</b></p>
@@ -2283,7 +2301,7 @@ declare namespace Internal {
         GREY: number;
 
         /**
-         * <p style="background-color: #FAFAFA">　　　</p>
+         * <p style="background-color: #FAFAFA">#FAFAFA</p>
          * <p>Name (en): <b>Grey (50)</b></p>
          * <p>Name (zh): <b>灰 (50)</b></p>
          * <p>Hex: <b>#FAFAFA</b></p>
@@ -2292,9 +2310,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         GREY_50: number;
+        GRAY_50: number;
 
         /**
-         * <p style="background-color: #F5F5F5">　　　</p>
+         * <p style="background-color: #F5F5F5">#F5F5F5</p>
          * <p>Name (en): <b>Grey (100)</b></p>
          * <p>Name (zh): <b>灰 (100)</b></p>
          * <p>Hex: <b>#F5F5F5</b></p>
@@ -2303,9 +2322,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         GREY_100: number;
+        GRAY_100: number;
 
         /**
-         * <p style="background-color: #EEEEEE">　　　</p>
+         * <p style="background-color: #EEEEEE">#EEEEEE</p>
          * <p>Name (en): <b>Grey (200)</b></p>
          * <p>Name (zh): <b>灰 (200)</b></p>
          * <p>Hex: <b>#EEEEEE</b></p>
@@ -2314,9 +2334,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         GREY_200: number;
+        GRAY_200: number;
 
         /**
-         * <p style="background-color: #E0E0E0">　　　</p>
+         * <p style="background-color: #E0E0E0">#E0E0E0</p>
          * <p>Name (en): <b>Grey (300)</b></p>
          * <p>Name (zh): <b>灰 (300)</b></p>
          * <p>Hex: <b>#E0E0E0</b></p>
@@ -2325,9 +2346,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         GREY_300: number;
+        GRAY_300: number;
 
         /**
-         * <p style="background-color: #BDBDBD">　　　</p>
+         * <p style="background-color: #BDBDBD">#BDBDBD</p>
          * <p>Name (en): <b>Grey (400)</b></p>
          * <p>Name (zh): <b>灰 (400)</b></p>
          * <p>Hex: <b>#BDBDBD</b></p>
@@ -2336,9 +2358,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         GREY_400: number;
+        GRAY_400: number;
 
         /**
-         * <p style="background-color: #9E9E9E">　　　</p>
+         * <p style="background-color: #9E9E9E">#9E9E9E</p>
          * <p>Name (en): <b>Grey (500)</b></p>
          * <p>Name (zh): <b>灰 (500)</b></p>
          * <p>Hex: <b>#9E9E9E</b></p>
@@ -2347,9 +2370,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         GREY_500: number;
+        GRAY_500: number;
 
         /**
-         * <p style="background-color: #757575">　　　</p>
+         * <p style="background-color: #757575">#757575</p>
          * <p>Name (en): <b>Grey (600)</b></p>
          * <p>Name (zh): <b>灰 (600)</b></p>
          * <p>Hex: <b>#757575</b></p>
@@ -2358,9 +2382,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         GREY_600: number;
+        GRAY_600: number;
 
         /**
-         * <p style="background-color: #616161">　　　</p>
+         * <p style="background-color: #616161">#616161</p>
          * <p>Name (en): <b>Grey (700)</b></p>
          * <p>Name (zh): <b>灰 (700)</b></p>
          * <p>Hex: <b>#616161</b></p>
@@ -2369,9 +2394,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         GREY_700: number;
+        GRAY_700: number;
 
         /**
-         * <p style="background-color: #424242">　　　</p>
+         * <p style="background-color: #424242">#424242</p>
          * <p>Name (en): <b>Grey (800)</b></p>
          * <p>Name (zh): <b>灰 (800)</b></p>
          * <p>Hex: <b>#424242</b></p>
@@ -2380,9 +2406,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         GREY_800: number;
+        GRAY_800: number;
 
         /**
-         * <p style="background-color: #212121">　　　</p>
+         * <p style="background-color: #212121">#212121</p>
          * <p>Name (en): <b>Grey (900)</b></p>
          * <p>Name (zh): <b>灰 (900)</b></p>
          * <p>Hex: <b>#212121</b></p>
@@ -2391,9 +2418,10 @@ declare namespace Internal {
          * <p>Table: <b>ColorTable.Material</b></p>
          */
         GREY_900: number;
+        GRAY_900: number;
 
         /**
-         * <p style="background-color: #DF73FF">　　　</p>
+         * <p style="background-color: #DF73FF">#DF73FF</p>
          * <p>Name (en): <b>Heliotrope</b></p>
          * <p>Name (zh): <b>缬草紫</b></p>
          * <p>Hex: <b>#DF73FF</b></p>
@@ -2404,7 +2432,7 @@ declare namespace Internal {
         HELIOTROPE: number;
 
         /**
-         * <p style="background-color: #F0FFF0">　　　</p>
+         * <p style="background-color: #F0FFF0">#F0FFF0</p>
          * <p>Name (en): <b>Honeydew</b></p>
          * <p>Name (zh): <b>蜜瓜绿</b></p>
          * <p>Hex: <b>#F0FFF0</b></p>
@@ -2415,7 +2443,7 @@ declare namespace Internal {
         HONEYDEW: number;
 
         /**
-         * <p style="background-color: #FFB366">　　　</p>
+         * <p style="background-color: #FFB366">#FFB366</p>
          * <p>Name (en): <b>Honey Orange</b></p>
          * <p>Name (zh): <b>蜜橙</b></p>
          * <p>Hex: <b>#FFB366</b></p>
@@ -2426,7 +2454,7 @@ declare namespace Internal {
         HONEY_ORANGE: number;
 
         /**
-         * <p style="background-color: #B8DDC8">　　　</p>
+         * <p style="background-color: #B8DDC8">#B8DDC8</p>
          * <p>Name (en): <b>Horizon Blue</b></p>
          * <p>Name (zh): <b>苍</b></p>
          * <p>Hex: <b>#B8DDC8</b></p>
@@ -2437,7 +2465,7 @@ declare namespace Internal {
         HORIZON_BLUE: number;
 
         /**
-         * <p style="background-color: #FF69B4">　　　</p>
+         * <p style="background-color: #FF69B4">#FF69B4</p>
          * <p>Name (en): <b>Hot Pink</b></p>
          * <p>Name (zh): <b>暖粉红</b></p>
          * <p>Hex: <b>#FF69B4</b></p>
@@ -2448,7 +2476,7 @@ declare namespace Internal {
         HOT_PINK: number;
 
         /**
-         * <p style="background-color: #CD5C5C">　　　</p>
+         * <p style="background-color: #CD5C5C">#CD5C5C</p>
          * <p>Name (en): <b>Indian Red</b></p>
          * <p>Name (zh): <b>印度红</b></p>
          * <p>Hex: <b>#CD5C5C</b></p>
@@ -2459,7 +2487,7 @@ declare namespace Internal {
         INDIAN_RED: number;
 
         /**
-         * <p style="background-color: #4B0082">　　　</p>
+         * <p style="background-color: #4B0082">#4B0082</p>
          * <p>Name (en): <b>Indigo</b></p>
          * <p>Name (zh): <b>靛</b></p>
          * <p>Hex: <b>#4B0082</b></p>
@@ -2470,7 +2498,7 @@ declare namespace Internal {
         INDIGO: number;
 
         /**
-         * <p style="background-color: #E8EAF6">　　　</p>
+         * <p style="background-color: #E8EAF6">#E8EAF6</p>
          * <p>Name (en): <b>Indigo (50)</b></p>
          * <p>Name (zh): <b>靛蓝 (50)</b></p>
          * <p>Hex: <b>#E8EAF6</b></p>
@@ -2481,7 +2509,7 @@ declare namespace Internal {
         INDIGO_50: number;
 
         /**
-         * <p style="background-color: #C5CAE9">　　　</p>
+         * <p style="background-color: #C5CAE9">#C5CAE9</p>
          * <p>Name (en): <b>Indigo (100)</b></p>
          * <p>Name (zh): <b>靛蓝 (100)</b></p>
          * <p>Hex: <b>#C5CAE9</b></p>
@@ -2492,7 +2520,7 @@ declare namespace Internal {
         INDIGO_100: number;
 
         /**
-         * <p style="background-color: #9FA8DA">　　　</p>
+         * <p style="background-color: #9FA8DA">#9FA8DA</p>
          * <p>Name (en): <b>Indigo (200)</b></p>
          * <p>Name (zh): <b>靛蓝 (200)</b></p>
          * <p>Hex: <b>#9FA8DA</b></p>
@@ -2503,7 +2531,7 @@ declare namespace Internal {
         INDIGO_200: number;
 
         /**
-         * <p style="background-color: #7986CB">　　　</p>
+         * <p style="background-color: #7986CB">#7986CB</p>
          * <p>Name (en): <b>Indigo (300)</b></p>
          * <p>Name (zh): <b>靛蓝 (300)</b></p>
          * <p>Hex: <b>#7986CB</b></p>
@@ -2514,7 +2542,7 @@ declare namespace Internal {
         INDIGO_300: number;
 
         /**
-         * <p style="background-color: #5C6BC0">　　　</p>
+         * <p style="background-color: #5C6BC0">#5C6BC0</p>
          * <p>Name (en): <b>Indigo (400)</b></p>
          * <p>Name (zh): <b>靛蓝 (400)</b></p>
          * <p>Hex: <b>#5C6BC0</b></p>
@@ -2525,7 +2553,7 @@ declare namespace Internal {
         INDIGO_400: number;
 
         /**
-         * <p style="background-color: #3F51B5">　　　</p>
+         * <p style="background-color: #3F51B5">#3F51B5</p>
          * <p>Name (en): <b>Indigo (500)</b></p>
          * <p>Name (zh): <b>靛蓝 (500)</b></p>
          * <p>Hex: <b>#3F51B5</b></p>
@@ -2536,7 +2564,7 @@ declare namespace Internal {
         INDIGO_500: number;
 
         /**
-         * <p style="background-color: #3949AB">　　　</p>
+         * <p style="background-color: #3949AB">#3949AB</p>
          * <p>Name (en): <b>Indigo (600)</b></p>
          * <p>Name (zh): <b>靛蓝 (600)</b></p>
          * <p>Hex: <b>#3949AB</b></p>
@@ -2547,7 +2575,7 @@ declare namespace Internal {
         INDIGO_600: number;
 
         /**
-         * <p style="background-color: #303F9F">　　　</p>
+         * <p style="background-color: #303F9F">#303F9F</p>
          * <p>Name (en): <b>Indigo (700)</b></p>
          * <p>Name (zh): <b>靛蓝 (700)</b></p>
          * <p>Hex: <b>#303F9F</b></p>
@@ -2558,7 +2586,7 @@ declare namespace Internal {
         INDIGO_700: number;
 
         /**
-         * <p style="background-color: #283593">　　　</p>
+         * <p style="background-color: #283593">#283593</p>
          * <p>Name (en): <b>Indigo (800)</b></p>
          * <p>Name (zh): <b>靛蓝 (800)</b></p>
          * <p>Hex: <b>#283593</b></p>
@@ -2569,7 +2597,7 @@ declare namespace Internal {
         INDIGO_800: number;
 
         /**
-         * <p style="background-color: #1A237E">　　　</p>
+         * <p style="background-color: #1A237E">#1A237E</p>
          * <p>Name (en): <b>Indigo (900)</b></p>
          * <p>Name (zh): <b>靛蓝 (900)</b></p>
          * <p>Hex: <b>#1A237E</b></p>
@@ -2580,7 +2608,7 @@ declare namespace Internal {
         INDIGO_900: number;
 
         /**
-         * <p style="background-color: #8C9EFF">　　　</p>
+         * <p style="background-color: #8C9EFF">#8C9EFF</p>
          * <p>Name (en): <b>Indigo (A100)</b></p>
          * <p>Name (zh): <b>靛蓝 (A100)</b></p>
          * <p>Hex: <b>#8C9EFF</b></p>
@@ -2591,7 +2619,7 @@ declare namespace Internal {
         INDIGO_A100: number;
 
         /**
-         * <p style="background-color: #536DFE">　　　</p>
+         * <p style="background-color: #536DFE">#536DFE</p>
          * <p>Name (en): <b>Indigo (A200)</b></p>
          * <p>Name (zh): <b>靛蓝 (A200)</b></p>
          * <p>Hex: <b>#536DFE</b></p>
@@ -2602,7 +2630,7 @@ declare namespace Internal {
         INDIGO_A200: number;
 
         /**
-         * <p style="background-color: #3D5AFE">　　　</p>
+         * <p style="background-color: #3D5AFE">#3D5AFE</p>
          * <p>Name (en): <b>Indigo (A400)</b></p>
          * <p>Name (zh): <b>靛蓝 (A400)</b></p>
          * <p>Hex: <b>#3D5AFE</b></p>
@@ -2613,7 +2641,7 @@ declare namespace Internal {
         INDIGO_A400: number;
 
         /**
-         * <p style="background-color: #304FFE">　　　</p>
+         * <p style="background-color: #304FFE">#304FFE</p>
          * <p>Name (en): <b>Indigo (A700)</b></p>
          * <p>Name (zh): <b>靛蓝 (A700)</b></p>
          * <p>Hex: <b>#304FFE</b></p>
@@ -2624,7 +2652,7 @@ declare namespace Internal {
         INDIGO_A700: number;
 
         /**
-         * <p style="background-color: #002FA7">　　　</p>
+         * <p style="background-color: #002FA7">#002FA7</p>
          * <p>Name (en): <b>International Klein Blue</b></p>
          * <p>Name (zh): <b>国际奇连蓝</b></p>
          * <p>Hex: <b>#002FA7</b></p>
@@ -2635,7 +2663,7 @@ declare namespace Internal {
         INTERNATIONAL_KLEIN_BLUE: number;
 
         /**
-         * <p style="background-color: #625B57">　　　</p>
+         * <p style="background-color: #625B57">#625B57</p>
          * <p>Name (en): <b>Iron Gray</b></p>
          * <p>Name (zh): <b>铁灰</b></p>
          * <p>Hex: <b>#625B57</b></p>
@@ -2646,7 +2674,7 @@ declare namespace Internal {
         IRON_GRAY: number;
 
         /**
-         * <p style="background-color: #FFFFF0">　　　</p>
+         * <p style="background-color: #FFFFF0">#FFFFF0</p>
          * <p>Name (en): <b>Ivory</b></p>
          * <p>Name (zh): <b>象牙</b></p>
          * <p>Hex: <b>#FFFFF0</b></p>
@@ -2657,7 +2685,7 @@ declare namespace Internal {
         IVORY: number;
 
         /**
-         * <p style="background-color: #36BF36">　　　</p>
+         * <p style="background-color: #36BF36">#36BF36</p>
          * <p>Name (en): <b>Ivy Green</b></p>
          * <p>Name (zh): <b>常春藤绿</b></p>
          * <p>Hex: <b>#36BF36</b></p>
@@ -2668,7 +2696,7 @@ declare namespace Internal {
         IVY_GREEN: number;
 
         /**
-         * <p style="background-color: #E6C35C">　　　</p>
+         * <p style="background-color: #E6C35C">#E6C35C</p>
          * <p>Name (en): <b>Jasmine</b></p>
          * <p>Name (zh): <b>茉莉黄</b></p>
          * <p>Hex: <b>#E6C35C</b></p>
@@ -2679,7 +2707,7 @@ declare namespace Internal {
         JASMINE: number;
 
         /**
-         * <p style="background-color: #F0E68C">　　　</p>
+         * <p style="background-color: #F0E68C">#F0E68C</p>
          * <p>Name (en): <b>Khaki</b></p>
          * <p>Name (zh): <b>卡其</b></p>
          * <p>Hex: <b>#F0E68C</b></p>
@@ -2690,7 +2718,7 @@ declare namespace Internal {
         KHAKI: number;
 
         /**
-         * <p style="background-color: #26619C">　　　</p>
+         * <p style="background-color: #26619C">#26619C</p>
          * <p>Name (en): <b>Lapis Lazuli</b></p>
          * <p>Name (zh): <b>天青石蓝</b></p>
          * <p>Hex: <b>#26619C</b></p>
@@ -2701,7 +2729,7 @@ declare namespace Internal {
         LAPIS_LAZULI: number;
 
         /**
-         * <p style="background-color: #E6E6FA">　　　</p>
+         * <p style="background-color: #E6E6FA">#E6E6FA</p>
          * <p>Name (en): <b>Lavender</b></p>
          * <p>Name (zh): <b>薰衣草</b></p>
          * <p>Hex: <b>#E6E6FA</b></p>
@@ -2712,7 +2740,7 @@ declare namespace Internal {
         LAVENDER: number;
 
         /**
-         * <p style="background-color: #CCCCFF">　　　</p>
+         * <p style="background-color: #CCCCFF">#CCCCFF</p>
          * <p>Name (en): <b>Lavender Blue</b></p>
          * <p>Name (zh): <b>薰衣草蓝 / 长春花</b></p>
          * <p>Hex: <b>#CCCCFF</b></p>
@@ -2723,7 +2751,7 @@ declare namespace Internal {
         LAVENDER_BLUE: number;
 
         /**
-         * <p style="background-color: #FFF0F5">　　　</p>
+         * <p style="background-color: #FFF0F5">#FFF0F5</p>
          * <p>Name (en): <b>Lavender Blush</b></p>
          * <p>Name (zh): <b>薰衣草紫红</b></p>
          * <p>Hex: <b>#FFF0F5</b></p>
@@ -2734,7 +2762,7 @@ declare namespace Internal {
         LAVENDER_BLUSH: number;
 
         /**
-         * <p style="background-color: #EE82EE">　　　</p>
+         * <p style="background-color: #EE82EE">#EE82EE</p>
          * <p>Name (en): <b>Lavender Magenta</b></p>
          * <p>Name (zh): <b>亮紫</b></p>
          * <p>Hex: <b>#EE82EE</b></p>
@@ -2745,7 +2773,7 @@ declare namespace Internal {
         LAVENDER_MAGENTA: number;
 
         /**
-         * <p style="background-color: #E6E6FA">　　　</p>
+         * <p style="background-color: #E6E6FA">#E6E6FA</p>
          * <p>Name (en): <b>Lavender Mist</b></p>
          * <p>Name (zh): <b>薰衣草雾</b></p>
          * <p>Hex: <b>#E6E6FA</b></p>
@@ -2756,7 +2784,7 @@ declare namespace Internal {
         LAVENDER_MIST: number;
 
         /**
-         * <p style="background-color: #7CFC00">　　　</p>
+         * <p style="background-color: #7CFC00">#7CFC00</p>
          * <p>Name (en): <b>Lawn Green</b></p>
          * <p>Name (zh): <b>草坪绿</b></p>
          * <p>Hex: <b>#7CFC00</b></p>
@@ -2767,7 +2795,7 @@ declare namespace Internal {
         LAWN_GREEN: number;
 
         /**
-         * <p style="background-color: #FFFACD">　　　</p>
+         * <p style="background-color: #FFFACD">#FFFACD</p>
          * <p>Name (en): <b>Lemon Chiffon</b></p>
          * <p>Name (zh): <b>柠檬绸</b></p>
          * <p>Hex: <b>#FFFACD</b></p>
@@ -2778,7 +2806,7 @@ declare namespace Internal {
         LEMON_CHIFFON: number;
 
         /**
-         * <p style="background-color: #ADD8E6">　　　</p>
+         * <p style="background-color: #ADD8E6">#ADD8E6</p>
          * <p>Name (en): <b>Light Blue</b></p>
          * <p>Name (zh): <b>亮蓝</b></p>
          * <p>Hex: <b>#ADD8E6</b></p>
@@ -2789,7 +2817,7 @@ declare namespace Internal {
         LIGHT_BLUE: number;
 
         /**
-         * <p style="background-color: #E1F5FE">　　　</p>
+         * <p style="background-color: #E1F5FE">#E1F5FE</p>
          * <p>Name (en): <b>Light Blue (50)</b></p>
          * <p>Name (zh): <b>浅蓝 (50)</b></p>
          * <p>Hex: <b>#E1F5FE</b></p>
@@ -2800,7 +2828,7 @@ declare namespace Internal {
         LIGHT_BLUE_50: number;
 
         /**
-         * <p style="background-color: #B3E5FC">　　　</p>
+         * <p style="background-color: #B3E5FC">#B3E5FC</p>
          * <p>Name (en): <b>Light Blue (100)</b></p>
          * <p>Name (zh): <b>浅蓝 (100)</b></p>
          * <p>Hex: <b>#B3E5FC</b></p>
@@ -2811,7 +2839,7 @@ declare namespace Internal {
         LIGHT_BLUE_100: number;
 
         /**
-         * <p style="background-color: #81D4FA">　　　</p>
+         * <p style="background-color: #81D4FA">#81D4FA</p>
          * <p>Name (en): <b>Light Blue (200)</b></p>
          * <p>Name (zh): <b>浅蓝 (200)</b></p>
          * <p>Hex: <b>#81D4FA</b></p>
@@ -2822,7 +2850,7 @@ declare namespace Internal {
         LIGHT_BLUE_200: number;
 
         /**
-         * <p style="background-color: #4FC3F7">　　　</p>
+         * <p style="background-color: #4FC3F7">#4FC3F7</p>
          * <p>Name (en): <b>Light Blue (300)</b></p>
          * <p>Name (zh): <b>浅蓝 (300)</b></p>
          * <p>Hex: <b>#4FC3F7</b></p>
@@ -2833,7 +2861,7 @@ declare namespace Internal {
         LIGHT_BLUE_300: number;
 
         /**
-         * <p style="background-color: #29B6FC">　　　</p>
+         * <p style="background-color: #29B6FC">#29B6FC</p>
          * <p>Name (en): <b>Light Blue (400)</b></p>
          * <p>Name (zh): <b>浅蓝 (400)</b></p>
          * <p>Hex: <b>#29B6FC</b></p>
@@ -2844,7 +2872,7 @@ declare namespace Internal {
         LIGHT_BLUE_400: number;
 
         /**
-         * <p style="background-color: #03A9F4">　　　</p>
+         * <p style="background-color: #03A9F4">#03A9F4</p>
          * <p>Name (en): <b>Light Blue (500)</b></p>
          * <p>Name (zh): <b>浅蓝 (500)</b></p>
          * <p>Hex: <b>#03A9F4</b></p>
@@ -2855,7 +2883,7 @@ declare namespace Internal {
         LIGHT_BLUE_500: number;
 
         /**
-         * <p style="background-color: #039BE5">　　　</p>
+         * <p style="background-color: #039BE5">#039BE5</p>
          * <p>Name (en): <b>Light Blue (600)</b></p>
          * <p>Name (zh): <b>浅蓝 (600)</b></p>
          * <p>Hex: <b>#039BE5</b></p>
@@ -2866,7 +2894,7 @@ declare namespace Internal {
         LIGHT_BLUE_600: number;
 
         /**
-         * <p style="background-color: #0288D1">　　　</p>
+         * <p style="background-color: #0288D1">#0288D1</p>
          * <p>Name (en): <b>Light Blue (700)</b></p>
          * <p>Name (zh): <b>浅蓝 (700)</b></p>
          * <p>Hex: <b>#0288D1</b></p>
@@ -2877,7 +2905,7 @@ declare namespace Internal {
         LIGHT_BLUE_700: number;
 
         /**
-         * <p style="background-color: #0277BD">　　　</p>
+         * <p style="background-color: #0277BD">#0277BD</p>
          * <p>Name (en): <b>Light Blue (800)</b></p>
          * <p>Name (zh): <b>浅蓝 (800)</b></p>
          * <p>Hex: <b>#0277BD</b></p>
@@ -2888,7 +2916,7 @@ declare namespace Internal {
         LIGHT_BLUE_800: number;
 
         /**
-         * <p style="background-color: #01579B">　　　</p>
+         * <p style="background-color: #01579B">#01579B</p>
          * <p>Name (en): <b>Light Blue (900)</b></p>
          * <p>Name (zh): <b>浅蓝 (900)</b></p>
          * <p>Hex: <b>#01579B</b></p>
@@ -2899,7 +2927,7 @@ declare namespace Internal {
         LIGHT_BLUE_900: number;
 
         /**
-         * <p style="background-color: #80D8FF">　　　</p>
+         * <p style="background-color: #80D8FF">#80D8FF</p>
          * <p>Name (en): <b>Light Blue (A100)</b></p>
          * <p>Name (zh): <b>浅蓝 (A100)</b></p>
          * <p>Hex: <b>#80D8FF</b></p>
@@ -2910,7 +2938,7 @@ declare namespace Internal {
         LIGHT_BLUE_A100: number;
 
         /**
-         * <p style="background-color: #40C4FF">　　　</p>
+         * <p style="background-color: #40C4FF">#40C4FF</p>
          * <p>Name (en): <b>Light Blue (A200)</b></p>
          * <p>Name (zh): <b>浅蓝 (A200)</b></p>
          * <p>Hex: <b>#40C4FF</b></p>
@@ -2921,7 +2949,7 @@ declare namespace Internal {
         LIGHT_BLUE_A200: number;
 
         /**
-         * <p style="background-color: #00B0FF">　　　</p>
+         * <p style="background-color: #00B0FF">#00B0FF</p>
          * <p>Name (en): <b>Light Blue (A400)</b></p>
          * <p>Name (zh): <b>浅蓝 (A400)</b></p>
          * <p>Hex: <b>#00B0FF</b></p>
@@ -2932,7 +2960,7 @@ declare namespace Internal {
         LIGHT_BLUE_A400: number;
 
         /**
-         * <p style="background-color: #0091EA">　　　</p>
+         * <p style="background-color: #0091EA">#0091EA</p>
          * <p>Name (en): <b>Light Blue (A700)</b></p>
          * <p>Name (zh): <b>浅蓝 (A700)</b></p>
          * <p>Hex: <b>#0091EA</b></p>
@@ -2943,7 +2971,7 @@ declare namespace Internal {
         LIGHT_BLUE_A700: number;
 
         /**
-         * <p style="background-color: #F08080">　　　</p>
+         * <p style="background-color: #F08080">#F08080</p>
          * <p>Name (en): <b>Light Coral</b></p>
          * <p>Name (zh): <b>亮珊瑚</b></p>
          * <p>Hex: <b>#F08080</b></p>
@@ -2954,7 +2982,7 @@ declare namespace Internal {
         LIGHT_CORAL: number;
 
         /**
-         * <p style="background-color: #E0FFFF">　　　</p>
+         * <p style="background-color: #E0FFFF">#E0FFFF</p>
          * <p>Name (en): <b>Light Cyan</b></p>
          * <p>Name (zh): <b>亮青</b></p>
          * <p>Hex: <b>#E0FFFF</b></p>
@@ -2965,7 +2993,7 @@ declare namespace Internal {
         LIGHT_CYAN: number;
 
         /**
-         * <p style="background-color: #FAFAD2">　　　</p>
+         * <p style="background-color: #FAFAD2">#FAFAD2</p>
          * <p>Name (en): <b>Light Goldenrod Yellow</b></p>
          * <p>Name (zh): <b>亮金菊黄</b></p>
          * <p>Hex: <b>#FAFAD2</b></p>
@@ -2976,7 +3004,7 @@ declare namespace Internal {
         LIGHT_GOLDENROD_YELLOW: number;
 
         /**
-         * <p style="background-color: #CCCCCC">　　　</p>
+         * <p style="background-color: #CCCCCC">#CCCCCC</p>
          * <p>Name (en): <b>Light Gray</b></p>
          * <p>Name (zh): <b>亮灰</b></p>
          * <p>Hex: <b>#CCCCCC</b></p>
@@ -2987,7 +3015,7 @@ declare namespace Internal {
         LIGHT_GRAY: number;
 
         /**
-         * <p style="background-color: #90EE90">　　　</p>
+         * <p style="background-color: #90EE90">#90EE90</p>
          * <p>Name (en): <b>Light Green</b></p>
          * <p>Name (zh): <b>亮绿</b></p>
          * <p>Hex: <b>#90EE90</b></p>
@@ -2998,7 +3026,7 @@ declare namespace Internal {
         LIGHT_GREEN: number;
 
         /**
-         * <p style="background-color: #F1F8E9">　　　</p>
+         * <p style="background-color: #F1F8E9">#F1F8E9</p>
          * <p>Name (en): <b>Light Green (50)</b></p>
          * <p>Name (zh): <b>浅绿 (50)</b></p>
          * <p>Hex: <b>#F1F8E9</b></p>
@@ -3009,7 +3037,7 @@ declare namespace Internal {
         LIGHT_GREEN_50: number;
 
         /**
-         * <p style="background-color: #DCEDC8">　　　</p>
+         * <p style="background-color: #DCEDC8">#DCEDC8</p>
          * <p>Name (en): <b>Light Green (100)</b></p>
          * <p>Name (zh): <b>浅绿 (100)</b></p>
          * <p>Hex: <b>#DCEDC8</b></p>
@@ -3020,7 +3048,7 @@ declare namespace Internal {
         LIGHT_GREEN_100: number;
 
         /**
-         * <p style="background-color: #C5E1A5">　　　</p>
+         * <p style="background-color: #C5E1A5">#C5E1A5</p>
          * <p>Name (en): <b>Light Green (200)</b></p>
          * <p>Name (zh): <b>浅绿 (200)</b></p>
          * <p>Hex: <b>#C5E1A5</b></p>
@@ -3031,7 +3059,7 @@ declare namespace Internal {
         LIGHT_GREEN_200: number;
 
         /**
-         * <p style="background-color: #AED581">　　　</p>
+         * <p style="background-color: #AED581">#AED581</p>
          * <p>Name (en): <b>Light Green (300)</b></p>
          * <p>Name (zh): <b>浅绿 (300)</b></p>
          * <p>Hex: <b>#AED581</b></p>
@@ -3042,7 +3070,7 @@ declare namespace Internal {
         LIGHT_GREEN_300: number;
 
         /**
-         * <p style="background-color: #9CCC65">　　　</p>
+         * <p style="background-color: #9CCC65">#9CCC65</p>
          * <p>Name (en): <b>Light Green (400)</b></p>
          * <p>Name (zh): <b>浅绿 (400)</b></p>
          * <p>Hex: <b>#9CCC65</b></p>
@@ -3053,7 +3081,7 @@ declare namespace Internal {
         LIGHT_GREEN_400: number;
 
         /**
-         * <p style="background-color: #8BC34A">　　　</p>
+         * <p style="background-color: #8BC34A">#8BC34A</p>
          * <p>Name (en): <b>Light Green (500)</b></p>
          * <p>Name (zh): <b>浅绿 (500)</b></p>
          * <p>Hex: <b>#8BC34A</b></p>
@@ -3064,7 +3092,7 @@ declare namespace Internal {
         LIGHT_GREEN_500: number;
 
         /**
-         * <p style="background-color: #7CB342">　　　</p>
+         * <p style="background-color: #7CB342">#7CB342</p>
          * <p>Name (en): <b>Light Green (600)</b></p>
          * <p>Name (zh): <b>浅绿 (600)</b></p>
          * <p>Hex: <b>#7CB342</b></p>
@@ -3075,7 +3103,7 @@ declare namespace Internal {
         LIGHT_GREEN_600: number;
 
         /**
-         * <p style="background-color: #689F38">　　　</p>
+         * <p style="background-color: #689F38">#689F38</p>
          * <p>Name (en): <b>Light Green (700)</b></p>
          * <p>Name (zh): <b>浅绿 (700)</b></p>
          * <p>Hex: <b>#689F38</b></p>
@@ -3086,7 +3114,7 @@ declare namespace Internal {
         LIGHT_GREEN_700: number;
 
         /**
-         * <p style="background-color: #558B2F">　　　</p>
+         * <p style="background-color: #558B2F">#558B2F</p>
          * <p>Name (en): <b>Light Green (800)</b></p>
          * <p>Name (zh): <b>浅绿 (800)</b></p>
          * <p>Hex: <b>#558B2F</b></p>
@@ -3097,7 +3125,7 @@ declare namespace Internal {
         LIGHT_GREEN_800: number;
 
         /**
-         * <p style="background-color: #33691E">　　　</p>
+         * <p style="background-color: #33691E">#33691E</p>
          * <p>Name (en): <b>Light Green (900)</b></p>
          * <p>Name (zh): <b>浅绿 (900)</b></p>
          * <p>Hex: <b>#33691E</b></p>
@@ -3108,7 +3136,7 @@ declare namespace Internal {
         LIGHT_GREEN_900: number;
 
         /**
-         * <p style="background-color: #CCFF90">　　　</p>
+         * <p style="background-color: #CCFF90">#CCFF90</p>
          * <p>Name (en): <b>Light Green (A100)</b></p>
          * <p>Name (zh): <b>浅绿 (A100)</b></p>
          * <p>Hex: <b>#CCFF90</b></p>
@@ -3119,7 +3147,7 @@ declare namespace Internal {
         LIGHT_GREEN_A100: number;
 
         /**
-         * <p style="background-color: #B2FF59">　　　</p>
+         * <p style="background-color: #B2FF59">#B2FF59</p>
          * <p>Name (en): <b>Light Green (A200)</b></p>
          * <p>Name (zh): <b>浅绿 (A200)</b></p>
          * <p>Hex: <b>#B2FF59</b></p>
@@ -3130,7 +3158,7 @@ declare namespace Internal {
         LIGHT_GREEN_A200: number;
 
         /**
-         * <p style="background-color: #76FF03">　　　</p>
+         * <p style="background-color: #76FF03">#76FF03</p>
          * <p>Name (en): <b>Light Green (A400)</b></p>
          * <p>Name (zh): <b>浅绿 (A400)</b></p>
          * <p>Hex: <b>#76FF03</b></p>
@@ -3141,7 +3169,7 @@ declare namespace Internal {
         LIGHT_GREEN_A400: number;
 
         /**
-         * <p style="background-color: #64DD17">　　　</p>
+         * <p style="background-color: #64DD17">#64DD17</p>
          * <p>Name (en): <b>Light Green (A700)</b></p>
          * <p>Name (zh): <b>浅绿 (A700)</b></p>
          * <p>Hex: <b>#64DD17</b></p>
@@ -3152,7 +3180,7 @@ declare namespace Internal {
         LIGHT_GREEN_A700: number;
 
         /**
-         * <p style="background-color: #CCCCCC">　　　</p>
+         * <p style="background-color: #CCCCCC">#CCCCCC</p>
          * <p>Name (en): <b>Light Grey</b></p>
          * <p>Name (zh): <b>亮灰</b></p>
          * <p>Hex: <b>#CCCCCC</b></p>
@@ -3163,7 +3191,7 @@ declare namespace Internal {
         LIGHT_GREY: number;
 
         /**
-         * <p style="background-color: #F0E68C">　　　</p>
+         * <p style="background-color: #F0E68C">#F0E68C</p>
          * <p>Name (en): <b>Light Khaki</b></p>
          * <p>Name (zh): <b>亮卡其</b></p>
          * <p>Hex: <b>#F0E68C</b></p>
@@ -3174,7 +3202,7 @@ declare namespace Internal {
         LIGHT_KHAKI: number;
 
         /**
-         * <p style="background-color: #CCFF00">　　　</p>
+         * <p style="background-color: #CCFF00">#CCFF00</p>
          * <p>Name (en): <b>Light Lime</b></p>
          * <p>Name (zh): <b>柠檬绿 / 亮柠檬绿</b></p>
          * <p>Hex: <b>#CCFF00</b></p>
@@ -3185,7 +3213,7 @@ declare namespace Internal {
         LIGHT_LIME: number;
 
         /**
-         * <p style="background-color: #FFB6C1">　　　</p>
+         * <p style="background-color: #FFB6C1">#FFB6C1</p>
          * <p>Name (en): <b>Light Pink</b></p>
          * <p>Name (zh): <b>亮粉红</b></p>
          * <p>Hex: <b>#FFB6C1</b></p>
@@ -3196,7 +3224,7 @@ declare namespace Internal {
         LIGHT_PINK: number;
 
         /**
-         * <p style="background-color: #FFA07A">　　　</p>
+         * <p style="background-color: #FFA07A">#FFA07A</p>
          * <p>Name (en): <b>Light Salmon</b></p>
          * <p>Name (zh): <b>亮鲑红</b></p>
          * <p>Hex: <b>#FFA07A</b></p>
@@ -3207,7 +3235,7 @@ declare namespace Internal {
         LIGHT_SALMON: number;
 
         /**
-         * <p style="background-color: #20B2AA">　　　</p>
+         * <p style="background-color: #20B2AA">#20B2AA</p>
          * <p>Name (en): <b>Light Sea Green</b></p>
          * <p>Name (zh): <b>亮海绿</b></p>
          * <p>Hex: <b>#20B2AA</b></p>
@@ -3218,7 +3246,7 @@ declare namespace Internal {
         LIGHT_SEA_GREEN: number;
 
         /**
-         * <p style="background-color: #87CEFA">　　　</p>
+         * <p style="background-color: #87CEFA">#87CEFA</p>
          * <p>Name (en): <b>Light Sky Blue</b></p>
          * <p>Name (zh): <b>浅天蓝</b></p>
          * <p>Hex: <b>#87CEFA</b></p>
@@ -3229,7 +3257,7 @@ declare namespace Internal {
         LIGHT_SKY_BLUE: number;
 
         /**
-         * <p style="background-color: #778899">　　　</p>
+         * <p style="background-color: #778899">#778899</p>
          * <p>Name (en): <b>Light Slate Gray</b></p>
          * <p>Name (zh): <b>亮岩灰</b></p>
          * <p>Hex: <b>#778899</b></p>
@@ -3240,7 +3268,7 @@ declare namespace Internal {
         LIGHT_SLATE_GRAY: number;
 
         /**
-         * <p style="background-color: #778899">　　　</p>
+         * <p style="background-color: #778899">#778899</p>
          * <p>Name (en): <b>Light Slate Grey</b></p>
          * <p>Name (zh): <b>亮岩灰</b></p>
          * <p>Hex: <b>#778899</b></p>
@@ -3251,7 +3279,7 @@ declare namespace Internal {
         LIGHT_SLATE_GREY: number;
 
         /**
-         * <p style="background-color: #B0C4DE">　　　</p>
+         * <p style="background-color: #B0C4DE">#B0C4DE</p>
          * <p>Name (en): <b>Light Steel Blue</b></p>
          * <p>Name (zh): <b>亮钢蓝</b></p>
          * <p>Hex: <b>#B0C4DE</b></p>
@@ -3262,7 +3290,7 @@ declare namespace Internal {
         LIGHT_STEEL_BLUE: number;
 
         /**
-         * <p style="background-color: #B09DB9">　　　</p>
+         * <p style="background-color: #B09DB9">#B09DB9</p>
          * <p>Name (en): <b>Light Violet</b></p>
          * <p>Name (zh): <b>亮紫</b></p>
          * <p>Hex: <b>#B09DB9</b></p>
@@ -3273,7 +3301,7 @@ declare namespace Internal {
         LIGHT_VIOLET: number;
 
         /**
-         * <p style="background-color: #FFFFE0">　　　</p>
+         * <p style="background-color: #FFFFE0">#FFFFE0</p>
          * <p>Name (en): <b>Light Yellow</b></p>
          * <p>Name (zh): <b>亮黄</b></p>
          * <p>Hex: <b>#FFFFE0</b></p>
@@ -3284,7 +3312,7 @@ declare namespace Internal {
         LIGHT_YELLOW: number;
 
         /**
-         * <p style="background-color: #C8A2C8">　　　</p>
+         * <p style="background-color: #C8A2C8">#C8A2C8</p>
          * <p>Name (en): <b>Lilac</b></p>
          * <p>Name (zh): <b>紫丁香</b></p>
          * <p>Hex: <b>#C8A2C8</b></p>
@@ -3295,7 +3323,7 @@ declare namespace Internal {
         LILAC: number;
 
         /**
-         * <p style="background-color: #00FF00">　　　</p>
+         * <p style="background-color: #00FF00">#00FF00</p>
          * <p>Name (en): <b>Lime</b></p>
          * <p>Name (zh): <b>绿</b></p>
          * <p>Hex: <b>#00FF00</b></p>
@@ -3306,7 +3334,7 @@ declare namespace Internal {
         LIME: number;
 
         /**
-         * <p style="background-color: #F9FBE7">　　　</p>
+         * <p style="background-color: #F9FBE7">#F9FBE7</p>
          * <p>Name (en): <b>Lime (50)</b></p>
          * <p>Name (zh): <b>绿黄 (50)</b></p>
          * <p>Hex: <b>#F9FBE7</b></p>
@@ -3317,7 +3345,7 @@ declare namespace Internal {
         LIME_50: number;
 
         /**
-         * <p style="background-color: #F0F4C3">　　　</p>
+         * <p style="background-color: #F0F4C3">#F0F4C3</p>
          * <p>Name (en): <b>Lime (100)</b></p>
          * <p>Name (zh): <b>绿黄 (100)</b></p>
          * <p>Hex: <b>#F0F4C3</b></p>
@@ -3328,7 +3356,7 @@ declare namespace Internal {
         LIME_100: number;
 
         /**
-         * <p style="background-color: #E6EE9C">　　　</p>
+         * <p style="background-color: #E6EE9C">#E6EE9C</p>
          * <p>Name (en): <b>Lime (200)</b></p>
          * <p>Name (zh): <b>绿黄 (200)</b></p>
          * <p>Hex: <b>#E6EE9C</b></p>
@@ -3339,7 +3367,7 @@ declare namespace Internal {
         LIME_200: number;
 
         /**
-         * <p style="background-color: #DCE775">　　　</p>
+         * <p style="background-color: #DCE775">#DCE775</p>
          * <p>Name (en): <b>Lime (300)</b></p>
          * <p>Name (zh): <b>绿黄 (300)</b></p>
          * <p>Hex: <b>#DCE775</b></p>
@@ -3350,7 +3378,7 @@ declare namespace Internal {
         LIME_300: number;
 
         /**
-         * <p style="background-color: #D4E157">　　　</p>
+         * <p style="background-color: #D4E157">#D4E157</p>
          * <p>Name (en): <b>Lime (400)</b></p>
          * <p>Name (zh): <b>绿黄 (400)</b></p>
          * <p>Hex: <b>#D4E157</b></p>
@@ -3361,7 +3389,7 @@ declare namespace Internal {
         LIME_400: number;
 
         /**
-         * <p style="background-color: #CDDC39">　　　</p>
+         * <p style="background-color: #CDDC39">#CDDC39</p>
          * <p>Name (en): <b>Lime (500)</b></p>
          * <p>Name (zh): <b>绿黄 (500)</b></p>
          * <p>Hex: <b>#CDDC39</b></p>
@@ -3372,7 +3400,7 @@ declare namespace Internal {
         LIME_500: number;
 
         /**
-         * <p style="background-color: #C0CA33">　　　</p>
+         * <p style="background-color: #C0CA33">#C0CA33</p>
          * <p>Name (en): <b>Lime (600)</b></p>
          * <p>Name (zh): <b>绿黄 (600)</b></p>
          * <p>Hex: <b>#C0CA33</b></p>
@@ -3383,7 +3411,7 @@ declare namespace Internal {
         LIME_600: number;
 
         /**
-         * <p style="background-color: #A4B42B">　　　</p>
+         * <p style="background-color: #A4B42B">#A4B42B</p>
          * <p>Name (en): <b>Lime (700)</b></p>
          * <p>Name (zh): <b>绿黄 (700)</b></p>
          * <p>Hex: <b>#A4B42B</b></p>
@@ -3394,7 +3422,7 @@ declare namespace Internal {
         LIME_700: number;
 
         /**
-         * <p style="background-color: #9E9D24">　　　</p>
+         * <p style="background-color: #9E9D24">#9E9D24</p>
          * <p>Name (en): <b>Lime (800)</b></p>
          * <p>Name (zh): <b>绿黄 (800)</b></p>
          * <p>Hex: <b>#9E9D24</b></p>
@@ -3405,7 +3433,7 @@ declare namespace Internal {
         LIME_800: number;
 
         /**
-         * <p style="background-color: #827717">　　　</p>
+         * <p style="background-color: #827717">#827717</p>
          * <p>Name (en): <b>Lime (900)</b></p>
          * <p>Name (zh): <b>绿黄 (900)</b></p>
          * <p>Hex: <b>#827717</b></p>
@@ -3416,7 +3444,7 @@ declare namespace Internal {
         LIME_900: number;
 
         /**
-         * <p style="background-color: #F4FF81">　　　</p>
+         * <p style="background-color: #F4FF81">#F4FF81</p>
          * <p>Name (en): <b>Lime (A100)</b></p>
          * <p>Name (zh): <b>绿黄 (A100)</b></p>
          * <p>Hex: <b>#F4FF81</b></p>
@@ -3427,7 +3455,7 @@ declare namespace Internal {
         LIME_A100: number;
 
         /**
-         * <p style="background-color: #EEFF41">　　　</p>
+         * <p style="background-color: #EEFF41">#EEFF41</p>
          * <p>Name (en): <b>Lime (A200)</b></p>
          * <p>Name (zh): <b>绿黄 (A200)</b></p>
          * <p>Hex: <b>#EEFF41</b></p>
@@ -3438,7 +3466,7 @@ declare namespace Internal {
         LIME_A200: number;
 
         /**
-         * <p style="background-color: #C6FF00">　　　</p>
+         * <p style="background-color: #C6FF00">#C6FF00</p>
          * <p>Name (en): <b>Lime (A400)</b></p>
          * <p>Name (zh): <b>绿黄 (A400)</b></p>
          * <p>Hex: <b>#C6FF00</b></p>
@@ -3449,7 +3477,7 @@ declare namespace Internal {
         LIME_A400: number;
 
         /**
-         * <p style="background-color: #AEEA00">　　　</p>
+         * <p style="background-color: #AEEA00">#AEEA00</p>
          * <p>Name (en): <b>Lime (A700)</b></p>
          * <p>Name (zh): <b>绿黄 (A700)</b></p>
          * <p>Hex: <b>#AEEA00</b></p>
@@ -3460,7 +3488,7 @@ declare namespace Internal {
         LIME_A700: number;
 
         /**
-         * <p style="background-color: #32CD32">　　　</p>
+         * <p style="background-color: #32CD32">#32CD32</p>
          * <p>Name (en): <b>Lime Green</b></p>
          * <p>Name (zh): <b>柠檬绿</b></p>
          * <p>Hex: <b>#32CD32</b></p>
@@ -3471,7 +3499,7 @@ declare namespace Internal {
         LIME_GREEN: number;
 
         /**
-         * <p style="background-color: #FAF0E6">　　　</p>
+         * <p style="background-color: #FAF0E6">#FAF0E6</p>
          * <p>Name (en): <b>Linen</b></p>
          * <p>Name (zh): <b>亚麻</b></p>
          * <p>Hex: <b>#FAF0E6</b></p>
@@ -3482,7 +3510,7 @@ declare namespace Internal {
         LINEN: number;
 
         /**
-         * <p style="background-color: #CCCCCC">　　　</p>
+         * <p style="background-color: #CCCCCC">#CCCCCC</p>
          * <p>Name (en): <b>Ltgray</b></p>
          * <p>Name (zh): <b>亮灰</b></p>
          * <p>Hex: <b>#CCCCCC</b></p>
@@ -3493,7 +3521,7 @@ declare namespace Internal {
         LTGRAY: number;
 
         /**
-         * <p style="background-color: #FF00FF">　　　</p>
+         * <p style="background-color: #FF00FF">#FF00FF</p>
          * <p>Name (en): <b>Magenta</b></p>
          * <p>Name (zh): <b>品红 / 洋红</b></p>
          * <p>Hex: <b>#FF00FF</b></p>
@@ -3504,7 +3532,7 @@ declare namespace Internal {
         MAGENTA: number;
 
         /**
-         * <p style="background-color: #FF0DA6">　　　</p>
+         * <p style="background-color: #FF0DA6">#FF0DA6</p>
          * <p>Name (en): <b>Magenta Rose</b></p>
          * <p>Name (zh): <b>洋玫瑰红</b></p>
          * <p>Hex: <b>#FF0DA6</b></p>
@@ -3515,7 +3543,7 @@ declare namespace Internal {
         MAGENTA_ROSE: number;
 
         /**
-         * <p style="background-color: #22C32E">　　　</p>
+         * <p style="background-color: #22C32E">#22C32E</p>
          * <p>Name (en): <b>Malachite</b></p>
          * <p>Name (zh): <b>孔雀石绿</b></p>
          * <p>Hex: <b>#22C32E</b></p>
@@ -3526,7 +3554,7 @@ declare namespace Internal {
         MALACHITE: number;
 
         /**
-         * <p style="background-color: #D94DFF">　　　</p>
+         * <p style="background-color: #D94DFF">#D94DFF</p>
          * <p>Name (en): <b>Mallow</b></p>
          * <p>Name (zh): <b>锦葵紫</b></p>
          * <p>Hex: <b>#D94DFF</b></p>
@@ -3537,7 +3565,7 @@ declare namespace Internal {
         MALLOW: number;
 
         /**
-         * <p style="background-color: #FF9900">　　　</p>
+         * <p style="background-color: #FF9900">#FF9900</p>
          * <p>Name (en): <b>Marigold</b></p>
          * <p>Name (zh): <b>万寿菊黄</b></p>
          * <p>Hex: <b>#FF9900</b></p>
@@ -3548,7 +3576,7 @@ declare namespace Internal {
         MARIGOLD: number;
 
         /**
-         * <p style="background-color: #00477D">　　　</p>
+         * <p style="background-color: #00477D">#00477D</p>
          * <p>Name (en): <b>Marine Blue</b></p>
          * <p>Name (zh): <b>水手蓝</b></p>
          * <p>Hex: <b>#00477D</b></p>
@@ -3559,7 +3587,7 @@ declare namespace Internal {
         MARINE_BLUE: number;
 
         /**
-         * <p style="background-color: #800000">　　　</p>
+         * <p style="background-color: #800000">#800000</p>
          * <p>Name (en): <b>Maroon</b></p>
          * <p>Name (zh): <b>栗</b></p>
          * <p>Hex: <b>#800000</b></p>
@@ -3570,7 +3598,7 @@ declare namespace Internal {
         MAROON: number;
 
         /**
-         * <p style="background-color: #E0B0FF">　　　</p>
+         * <p style="background-color: #E0B0FF">#E0B0FF</p>
          * <p>Name (en): <b>Mauve</b></p>
          * <p>Name (zh): <b>木槿紫</b></p>
          * <p>Hex: <b>#E0B0FF</b></p>
@@ -3581,7 +3609,7 @@ declare namespace Internal {
         MAUVE: number;
 
         /**
-         * <p style="background-color: #66CDAA">　　　</p>
+         * <p style="background-color: #66CDAA">#66CDAA</p>
          * <p>Name (en): <b>Medium Aquamarine</b></p>
          * <p>Name (zh): <b>中碧蓝</b></p>
          * <p>Hex: <b>#66CDAA</b></p>
@@ -3592,7 +3620,7 @@ declare namespace Internal {
         MEDIUM_AQUAMARINE: number;
 
         /**
-         * <p style="background-color: #0000CD">　　　</p>
+         * <p style="background-color: #0000CD">#0000CD</p>
          * <p>Name (en): <b>Medium Blue</b></p>
          * <p>Name (zh): <b>中蓝</b></p>
          * <p>Hex: <b>#0000CD</b></p>
@@ -3603,7 +3631,7 @@ declare namespace Internal {
         MEDIUM_BLUE: number;
 
         /**
-         * <p style="background-color: #DDA0DD">　　　</p>
+         * <p style="background-color: #DDA0DD">#DDA0DD</p>
          * <p>Name (en): <b>Medium Lavender Magenta</b></p>
          * <p>Name (zh): <b>梅红</b></p>
          * <p>Hex: <b>#DDA0DD</b></p>
@@ -3614,7 +3642,7 @@ declare namespace Internal {
         MEDIUM_LAVENDER_MAGENTA: number;
 
         /**
-         * <p style="background-color: #BA55D3">　　　</p>
+         * <p style="background-color: #BA55D3">#BA55D3</p>
          * <p>Name (en): <b>Medium Orchid</b></p>
          * <p>Name (zh): <b>中兰紫</b></p>
          * <p>Hex: <b>#BA55D3</b></p>
@@ -3625,7 +3653,7 @@ declare namespace Internal {
         MEDIUM_ORCHID: number;
 
         /**
-         * <p style="background-color: #9370DB">　　　</p>
+         * <p style="background-color: #9370DB">#9370DB</p>
          * <p>Name (en): <b>Medium Purple</b></p>
          * <p>Name (zh): <b>中紫</b></p>
          * <p>Hex: <b>#9370DB</b></p>
@@ -3636,7 +3664,7 @@ declare namespace Internal {
         MEDIUM_PURPLE: number;
 
         /**
-         * <p style="background-color: #3CB371">　　　</p>
+         * <p style="background-color: #3CB371">#3CB371</p>
          * <p>Name (en): <b>Medium Sea Green</b></p>
          * <p>Name (zh): <b>中海绿</b></p>
          * <p>Hex: <b>#3CB371</b></p>
@@ -3647,7 +3675,7 @@ declare namespace Internal {
         MEDIUM_SEA_GREEN: number;
 
         /**
-         * <p style="background-color: #7B68EE">　　　</p>
+         * <p style="background-color: #7B68EE">#7B68EE</p>
          * <p>Name (en): <b>Medium Slate Blue</b></p>
          * <p>Name (zh): <b>中岩蓝</b></p>
          * <p>Hex: <b>#7B68EE</b></p>
@@ -3658,7 +3686,7 @@ declare namespace Internal {
         MEDIUM_SLATE_BLUE: number;
 
         /**
-         * <p style="background-color: #00FA9A">　　　</p>
+         * <p style="background-color: #00FA9A">#00FA9A</p>
          * <p>Name (en): <b>Medium Spring Green</b></p>
          * <p>Name (zh): <b>中春绿</b></p>
          * <p>Hex: <b>#00FA9A</b></p>
@@ -3669,7 +3697,7 @@ declare namespace Internal {
         MEDIUM_SPRING_GREEN: number;
 
         /**
-         * <p style="background-color: #48D1CC">　　　</p>
+         * <p style="background-color: #48D1CC">#48D1CC</p>
          * <p>Name (en): <b>Medium Turquoise</b></p>
          * <p>Name (zh): <b>中绿松石</b></p>
          * <p>Hex: <b>#48D1CC</b></p>
@@ -3680,7 +3708,7 @@ declare namespace Internal {
         MEDIUM_TURQUOISE: number;
 
         /**
-         * <p style="background-color: #C71585">　　　</p>
+         * <p style="background-color: #C71585">#C71585</p>
          * <p>Name (en): <b>Medium Violet Red</b></p>
          * <p>Name (zh): <b>中青紫红</b></p>
          * <p>Hex: <b>#C71585</b></p>
@@ -3691,7 +3719,7 @@ declare namespace Internal {
         MEDIUM_VIOLET_RED: number;
 
         /**
-         * <p style="background-color: #191970">　　　</p>
+         * <p style="background-color: #191970">#191970</p>
          * <p>Name (en): <b>Midnight Blue</b></p>
          * <p>Name (zh): <b>午夜蓝</b></p>
          * <p>Hex: <b>#191970</b></p>
@@ -3702,7 +3730,7 @@ declare namespace Internal {
         MIDNIGHT_BLUE: number;
 
         /**
-         * <p style="background-color: #E6D933">　　　</p>
+         * <p style="background-color: #E6D933">#E6D933</p>
          * <p>Name (en): <b>Mimosa</b></p>
          * <p>Name (zh): <b>含羞草黄</b></p>
          * <p>Hex: <b>#E6D933</b></p>
@@ -3713,7 +3741,7 @@ declare namespace Internal {
         MIMOSA: number;
 
         /**
-         * <p style="background-color: #004D99">　　　</p>
+         * <p style="background-color: #004D99">#004D99</p>
          * <p>Name (en): <b>Mineral Blue</b></p>
          * <p>Name (zh): <b>矿蓝</b></p>
          * <p>Hex: <b>#004D99</b></p>
@@ -3724,7 +3752,7 @@ declare namespace Internal {
         MINERAL_BLUE: number;
 
         /**
-         * <p style="background-color: #A39DAE">　　　</p>
+         * <p style="background-color: #A39DAE">#A39DAE</p>
          * <p>Name (en): <b>Mineral Violet</b></p>
          * <p>Name (zh): <b>矿紫</b></p>
          * <p>Hex: <b>#A39DAE</b></p>
@@ -3735,7 +3763,7 @@ declare namespace Internal {
         MINERAL_VIOLET: number;
 
         /**
-         * <p style="background-color: #16982B">　　　</p>
+         * <p style="background-color: #16982B">#16982B</p>
          * <p>Name (en): <b>Mint</b></p>
          * <p>Name (zh): <b>薄荷绿</b></p>
          * <p>Hex: <b>#16982B</b></p>
@@ -3746,7 +3774,7 @@ declare namespace Internal {
         MINT: number;
 
         /**
-         * <p style="background-color: #F5FFFA">　　　</p>
+         * <p style="background-color: #F5FFFA">#F5FFFA</p>
          * <p>Name (en): <b>Mint Cream</b></p>
          * <p>Name (zh): <b>薄荷奶油</b></p>
          * <p>Hex: <b>#F5FFFA</b></p>
@@ -3757,7 +3785,7 @@ declare namespace Internal {
         MINT_CREAM: number;
 
         /**
-         * <p style="background-color: #FFE4E1">　　　</p>
+         * <p style="background-color: #FFE4E1">#FFE4E1</p>
          * <p>Name (en): <b>Misty Rose</b></p>
          * <p>Name (zh): <b>雾玫瑰</b></p>
          * <p>Hex: <b>#FFE4E1</b></p>
@@ -3768,7 +3796,7 @@ declare namespace Internal {
         MISTY_ROSE: number;
 
         /**
-         * <p style="background-color: #FFE4B5">　　　</p>
+         * <p style="background-color: #FFE4B5">#FFE4B5</p>
          * <p>Name (en): <b>Moccasin</b></p>
          * <p>Name (zh): <b>鹿皮鞋</b></p>
          * <p>Hex: <b>#FFE4B5</b></p>
@@ -3779,7 +3807,7 @@ declare namespace Internal {
         MOCCASIN: number;
 
         /**
-         * <p style="background-color: #FFFF4D">　　　</p>
+         * <p style="background-color: #FFFF4D">#FFFF4D</p>
          * <p>Name (en): <b>Moon Yellow</b></p>
          * <p>Name (zh): <b>月黄</b></p>
          * <p>Hex: <b>#FFFF4D</b></p>
@@ -3790,7 +3818,7 @@ declare namespace Internal {
         MOON_YELLOW: number;
 
         /**
-         * <p style="background-color: #697723">　　　</p>
+         * <p style="background-color: #697723">#697723</p>
          * <p>Name (en): <b>Moss Green</b></p>
          * <p>Name (zh): <b>苔藓绿</b></p>
          * <p>Hex: <b>#697723</b></p>
@@ -3801,7 +3829,7 @@ declare namespace Internal {
         MOSS_GREEN: number;
 
         /**
-         * <p style="background-color: #CCCC4D">　　　</p>
+         * <p style="background-color: #CCCC4D">#CCCC4D</p>
          * <p>Name (en): <b>Mustard</b></p>
          * <p>Name (zh): <b>芥末黄</b></p>
          * <p>Hex: <b>#CCCC4D</b></p>
@@ -3812,7 +3840,7 @@ declare namespace Internal {
         MUSTARD: number;
 
         /**
-         * <p style="background-color: #FFDEAD">　　　</p>
+         * <p style="background-color: #FFDEAD">#FFDEAD</p>
          * <p>Name (en): <b>Navajo White</b></p>
          * <p>Name (zh): <b>那瓦霍白</b></p>
          * <p>Hex: <b>#FFDEAD</b></p>
@@ -3823,7 +3851,7 @@ declare namespace Internal {
         NAVAJO_WHITE: number;
 
         /**
-         * <p style="background-color: #000080">　　　</p>
+         * <p style="background-color: #000080">#000080</p>
          * <p>Name (en): <b>Navy</b></p>
          * <p>Name (zh): <b>海军蓝 / 藏青</b></p>
          * <p>Hex: <b>#000080</b></p>
@@ -3834,7 +3862,7 @@ declare namespace Internal {
         NAVY: number;
 
         /**
-         * <p style="background-color: #000080">　　　</p>
+         * <p style="background-color: #000080">#000080</p>
          * <p>Name (en): <b>Navy Blue</b></p>
          * <p>Name (zh): <b>海军蓝 / 藏青</b></p>
          * <p>Hex: <b>#000080</b></p>
@@ -3845,7 +3873,7 @@ declare namespace Internal {
         NAVY_BLUE: number;
 
         /**
-         * <p style="background-color: #CC7722">　　　</p>
+         * <p style="background-color: #CC7722">#CC7722</p>
          * <p>Name (en): <b>Ocher</b></p>
          * <p>Name (zh): <b>赭</b></p>
          * <p>Hex: <b>#CC7722</b></p>
@@ -3856,7 +3884,7 @@ declare namespace Internal {
         OCHER: number;
 
         /**
-         * <p style="background-color: #FDF5E6">　　　</p>
+         * <p style="background-color: #FDF5E6">#FDF5E6</p>
          * <p>Name (en): <b>Old Lace</b></p>
          * <p>Name (zh): <b>旧蕾丝</b></p>
          * <p>Hex: <b>#FDF5E6</b></p>
@@ -3867,7 +3895,7 @@ declare namespace Internal {
         OLD_LACE: number;
 
         /**
-         * <p style="background-color: #C08081">　　　</p>
+         * <p style="background-color: #C08081">#C08081</p>
          * <p>Name (en): <b>Old Rose</b></p>
          * <p>Name (zh): <b>陈玫红</b></p>
          * <p>Hex: <b>#C08081</b></p>
@@ -3878,7 +3906,7 @@ declare namespace Internal {
         OLD_ROSE: number;
 
         /**
-         * <p style="background-color: #808000">　　　</p>
+         * <p style="background-color: #808000">#808000</p>
          * <p>Name (en): <b>Olive</b></p>
          * <p>Name (zh): <b>橄榄</b></p>
          * <p>Hex: <b>#808000</b></p>
@@ -3889,7 +3917,7 @@ declare namespace Internal {
         OLIVE: number;
 
         /**
-         * <p style="background-color: #6B8E23">　　　</p>
+         * <p style="background-color: #6B8E23">#6B8E23</p>
          * <p>Name (en): <b>Olive Drab</b></p>
          * <p>Name (zh): <b>橄榄军服绿</b></p>
          * <p>Hex: <b>#6B8E23</b></p>
@@ -3900,7 +3928,7 @@ declare namespace Internal {
         OLIVE_DRAB: number;
 
         /**
-         * <p style="background-color: #B784A7">　　　</p>
+         * <p style="background-color: #B784A7">#B784A7</p>
          * <p>Name (en): <b>Opera Mauve</b></p>
          * <p>Name (zh): <b>优品紫红</b></p>
          * <p>Hex: <b>#B784A7</b></p>
@@ -3911,7 +3939,7 @@ declare namespace Internal {
         OPERA_MAUVE: number;
 
         /**
-         * <p style="background-color: #FFA500">　　　</p>
+         * <p style="background-color: #FFA500">#FFA500</p>
          * <p>Name (en): <b>Orange</b></p>
          * <p>Name (zh): <b>橙</b></p>
          * <p>Hex: <b>#FFA500</b></p>
@@ -3922,7 +3950,7 @@ declare namespace Internal {
         ORANGE: number;
 
         /**
-         * <p style="background-color: #FFF3E0">　　　</p>
+         * <p style="background-color: #FFF3E0">#FFF3E0</p>
          * <p>Name (en): <b>Orange (50)</b></p>
          * <p>Name (zh): <b>橙 (50)</b></p>
          * <p>Hex: <b>#FFF3E0</b></p>
@@ -3933,7 +3961,7 @@ declare namespace Internal {
         ORANGE_50: number;
 
         /**
-         * <p style="background-color: #FFE0B2">　　　</p>
+         * <p style="background-color: #FFE0B2">#FFE0B2</p>
          * <p>Name (en): <b>Orange (100)</b></p>
          * <p>Name (zh): <b>橙 (100)</b></p>
          * <p>Hex: <b>#FFE0B2</b></p>
@@ -3944,7 +3972,7 @@ declare namespace Internal {
         ORANGE_100: number;
 
         /**
-         * <p style="background-color: #FFCC80">　　　</p>
+         * <p style="background-color: #FFCC80">#FFCC80</p>
          * <p>Name (en): <b>Orange (200)</b></p>
          * <p>Name (zh): <b>橙 (200)</b></p>
          * <p>Hex: <b>#FFCC80</b></p>
@@ -3955,7 +3983,7 @@ declare namespace Internal {
         ORANGE_200: number;
 
         /**
-         * <p style="background-color: #FFB74D">　　　</p>
+         * <p style="background-color: #FFB74D">#FFB74D</p>
          * <p>Name (en): <b>Orange (300)</b></p>
          * <p>Name (zh): <b>橙 (300)</b></p>
          * <p>Hex: <b>#FFB74D</b></p>
@@ -3966,7 +3994,7 @@ declare namespace Internal {
         ORANGE_300: number;
 
         /**
-         * <p style="background-color: #FFA726">　　　</p>
+         * <p style="background-color: #FFA726">#FFA726</p>
          * <p>Name (en): <b>Orange (400)</b></p>
          * <p>Name (zh): <b>橙 (400)</b></p>
          * <p>Hex: <b>#FFA726</b></p>
@@ -3977,7 +4005,7 @@ declare namespace Internal {
         ORANGE_400: number;
 
         /**
-         * <p style="background-color: #FF9800">　　　</p>
+         * <p style="background-color: #FF9800">#FF9800</p>
          * <p>Name (en): <b>Orange (500)</b></p>
          * <p>Name (zh): <b>橙 (500)</b></p>
          * <p>Hex: <b>#FF9800</b></p>
@@ -3988,7 +4016,7 @@ declare namespace Internal {
         ORANGE_500: number;
 
         /**
-         * <p style="background-color: #FB8C00">　　　</p>
+         * <p style="background-color: #FB8C00">#FB8C00</p>
          * <p>Name (en): <b>Orange (600)</b></p>
          * <p>Name (zh): <b>橙 (600)</b></p>
          * <p>Hex: <b>#FB8C00</b></p>
@@ -3999,7 +4027,7 @@ declare namespace Internal {
         ORANGE_600: number;
 
         /**
-         * <p style="background-color: #F57C00">　　　</p>
+         * <p style="background-color: #F57C00">#F57C00</p>
          * <p>Name (en): <b>Orange (700)</b></p>
          * <p>Name (zh): <b>橙 (700)</b></p>
          * <p>Hex: <b>#F57C00</b></p>
@@ -4010,7 +4038,7 @@ declare namespace Internal {
         ORANGE_700: number;
 
         /**
-         * <p style="background-color: #EF6C00">　　　</p>
+         * <p style="background-color: #EF6C00">#EF6C00</p>
          * <p>Name (en): <b>Orange (800)</b></p>
          * <p>Name (zh): <b>橙 (800)</b></p>
          * <p>Hex: <b>#EF6C00</b></p>
@@ -4021,7 +4049,7 @@ declare namespace Internal {
         ORANGE_800: number;
 
         /**
-         * <p style="background-color: #E65100">　　　</p>
+         * <p style="background-color: #E65100">#E65100</p>
          * <p>Name (en): <b>Orange (900)</b></p>
          * <p>Name (zh): <b>橙 (900)</b></p>
          * <p>Hex: <b>#E65100</b></p>
@@ -4032,7 +4060,7 @@ declare namespace Internal {
         ORANGE_900: number;
 
         /**
-         * <p style="background-color: #FFD180">　　　</p>
+         * <p style="background-color: #FFD180">#FFD180</p>
          * <p>Name (en): <b>Orange (A100)</b></p>
          * <p>Name (zh): <b>橙 (A100)</b></p>
          * <p>Hex: <b>#FFD180</b></p>
@@ -4043,7 +4071,7 @@ declare namespace Internal {
         ORANGE_A100: number;
 
         /**
-         * <p style="background-color: #FFAB40">　　　</p>
+         * <p style="background-color: #FFAB40">#FFAB40</p>
          * <p>Name (en): <b>Orange (A200)</b></p>
          * <p>Name (zh): <b>橙 (A200)</b></p>
          * <p>Hex: <b>#FFAB40</b></p>
@@ -4054,7 +4082,7 @@ declare namespace Internal {
         ORANGE_A200: number;
 
         /**
-         * <p style="background-color: #FF9100">　　　</p>
+         * <p style="background-color: #FF9100">#FF9100</p>
          * <p>Name (en): <b>Orange (A400)</b></p>
          * <p>Name (zh): <b>橙 (A400)</b></p>
          * <p>Hex: <b>#FF9100</b></p>
@@ -4065,7 +4093,7 @@ declare namespace Internal {
         ORANGE_A400: number;
 
         /**
-         * <p style="background-color: #FF6D00">　　　</p>
+         * <p style="background-color: #FF6D00">#FF6D00</p>
          * <p>Name (en): <b>Orange (A700)</b></p>
          * <p>Name (zh): <b>橙 (A700)</b></p>
          * <p>Hex: <b>#FF6D00</b></p>
@@ -4076,7 +4104,7 @@ declare namespace Internal {
         ORANGE_A700: number;
 
         /**
-         * <p style="background-color: #FF4500">　　　</p>
+         * <p style="background-color: #FF4500">#FF4500</p>
          * <p>Name (en): <b>Orange Red</b></p>
          * <p>Name (zh): <b>橙红</b></p>
          * <p>Hex: <b>#FF4500</b></p>
@@ -4087,7 +4115,7 @@ declare namespace Internal {
         ORANGE_RED: number;
 
         /**
-         * <p style="background-color: #DA70D6">　　　</p>
+         * <p style="background-color: #DA70D6">#DA70D6</p>
          * <p>Name (en): <b>Orchid</b></p>
          * <p>Name (zh): <b>兰花 / 兰紫</b></p>
          * <p>Hex: <b>#DA70D6</b></p>
@@ -4098,7 +4126,7 @@ declare namespace Internal {
         ORCHID: number;
 
         /**
-         * <p style="background-color: #E6CFE6">　　　</p>
+         * <p style="background-color: #E6CFE6">#E6CFE6</p>
          * <p>Name (en): <b>Pail Lilac</b></p>
          * <p>Name (zh): <b>淡紫丁香</b></p>
          * <p>Hex: <b>#E6CFE6</b></p>
@@ -4109,7 +4137,7 @@ declare namespace Internal {
         PAIL_LILAC: number;
 
         /**
-         * <p style="background-color: #D1EDF2">　　　</p>
+         * <p style="background-color: #D1EDF2">#D1EDF2</p>
          * <p>Name (en): <b>Pale Blue</b></p>
          * <p>Name (zh): <b>灰蓝</b></p>
          * <p>Hex: <b>#D1EDF2</b></p>
@@ -4120,7 +4148,7 @@ declare namespace Internal {
         PALE_BLUE: number;
 
         /**
-         * <p style="background-color: #5E86C1">　　　</p>
+         * <p style="background-color: #5E86C1">#5E86C1</p>
          * <p>Name (en): <b>Pale Denim</b></p>
          * <p>Name (zh): <b>灰丁宁蓝 / 白牛仔布</b></p>
          * <p>Hex: <b>#5E86C1</b></p>
@@ -4131,7 +4159,7 @@ declare namespace Internal {
         PALE_DENIM: number;
 
         /**
-         * <p style="background-color: #EEE8AA">　　　</p>
+         * <p style="background-color: #EEE8AA">#EEE8AA</p>
          * <p>Name (en): <b>Pale Goldenrod</b></p>
          * <p>Name (zh): <b>灰金菊</b></p>
          * <p>Hex: <b>#EEE8AA</b></p>
@@ -4142,7 +4170,7 @@ declare namespace Internal {
         PALE_GOLDENROD: number;
 
         /**
-         * <p style="background-color: #98FB98">　　　</p>
+         * <p style="background-color: #98FB98">#98FB98</p>
          * <p>Name (en): <b>Pale Green</b></p>
          * <p>Name (zh): <b>灰绿</b></p>
          * <p>Hex: <b>#98FB98</b></p>
@@ -4153,7 +4181,7 @@ declare namespace Internal {
         PALE_GREEN: number;
 
         /**
-         * <p style="background-color: #CCB38C">　　　</p>
+         * <p style="background-color: #CCB38C">#CCB38C</p>
          * <p>Name (en): <b>Pale Ochre</b></p>
          * <p>Name (zh): <b>灰土</b></p>
          * <p>Hex: <b>#CCB38C</b></p>
@@ -4164,7 +4192,7 @@ declare namespace Internal {
         PALE_OCHRE: number;
 
         /**
-         * <p style="background-color: #AFEEEE">　　　</p>
+         * <p style="background-color: #AFEEEE">#AFEEEE</p>
          * <p>Name (en): <b>Pale Turquoise</b></p>
          * <p>Name (zh): <b>灰绿松石</b></p>
          * <p>Hex: <b>#AFEEEE</b></p>
@@ -4175,7 +4203,7 @@ declare namespace Internal {
         PALE_TURQUOISE: number;
 
         /**
-         * <p style="background-color: #DB7093">　　　</p>
+         * <p style="background-color: #DB7093">#DB7093</p>
          * <p>Name (en): <b>Pale Violet Red</b></p>
          * <p>Name (zh): <b>灰紫红</b></p>
          * <p>Hex: <b>#DB7093</b></p>
@@ -4186,7 +4214,7 @@ declare namespace Internal {
         PALE_VIOLET_RED: number;
 
         /**
-         * <p style="background-color: #7400A1">　　　</p>
+         * <p style="background-color: #7400A1">#7400A1</p>
          * <p>Name (en): <b>Pansy</b></p>
          * <p>Name (zh): <b>三色堇紫</b></p>
          * <p>Hex: <b>#7400A1</b></p>
@@ -4197,7 +4225,7 @@ declare namespace Internal {
         PANSY: number;
 
         /**
-         * <p style="background-color: #FFEFD5">　　　</p>
+         * <p style="background-color: #FFEFD5">#FFEFD5</p>
          * <p>Name (en): <b>Papaya Whip</b></p>
          * <p>Name (zh): <b>蕃木瓜</b></p>
          * <p>Hex: <b>#FFEFD5</b></p>
@@ -4208,7 +4236,7 @@ declare namespace Internal {
         PAPAYA_WHIP: number;
 
         /**
-         * <p style="background-color: #800080">　　　</p>
+         * <p style="background-color: #800080">#800080</p>
          * <p>Name (en): <b>Patriarch</b></p>
          * <p>Name (zh): <b>宗主教</b></p>
          * <p>Hex: <b>#800080</b></p>
@@ -4219,7 +4247,7 @@ declare namespace Internal {
         PATRIARCH: number;
 
         /**
-         * <p style="background-color: #FFE5B4">　　　</p>
+         * <p style="background-color: #FFE5B4">#FFE5B4</p>
          * <p>Name (en): <b>Peach</b></p>
          * <p>Name (zh): <b>桃</b></p>
          * <p>Hex: <b>#FFE5B4</b></p>
@@ -4230,7 +4258,7 @@ declare namespace Internal {
         PEACH: number;
 
         /**
-         * <p style="background-color: #FBBEA1">　　　</p>
+         * <p style="background-color: #FBBEA1">#FBBEA1</p>
          * <p>Name (en): <b>Peach Pearl</b></p>
          * <p>Name (zh): <b>珍珠桃</b></p>
          * <p>Hex: <b>#FBBEA1</b></p>
@@ -4241,7 +4269,7 @@ declare namespace Internal {
         PEACH_PEARL: number;
 
         /**
-         * <p style="background-color: #FFDAB9">　　　</p>
+         * <p style="background-color: #FFDAB9">#FFDAB9</p>
          * <p>Name (en): <b>Peach Puff</b></p>
          * <p>Name (zh): <b>粉扑桃</b></p>
          * <p>Hex: <b>#FFDAB9</b></p>
@@ -4252,7 +4280,7 @@ declare namespace Internal {
         PEACH_PUFF: number;
 
         /**
-         * <p style="background-color: #00808C">　　　</p>
+         * <p style="background-color: #00808C">#00808C</p>
          * <p>Name (en): <b>Peacock Blue</b></p>
          * <p>Name (zh): <b>孔雀蓝</b></p>
          * <p>Hex: <b>#00808C</b></p>
@@ -4263,7 +4291,7 @@ declare namespace Internal {
         PEACOCK_BLUE: number;
 
         /**
-         * <p style="background-color: #00A15C">　　　</p>
+         * <p style="background-color: #00A15C">#00A15C</p>
          * <p>Name (en): <b>Peacock Green</b></p>
          * <p>Name (zh): <b>孔雀绿</b></p>
          * <p>Hex: <b>#00A15C</b></p>
@@ -4274,7 +4302,7 @@ declare namespace Internal {
         PEACOCK_GREEN: number;
 
         /**
-         * <p style="background-color: #FFB3E6">　　　</p>
+         * <p style="background-color: #FFB3E6">#FFB3E6</p>
          * <p>Name (en): <b>Pearl Pink</b></p>
          * <p>Name (zh): <b>浅珍珠红</b></p>
          * <p>Hex: <b>#FFB3E6</b></p>
@@ -4285,7 +4313,7 @@ declare namespace Internal {
         PEARL_PINK: number;
 
         /**
-         * <p style="background-color: #CCCCFF">　　　</p>
+         * <p style="background-color: #CCCCFF">#CCCCFF</p>
          * <p>Name (en): <b>Periwinkle</b></p>
          * <p>Name (zh): <b>薰衣草蓝 / 长春花</b></p>
          * <p>Hex: <b>#CCCCFF</b></p>
@@ -4296,7 +4324,7 @@ declare namespace Internal {
         PERIWINKLE: number;
 
         /**
-         * <p style="background-color: #FF4D40">　　　</p>
+         * <p style="background-color: #FF4D40">#FF4D40</p>
          * <p>Name (en): <b>Persimmon</b></p>
          * <p>Name (zh): <b>柿子橙</b></p>
          * <p>Hex: <b>#FF4D40</b></p>
@@ -4307,7 +4335,7 @@ declare namespace Internal {
         PERSIMMON: number;
 
         /**
-         * <p style="background-color: #CD853F">　　　</p>
+         * <p style="background-color: #CD853F">#CD853F</p>
          * <p>Name (en): <b>Peru</b></p>
          * <p>Name (zh): <b>秘鲁</b></p>
          * <p>Hex: <b>#CD853F</b></p>
@@ -4318,7 +4346,7 @@ declare namespace Internal {
         PERU: number;
 
         /**
-         * <p style="background-color: #FFC0CB">　　　</p>
+         * <p style="background-color: #FFC0CB">#FFC0CB</p>
          * <p>Name (en): <b>Pink</b></p>
          * <p>Name (zh): <b>粉红</b></p>
          * <p>Hex: <b>#FFC0CB</b></p>
@@ -4329,7 +4357,7 @@ declare namespace Internal {
         PINK: number;
 
         /**
-         * <p style="background-color: #FCE4EC">　　　</p>
+         * <p style="background-color: #FCE4EC">#FCE4EC</p>
          * <p>Name (en): <b>Pink (50)</b></p>
          * <p>Name (zh): <b>粉红 (50)</b></p>
          * <p>Hex: <b>#FCE4EC</b></p>
@@ -4340,7 +4368,7 @@ declare namespace Internal {
         PINK_50: number;
 
         /**
-         * <p style="background-color: #F8BBD0">　　　</p>
+         * <p style="background-color: #F8BBD0">#F8BBD0</p>
          * <p>Name (en): <b>Pink (100)</b></p>
          * <p>Name (zh): <b>粉红 (100)</b></p>
          * <p>Hex: <b>#F8BBD0</b></p>
@@ -4351,7 +4379,7 @@ declare namespace Internal {
         PINK_100: number;
 
         /**
-         * <p style="background-color: #F48FB1">　　　</p>
+         * <p style="background-color: #F48FB1">#F48FB1</p>
          * <p>Name (en): <b>Pink (200)</b></p>
          * <p>Name (zh): <b>粉红 (200)</b></p>
          * <p>Hex: <b>#F48FB1</b></p>
@@ -4362,7 +4390,7 @@ declare namespace Internal {
         PINK_200: number;
 
         /**
-         * <p style="background-color: #F06292">　　　</p>
+         * <p style="background-color: #F06292">#F06292</p>
          * <p>Name (en): <b>Pink (300)</b></p>
          * <p>Name (zh): <b>粉红 (300)</b></p>
          * <p>Hex: <b>#F06292</b></p>
@@ -4373,7 +4401,7 @@ declare namespace Internal {
         PINK_300: number;
 
         /**
-         * <p style="background-color: #EC407A">　　　</p>
+         * <p style="background-color: #EC407A">#EC407A</p>
          * <p>Name (en): <b>Pink (400)</b></p>
          * <p>Name (zh): <b>粉红 (400)</b></p>
          * <p>Hex: <b>#EC407A</b></p>
@@ -4384,7 +4412,7 @@ declare namespace Internal {
         PINK_400: number;
 
         /**
-         * <p style="background-color: #E91E63">　　　</p>
+         * <p style="background-color: #E91E63">#E91E63</p>
          * <p>Name (en): <b>Pink (500)</b></p>
          * <p>Name (zh): <b>粉红 (500)</b></p>
          * <p>Hex: <b>#E91E63</b></p>
@@ -4395,7 +4423,7 @@ declare namespace Internal {
         PINK_500: number;
 
         /**
-         * <p style="background-color: #D81B60">　　　</p>
+         * <p style="background-color: #D81B60">#D81B60</p>
          * <p>Name (en): <b>Pink (600)</b></p>
          * <p>Name (zh): <b>粉红 (600)</b></p>
          * <p>Hex: <b>#D81B60</b></p>
@@ -4406,7 +4434,7 @@ declare namespace Internal {
         PINK_600: number;
 
         /**
-         * <p style="background-color: #C2185B">　　　</p>
+         * <p style="background-color: #C2185B">#C2185B</p>
          * <p>Name (en): <b>Pink (700)</b></p>
          * <p>Name (zh): <b>粉红 (700)</b></p>
          * <p>Hex: <b>#C2185B</b></p>
@@ -4417,7 +4445,7 @@ declare namespace Internal {
         PINK_700: number;
 
         /**
-         * <p style="background-color: #AD1457">　　　</p>
+         * <p style="background-color: #AD1457">#AD1457</p>
          * <p>Name (en): <b>Pink (800)</b></p>
          * <p>Name (zh): <b>粉红 (800)</b></p>
          * <p>Hex: <b>#AD1457</b></p>
@@ -4428,7 +4456,7 @@ declare namespace Internal {
         PINK_800: number;
 
         /**
-         * <p style="background-color: #880E4F">　　　</p>
+         * <p style="background-color: #880E4F">#880E4F</p>
          * <p>Name (en): <b>Pink (900)</b></p>
          * <p>Name (zh): <b>粉红 (900)</b></p>
          * <p>Hex: <b>#880E4F</b></p>
@@ -4439,7 +4467,7 @@ declare namespace Internal {
         PINK_900: number;
 
         /**
-         * <p style="background-color: #FF80AB">　　　</p>
+         * <p style="background-color: #FF80AB">#FF80AB</p>
          * <p>Name (en): <b>Pink (A100)</b></p>
          * <p>Name (zh): <b>粉红 (A100)</b></p>
          * <p>Hex: <b>#FF80AB</b></p>
@@ -4450,7 +4478,7 @@ declare namespace Internal {
         PINK_A100: number;
 
         /**
-         * <p style="background-color: #FF4081">　　　</p>
+         * <p style="background-color: #FF4081">#FF4081</p>
          * <p>Name (en): <b>Pink (A200)</b></p>
          * <p>Name (zh): <b>粉红 (A200)</b></p>
          * <p>Hex: <b>#FF4081</b></p>
@@ -4461,7 +4489,7 @@ declare namespace Internal {
         PINK_A200: number;
 
         /**
-         * <p style="background-color: #F50057">　　　</p>
+         * <p style="background-color: #F50057">#F50057</p>
          * <p>Name (en): <b>Pink (A400)</b></p>
          * <p>Name (zh): <b>粉红 (A400)</b></p>
          * <p>Hex: <b>#F50057</b></p>
@@ -4472,7 +4500,7 @@ declare namespace Internal {
         PINK_A400: number;
 
         /**
-         * <p style="background-color: #C51162">　　　</p>
+         * <p style="background-color: #C51162">#C51162</p>
          * <p>Name (en): <b>Pink (A700)</b></p>
          * <p>Name (zh): <b>粉红 (A700)</b></p>
          * <p>Hex: <b>#C51162</b></p>
@@ -4483,7 +4511,7 @@ declare namespace Internal {
         PINK_A700: number;
 
         /**
-         * <p style="background-color: #8E4585">　　　</p>
+         * <p style="background-color: #8E4585">#8E4585</p>
          * <p>Name (en): <b>Plum</b></p>
          * <p>Name (zh): <b>梅红</b></p>
          * <p>Hex: <b>#8E4585</b></p>
@@ -4494,7 +4522,7 @@ declare namespace Internal {
         PLUM: number;
 
         /**
-         * <p style="background-color: #B0E0E6">　　　</p>
+         * <p style="background-color: #B0E0E6">#B0E0E6</p>
          * <p>Name (en): <b>Powder Blue</b></p>
          * <p>Name (zh): <b>粉蓝</b></p>
          * <p>Hex: <b>#B0E0E6</b></p>
@@ -4505,7 +4533,7 @@ declare namespace Internal {
         POWDER_BLUE: number;
 
         /**
-         * <p style="background-color: #003153">　　　</p>
+         * <p style="background-color: #003153">#003153</p>
          * <p>Name (en): <b>Prussian Blue</b></p>
          * <p>Name (zh): <b>普鲁士蓝</b></p>
          * <p>Hex: <b>#003153</b></p>
@@ -4516,7 +4544,7 @@ declare namespace Internal {
         PRUSSIAN_BLUE: number;
 
         /**
-         * <p style="background-color: #800080">　　　</p>
+         * <p style="background-color: #800080">#800080</p>
          * <p>Name (en): <b>Purple</b></p>
          * <p>Name (zh): <b>紫</b></p>
          * <p>Hex: <b>#800080</b></p>
@@ -4527,7 +4555,7 @@ declare namespace Internal {
         PURPLE: number;
 
         /**
-         * <p style="background-color: #F3E5F5">　　　</p>
+         * <p style="background-color: #F3E5F5">#F3E5F5</p>
          * <p>Name (en): <b>Purple (50)</b></p>
          * <p>Name (zh): <b>紫 (50)</b></p>
          * <p>Hex: <b>#F3E5F5</b></p>
@@ -4538,7 +4566,7 @@ declare namespace Internal {
         PURPLE_50: number;
 
         /**
-         * <p style="background-color: #E1BEE7">　　　</p>
+         * <p style="background-color: #E1BEE7">#E1BEE7</p>
          * <p>Name (en): <b>Purple (100)</b></p>
          * <p>Name (zh): <b>紫 (100)</b></p>
          * <p>Hex: <b>#E1BEE7</b></p>
@@ -4549,7 +4577,7 @@ declare namespace Internal {
         PURPLE_100: number;
 
         /**
-         * <p style="background-color: #CE93D8">　　　</p>
+         * <p style="background-color: #CE93D8">#CE93D8</p>
          * <p>Name (en): <b>Purple (200)</b></p>
          * <p>Name (zh): <b>紫 (200)</b></p>
          * <p>Hex: <b>#CE93D8</b></p>
@@ -4560,7 +4588,7 @@ declare namespace Internal {
         PURPLE_200: number;
 
         /**
-         * <p style="background-color: #BA68C8">　　　</p>
+         * <p style="background-color: #BA68C8">#BA68C8</p>
          * <p>Name (en): <b>Purple (300)</b></p>
          * <p>Name (zh): <b>紫 (300)</b></p>
          * <p>Hex: <b>#BA68C8</b></p>
@@ -4571,7 +4599,7 @@ declare namespace Internal {
         PURPLE_300: number;
 
         /**
-         * <p style="background-color: #AB47BC">　　　</p>
+         * <p style="background-color: #AB47BC">#AB47BC</p>
          * <p>Name (en): <b>Purple (400)</b></p>
          * <p>Name (zh): <b>紫 (400)</b></p>
          * <p>Hex: <b>#AB47BC</b></p>
@@ -4582,7 +4610,7 @@ declare namespace Internal {
         PURPLE_400: number;
 
         /**
-         * <p style="background-color: #9C27B0">　　　</p>
+         * <p style="background-color: #9C27B0">#9C27B0</p>
          * <p>Name (en): <b>Purple (500)</b></p>
          * <p>Name (zh): <b>紫 (500)</b></p>
          * <p>Hex: <b>#9C27B0</b></p>
@@ -4593,7 +4621,7 @@ declare namespace Internal {
         PURPLE_500: number;
 
         /**
-         * <p style="background-color: #8E24AA">　　　</p>
+         * <p style="background-color: #8E24AA">#8E24AA</p>
          * <p>Name (en): <b>Purple (600)</b></p>
          * <p>Name (zh): <b>紫 (600)</b></p>
          * <p>Hex: <b>#8E24AA</b></p>
@@ -4604,7 +4632,7 @@ declare namespace Internal {
         PURPLE_600: number;
 
         /**
-         * <p style="background-color: #7B1FA2">　　　</p>
+         * <p style="background-color: #7B1FA2">#7B1FA2</p>
          * <p>Name (en): <b>Purple (700)</b></p>
          * <p>Name (zh): <b>紫 (700)</b></p>
          * <p>Hex: <b>#7B1FA2</b></p>
@@ -4615,7 +4643,7 @@ declare namespace Internal {
         PURPLE_700: number;
 
         /**
-         * <p style="background-color: #6A1B9A">　　　</p>
+         * <p style="background-color: #6A1B9A">#6A1B9A</p>
          * <p>Name (en): <b>Purple (800)</b></p>
          * <p>Name (zh): <b>紫 (800)</b></p>
          * <p>Hex: <b>#6A1B9A</b></p>
@@ -4626,7 +4654,7 @@ declare namespace Internal {
         PURPLE_800: number;
 
         /**
-         * <p style="background-color: #4A148C">　　　</p>
+         * <p style="background-color: #4A148C">#4A148C</p>
          * <p>Name (en): <b>Purple (900)</b></p>
          * <p>Name (zh): <b>紫 (900)</b></p>
          * <p>Hex: <b>#4A148C</b></p>
@@ -4637,7 +4665,7 @@ declare namespace Internal {
         PURPLE_900: number;
 
         /**
-         * <p style="background-color: #EA80FC">　　　</p>
+         * <p style="background-color: #EA80FC">#EA80FC</p>
          * <p>Name (en): <b>Purple (A100)</b></p>
          * <p>Name (zh): <b>紫 (A100)</b></p>
          * <p>Hex: <b>#EA80FC</b></p>
@@ -4648,7 +4676,7 @@ declare namespace Internal {
         PURPLE_A100: number;
 
         /**
-         * <p style="background-color: #E040FB">　　　</p>
+         * <p style="background-color: #E040FB">#E040FB</p>
          * <p>Name (en): <b>Purple (A200)</b></p>
          * <p>Name (zh): <b>紫 (A200)</b></p>
          * <p>Hex: <b>#E040FB</b></p>
@@ -4659,7 +4687,7 @@ declare namespace Internal {
         PURPLE_A200: number;
 
         /**
-         * <p style="background-color: #D500F9">　　　</p>
+         * <p style="background-color: #D500F9">#D500F9</p>
          * <p>Name (en): <b>Purple (A400)</b></p>
          * <p>Name (zh): <b>紫 (A400)</b></p>
          * <p>Hex: <b>#D500F9</b></p>
@@ -4670,7 +4698,7 @@ declare namespace Internal {
         PURPLE_A400: number;
 
         /**
-         * <p style="background-color: #AA00FF">　　　</p>
+         * <p style="background-color: #AA00FF">#AA00FF</p>
          * <p>Name (en): <b>Purple (A700)</b></p>
          * <p>Name (zh): <b>紫 (A700)</b></p>
          * <p>Hex: <b>#AA00FF</b></p>
@@ -4681,7 +4709,7 @@ declare namespace Internal {
         PURPLE_A700: number;
 
         /**
-         * <p style="background-color: #663399">　　　</p>
+         * <p style="background-color: #663399">#663399</p>
          * <p>Name (en): <b>Rebecca Purple</b></p>
          * <p>Name (zh): <b>丽贝卡紫</b></p>
          * <p>Hex: <b>#663399</b></p>
@@ -4692,7 +4720,7 @@ declare namespace Internal {
         REBECCA_PURPLE: number;
 
         /**
-         * <p style="background-color: #FF0000">　　　</p>
+         * <p style="background-color: #FF0000">#FF0000</p>
          * <p>Name (en): <b>Red</b></p>
          * <p>Name (zh): <b>红</b></p>
          * <p>Hex: <b>#FF0000</b></p>
@@ -4703,7 +4731,7 @@ declare namespace Internal {
         RED: number;
 
         /**
-         * <p style="background-color: #FFEBEE">　　　</p>
+         * <p style="background-color: #FFEBEE">#FFEBEE</p>
          * <p>Name (en): <b>Red (50)</b></p>
          * <p>Name (zh): <b>红 (50)</b></p>
          * <p>Hex: <b>#FFEBEE</b></p>
@@ -4714,7 +4742,7 @@ declare namespace Internal {
         RED_50: number;
 
         /**
-         * <p style="background-color: #FFCDD2">　　　</p>
+         * <p style="background-color: #FFCDD2">#FFCDD2</p>
          * <p>Name (en): <b>Red (100)</b></p>
          * <p>Name (zh): <b>红 (100)</b></p>
          * <p>Hex: <b>#FFCDD2</b></p>
@@ -4725,7 +4753,7 @@ declare namespace Internal {
         RED_100: number;
 
         /**
-         * <p style="background-color: #EF9A9A">　　　</p>
+         * <p style="background-color: #EF9A9A">#EF9A9A</p>
          * <p>Name (en): <b>Red (200)</b></p>
          * <p>Name (zh): <b>红 (200)</b></p>
          * <p>Hex: <b>#EF9A9A</b></p>
@@ -4736,7 +4764,7 @@ declare namespace Internal {
         RED_200: number;
 
         /**
-         * <p style="background-color: #E57373">　　　</p>
+         * <p style="background-color: #E57373">#E57373</p>
          * <p>Name (en): <b>Red (300)</b></p>
          * <p>Name (zh): <b>红 (300)</b></p>
          * <p>Hex: <b>#E57373</b></p>
@@ -4747,7 +4775,7 @@ declare namespace Internal {
         RED_300: number;
 
         /**
-         * <p style="background-color: #EF5350">　　　</p>
+         * <p style="background-color: #EF5350">#EF5350</p>
          * <p>Name (en): <b>Red (400)</b></p>
          * <p>Name (zh): <b>红 (400)</b></p>
          * <p>Hex: <b>#EF5350</b></p>
@@ -4758,7 +4786,7 @@ declare namespace Internal {
         RED_400: number;
 
         /**
-         * <p style="background-color: #F44336">　　　</p>
+         * <p style="background-color: #F44336">#F44336</p>
          * <p>Name (en): <b>Red (500)</b></p>
          * <p>Name (zh): <b>红 (500)</b></p>
          * <p>Hex: <b>#F44336</b></p>
@@ -4769,7 +4797,7 @@ declare namespace Internal {
         RED_500: number;
 
         /**
-         * <p style="background-color: #E53935">　　　</p>
+         * <p style="background-color: #E53935">#E53935</p>
          * <p>Name (en): <b>Red (600)</b></p>
          * <p>Name (zh): <b>红 (600)</b></p>
          * <p>Hex: <b>#E53935</b></p>
@@ -4780,7 +4808,7 @@ declare namespace Internal {
         RED_600: number;
 
         /**
-         * <p style="background-color: #D32F2F">　　　</p>
+         * <p style="background-color: #D32F2F">#D32F2F</p>
          * <p>Name (en): <b>Red (700)</b></p>
          * <p>Name (zh): <b>红 (700)</b></p>
          * <p>Hex: <b>#D32F2F</b></p>
@@ -4791,7 +4819,7 @@ declare namespace Internal {
         RED_700: number;
 
         /**
-         * <p style="background-color: #C62828">　　　</p>
+         * <p style="background-color: #C62828">#C62828</p>
          * <p>Name (en): <b>Red (800)</b></p>
          * <p>Name (zh): <b>红 (800)</b></p>
          * <p>Hex: <b>#C62828</b></p>
@@ -4802,7 +4830,7 @@ declare namespace Internal {
         RED_800: number;
 
         /**
-         * <p style="background-color: #B71C1C">　　　</p>
+         * <p style="background-color: #B71C1C">#B71C1C</p>
          * <p>Name (en): <b>Red (900)</b></p>
          * <p>Name (zh): <b>红 (900)</b></p>
          * <p>Hex: <b>#B71C1C</b></p>
@@ -4813,7 +4841,7 @@ declare namespace Internal {
         RED_900: number;
 
         /**
-         * <p style="background-color: #FF8A80">　　　</p>
+         * <p style="background-color: #FF8A80">#FF8A80</p>
          * <p>Name (en): <b>Red (A100)</b></p>
          * <p>Name (zh): <b>红 (A100)</b></p>
          * <p>Hex: <b>#FF8A80</b></p>
@@ -4824,7 +4852,7 @@ declare namespace Internal {
         RED_A100: number;
 
         /**
-         * <p style="background-color: #FF5252">　　　</p>
+         * <p style="background-color: #FF5252">#FF5252</p>
          * <p>Name (en): <b>Red (A200)</b></p>
          * <p>Name (zh): <b>红 (A200)</b></p>
          * <p>Hex: <b>#FF5252</b></p>
@@ -4835,7 +4863,7 @@ declare namespace Internal {
         RED_A200: number;
 
         /**
-         * <p style="background-color: #FF1744">　　　</p>
+         * <p style="background-color: #FF1744">#FF1744</p>
          * <p>Name (en): <b>Red (A400)</b></p>
          * <p>Name (zh): <b>红 (A400)</b></p>
          * <p>Hex: <b>#FF1744</b></p>
@@ -4846,7 +4874,7 @@ declare namespace Internal {
         RED_A400: number;
 
         /**
-         * <p style="background-color: #D50000">　　　</p>
+         * <p style="background-color: #D50000">#D50000</p>
          * <p>Name (en): <b>Red (A700)</b></p>
          * <p>Name (zh): <b>红 (A700)</b></p>
          * <p>Hex: <b>#D50000</b></p>
@@ -4857,7 +4885,7 @@ declare namespace Internal {
         RED_A700: number;
 
         /**
-         * <p style="background-color: #FF007F">　　　</p>
+         * <p style="background-color: #FF007F">#FF007F</p>
          * <p>Name (en): <b>Rose</b></p>
          * <p>Name (zh): <b>玫瑰红</b></p>
          * <p>Hex: <b>#FF007F</b></p>
@@ -4868,7 +4896,7 @@ declare namespace Internal {
         ROSE: number;
 
         /**
-         * <p style="background-color: #FF66CC">　　　</p>
+         * <p style="background-color: #FF66CC">#FF66CC</p>
          * <p>Name (en): <b>Rose Pink</b></p>
          * <p>Name (zh): <b>浅玫瑰红</b></p>
          * <p>Hex: <b>#FF66CC</b></p>
@@ -4879,7 +4907,7 @@ declare namespace Internal {
         ROSE_PINK: number;
 
         /**
-         * <p style="background-color: #BC8F8F">　　　</p>
+         * <p style="background-color: #BC8F8F">#BC8F8F</p>
          * <p>Name (en): <b>Rosy Brown</b></p>
          * <p>Name (zh): <b>玫瑰褐</b></p>
          * <p>Hex: <b>#BC8F8F</b></p>
@@ -4890,7 +4918,7 @@ declare namespace Internal {
         ROSY_BROWN: number;
 
         /**
-         * <p style="background-color: #4169E1">　　　</p>
+         * <p style="background-color: #4169E1">#4169E1</p>
          * <p>Name (en): <b>Royal Blue</b></p>
          * <p>Name (zh): <b>品蓝 / 皇室蓝</b></p>
          * <p>Hex: <b>#4169E1</b></p>
@@ -4901,7 +4929,7 @@ declare namespace Internal {
         ROYAL_BLUE: number;
 
         /**
-         * <p style="background-color: #CC0080">　　　</p>
+         * <p style="background-color: #CC0080">#CC0080</p>
          * <p>Name (en): <b>Ruby</b></p>
          * <p>Name (zh): <b>红宝石</b></p>
          * <p>Hex: <b>#CC0080</b></p>
@@ -4912,7 +4940,7 @@ declare namespace Internal {
         RUBY: number;
 
         /**
-         * <p style="background-color: #8B4513">　　　</p>
+         * <p style="background-color: #8B4513">#8B4513</p>
          * <p>Name (en): <b>Saddle Brown</b></p>
          * <p>Name (zh): <b>鞍褐</b></p>
          * <p>Hex: <b>#8B4513</b></p>
@@ -4923,7 +4951,7 @@ declare namespace Internal {
         SADDLE_BROWN: number;
 
         /**
-         * <p style="background-color: #FA8072">　　　</p>
+         * <p style="background-color: #FA8072">#FA8072</p>
          * <p>Name (en): <b>Salmon</b></p>
          * <p>Name (zh): <b>鲑红</b></p>
          * <p>Hex: <b>#FA8072</b></p>
@@ -4934,7 +4962,7 @@ declare namespace Internal {
         SALMON: number;
 
         /**
-         * <p style="background-color: #FF8099">　　　</p>
+         * <p style="background-color: #FF8099">#FF8099</p>
          * <p>Name (en): <b>Salmon Pink</b></p>
          * <p>Name (zh): <b>浅鲑红</b></p>
          * <p>Hex: <b>#FF8099</b></p>
@@ -4945,7 +4973,7 @@ declare namespace Internal {
         SALMON_PINK: number;
 
         /**
-         * <p style="background-color: #4D80E6">　　　</p>
+         * <p style="background-color: #4D80E6">#4D80E6</p>
          * <p>Name (en): <b>Salvia Blue</b></p>
          * <p>Name (zh): <b>鼠尾草蓝</b></p>
          * <p>Hex: <b>#4D80E6</b></p>
@@ -4956,7 +4984,7 @@ declare namespace Internal {
         SALVIA_BLUE: number;
 
         /**
-         * <p style="background-color: #E6C3C3">　　　</p>
+         * <p style="background-color: #E6C3C3">#E6C3C3</p>
          * <p>Name (en): <b>Sand Beige</b></p>
          * <p>Name (zh): <b>沙棕</b></p>
          * <p>Hex: <b>#E6C3C3</b></p>
@@ -4967,7 +4995,7 @@ declare namespace Internal {
         SAND_BEIGE: number;
 
         /**
-         * <p style="background-color: #F4A460">　　　</p>
+         * <p style="background-color: #F4A460">#F4A460</p>
          * <p>Name (en): <b>Sand Brown</b></p>
          * <p>Name (zh): <b>沙褐</b></p>
          * <p>Hex: <b>#F4A460</b></p>
@@ -4978,7 +5006,7 @@ declare namespace Internal {
         SAND_BROWN: number;
 
         /**
-         * <p style="background-color: #082567">　　　</p>
+         * <p style="background-color: #082567">#082567</p>
          * <p>Name (en): <b>Sapphire</b></p>
          * <p>Name (zh): <b>蓝宝石 / 青玉</b></p>
          * <p>Hex: <b>#082567</b></p>
@@ -4989,7 +5017,7 @@ declare namespace Internal {
         SAPPHIRE: number;
 
         /**
-         * <p style="background-color: #4798B3">　　　</p>
+         * <p style="background-color: #4798B3">#4798B3</p>
          * <p>Name (en): <b>Saxe Blue</b></p>
          * <p>Name (zh): <b>萨克斯蓝</b></p>
          * <p>Hex: <b>#4798B3</b></p>
@@ -5000,7 +5028,7 @@ declare namespace Internal {
         SAXE_BLUE: number;
 
         /**
-         * <p style="background-color: #FF2400">　　　</p>
+         * <p style="background-color: #FF2400">#FF2400</p>
          * <p>Name (en): <b>Scarlet</b></p>
          * <p>Name (zh): <b>猩红 / 腥红</b></p>
          * <p>Hex: <b>#FF2400</b></p>
@@ -5011,7 +5039,7 @@ declare namespace Internal {
         SCARLET: number;
 
         /**
-         * <p style="background-color: #FFF5EE">　　　</p>
+         * <p style="background-color: #FFF5EE">#FFF5EE</p>
          * <p>Name (en): <b>Seashell</b></p>
          * <p>Name (zh): <b>海贝</b></p>
          * <p>Hex: <b>#FFF5EE</b></p>
@@ -5022,7 +5050,7 @@ declare namespace Internal {
         SEASHELL: number;
 
         /**
-         * <p style="background-color: #2E8B57">　　　</p>
+         * <p style="background-color: #2E8B57">#2E8B57</p>
          * <p>Name (en): <b>Sea Green</b></p>
          * <p>Name (zh): <b>海绿</b></p>
          * <p>Hex: <b>#2E8B57</b></p>
@@ -5033,7 +5061,7 @@ declare namespace Internal {
         SEA_GREEN: number;
 
         /**
-         * <p style="background-color: #704214">　　　</p>
+         * <p style="background-color: #704214">#704214</p>
          * <p>Name (en): <b>Sepia</b></p>
          * <p>Name (zh): <b>深褐 / 乌贼墨</b></p>
          * <p>Hex: <b>#704214</b></p>
@@ -5044,7 +5072,7 @@ declare namespace Internal {
         SEPIA: number;
 
         /**
-         * <p style="background-color: #FFB3BF">　　　</p>
+         * <p style="background-color: #FFB3BF">#FFB3BF</p>
          * <p>Name (en): <b>Shell Pink</b></p>
          * <p>Name (zh): <b>壳黄红</b></p>
          * <p>Hex: <b>#FFB3BF</b></p>
@@ -5055,7 +5083,7 @@ declare namespace Internal {
         SHELL_PINK: number;
 
         /**
-         * <p style="background-color: #A0522D">　　　</p>
+         * <p style="background-color: #A0522D">#A0522D</p>
          * <p>Name (en): <b>Sienna</b></p>
          * <p>Name (zh): <b>赭黄</b></p>
          * <p>Hex: <b>#A0522D</b></p>
@@ -5066,7 +5094,7 @@ declare namespace Internal {
         SIENNA: number;
 
         /**
-         * <p style="background-color: #C0C0C0">　　　</p>
+         * <p style="background-color: #C0C0C0">#C0C0C0</p>
          * <p>Name (en): <b>Silver</b></p>
          * <p>Name (zh): <b>银</b></p>
          * <p>Hex: <b>#C0C0C0</b></p>
@@ -5077,7 +5105,7 @@ declare namespace Internal {
         SILVER: number;
 
         /**
-         * <p style="background-color: #87CEEB">　　　</p>
+         * <p style="background-color: #87CEEB">#87CEEB</p>
          * <p>Name (en): <b>Sky Blue</b></p>
          * <p>Name (zh): <b>天空蓝</b></p>
          * <p>Hex: <b>#87CEEB</b></p>
@@ -5088,7 +5116,7 @@ declare namespace Internal {
         SKY_BLUE: number;
 
         /**
-         * <p style="background-color: #6A5ACD">　　　</p>
+         * <p style="background-color: #6A5ACD">#6A5ACD</p>
          * <p>Name (en): <b>Slate Blue</b></p>
          * <p>Name (zh): <b>岩蓝</b></p>
          * <p>Hex: <b>#6A5ACD</b></p>
@@ -5099,7 +5127,7 @@ declare namespace Internal {
         SLATE_BLUE: number;
 
         /**
-         * <p style="background-color: #708090">　　　</p>
+         * <p style="background-color: #708090">#708090</p>
          * <p>Name (en): <b>Slate Gray</b></p>
          * <p>Name (zh): <b>岩灰</b></p>
          * <p>Hex: <b>#708090</b></p>
@@ -5110,7 +5138,7 @@ declare namespace Internal {
         SLATE_GRAY: number;
 
         /**
-         * <p style="background-color: #708090">　　　</p>
+         * <p style="background-color: #708090">#708090</p>
          * <p>Name (en): <b>Slate Grey</b></p>
          * <p>Name (zh): <b>岩灰</b></p>
          * <p>Hex: <b>#708090</b></p>
@@ -5121,7 +5149,7 @@ declare namespace Internal {
         SLATE_GREY: number;
 
         /**
-         * <p style="background-color: #FFFAFA">　　　</p>
+         * <p style="background-color: #FFFAFA">#FFFAFA</p>
          * <p>Name (en): <b>Snow</b></p>
          * <p>Name (zh): <b>雪</b></p>
          * <p>Hex: <b>#FFFAFA</b></p>
@@ -5132,7 +5160,7 @@ declare namespace Internal {
         SNOW: number;
 
         /**
-         * <p style="background-color: #FF73B3">　　　</p>
+         * <p style="background-color: #FF73B3">#FF73B3</p>
          * <p>Name (en): <b>Spinel Red</b></p>
          * <p>Name (zh): <b>尖晶石红</b></p>
          * <p>Hex: <b>#FF73B3</b></p>
@@ -5143,7 +5171,7 @@ declare namespace Internal {
         SPINEL_RED: number;
 
         /**
-         * <p style="background-color: #00FF7F">　　　</p>
+         * <p style="background-color: #00FF7F">#00FF7F</p>
          * <p>Name (en): <b>Spring Green</b></p>
          * <p>Name (zh): <b>春绿</b></p>
          * <p>Hex: <b>#00FF7F</b></p>
@@ -5154,7 +5182,7 @@ declare namespace Internal {
         SPRING_GREEN: number;
 
         /**
-         * <p style="background-color: #4682B4">　　　</p>
+         * <p style="background-color: #4682B4">#4682B4</p>
          * <p>Name (en): <b>Steel Blue</b></p>
          * <p>Name (zh): <b>钢青</b></p>
          * <p>Hex: <b>#4682B4</b></p>
@@ -5165,7 +5193,7 @@ declare namespace Internal {
         STEEL_BLUE: number;
 
         /**
-         * <p style="background-color: #006374">　　　</p>
+         * <p style="background-color: #006374">#006374</p>
          * <p>Name (en): <b>Strong Blue</b></p>
          * <p>Name (zh): <b>浓蓝</b></p>
          * <p>Hex: <b>#006374</b></p>
@@ -5176,7 +5204,7 @@ declare namespace Internal {
         STRONG_BLUE: number;
 
         /**
-         * <p style="background-color: #E60000">　　　</p>
+         * <p style="background-color: #E60000">#E60000</p>
          * <p>Name (en): <b>Strong Red</b></p>
          * <p>Name (zh): <b>鲜红</b></p>
          * <p>Hex: <b>#E60000</b></p>
@@ -5187,7 +5215,7 @@ declare namespace Internal {
         STRONG_RED: number;
 
         /**
-         * <p style="background-color: #FF7300">　　　</p>
+         * <p style="background-color: #FF7300">#FF7300</p>
          * <p>Name (en): <b>Sun Orange</b></p>
          * <p>Name (zh): <b>阳橙</b></p>
          * <p>Hex: <b>#FF7300</b></p>
@@ -5198,7 +5226,7 @@ declare namespace Internal {
         SUN_ORANGE: number;
 
         /**
-         * <p style="background-color: #D2B48C">　　　</p>
+         * <p style="background-color: #D2B48C">#D2B48C</p>
          * <p>Name (en): <b>Tan</b></p>
          * <p>Name (zh): <b>日晒</b></p>
          * <p>Hex: <b>#D2B48C</b></p>
@@ -5209,7 +5237,7 @@ declare namespace Internal {
         TAN: number;
 
         /**
-         * <p style="background-color: #F28500">　　　</p>
+         * <p style="background-color: #F28500">#F28500</p>
          * <p>Name (en): <b>Tangerine</b></p>
          * <p>Name (zh): <b>橘</b></p>
          * <p>Hex: <b>#F28500</b></p>
@@ -5220,7 +5248,7 @@ declare namespace Internal {
         TANGERINE: number;
 
         /**
-         * <p style="background-color: #FFCC00">　　　</p>
+         * <p style="background-color: #FFCC00">#FFCC00</p>
          * <p>Name (en): <b>Tangerine Yellow</b></p>
          * <p>Name (zh): <b>橙黄</b></p>
          * <p>Hex: <b>#FFCC00</b></p>
@@ -5231,7 +5259,7 @@ declare namespace Internal {
         TANGERINE_YELLOW: number;
 
         /**
-         * <p style="background-color: #008080">　　　</p>
+         * <p style="background-color: #008080">#008080</p>
          * <p>Name (en): <b>Teal</b></p>
          * <p>Name (zh): <b>鸭绿 / 凫绿</b></p>
          * <p>Hex: <b>#008080</b></p>
@@ -5242,7 +5270,7 @@ declare namespace Internal {
         TEAL: number;
 
         /**
-         * <p style="background-color: #E0F2F1">　　　</p>
+         * <p style="background-color: #E0F2F1">#E0F2F1</p>
          * <p>Name (en): <b>Teal (50)</b></p>
          * <p>Name (zh): <b>蓝绿 (50)</b></p>
          * <p>Hex: <b>#E0F2F1</b></p>
@@ -5253,7 +5281,7 @@ declare namespace Internal {
         TEAL_50: number;
 
         /**
-         * <p style="background-color: #B2DFDB">　　　</p>
+         * <p style="background-color: #B2DFDB">#B2DFDB</p>
          * <p>Name (en): <b>Teal (100)</b></p>
          * <p>Name (zh): <b>蓝绿 (100)</b></p>
          * <p>Hex: <b>#B2DFDB</b></p>
@@ -5264,7 +5292,7 @@ declare namespace Internal {
         TEAL_100: number;
 
         /**
-         * <p style="background-color: #80CBC4">　　　</p>
+         * <p style="background-color: #80CBC4">#80CBC4</p>
          * <p>Name (en): <b>Teal (200)</b></p>
          * <p>Name (zh): <b>蓝绿 (200)</b></p>
          * <p>Hex: <b>#80CBC4</b></p>
@@ -5275,7 +5303,7 @@ declare namespace Internal {
         TEAL_200: number;
 
         /**
-         * <p style="background-color: #4DB6AC">　　　</p>
+         * <p style="background-color: #4DB6AC">#4DB6AC</p>
          * <p>Name (en): <b>Teal (300)</b></p>
          * <p>Name (zh): <b>蓝绿 (300)</b></p>
          * <p>Hex: <b>#4DB6AC</b></p>
@@ -5286,7 +5314,7 @@ declare namespace Internal {
         TEAL_300: number;
 
         /**
-         * <p style="background-color: #26A69A">　　　</p>
+         * <p style="background-color: #26A69A">#26A69A</p>
          * <p>Name (en): <b>Teal (400)</b></p>
          * <p>Name (zh): <b>蓝绿 (400)</b></p>
          * <p>Hex: <b>#26A69A</b></p>
@@ -5297,7 +5325,7 @@ declare namespace Internal {
         TEAL_400: number;
 
         /**
-         * <p style="background-color: #009688">　　　</p>
+         * <p style="background-color: #009688">#009688</p>
          * <p>Name (en): <b>Teal (500)</b></p>
          * <p>Name (zh): <b>蓝绿 (500)</b></p>
          * <p>Hex: <b>#009688</b></p>
@@ -5308,7 +5336,7 @@ declare namespace Internal {
         TEAL_500: number;
 
         /**
-         * <p style="background-color: #00897B">　　　</p>
+         * <p style="background-color: #00897B">#00897B</p>
          * <p>Name (en): <b>Teal (600)</b></p>
          * <p>Name (zh): <b>蓝绿 (600)</b></p>
          * <p>Hex: <b>#00897B</b></p>
@@ -5319,7 +5347,7 @@ declare namespace Internal {
         TEAL_600: number;
 
         /**
-         * <p style="background-color: #00796B">　　　</p>
+         * <p style="background-color: #00796B">#00796B</p>
          * <p>Name (en): <b>Teal (700)</b></p>
          * <p>Name (zh): <b>蓝绿 (700)</b></p>
          * <p>Hex: <b>#00796B</b></p>
@@ -5330,7 +5358,7 @@ declare namespace Internal {
         TEAL_700: number;
 
         /**
-         * <p style="background-color: #00695C">　　　</p>
+         * <p style="background-color: #00695C">#00695C</p>
          * <p>Name (en): <b>Teal (800)</b></p>
          * <p>Name (zh): <b>蓝绿 (800)</b></p>
          * <p>Hex: <b>#00695C</b></p>
@@ -5341,7 +5369,7 @@ declare namespace Internal {
         TEAL_800: number;
 
         /**
-         * <p style="background-color: #004D40">　　　</p>
+         * <p style="background-color: #004D40">#004D40</p>
          * <p>Name (en): <b>Teal (900)</b></p>
          * <p>Name (zh): <b>蓝绿 (900)</b></p>
          * <p>Hex: <b>#004D40</b></p>
@@ -5352,7 +5380,7 @@ declare namespace Internal {
         TEAL_900: number;
 
         /**
-         * <p style="background-color: #A7FFEB">　　　</p>
+         * <p style="background-color: #A7FFEB">#A7FFEB</p>
          * <p>Name (en): <b>Teal (A100)</b></p>
          * <p>Name (zh): <b>蓝绿 (A100)</b></p>
          * <p>Hex: <b>#A7FFEB</b></p>
@@ -5363,7 +5391,7 @@ declare namespace Internal {
         TEAL_A100: number;
 
         /**
-         * <p style="background-color: #64FFDA">　　　</p>
+         * <p style="background-color: #64FFDA">#64FFDA</p>
          * <p>Name (en): <b>Teal (A200)</b></p>
          * <p>Name (zh): <b>蓝绿 (A200)</b></p>
          * <p>Hex: <b>#64FFDA</b></p>
@@ -5374,7 +5402,7 @@ declare namespace Internal {
         TEAL_A200: number;
 
         /**
-         * <p style="background-color: #1DE9B6">　　　</p>
+         * <p style="background-color: #1DE9B6">#1DE9B6</p>
          * <p>Name (en): <b>Teal (A400)</b></p>
          * <p>Name (zh): <b>蓝绿 (A400)</b></p>
          * <p>Hex: <b>#1DE9B6</b></p>
@@ -5385,7 +5413,7 @@ declare namespace Internal {
         TEAL_A400: number;
 
         /**
-         * <p style="background-color: #00BFA5">　　　</p>
+         * <p style="background-color: #00BFA5">#00BFA5</p>
          * <p>Name (en): <b>Teal (A700)</b></p>
          * <p>Name (zh): <b>蓝绿 (A700)</b></p>
          * <p>Hex: <b>#00BFA5</b></p>
@@ -5396,7 +5424,7 @@ declare namespace Internal {
         TEAL_A700: number;
 
         /**
-         * <p style="background-color: #D8BFD8">　　　</p>
+         * <p style="background-color: #D8BFD8">#D8BFD8</p>
          * <p>Name (en): <b>Thistle</b></p>
          * <p>Name (zh): <b>蓟紫</b></p>
          * <p>Hex: <b>#D8BFD8</b></p>
@@ -5407,7 +5435,7 @@ declare namespace Internal {
         THISTLE: number;
 
         /**
-         * <p style="background-color: #FF6347">　　　</p>
+         * <p style="background-color: #FF6347">#FF6347</p>
          * <p>Name (en): <b>Tomato</b></p>
          * <p>Name (zh): <b>蕃茄红</b></p>
          * <p>Hex: <b>#FF6347</b></p>
@@ -5418,7 +5446,7 @@ declare namespace Internal {
         TOMATO: number;
 
         /**
-         * <p style="background-color: #00000000">　　　</
+         * <p style="background-color: #00000000">#00000000　　</
          * <p>Name (en): <b>Transparent</b></p>
          * <p>Name (zh): <b>透明</b></p>
          * <p>Hex: <b>#00000000</b></p>
@@ -5429,7 +5457,7 @@ declare namespace Internal {
         TRANSPARENT: number;
 
         /**
-         * <p style="background-color: #FF8033">　　　</p>
+         * <p style="background-color: #FF8033">#FF8033</p>
          * <p>Name (en): <b>Tropical Orange</b></p>
          * <p>Name (zh): <b>热带橙</b></p>
          * <p>Hex: <b>#FF8033</b></p>
@@ -5440,7 +5468,7 @@ declare namespace Internal {
         TROPICAL_ORANGE: number;
 
         /**
-         * <p style="background-color: #40E0D0">　　　</p>
+         * <p style="background-color: #40E0D0">#40E0D0</p>
          * <p>Name (en): <b>Turquoise</b></p>
          * <p>Name (zh): <b>绿松</b></p>
          * <p>Hex: <b>#40E0D0</b></p>
@@ -5451,7 +5479,7 @@ declare namespace Internal {
         TURQUOISE: number;
 
         /**
-         * <p style="background-color: #00FFEF">　　　</p>
+         * <p style="background-color: #00FFEF">#00FFEF</p>
          * <p>Name (en): <b>Turquoise Blue</b></p>
          * <p>Name (zh): <b>土耳其蓝</b></p>
          * <p>Hex: <b>#00FFEF</b></p>
@@ -5462,7 +5490,7 @@ declare namespace Internal {
         TURQUOISE_BLUE: number;
 
         /**
-         * <p style="background-color: #4DE680">　　　</p>
+         * <p style="background-color: #4DE680">#4DE680</p>
          * <p>Name (en): <b>Turquoise Green</b></p>
          * <p>Name (zh): <b>绿松石绿</b></p>
          * <p>Hex: <b>#4DE680</b></p>
@@ -5473,7 +5501,7 @@ declare namespace Internal {
         TURQUOISE_GREEN: number;
 
         /**
-         * <p style="background-color: #0033FF">　　　</p>
+         * <p style="background-color: #0033FF">#0033FF</p>
          * <p>Name (en): <b>Ultramarine</b></p>
          * <p>Name (zh): <b>极浓海蓝</b></p>
          * <p>Hex: <b>#0033FF</b></p>
@@ -5484,7 +5512,7 @@ declare namespace Internal {
         ULTRAMARINE: number;
 
         /**
-         * <p style="background-color: #E34234">　　　</p>
+         * <p style="background-color: #E34234">#E34234</p>
          * <p>Name (en): <b>Vermilion</b></p>
          * <p>Name (zh): <b>朱红</b></p>
          * <p>Hex: <b>#E34234</b></p>
@@ -5495,7 +5523,7 @@ declare namespace Internal {
         VERMILION: number;
 
         /**
-         * <p style="background-color: #73E68C">　　　</p>
+         * <p style="background-color: #73E68C">#73E68C</p>
          * <p>Name (en): <b>Very Light Malachite Green</b></p>
          * <p>Name (zh): <b>孔雀石绿</b></p>
          * <p>Hex: <b>#73E68C</b></p>
@@ -5506,7 +5534,7 @@ declare namespace Internal {
         VERY_LIGHT_MALACHITE_GREEN: number;
 
         /**
-         * <p style="background-color: #EE82EE">　　　</p>
+         * <p style="background-color: #EE82EE">#EE82EE</p>
          * <p>Name (en): <b>Violet</b></p>
          * <p>Name (zh): <b>紫罗兰</b></p>
          * <p>Hex: <b>#EE82EE</b></p>
@@ -5517,7 +5545,7 @@ declare namespace Internal {
         VIOLET: number;
 
         /**
-         * <p style="background-color: #127436">　　　</p>
+         * <p style="background-color: #127436">#127436</p>
          * <p>Name (en): <b>Viridian</b></p>
          * <p>Name (zh): <b>铬绿</b></p>
          * <p>Hex: <b>#127436</b></p>
@@ -5528,7 +5556,7 @@ declare namespace Internal {
         VIRIDIAN: number;
 
         /**
-         * <p style="background-color: #5686BF">　　　</p>
+         * <p style="background-color: #5686BF">#5686BF</p>
          * <p>Name (en): <b>Wedgwood Blue</b></p>
          * <p>Name (zh): <b>韦奇伍德瓷蓝</b></p>
          * <p>Hex: <b>#5686BF</b></p>
@@ -5539,7 +5567,7 @@ declare namespace Internal {
         WEDGWOOD_BLUE: number;
 
         /**
-         * <p style="background-color: #F5DEB3">　　　</p>
+         * <p style="background-color: #F5DEB3">#F5DEB3</p>
          * <p>Name (en): <b>Wheat</b></p>
          * <p>Name (zh): <b>小麦</b></p>
          * <p>Hex: <b>#F5DEB3</b></p>
@@ -5550,7 +5578,7 @@ declare namespace Internal {
         WHEAT: number;
 
         /**
-         * <p style="background-color: #FFFFFF">　　　</p>
+         * <p style="background-color: #FFFFFF">#FFFFFF</p>
          * <p>Name (en): <b>White</b></p>
          * <p>Name (zh): <b>白</b></p>
          * <p>Hex: <b>#FFFFFF</b></p>
@@ -5561,7 +5589,7 @@ declare namespace Internal {
         WHITE: number;
 
         /**
-         * <p style="background-color: #FFFFFF">　　　</p>
+         * <p style="background-color: #FFFFFF">#FFFFFF</p>
          * <p>Name (en): <b>White 1000</b></p>
          * <p>Name (zh): <b>白</b></p>
          * <p>Hex: <b>#FFFFFF</b></p>
@@ -5572,7 +5600,7 @@ declare namespace Internal {
         WHITE_1000: number;
 
         /**
-         * <p style="background-color: #F5F5F5">　　　</p>
+         * <p style="background-color: #F5F5F5">#F5F5F5</p>
          * <p>Name (en): <b>White Smoke</b></p>
          * <p>Name (zh): <b>白烟</b></p>
          * <p>Hex: <b>#F5F5F5</b></p>
@@ -5583,7 +5611,7 @@ declare namespace Internal {
         WHITE_SMOKE: number;
 
         /**
-         * <p style="background-color: #C9A0DC">　　　</p>
+         * <p style="background-color: #C9A0DC">#C9A0DC</p>
          * <p>Name (en): <b>Wisteria</b></p>
          * <p>Name (zh): <b>紫藤</b></p>
          * <p>Hex: <b>#C9A0DC</b></p>
@@ -5594,7 +5622,7 @@ declare namespace Internal {
         WISTERIA: number;
 
         /**
-         * <p style="background-color: #FFFF00">　　　</p>
+         * <p style="background-color: #FFFF00">#FFFF00</p>
          * <p>Name (en): <b>Yellow</b></p>
          * <p>Name (zh): <b>黄</b></p>
          * <p>Hex: <b>#FFFF00</b></p>
@@ -5605,7 +5633,7 @@ declare namespace Internal {
         YELLOW: number;
 
         /**
-         * <p style="background-color: #FFFDE7">　　　</p>
+         * <p style="background-color: #FFFDE7">#FFFDE7</p>
          * <p>Name (en): <b>Yellow (50)</b></p>
          * <p>Name (zh): <b>黄 (50)</b></p>
          * <p>Hex: <b>#FFFDE7</b></p>
@@ -5616,7 +5644,7 @@ declare namespace Internal {
         YELLOW_50: number;
 
         /**
-         * <p style="background-color: #FFF9C4">　　　</p>
+         * <p style="background-color: #FFF9C4">#FFF9C4</p>
          * <p>Name (en): <b>Yellow (100)</b></p>
          * <p>Name (zh): <b>黄 (100)</b></p>
          * <p>Hex: <b>#FFF9C4</b></p>
@@ -5627,7 +5655,7 @@ declare namespace Internal {
         YELLOW_100: number;
 
         /**
-         * <p style="background-color: #FFF590">　　　</p>
+         * <p style="background-color: #FFF590">#FFF590</p>
          * <p>Name (en): <b>Yellow (200)</b></p>
          * <p>Name (zh): <b>黄 (200)</b></p>
          * <p>Hex: <b>#FFF590</b></p>
@@ -5638,7 +5666,7 @@ declare namespace Internal {
         YELLOW_200: number;
 
         /**
-         * <p style="background-color: #FFF176">　　　</p>
+         * <p style="background-color: #FFF176">#FFF176</p>
          * <p>Name (en): <b>Yellow (300)</b></p>
          * <p>Name (zh): <b>黄 (300)</b></p>
          * <p>Hex: <b>#FFF176</b></p>
@@ -5649,7 +5677,7 @@ declare namespace Internal {
         YELLOW_300: number;
 
         /**
-         * <p style="background-color: #FFEE58">　　　</p>
+         * <p style="background-color: #FFEE58">#FFEE58</p>
          * <p>Name (en): <b>Yellow (400)</b></p>
          * <p>Name (zh): <b>黄 (400)</b></p>
          * <p>Hex: <b>#FFEE58</b></p>
@@ -5660,7 +5688,7 @@ declare namespace Internal {
         YELLOW_400: number;
 
         /**
-         * <p style="background-color: #FFEB3B">　　　</p>
+         * <p style="background-color: #FFEB3B">#FFEB3B</p>
          * <p>Name (en): <b>Yellow (500)</b></p>
          * <p>Name (zh): <b>黄 (500)</b></p>
          * <p>Hex: <b>#FFEB3B</b></p>
@@ -5671,7 +5699,7 @@ declare namespace Internal {
         YELLOW_500: number;
 
         /**
-         * <p style="background-color: #FDD835">　　　</p>
+         * <p style="background-color: #FDD835">#FDD835</p>
          * <p>Name (en): <b>Yellow (600)</b></p>
          * <p>Name (zh): <b>黄 (600)</b></p>
          * <p>Hex: <b>#FDD835</b></p>
@@ -5682,7 +5710,7 @@ declare namespace Internal {
         YELLOW_600: number;
 
         /**
-         * <p style="background-color: #FBC02D">　　　</p>
+         * <p style="background-color: #FBC02D">#FBC02D</p>
          * <p>Name (en): <b>Yellow (700)</b></p>
          * <p>Name (zh): <b>黄 (700)</b></p>
          * <p>Hex: <b>#FBC02D</b></p>
@@ -5693,7 +5721,7 @@ declare namespace Internal {
         YELLOW_700: number;
 
         /**
-         * <p style="background-color: #F9A825">　　　</p>
+         * <p style="background-color: #F9A825">#F9A825</p>
          * <p>Name (en): <b>Yellow (800)</b></p>
          * <p>Name (zh): <b>黄 (800)</b></p>
          * <p>Hex: <b>#F9A825</b></p>
@@ -5704,7 +5732,7 @@ declare namespace Internal {
         YELLOW_800: number;
 
         /**
-         * <p style="background-color: #F57F17">　　　</p>
+         * <p style="background-color: #F57F17">#F57F17</p>
          * <p>Name (en): <b>Yellow (900)</b></p>
          * <p>Name (zh): <b>黄 (900)</b></p>
          * <p>Hex: <b>#F57F17</b></p>
@@ -5715,7 +5743,7 @@ declare namespace Internal {
         YELLOW_900: number;
 
         /**
-         * <p style="background-color: #FFFF82">　　　</p>
+         * <p style="background-color: #FFFF82">#FFFF82</p>
          * <p>Name (en): <b>Yellow (A100)</b></p>
          * <p>Name (zh): <b>黄 (A100)</b></p>
          * <p>Hex: <b>#FFFF82</b></p>
@@ -5726,7 +5754,7 @@ declare namespace Internal {
         YELLOW_A100: number;
 
         /**
-         * <p style="background-color: #FFFF00">　　　</p>
+         * <p style="background-color: #FFFF00">#FFFF00</p>
          * <p>Name (en): <b>Yellow (A200)</b></p>
          * <p>Name (zh): <b>黄 (A200)</b></p>
          * <p>Hex: <b>#FFFF00</b></p>
@@ -5737,7 +5765,7 @@ declare namespace Internal {
         YELLOW_A200: number;
 
         /**
-         * <p style="background-color: #FFEA00">　　　</p>
+         * <p style="background-color: #FFEA00">#FFEA00</p>
          * <p>Name (en): <b>Yellow (A400)</b></p>
          * <p>Name (zh): <b>黄 (A400)</b></p>
          * <p>Hex: <b>#FFEA00</b></p>
@@ -5748,7 +5776,7 @@ declare namespace Internal {
         YELLOW_A400: number;
 
         /**
-         * <p style="background-color: #FFD600">　　　</p>
+         * <p style="background-color: #FFD600">#FFD600</p>
          * <p>Name (en): <b>Yellow (A700)</b></p>
          * <p>Name (zh): <b>黄 (A700)</b></p>
          * <p>Hex: <b>#FFD600</b></p>
@@ -5759,7 +5787,7 @@ declare namespace Internal {
         YELLOW_A700: number;
 
         /**
-         * <p style="background-color: #9ACD32">　　　</p>
+         * <p style="background-color: #9ACD32">#9ACD32</p>
          * <p>Name (en): <b>Yellow Green</b></p>
          * <p>Name (zh): <b>黄绿</b></p>
          * <p>Hex: <b>#9ACD32</b></p>
@@ -5785,11 +5813,11 @@ declare namespace Internal {
          *     return color;
          * }
          */
-        alpha(color: OmniColor, options?: ComponentOptions): ColorInt;
-        getAlpha(color: OmniColor, options?: ComponentOptions): ColorInt;
+        alpha(color: OmniColor, options?: ComponentOptions): number;
+        getAlpha(color: OmniColor, options?: ComponentOptions): number;
 
-        alphaDouble(color: OmniColor): ColorInt;
-        getAlphaDouble(color: OmniColor): ColorInt;
+        alphaDouble(color: OmniColor): number;
+        getAlphaDouble(color: OmniColor): number;
 
         /**
          * @example
@@ -5807,11 +5835,11 @@ declare namespace Internal {
          *     return color;
          * }
          */
-        red(color: OmniColor, options?: ComponentOptions): ColorInt;
-        getRed(color: OmniColor, options?: ComponentOptions): ColorInt;
+        red(color: OmniColor, options?: ComponentOptions): number;
+        getRed(color: OmniColor, options?: ComponentOptions): number;
 
-        redDouble(color: OmniColor): ColorInt;
-        getRedDouble(color: OmniColor): ColorInt;
+        redDouble(color: OmniColor): number;
+        getRedDouble(color: OmniColor): number;
 
         /**
          * @example
@@ -5829,11 +5857,11 @@ declare namespace Internal {
          *     return color;
          * }
          */
-        green(color: OmniColor, options?: ComponentOptions): ColorInt;
-        getGreen(color: OmniColor, options?: ComponentOptions): ColorInt;
+        green(color: OmniColor, options?: ComponentOptions): number;
+        getGreen(color: OmniColor, options?: ComponentOptions): number;
 
-        greenDouble(color: OmniColor): ColorInt;
-        getGreenDouble(color: OmniColor): ColorInt;
+        greenDouble(color: OmniColor): number;
+        getGreenDouble(color: OmniColor): number;
 
         /**
          * @example
@@ -5851,11 +5879,11 @@ declare namespace Internal {
          *     return color;
          * }
          */
-        blue(color: OmniColor, options?: ComponentOptions): ColorInt;
-        getBlue(color: OmniColor, options?: ComponentOptions): ColorInt;
+        blue(color: OmniColor, options?: ComponentOptions): number;
+        getBlue(color: OmniColor, options?: ComponentOptions): number;
 
-        blueDouble(color: OmniColor): ColorInt;
-        getBlueDouble(color: OmniColor): ColorInt;
+        blueDouble(color: OmniColor): number;
+        getBlueDouble(color: OmniColor): number;
 
         setAlpha(color: OmniColor, alpha: ColorComponent): number;
 
@@ -5981,20 +6009,39 @@ declare namespace Internal {
         toArgb(color: OmniColor, options?: ToComponentOptions): number[];
 
         toHsv(color: OmniColor): number[];
-        toHsv(color: OmniColor, hsvResultContainer: java.lang.Float[]): number[];
+        toHsv(color: OmniColor, hsvResultContainer: FloatArray): number[];
         toHsv(r: ColorComponent, g: ColorComponent, b: ColorComponent): number[];
-        toHsv(r: ColorComponent, g: ColorComponent, b: ColorComponent, hsvResultContainer: java.lang.Float[]): number[];
+        toHsv(r: ColorComponent, g: ColorComponent, b: ColorComponent, hsvResultContainer: FloatArray): number[];
 
         toHsva(color: OmniColor): number[];
-        toHsva(color: OmniColor, hsvaResultContainer: java.lang.Float[]): number[];
+        toHsva(color: OmniColor, hsvaResultContainer: FloatArray): number[];
         toHsva(r: ColorComponent, g: ColorComponent, b: ColorComponent, a: ColorComponent): number[];
-        toHsva(r: ColorComponent, g: ColorComponent, b: ColorComponent, a: ColorComponent, hsvaResultContainer: java.lang.Float[]): number[];
+        toHsva(r: ColorComponent, g: ColorComponent, b: ColorComponent, a: ColorComponent, hsvaResultContainer: FloatArray): number[];
 
         toHsl(color: OmniColor): number[];
+        toHsl(color: OmniColor, hslResultContainer: FloatArray): number[];
         toHsl(r: ColorComponent, g: ColorComponent, b: ColorComponent): number[];
+        toHsl(r: ColorComponent, g: ColorComponent, b: ColorComponent, hslResultContainer: FloatArray): number[];
 
         toHsla(color: OmniColor): number[];
         toHsla(r: ColorComponent, g: ColorComponent, b: ColorComponent, a: ColorComponent): number[];
+
+        toRgbString(color: OmniColor): string;
+        toRgbString(r: ColorComponent, g: ColorComponent, b: ColorComponent): string;
+
+        toRgbaString(color: OmniColor, options?: boolean | StringOptions): string;
+
+        toArgbString(color: OmniColor, options?: boolean | StringOptions): string;
+
+        toHsvString(color: OmniColor): string;
+        toHsvString(r: ColorComponent, g: ColorComponent, b: ColorComponent): string;
+
+        toHsvaString(color: OmniColor, options?: boolean | StringOptions): string;
+
+        toHslString(color: OmniColor): string;
+        toHslString(r: ColorComponent, g: ColorComponent, b: ColorComponent): string;
+
+        toHslaString(color: OmniColor, options?: boolean | StringOptions): string;
 
         /**
          * @example
@@ -6129,29 +6176,29 @@ declare namespace Internal {
 
         toInt(): number;
 
-        alpha(options?: ComponentOptions): ColorInt;
-        getAlpha(options?: ComponentOptions): ColorInt;
+        alpha(options?: ComponentOptions): number;
+        getAlpha(options?: ComponentOptions): number;
 
-        alphaDouble(): ColorInt;
-        getAlphaDouble(): ColorInt;
+        alphaDouble(): number;
+        getAlphaDouble(): number;
 
-        red(options?: ComponentOptions): ColorInt;
-        getRed(options?: ComponentOptions): ColorInt;
+        red(options?: ComponentOptions): number;
+        getRed(options?: ComponentOptions): number;
 
-        redDouble(): ColorInt;
-        getRedDouble(): ColorInt;
+        redDouble(): number;
+        getRedDouble(): number;
 
-        green(options?: ComponentOptions): ColorInt;
-        getGreen(options?: ComponentOptions): ColorInt;
+        green(options?: ComponentOptions): number;
+        getGreen(options?: ComponentOptions): number;
 
-        greenDouble(): ColorInt;
-        getGreenDouble(): ColorInt;
+        greenDouble(): number;
+        getGreenDouble(): number;
 
-        blue(options?: ComponentOptions): ColorInt;
-        getBlue(options?: ComponentOptions): ColorInt;
+        blue(options?: ComponentOptions): number;
+        getBlue(options?: ComponentOptions): number;
 
-        blueDouble(): ColorInt;
-        getBlueDouble(): ColorInt;
+        blueDouble(): number;
+        getBlueDouble(): number;
 
         setAlpha(alpha: ColorComponent): this;
 
@@ -6210,13 +6257,27 @@ declare namespace Internal {
 
         toArgb(options?: ToComponentOptions): number[];
 
-        toHsv(): number[];
+        toHsv(hsvResultContainer?: FloatArray): number[];
 
-        toHsva(): number[];
+        toHsva(hsvaResultContainer?: FloatArray): number[];
 
-        toHsl(): number[];
+        toHsl(hslResultContainer?: FloatArray): number[];
 
         toHsla(): number[];
+
+        toRgbString(): string;
+
+        toRgbaString(options?: boolean | StringOptions): string;
+
+        toArgbString(options?: boolean | StringOptions): string;
+
+        toHsvString(): string;
+
+        toHsvaString(options?: boolean | StringOptions): string;
+
+        toHslString(): string;
+
+        toHslaString(options?: boolean | StringOptions): string;
 
         isSimilar(other: OmniColor, threshold?: number, algorithm?: DetectionAlgorithm): boolean;
         isSimilar(other: OmniColor, options: {
@@ -6255,6 +6316,16 @@ declare namespace Colors {
         max?: 1 | 255;
     }
 
+    interface StringOptions {
+        keepTrailingZeroForFullAlpha?: boolean;
+    }
+
+    type FloatArray = number[];
+
+    type ColorMap = {
+        readonly [name: string]: ColorInt;
+    };
+
     /** @IntRange (from = -Infinity, to = Infinity) */
     type ColorInt = number;
 
@@ -6263,8 +6334,9 @@ declare namespace Colors {
     type ColorName = 'ALICE_BLUE' | 'ALIZARIN_CRIMSON' | 'AMBER' | 'AMBER_50' | 'AMBER_100' | 'AMBER_200' | 'AMBER_300' | 'AMBER_400' | 'AMBER_500' | 'AMBER_600' | 'AMBER_700' | 'AMBER_800'
         | 'AMBER_900' | 'AMBER_A100' | 'AMBER_A200' | 'AMBER_A400' | 'AMBER_A700' | 'AMETHYST' | 'ANTIQUE_WHITE' | 'APPLE_GREEN' | 'APRICOT' | 'AQUA' | 'AQUAMARINE' | 'AQUA_BLUE'
         | 'AZURE' | 'BABY_BLUE' | 'BABY_PINK' | 'BEIGE' | 'BISQUE' | 'BLACK' | 'BLACK_1000' | 'BLANCHED_ALMOND' | 'BLUE' | 'BLUE_50' | 'BLUE_100' | 'BLUE_200' | 'BLUE_300' | 'BLUE_400'
-        | 'BLUE_500' | 'BLUE_600' | 'BLUE_700' | 'BLUE_800' | 'BLUE_900' | 'BLUE_A100' | 'BLUE_A200' | 'BLUE_A400' | 'BLUE_A700' | 'BLUE_GREY' | 'BLUE_GREY_50' | 'BLUE_GREY_100'
-        | 'BLUE_GREY_200' | 'BLUE_GREY_300' | 'BLUE_GREY_400' | 'BLUE_GREY_500' | 'BLUE_GREY_600' | 'BLUE_GREY_700' | 'BLUE_GREY_800' | 'BLUE_GREY_900' | 'BLUE_VIOLET'
+        | 'BLUE_500' | 'BLUE_600' | 'BLUE_700' | 'BLUE_800' | 'BLUE_900' | 'BLUE_A100' | 'BLUE_A200' | 'BLUE_A400' | 'BLUE_A700' | 'BLUE_GREY' | 'BLUE_GRAY' | 'BLUE_GREY_50' | 'BLUE_GREY_100'
+        | 'BLUE_GREY_200' | 'BLUE_GREY_300' | 'BLUE_GREY_400' | 'BLUE_GREY_500' | 'BLUE_GREY_600' | 'BLUE_GREY_700' | 'BLUE_GREY_800' | 'BLUE_GREY_900' | 'BLUE_GRAY_50'
+        | 'BLUE_GRAY_100' | 'BLUE_GRAY_200' | 'BLUE_GRAY_300' | 'BLUE_GRAY_400' | 'BLUE_GRAY_500' | 'BLUE_GRAY_600' | 'BLUE_GRAY_700' | 'BLUE_GRAY_800' | 'BLUE_GRAY_900' | 'BLUE_VIOLET'
         | 'BRIGHT_GREEN' | 'BRONZE' | 'BROWN' | 'BROWN_50' | 'BROWN_100' | 'BROWN_200' | 'BROWN_300' | 'BROWN_400' | 'BROWN_500' | 'BROWN_600' | 'BROWN_700' | 'BROWN_800' | 'BROWN_900'
         | 'BURGUNDY' | 'BURLY_WOOD' | 'BURNT_ORANGE' | 'CADET_BLUE' | 'CAMEL' | 'CAMELLIA' | 'CANARY_YELLOW' | 'CARDINAL_RED' | 'CARMINE' | 'CELADON' | 'CERISE' | 'CERULEAN_BLUE'
         | 'CHAMPAGNE_YELLOW' | 'CHARTREUSE' | 'CHOCOLATE' | 'CHROME_YELLOW' | 'CLEMATIS' | 'COBALT_BLUE' | 'COBALT_GREEN' | 'COCONUT_BROWN' | 'COFFEE' | 'CORAL' | 'CORAL_PINK'
@@ -6277,7 +6349,8 @@ declare namespace Colors {
         | 'DEEP_PURPLE_200' | 'DEEP_PURPLE_300' | 'DEEP_PURPLE_400' | 'DEEP_PURPLE_500' | 'DEEP_PURPLE_600' | 'DEEP_PURPLE_700' | 'DEEP_PURPLE_800' | 'DEEP_PURPLE_900'
         | 'DEEP_PURPLE_A100' | 'DEEP_PURPLE_A200' | 'DEEP_PURPLE_A400' | 'DEEP_PURPLE_A700' | 'DEEP_SKY_BLUE' | 'DIM_GRAY' | 'DIM_GREY' | 'DKGRAY' | 'DODGER_BLUE' | 'EMERALD'
         | 'FIRE_BRICK' | 'FLAMINGO' | 'FLORAL_WHITE' | 'FOLIAGE_GREEN' | 'FOREST_GREEN' | 'FRESH_LEAVES' | 'FUCHSIA' | 'GAINSBORO' | 'GHOST_WHITE' | 'GOLD' | 'GOLDEN' | 'GOLDENROD'
-        | 'GRASS_GREEN' | 'GRAY' | 'GRAYISH_PURPLE' | 'GREEN' | 'GREEN_50' | 'GREEN_100' | 'GREEN_200' | 'GREEN_300' | 'GREEN_400' | 'GREEN_500' | 'GREEN_600' | 'GREEN_700'
+        | 'GRASS_GREEN' | 'GRAY' | 'GRAY_50' | 'GRAY_100' | 'GRAY_200' | 'GRAY_300' | 'GRAY_400' | 'GRAY_500' | 'GRAY_600' | 'GRAY_700' | 'GRAY_800' | 'GRAY_900'
+        | 'GRAYISH_PURPLE' | 'GREEN' | 'GREEN_50' | 'GREEN_100' | 'GREEN_200' | 'GREEN_300' | 'GREEN_400' | 'GREEN_500' | 'GREEN_600' | 'GREEN_700'
         | 'GREEN_800' | 'GREEN_900' | 'GREEN_A100' | 'GREEN_A200' | 'GREEN_A400' | 'GREEN_A700' | 'GREEN_YELLOW' | 'GREY' | 'GREY_50' | 'GREY_100' | 'GREY_200' | 'GREY_300'
         | 'GREY_400' | 'GREY_500' | 'GREY_600' | 'GREY_700' | 'GREY_800' | 'GREY_900' | 'HELIOTROPE' | 'HONEYDEW' | 'HONEY_ORANGE' | 'HORIZON_BLUE' | 'HOT_PINK' | 'INDIAN_RED'
         | 'INDIGO' | 'INDIGO_50' | 'INDIGO_100' | 'INDIGO_200' | 'INDIGO_300' | 'INDIGO_400' | 'INDIGO_500' | 'INDIGO_600' | 'INDIGO_700' | 'INDIGO_800' | 'INDIGO_900'
@@ -6312,8 +6385,9 @@ declare namespace Colors {
         | 'alice-blue' | 'alizarin-crimson' | 'amber' | 'amber-50' | 'amber-100' | 'amber-200' | 'amber-300' | 'amber-400' | 'amber-500' | 'amber-600' | 'amber-700' | 'amber-800'
         | 'amber-900' | 'amber-a100' | 'amber-a200' | 'amber-a400' | 'amber-a700' | 'amethyst' | 'antique-white' | 'apple-green' | 'apricot' | 'aqua' | 'aquamarine' | 'aqua-blue'
         | 'azure' | 'baby-blue' | 'baby-pink' | 'beige' | 'bisque' | 'black' | 'black-1000' | 'blanched-almond' | 'blue' | 'blue-50' | 'blue-100' | 'blue-200' | 'blue-300' | 'blue-400'
-        | 'blue-500' | 'blue-600' | 'blue-700' | 'blue-800' | 'blue-900' | 'blue-a100' | 'blue-a200' | 'blue-a400' | 'blue-a700' | 'blue-grey' | 'blue-grey-50' | 'blue-grey-100'
-        | 'blue-grey-200' | 'blue-grey-300' | 'blue-grey-400' | 'blue-grey-500' | 'blue-grey-600' | 'blue-grey-700' | 'blue-grey-800' | 'blue-grey-900' | 'blue-violet'
+        | 'blue-500' | 'blue-600' | 'blue-700' | 'blue-800' | 'blue-900' | 'blue-a100' | 'blue-a200' | 'blue-a400' | 'blue-a700' | 'blue-grey' | 'blue-gray' | 'blue-grey-50' | 'blue-grey-100'
+        | 'blue-grey-200' | 'blue-grey-300' | 'blue-grey-400' | 'blue-grey-500' | 'blue-grey-600' | 'blue-grey-700' | 'blue-grey-800' | 'blue-grey-900' | 'blue-gray-50'
+        | 'blue-gray-100' | 'blue-gray-200' | 'blue-gray-300' | 'blue-gray-400' | 'blue-gray-500' | 'blue-gray-600' | 'blue-gray-700' | 'blue-gray-800' | 'blue-gray-900' | 'blue-violet'
         | 'bright-green' | 'bronze' | 'brown' | 'brown-50' | 'brown-100' | 'brown-200' | 'brown-300' | 'brown-400' | 'brown-500' | 'brown-600' | 'brown-700' | 'brown-800' | 'brown-900'
         | 'burgundy' | 'burly-wood' | 'burnt-orange' | 'cadet-blue' | 'camel' | 'camellia' | 'canary-yellow' | 'cardinal-red' | 'carmine' | 'celadon' | 'cerise' | 'cerulean-blue'
         | 'champagne-yellow' | 'chartreuse' | 'chocolate' | 'chrome-yellow' | 'clematis' | 'cobalt-blue' | 'cobalt-green' | 'coconut-brown' | 'coffee' | 'coral' | 'coral-pink'
@@ -6326,7 +6400,8 @@ declare namespace Colors {
         | 'deep-purple-200' | 'deep-purple-300' | 'deep-purple-400' | 'deep-purple-500' | 'deep-purple-600' | 'deep-purple-700' | 'deep-purple-800' | 'deep-purple-900'
         | 'deep-purple-a100' | 'deep-purple-a200' | 'deep-purple-a400' | 'deep-purple-a700' | 'deep-sky-blue' | 'dim-gray' | 'dim-grey' | 'dkgray' | 'dodger-blue' | 'emerald'
         | 'fire-brick' | 'flamingo' | 'floral-white' | 'foliage-green' | 'forest-green' | 'fresh-leaves' | 'fuchsia' | 'gainsboro' | 'ghost-white' | 'gold' | 'golden' | 'goldenrod'
-        | 'grass-green' | 'gray' | 'grayish-purple' | 'green' | 'green-50' | 'green-100' | 'green-200' | 'green-300' | 'green-400' | 'green-500' | 'green-600' | 'green-700'
+        | 'grass-green' | 'gray' | 'gray-50' | 'gray-100' | 'gray-200' | 'gray-300' | 'gray-400' | 'gray-500' | 'gray-600' | 'gray-700' | 'gray-800' | 'gray-900'
+        | 'grayish-purple' | 'green' | 'green-50' | 'green-100' | 'green-200' | 'green-300' | 'green-400' | 'green-500' | 'green-600' | 'green-700'
         | 'green-800' | 'green-900' | 'green-a100' | 'green-a200' | 'green-a400' | 'green-a700' | 'green-yellow' | 'grey' | 'grey-50' | 'grey-100' | 'grey-200' | 'grey-300'
         | 'grey-400' | 'grey-500' | 'grey-600' | 'grey-700' | 'grey-800' | 'grey-900' | 'heliotrope' | 'honeydew' | 'honey-orange' | 'horizon-blue' | 'hot-pink' | 'indian-red'
         | 'indigo' | 'indigo-50' | 'indigo-100' | 'indigo-200' | 'indigo-300' | 'indigo-400' | 'indigo-500' | 'indigo-600' | 'indigo-700' | 'indigo-800' | 'indigo-900'

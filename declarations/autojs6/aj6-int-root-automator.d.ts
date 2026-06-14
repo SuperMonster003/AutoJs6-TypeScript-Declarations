@@ -1,14 +1,16 @@
 // Type definitions for AutoJs6 internal module root-automator
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__RootAutomator__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/automator/RootAutomator.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/automator/RootAutomatorNativeObject.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/inputevent/RootAutomator.java
  */
 
 declare namespace Internal {

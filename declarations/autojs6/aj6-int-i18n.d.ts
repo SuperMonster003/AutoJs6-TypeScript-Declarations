@@ -97,7 +97,7 @@ declare namespace Internal {
              *
              * @param node abstract syntax tree (top node or sub-node)
              * @param replacements for $1, $2, ... $n
-             * @return single-string node or array of nodes suitable for
+             * @returns single-string node or array of nodes suitable for
              *  jQuery appending.
              */
             emit(node: Mixed, replacements: any[]): Mixed;
@@ -121,7 +121,7 @@ declare namespace Internal {
              *
              * @param nodes One element, integer, n >= 0
              * @param replacements for $1, $2, ... $n
-             * @return replacement
+             * @returns replacement
              */
             replace(nodes: any[], replacements: any[]): string;
 
@@ -132,7 +132,7 @@ declare namespace Internal {
              * convertNumber.
              *
              * @param nodes List [ {String|Number}, {String}, {String} ... ]
-             * @return selected pluralized form according to current
+             * @returns selected pluralized form according to current
              *  language.
              */
             plural(nodes: any[]): string;
@@ -146,7 +146,7 @@ declare namespace Internal {
              * So we need to fall back to gender-neutral if it is empty.
              *
              * @param nodes List [ {String}, {String}, {String} , {String} ]
-             * @return selected gender form according to current language
+             * @returns selected gender form according to current language
              */
             gender(nodes: any[]): string;
 
@@ -155,7 +155,7 @@ declare namespace Internal {
              * putting {{grammar:form|word}} in a message
              *
              * @param nodes List [{Grammar case eg: genitive}, {String word}]
-             * @return selected grammatical form according to current language.
+             * @returns selected grammatical form according to current language.
              */
             grammar(nodes: any[]): string;
 
@@ -183,7 +183,7 @@ declare namespace Internal {
              * direction inference). The latter is cleaner but still not widely supported.
              *
              * @param nodes The text nodes from which to take the first item.
-             * @return Wrapped String of content as needed.
+             * @returns Wrapped String of content as needed.
              */
             bidi(nodes: string[]): string;
 
@@ -193,7 +193,7 @@ declare namespace Internal {
              * separator, according to the current language.
              *
              * @param nodes List of nodes
-             * @return Formatted number
+             * @returns Formatted number
              */
             formatnum(nodes: any[]): number | string;
 
@@ -202,7 +202,7 @@ declare namespace Internal {
              *
              * @param nodes Array of consecutive key value pairs, with index 2 * n being a
              *  name and 2 * n + 1 the associated value
-             * @return Object mapping attribute name to attribute value
+             * @returns Object mapping attribute name to attribute value
              */
             htmlattributes(nodes: any[]): object;
 
@@ -226,7 +226,7 @@ declare namespace Internal {
              *
              * @param count Non-localized quantifier
              * @param forms List of plural forms
-             * @return Correct form for quantifier in this language
+             * @returns Correct form for quantifier in this language
              */
             convertPlural(count: number, forms: any[]): string;
 
@@ -235,7 +235,7 @@ declare namespace Internal {
              *
              * @param number
              * @param locale
-             * @return plural form index
+             * @returns plural form index
              */
             getPluralForm(number: number, locale: string): number;
 
@@ -244,7 +244,7 @@ declare namespace Internal {
              *
              * @param num Value to be converted
              * @param integer Convert the return value to an integer (default: false)
-             * @return The number converted into a String.
+             * @returns The number converted into a String.
              */
             convertNumber(num: number, integer: boolean): string;
 
@@ -273,7 +273,7 @@ declare namespace Internal {
              * See http://cldr.unicode.org/translation/numbering-systems
              *
              * @param language
-             * @return List of digits in the past language or false
+             * @returns List of digits in the past language or false
              * representation, or boolean false if there is no information.
              */
             digitTransformTable(language: string): any[] | boolean;

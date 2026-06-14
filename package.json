@@ -1,6 +1,27 @@
 {
   "name": "@sm003/autojs6-dts",
-  "version": "2.1.3",
+  "version": "3.0.0",
+  "files": [
+    "declarations/index.d.ts",
+    "declarations/android.d.ts",
+    "declarations/collections.d.ts",
+    "declarations/libraries.d.ts",
+    "declarations/android",
+    "declarations/collections",
+    "declarations/libraries",
+    "declarations/autojs6/index.d.ts",
+    "declarations/autojs6/aj6-declarations.d.ts",
+    "declarations/autojs6/aj6-gradle-wrapper.d.ts",
+    "declarations/autojs6/aj6-int-*.d.ts",
+    "declarations/autojs6/aj6-jsx-element-extension.d.ts",
+    "declarations/autojs6/aj6-lib-*.d.ts",
+    "declarations/autojs6/aj6-main-app.d.ts",
+    "declarations/autojs6/aj6-r-string.d.ts",
+    "docs/CHANGELOG.md",
+    "jsconfig.json",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepack": ""
@@ -29,6 +50,6 @@
     "url": "https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/issues"
   },
   "dependencies": {
-    "@sm003/autojs6-dts": "2.1.3"
+    "@sm003/autojs6-dts": "3.0.0"
   }
 }

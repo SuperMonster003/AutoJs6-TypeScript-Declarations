@@ -170,6 +170,8 @@ declare namespace Internal {
          */
         isSymbol(arg: any): boolean;
 
+        isBigInt(arg: any): boolean;
+
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
          * exports.isUndefined = isUndefined;
@@ -257,7 +259,17 @@ declare namespace Internal {
          */
         isPrimitive(arg: any): boolean;
 
+        isReference(arg: any): boolean;
+
+        isEmptyObject(arg: any): boolean;
+
+        isInteger(arg: any): boolean;
+
         isJavaArray(o: any): boolean;
+
+        isJavaObject(o: any): boolean;
+
+        unwrapJavaObject(o: { getClass(): java.lang.Class<any> }): any;
 
         /**
          * @example
@@ -403,8 +415,10 @@ declare namespace Internal {
         debuglog(set): any;
 
         getClass(o: java.lang.Class<any> | object): java.lang.Class<any>;
+        class(o: java.lang.Class<any> | object): java.lang.Class<any>;
 
         getClassName(o: java.lang.Class<any> | object): string;
+        className(o: java.lang.Class<any> | object): string;
 
         /**
          * Check if a given argument matches the pattern.
@@ -457,7 +471,7 @@ declare namespace Internal {
         /**
          * @throws TypeError
          */
-        ensureType(o: any, type: 'number' | 'boolean' | 'string' | 'undefined' | 'symbol' | 'bigint' | 'object'): void;
+        ensureType(o: any, type: 'number' | 'boolean' | 'string' | 'undefined' | 'symbol' | 'bigint' | 'object' | 'function'): void;
 
         /**
          * @throws TypeError
@@ -497,6 +511,11 @@ declare namespace Internal {
         /**
          * @throws TypeError
          */
+        ensureFunctionType(...o: any[]): void;
+
+        /**
+         * @throws TypeError
+         */
         ensureNonNullObjectType(...o: any[]): void;
 
         /**
@@ -505,6 +524,8 @@ declare namespace Internal {
         ensureArrayType(...o: any[]): void;
 
         /**
+         * @deprecated
+         *
          * Converts a function into regular form
          * @example
          * let sum = (a, b, c) => a + b + c;
@@ -519,6 +540,8 @@ declare namespace Internal {
         toRegular<T extends Function>(f: T): T;
 
         /**
+         * @deprecated
+         *
          * @example
          * let sum = (a, b, c) => a + b + c;
          * console.log(util.toRegularAndCall(sum, 1, 2, 5)); // 8
@@ -526,6 +549,8 @@ declare namespace Internal {
         toRegularAndCall<T>(f: (...args) => T, ...o: any[]): T;
 
         /**
+         * @deprecated
+         *
          * @example
          * let sum = (a, b, c) => a + b + c;
          * console.log(util.toRegularAndApply(sum, [1, 2, 5])); // 8
@@ -793,15 +818,15 @@ declare namespace Util {
     interface MorseCode {
 
         (text: string, timeUnit?: number): {
-            pattern: string;
+            pattern: number[];
             code: string;
-            getPattern(): string;
+            getPattern(): number[];
             getCode(): string;
             vibrate(delay?: number): void;
             toString(): string;
         };
 
-        getPattern(text: string): string;
+        getPattern(text: string): number[];
 
         getCode(text: string): string;
 

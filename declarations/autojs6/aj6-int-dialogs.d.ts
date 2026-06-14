@@ -1,14 +1,16 @@
 // Type definitions for AutoJs6 internal module dialogs
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__dialogs__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/dialogs/Dialogs.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/ui/dialog/JsDialog.java
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/ui/dialog/JsDialogBuilder.java
  */
 
 declare namespace Internal {
@@ -59,7 +61,7 @@ declare namespace Internal {
          * @see org.autojs.autojs.runtime.api.Dialogs.rawInput
          * @see org.autojs.autojs.runtime.api.Dialogs.NonUiDialogs.rawInput
          */
-        rawInput(title: string, prefill?: string, callback?: (input: string) => void): string | Promise<any>;
+        rawInput(title: string, prefill?: string, callback?: (input: string) => void): string | Promise<string>;
 
         /**
          * @example
@@ -235,7 +237,7 @@ declare namespace Internal {
          * @see org.autojs.autojs.runtime.api.Dialogs.select
          * @see org.autojs.autojs.runtime.api.Dialogs.NonUiDialogs.select
          */
-        select(title: string, items: any[], callback?: (selectedIndex: number) => void): number | Promise<any>;
+        select(title: string, items: any[], callback?: (selectedIndex: number) => void): number | Promise<number>;
 
         /**
          * @example
@@ -742,13 +744,14 @@ declare namespace Dialogs {
             itemsColor?: Color$;
             itemsSelectMode?: 'select' | 'single' | 'multi';
             itemsSelectedIndex?: number | number[];
-            itemsSelectedIndices?: number[];
+            itemsSelectedIndices?: number | number[];
             positive?: string;
             positiveColor?: Color$;
             neutral?: string;
             neutralColor?: Color$;
             negative?: string;
             negativeColor?: Color$;
+            linkColor?: Color$;
             checkBoxPrompt?: string;
             checkBoxChecked?: boolean;
             progress?: {
@@ -765,16 +768,35 @@ declare namespace Dialogs {
             customView?: View;
             wrapInScrollView?: boolean;
             stubborn?: boolean;
-            linkify?: 'all' | 'emailAddresses' | 'mapAddresses' | 'phoneNumbers' | 'webUrls' | 'ALL' | 'EMAIL_ADDRESSES' | 'MAP_ADDRESSES' | 'PHONE_NUMBERS' | 'WEB_URLS' | boolean;
-            onBackKey?: ((dialog: JsDialog$) => void) | 'disable' | 'disabled' | 'enable' | 'enabled' | boolean;
+            linkify?: Dialogs.LinkifyMask | boolean;
+            onBackKey?: Dialogs.OnBackHandler;
+            onBackPressed?: Dialogs.OnBackHandler;
             dimAmount?: number;
-            background?: string | number;
+            bg?: Color$;
+            bgColor?: Color$;
+            background?: Color$;
+            backgroundColor?: Color$;
+            bgColorRes?: number;
+            backgroundColorRes?: number;
             animation?: 'default' | 'activity' | 'dialog' | 'inputMethod' | 'toast' | 'translucent' | boolean;
             keepScreenOn?: boolean;
             limitIconToDefaultSize?: boolean;
+            alwaysCallSingleChoiceCallback?: boolean;
+            alwaysCallMultiChoiceCallback?: boolean;
+            theme?: 'light' | 'dark' | com.afollestad.materialdialogs.Theme;
+            preset?: boolean;
         };
 
     }
+
+    type LinkifyMask =
+        'all' | 'ALL' |
+        'webUrls' | 'web' | 'url' | 'urls' | 'WEB_URLS' |
+        'emailAddresses' | 'email' | 'EMAIL_ADDRESSES' |
+        'phoneNumbers' | 'phone' | 'tel' | 'PHONE_NUMBERS' |
+        'mapAddresses' | 'addresses' | 'address' | 'street' | 'MAP_ADDRESSES';
+
+    type OnBackHandler = ((dialog: JsDialog$) => void | boolean) | 'disable' | 'disabled' | 'enable' | 'enabled' | boolean;
 
     namespace MaterialDialog {
         type InputCallback = com.afollestad.materialdialogs.MaterialDialog.InputCallback;

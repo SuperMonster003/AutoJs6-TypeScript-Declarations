@@ -17,8 +17,6 @@ declare namespace Internal {
 
         (): number;
 
-        prototype: {};
-
         /**
          * 996.ICU - Developers' lives matter.
          * @constant

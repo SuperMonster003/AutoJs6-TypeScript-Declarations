@@ -1,9 +1,9 @@
 // Type definitions for AutoJs6 internal module ui
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.7.4
+// TypeScript Version: 5.1.3
 //
-// Last modified: Nov 8, 2022
+// Last modified: Jun 14, 2026
 //
 // noinspection JSUnusedGlobalSymbols
 
@@ -12,7 +12,9 @@
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__ui__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/ui/UI.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/ui/UIWidget.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/UI.kt
  */
 
 declare namespace Internal {
@@ -51,16 +53,25 @@ declare namespace Internal {
 
         Widget: {
             new(): UI.Widget;
-            (): void;
         };
 
-        useAndroidLayout(b: boolean | null): void;
+        useAndroidLayout(b?: boolean | null): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
          * ui.__defineGetter__("emitter", () => activity ? activity.getEventEmitter() : null);
          */
-        emitter(): EventEmitter$ | null;
+        get emitter(): EventEmitter$ | null;
+
+        get root(): android.widget.FrameLayout;
+
+        get statusBarHeight(): number;
+
+        get visibleStatusBarHeight(): number;
+
+        get navigationBarHeight(): number;
+
+        get visibleNavigationBarHeight(): number;
 
         /**
          * @example
@@ -196,7 +207,7 @@ declare namespace Internal {
          *     return result;
          * };
          */
-        run<R>(action: (...args: any[]) => R): R;
+        run<R>(action: () => R): R;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -218,7 +229,7 @@ declare namespace Internal {
          *     }
          * }
          */
-        post(action: Func, delay?: number): void;
+        post(action: Func, delay?: number): boolean;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -235,7 +246,17 @@ declare namespace Internal {
          */
         statusBarColor(color: OmniColor): void;
 
+        statusBarIconLight(isLight?: boolean): void;
+
+        statusBarIconLightBy(refColor: OmniColor): void;
+
         backgroundColor(color: OmniColor): void;
+
+        navigationBarColor(color: OmniColor): void;
+
+        navigationBarIconLight(isLight?: boolean): void;
+
+        navigationBarIconLightBy(refColor: OmniColor): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -248,6 +269,16 @@ declare namespace Internal {
          */
         finish(): void;
 
+        keepScreenOn(): void;
+
+        getStatusBarHeight(options?: UI.BarHeightOptions): number;
+
+        getVisibleStatusBarHeight(options?: UI.BarHeightOptions): number;
+
+        getNavigationBarHeight(options?: UI.BarHeightOptions): number;
+
+        getVisibleNavigationBarHeight(options?: UI.BarHeightOptions): number;
+
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
          * ui.findByStringId = function (view, id) {
@@ -259,6 +290,12 @@ declare namespace Internal {
     }
 
     namespace UI {
+
+        interface BarHeightOptions {
+            withComputed?: boolean;
+            withDimen?: boolean;
+            ignoreVisibility?: boolean;
+        }
 
         type View = JsView & Android.Widget.View &
             androidx.cardview.widget.CardView &
@@ -438,6 +475,8 @@ declare namespace Internal {
     }
 
 }
+
+declare function isUiThread(): boolean;
 
 // @ts-ignore
 declare type Xml = JSX.Element | { toXMLString(): string };

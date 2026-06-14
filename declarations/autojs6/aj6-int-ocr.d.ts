@@ -1,14 +1,17 @@
-// Type definitions for AutoJs6 internal module http
+// Type definitions for AutoJs6 internal module ocr
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.8.4
 //
-// Last modified: Mar 18, 2023
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__ocr__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/ocr/Ocr.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/ocr/OcrMLKit.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/ocr/OcrPaddle.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/ocr/OcrRapid.kt
  */
 
 declare namespace Internal {
@@ -16,15 +19,11 @@ declare namespace Internal {
     import ModeName = Internal.Ocr.ModeName;
     import DetectOptionsMLKit = Internal.Ocr.DetectOptionsMLKit;
     import DetectOptionsPaddle = Internal.Ocr.DetectOptionsPaddle;
-    import RecognizeTextMethod = Internal.Ocr.RecognizeTextMethod;
-    import DetectMethod = Internal.Ocr.DetectMethod;
+    import DetectOptionsRapid = Internal.Ocr.DetectOptionsRapid;
+    import DetectOptionsAny = Internal.Ocr.DetectOptionsAny;
     import Mode = Internal.Ocr.Mode;
 
-    interface OcrMLKit extends OcrMethodCreator, OcrDetector {
-
-        recognizeTextMethodCreator(options: DetectOptionsMLKit): RecognizeTextMethod;
-
-        detectMethodCreator(options: DetectOptionsMLKit): DetectMethod;
+    interface OcrMLKit extends OcrDetector {
 
         recognizeText(options?: DetectOptionsMLKit): string[];
         recognizeText(region: OmniRegion): string[];
@@ -38,11 +37,7 @@ declare namespace Internal {
 
     }
 
-    interface OcrPaddle extends OcrMethodCreator, OcrDetector {
-
-        recognizeTextMethodCreator(options: DetectOptionsPaddle): RecognizeTextMethod;
-
-        detectMethodCreator(options: DetectOptionsPaddle): DetectMethod;
+    interface OcrPaddle extends OcrDetector {
 
         recognizeText(options?: DetectOptionsPaddle): string[];
         recognizeText(region: OmniRegion): string[];
@@ -56,11 +51,17 @@ declare namespace Internal {
 
     }
 
-    interface OcrMethodCreator {
+    interface OcrRapid extends OcrDetector {
 
-        recognizeTextMethodCreator(options: Ocr.DetectOptions): RecognizeTextMethod;
+        recognizeText(options?: DetectOptionsRapid): string[];
+        recognizeText(region: OmniRegion): string[];
+        recognizeText(img: ImageWrapper | string, options?: DetectOptionsRapid): string[];
+        recognizeText(img: ImageWrapper | string, region: OmniRegion): string[];
 
-        detectMethodCreator(options: Ocr.DetectOptions): DetectMethod;
+        detect(options?: DetectOptionsRapid): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(img: ImageWrapper | string, options?: DetectOptionsRapid): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(img: ImageWrapper | string, region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
 
     }
 
@@ -68,20 +69,21 @@ declare namespace Internal {
 
         paddle: OcrPaddle;
         mlkit: OcrMLKit;
+        rapid: OcrRapid;
 
-        (options?: DetectOptionsMLKit | DetectOptionsPaddle): string[];
+        (options?: DetectOptionsAny): string[];
         (region: OmniRegion): string[];
-        (img: ImageWrapper | string, options?: DetectOptionsMLKit | DetectOptionsPaddle): string[];
+        (img: ImageWrapper | string, options?: DetectOptionsAny): string[];
         (img: ImageWrapper | string, region: OmniRegion): string[];
 
-        recognizeText(options?: DetectOptionsMLKit | DetectOptionsPaddle): string[];
+        recognizeText(options?: DetectOptionsAny): string[];
         recognizeText(region: OmniRegion): string[];
-        recognizeText(img: ImageWrapper | string, options?: DetectOptionsMLKit | DetectOptionsPaddle): string[];
+        recognizeText(img: ImageWrapper | string, options?: DetectOptionsAny): string[];
         recognizeText(img: ImageWrapper | string, region: OmniRegion): string[];
 
-        detect(options?: DetectOptionsMLKit | DetectOptionsPaddle): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(options?: DetectOptionsAny): org.autojs.autojs.runtime.api.OcrResult[];
         detect(region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(img: ImageWrapper | string, options?: DetectOptionsMLKit | DetectOptionsPaddle): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(img: ImageWrapper | string, options?: DetectOptionsAny): org.autojs.autojs.runtime.api.OcrResult[];
         detect(img: ImageWrapper | string, region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
 
         get mode(): ModeName;
@@ -109,18 +111,24 @@ declare namespace Internal {
 
     namespace Ocr {
 
-        type Mode = OcrPaddle | OcrMLKit | 'paddle' | 'mlkit' | string;
-        type ModeName = 'unknown' | 'mlkit' | 'paddle' | string;
+        type Mode = OcrPaddle | OcrMLKit | OcrRapid | 'paddle' | 'mlkit' | 'rapid' | string;
+        type ModeName = 'unknown' | 'mlkit' | 'paddle' | 'rapid' | string;
+        type DetectOptionsAny = DetectOptionsMLKit | DetectOptionsPaddle | DetectOptionsRapid;
 
         type RecognizeTextMethod = (img: ImageWrapper) => string[];
         type DetectMethod = (img: ImageWrapper) => org.autojs.autojs.runtime.api.OcrResult[];
 
         interface DetectOptions {
             region?: OmniRegion;
+            mode?: ModeName;
         }
 
         interface DetectOptionsMLKit extends DetectOptions {
             /* Empty body. */
+        }
+
+        interface DetectOptionsRapid extends DetectOptions {
+            /* Reserved body. */
         }
 
         interface DetectOptionsPaddle extends DetectOptions {
@@ -136,6 +144,58 @@ declare namespace Internal {
              * @default 4
              */
             cpuThreadNum?: number;
+
+            /**
+             * Whether to enable OpenCL in Paddle OCR.
+             * @default false
+             */
+            useOpenCL?: boolean;
+
+            /**
+             * Detection long side size. A non-positive value keeps the engine default.
+             * @default 0
+             */
+            detLongSize?: number;
+
+            /**
+             * Detection score threshold. A negative value keeps the engine default.
+             * @default -1
+             */
+            scoreThreshold?: number;
+
+            /**
+             * Merge adjacent recognition boxes on the same visual line.
+             * Ignored when word segmentation is enabled.
+             * @default false
+             */
+            mergeLine?: boolean;
+
+            /** @default false */
+            splitWords?: boolean;
+
+            /** @default false */
+            useWordSegmentation?: boolean;
+
+            /**
+             * Pass the raw bitmap to the official plugin when supported.
+             * @default true
+             */
+            useRaw?: boolean;
+
+            /** Compatibility alias for useRaw. */
+            raw?: boolean;
+
+            /**
+             * Encoded image quality passed through plugin extras when positive.
+             * @default -1
+             */
+            imageQuality?: number;
+
+            /**
+             * Encoded image format passed through plugin extras when non-empty.
+             * @default ''
+             */
+            imageFormat?: Images.Format | string;
 
         }
 

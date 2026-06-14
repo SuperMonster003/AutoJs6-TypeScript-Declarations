@@ -1,3 +1,6 @@
+/// <reference path="../android.d.ts"/>
+/// <reference path="../libraries.d.ts"/>
+
 declare module com {
 	export module sun {
 		export module activation {
@@ -132,21 +135,35 @@ declare module com {
 
 declare module javax {
 	export module activation {
-		export class ActivationDataFlavor {
+		export class ActivationDataFlavor extends myjava.awt.datatransfer.DataFlavor {
 			public static class: java.lang.Class<javax.activation.ActivationDataFlavor>;
 			public setHumanPresentableName(humanPresentableName: string): void;
-			public getHumanPresentableName(): string;
 			public constructor(representationClass: java.lang.Class<any>, humanPresentableName: string);
-			public constructor(mimeType: string, humanPresentableName: string);
 			public getMimeType(): string;
 			/** @deprecated */
 			public normalizeMimeType(mimeType: string): string;
+			public constructor(representationClass: java.lang.Class<any>, humanPresentableName: string);
 			public isMimeTypeEqual(mimeType: string): boolean;
+			public constructor(mimeType: string);
+			/** @deprecated */
+			public equals(s: string): boolean;
+			public constructor();
+			public writeExternal(param0: java.io.ObjectOutput): void;
+			public getRepresentationClass(): java.lang.Class<any>;
+			public getRepresentationClass(): java.lang.Class<any>;
+			public getHumanPresentableName(): string;
+			public constructor(mimeType: string, humanPresentableName: string);
+			public equals(o: any): boolean;
+			public readExternal(param0: java.io.ObjectInput): void;
+			public writeExternal(os: java.io.ObjectOutput): void;
+			public readExternal(is: java.io.ObjectInput): void;
+			public equals(that: myjava.awt.datatransfer.DataFlavor): boolean;
 			public equals(dataFlavor: myjava.awt.datatransfer.DataFlavor): boolean;
 			/** @deprecated */
 			public normalizeMimeTypeParameter(parameterName: string, parameterValue: string): string;
 			public constructor(representationClass: java.lang.Class<any>, mimeType: string, humanPresentableName: string);
-			public getRepresentationClass(): java.lang.Class<any>;
+			public isMimeTypeEqual(dataFlavor: myjava.awt.datatransfer.DataFlavor): boolean;
+			public constructor(mimeType: string, humanPresentableName: string, classLoader: java.lang.ClassLoader);
 		}
 	}
 }
@@ -239,9 +256,10 @@ declare module javax {
 
 declare module javax {
 	export module activation {
-		export class DataHandler extends java.lang.Object {
+		export class DataHandler extends java.lang.Object implements myjava.awt.datatransfer.Transferable {
 			public static class: java.lang.Class<javax.activation.DataHandler>;
 			public setCommandMap(commandMap: javax.activation.CommandMap): void;
+			public getTransferData(param0: myjava.awt.datatransfer.DataFlavor): any;
 			public constructor(obj: any, mimeType: string);
 			public static setDataContentHandlerFactory(newFactory: javax.activation.DataContentHandlerFactory): void;
 			public getContentType(): string;
@@ -256,6 +274,7 @@ declare module javax {
 			public getName(): string;
 			public getInputStream(): java.io.InputStream;
 			public getBean(cmdinfo: javax.activation.CommandInfo): any;
+			public isDataFlavorSupported(param0: myjava.awt.datatransfer.DataFlavor): boolean;
 			public getPreferredCommands(): javax.activation.CommandInfo[];
 			public getAllCommands(): javax.activation.CommandInfo[];
 			public getOutputStream(): java.io.OutputStream;

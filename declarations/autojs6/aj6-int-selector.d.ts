@@ -3,14 +3,16 @@
 // Type definitions for AutoJs6 internal module selector
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__selector__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/selector/Selector.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/accessibility/UiSelector.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/automator/UiObject.kt
  */
 
 declare namespace Selector {

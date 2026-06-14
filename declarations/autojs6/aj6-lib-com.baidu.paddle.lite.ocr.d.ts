@@ -17,7 +17,7 @@ declare module com {
 					export module OCRPredictorNative {
 						export class Config extends java.lang.Object {
 							public static class: java.lang.Class<com.baidu.paddle.lite.ocr.OCRPredictorNative.Config>;
-							public useOpencl: number;
+							public useOpenCL: number;
 							public cpuThreadNum: number;
 							public cpuPower: string;
 							public detModelFilename: string;
@@ -117,7 +117,7 @@ declare module com {
 						public detLongSize: number;
 						public scoreThreshold: number;
 						public useSlim: boolean;
-						public useOpencl: boolean;
+						public useOpenCL: boolean;
 						public checkModelLoaded: boolean;
 						public runCls: boolean;
 						public runDet: boolean;

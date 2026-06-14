@@ -1,26 +1,28 @@
-// Type definitions for AutoJs6 internal module http
+// Type definitions for AutoJs6 internal module notice
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.8.4
+// TypeScript Version: 5.1.3
 //
-// Last modified: Mar 13, 2023
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__notice__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/notice/Notice.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/notice/Channel.kt
  */
 
 declare namespace Internal {
 
     interface Notice {
 
-        (title: string, content: string, options?: Notice.Options): number;
-        (content: string, options?: Notice.Options): number;
+        (title: string | null, content: string | null, options?: Notice.Options): number;
+        (content: string | null, options?: Notice.Options): number;
         (options?: Notice.Options): number;
         (builder: androidx.core.app.NotificationCompat.Builder, options?: Notice.Options): number;
 
         channel: Notice.Channel;
+        readonly builder: androidx.core.app.NotificationCompat.Builder;
 
         getBuilder(): androidx.core.app.NotificationCompat.Builder;
 
@@ -30,9 +32,9 @@ declare namespace Internal {
 
         launchSettings(): void;
 
-        config(preset: Notice.Config): void;
+        config(preset: Notice.ConfigPreset): void;
 
-        cancel(id: number): void;
+        cancel(id: number | null | undefined): void;
 
     }
 
@@ -63,13 +65,14 @@ declare namespace Notice {
              * * Notification.VISIBILITY_PRIVATE = 0
              * * Notification.VISIBILITY_SECRET = -1
              */
-            type LockscreenVisibility = number | 'no_override' | 'public' | 'private' | 'secret';
+            type LockscreenVisibility = number | 'public' | 'private' | 'secret';
 
         }
 
         interface Options {
 
-            id?: string | number;
+            id?: string | number | null;
+            channelId?: string | number | null;
             /**
              * @default string of R.string.default_script_notification_channel_name
              */
@@ -85,7 +88,7 @@ declare namespace Notice {
              */
             importance?: Options.Importance;
             enableVibration?: boolean;
-            vibrationPattern?: number[] | string;
+            vibrationPattern?: number[];
             enableLights?: boolean;
             lightColor?: OmniColor;
             lockscreenVisibility?: Options.LockscreenVisibility;
@@ -96,17 +99,17 @@ declare namespace Notice {
 
     interface Channel {
 
-        create(channelId: Options.Id, options?: Notice.Channel.Options): string;
+        create(channelId: Options.Id | null | undefined, options?: Notice.Channel.Options): string;
         create(options?: Notice.Channel.Options): string;
 
-        createIfNeeded(channelId: Options.Id, options?: Notice.Channel.Options): string;
-        createIfNeeded(options?: Notice.Channel.Options): string;
+        createIfNeeded(channelId: Options.Id | null | undefined, options?: Notice.Channel.Options): void;
+        createIfNeeded(options?: Notice.Channel.Options): void;
 
-        remove(channelId: Options.Id): boolean;
+        remove(channelId: Options.Id | null | undefined): boolean;
 
-        contains(channelId: Options.Id): boolean;
+        contains(channelId: Options.Id | null | undefined): boolean;
 
-        get(channelId: Options.Id): android.app.NotificationChannel;
+        get(channelId: Options.Id | null | undefined): android.app.NotificationChannel | null;
 
         getAll(): android.app.NotificationChannel[];
 
@@ -126,7 +129,7 @@ declare namespace Notice {
          */
         type Priority = number | 'default' | 'low' | 'min' | 'high' | 'max';
 
-        type AppendScriptName = Boolean | 'auto' | 'title' | 'content' | 'bigContent';
+        type AppendScriptName = boolean | 'auto' | 'title' | 'content' | 'bigContent';
 
     }
 
@@ -176,36 +179,56 @@ declare namespace Notice {
         priority?: Options.Priority;
     }
 
-    interface Config {
+    interface ConfigPreset {
 
-        useScriptNameAsDefaultChannelId: boolean;
-        useDynamicDefaultNotificationId: boolean;
-        enableChannelInvalidModificationWarnings: boolean;
+        useScriptNameAsDefaultChannelId?: boolean | null;
+        useDynamicDefaultNotificationId?: boolean | null;
+        enableChannelInvalidModificationWarnings?: boolean | null;
 
-        defaultTitle: string;
-        defaultContent: string;
-        defaultBigContent: string;
-        defaultAppendScriptName: Options.AppendScriptName;
-        defaultAutoCancel: boolean,
-        defaultIsSilent: boolean,
-        defaultPriority: Options.Priority;
+        defaultTitle?: string | null;
+        defaultContent?: string | null;
+        defaultBigContent?: string | null;
+        defaultAppendScriptName?: Options.AppendScriptName | null;
+        defaultAutoCancel?: boolean | null;
+        defaultIsSilent?: boolean | null;
+        defaultPriority?: Options.Priority | null;
 
-        defaultChannelName: string;
-        defaultChannelDescription: string;
+        defaultChannelId?: string | null;
+
+        defaultChannelName?: string | null;
+        defaultChannelDescription?: string | null;
 
         /**
          * @default NotificationManager.IMPORTANCE_HIGH (4)
          */
-        defaultImportanceForChannel: Channel.Options.Importance;
-        defaultEnableVibrationForChannel: boolean;
-        defaultVibrationPatternForChannel: number[];
-        defaultEnableLightsForChannel: boolean;
-        defaultLightColorForChannel: OmniColor;
+        defaultImportanceForChannel?: Channel.Options.Importance | null;
+        defaultEnableVibrationForChannel?: boolean | null;
+        defaultVibrationPatternForChannel?: number[] | null;
+        defaultEnableLightsForChannel?: boolean | null;
+        defaultLightColorForChannel?: OmniColor | null;
         /**
          * @default Notification.VISIBILITY_PUBLIC (1)
          */
-        defaultLockscreenVisibilityForChannel: Channel.Options.LockscreenVisibility;
+        defaultLockscreenVisibilityForChannel?: Channel.Options.LockscreenVisibility | null;
 
+    }
+
+    interface Config extends Required<ConfigPreset> {
+        defaultTitle: string | null;
+        defaultContent: string | null;
+        defaultBigContent: string | null;
+        defaultAppendScriptName: Options.AppendScriptName | null;
+        defaultAutoCancel: boolean | null;
+        defaultIsSilent: boolean | null;
+        defaultPriority: Options.Priority | null;
+        defaultChannelName: string | null;
+        defaultChannelDescription: string | null;
+        defaultImportanceForChannel: Channel.Options.Importance | null;
+        defaultEnableVibrationForChannel: boolean | null;
+        defaultVibrationPatternForChannel: number[] | null;
+        defaultEnableLightsForChannel: boolean | null;
+        defaultLightColorForChannel: OmniColor | null;
+        defaultLockscreenVisibilityForChannel: Channel.Options.LockscreenVisibility | null;
     }
 
 }

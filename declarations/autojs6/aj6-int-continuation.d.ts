@@ -16,8 +16,6 @@ declare namespace Internal {
 
     interface Continuation {
 
-        ();
-
         /**
          * @param [scope=global]
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -93,7 +91,7 @@ declare namespace Internal {
 
     namespace Continuation {
 
-        class Creator extends org.autojs.autojs.rhino.continuation.Continuation {
+        class Creator {
 
             /**
              * @example Source code summary (zh-CN: 源代码摘要)

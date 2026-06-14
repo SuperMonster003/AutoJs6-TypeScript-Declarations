@@ -1,16 +1,16 @@
 // Type definitions for AutoJs6 internal module tasks
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.5.4
+// TypeScript Version: 5.1.3
 //
-// Last modified: Apr 17, 2022
+// Last modified: Jun 14, 2026
 // noinspection JSUnusedGlobalSymbols
 
-/// <reference path="../ant-forest.d.ts" />
+/// <reference path="../index.d.ts" />
 /// <reference path="../android.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__tasks__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/tasks/Tasks.kt
  */
 
 declare namespace Internal {
@@ -19,79 +19,32 @@ declare namespace Internal {
 
         addTask<T extends TimedTask$ | IntentTask$>(task: T): T;
 
-        /**
-         * @example
-         * tasks.addDailyTask({
-         *     time: Date.now() + 3.6e6,
-         *     path: files.path('./test.js'),
-         * });
-         */
-        addDailyTask(options?: Tasks.TimedTask.Daily): TimedTask$ | Promise<any> | null;
+        addDailyTask<TResult = TimedTask$>(options?: Tasks.TimedTask.Daily<TResult>): Tasks.AddTaskResult<TimedTask$, TResult>;
 
-        /**
-         * @example
-         * tasks.addWeeklyTask({
-         *     time: Date.now() + 3.6e6,
-         *     path: files.path('./test.js'),
-         *     daysOfWeek: [1, 3, 6, 7],
-         * });
-         */
-        addWeeklyTask(options?: Tasks.TimedTask.Weekly): TimedTask$ | Promise<any> | null;
+        addWeeklyTask<TResult = TimedTask$>(options?: Tasks.TimedTask.Weekly<TResult>): Tasks.AddTaskResult<TimedTask$, TResult>;
 
-        /**
-         * @example
-         * tasks.addDisposableTask({
-         *     path: engines.myEngine().source,
-         *     date: Date.now() + 3.6e6,
-         * });
-         */
-        addDisposableTask(options?: Tasks.TimedTask.Disposable): TimedTask$ | Promise<any> | null;
+        addDisposableTask<TResult = TimedTask$>(options?: Tasks.TimedTask.Disposable<TResult>): Tasks.AddTaskResult<TimedTask$, TResult>;
 
-        /**
-         * @example
-         * tasks.addIntentTask({
-         *     path: files.path('./test.js'),
-         *     action: 'android.intent.action.BATTERY_CHANGED',
-         * });
-         */
-        addIntentTask(options: Tasks.IntentTask.Basic): IntentTask$ | Promise<any> | null;
+        addIntentTask<TResult = IntentTask$>(options: Tasks.IntentTask.Basic<TResult>): Tasks.AddTaskResult<IntentTask$, TResult>;
 
-        getTimedTask(id: number): TimedTask$;
+        getTimedTask(id: number): TimedTask$ | null;
 
-        getIntentTask(id: number): IntentTask$;
+        getIntentTask(id: number): IntentTask$ | null;
 
-        removeTask<T extends TimedTask$ | IntentTask$>(task: T): T;
+        removeTask(task: TimedTask$ | IntentTask$ | null | undefined): boolean;
 
-        removeTimedTask(id: number, options?: Tasks.TimedTask.Extension): TimedTask$ | Promise<any> | null;
+        removeTimedTask(id: number): boolean;
 
-        removeIntentTask(id: number, options?: Tasks.TimedTask.Extension): TimedTask$ | Promise<any> | null;
+        removeIntentTask(id: number): boolean;
 
-        updateTask<T extends TimedTask$>(task: T): T;
+        updateTask(task: TimedTask$ | IntentTask$ | null | undefined): boolean;
 
         queryTimedTasks(options?: { path?: string }): TimedTask$[];
 
         queryIntentTasks(options?: { path?: string, action?: string }): IntentTask$[];
 
-        /**
-         * @example
-         * // [0, 1, 2, 4, 5] -- Sun, Mon, Tue, Thu, Fri
-         * tasks.timeFlagToDays(55);
-         * // [0, 1, 2, 3, 4, 5, 6] -- every day
-         * tasks.timeFlagToDays(127);
-         * // [] -- disposable
-         * tasks.timeFlagToDays(0);
-         */
         timeFlagToDays(flag: number): number[];
 
-        /**
-         * @example
-         * // 23 -- Sun, Mon, Tue, Thu
-         * tasks.daysToTimeFlag([0, 1, 2, 4]);
-         * // 127 -- every day
-         * tasks.daysToTimeFlag([0, 1, 2, 3, 4, 5, 6]);
-         * // 0 -- disposable
-         * tasks.daysToTimeFlag([]);
-         */
         daysToTimeFlag(days: number[]): number;
 
     }
@@ -100,19 +53,13 @@ declare namespace Internal {
 
 declare namespace Tasks {
 
+    type AsyncTaskResult = org.autojs.autojs.core.looper.TimerThread;
+
+    type AddTaskResult<TTask, TResult = TTask> = TTask | TResult | AsyncTaskResult;
+
     namespace TimedTask {
 
-        interface Extension {
-
-            isAsync?: boolean;
-
-            callback?(task?: TimedTask$ | IntentTask$): any;
-
-            condition?(): boolean;
-
-        }
-
-        interface Basic extends Extension {
+        interface Basic<TResult = TimedTask$ | IntentTask$> {
 
             path: string;
 
@@ -122,27 +69,32 @@ declare namespace Tasks {
 
             loopTimes?: number;
 
+            callback?: (task: TimedTask$ | IntentTask$) => TResult;
+
+            isAsync?: boolean;
+            async?: boolean;
+
         }
 
-        interface Daily extends Basic {
+        interface Daily<TResult = TimedTask$> extends Basic<TResult> {
 
             time?: string | Date | number;
+            date?: string | Date | number;
 
         }
 
-        interface Weekly extends Daily {
+        interface Weekly<TResult = TimedTask$> extends Daily<TResult> {
 
             /**
-             * Day(s) of week (like: [3, '四', 'Fri'])
+             * Day(s) of week, for example [3, 'Thu', 'Fri'].
              */
-            daysOfWeek?: ('Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat' | 'Sun'
-                | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday'
-                | '一' | '二' | '三' | '四' | '五' | '六' | '日' | string | number)[];
+            daysOfWeek?: (string | number)[];
 
         }
 
-        interface Disposable extends Basic {
+        interface Disposable<TResult = TimedTask$> extends Basic<TResult> {
 
+            time?: string | Date | number;
             date?: string | Date | number;
 
         }
@@ -150,15 +102,21 @@ declare namespace Tasks {
 
     namespace IntentTask {
 
-        interface Basic extends TimedTask.Extension {
+        interface Basic<TResult = IntentTask$> {
 
             path: string;
 
-            action?: Android.Intent.Action.Strings;
+            action?: Android.Intent.Action.Strings | string;
 
             dataType?: string;
 
+            isLocal?: boolean;
             local?: boolean;
+
+            callback?: (task: TimedTask$ | IntentTask$) => TResult;
+
+            isAsync?: boolean;
+            async?: boolean;
 
         }
 

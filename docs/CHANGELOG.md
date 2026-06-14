@@ -4,6 +4,17 @@
 
 ******
 
+# v3.0.0
+
+###### 2026/06/15
+
+* `新增` converter/formatter/sysprops/zip/nanoid/mediainfo/pinyin4j/jsox 等内置模块声明文件
+* `优化` 适配 AutoJs6 6.7.1 Alpha4 内置模块 API 声明
+* `优化` 完善 index 入口引用/全局变量声明及 `$` 前缀模块别名
+* `优化` 同步 colors/Color/images/Canvas/pinyin/mime/sqlite/media/recorder/tasks 等既有模块声明
+* `优化` 增加关键全局对象 smoke 样例及 TypeScript 验证命令记录
+* `依赖` 刷新 Android/AutoJs6 主应用及三方库生成声明文件
+
 # v2.1.3
 
 ###### 2023/12/02

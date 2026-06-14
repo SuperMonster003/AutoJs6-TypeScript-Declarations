@@ -1,14 +1,17 @@
 // Type definitions for AutoJs6 internal module images
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__images__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/images/Images.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/images/MatchingResult.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/images/ImageFeatures.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/images/ObjectFrame.kt
  */
 
 declare namespace Internal {
@@ -17,9 +20,9 @@ declare namespace Internal {
     import DetectionAlgorithm = Colors.DetectionAlgorithm;
     import ConversionCodes = Colors.ConversionCodes;
 
-    interface Images {
+    interface Images extends EventEmitter$ {
 
-        ();
+        initOpenCvIfNeeded(): void;
 
         /**
          * @see org.autojs.autojs.runtime.api.Images.captureScreen
@@ -34,23 +37,27 @@ declare namespace Internal {
         /**
          * @see org.autojs.autojs.runtime.api.Images.read
          */
-        read(path: string): ImageWrapper;
+        read(path: string, isStrict?: boolean): ImageWrapper | null;
+
+        imread(path: string): org.autojs.autojs.core.opencv.Mat;
 
         /**
          * @see org.autojs.autojs.runtime.api.Images.copy
          */
-        copy(image: ImageWrapper): ImageWrapper;
+        copy(image: Images.ImageSource): ImageWrapper;
 
         /**
          * @see org.autojs.autojs.runtime.api.Images.load
          */
-        load(src: string): ImageWrapper;
+        load(src: string): ImageWrapper | null;
+
+        loadAsync(src: string): Promise<ImageWrapper | null>;
 
         /**
          * @see org.autojs.autojs.runtime.api.Images.clip
          */
-        clip(image: ImageWrapper, x: number, y: number, w: number, h: number): ImageWrapper;
-        clip(image: ImageWrapper, region: OmniRegion): ImageWrapper;
+        clip(image: Images.ImageSource, x: number, y: number, w: number, h: number): ImageWrapper;
+        clip(image: Images.ImageSource, region: OmniRegion): ImageWrapper;
 
         /**
          * @see org.autojs.autojs.runtime.api.Images.pixel
@@ -158,7 +165,7 @@ declare namespace Internal {
         /**
          * Concatenate (combine) two images vertically and horizontally.
          * This method does not change the existing images, but instead returns a new concatenated image.
-         * zh-CN: 连接两个图像. 若两图像连接处的尺寸不同, 则尺寸较小的图像将适当居中 (未验证 by SuperMonster003 as of Jul 25, 2020)
+         * zh-CN: 连接两个图像. 若两图像连接处的尺寸不同, 则尺寸较小的图像将适当居中.
          * @param imgA - source image 1
          * @param imgB - source image 2
          * @param [direction="RIGHT"] - direction of concatenation
@@ -944,7 +951,7 @@ declare namespace Internal {
          *     javaImages.initOpenCvIfNeeded();
          * }
          */
-        matToImage(mat: org.autojs.autojs.core.opencv.Mat): ImageWrapper;
+        matToImage(mat: org.autojs.autojs.core.opencv.Mat | org.opencv.core.Mat): ImageWrapper;
 
         /**
          * Blurs an image using the median filter.
@@ -1020,6 +1027,16 @@ declare namespace Internal {
          * @see org.autojs.autojs.core.image.capture.ScreenCapturer
          */
         requestScreenCapture(landscape?: boolean): boolean;
+        requestScreenCapture(options: Images.ScreenCaptureOptions): boolean;
+        requestScreenCapture(width: number, height: number): boolean;
+
+        requestScreenCaptureAsync(landscape?: boolean): Promise<boolean>;
+        requestScreenCaptureAsync(options: Images.ScreenCaptureOptions): Promise<boolean>;
+        requestScreenCaptureAsync(width: number, height: number): Promise<boolean>;
+
+        stopScreenCapture(): void;
+
+        getScreenCaptureOptions(): org.autojs.autojs.core.image.capture.ScreenCapturer.Options | null;
 
         /**
          * Resizes an image.
@@ -1193,7 +1210,7 @@ declare namespace Internal {
          * };
          * @see org.autojs.autojs.runtime.api.Images.toBase64
          */
-        toBase64(img: ImageWrapper, format?: Images.Format, quality?: number): string;
+        toBase64(img: Images.ImageSource, format?: Images.Format, quality?: number): string;
 
         /**
          * @param img
@@ -1211,7 +1228,7 @@ declare namespace Internal {
          * };
          * @see org.autojs.autojs.runtime.api.Images.toBytes
          */
-        toBytes(img: ImageWrapper, format?: Images.Format, quality?: number): number[];
+        toBytes(img: Images.ImageSource, format?: Images.Format, quality?: number): number[];
 
         /**
          * Check if all images have been recycled.
@@ -1223,7 +1240,11 @@ declare namespace Internal {
          */
         recycle(...images: ImageWrapper[]): boolean;
 
-        compress(img: ImageWrapper, compressLevel: number): ImageWrapper;
+        compress(img: Images.ImageSource, format?: Images.Format, quality?: number): ImageWrapper;
+
+        compressToBytes(img: Images.ImageSource, format?: Images.Format, quality?: number): number[];
+
+        downsample(src: Images.DownsampleSource, reqWidth: number, reqHeight: number, withAlpha?: boolean): ImageWrapper;
 
         getSize(img: ImageWrapper | android.graphics.Bitmap | org.opencv.core.Mat | string): org.opencv.core.Size;
 
@@ -1231,7 +1252,33 @@ declare namespace Internal {
 
         getHeight(img: ImageWrapper | android.graphics.Bitmap | org.opencv.core.Mat | string): number;
 
-        buildRegion(img: ImageWrapper, region: OmniRegion): org.opencv.core.Rect | null;
+        buildRegion(img: Images.ImageSource, region: OmniRegion): org.opencv.core.Rect;
+
+        detectAndComputeFeatures(img: Images.ImageSource, options?: Images.DetectAndComputeFeaturesOptions): Images.ImageFeatures;
+
+        /**
+         * 特征匹配.
+         * @param sceneFeatures 场景图片 (大图) 的特征对象
+         * @param objectFeatures 目标图片 (小图) 的特征对象
+         * @param options 选项参数
+         */
+        matchFeatures(sceneFeatures: Images.ImageFeatures, objectFeatures: Images.ImageFeatures, options?: Images.FeatureMatchingOptions): Images.ObjectFrame | null;
+
+        psnr(imageA: Images.ComparableImageSource, imageB: Images.ComparableImageSource): number;
+
+        ssim(imageA: Images.ComparableImageSource, imageB: Images.ComparableImageSource): number;
+
+        mssim(imageA: Images.ComparableImageSource, imageB: Images.ComparableImageSource): number;
+
+        hist(imageA: Images.ComparableImageSource, imageB: Images.ComparableImageSource): number;
+
+        mse(imageA: Images.ComparableImageSource, imageB: Images.ComparableImageSource): number;
+
+        ncc(imageA: Images.ComparableImageSource, imageB: Images.ComparableImageSource): number;
+
+        isEqual(imageA: Images.ImageSource, imageB: Images.ImageSource): boolean;
+
+        getSimilarity(imageA: Images.ComparableImageSource, imageB: Images.ComparableImageSource, options?: Images.SimilarityOptions): number;
 
     }
 
@@ -1239,17 +1286,71 @@ declare namespace Internal {
 
 declare namespace Images {
 
-    type Format = 'png' | 'jpeg' | 'jpg' | 'webp';
+    type Format = 'png' | 'jpeg' | 'jpg' | 'webp' | 'webp_lossless' | 'webp-lossless' | 'webp_lossy' | 'webp-lossy';
     type Wrapper = ImageWrapper;
+    type ImageSource = ImageWrapper | string;
+    type ComparableImageSource = ImageWrapper | org.opencv.core.Mat | string;
+    type DownsampleSource = ImageWrapper | android.graphics.Bitmap | android.net.Uri | java.net.URL | string | number[];
     type SizeWidth = Percentage$;
     type SizeHeight = Percentage$;
     type Size = SizeWidth | [SizeWidth] | [SizeWidth, SizeHeight];
     type TemplateMatch = org.autojs.autojs.core.image.TemplateMatching.Match;
-    type MatchingResultSortStrategy = 'left-top' | 'left-right' | 'left-bottom' | 'top-left' | 'top-right' | 'top-bottom' | 'right-left' | 'right-top' | 'right-bottom' | 'bottom-left' | 'bottom-top' | 'bottom-right';
+    type MatchingResultSortToken = 'left' | 'right' | 'top' | 'bottom' | 'best' | 'worst';
+    type MatchingResultSortStrategy = MatchingResultSortToken | `${MatchingResultSortToken}-${MatchingResultSortToken}` | string;
     type InterpolationFlags = 'NEAREST' | 'LINEAR' | 'CUBIC' | 'AREA' | 'LANCZOS4' | 'LINEAR_EXACT' | 'MAX';
     type ThresholdTypes = 'BINARY' | 'BINARY_INV' | 'TRUNC' | 'TOZERO' | 'TOZERO_INV' | 'MASK' | 'OTSU' | 'TRIANGLE';
     type AdaptiveThresholdTypes = 'MEAN_C' | 'GAUSSIAN_C';
     type BorderTypes = 'CONSTANT' | 'REPLICATE' | 'REFLECT' | 'WRAP' | 'REFLECT_101' | 'TRANSPARENT' | 'REFLECT101' | 'DEFAULT' | 'ISOLATED';
+    type ScreenCaptureOrientation = 'none' | 'auto' | 'portrait' | 'landscape' | number;
+    type SimilarityMetric = 'psnr' | 'ssim' | 'mssim' | 'hist' | 'mse' | 'ncc' | string;
+
+    interface ScreenCaptureOptions {
+        width?: number;
+        height?: number;
+        orientation?: ScreenCaptureOrientation;
+        isAsync?: boolean;
+        async?: boolean;
+    }
+
+    interface SimilarityOptions {
+        /**
+         * @default 'mssim'
+         */
+        metric?: SimilarityMetric;
+    }
+
+    type DetectAndComputeFeaturesOptions = {
+        region?: OmniRegion;
+        scale?: number;
+        /**
+         * true: cvtColor will be Imgproc.COLOR_RGBA2GRAY<br>
+         * false: cvtColor will be -1
+         */
+        grayscale?: boolean;
+        /**
+         * Numbers:<br>
+         * ImageFeatureMatching.FEATURE_MATCHING_METHOD_SIFT<br>
+         * ImageFeatureMatching.FEATURE_MATCHING_METHOD_ORB
+         */
+        method?: number | 'SIFT' | 'ORB';
+    };
+
+    type FeatureMatchingOptions = {
+        /**
+         * 特征匹配方式.
+         * @default 'FLANNBASED'
+         */
+        matcher?: 'FLANNBASED' | 'BRUTEFORCE' | 'BRUTEFORCE_L1' | 'BRUTEFORCE_HAMMING' | 'BRUTEFORCE_HAMMINGLUT' | 'BRUTEFORCE_SL2';
+        /**
+         *  绘制匹配详情的图片路径, 主要用于调试, 通过本地图片查看匹配情况.
+         */
+        drawMatches?: string;
+        /**
+         * 匹配阈值.
+         * @default 0.7
+         */
+        threshold?: number;
+    };
 
     class MatchingResult {
         /**
@@ -1336,7 +1437,7 @@ declare namespace Images {
          * };
          * @see matches
          */
-        first(): Images.TemplateMatch;
+        first(): Images.TemplateMatch | null;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -1348,7 +1449,7 @@ declare namespace Images {
          * };
          * @see matches
          */
-        last(): Images.TemplateMatch;
+        last(): Images.TemplateMatch | null;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -1366,7 +1467,7 @@ declare namespace Images {
          * };
          * @see matches
          */
-        findMax(compareFn?: (a: Images.TemplateMatch, b: Images.TemplateMatch) => number): Images.TemplateMatch;
+        findMax(compareFn?: (a: Images.TemplateMatch, b: Images.TemplateMatch) => number): Images.TemplateMatch | null;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -1381,7 +1482,7 @@ declare namespace Images {
          * };
          * @see findMax
          */
-        leftmost(): Images.TemplateMatch;
+        leftmost(): Images.TemplateMatch | null;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -1396,7 +1497,7 @@ declare namespace Images {
          * };
          * @see findMax
          */
-        topmost(): Images.TemplateMatch;
+        topmost(): Images.TemplateMatch | null;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -1411,7 +1512,7 @@ declare namespace Images {
          * };
          * @see findMax
          */
-        rightmost(): Images.TemplateMatch;
+        rightmost(): Images.TemplateMatch | null;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -1426,7 +1527,7 @@ declare namespace Images {
          * };
          * @see findMax
          */
-        bottommost(): Images.TemplateMatch;
+        bottommost(): Images.TemplateMatch | null;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -1435,7 +1536,7 @@ declare namespace Images {
          * };
          * @see findMax
          */
-        worst(): Images.TemplateMatch;
+        worst(): Images.TemplateMatch | null;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -1444,7 +1545,7 @@ declare namespace Images {
          * };
          * @see findMax
          */
-        best(): Images.TemplateMatch;
+        best(): Images.TemplateMatch | null;
 
         /**
          * @example
@@ -1483,7 +1584,34 @@ declare namespace Images {
          *     return new MatchingResult(clone);
          * };
          */
-        sortBy(compareFn?: ((a: Images.TemplateMatch, b: Images.TemplateMatch) => number) | Images.MatchingResultSortStrategy): this;
+        sortBy(compareFn?: ((a: Images.TemplateMatch, b: Images.TemplateMatch) => number) | Images.MatchingResultSortStrategy): Images.MatchingResult;
+    }
+
+    class ImageFeatures {
+        public recycled: boolean;
+        public javaObject: org.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor;
+        public scale: number;
+        public region: org.opencv.core.Rect;
+        public onRecycled: (features: Images.ImageFeatures) => any;
+        public isRecycled(): boolean;
+        public recycle(): void;
+        public setOneShot(b: boolean): Images.ImageFeatures;
+        public shoot(): void;
+    }
+
+    /**
+     * 特征匹配返回的结果, 表示一个四边形.
+     */
+    class ObjectFrame {
+        constructor(topLeft: org.opencv.core.Point, topRight: org.opencv.core.Point, bottomLeft: org.opencv.core.Point, bottomRight: org.opencv.core.Point);
+        public topLeft: org.opencv.core.Point;
+        public topRight: org.opencv.core.Point;
+        public bottomLeft: org.opencv.core.Point;
+        public bottomRight: org.opencv.core.Point;
+        public centerX: number;
+        public centerY: number;
+        public center: org.opencv.core.Point;
+        public summary(): string;
     }
 
     interface BitmapFactoryOptions {
@@ -1544,11 +1672,21 @@ declare namespace OpenCV {
  * @see images.requestScreenCapture
  */
 declare function requestScreenCapture(landscape?: boolean): boolean;
+declare function requestScreenCapture(options: Images.ScreenCaptureOptions): boolean;
+declare function requestScreenCapture(width: number, height: number): boolean;
+
+/**
+ * @see images.requestScreenCaptureAsync
+ */
+declare function requestScreenCaptureAsync(landscape?: boolean): Promise<boolean>;
+declare function requestScreenCaptureAsync(options: Images.ScreenCaptureOptions): Promise<boolean>;
+declare function requestScreenCaptureAsync(width: number, height: number): Promise<boolean>;
 
 /**
  * @see images.captureScreen
  */
-declare function captureScreen(path?: string): ImageWrapper;
+declare function captureScreen(): ImageWrapper;
+declare function captureScreen(path: string): boolean;
 
 /**
  * @param img
@@ -1560,12 +1698,12 @@ declare function captureScreen(path?: string): ImageWrapper;
  * @param [options.region]
  * @see images.findImage
  */
-declare function findImage(img: ImageWrapper, template: ImageWrapper, options?: {
+declare function findImage(img: Images.ImageSource, template: Images.ImageSource, options?: {
     threshold?: number;
     weakThreshold?: number;
     level?: number;
     region?: OmniRegion;
-}): OpenCV.Point;
+}): OpenCV.Point | null;
 
 /**
  * @param image
@@ -1577,16 +1715,16 @@ declare function findImage(img: ImageWrapper, template: ImageWrapper, options?: 
  * @param [threshold=4]
  * @see images.findImageInRegion
  */
-declare function findImageInRegion(image: ImageWrapper, template: ImageWrapper, x?: X, y?: Y, width?: Width, height?: Height, threshold?: number): OpenCV.Point;
+declare function findImageInRegion(image: Images.ImageSource, template: Images.ImageSource, x?: X, y?: Y, width?: Width, height?: Height, threshold?: number): OpenCV.Point | null;
 
 /**
  * @see images.findColor
  */
-declare function findColor(img: ImageWrapper, color: Color$, options?: {
+declare function findColor(img: Images.ImageSource, color: Color$, options?: {
     similarity?: number;
     threshold?: number;
     region?: OmniRegion;
-}): OpenCV.Point;
+}): OpenCV.Point | null;
 
 /**
  * @param img
@@ -1597,7 +1735,7 @@ declare function findColor(img: ImageWrapper, color: Color$, options?: {
  * @param [height=img.getHeight()-y]
  * @see images.findColorEquals
  */
-declare function findColorEquals(img: ImageWrapper, color: Color$, x?: X, y?: Y, width?: Width, height?: Height): OpenCV.Point;
+declare function findColorEquals(img: Images.ImageSource, color: Color$, x?: X, y?: Y, width?: Width, height?: Height): OpenCV.Point | null;
 
 /**
  * @param img
@@ -1609,15 +1747,15 @@ declare function findColorEquals(img: ImageWrapper, color: Color$, x?: X, y?: Y,
  * @param [threshold=4]
  * @see images.findColorInRegion
  */
-declare function findColorInRegion(img: ImageWrapper, color: Color$, x?: X, y?: Y, width?: Width, height?: Height, threshold?: number): OpenCV.Point;
+declare function findColorInRegion(img: Images.ImageSource, color: Color$, x?: X, y?: Y, width?: Width, height?: Height, threshold?: number): OpenCV.Point | null;
 
 /**
  * @see images.findMultiColors
  */
-declare function findMultiColors(img: ImageWrapper, firstColor: Color$, paths: [X, Y, Color$][], options?: {
+declare function findMultiColors(img: Images.ImageSource, firstColor: Color$, paths: [X, Y, Color$][], options?: {
     region?: OmniRegion;
     threshold?: number;
-}): OpenCV.Point;
+}): OpenCV.Point | null;
 
 declare class ImageWrapper extends org.autojs.autojs.core.image.ImageWrapper {
 
@@ -1663,5 +1801,6 @@ declare class ImageWrapper extends org.autojs.autojs.core.image.ImageWrapper {
     public static ofBitmap(bitmap: android.graphics.Bitmap): ImageWrapper;
     public static ofImage(image: android.media.Image): ImageWrapper;
     public static ofMat(mat: org.autojs.autojs.core.opencv.Mat): ImageWrapper;
+    public static ofMat(mat: org.opencv.core.Mat): ImageWrapper;
 
 }

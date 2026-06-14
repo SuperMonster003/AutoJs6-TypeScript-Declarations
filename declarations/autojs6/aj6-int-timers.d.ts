@@ -1,14 +1,16 @@
 // Type definitions for AutoJs6 internal module timers
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.3.5
+// TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jun 14, 2026
 
 /// <reference path="../index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__timers__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/timers/Timers.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/timers/SetIntervalExt.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/Timers.kt
  */
 
 declare namespace Internal {
@@ -17,10 +19,10 @@ declare namespace Internal {
 
         /**
          * Replacement of setInterval() with functional timeout supported
-         * @param listener
+         * @param timeoutCallback
          * @param interval=200
          * @param timeout=Infinity
-         * @param callback
+         * @param resultCallback
          * @example
          * // print 'hello' every 1 second for 5 (or 4 sometimes) times
          * timers.setIntervalExt(() => console.log('hello'), 1e3, 5e3);
@@ -29,10 +31,12 @@ declare namespace Internal {
          *     let num = Math.random() * 100 + 1;
          *     return num > 90 && Math.floor(num);
          * }, res => log('Your lucky number is ' + res));
-         * @return {number}
+         * @returns {number}
          * @see https://dev.to/akanksha_9560/why-not-to-use-setinterval--2na9
          */
-        setIntervalExt(listener: Function, interval?: number, timeout?: number | (() => boolean), callback?: Function): number;
+        setIntervalExt(timeoutCallback: Function, interval?: number, timeout?: number | (() => any), resultCallback?: (result: any) => void): number;
+
+        keepAlive(timeout?: number | null): number;
 
     }
 
@@ -47,6 +51,8 @@ declare namespace Internal {
  * @deprecated
  */
 declare function loop(): void;
+
+declare function keepAlive(timeout?: number | null): number;
 
 /**
  * @example
@@ -158,8 +164,8 @@ declare function clearTimeout(id: number): boolean;
  * private Threads mThreads;
  * private Timer mMainTimer;
  * private Timer mUiTimer;
- * public int setImmediate(Object listener, Object... args) {
- *     return getTimerForCurrentThread().setImmediate(listener, args);
+ * public int setImmediate(Object callback, Object... args) {
+ *     return getTimerForCurrentThread().setImmediate(callback, args);
  * }
  * public Timer getTimerForCurrentThread() {
  *     return getTimerForThread(Thread.currentThread());
@@ -179,7 +185,7 @@ declare function clearTimeout(id: number): boolean;
  * @see org.autojs.autojs.core.looper.TimerThread
  * @see org.autojs.autojs.runtime.api.Threads
  */
-declare function setImmediate(listener: any, ...args: any[]): number;
+declare function setImmediate(callback: any, ...args: any[]): number;
 
 /**
  * @example
@@ -222,7 +228,7 @@ declare function setImmediate(listener: any, ...args: any[]): number;
  * @see org.autojs.autojs.core.looper.TimerThread
  * @see org.autojs.autojs.runtime.api.Threads
  */
-declare function setTimeout(callback: any, delay: number, ...args: any[]): number;
+declare function setTimeout(callback: Function, delay?: number, ...args: any[]): number;
 
 /**
  * @example
@@ -235,8 +241,8 @@ declare function setTimeout(callback: any, delay: number, ...args: any[]): numbe
  * private Threads mThreads;
  * private Timer mMainTimer;
  * private Timer mUiTimer;
- * public int setInterval(Object listener, long interval, Object... args) {
- *     return getTimerForCurrentThread().setInterval(listener, interval, args);
+ * public int setInterval(Object callback, long interval, Object... args) {
+ *     return getTimerForCurrentThread().setInterval(callback, interval, args);
  * }
  * public Timer getTimerForCurrentThread() {
  *     return getTimerForThread(Thread.currentThread());
@@ -256,4 +262,4 @@ declare function setTimeout(callback: any, delay: number, ...args: any[]): numbe
  * @see org.autojs.autojs.core.looper.TimerThread
  * @see org.autojs.autojs.runtime.api.Threads
  */
-declare function setInterval(listener: any, interval: number, ...args: any[]): number;
+declare function setInterval(callback: Function, interval?: number, ...args: any[]): number;

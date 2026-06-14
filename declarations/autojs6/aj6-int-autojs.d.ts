@@ -13,7 +13,7 @@
 
 declare namespace Internal {
 
-    interface Autojs {
+    interface Autojs extends AutoJsBridge, org.autojs.autojs.runtime.api.Events {
 
         /**
          * @example
@@ -38,6 +38,8 @@ declare namespace Internal {
          * autojs.name; // e.g. 'AutoJs6'
          */
         name: string;
+
+        packageName: string;
 
         R: org.autojs.autojs6.R;
 
@@ -109,6 +111,26 @@ declare namespace Internal {
         isEqual(otherVersion: string | number | Version): boolean;
 
         isAtLeast(otherVersion: string | number | Version, ignoreSuffix?: boolean): boolean;
+
+    }
+
+    interface AutoJsBridge {
+
+        requestHandlers: {};
+
+        onEventInternal(event: any, args: any): void;
+
+        send(event: any, ...args: any[]): void;
+
+        invoke(channel: any, ...args: any[]): Promise<unknown>;
+
+        handle(channel: any, handler: any): this;
+
+        removeHandler(channel: any): void;
+
+        handleRequest(request: any): void;
+
+        sendResponse(request: any, result: any, error: any): void;
 
     }
 
