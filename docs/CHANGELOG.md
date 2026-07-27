@@ -4,6 +4,19 @@
 
 ******
 
+# v4.0.0
+
+###### 2026/07/27
+
+##### AutoJs6 6.8.0 Alpha7 声明同步与生成声明整合
+
+- `新增` ai/tts/powerManager/settings/workManager 模块声明及运行时别名
+- `优化` 适配 AutoJs6 6.8.0 Alpha7 内置模块 API 声明
+- `优化` 同步 tasks/app/images/ocr/plugins/web 等模块的签名, 别名, 空值及返回类型
+- `优化` 补齐运行时挂载, `$` 前缀别名及关键全局对象 smoke 样例
+- `依赖` 重新生成并整合 Android/AutoJs6 主应用, 资源及三方库声明
+- `调整` 发布入口统一为 `declarations/autojs6/index.d.ts`, 移除旧入口及生成分片
+
 # v3.0.0
 
 ###### 2026/06/15

@@ -3,12 +3,12 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.8.4
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
- * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/pinyin4j/Pinyin4j.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/pinyin4j/Pinyin4j.kt
  */
 
 declare namespace Internal {
@@ -26,19 +26,16 @@ declare namespace Internal {
 declare namespace Pinyin4j {
 
     type CaseType = 'LOWERCASE' | 'LOW' | 'L' | '0' | 'UPPERCASE' | 'UP' | 'U' | '1'
-        | net.sourceforge.pinyin4j.format.HanyuPinyinCaseType
         | string;
 
     type ToneType = 'WITH_TONE_NUMBER' | 'WITH_NUMBER' | 'NUMBER' | 'NUM'
         | 'WITHOUT_TONE' | 'NO_TONE' | 'NO' | 'FALSE' | '0'
         | 'WITH_TONE_MARK' | 'WITH_MARK' | 'MARK' | 'TRUE' | '1'
-        | net.sourceforge.pinyin4j.format.HanyuPinyinToneType
         | string;
 
     type VCharType = 'WITH_U_AND_COLON' | 'U_AND_COLON' | 'U_COLON' | 'U:'
         | 'WITH_V' | 'V'
-        | 'WITH_U_UNICODE' | 'U_UNICODE' | 'UNICODE'
-        | net.sourceforge.pinyin4j.format.HanyuPinyinVCharType
+        | 'WITH_U_UNICODE' | 'U_UNICODE' | 'UNICODE' | 'U'
         | string;
 
     interface Options {

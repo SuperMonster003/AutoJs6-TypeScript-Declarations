@@ -3,9 +3,9 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.8.4
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/ocr/Ocr.kt
@@ -25,6 +25,11 @@ declare namespace Internal {
 
     interface OcrMLKit extends OcrDetector {
 
+        (options?: DetectOptionsMLKit): string[];
+        (region: OmniRegion): string[];
+        (img: ImageWrapper | string, options?: DetectOptionsMLKit): string[];
+        (img: ImageWrapper | string, region: OmniRegion): string[];
+
         recognizeText(options?: DetectOptionsMLKit): string[];
         recognizeText(region: OmniRegion): string[];
         recognizeText(img: ImageWrapper | string, options?: DetectOptionsMLKit): string[];
@@ -39,6 +44,11 @@ declare namespace Internal {
 
     interface OcrPaddle extends OcrDetector {
 
+        (options?: DetectOptionsPaddle): string[];
+        (region: OmniRegion): string[];
+        (img: ImageWrapper | string, options?: DetectOptionsPaddle): string[];
+        (img: ImageWrapper | string, region: OmniRegion): string[];
+
         recognizeText(options?: DetectOptionsPaddle): string[];
         recognizeText(region: OmniRegion): string[];
         recognizeText(img: ImageWrapper | string, options?: DetectOptionsPaddle): string[];
@@ -52,6 +62,11 @@ declare namespace Internal {
     }
 
     interface OcrRapid extends OcrDetector {
+
+        (options?: DetectOptionsRapid): string[];
+        (region: OmniRegion): string[];
+        (img: ImageWrapper | string, options?: DetectOptionsRapid): string[];
+        (img: ImageWrapper | string, region: OmniRegion): string[];
 
         recognizeText(options?: DetectOptionsRapid): string[];
         recognizeText(region: OmniRegion): string[];
@@ -123,15 +138,29 @@ declare namespace Internal {
             mode?: ModeName;
         }
 
-        interface DetectOptionsMLKit extends DetectOptions {
+        interface PluginOptions extends DetectOptions {
+            useRaw?: boolean;
+            raw?: boolean;
+            imageQuality?: number;
+            imageFormat?: Images.Format | string;
+            engineId?: string;
+            engine?: string;
+            variant?: string;
+            profile?: string;
+        }
+
+        interface DetectOptionsMLKit extends PluginOptions {
             /* Empty body. */
         }
 
-        interface DetectOptionsRapid extends DetectOptions {
-            /* Reserved body. */
+        interface DetectOptionsRapid extends PluginOptions {
+            detLongSize?: number;
+            maxSideLen?: number;
+            boxScoreThresh?: number;
+            scoreThreshold?: number;
         }
 
-        interface DetectOptionsPaddle extends DetectOptions {
+        interface DetectOptionsPaddle extends PluginOptions {
 
             /**
              * 是否使用轻量化模型.
@@ -157,6 +186,9 @@ declare namespace Internal {
              */
             detLongSize?: number;
 
+            /** Detection side limit passed to the Paddle OCR plugin. */
+            detLimitSideLen?: number;
+
             /**
              * Detection score threshold. A negative value keeps the engine default.
              * @default -1
@@ -175,27 +207,6 @@ declare namespace Internal {
 
             /** @default false */
             useWordSegmentation?: boolean;
-
-            /**
-             * Pass the raw bitmap to the official plugin when supported.
-             * @default true
-             */
-            useRaw?: boolean;
-
-            /** Compatibility alias for useRaw. */
-            raw?: boolean;
-
-            /**
-             * Encoded image quality passed through plugin extras when positive.
-             * @default -1
-             */
-            imageQuality?: number;
-
-            /**
-             * Encoded image format passed through plugin extras when non-empty.
-             * @default ''
-             */
-            imageFormat?: Images.Format | string;
 
         }
 

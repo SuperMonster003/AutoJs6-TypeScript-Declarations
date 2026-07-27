@@ -3,9 +3,9 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/images/Images.kt
@@ -21,6 +21,117 @@ declare namespace Internal {
     import ConversionCodes = Colors.ConversionCodes;
 
     interface Images extends EventEmitter$ {
+
+        readonly ObjectFrame: typeof Images.ObjectFrame;
+
+        invert(image: Images.ImageSource): ImageWrapper;
+
+        isGrayscale(image: Images.ComparableImageSource): boolean;
+
+        flip(image: Images.ImageSource): ImageWrapper;
+        flip(image: Images.ImageSource, orientation: Images.FlipOrientation): ImageWrapper;
+        flip(image: Images.ImageSource, horizontal: boolean, vertical: boolean): ImageWrapper;
+
+        detectColor(
+            image: Images.ImageSource,
+            color: Color$,
+            x: number,
+            y: number,
+            threshold?: number,
+            algorithm?: DetectionAlgorithm,
+        ): boolean;
+
+        detectMultiColors(
+            image: Images.ImageSource,
+            x: number,
+            y: number,
+            firstColor: Color$,
+            paths: Images.ColorPath[],
+            options?: Images.ColorSearchOptions,
+        ): boolean;
+
+        detectsMultiColors(
+            image: Images.ImageSource,
+            x: number,
+            y: number,
+            firstColor: Color$,
+            paths: Images.ColorPath[],
+            options?: Images.ColorSearchOptions,
+        ): boolean;
+
+        findPointByColor(
+            image: Images.ImageSource,
+            color: Color$,
+            options?: Images.ColorSearchOptions,
+        ): OpenCV.Point | null;
+        findPointByColor(
+            image: Images.ImageSource,
+            color: Color$,
+            x?: X,
+            y?: Y,
+            width?: Width,
+            height?: Height,
+            threshold?: number,
+        ): OpenCV.Point | null;
+
+        findPointByColorExactly(
+            image: Images.ImageSource,
+            color: Color$,
+            options?: Pick<Images.ColorSearchOptions, 'region'>,
+        ): OpenCV.Point | null;
+        findPointByColorExactly(
+            image: Images.ImageSource,
+            color: Color$,
+            x?: X,
+            y?: Y,
+            width?: Width,
+            height?: Height,
+        ): OpenCV.Point | null;
+
+        findPointsByColor(
+            image: Images.ImageSource,
+            color: Color$,
+            options?: Images.ColorSearchOptions,
+        ): OpenCV.Points;
+
+        findPointByColors(
+            image: Images.ImageSource,
+            firstColor: Color$,
+            paths: Images.ColorPath[],
+            options?: Images.ColorSearchOptions,
+        ): OpenCV.Point | null;
+
+        findPointsByColors(
+            image: Images.ImageSource,
+            firstColor: Color$,
+            paths: Images.ColorPath[],
+            options?: Images.ColorSearchOptions,
+        ): OpenCV.Points;
+
+        findPointByImage(
+            image: Images.ImageSource,
+            template: Images.ImageSource,
+            options?: Images.ImageSearchOptions,
+        ): OpenCV.Point | null;
+        findPointByImage(
+            image: Images.ImageSource,
+            template: Images.ImageSource,
+            x?: X,
+            y?: Y,
+            width?: Width,
+            height?: Height,
+            threshold?: number,
+        ): OpenCV.Point | null;
+
+        findImage(
+            image: Images.ImageSource,
+            template: Images.ImageSource,
+            x?: X,
+            y?: Y,
+            width?: Width,
+            height?: Height,
+            threshold?: number,
+        ): OpenCV.Point | null;
 
         initOpenCvIfNeeded(): void;
 
@@ -279,7 +390,7 @@ declare namespace Internal {
          * }
          */
         detectsColor(
-            img: ImageWrapper, color: Color$, x: number, y: number,
+            img: Images.ImageSource, color: Color$, x: number, y: number,
             threshold?: number, algorithm?: DetectionAlgorithm,
         ): boolean;
 
@@ -350,7 +461,7 @@ declare namespace Internal {
          * }
          * @see findPointsByColor
          */
-        findAllPointsForColor(img: ImageWrapper, color: Color$, options?: {
+        findAllPointsForColor(img: Images.ImageSource, color: Color$, options?: {
             similarity?: number,
             threshold?: number,
             region?: OmniRegion,
@@ -450,7 +561,7 @@ declare namespace Internal {
          * @see org.opencv.imgproc.Imgproc
          * @see https://docs.opencv.org/3.4/javadoc/org/opencv/imgproc/Imgproc.html#HoughCircles(org.opencv.core.Mat,org.opencv.core.Mat,int,double,double,double,double,int,int)
          */
-        findCircles(grayImg: ImageWrapper, options?: Images.Circles.Options): Images.Circles.Result;
+        findCircles(grayImg: ImageWrapper | string, options?: Images.Circles.Options): Images.Circles.Result;
 
         /**
          * @example
@@ -509,7 +620,7 @@ declare namespace Internal {
          *     return r;
          * }
          */
-        findColor(img: ImageWrapper, color: Color$, options?: {
+        findColor(img: Images.ImageSource, color: Color$, options?: {
             similarity?: number,
             threshold?: number,
             region?: OmniRegion,
@@ -538,7 +649,7 @@ declare namespace Internal {
          * };
          * @see findColor
          */
-        findColorEquals(img: ImageWrapper, color: Color$, x?: X, y?: Y, width?: Width, height?: Height): OpenCV.Point | null;
+        findColorEquals(img: Images.ImageSource, color: Color$, x?: X, y?: Y, width?: Width, height?: Height): OpenCV.Point | null;
 
         /**
          * @param img
@@ -564,7 +675,7 @@ declare namespace Internal {
          * };
          * @see findColor
          */
-        findColorInRegion(img: ImageWrapper, color: Color$, x?: X, y?: Y, width?: Width, height?: Height, threshold?: number): OpenCV.Point | null;
+        findColorInRegion(img: Images.ImageSource, color: Color$, x?: X, y?: Y, width?: Width, height?: Height, threshold?: number): OpenCV.Point | null;
 
         /**
          * @param img
@@ -619,7 +730,7 @@ declare namespace Internal {
          * }
          * @see org.autojs.autojs.runtime.api.Images.findImage
          */
-        findImage(img: ImageWrapper, template: ImageWrapper, options?: {
+        findImage(img: Images.ImageSource, template: Images.ImageSource, options?: {
             threshold?: number,
             weakThreshold?: number,
             level?: number,
@@ -644,7 +755,7 @@ declare namespace Internal {
          * @see findImage
          */
         findImageInRegion(
-            image: ImageWrapper, template: ImageWrapper, x?: X, y?: Y,
+            image: Images.ImageSource, template: Images.ImageSource, x?: X, y?: Y,
             width?: Width, height?: Height, threshold?: number,
         ): OpenCV.Point | null;
 
@@ -702,9 +813,10 @@ declare namespace Internal {
          * @see org.autojs.autojs.core.image.ColorFinder.findMultiColors
          */
         findMultiColors(
-            img: ImageWrapper, firstColor: Color$, paths: [X, Y, Color$][],
+            img: Images.ImageSource, firstColor: Color$, paths: Images.ColorPath[],
             options?: {
                 region?: OmniRegion;
+                similarity?: number;
                 threshold?: number;
             },
         ): OpenCV.Point | null;
@@ -818,7 +930,7 @@ declare namespace Internal {
          * };
          * @see cvtColor
          */
-        grayscale(src: ImageWrapper, dstCn?: number): ImageWrapper;
+        grayscale(src: Images.ImageSource, dstCn?: number): ImageWrapper;
 
         /**
          * Checks if array elements lie between the elements of two other arrays
@@ -1039,44 +1151,20 @@ declare namespace Internal {
         getScreenCaptureOptions(): org.autojs.autojs.core.image.capture.ScreenCapturer.Options | null;
 
         /**
-         * Resizes an image.
-         * zh-CN: 缩放图像 (按尺寸)
+         * Resizes an image to a one- or two-dimensional size.
          * @param src - input image.
-         * zh-CN: 源图像
-         * @param dsize - output image size (Side|[Width,Height]).
-         * zh-CN: 输出图像尺寸
-         * @param [interpolation="LINEAR"] - interpolation method (without "INTER_" prefix).
-         * zh-CN: 插值方法 (参数不包含 “INTER_” 前缀)
+         * @param dsize - output image size. A one-item tuple produces a square image.
+         * @param [interpolation="LINEAR"] - interpolation method. The "INTER_" prefix is optional,
+         * and both "_" and "-" separators are accepted.
          * @example
          * images.requestScreenCapture(false);
          * let dst = images.resize(images.captureScreen(), [720, 1280]);
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * let javaImages = runtime.getImages();
-         * images.resize = function (src, size, interpolation) {
-         *     initIfNeeded();
-         *     let mat = new Mat();
-         *     interpolation = Imgproc["INTER_" + (interpolation || "LINEAR")];
-         *     Imgproc.resize(src.mat, mat, newSize(size), 0, 0, interpolation);
-         *     return images.matToImage(mat);
-         * };
-         * function initIfNeeded() {
-         *     javaImages.initOpenCvIfNeeded();
-         * }
-         * function newSize(size) {
-         *     if (!Array.isArray(size)) {
-         *         size = [size, size];
-         *     }
-         *     if (size.length === 1) {
-         *         size = [size[0], size[0]];
-         *     }
-         *     return new Size(size[0], size[1]);
-         * }
          * @see org.autojs.autojs.core.opencv.Mat
          * @see org.opencv.imgproc.Imgproc
          * @see org.opencv.core.Size
          * @see https://docs.opencv.org/3.4/javadoc/org/opencv/imgproc/Imgproc.html#resize(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,double,double,int)
          */
-        resize(src: ImageWrapper, dsize: Side | [Width, Height?], interpolation?: Images.InterpolationFlags): ImageWrapper;
+        resize(src: ImageWrapper | string, dsize: [Side] | [Width, Height], interpolation?: Images.InterpolationFlags): ImageWrapper;
 
         /**
          * @example
@@ -1160,7 +1248,7 @@ declare namespace Internal {
          * @see org.opencv.imgproc.Imgproc
          * @see org.opencv.core.Size
          */
-        scale(src: ImageWrapper, fx: number, fy: number, interpolation?: Images.InterpolationFlags): ImageWrapper;
+        scale(src: ImageWrapper | string, fx: number, fy: number, interpolation?: Images.InterpolationFlags): ImageWrapper;
 
         /**
          * Applies a fixed-level threshold to each array element.
@@ -1254,6 +1342,8 @@ declare namespace Internal {
 
         buildRegion(img: Images.ImageSource, region: OmniRegion): org.opencv.core.Rect;
 
+        __buildRegion(region?: OmniRegion, imageWidth?: number, imageHeight?: number): org.opencv.core.Rect | null;
+
         detectAndComputeFeatures(img: Images.ImageSource, options?: Images.DetectAndComputeFeaturesOptions): Images.ImageFeatures;
 
         /**
@@ -1291,13 +1381,49 @@ declare namespace Images {
     type ImageSource = ImageWrapper | string;
     type ComparableImageSource = ImageWrapper | org.opencv.core.Mat | string;
     type DownsampleSource = ImageWrapper | android.graphics.Bitmap | android.net.Uri | java.net.URL | string | number[];
+    type ColorPath = [X, Y, Color$];
+    type FlipOrientation = boolean
+        | 'both'
+        | 'all'
+        | 'h'
+        | 'horizontal'
+        | 'v'
+        | 'vertical'
+        | 'x'
+        | 'y'
+        | 'xy'
+        | 'yx'
+        | 'h|v'
+        | 'v|h'
+        | 'x|y'
+        | 'y|x'
+        | boolean[]
+        | {
+            x?: boolean;
+            h?: boolean;
+            horizontal?: boolean;
+            y?: boolean;
+            v?: boolean;
+            vertical?: boolean;
+        };
     type SizeWidth = Percentage$;
     type SizeHeight = Percentage$;
     type Size = SizeWidth | [SizeWidth] | [SizeWidth, SizeHeight];
     type TemplateMatch = org.autojs.autojs.core.image.TemplateMatching.Match;
     type MatchingResultSortToken = 'left' | 'right' | 'top' | 'bottom' | 'best' | 'worst';
     type MatchingResultSortStrategy = MatchingResultSortToken | `${MatchingResultSortToken}-${MatchingResultSortToken}` | string;
-    type InterpolationFlags = 'NEAREST' | 'LINEAR' | 'CUBIC' | 'AREA' | 'LANCZOS4' | 'LINEAR_EXACT' | 'MAX';
+    type InterpolationName = 'NEAREST' | 'LINEAR' | 'CUBIC' | 'AREA' | 'LANCZOS4' | 'LINEAR_EXACT' | 'NEAREST_EXACT';
+    type InterpolationHyphenName =
+        'NEAREST' | 'LINEAR' | 'CUBIC' | 'AREA' | 'LANCZOS4' | 'LINEAR-EXACT' | 'NEAREST-EXACT';
+    type InterpolationFlags = InterpolationName
+        | `INTER_${InterpolationName}`
+        | Lowercase<InterpolationName>
+        | `inter_${Lowercase<InterpolationName>}`
+        | InterpolationHyphenName
+        | Lowercase<InterpolationHyphenName>
+        | `INTER-${InterpolationHyphenName}`
+        | `inter-${Lowercase<InterpolationHyphenName>}`
+        | number;
     type ThresholdTypes = 'BINARY' | 'BINARY_INV' | 'TRUNC' | 'TOZERO' | 'TOZERO_INV' | 'MASK' | 'OTSU' | 'TRIANGLE';
     type AdaptiveThresholdTypes = 'MEAN_C' | 'GAUSSIAN_C';
     type BorderTypes = 'CONSTANT' | 'REPLICATE' | 'REFLECT' | 'WRAP' | 'REFLECT_101' | 'TRANSPARENT' | 'REFLECT101' | 'DEFAULT' | 'ISOLATED';
@@ -1317,6 +1443,20 @@ declare namespace Images {
          * @default 'mssim'
          */
         metric?: SimilarityMetric;
+        type?: SimilarityMetric;
+    }
+
+    interface ColorSearchOptions {
+        similarity?: number;
+        threshold?: number;
+        region?: OmniRegion;
+    }
+
+    interface ImageSearchOptions {
+        threshold?: number;
+        weakThreshold?: number;
+        level?: number;
+        region?: OmniRegion;
     }
 
     type DetectAndComputeFeaturesOptions = {
@@ -1704,6 +1844,15 @@ declare function findImage(img: Images.ImageSource, template: Images.ImageSource
     level?: number;
     region?: OmniRegion;
 }): OpenCV.Point | null;
+declare function findImage(
+    image: Images.ImageSource,
+    template: Images.ImageSource,
+    x?: X,
+    y?: Y,
+    width?: Width,
+    height?: Height,
+    threshold?: number,
+): OpenCV.Point | null;
 
 /**
  * @param image

@@ -3,9 +3,9 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/floaty/Floaty.kt
@@ -46,6 +46,8 @@ declare namespace Internal {
         rawWindow(layout: android.view.View): org.autojs.autojs.runtime.api.Floaty.JsRawWindow;
 
         hasPermission(): boolean;
+
+        checkPermission(): boolean;
 
         requestPermission(): void;
 

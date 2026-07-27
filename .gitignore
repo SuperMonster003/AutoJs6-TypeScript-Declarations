@@ -11,9 +11,6 @@ test*.js
 *.ffs_db
 desktop.ini
 package-lock.json
+AGENTS.md
 
-/declarations/ant-forest/
-
-/declarations/autojs6/aj6-mod-*.d.ts
-/declarations/autojs6/aj6-plugin-*.d.ts
-/declarations/ant-forest.d.ts
+/declarations/.generated/

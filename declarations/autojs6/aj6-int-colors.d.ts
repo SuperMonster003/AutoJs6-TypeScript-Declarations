@@ -3,9 +3,9 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.8.4
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
  * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/colors/Colors.kt
@@ -6159,8 +6159,8 @@ declare namespace Internal {
 
     interface Color {
 
-        new(color?: OmniColor);
-        new(r: ColorComponent, g: ColorComponent, b: ColorComponent, a?: ColorComponent);
+        new(color?: OmniColor): Color;
+        new(r: ColorComponent, g: ColorComponent, b: ColorComponent, a?: ColorComponent): Color;
 
         (color?: OmniColor): Color;
         (r: ColorComponent, g: ColorComponent, b: ColorComponent, a?: ColorComponent): Color;

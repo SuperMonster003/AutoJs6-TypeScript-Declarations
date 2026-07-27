@@ -1,1 +1,0 @@
-/// <reference path="./autojs6/index.d.ts" />

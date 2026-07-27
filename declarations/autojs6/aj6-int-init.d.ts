@@ -3,11 +3,11 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 15, 2026
+// Last modified: Jul 27, 2026
 //
 // noinspection JSUnusedGlobalSymbols
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/ScriptRuntime.kt
@@ -18,6 +18,9 @@
 
 declare let app: Internal.App;
 declare let $app: Internal.App;
+
+declare let ai: Internal.Ai;
+declare let $ai: Internal.Ai;
 
 declare let auto: Internal.Auto;
 declare let $auto: Internal.Auto;
@@ -163,8 +166,24 @@ declare let $nanoid: Internal.NanoID;
 declare let pinyin4j: Internal.Pinyin4j;
 declare let $pinyin4j: Internal.Pinyin4j;
 
+declare let powerManager: Internal.PowerManager;
+declare let $powerManager: Internal.PowerManager;
+declare let power_manager: Internal.PowerManager;
+declare let $power_manager: Internal.PowerManager;
+
+declare let settings: Internal.Settings;
+declare let $settings: Internal.Settings;
+
 declare let mediainfo: Internal.Mediainfo;
 declare let $mediainfo: Internal.Mediainfo;
+
+declare let tts: Internal.Tts;
+declare let $tts: Internal.Tts;
+
+declare let workManager: Internal.WorkManager;
+declare let $workManager: Internal.WorkManager;
+declare let work_manager: Internal.WorkManager;
+declare let $work_manager: Internal.WorkManager;
 
 declare let Mathx: Internal.Mathx;
 declare let Numberx: Internal.Numberx;
@@ -203,7 +222,7 @@ declare let Color: Internal.Color;
 declare let species: Species;
 declare let $species: Species;
 
-declare function isNullish(...values: any[]): boolean;
+declare function isNullish(value?: any): boolean;
 
 declare function isInteger(o: any): boolean;
 
@@ -222,9 +241,9 @@ declare function isJavaPackage(o: any): boolean;
 declare interface Species {
     (o: any): string
         | 'Array' | 'ArrayBuffer' | 'BigInt' | 'Boolean' | 'Continuation' | 'DataView' | 'Date' | 'Error' | 'Float32Array' | 'Float64Array'
-        | 'Function' | 'Int16Array' | 'Int32Array' | 'Int8Array' | 'JavaClass' | 'JavaObject' | 'JavaPackage' | 'Map' | 'Namespace'
+        | 'Function' | 'HTMLDocument' | 'Int16Array' | 'Int32Array' | 'Int8Array' | 'JavaClass' | 'JavaObject' | 'JavaPackage' | 'Map' | 'Namespace'
         | 'Null' | 'Number' | 'Object' | 'QName' | 'RegExp' | 'Set' | 'String' | 'Uint16Array' | 'Uint32Array' | 'Uint8Array' | 'Uint8ClampedArray'
-        | 'Undefined' | 'WeakMap' | 'WeakSet' | 'XML' | 'XMLList';
+        | 'Undefined' | 'WeakMap' | 'WeakSet' | 'Window' | 'XML' | 'XMLList';
 
     isArray(o: any): boolean;
 
@@ -247,6 +266,8 @@ declare interface Species {
     isFloat64Array(o: any): boolean;
 
     isFunction(o: any): boolean;
+
+    isHTMLDocument(o: any): boolean;
 
     isInt16Array(o: any): boolean;
 
@@ -291,6 +312,8 @@ declare interface Species {
     isWeakMap(o: any): boolean;
 
     isWeakSet(o: any): boolean;
+
+    isWindow(o: any): boolean;
 
     isXML(o: any): boolean;
 

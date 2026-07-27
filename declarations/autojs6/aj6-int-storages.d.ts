@@ -3,9 +3,9 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/storages/Storages.kt
@@ -40,7 +40,9 @@ declare namespace Storages {
 
         readonly size: number;
 
-        get<T = any>(key: StorageKey, defaultValue?: T): T;
+        get<T = any>(key: StorageKey): T | null | undefined;
+
+        get<T = any>(key: StorageKey, defaultValue: T): T | null;
 
         put(key: StorageKey, value: any): this;
 
@@ -50,18 +52,15 @@ declare namespace Storages {
 
         removeSync(key: StorageKey): this;
 
-        /**
-         * Current Kotlin NativeObject implementation returns the storage object.
-         */
-        contains(key: StorageKey): this;
+        contains(key: StorageKey): boolean;
 
-        clear(): this;
+        clear(): void;
 
-        clearSync(): this;
+        clearSync(): void;
 
-        selfRemove(name: StorageKey): this;
+        selfRemove(): this;
 
-        selfRemoveSync(name: StorageKey): this;
+        selfRemoveSync(): this;
 
     }
 

@@ -3,14 +3,14 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.7.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 /// <reference lib="es2022" />
 
 /**
- * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/cryptyo/Crypto.kt
- * @Source /src/main/java/org/autojs/autojs/core/crypto/Crypto.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/cryptyo/Crypto.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/crypto/Crypto.kt
  */
 
 declare namespace Internal {
@@ -25,9 +25,14 @@ declare namespace Internal {
 
         toHex(bytes: number[]): string;
 
-        digest(message: string, algorithm?: Crypto.DigestAlgorithm, options?: Crypto.DigestOptions): Crypto.Output;
-        digest(message: string, options: Crypto.DigestOptions): Crypto.Output;
+        digest(message: Crypto.Input, algorithm?: Crypto.DigestAlgorithm, options?: Crypto.DigestOptions): Crypto.Output;
+        digest(message: Crypto.Input, options: Crypto.DigestOptions): Crypto.Output;
 
+        encrypt(data: Crypto.Input,
+                key: Crypto.Key | java.security.Key,
+                transformation: Crypto.CipherTransformation.All,
+                options: Crypto.CipherFileOptions,
+        ): void;
         encrypt(data: Crypto.Input,
                 key: Crypto.Key | java.security.Key,
                 transformation: Crypto.CipherTransformation.All,
@@ -37,10 +42,16 @@ declare namespace Internal {
         decrypt(data: Crypto.Input,
                 key: Crypto.Key | java.security.Key,
                 transformation: Crypto.CipherTransformation.All,
+                options: Crypto.CipherFileOptions,
+        ): void;
+        decrypt(data: Crypto.Input,
+                key: Crypto.Key | java.security.Key,
+                transformation: Crypto.CipherTransformation.All,
                 options?: Crypto.CipherOptions,
         ): Crypto.Output;
 
-        generateKeyPair(algorithm: Crypto.KeyPairGeneratorAlgorithm, length?: number): Crypto.KeyPair;
+        generateKeyPair(algorithm: Crypto.KeyPairGeneratorAlgorithm): Crypto.KeyPair;
+        generateKeyPair(algorithm: Crypto.KeyPairGeneratorAlgorithm, length: number): Crypto.KeyPair;
 
     }
 
@@ -86,14 +97,19 @@ declare namespace Internal {
             /* Empty body. */
         }
 
-        // @ts-ignore
         interface CipherOptions extends DigestOptions {
 
             iv?: string | number[] | java.security.spec.AlgorithmParameterSpec;
 
-            output?: 'bytes' | 'base64' | 'hex' | 'string' | 'file';
-
             dest?: string;
+
+        }
+
+        interface CipherFileOptions extends Omit<CipherOptions, 'output'> {
+
+            output: 'file';
+
+            dest: string;
 
         }
 

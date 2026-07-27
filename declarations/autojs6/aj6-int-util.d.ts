@@ -3,12 +3,13 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.7.4
 //
-// Last modified: Nov 8, 2021
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__util__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/util/Util.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/util/Java.kt
  */
 
 declare namespace Internal {
@@ -501,6 +502,12 @@ declare namespace Internal {
         /**
          * @throws TypeError
          */
+        ensureBigIntType(...o: any[]): void;
+
+        /**
+         * @alias ensureBigIntType
+         * @throws TypeError
+         */
         ensureBigintType(...o: any[]): void;
 
         /**
@@ -674,7 +681,12 @@ declare namespace Util {
          *     return java.lang.Class.forName(clazz).isAssignableFrom(obj.getClass());
          * };
          */
-        instanceOf(obj: java.lang.Class<any>, clazz: java.lang.Class<any>): boolean;
+        instanceof(obj: any, clazz: java.lang.Class<any> | string | object): boolean;
+
+        /**
+         * @alias instanceof
+         */
+        instanceOf(obj: any, clazz: java.lang.Class<any> | string | object): boolean;
 
         /**
          * @example

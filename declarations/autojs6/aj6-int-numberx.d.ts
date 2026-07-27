@@ -3,19 +3,17 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.8.4
 //
-// Last modified: Jan 11, 2023
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__Numberx__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/jsox/Numberx.kt
  */
 
 declare namespace Internal {
 
     interface Numberx {
-
-        (): number;
 
         /**
          * 996.ICU - Developers' lives matter.

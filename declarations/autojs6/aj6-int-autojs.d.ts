@@ -3,12 +3,13 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.5.4
 //
-// Last modified: May 10, 2022
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__autojs__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/autojs/Autojs.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/autojs/Version.kt
  */
 
 declare namespace Internal {
@@ -19,11 +20,11 @@ declare namespace Internal {
          * @example
          * autojs.versionCode; // e.g. 523
          */
-        versionCode: string;
+        versionCode: number;
 
         /**
          * @example
-         * autojs.versionCode; // e.g. '6.0.2'
+         * autojs.versionName; // e.g. '6.0.2'
          */
         versionName: string;
 
@@ -41,7 +42,11 @@ declare namespace Internal {
 
         packageName: string;
 
-        R: org.autojs.autojs6.R;
+        readonly R: typeof org.autojs.autojs6.R;
+
+        readonly rotation: number;
+
+        readonly orientation: number;
 
         version: AutojsVersion;
 
@@ -54,7 +59,11 @@ declare namespace Internal {
          * console.log(autojs.getRootMode()); // non-root mode information
          * console.log(autojs.isRootAvailable()); // false (even if device has root access)
          */
-        setRootMode(mode: number | boolean | 'auto' | 'root' | 'non-root', isWriteIntoPreference?: boolean | 'write_into_pref'): void;
+        setRootMode(mode: -1 | 0 | 1 | boolean | 'auto' | 'root' | 'non-root', isWriteIntoPreference?: boolean | 'write_into_pref'): void;
+
+        isScreenPortrait(): boolean;
+
+        isScreenLandscape(): boolean;
 
         getRootMode(): org.autojs.autojs.util.RootUtils.RootMode;
 
@@ -70,7 +79,11 @@ declare namespace Internal {
 
         getLanguageTag(): string;
 
-        get themeColor(): org.autojs.autojs.theme.ThemeColor;
+        restart(scriptsAfterRestart?: string | string[]): void;
+
+        exit(scriptsAfterRestart?: string | string[]): void;
+
+        readonly themeColor: org.autojs.autojs.theme.ThemeColor;
 
     }
 
@@ -80,7 +93,7 @@ declare namespace Internal {
          * @example
          * autojs.version.code; // e.g. 523
          */
-        code: string;
+        code: number;
 
         /**
          * @example

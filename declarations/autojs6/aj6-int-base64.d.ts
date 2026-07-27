@@ -3,12 +3,12 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.7.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
- * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/base64/Base64.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/base64/Base64.kt
  */
 
 declare namespace Internal {
@@ -17,17 +17,29 @@ declare namespace Internal {
 
         encode(o: Base64.Input, encoding?: Base64.Encoding): string;
 
-        decode(o: Base64.Input, encoding?: Base64.Encoding): string;
+        /**
+         * String input is interpreted as US-ASCII Base64 data. The encoding
+         * parameter controls the charset used to construct the decoded string.
+         */
+        decode(o: Base64.DecodeInput, encoding?: Base64.Encoding): string;
 
     }
 
-    declare namespace Base64 {
+    namespace Base64 {
 
         type Input = string | number[] | {
             toString(): string;
         };
 
-        type Encoding = StandardCharset | string | java.nio.charset.Charset;
+        type DecodeInput = Input;
+
+        /**
+         * Charset canonical names and aliases are matched without case or
+         * punctuation differences.
+         */
+        type Encoding = StandardCharset | string | java.nio.charset.Charset | {
+            toString(): string;
+        };
 
     }
 

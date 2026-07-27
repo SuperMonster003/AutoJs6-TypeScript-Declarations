@@ -3,12 +3,13 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.3.5
 //
-// Last modified: Oct 21, 2021
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__app__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/app/App.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/app/AppInfo.kt
  */
 
 declare namespace Internal {
@@ -19,19 +20,17 @@ declare namespace Internal {
 
         /**
          * @example
-         * // e.g. 461 (of Auto.js 4.1.1 Alpha2)
-         * log(app.versionCode);
+         * app.versionCode; // e.g. 5253
          * @example Source code summary (zh-CN: 源代码摘要)
-         * context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode
+         * BuildConfig.VERSION_CODE
          */
         versionCode: number;
 
         /**
          * @example
-         * // e.g. 4.1.1 Alpha2
-         * log(app.versionName);
+         * app.versionName; // e.g. "6.6.4"
          * @example Source code summary (zh-CN: 源代码摘要)
-         * context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName
+         * BuildConfig.VERSION_NAME
          */
         versionName: string;
 
@@ -39,7 +38,7 @@ declare namespace Internal {
          * @example Source code summary (zh-CN: 源代码摘要)
          * context.packageName + ".fileprovider"
          */
-        fileProviderAuthority: 'org.autojs.autojs.fileprovider' | string | null;
+        fileProviderAuthority: 'org.autojs.autojs.fileprovider' | string;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -145,7 +144,13 @@ declare namespace Internal {
          *     }
          * };
          */
-        startActivity(o: Intent.CommonWithRoot | Intent.ShortForm.Activity | Intent | URI): void;
+        startActivity(o: Intent.CommonWithRoot | string | Intent | android.net.Uri | java.net.URI): void;
+
+        startActivity(o: Intent.CommonWithRoot | Intent, options: Intent.CommonWithRoot): void;
+
+        startDualActivity(o: Intent.CommonWithRoot | string | Intent | android.net.Uri | java.net.URI): void;
+
+        startDualActivity(o: Intent.CommonWithRoot | Intent, options: Intent.CommonWithRoot): void;
 
         /**
          * @example
@@ -166,7 +171,7 @@ declare namespace Internal {
          * @see org.autojs.autojs.runtime.api.AppUtils.sendLocalBroadcastSync
          * @see androidx.localbroadcastmanager.content.LocalBroadcastManager.sendBroadcast
          */
-        sendBroadcast(i: Intent.CommonWithRoot | Intent.ShortForm.Broadcast): void;
+        sendBroadcast(i: Intent.CommonWithRoot | Intent.ShortForm.Broadcast | Intent): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -179,7 +184,7 @@ declare namespace Internal {
          * };
          * @see android.content.Context.startService
          */
-        startService(i: Intent.CommonWithRoot): void;
+        startService(i: Intent.CommonWithRoot | Intent): void;
 
         /**
          * @example
@@ -225,7 +230,7 @@ declare namespace Internal {
          *     }
          * };
          */
-        sendEmail(options?: Intent.Email): void;
+        sendEmail(options: Intent.Email | null | undefined): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -238,7 +243,7 @@ declare namespace Internal {
          * @see app.getUriForFile
          * @see android.net.Uri.parse
          */
-        parseUri(uri: string | URI): android.net.Uri | null;
+        parseUri(uri: string | android.net.Uri | java.net.URI): android.net.Uri | null;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -257,16 +262,24 @@ declare namespace Internal {
          * @see org.autojs.autojs.runtime.api.AppUtils.getFileProviderAuthority
          * @see androidx.core.content.FileProvider.getUriForFile
          */
-        getUriForFile(path: string): string;
+        getUriForFile(path: string): android.net.Uri | null;
 
-        getAppByAlias(alias: App.Alias | string): App;
+        getAppByAlias(alias: App.Alias | string): org.autojs.autojs.util.App | null;
+
+        getInstalledApps(options?: App.PackageManagerOptions): App.AppInfo[];
+
+        getInstalledPackages(options?: App.PackageManagerOptions): App.InstalledPackageInfo[];
+
+        getApkInfo(path: string, options?: App.PackageManagerOptions): android.content.pm.PackageInfo | null;
 
         /**
          * @example
          * app.launch("com.example.test");
          * @see app.launchPackage
          */
-        launch(app: App | App.Alias | App.PackageName): boolean;
+        launch(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+        launchDual(app: App.Preset | App.Alias | App.PackageName): boolean;
 
         /**
          * @example
@@ -391,6 +404,8 @@ declare namespace Internal {
          */
         openUrl(url: string | URI): void;
 
+        openDualUrl(url: string | URI): void;
+
         /**
          * @example
          * app.launchApp("Auto.js");
@@ -404,7 +419,9 @@ declare namespace Internal {
          * @see app.launchPackage
          * @see org.autojs.autojs.runtime.api.AppUtils.launchApp
          */
-        launchApp(app: App | App.Alias | App.AppName): boolean;
+        launchApp(app: App.Preset | App.Alias | App.AppName): boolean;
+
+        launchDualApp(app: App.Preset | App.Alias | App.AppName): boolean;
 
         /**
          * @example
@@ -416,7 +433,17 @@ declare namespace Internal {
          * mContext.startActivity(intent);
          * @see android.content.Intent
          */
-        uninstall(app: App | App.Alias | App.PackageName): void;
+        uninstall(app: App.Preset | App.Alias | App.PackageName): void;
+
+        uninstallDual(app: App.Preset | App.Alias | App.PackageName): void;
+
+        isInstalled(app: App.Preset | App.Alias | App.AppName | App.PackageName): boolean;
+
+        isDualInstalled(app: App.Preset | App.Alias | App.AppName | App.PackageName): boolean;
+
+        kill(app: App.Preset | App.Alias | App.AppName | App.PackageName): boolean;
+
+        killDual(app: App.Preset | App.Alias | App.AppName | App.PackageName): boolean;
 
         /**
          * @example
@@ -431,7 +458,7 @@ declare namespace Internal {
          *     return null;
          * }
          */
-        getAppName(app: App | App.Alias | App.PackageName): string;
+        getAppName(app: App.Preset | App.Alias | App.PackageName): string | null;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -439,7 +466,7 @@ declare namespace Internal {
          * return mCurrentActivity.get();
          * @see android.util.Log
          */
-        getCurrentActivity(): android.app.Activity;
+        getCurrentActivity(): android.app.Activity | null;
 
         /**
          * @example
@@ -478,7 +505,7 @@ declare namespace Internal {
          * return null;
          * @see android.content.pm.PackageManager
          */
-        getPackageName(app: App | App.Alias | App.AppName): string;
+        getPackageName(app: App.Preset | App.Alias | App.AppName): string | null;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -487,7 +514,7 @@ declare namespace Internal {
          * @see android.util.Log
          * @see java.lang.ref.WeakReference
          */
-        setCurrentActivity(currentActivity: android.app.Activity): void;
+        setCurrentActivity(currentActivity: android.app.Activity | null): void;
 
         /**
          * @example
@@ -504,7 +531,9 @@ declare namespace Internal {
        }
          * @see org.autojs.autojs.runtime.api.AppUtils.launchPackage
          */
-        launchPackage(app: App | App.Alias | App.PackageName): boolean;
+        launchPackage(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+        launchDualPackage(app: App.Preset | App.Alias | App.PackageName): boolean;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -520,14 +549,26 @@ declare namespace Internal {
          * return IntentUtil.goToAppDetailSettings(context, packageName);
          * @see org.autojs.autojs.util.IntentUtils
          */
-        openAppSetting(app: App | App.Alias | App.PackageName): boolean;
+        openAppSetting(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+        openAppSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+        launchAppDetailsSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
          * return IntentUtil.goToAppDetailSettings(context, packageName);
          * @see org.autojs.autojs.util.IntentUtils
          */
-        launchSettings(app: App | App.Alias | App.PackageName): boolean;
+        launchSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+        launchDualAppDetailsSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+        launchDualSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+        openDualAppSetting(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+        openDualAppSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -541,8 +582,22 @@ declare namespace Internal {
 
 declare namespace App {
 
+    type Preset = org.autojs.autojs.util.App;
     type PackageName = string;
     type AppName = string;
+
+    interface PackageManagerOptions {
+        get?: string[];
+        match?: string[];
+    }
+
+    interface AppInfo extends android.content.pm.ApplicationInfo {
+        readonly label: string;
+    }
+
+    type InstalledPackageInfo = Omit<android.content.pm.PackageInfo, 'applicationInfo'> & {
+        applicationInfo: AppInfo | null;
+    };
 
     // noinspection SpellCheckingInspection
     type Alias = 'accuweather' | 'adm' | 'alipay' | 'amap' | 'appops' | 'aquamail' | 'autojs' | 'autojs6' | 'autojspro'
@@ -577,11 +632,11 @@ declare namespace Intent {
     type UriString = string;
 
     interface URI {
-        src: Alipay.URI.StartApp | string;
+        src: string;
         query?: {
             [prop: string]: any;
             url?: string | URI;
-        } | Alipay.JSBridge.PushWindowOptions,
+        };
         exclude?: string | string[];
     }
 
@@ -592,8 +647,8 @@ declare namespace Intent {
          * Alias for packageName
          * @see packageName
          */
-        package?: App.Alias | string;
-        packageName?: App.Alias | string;
+        package?: App.Preset | App.Alias | string;
+        packageName?: App.Preset | App.Alias | string;
         extras?: { [name: string]: android.os.Bundle | any[] | any };
         category?: any[] | any;
         action?: string;
@@ -604,6 +659,8 @@ declare namespace Intent {
 
     interface CommonWithRoot extends Common {
         root?: boolean;
+        dual?: boolean;
+        shizuku?: boolean;
     }
 
     interface Email {
@@ -612,44 +669,67 @@ declare namespace Intent {
         bcc?: string | string[];
         subject?: string;
         text?: string;
-        attachment?: string;
+        attachment?: string | android.net.Uri | java.net.URI;
     }
 
 }
 
-/**
- * @see app.launch
- */
-declare function launch(app: App | App.Alias | App.PackageName): boolean;
+declare function startActivity(o: Intent.CommonWithRoot | string | Intent | android.net.Uri | java.net.URI): void;
 
-/**
- * @see app.launchApp
- */
-declare function launchApp(app: App | App.Alias | App.AppName): boolean;
+declare function startActivity(o: Intent.CommonWithRoot | Intent, options: Intent.CommonWithRoot): void;
 
-/**
- * @see app.launchPackage
- */
-declare function launchPackage(app: App | App.Alias | App.PackageName): boolean;
+declare function startDualActivity(o: Intent.CommonWithRoot | string | Intent | android.net.Uri | java.net.URI): void;
 
-/**
- * @see app.getAppName
- */
-declare function getAppName(app: App | App.Alias | App.PackageName): string;
+declare function startDualActivity(o: Intent.CommonWithRoot | Intent, options: Intent.CommonWithRoot): void;
 
-/**
- * @see app.getPackageName
- */
-declare function getPackageName(app: App | App.Alias | App.AppName): string;
+declare function startService(i: Intent.CommonWithRoot | Intent): void;
 
-/**
- * @deprecated
- * @replaceWith launchSettings
- * @see app.openAppSetting
- */
-declare function openAppSetting(app: App | App.Alias | App.PackageName): boolean;
+declare function sendEmail(options: Intent.Email | null | undefined): void;
 
-/**
- * @see app.launchSettings
- */
-declare function launchSettings(app: App | App.Alias | App.PackageName): boolean;
+declare function sendBroadcast(i: Intent.CommonWithRoot | Intent.ShortForm.Broadcast | Intent): void;
+
+declare function sendLocalBroadcastSync(intent: Intent): void;
+
+declare function launch(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function launchDual(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function launchApp(app: App.Preset | App.Alias | App.AppName): boolean;
+
+declare function launchDualApp(app: App.Preset | App.Alias | App.AppName): boolean;
+
+declare function launchPackage(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function launchDualPackage(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function getAppName(app: App.Preset | App.Alias | App.PackageName): string | null;
+
+declare function getPackageName(app: App.Preset | App.Alias | App.AppName): string | null;
+
+declare function launchAppDetailsSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function launchSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function openAppSetting(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function openAppSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function launchDualAppDetailsSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function launchDualSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function openDualAppSetting(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function openDualAppSettings(app: App.Preset | App.Alias | App.PackageName): boolean;
+
+declare function isInstalled(app: App.Preset | App.Alias | App.AppName | App.PackageName): boolean;
+
+declare function isDualInstalled(app: App.Preset | App.Alias | App.AppName | App.PackageName): boolean;
+
+declare function uninstall(app: App.Preset | App.Alias | App.PackageName): void;
+
+declare function uninstallDual(app: App.Preset | App.Alias | App.PackageName): void;
+
+declare function kill(app: App.Preset | App.Alias | App.AppName | App.PackageName): boolean;
+
+declare function killDual(app: App.Preset | App.Alias | App.AppName | App.PackageName): boolean;

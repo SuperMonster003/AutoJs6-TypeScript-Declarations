@@ -3,9 +3,9 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/dialogs/Dialogs.kt
@@ -321,113 +321,30 @@ declare namespace Internal {
          * @example
          * let indices = dialogs.multiChoice("请选择至少一个选项", ["A", "B", "C", "D"], [0, 2, 3]);
          * console.log(indices);
-         * @example With bug(s)
+         * @example
          * "ui";
          * dialogs.multiChoice("请选择至少一个选项", ["A", "B", "C", "D"], [1]).then(function (indices) {
          *     console.log(indices);
          * });
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * dialogs.multiChoice = function (title, items, index, callback) {
-         *     index = index || [];
-         *     if (isUiThread() && !callback) {
-         *         return new Promise(function (resolve, reject) {
-         *             // BUG 1/3: marked by SuperMonster003 on Jul 30, 2020
-         *             // singleChoice -> multiChoice
-         *             rtDialogs().singleChoice(title, index, items, function (r) {
-         *                 // BUG 2/3: marked by SuperMonster003 on Jul 30, 2020
-         *                 // resolve(javaArrayToJsArray(r));
-         *                 resolve.apply(null, javaArrayToJsArray(r));
-         *             });
-         *         });
-         *     }
-         *     if (callback) {
-         *         // BUG 3/3: marked by SuperMonster003 on Jul 30, 2020
-         *         // return javaArrayToJsArray(rtDialogs().multiChoice(title, index, items, function (r) {
-         *         //     callback(javaArrayToJsArray(r));
-         *         // }));
-         *         return rtDialogs().multiChoice(title, index, items, function (r) {
-         *             callback(javaArrayToJsArray(r));
-         *         });
-         *     }
-         *     return javaArrayToJsArray(rtDialogs().multiChoice(title, index, items, null));
-         * };
-         * function isUiThread() {
-         *     return android.os.Looper.myLooper() === android.os.Looper.getMainLooper();
-         * }
-         * function rtDialogs() {
-         *     let d = __runtime__.dialogs;
-         *     if (!isUiThread()) {
-         *         return d.nonUiDialogs;
-         *     } else {
-         *         return d;
-         *     }
-         * }
-         * function javaArrayToJsArray(javaArray) {
-         *     let jsArray = [];
-         *     let len = javaArray.length;
-         *     for (let i = 0; i < len; i++) {
-         *         jsArray.push(javaArray[i]);
-         *     }
-         *     return jsArray;
-         * }
          * @see org.autojs.autojs.runtime.api.Dialogs.multiChoice
          * @see org.autojs.autojs.runtime.api.Dialogs.NonUiDialogs.multiChoice
          */
-        multiChoice(title: string, items: any[], defaultIndices?: number[]): number[] | Promise<any>;
+        multiChoice(title: string, items: any[], defaultIndices?: number[]): number[] | Promise<number[]>;
 
         /**
-         * @example With bug(s)
+         * @example
          * let indices = dialogs.multiChoice("请选择至少一个选项", ["A", "B", "C", "D"], [], function(indices) {
          *     console.log(indices); // indices: JavaScript Array
          * });
-         * // BUG
-         * console.log(indices); // indices: Java Array
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * dialogs.multiChoice = function (title, items, index, callback) {
-         *     index = index || [];
-         *     if (isUiThread() && !callback) {
-         *         return new Promise(function (resolve, reject) {
-         *             // BUG 1/2: marked by SuperMonster003 on Jul 30, 2020
-         *             // singleChoice -> multiChoice
-         *             rtDialogs().singleChoice(title, index, items, function (r) {
-         *                 resolve.apply(null, javaArrayToJsArray(r));
-         *             });
-         *         });
-         *     }
-         *     if (callback) {
-         *         // BUG 2/2: marked by SuperMonster003 on Jul 30, 2020
-         *         // return javaArrayToJsArray(rtDialogs().multiChoice(title, index, items, function (r) {
-         *         //     callback(javaArrayToJsArray(r));
-         *         // }));
-         *         return rtDialogs().multiChoice(title, index, items, function (r) {
-         *             callback(javaArrayToJsArray(r));
-         *         });
-         *     }
-         *     return javaArrayToJsArray(rtDialogs().multiChoice(title, index, items, null));
-         * };
-         * function isUiThread() {
-         *     return android.os.Looper.myLooper() === android.os.Looper.getMainLooper();
-         * }
-         * function rtDialogs() {
-         *     let d = __runtime__.dialogs;
-         *     if (!isUiThread()) {
-         *         return d.nonUiDialogs;
-         *     } else {
-         *         return d;
-         *     }
-         * }
-         * function javaArrayToJsArray(javaArray) {
-         *     let jsArray = [];
-         *     let len = javaArray.length;
-         *     for (let i = 0; i < len; i++) {
-         *         jsArray.push(javaArray[i]);
-         *     }
-         *     return jsArray;
-         * }
          * @see org.autojs.autojs.runtime.api.Dialogs.multiChoice
          * @see org.autojs.autojs.runtime.api.Dialogs.NonUiDialogs.multiChoice
          */
-        multiChoice(title: string, items: any[], defaultIndices: number[] | any, callback: (selectedIndices: number[]) => void): number[];
+        multiChoice(
+            title: string,
+            items: any[],
+            defaultIndices: number[] | null | undefined,
+            callback: (selectedIndices: number[]) => void,
+        ): number[] | null;
 
         /**
          * @example Event of action buttons sample

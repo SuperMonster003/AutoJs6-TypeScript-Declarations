@@ -1,31 +1,45 @@
 // Type definitions for AutoJs6 internal module plugins
 //
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
-// TypeScript Version: 4.7.4
+// TypeScript Version: 5.1.3
 //
-// Last modified: Nov 8, 2021
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__plugins__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/plugins/Plugins.kt
  */
 
 declare namespace Internal {
 
     interface Plugins {
 
-        /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * function plugins() {}
-         * plugins.load = function (packageName) {
-         *     let plugin = runtime.plugins.load(packageName);
-         *     let index = require(plugin.mainScriptPath);
-         *     return index(plugin.unwrap());
-         * };
-         * return plugins;
-         */
-        load(packageName: string): any;
+        (name: string): any;
+
+        readonly extend: Plugins.Extend;
+
+        extendAll(): void;
+
+        extendAllBut(...names: Plugins.ExtensionName[]): void;
+
+        load(name: string): any;
+
+    }
+
+    namespace Plugins {
+
+        type ExtensionName = string | ExtensionName[];
+
+        interface Extend {
+            (...names: ExtensionName[]): void;
+
+            exclude(...names: ExtensionName[]): void;
+
+            registerModule(module: Record<string, {
+                extendJsBuildInObjects(): void;
+            }>): void;
+        }
 
     }
 

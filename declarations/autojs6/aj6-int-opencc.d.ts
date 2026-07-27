@@ -3,23 +3,21 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.7.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
- * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/opencc/OpenCC.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/opencc/OpenCC.kt
  */
 
 declare namespace Internal {
 
-    import ConversionType = com.zqc.opencc.android.lib.ConversionType;
-
     interface OpenCC {
 
-        (s: string, type: OpenCC.ConversionTypeName | ConversionType): string;
+        (s: string, type: OpenCC.ConversionType): string;
 
-        convert(s: string, type: OpenCC.ConversionTypeName | ConversionType): string;
+        convert(s: string, type: OpenCC.ConversionType): string;
 
         /**
          * ### HK2S
@@ -286,6 +284,13 @@ declare namespace Internal {
 }
 
 declare namespace OpenCC {
+
+    type ConversionType = CaseInsensitive<ConversionTypeName> | java.lang.Enum<any>;
+
+    type CaseInsensitive<S extends string> =
+        S extends `${infer Head}${infer Tail}`
+            ? `${Lowercase<Head> | Uppercase<Head>}${CaseInsensitive<Tail>}`
+            : S;
 
     type ConversionTypeName = ConversionTypeNameOpenCC | ConversionTypeNameEncapsulation;
 

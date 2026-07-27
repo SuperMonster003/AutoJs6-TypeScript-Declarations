@@ -3,19 +3,33 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/timers/Timers.kt
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/timers/SetIntervalExt.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/tasks/WorkManager.kt
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/Timers.kt
  */
 
 declare namespace Internal {
 
-    interface Timers extends org.autojs.autojs.runtime.api.Timers {
+    interface Timers extends
+        org.autojs.autojs.runtime.api.Timers,
+        Pick<WorkManager,
+            | "addDailyTask"
+            | "addWeeklyTask"
+            | "addDisposableTask"
+            | "addIntentTask"
+            | "getTimedTask"
+            | "getIntentTask"
+            | "removeIntentTask"
+            | "removeTimedTask"
+            | "queryIntentTasks"
+            | "queryTimedTasks"
+        > {
 
         /**
          * Replacement of setInterval() with functional timeout supported

@@ -3,26 +3,36 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.7.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Jul 27, 2026
 
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 
 /**
- * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/web/Web.kt
- * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/web/WebSocket.kt
- * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/web/WebSocketFields.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/web/Web.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/web/WebSocket.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/web/WebSocketFields.kt
  */
 
 declare namespace Internal {
 
     interface Web {
 
+        ByteString: typeof okio.ByteString;
+
         newInjectableWebView(context?: android.content.Context | string, url?: string): org.autojs.autojs.core.web.InjectableWebView;
 
         newInjectableWebClient(): org.autojs.autojs.core.web.InjectableWebClient;
 
-        newWebSocket(url: string): org.autojs.autojs.core.web.WebSocket;
+        newWebSocket(url: string, options?: Web.NewWebSocketOptions): org.autojs.autojs.core.web.WebSocket;
 
+    }
+
+}
+
+declare namespace Web {
+
+    interface NewWebSocketOptions {
+        eventThread?: string;
     }
 
 }
@@ -43,7 +53,7 @@ declare function newInjectableWebClient(): org.autojs.autojs.core.web.Injectable
  */
 declare function newInjectableWebView(context?: android.content.Context | string, url?: string): org.autojs.autojs.core.web.InjectableWebView;
 
-declare function newWebSocket(url: string): org.autojs.autojs.core.web.WebSocket;
+declare function newWebSocket(url: string, options?: Web.NewWebSocketOptions): org.autojs.autojs.core.web.WebSocket;
 
 declare class WebSocket extends org.autojs.autojs.core.web.WebSocket {
 
