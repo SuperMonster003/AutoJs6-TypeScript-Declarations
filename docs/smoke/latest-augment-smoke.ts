@@ -16,10 +16,77 @@ let localAiText: Promise<string> = ai('Reply with OK', {
 let localAiAskText: Promise<string> = $ai.ask('Reply with OK', {
     plugin: localAiPlugin,
 });
+let localAiStream: Internal.Ai.PluginStream = $ai.stream('Reply with OK', {
+    plugin: localAiPlugin,
+});
+localAiStream.on('open', metadata => {
+    let route: 'plugin' = metadata.route;
+    let provider: string = metadata.provider;
+    let model: string = metadata.model;
+    void route;
+    void provider;
+    void model;
+});
+localAiStream.on('chunk', chunk => {
+    let text: string = chunk.text;
+    let reasoning: '' = chunk.reasoning;
+    let toolCalls: [] = chunk.toolCalls;
+    let usage: null = chunk.usage;
+    let finishReason: null = chunk.finishReason;
+    let done: false = chunk.done;
+    let raw: null = chunk.raw;
+    void text;
+    void reasoning;
+    void toolCalls;
+    void usage;
+    void finishReason;
+    void done;
+    void raw;
+});
+localAiStream.on('delta', (text, chunk) => {
+    let delta: string = text;
+    let chunkText: string = chunk.text;
+    void delta;
+    void chunkText;
+});
+localAiStream.on('done', response => {
+    let text: string = response.text;
+    let reasoning: '' = response.reasoning;
+    let toolCalls: [] = response.toolCalls;
+    let usage: null = response.usage;
+    let route: 'plugin' = response.route;
+    let profile: null = response.profile;
+    let finishReason: null = response.finishReason;
+    let message: null = response.message;
+    let error: null = response.error;
+    let raw: null = response.raw;
+    let provider: string = response.provider;
+    let model: string = response.model;
+    void text;
+    void reasoning;
+    void toolCalls;
+    void usage;
+    void route;
+    void profile;
+    void finishReason;
+    void message;
+    void error;
+    void raw;
+    void provider;
+    void model;
+});
+localAiStream.on('error', error => {
+    let route: 'plugin' = error.route;
+    let code: string = error.code;
+    void route;
+    void code;
+});
 // @ts-expect-error Local plugin selection is not supported by chat.
 $ai.chat('Reply with OK', { plugin: localAiPlugin });
 // @ts-expect-error Local plugin selection cannot be mixed with cloud controls.
 $ai.ask('Reply with OK', { plugin: localAiPlugin, provider: 'openai' });
+// @ts-expect-error Local plugin stream selection cannot be mixed with cloud controls.
+$ai.stream('Reply with OK', { plugin: localAiPlugin, provider: 'openai' });
 let aiReply: Promise<Internal.Ai.Response> = $ai.chat({
     role: 'user',
     content: 'Hello',
@@ -46,6 +113,7 @@ aiStream.on('delta', (text, chunk) => {
 });
 void localAiText;
 void localAiAskText;
+void localAiStream;
 
 let speech: Promise<Internal.Tts.Result> = tts('Hello');
 let utterance: Internal.Tts.Utterance = $tts.speakTask('Hello', {

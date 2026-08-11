@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.0.2
+
+###### 2026/08/11
+
+##### AI 本机文本生成插件流式声明
+
+- `新增` ai.stream 的本机文本生成插件重载及 open/chunk/delta/done/error 事件类型
+- `约束` 插件流保持显式选择, 提示词限定和无云端回退边界, chat 仍不支持插件选项
+
 # v4.0.1
 
 ###### 2026/08/11
@@ -167,17 +176,6 @@ npm update @sm003/autojs6-dts
 - `优化` 补齐运行时挂载, `$` 前缀别名及关键全局对象 smoke 样例
 - `依赖` 重新生成并整合 Android/AutoJs6 主应用, 资源及三方库声明
 - `调整` 发布入口统一为 `declarations/autojs6/index.d.ts`, 移除旧入口及生成分片
-
-# v3.0.0
-
-###### 2026/06/15
-
-* `新增` converter/formatter/sysprops/zip/nanoid/mediainfo/pinyin4j/jsox 等内置模块声明文件
-* `优化` 适配 AutoJs6 6.7.1 Alpha4 内置模块 API 声明
-* `优化` 完善 index 入口引用/全局变量声明及 `$` 前缀模块别名
-* `优化` 同步 colors/Color/images/Canvas/pinyin/mime/sqlite/media/recorder/tasks 等既有模块声明
-* `优化` 增加关键全局对象 smoke 样例及 TypeScript 验证命令记录
-* `依赖` 刷新 Android/AutoJs6 主应用及三方库生成声明文件
 
 ##### 更多版本历史可参阅
 
