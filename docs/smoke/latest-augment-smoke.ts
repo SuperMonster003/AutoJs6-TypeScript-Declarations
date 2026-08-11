@@ -16,6 +16,35 @@ let localAiText: Promise<string> = ai('Reply with OK', {
 let localAiAskText: Promise<string> = $ai.ask('Reply with OK', {
     plugin: localAiPlugin,
 });
+let localAiChat: Promise<Internal.Ai.PluginChatResponse> = $ai.chat('Reply with OK', {
+    plugin: localAiPlugin,
+});
+localAiChat.then(response => {
+    let text: string = response.text;
+    let reasoning: '' = response.reasoning;
+    let toolCalls: [] = response.toolCalls;
+    let usage: null = response.usage;
+    let finishReason: null = response.finishReason;
+    let message: null = response.message;
+    let error: null = response.error;
+    let raw: null = response.raw;
+    let profile: null = response.profile;
+    let route: 'plugin' = response.route;
+    let provider: string = response.provider;
+    let model: string = response.model;
+    void text;
+    void reasoning;
+    void toolCalls;
+    void usage;
+    void finishReason;
+    void message;
+    void error;
+    void raw;
+    void profile;
+    void route;
+    void provider;
+    void model;
+});
 let localAiStream: Internal.Ai.PluginStream = $ai.stream('Reply with OK', {
     plugin: localAiPlugin,
 });
@@ -81,8 +110,8 @@ localAiStream.on('error', error => {
     void route;
     void code;
 });
-// @ts-expect-error Local plugin selection is not supported by chat.
-$ai.chat('Reply with OK', { plugin: localAiPlugin });
+// @ts-expect-error Local plugin chat selection cannot be mixed with cloud controls.
+$ai.chat('Reply with OK', { plugin: localAiPlugin, provider: 'openai' });
 // @ts-expect-error Local plugin selection cannot be mixed with cloud controls.
 $ai.ask('Reply with OK', { plugin: localAiPlugin, provider: 'openai' });
 // @ts-expect-error Local plugin stream selection cannot be mixed with cloud controls.
@@ -113,6 +142,7 @@ aiStream.on('delta', (text, chunk) => {
 });
 void localAiText;
 void localAiAskText;
+void localAiChat;
 void localAiStream;
 
 let speech: Promise<Internal.Tts.Result> = tts('Hello');

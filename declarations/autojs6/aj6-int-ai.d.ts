@@ -25,6 +25,8 @@ declare namespace Internal {
 
         ask(input: Ai.Input, options?: Ai.Options): Promise<string>;
 
+        chat(input: Ai.PluginAskInput, options: Ai.PluginChatOptions): Promise<Ai.PluginChatResponse>;
+
         chat(input: Ai.Input, options?: Ai.Options): Promise<Ai.Response>;
 
         stream(input: Ai.PluginAskInput, options: Ai.PluginStreamOptions): Ai.PluginStream;
@@ -106,6 +108,8 @@ declare namespace Internal {
         }
 
         type PluginAskOptions = PluginRouteOptions;
+
+        type PluginChatOptions = PluginRouteOptions;
 
         type PluginStreamOptions = PluginRouteOptions;
 
@@ -203,6 +207,21 @@ declare namespace Internal {
             error: ProviderError | null;
             raw: JsonValue;
             profile: ProfileMetadata;
+            provider: string;
+            model: string;
+        }
+
+        interface PluginChatResponse {
+            text: string;
+            reasoning: '';
+            toolCalls: [];
+            usage: null;
+            finishReason: null;
+            message: null;
+            error: null;
+            raw: null;
+            profile: null;
+            route: 'plugin';
             provider: string;
             model: string;
         }
