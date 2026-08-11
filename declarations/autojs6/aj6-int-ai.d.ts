@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jul 27, 2026
+// Last modified: Aug 11, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -17,7 +17,11 @@ declare namespace Internal {
 
     interface Ai {
 
+        (input: Ai.PluginAskInput, options: Ai.PluginAskOptions): Promise<string>;
+
         (input: Ai.Input, options?: Ai.Options): Promise<string>;
+
+        ask(input: Ai.PluginAskInput, options: Ai.PluginAskOptions): Promise<string>;
 
         ask(input: Ai.Input, options?: Ai.Options): Promise<string>;
 
@@ -56,7 +60,51 @@ declare namespace Internal {
 
         type Input = string | MessageWithContent | Message[] | Request;
 
+        interface PluginAskMessage {
+            role: 'user';
+            content: string;
+        }
+
+        type PluginAskInput = string | PluginAskMessage | [PluginAskMessage];
+
+        interface PluginComponent {
+            packageName: string;
+            className: string;
+        }
+
+        interface PluginSelection {
+            component: PluginComponent;
+            providerId: string;
+            modelId: string;
+        }
+
+        /**
+         * Explicit, ask-only local plugin route. Cloud provider controls and
+         * provider-native request options cannot be combined with this shape.
+         */
+        interface PluginAskOptions {
+            plugin: PluginSelection;
+            timeout?: number | null;
+            timeoutMillis?: number | null;
+            timeoutMs?: number | null;
+            timeout_millis?: number | null;
+            profile?: never;
+            profileId?: never;
+            profile_id?: never;
+            provider?: never;
+            providerId?: never;
+            provider_id?: never;
+            baseUrl?: never;
+            baseURL?: never;
+            base_url?: never;
+            model?: never;
+            apiKey?: never;
+            api_key?: never;
+            stream?: never;
+        }
+
         interface Options {
+            plugin?: never;
             profile?: string | null;
             profileId?: string | null;
             profile_id?: string | null;
@@ -166,6 +214,7 @@ declare namespace Internal {
         interface PublicError {
             name: string;
             message: string;
+            route?: 'plugin';
             provider?: string;
             statusCode?: number;
             code?: string | null;
