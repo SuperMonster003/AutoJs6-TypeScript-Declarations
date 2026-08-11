@@ -1,6 +1,25 @@
 // Type-only smoke sample for the latest AutoJs6 augment APIs.
 
 let aiText: Promise<string> = ai('Summarize this text.');
+let localAiPlugin: Internal.Ai.PluginSelection = {
+    component: {
+        packageName: 'io.github.supermonster003.autojs6.plugin.ai.text',
+        className: 'io.github.supermonster003.autojs6.plugin.ai.text.provider.AiTextProviderService',
+    },
+    providerId: 'autojs6.local.text',
+    modelId: 'litertlm.0123456789abcdef0123456789abcdef',
+};
+let localAiText: Promise<string> = ai('Reply with OK', {
+    plugin: localAiPlugin,
+    timeout: 30_000,
+});
+let localAiAskText: Promise<string> = $ai.ask('Reply with OK', {
+    plugin: localAiPlugin,
+});
+// @ts-expect-error Local plugin selection is not supported by chat.
+$ai.chat('Reply with OK', { plugin: localAiPlugin });
+// @ts-expect-error Local plugin selection cannot be mixed with cloud controls.
+$ai.ask('Reply with OK', { plugin: localAiPlugin, provider: 'openai' });
 let aiReply: Promise<Internal.Ai.Response> = $ai.chat({
     role: 'user',
     content: 'Hello',
@@ -25,6 +44,8 @@ aiStream.on('delta', (text, chunk) => {
     void text;
     void complete;
 });
+void localAiText;
+void localAiAskText;
 
 let speech: Promise<Internal.Tts.Result> = tts('Hello');
 let utterance: Internal.Tts.Utterance = $tts.speakTask('Hello', {

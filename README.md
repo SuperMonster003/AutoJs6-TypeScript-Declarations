@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.0.1
+
+###### 2026/08/11
+
+##### AI 本机文本生成插件显式选择声明
+
+- `新增` ai/ask 的本机文本生成插件显式选择重载及组件, 提供商和模型类型
+- `约束` 插件选项仅支持单条 user 文本和超时, 并禁止与云端提供商选项混用
+
 # v4.0.0
 
 ###### 2026/07/27
@@ -169,18 +178,6 @@ npm update @sm003/autojs6-dts
 * `优化` 同步 colors/Color/images/Canvas/pinyin/mime/sqlite/media/recorder/tasks 等既有模块声明
 * `优化` 增加关键全局对象 smoke 样例及 TypeScript 验证命令记录
 * `依赖` 刷新 Android/AutoJs6 主应用及三方库生成声明文件
-
-# v2.1.3
-
-###### 2023/12/02
-
-* `新增` opencc 模块声明文件
-* `优化` 完善 ocr 章节缺失的 detect 及 recognizeText 声明
-* `优化` 适配 AutoJs6 6.5.0
-* `依赖` 附加 Android OpenCC 声明文件版本 1.2.0
-* `依赖` 升级 Android dx 声明版本 1.11 -> 1.14
-* `依赖` 降级 Jackson DataBind 声明版本 2.14.3 -> 2.13.3
-* `依赖` 降级 Apache Commons IO 声明文件版本 2.14.0 -> 2.8.0
 
 ##### 更多版本历史可参阅
 
