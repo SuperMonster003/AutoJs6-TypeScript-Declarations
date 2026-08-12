@@ -4,6 +4,16 @@
 
 ******
 
+# v4.0.2
+
+###### 2026/08/12
+
+##### Python 引擎源码路由声明
+
+- `新增` `PythonScriptSource`, `PythonFileSource`, `PythonProjectSource` 和 `PersistedScriptLaunchContext` 等主应用声明, 并补齐 `IntentTask`/`TimedTask` 的 `sourceKind` 与 `projectRoot` 持久化上下文
+- `优化` 增加 `ScriptSource(sourceName, extension)` 构造签名, 同步 `engines.execScriptFile` 源码摘要, 明确 `.py` 路由及禁止回退到 JavaScript 引擎
+- `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
+
 # v4.0.1
 
 ###### 2026/08/11

@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.3.5
 //
-// Last modified: Oct 21, 2021
+// Last modified: Aug 12, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -229,16 +229,24 @@ declare namespace Internal {
          * }
          *
          * @example Source code summary (zh-CN: 源代码摘要)
-         * private ScriptEngineService mEngineService;
-         * private ScriptRuntime mScriptRuntime;
-         * public ScriptExecution execScriptFile(String path, ExecutionConfig config) {
-         *     return mEngineService.execute(new JavaScriptFileSource(mScriptRuntime.files.path(path)), config);
+         * fun execScriptFile(path: String, config: ExecutionConfig?): ScriptExecution {
+         *     val launch = ScriptLaunchSourceFactory.createPathLaunch(mScriptRuntime.files.nonNullPath(path))
+         *     return AutoJs.instance.scriptEngineService.execute(
+         *         launch.source,
+         *         createExecScriptFileExecutionConfig(launch, config),
+         *     )
          * }
+         *
+         * Local `.py` paths use Python-aware routing and become PythonFileSource in the normal app
+         * host. A missing or disabled Python Runtime plugin fails closed during execution; Python
+         * source never falls back to Rhino/JavaScript execution.
          * @see org.autojs.autojs.engine.ScriptEngineService
          * @see org.autojs.autojs.execution.ExecutionConfig
          * @see org.autojs.autojs.execution.ScriptExecution
          * @see org.autojs.autojs.runtime.ScriptRuntime
+         * @see org.autojs.autojs.script.ScriptLaunchSourceFactory
          * @see org.autojs.autojs.script.JavaScriptFileSource
+         * @see org.autojs.autojs.script.PythonFileSource
          */
         public execScriptFile(path: string, config: org.autojs.autojs.execution.ExecutionConfig): org.autojs.autojs.execution.ScriptExecution;
 

@@ -4914,6 +4914,7 @@ declare namespace org {
 							public listenerCount(eventName: string): number;
 							public listeners(eventName: string): any[];
 							public on(eventName: string, listener: __javaRoots.orgRoot.mozilla.javascript.Callable): __javaRoots.orgRoot.autojs.autojs.core.ui.dialog.JsDialogBuilder;
+							/** @deprecated */
 							public onShowCalled(): void;
 							public once(eventName: string, listener: __javaRoots.orgRoot.mozilla.javascript.Callable): __javaRoots.orgRoot.autojs.autojs.core.ui.dialog.JsDialogBuilder;
 							public prependListener(eventName: string, listener: __javaRoots.orgRoot.mozilla.javascript.Callable): __javaRoots.orgRoot.autojs.autojs.core.ui.dialog.JsDialogBuilder;
@@ -8541,17 +8542,21 @@ declare namespace org {
 						public constructor();
 					}
 					export interface ExplorerItem {
+						readonly audioPlayable: boolean;
 						readonly executable: boolean;
 						readonly externalEditable: boolean;
+						readonly imageViewable: boolean;
 						readonly installable: boolean;
 						readonly mediaMenu: boolean;
 						readonly mediaPlayable: boolean;
 						readonly name: string;
 						readonly parent: __javaRoots.orgRoot.autojs.autojs.model.explorer.ExplorerPage;
 						readonly path: string;
+						readonly previewable: boolean;
 						readonly size: number;
 						readonly textEditable: boolean;
 						readonly type: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						readonly videoPlayable: boolean;
 						canBuildApk(): boolean;
 						canCopy(): boolean;
 						canDelete(): boolean;
@@ -8567,12 +8572,16 @@ declare namespace org {
 						getType(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						install(context: __javaRoots.androidRoot.content.Context): boolean;
 						install(view: __javaRoots.androidRoot.view.View): boolean;
+						isAudioPlayable(): boolean;
 						isExecutable(): boolean;
 						isExternalEditable(): boolean;
+						isImageViewable(): boolean;
 						isInstallable(): boolean;
 						isMediaMenu(): boolean;
 						isMediaPlayable(): boolean;
+						isPreviewable(): boolean;
 						isTextEditable(): boolean;
+						isVideoPlayable(): boolean;
 						lastModified(): number;
 						play(context: __javaRoots.androidRoot.content.Context): boolean;
 						play(view: __javaRoots.androidRoot.view.View): boolean;
@@ -9398,6 +9407,7 @@ declare namespace org {
 					public loadDex(...path: string[]): void;
 					public loadJar(dir: string, isRecursive: boolean): void;
 					public loadJar(...paths: string[]): void;
+					public loadJarWithClasspath(program: string, ...orderedClasspath: string[]): void;
 					public onExit(): void;
 					public static popException(message: string): void;
 					public putProperty(key: string, value: any): any;
@@ -14070,11 +14080,108 @@ declare namespace org {
 	export namespace autojs {
 		export namespace autojs {
 			export namespace script {
+				export class PersistedScriptLaunchContext {
+					public readonly projectRoot: string;
+					public readonly sourceKind: string;
+					public constructor(sourceKind: string, projectRoot: string);
+					public component1(): string;
+					public component2(): string;
+					public copy(sourceKind: string, projectRoot: string): __javaRoots.orgRoot.autojs.autojs.script.PersistedScriptLaunchContext;
+					public equals(other: any): boolean;
+					public getProjectRoot(): string;
+					public getSourceKind(): string;
+					public hashCode(): number;
+					public toString(): string;
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace script {
+				export class PythonFileSource extends __javaRoots.orgRoot.autojs.autojs.script.PythonScriptSource {
+					public readonly file: __javaRoots.javaRoot.io.File;
+					public readonly semanticFile$app: __javaRoots.javaRoot.io.File;
+					public constructor(file: __javaRoots.javaRoot.io.File);
+					public constructor(file: __javaRoots.javaRoot.io.File, semanticFile: __javaRoots.javaRoot.io.File);
+					public constructor(path: string);
+					public getFile(): __javaRoots.javaRoot.io.File;
+					public getSemanticFile$app(): __javaRoots.javaRoot.io.File;
+					public toString(): string;
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace script {
+				export class PythonProjectLaunchAdmission {
+					public readonly entryFile: __javaRoots.javaRoot.io.File;
+					public readonly projectRoot: __javaRoots.javaRoot.io.File;
+					public constructor(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File);
+					public component1(): __javaRoots.javaRoot.io.File;
+					public component2(): __javaRoots.javaRoot.io.File;
+					public copy(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectLaunchAdmission;
+					public equals(other: any): boolean;
+					public getEntryFile(): __javaRoots.javaRoot.io.File;
+					public getProjectRoot(): __javaRoots.javaRoot.io.File;
+					public hashCode(): number;
+					public toString(): string;
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace script {
+				export class PythonProjectSource extends __javaRoots.orgRoot.autojs.autojs.script.PythonFileSource {
+					public readonly entryPoint: string;
+					public readonly projectEntryFile: __javaRoots.javaRoot.io.File;
+					public readonly projectRoot: __javaRoots.javaRoot.io.File;
+					public static create(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectSource;
+					public getEntryPoint(): string;
+					public getProjectEntryFile(): __javaRoots.javaRoot.io.File;
+					public getProjectRoot(): __javaRoots.javaRoot.io.File;
+					protected constructor();
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace script {
+				export abstract class PythonScriptSource extends __javaRoots.orgRoot.autojs.autojs.script.ScriptSource {
+					public static readonly ENGINE: string;
+					public static readonly EXTENSION: string;
+					public readonly engineName: string;
+					public static readonly previewEnabled: boolean;
+					public getEngineName(): string;
+					public static isPreviewEnabled(): boolean;
+					protected constructor();
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace script {
 				export class ScriptLaunchSourceFactory {
 					public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory;
+					public static capturePersistedLaunchContext(path: string): __javaRoots.orgRoot.autojs.autojs.script.PersistedScriptLaunchContext;
 					public static createFileLaunch(file: __javaRoots.javaRoot.io.File): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createFileLaunch(file: __javaRoots.javaRoot.io.File, workingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createFileLaunch(file: __javaRoots.javaRoot.io.File, workingDirectory: string, defaultWorkingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public createFileLaunchForPythonPreview$app(file: __javaRoots.javaRoot.io.File, workingDirectory: string, defaultWorkingDirectory: string, pythonPreviewEnabled: boolean): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createFileSource(file: __javaRoots.javaRoot.io.File): __javaRoots.orgRoot.autojs.autojs.script.ScriptSource;
 					public static createNodeProjectLaunch(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createNodeProjectLaunch(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File, name: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
@@ -14091,15 +14198,37 @@ declare namespace org {
 					public static createPathLaunch(path: string, preExecuteScript: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createPathLaunch(path: string, preExecuteScript: string, workingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createPathLaunch(path: string, preExecuteScript: string, workingDirectory: string, defaultWorkingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public createPathLaunchForPythonPreview$app(path: string, preExecuteScript: string, workingDirectory: string, defaultWorkingDirectory: string, pythonPreviewEnabled: boolean): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createPersistedPathLaunch(path: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createPersistedPathLaunch(path: string, sourceKind: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createPersistedPathLaunch(path: string, sourceKind: string, projectRoot: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createPersistedPathLaunch(path: string, sourceKind: string, projectRoot: string, preExecuteScript: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createPersistedPathLaunch(path: string, sourceKind: string, projectRoot: string, preExecuteScript: string, workingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createPersistedPathLaunch(path: string, sourceKind: string, projectRoot: string, preExecuteScript: string, workingDirectory: string, defaultWorkingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public createPersistedPathLaunchForPythonPreview$app(path: string, sourceKind: string, projectRoot: string, preExecuteScript: string, workingDirectory: string, defaultWorkingDirectory: string, pythonPreviewEnabled: boolean): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createProjectEntryLaunch(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createProjectEntryLaunch(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File, name: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createProjectEntryLaunch(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File, name: string, workingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createProjectEntryLaunch(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File, name: string, workingDirectory: string, defaultWorkingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createPythonProjectLaunch(admission: __javaRoots.orgRoot.autojs.autojs.script.PythonProjectLaunchAdmission): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createPythonProjectLaunch(admission: __javaRoots.orgRoot.autojs.autojs.script.PythonProjectLaunchAdmission, workingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public createPythonProjectLaunchForPreview$app(admission: __javaRoots.orgRoot.autojs.autojs.script.PythonProjectLaunchAdmission, workingDirectory: string, pythonPreviewEnabled: boolean): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createScriptLaunch(script: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createScriptLaunch(script: string, workingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createSemanticFileLaunch(sourceFile: __javaRoots.javaRoot.io.File, semanticPath: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createSemanticFileLaunch(sourceFile: __javaRoots.javaRoot.io.File, semanticPath: string, semanticUri: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createSemanticFileLaunch(sourceFile: __javaRoots.javaRoot.io.File, semanticPath: string, semanticUri: string, semanticDisplayName: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createSemanticFileLaunch(sourceFile: __javaRoots.javaRoot.io.File, semanticPath: string, semanticUri: string, semanticDisplayName: string, semanticMimeType: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createSemanticFileLaunch(sourceFile: __javaRoots.javaRoot.io.File, semanticPath: string, semanticUri: string, semanticDisplayName: string, semanticMimeType: string, workingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static createSemanticFileLaunch(sourceFile: __javaRoots.javaRoot.io.File, semanticPath: string, semanticUri: string, semanticDisplayName: string, semanticMimeType: string, workingDirectory: string, defaultWorkingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public createSemanticFileLaunchForPythonPreview$app(sourceFile: __javaRoots.javaRoot.io.File, semanticPath: string, semanticUri: string, semanticDisplayName: string, semanticMimeType: string, workingDirectory: string, defaultWorkingDirectory: string, pythonPreviewEnabled: boolean): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createSourceLaunch(source: __javaRoots.orgRoot.autojs.autojs.script.ScriptSource): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createSourceLaunch(source: __javaRoots.orgRoot.autojs.autojs.script.ScriptSource, workingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
 					public static createSourceLaunch(source: __javaRoots.orgRoot.autojs.autojs.script.ScriptSource, workingDirectory: string, defaultWorkingDirectory: string): __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch;
+					public static enforcePythonExternalUriBoundary(scheme: string, uriPath: string, uriText: string, displayName: string, explicitMimeType: string, providerMimeType: string): void;
+					public static enforcePythonLaunchBoundary(...locations: string[]): void;
+					public static enforcePythonMimeBoundary(mimeType: string): void;
+					public static resolvePythonImportExtension(displayName: string, uriPath: string, explicitMimeType: string, providerMimeType: string): string;
 					protected constructor();
 				}
 				export namespace ScriptLaunchSourceFactory {
@@ -14107,6 +14236,7 @@ declare namespace org {
 						public readonly engineName: string;
 						public readonly nodeProjectLaunchKind: __javaRoots.orgRoot.autojs.autojs.script.NodeProjectLaunchKind;
 						public readonly nodeProjectLaunchSource: __javaRoots.orgRoot.autojs.autojs.script.NodeProjectLaunchSource;
+						public readonly pythonProjectSource: __javaRoots.orgRoot.autojs.autojs.script.PythonProjectSource;
 						public readonly source: __javaRoots.orgRoot.autojs.autojs.script.ScriptSource;
 						public readonly workingDirectory: string;
 						public constructor(source: __javaRoots.orgRoot.autojs.autojs.script.ScriptSource, workingDirectory: string);
@@ -14121,6 +14251,7 @@ declare namespace org {
 						public getEngineName(): string;
 						public getNodeProjectLaunchKind(): __javaRoots.orgRoot.autojs.autojs.script.NodeProjectLaunchKind;
 						public getNodeProjectLaunchSource(): __javaRoots.orgRoot.autojs.autojs.script.NodeProjectLaunchSource;
+						public getPythonProjectSource(): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectSource;
 						public getSource(): __javaRoots.orgRoot.autojs.autojs.script.ScriptSource;
 						public getWorkingDirectory(): string;
 						public hashCode(): number;
@@ -14147,6 +14278,7 @@ declare namespace org {
 					public readonly overriddenFullPath: string;
 					public readonly prefix: string;
 					public constructor(sourceName: string);
+					public constructor(sourceName: string, extension: string);
 					public getElegantPath(): string;
 					public getEngineName(): string;
 					public getExtension(): string;
@@ -14240,19 +14372,26 @@ declare namespace org {
 					public readonly dataType: string;
 					public readonly intentFilter: __javaRoots.androidRoot.content.IntentFilter;
 					public readonly local: boolean;
+					public readonly projectRoot: string;
 					public readonly scriptPath: string;
+					public readonly sourceKind: string;
 					public constructor();
 					public getAction(): string;
 					public getCategory(): string;
 					public getDataType(): string;
 					public getIntentFilter(): __javaRoots.androidRoot.content.IntentFilter;
+					public getProjectRoot(): string;
 					public getScriptPath(): string;
+					public getSourceKind(): string;
 					public isLocal(): boolean;
 					public setAction(action: string): void;
 					public setCategory(category: string): void;
 					public setDataType(dataType: string): void;
 					public setLocal(local: boolean): void;
+					public setProjectRoot(projectRoot: string): void;
 					public setScriptPath(scriptPath: string): void;
+					public setScriptPathAndCaptureContext(scriptPath: string): void;
+					public setSourceKind(sourceKind: string): void;
 				}
 			}
 		}
@@ -14295,14 +14434,17 @@ declare namespace org {
 					public readonly monthOfYear: number;
 					public readonly monthly: boolean;
 					public readonly nextTime: number;
+					public readonly projectRoot: string;
 					public readonly repeatMode: number;
 					public readonly scheduled: boolean;
 					public readonly scriptPath: string;
+					public readonly sourceKind: string;
 					public readonly timeFlag: number;
 					public readonly weekly: boolean;
 					public readonly yearly: boolean;
 					public constructor();
 					public constructor(millis: number, timeFlag: number, scriptPath: string, config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig);
+					public captureLaunchContext(): void;
 					public static countdownTask(delayMillis: number, scriptPath: string, config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig): __javaRoots.orgRoot.autojs.autojs.timing.TimedTask;
 					public createIntent(): __javaRoots.androidRoot.content.Intent;
 					public createPendingIntent(context: __javaRoots.androidRoot.content.Context): __javaRoots.androidRoot.app.PendingIntent;
@@ -14321,8 +14463,10 @@ declare namespace org {
 					public getMonthOfYear(): number;
 					public getNextTime(): number;
 					public getNextTime(context: __javaRoots.androidRoot.content.Context): number;
+					public getProjectRoot(): string;
 					public getRepeatMode(): number;
 					public getScriptPath(): string;
+					public getSourceKind(): string;
 					public getTimeFlag(): number;
 					public hasDayOfWeek(context: __javaRoots.androidRoot.content.Context, dayOfWeek: number): boolean;
 					public isCountdown(): boolean;
@@ -14343,9 +14487,11 @@ declare namespace org {
 					public setLoopTimes(loopTimes: number): void;
 					public setMillis(millis: number): void;
 					public setMonthOfYear(monthOfYear: number): void;
+					public setProjectRoot(projectRoot: string): void;
 					public setRepeatMode(repeatMode: number): void;
 					public setScheduled(scheduled: boolean): void;
 					public setScriptPath(scriptPath: string): void;
+					public setSourceKind(sourceKind: string): void;
 					public setTimeFlag(time: number): void;
 					public toString(): string;
 					public static weeklyTask(time: __javaRoots.orgRoot.joda.time.LocalTime, timeFlag: number, scriptPath: string, config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig): __javaRoots.orgRoot.autojs.autojs.timing.TimedTask;
@@ -14982,6 +15128,7 @@ declare namespace org {
 					public static isVideoM3ULike($this$isVideoM3ULike: __javaRoots.javaRoot.io.File): boolean;
 					public static isWavefrontObjLike($this$isWavefrontObjLike: __javaRoots.javaRoot.io.File): boolean;
 					public static probeApk(file: __javaRoots.javaRoot.io.File): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.ApkProbeResult;
+					public sanitizeUriCacheFileName$app(rawName: string): string;
 					public toCacheFile($this$toCacheFile: __javaRoots.androidRoot.net.Uri, context: __javaRoots.androidRoot.content.Context, subDir: string, preferName: string, $completion: __javaRoots.kotlinRoot.coroutines.Continuation<any>): any;
 					public withSameNameExtension($this$withSameNameExtension: __javaRoots.javaRoot.io.File, extensionName: string): boolean;
 					protected constructor();
@@ -15056,6 +15203,16 @@ declare namespace org {
 						public hashCode(): number;
 						public toString(): string;
 					}
+					export class PreviewType extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType> {
+						public static readonly HTML: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
+						public static readonly MARKDOWN: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
+						public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType>;
+						public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType>;
+						public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
+						public static values(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType[];
+						protected constructor();
+						public static valueOf(...args: any[]): any;
+					}
 					export class TYPE extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE> {
 						public static readonly AAB: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly AAC: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -15086,7 +15243,9 @@ declare namespace org {
 						public static readonly AOB: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly APE: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly APK: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly APKM: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly APKS: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly APKZ: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly APK_WITH_NUMBER: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly APL: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly APP: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -15333,6 +15492,7 @@ declare namespace org {
 						public static readonly IDENTITY_INSTALLABLE: number;
 						public static readonly IDENTITY_MEDIA_MENU: number;
 						public static readonly IDENTITY_MEDIA_PLAYABLE: number;
+						public static readonly IDENTITY_PREVIEWABLE: number;
 						public static readonly IDENTITY_TEXT_EDITABLE: number;
 						public static readonly IDL: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly IDX: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -15441,6 +15601,7 @@ declare namespace org {
 						public static readonly MAN: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MANIFEST: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MARKDOWN: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly MARKDOWN_LONG: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MASTER: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MATLAB: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MAX: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -15448,7 +15609,11 @@ declare namespace org {
 						public static readonly MCR: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MDB: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MDF: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly MDOWN: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MDS: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly MDTEXT: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly MDTXT: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly MDWN: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MFL: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MFLAC: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MFLAC0: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -15462,6 +15627,8 @@ declare namespace org {
 						public static readonly MK: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MK3D: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MKA: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly MKD: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly MKDN: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MKS: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MKV: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly MLP: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -15642,6 +15809,7 @@ declare namespace org {
 						public static readonly QMCFLAC: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly QMCOGG: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly QT: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly QUARTO_MARKDOWN: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly R: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly RA: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly RACKET: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -15672,6 +15840,7 @@ declare namespace org {
 						public static readonly RUBY: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly RUST: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly RW2: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly R_MARKDOWN: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly S2K: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly S3M: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly SAMI: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -15693,6 +15862,7 @@ declare namespace org {
 						public static readonly SFX: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly SGF: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly SHELL: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly SHTM: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly SHTML: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly SIG: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly SIS: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -15849,6 +16019,7 @@ declare namespace org {
 						public static readonly XBM: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly XCI: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly XHT: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly XHTML: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly XLA: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly XLAM: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly XLK: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -15897,16 +16068,23 @@ declare namespace org {
 						public readonly extensionWithDot: string;
 						public readonly icon: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE.Icon;
 						public readonly identity: number;
+						public readonly previewType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
+						public readonly audioPlayable: boolean;
 						public readonly candidateCriteria: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.CandidateCriterion[];
 						public readonly executable: boolean;
 						public readonly externalEditable: boolean;
+						public readonly imageFile: boolean;
+						public readonly imageViewable: boolean;
 						public readonly installable: boolean;
 						public readonly mediaMenu: boolean;
 						public readonly mediaPlayable: boolean;
+						public readonly previewable: boolean;
 						public readonly priority: number;
 						public readonly textEditable: boolean;
 						public readonly typeData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TypeData;
 						public readonly typeName: string;
+						public readonly videoPlayable: boolean;
+						public readonly viewerType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.ViewerType;
 						public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE>;
 						public static determineBy(file: __javaRoots.javaRoot.io.File): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public getCandidateCriteria(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.CandidateCriterion[];
@@ -15914,12 +16092,18 @@ declare namespace org {
 						public getPriority(): number;
 						public getTypeData(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TypeData;
 						public getTypeName(): string;
+						public getViewerType(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.ViewerType;
+						public isAudioPlayable(): boolean;
 						public isExecutable(): boolean;
 						public isExternalEditable(): boolean;
+						public isImageFile(): boolean;
+						public isImageViewable(): boolean;
 						public isInstallable(): boolean;
 						public isMediaMenu(): boolean;
 						public isMediaPlayable(): boolean;
+						public isPreviewable(): boolean;
 						public isTextEditable(): boolean;
+						public isVideoPlayable(): boolean;
 						public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static values(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE[];
 						protected constructor();
@@ -15927,15 +16111,28 @@ declare namespace org {
 					}
 					export class TypeData {
 						public readonly identity: number;
+						public readonly previewType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
 						public readonly iconData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData;
-						public constructor(iconData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData, identity: number);
+						public constructor(iconData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData, identity: number, previewType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType);
 						public component1(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData;
 						public component2(): number;
-						public copy(iconData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData, identity: number): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TypeData;
+						public component3(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
+						public copy(iconData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData, identity: number, previewType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TypeData;
 						public equals(other: any): boolean;
 						public getIconData(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData;
 						public hashCode(): number;
 						public toString(): string;
+					}
+					export class ViewerType extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.ViewerType> {
+						public static readonly AUDIO: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.ViewerType;
+						public static readonly IMAGE: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.ViewerType;
+						public static readonly VIDEO: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.ViewerType;
+						public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.ViewerType>;
+						public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.ViewerType>;
+						public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.ViewerType;
+						public static values(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.ViewerType[];
+						protected constructor();
+						public static valueOf(...args: any[]): any;
 					}
 					export namespace TYPE {
 						export class Icon {
@@ -16539,12 +16736,37 @@ declare namespace org {
 //org.autojs.autojs.core.internal.Functions.VoidFunc3:3
 //org.autojs.autojs.core.internal.Functions.VoidFunc4:4
 //org.autojs.autojs.core.looper.ServantLooperHolder:1
+//org.autojs.autojs.core.looper.WakeUpOnRemoveSet:1
 //org.autojs.autojs.core.plugin.AidlPluginHost:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.DedicatedBinding:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.LeasedCall:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.retryAfterBinderFailure.1:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.withDedicatedServiceBinding.1:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.withService.1:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderDiscoveryPolicy.special..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderDiscoveryPolicy.special..inlined.thenBy.2:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderDiscoveryPolicy.special..inlined.thenBy.3:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderDiscoveryPolicy.special..inlined.thenBy.4:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderDiscoveryPolicy.special..inlined.thenBy.5:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderDiscoveryPolicy.special..inlined.thenBy.6:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderDiscoveryPolicy.special..inlined.thenBy.7:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderDiscoveryPolicy.special..inlined.thenBy.8:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderDiscoveryPolicy.special..inlined.thenBy.9:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderDiscoveryPolicy.special..inlined.thenByDescending.1:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderDiscoveryPolicy.special..inlined.thenByDescending.2:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderHandshakeCoordinator.MetadataValue:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderHandshakeCoordinator.MetadataValue.Value:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderModelListingCoordinator.MetadataValue:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderModelListingCoordinator.MetadataValue.Value:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderSelectionPolicy.special..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderSelectionPolicy.special..inlined.thenByDescending.1:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderSelectionPolicy.special..inlined.thenByDescending.2:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderSessionCoordinator.MetadataValue:1
+//org.autojs.autojs.core.plugin.ai.AiTextProviderSessionCoordinator.MetadataValue.Value:1
+//org.autojs.autojs.core.plugin.ai.HandshakeCloseSlot:1
+//org.autojs.autojs.core.plugin.ai.ModelListingCloseRegistry:1
+//org.autojs.autojs.core.plugin.ai.ModelListingCloseSlot:1
+//org.autojs.autojs.core.plugin.ai.SessionCoordinatorCloseSlot:1
 //org.autojs.autojs.core.plugin.barcode.BarcodePluginHost.retryAfterBinderFailure.1:1
 //org.autojs.autojs.core.plugin.barcode.BarcodePluginHost.withImagePfdService.1:1
 //org.autojs.autojs.core.plugin.barcode.BarcodePluginHost.withImagePfdServiceOnce.1:1
@@ -16571,16 +16793,58 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.center.PluginVariantPriorityStore.selectByPriority..inlined.compareBy.1:1
 //org.autojs.autojs.core.plugin.center.PluginVariantPriorityStore.selectByPriority..inlined.thenByDescending.1:1
 //org.autojs.autojs.core.plugin.center.PluginVisibilityStore.listHidden..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.dex.CloseOnceSlot:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerExperimentalPolicy.selectAndPin..inlined.compareByDescending.1:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerExperimentalPolicy.selectAndPin..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerExperimentalPolicy.selectAndPin..inlined.thenBy.2:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerExperimentalPolicy.selectAndPin..inlined.thenByDescending.1:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerPersistentCache.special..inlined.compareBy.1:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerPersistentCache.special..inlined.compareByDescending.1:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerPersistentCache.special..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerPersistentCache.special..inlined.thenBy.2:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerPersistentCache.special..inlined.thenBy.3:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerPersistentCache.special..inlined.thenByDescending.1:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerPersistentCache.special..inlined.thenByDescending.2:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerSingleFlight:2
+//org.autojs.autojs.core.plugin.dex.DexCompilerSingleFlight.JoinedFlight:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerSingleFlightCallerCoordinator:3
+//org.autojs.autojs.core.plugin.dex.DexCompilerSingleFlightCallerOutcome:2
+//org.autojs.autojs.core.plugin.dex.DexCompilerSingleFlightCallerOutcome.Failure:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerSingleFlightCallerOutcome.Value:2
+//org.autojs.autojs.core.plugin.dex.DexCompilerSingleFlightOutcome:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerSingleFlightOutcome.Value:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerSingleFlightTerminal:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerSingleFlightTerminal.Value:1
+//org.autojs.autojs.core.plugin.dex.DexCompilerSingleFlightValueSource:1
 //org.autojs.autojs.core.plugin.docs.OfflineDocsPluginHost.selectCandidate..inlined.compareBy.1:1
 //org.autojs.autojs.core.plugin.docs.OfflineDocsPluginHost.selectCandidate..inlined.thenBy.1:1
 //org.autojs.autojs.core.plugin.docs.OfflineDocsPluginStateMonitor.inspect..inlined.compareBy.1:1
 //org.autojs.autojs.core.plugin.docs.OfflineDocsPluginStateMonitor.inspect..inlined.thenBy.1:1
 //org.autojs.autojs.core.plugin.docs.OfflineDocsVerificationCache:1
 //org.autojs.autojs.core.plugin.docs.OfflineDocsVerificationCache.Entry:1
+//org.autojs.autojs.core.plugin.explorer.ExplorerActionRegistry.refresh.2.invokeSuspend..inlined.compareByDescending.1:1
+//org.autojs.autojs.core.plugin.explorer.ExplorerActionRegistry.refresh.2.invokeSuspend..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.explorer.ExplorerActionRegistry.refresh.2.invokeSuspend..inlined.thenBy.2:1
+//org.autojs.autojs.core.plugin.explorer.output.ExplorerActionOutputTransactionStore.list.lambda.0..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.ocr.OcrPluginHost.retryAfterBinderFailure.1:1
 //org.autojs.autojs.core.plugin.ocr.OcrPluginHost.withImagePfdService.1:1
 //org.autojs.autojs.core.plugin.ocr.OcrPluginHost.withImagePfdServiceOnce.1:1
 //org.autojs.autojs.core.plugin.ocr.OcrPluginHost.withService.1:1
+//org.autojs.autojs.core.plugin.python.PythonProjectWorkspacePolicy.plan..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.python.PythonProjectWorkspacePolicy.plan.visit..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeDispatchRegistry:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeDispatchRegistry.Cancellation:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeDispatchRegistry.Cancellation.AfterStart:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeDispatchRegistry.Cancellation.BeforeStart:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeDispatchRegistry.Opened:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeDispatchRegistry.Opened.CloseLate:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeDispatchRegistry.Opened.Owned:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeDispatchRegistry.Registration:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeDispatchRegistry.Start:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeDispatchRegistry.Start.Dispatch:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeProviderSelectionPolicy.special..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeProviderSelectionPolicy.special..inlined.thenByDescending.1:1
+//org.autojs.autojs.core.plugin.python.PythonRuntimeProviderSelectionPolicy.special..inlined.thenByDescending.2:1
 //org.autojs.autojs.core.ui.BiMap:2
 //org.autojs.autojs.core.ui.BiMaps.BiMapBuilder:2
 //org.autojs.autojs.core.ui.BiMaps.BiMapImpl:2
@@ -16692,6 +16956,7 @@ declare namespace org {
 //org.autojs.autojs.model.autocomplete.DictionaryTree.Node:1
 //org.autojs.autojs.project.FuzzyDeserializer:1
 //org.autojs.autojs.rhino.AndroidClassLoader.jarToDexR8..inlined.sortedBy.1:1
+//org.autojs.autojs.rhino.AndroidClassLoader.jarToDexR8..inlined.sortedBy.2:1
 //org.autojs.autojs.runtime.api.augment.proxy.JavaProxyObject:1
 //org.autojs.autojs.runtime.api.augment.selector.SelectorMethodResolver.resolve..inlined.sortedBy.1:1
 //org.autojs.autojs.runtime.api.augment.util.VersionCodes.Searcher.searchAll..inlined.sortedByDescending.1:1
@@ -16745,9 +17010,24 @@ declare namespace org {
 //org.autojs.autojs.ui.edit.editor.encoding.EditorEncodingRiskEvaluator.evaluate..inlined.thenByDescending.1:1
 //org.autojs.autojs.ui.edit.editor.service.EditorFileService.EmergencyDraftStore.cleanupLocked..inlined.sortedByDescending.1:1
 //org.autojs.autojs.ui.edit.keyboard.AceActionHistoryStore.persistRoot..inlined.sortedBy.1:1
+//org.autojs.autojs.ui.edit.theme.ColorThemeGenerator.generate..inlined.compareBy.1:1
+//org.autojs.autojs.ui.edit.theme.ColorThemeGenerator.generate..inlined.thenBy.1:1
+//org.autojs.autojs.ui.edit.theme.ColorThemeGenerator.generate..inlined.thenByDescending.1:1
 //org.autojs.autojs.ui.edit.toolbar.ToolbarFragment:1
 //org.autojs.autojs.ui.floating.LayoutFloatyWindow.switchWindow.lambda.1..inlined.compareBy.1:1
 //org.autojs.autojs.ui.fragment.BaseViewBindingFragment:1
+//org.autojs.autojs.ui.main.scripts.AndroidPackageArchiveInspector.chooseBase..inlined.sortedBy.1:1
+//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.compareBy.1:1
+//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.thenBy.1:1
+//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.thenBy.2:1
+//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select.lambda.19..inlined.sortedBy.1:1
+//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.selectSplitModules.lambda.0..inlined.compareByDescending.1:1
+//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.selectSplitModules.lambda.0..inlined.thenBy.1:1
+//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.selectStandaloneModules.lambda.0..inlined.compareByDescending.1:1
+//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.selectStandaloneModules.lambda.0..inlined.thenBy.1:1
+//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.ValueAlternatives:1
+//org.autojs.autojs.ui.settings.DexCompilerPreference.discoverEligibleCandidates..inlined.compareBy.1:1
+//org.autojs.autojs.ui.settings.DexCompilerPreference.discoverEligibleCandidates..inlined.thenBy.1:1
 //org.autojs.autojs.ui.settings.DisplayReleaseHistoryActivity.showCategoryFilterDialog.3.1.2.1:1
 //org.autojs.autojs.ui.settings.DisplayReleaseHistoryActivity.showProcessLogs.job.1.1.1:1
 //org.autojs.autojs.ui.settings.ReleaseHistoryAdapter.ReleaseHistoryViewHolder.bind..inlined.sortedByDescending.1:1

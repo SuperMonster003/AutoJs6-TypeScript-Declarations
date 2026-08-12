@@ -6773,6 +6773,7 @@ declare namespace com {
 				public onClick(v: __javaLibraryRoots.androidRoot.view.View): void;
 				public onItemSelected(dialog: __javaLibraryRoots.comRoot.afollestad.materialdialogs.MaterialDialog, view: __javaLibraryRoots.androidRoot.view.View, position: number, text: string, longPress: boolean): boolean;
 				public onShow(dialog: __javaLibraryRoots.androidRoot.content.DialogInterface): void;
+				public refreshThemeFromDelegate(): void;
 				public selectAllIndices(): void;
 				public selectAllIndices(sendCallback: boolean): void;
 				public setActionButton(which: __javaLibraryRoots.comRoot.afollestad.materialdialogs.DialogAction, titleRes: number): void;
@@ -6803,6 +6804,9 @@ declare namespace com {
 			export namespace MaterialDialog {
 				export class Builder {
 					public readonly context: __javaLibraryRoots.androidRoot.content.Context;
+					public readonly explicitNegativeColor: __javaLibraryRoots.androidRoot.content.res.ColorStateList;
+					public readonly explicitNeutralColor: __javaLibraryRoots.androidRoot.content.res.ColorStateList;
+					public readonly explicitPositiveColor: __javaLibraryRoots.androidRoot.content.res.ColorStateList;
 					public readonly itemColor: number;
 					public readonly regularFont: __javaLibraryRoots.androidRoot.graphics.Typeface;
 					public constructor(context: __javaLibraryRoots.androidRoot.content.Context);
@@ -6846,6 +6850,9 @@ declare namespace com {
 					public dividerColorAttr(colorAttr: number): __javaLibraryRoots.comRoot.afollestad.materialdialogs.MaterialDialog.Builder;
 					public dividerColorRes(colorRes: number): __javaLibraryRoots.comRoot.afollestad.materialdialogs.MaterialDialog.Builder;
 					public getContext(): __javaLibraryRoots.androidRoot.content.Context;
+					public getExplicitNegativeColor(): __javaLibraryRoots.androidRoot.content.res.ColorStateList;
+					public getExplicitNeutralColor(): __javaLibraryRoots.androidRoot.content.res.ColorStateList;
+					public getExplicitPositiveColor(): __javaLibraryRoots.androidRoot.content.res.ColorStateList;
 					public getItemColor(): number;
 					public getRegularFont(): __javaLibraryRoots.androidRoot.graphics.Typeface;
 					public icon(icon: __javaLibraryRoots.androidRoot.graphics.drawable.Drawable): __javaLibraryRoots.comRoot.afollestad.materialdialogs.MaterialDialog.Builder;
@@ -25687,6 +25694,8 @@ declare namespace org {
 //org.apache.commons.lang3.tuple.MutableTriple:3
 //org.apache.commons.lang3.tuple.Pair:2
 //org.apache.commons.lang3.tuple.Triple:3
+//org.autojs.plugin.protocol.wire.TaggedWireWriter.encode..inlined.compareBy.1:1
+//org.autojs.plugin.protocol.wire.TaggedWireWriter.encode..inlined.thenBy.1:1
 //org.hamcrest.BaseMatcher:1
 //org.hamcrest.Condition:1
 //org.hamcrest.Condition.Matched:1

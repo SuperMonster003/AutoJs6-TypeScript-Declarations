@@ -11,7 +11,7 @@
   <p>
     <a href="http://dts-project.autojs6.com/blob/main/package.json"><img alt="Version name" src="https://img.shields.io/badge/dynamic/json?color=534BAE&label=version&query=%24.version&url=https%3A%2F%2Fraw.githubusercontent.com%2FSuperMonster003%2FAutoJs6-TypeScript-Declarations%2Fmaster%2Fpackage.json"/></a>
     <a href="http://dts-issues.autojs6.com"><img alt="GitHub issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-TypeScript-Declarations?color=009688"/></a>
-    <a href="http://project.autojs6.com"><img alt="GitHub AutoJs6 repository" src="https://img.shields.io/badge/autojs6->=6.8.0%20Alpha7-388E3C"/></a>
+    <a href="http://project.autojs6.com"><img alt="GitHub AutoJs6 repository" src="https://img.shields.io/badge/autojs6->=6.8.0-388E3C"/></a>
     <a href="https://github.com/topics/javascript"><img alt="GitHub top language" src="https://img.shields.io/github/languages/top/SuperMonster003/AutoJs6-TypeScript-Declarations?color=3178C6"/></a>
    <br>
     <a href="https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/commit/f8250babdb161e12ad2e14c73e8aa2b5d7d89cbc"><img alt="Created" src="https://img.shields.io/date/1635813883?color=C56000&label=created"/></a>
@@ -29,7 +29,7 @@
 
 实现或增强开发工具的代码智能补全功能:
 
-* AutoJs6 版本: [不低于 6.8.0 Alpha7](http://download.autojs6.com)
+* AutoJs6 版本: [不低于 6.8.0](http://download.autojs6.com)
 * 支持的开发工具: [VSCode](https://code.visualstudio.com/download) / [WebStorm](https://www.jetbrains.com/webstorm/download/) / [HBuilderX](https://www.dcloud.io/hbuilderx.html) ...
 
 ******
@@ -146,6 +146,16 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.0.2
+
+###### 2026/08/12
+
+##### Python 引擎源码路由声明
+
+- `新增` `PythonScriptSource`, `PythonFileSource`, `PythonProjectSource` 和 `PersistedScriptLaunchContext` 等主应用声明, 并补齐 `IntentTask`/`TimedTask` 的 `sourceKind` 与 `projectRoot` 持久化上下文
+- `优化` 增加 `ScriptSource(sourceName, extension)` 构造签名, 同步 `engines.execScriptFile` 源码摘要, 明确 `.py` 路由及禁止回退到 JavaScript 引擎
+- `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
+
 # v4.0.1
 
 ###### 2026/08/11
@@ -167,17 +177,6 @@ npm update @sm003/autojs6-dts
 - `优化` 补齐运行时挂载, `$` 前缀别名及关键全局对象 smoke 样例
 - `依赖` 重新生成并整合 Android/AutoJs6 主应用, 资源及三方库声明
 - `调整` 发布入口统一为 `declarations/autojs6/index.d.ts`, 移除旧入口及生成分片
-
-# v3.0.0
-
-###### 2026/06/15
-
-* `新增` converter/formatter/sysprops/zip/nanoid/mediainfo/pinyin4j/jsox 等内置模块声明文件
-* `优化` 适配 AutoJs6 6.7.1 Alpha4 内置模块 API 声明
-* `优化` 完善 index 入口引用/全局变量声明及 `$` 前缀模块别名
-* `优化` 同步 colors/Color/images/Canvas/pinyin/mime/sqlite/media/recorder/tasks 等既有模块声明
-* `优化` 增加关键全局对象 smoke 样例及 TypeScript 验证命令记录
-* `依赖` 刷新 Android/AutoJs6 主应用及三方库生成声明文件
 
 ##### 更多版本历史可参阅
 
