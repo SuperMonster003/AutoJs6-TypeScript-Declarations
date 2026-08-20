@@ -4386,6 +4386,10 @@ declare namespace org {
 					public static error_invalid_selector_map_element: number;
 					public static error_ip_address_should_not_be_empty: number;
 					public static error_ipv6_port_requires_brackets: number;
+					public static error_lua_runtime_ambiguous: number;
+					public static error_lua_runtime_identity_or_bind: number;
+					public static error_lua_runtime_incompatible: number;
+					public static error_lua_runtime_unavailable: number;
 					public static error_max_listeners_exceeded: number;
 					public static error_may_not_have_root_access_to_run_auto_file: number;
 					public static error_method_called_with_null_argument: number;
@@ -4442,6 +4446,7 @@ declare namespace org {
 					public static error_resolved_path_for_a_relative_path_cannot_be_null: number;
 					public static error_save_failed: number;
 					public static error_script_is_on_exiting: number;
+					public static error_script_shortcut_descriptor_mismatch: number;
 					public static error_selector_method_without_calling: number;
 					public static error_selector_result_type_with_compass: number;
 					public static error_set_both_icon_res_and_icon: number;
@@ -4546,6 +4551,7 @@ declare namespace org {
 					public static key_ace_print_margin_enabled: number;
 					public static key_ace_word_wrap_enabled: number;
 					public static key_ai_default_profile: number;
+					public static key_ai_local_plugin: number;
 					public static key_ai_profiles: number;
 					public static key_ai_settings: number;
 					public static key_all_files_access: number;
@@ -5511,6 +5517,8 @@ declare namespace org {
 					public static summary_ai_default_profile: number;
 					public static summary_ai_default_profile_none: number;
 					public static summary_ai_default_profile_unavailable: number;
+					public static summary_ai_local_plugin_installed: number;
+					public static summary_ai_local_plugin_not_installed: number;
 					public static summary_ai_profile: number;
 					public static summary_ai_profile_unavailable: number;
 					public static summary_all_files_access: number;
@@ -5671,6 +5679,7 @@ declare namespace org {
 					public static text_ai_delete_profile_confirm: number;
 					public static text_ai_delete_unavailable_profile_confirm: number;
 					public static text_ai_edit_profile: number;
+					public static text_ai_local_plugin: number;
 					public static text_ai_model: number;
 					public static text_ai_new_profile: number;
 					public static text_ai_profile_unavailable: number;

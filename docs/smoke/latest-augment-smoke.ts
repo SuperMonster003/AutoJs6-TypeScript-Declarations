@@ -3,13 +3,13 @@
 let aiText: Promise<string> = ai('Summarize this text.');
 let localAiPlugin: Internal.Ai.PluginSelection = {
     component: {
-        packageName: 'io.github.supermonster003.autojs6.plugin.ai.text',
-        className: 'io.github.supermonster003.autojs6.plugin.ai.text.provider.AiTextProviderService',
+        packageName: 'io.github.supermonster003.autojs6.plugin.ondeviceai',
+        className: 'io.github.supermonster003.autojs6.plugin.ondeviceai.provider.OnDeviceAiProviderService',
     },
-    providerId: 'autojs6.local.text',
+    providerId: 'autojs6.on-device-ai',
     modelId: 'litertlm.0123456789abcdef0123456789abcdef',
 };
-let localAiText: Promise<string> = ai('Reply with OK', {
+let localOnDeviceResult: Promise<string> = ai('Reply with OK', {
     plugin: localAiPlugin,
     timeout: 30_000,
 });
@@ -44,7 +44,7 @@ aiStream.on('delta', (text, chunk) => {
     void text;
     void complete;
 });
-void localAiText;
+void localOnDeviceResult;
 void localAiAskText;
 
 let speech: Promise<Internal.Tts.Result> = tts('Hello');
