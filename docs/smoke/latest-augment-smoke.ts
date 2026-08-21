@@ -29,6 +29,14 @@ let localAiChat: Promise<Internal.Ai.PluginChatResponse> = $ai.chat('Reply with 
     temperature: 0.7,
     topK: 40,
     topP: 0.9,
+    responseSchema: {
+        type: 'object',
+        properties: {
+            answer: { type: 'string' },
+            ok: { type: 'boolean' },
+        },
+        required: ['answer', 'ok'],
+    },
 });
 localAiChat.then(response => {
     let route: 'plugin' = response.route;
@@ -50,6 +58,12 @@ let localAiSession: Promise<Internal.Ai.Session> = ai.session({
     plugin: officialAiPlugin,
     system: 'Remember the first answer.',
     maxTokens: 64,
+    structuredJson: true,
+    responseSchema: {
+        type: 'object',
+        properties: { answer: { type: 'string' } },
+        required: ['answer'],
+    },
 });
 localAiSession.then(session => {
     let provider: string = session.provider;
@@ -90,6 +104,10 @@ $ai.ask('Reply with OK', { plugin: localAiPlugin, provider: 'openai' });
 $ai.ask('Reply with OK', { plugin: { component: localAiPlugin.component } });
 // @ts-expect-error Model listing does not accept generation controls.
 $ai.models({ temperature: 0.7 });
+// @ts-expect-error Model listing does not accept structured generation controls.
+$ai.models({ structuredJson: true });
+// @ts-expect-error A response schema must be a JSON object, not an array.
+$ai.ask('Reply with JSON', { plugin: true, responseSchema: [] });
 // @ts-expect-error Persistent sessions accept one new prompt string per turn, not message history.
 localAiSession.then(session => session.ask([{ role: 'user', content: 'No history arrays' }]));
 let aiReply: Promise<Internal.Ai.Response> = $ai.chat({

@@ -146,6 +146,17 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.0.6
+
+###### 2026/08/21
+
+##### AI 本机结构化 JSON 声明
+
+- `新增` 本机插件路由及持久会话的 `structuredJson` 和 `responseSchema` 选项
+- `约束` `responseSchema` 必须是 JSON 对象并会隐式启用结构化输出, 会话创建后为每轮固定同一 schema
+- `精确` `ai.ask` 及响应 `text` 仍返回完整 JSON 文本, 流式增量仍为可能尚未完整的文本片段
+- `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
+
 # v4.0.5
 
 ###### 2026/08/21
@@ -166,17 +177,6 @@ npm update @sm003/autojs6-dts
 - `新增` `ai.chat`, `ai.stream` 和 `ai.models` 的本机插件重载, 覆盖路由响应, 流式事件及模型目录
 - `完善` 官方插件简写, 第三方组件选择, 多轮纯文本消息及本地生成参数声明
 - `精确` 插件 token 用量, 生成耗时, 可空模型 ID 及稳定路由错误类型
-- `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
-
-# v4.0.3
-
-###### 2026/08/21
-
-##### YOLO 独立插件目标检测声明
-
-- `新增` `yolo`/`$yolo` 模块及 `load`, `detect`, `close` 声明, 覆盖会话选项, 检测结果及稳定错误代码
-- `约束` 声明显式 Provider 组件, CPU 设备及线程, 阈值, 结果数和超时范围
-- `优化` 同步 Node 插件运行器的主应用声明, 移除已淘汰的 NativeNodeEmbedded 和 libuv 诊断桥接声明
 - `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
 
 ##### 更多版本历史可参阅

@@ -124,6 +124,10 @@ declare namespace Internal {
             topP?: number | null;
             /** Provider-enforced output-token ceiling from 1 through 2,147,483,647. */
             maxTokens?: number | null;
+            /** Enables native JSON Schema constrained decoding; defaults to false. */
+            structuredJson?: boolean | null;
+            /** JSON Schema object; providing it also enables structured JSON output. */
+            responseSchema?: JsonObject | null;
             timeout?: number | null;
             timeoutMillis?: number | null;
             timeoutMs?: number | null;
@@ -162,6 +166,10 @@ declare namespace Internal {
             topP?: number | null;
             /** Provider-enforced per-turn output-token ceiling from 1 through 2,147,483,647. */
             maxTokens?: number | null;
+            /** Enables native JSON Schema constrained decoding for every turn. */
+            structuredJson?: boolean | null;
+            /** Fixed JSON Schema object; providing it also enables structured JSON output. */
+            responseSchema?: JsonObject | null;
             /** Per-turn timeout in milliseconds; defaults to 120,000. */
             timeout?: number | null;
             timeoutMillis?: number | null;
@@ -193,6 +201,8 @@ declare namespace Internal {
             topK?: never;
             topP?: never;
             maxTokens?: never;
+            structuredJson?: never;
+            responseSchema?: never;
             profile?: never;
             profileId?: never;
             profile_id?: never;
