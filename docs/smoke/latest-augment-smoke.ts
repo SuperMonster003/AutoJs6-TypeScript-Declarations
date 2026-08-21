@@ -93,6 +93,26 @@ let ocrText: string[] = ocr.mlkit({
 let resized: ImageWrapper = images.resize('/sdcard/image.png', [720, 1280], 'INTER_LINEAR');
 let square: ImageWrapper = images.resize(resized, [512], 'nearest-exact');
 let flipped: ImageWrapper = images.flip(square, 'horizontal');
+let yoloDetector: Internal.Yolo.Detector = yolo.load('/sdcard/models/yolo11n', {
+    component: 'io.github.supermonster003.autojs6.plugin.yolo.ncnn/.provider.YoloProviderService',
+    device: 'cpu',
+    threads: 4,
+    decoderId: 'ultralytics-detect',
+    timeoutMillis: 120_000,
+});
+let yoloDetections: Internal.Yolo.Detection[] = yoloDetector.detect(resized, {
+    confidence: 0.25,
+    iouThreshold: 0.45,
+    maxDetections: 100,
+    timeoutMillis: 30_000,
+});
+let yoloBounds: android.graphics.RectF | undefined = yoloDetections[0]?.bounds;
+let yoloAlias: Internal.Yolo = $yolo;
+// @ts-expect-error An exact provider component is required.
+yolo.load('/sdcard/models/yolo11n', {});
+// @ts-expect-error The Preview contract only supports the CPU device.
+$yolo.load('/sdcard/models/yolo11n', { component: 'example/.Provider', device: 'gpu' });
+yoloDetector.close();
 let barcodeTexts: string[] = barcode.recognizeText('/sdcard/image.png', {}, true);
 let qrCodeTexts: string[] = qrcode.recognizeText(true);
 let colorPoint: OpenCV.Point | null = images.findPointByColor('/sdcard/image.png', '#FF7043', {
@@ -147,6 +167,9 @@ void plugin;
 void ocrText;
 void square;
 void flipped;
+void yoloDetections;
+void yoloBounds;
+void yoloAlias;
 void barcodeTexts;
 void qrCodeTexts;
 void colorPoint;

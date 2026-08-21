@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jul 27, 2026
+// Last modified: Aug 21, 2026
 //
 // noinspection JSUnusedGlobalSymbols
 
@@ -138,6 +138,9 @@ declare let $util: Internal.Util;
 
 declare let web: Internal.Web;
 declare let $web: Internal.Web;
+
+declare let yolo: Internal.Yolo;
+declare let $yolo: Internal.Yolo;
 
 declare let opencc: Internal.OpenCC;
 declare let $opencc: Internal.OpenCC;

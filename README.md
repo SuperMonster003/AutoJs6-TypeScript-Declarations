@@ -146,6 +146,17 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.0.3
+
+###### 2026/08/21
+
+##### YOLO 独立插件目标检测声明
+
+- `新增` `yolo`/`$yolo` 模块及 `load`, `detect`, `close` 声明, 覆盖会话选项, 检测结果及稳定错误代码
+- `约束` 声明显式 Provider 组件, CPU 设备及线程, 阈值, 结果数和超时范围
+- `优化` 同步 Node 插件运行器的主应用声明, 移除已淘汰的 NativeNodeEmbedded 和 libuv 诊断桥接声明
+- `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
+
 # v4.0.2
 
 ###### 2026/08/12
@@ -164,19 +175,6 @@ npm update @sm003/autojs6-dts
 
 - `新增` ai/ask 的本机文本生成插件显式选择重载及组件, 提供商和模型类型
 - `约束` 插件选项仅支持单条 user 文本和超时, 并禁止与云端提供商选项混用
-
-# v4.0.0
-
-###### 2026/07/27
-
-##### AutoJs6 6.8.0 Alpha7 声明同步与生成声明整合
-
-- `新增` ai/tts/powerManager/settings/workManager 模块声明及运行时别名
-- `优化` 适配 AutoJs6 6.8.0 Alpha7 内置模块 API 声明
-- `优化` 同步 tasks/app/images/ocr/plugins/web 等模块的签名, 别名, 空值及返回类型
-- `优化` 补齐运行时挂载, `$` 前缀别名及关键全局对象 smoke 样例
-- `依赖` 重新生成并整合 Android/AutoJs6 主应用, 资源及三方库声明
-- `调整` 发布入口统一为 `declarations/autojs6/index.d.ts`, 移除旧入口及生成分片
 
 ##### 更多版本历史可参阅
 
