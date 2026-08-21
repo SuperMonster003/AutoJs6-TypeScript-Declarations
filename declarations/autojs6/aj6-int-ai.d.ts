@@ -17,17 +17,23 @@ declare namespace Internal {
 
     interface Ai {
 
-        (input: Ai.PluginAskInput, options: Ai.PluginAskOptions): Promise<string>;
+        (input: Ai.PluginInput, options: Ai.PluginAskOptions): Promise<string>;
 
         (input: Ai.Input, options?: Ai.Options): Promise<string>;
 
-        ask(input: Ai.PluginAskInput, options: Ai.PluginAskOptions): Promise<string>;
+        ask(input: Ai.PluginInput, options: Ai.PluginAskOptions): Promise<string>;
 
         ask(input: Ai.Input, options?: Ai.Options): Promise<string>;
 
+        chat(input: Ai.PluginInput, options: Ai.PluginChatOptions): Promise<Ai.PluginChatResponse>;
+
         chat(input: Ai.Input, options?: Ai.Options): Promise<Ai.Response>;
 
+        stream(input: Ai.PluginInput, options: Ai.PluginStreamOptions): Ai.PluginStream;
+
         stream(input: Ai.Input, options?: Ai.Options): Ai.Stream;
+
+        models(options?: Ai.PluginModelListOptions | null): Promise<Ai.PluginModel[]>;
 
         profiles(): Ai.Profile[];
 
@@ -60,38 +66,97 @@ declare namespace Internal {
 
         type Input = string | MessageWithContent | Message[] | Request;
 
-        interface PluginAskMessage {
+        interface PluginMessage {
             role: 'system' | 'user' | 'assistant';
             content: string;
         }
 
-        interface PluginAskUserMessage extends PluginAskMessage {
+        interface PluginUserMessage extends PluginMessage {
             role: 'user';
         }
 
-        type PluginAskInput = string | PluginAskUserMessage | [...PluginAskMessage[], PluginAskUserMessage];
+        type PluginInput = string | PluginUserMessage | [...PluginMessage[], PluginUserMessage];
+
+        /** @deprecated Use {@link PluginMessage}. */
+        type PluginAskMessage = PluginMessage;
+
+        /** @deprecated Use {@link PluginUserMessage}. */
+        type PluginAskUserMessage = PluginUserMessage;
+
+        /** @deprecated Use {@link PluginInput}. */
+        type PluginAskInput = PluginInput;
 
         interface PluginComponent {
             packageName: string;
             className: string;
         }
 
+        /** Selects an exact third-party plugin component and provider. */
         interface PluginSelection {
             component: PluginComponent;
             providerId: string;
-            modelId: string;
+            modelId?: string | null;
         }
 
+        /** Selects the official on-device plugin when component is omitted. */
+        interface OfficialPluginSelection {
+            component?: never;
+            providerId?: string | null;
+            modelId?: string | null;
+        }
+
+        type PluginSelector = true | OfficialPluginSelection | PluginSelection;
+
         /**
-         * Explicit, ask-only local plugin route. Cloud provider controls and
-         * provider-native request options cannot be combined with this shape.
+         * Explicit local plugin route. Cloud provider controls and provider-native
+         * request options cannot be combined with this shape.
          */
-        interface PluginAskOptions {
-            plugin: PluginSelection;
+        interface PluginRouteOptions {
+            plugin: PluginSelector;
+            /** Finite, non-negative sampling temperature. */
+            temperature?: number | null;
+            /** Positive-integer top-K sampling limit. */
+            topK?: number | null;
+            /** Finite top-P sampling threshold in the inclusive range 0 through 1. */
+            topP?: number | null;
+            /** Provider-enforced output-token ceiling from 1 through 2,147,483,647. */
+            maxTokens?: number | null;
             timeout?: number | null;
             timeoutMillis?: number | null;
             timeoutMs?: number | null;
             timeout_millis?: number | null;
+            profile?: never;
+            profileId?: never;
+            profile_id?: never;
+            provider?: never;
+            providerId?: never;
+            provider_id?: never;
+            baseUrl?: never;
+            baseURL?: never;
+            base_url?: never;
+            model?: never;
+            apiKey?: never;
+            api_key?: never;
+            stream?: never;
+        }
+
+        type PluginAskOptions = PluginRouteOptions;
+
+        type PluginChatOptions = PluginRouteOptions;
+
+        type PluginStreamOptions = PluginRouteOptions;
+
+        /** Options for {@link Internal.Ai.models}; the official plugin is the default. */
+        interface PluginModelListOptions {
+            plugin?: PluginSelector;
+            timeout?: number | null;
+            timeoutMillis?: number | null;
+            timeoutMs?: number | null;
+            timeout_millis?: number | null;
+            temperature?: never;
+            topK?: never;
+            topP?: never;
+            maxTokens?: never;
             profile?: never;
             profileId?: never;
             profile_id?: never;
@@ -185,6 +250,16 @@ declare namespace Internal {
             raw: JsonObject | null;
         }
 
+        interface PluginUsageRaw extends JsonObject {
+            durationMillis: number;
+        }
+
+        interface PluginUsage extends Usage {
+            reasoningTokens: null;
+            cachedInputTokens: null;
+            raw: PluginUsageRaw | null;
+        }
+
         interface ProviderError {
             type: string | null;
             code: string | null;
@@ -205,6 +280,21 @@ declare namespace Internal {
             model: string;
         }
 
+        interface PluginChatResponse {
+            text: string;
+            reasoning: '';
+            toolCalls: [];
+            usage: PluginUsage;
+            finishReason: null;
+            message: null;
+            error: null;
+            raw: null;
+            profile: null;
+            route: 'plugin';
+            provider: string;
+            model: string | null;
+        }
+
         interface StreamChunk {
             text: string;
             reasoning: string;
@@ -213,6 +303,45 @@ declare namespace Internal {
             finishReason: string | null;
             done: boolean;
             raw: JsonValue;
+        }
+
+        interface PluginStreamMetadata {
+            route: 'plugin';
+            provider: string;
+            model: string | null;
+        }
+
+        interface PluginStreamChunk {
+            text: string;
+            reasoning: '';
+            toolCalls: [];
+            usage: null;
+            finishReason: null;
+            done: false;
+            raw: null;
+        }
+
+        interface PluginStreamResponse {
+            text: string;
+            reasoning: '';
+            toolCalls: [];
+            usage: PluginUsage;
+            finishReason: null;
+            message: null;
+            error: null;
+            raw: null;
+            profile: null;
+            route: 'plugin';
+            provider: string;
+            model: string | null;
+        }
+
+        interface PluginModel {
+            modelId: string;
+            displayName: string;
+            capabilityIds: string[];
+            maximumContextBytes: number;
+            maximumOutputBytes: number;
         }
 
         interface PublicError {
@@ -224,6 +353,13 @@ declare namespace Internal {
             code?: string | null;
             type?: string | null;
             requestId?: string | null;
+        }
+
+        interface PluginStreamError {
+            name: string;
+            message: string;
+            route: 'plugin';
+            code: string;
         }
 
         interface Stream extends EventEmitter$ {
@@ -247,6 +383,31 @@ declare namespace Internal {
             once(eventName: 'usage', listener: (usage: Usage) => void): this;
             once(eventName: 'done', listener: (response: Response) => void): this;
             once(eventName: 'error', listener: (error: PublicError) => void): this;
+            once(eventName: 'cancelled', listener: () => void): this;
+            once(eventName: string, listener: (...args: any[]) => void): this;
+
+            cancel(): this;
+        }
+
+        interface PluginStream extends EventEmitter$ {
+            readonly state: 'created' | 'open' | 'done' | 'error' | 'cancelled';
+            readonly isDone: boolean;
+
+            on(eventName: 'open', listener: (metadata: PluginStreamMetadata) => void): this;
+            on(eventName: 'delta', listener: (text: string, chunk: PluginStreamChunk) => void): this;
+            on(eventName: 'chunk', listener: (chunk: PluginStreamChunk) => void): this;
+            on(eventName: 'usage', listener: (usage: PluginUsage) => void): this;
+            on(eventName: 'done', listener: (response: PluginStreamResponse) => void): this;
+            on(eventName: 'error', listener: (error: PluginStreamError) => void): this;
+            on(eventName: 'cancelled', listener: () => void): this;
+            on(eventName: string, listener: (...args: any[]) => void): this;
+
+            once(eventName: 'open', listener: (metadata: PluginStreamMetadata) => void): this;
+            once(eventName: 'delta', listener: (text: string, chunk: PluginStreamChunk) => void): this;
+            once(eventName: 'chunk', listener: (chunk: PluginStreamChunk) => void): this;
+            once(eventName: 'usage', listener: (usage: PluginUsage) => void): this;
+            once(eventName: 'done', listener: (response: PluginStreamResponse) => void): this;
+            once(eventName: 'error', listener: (error: PluginStreamError) => void): this;
             once(eventName: 'cancelled', listener: () => void): this;
             once(eventName: string, listener: (...args: any[]) => void): this;
 

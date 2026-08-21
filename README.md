@@ -146,6 +146,17 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.0.4
+
+###### 2026/08/21
+
+##### AI 本机插件路由声明完善
+
+- `新增` `ai.chat`, `ai.stream` 和 `ai.models` 的本机插件重载, 覆盖路由响应, 流式事件及模型目录
+- `完善` 官方插件简写, 第三方组件选择, 多轮纯文本消息及本地生成参数声明
+- `精确` 插件 token 用量, 生成耗时, 可空模型 ID 及稳定路由错误类型
+- `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
+
 # v4.0.3
 
 ###### 2026/08/21
@@ -166,15 +177,6 @@ npm update @sm003/autojs6-dts
 - `新增` `PythonScriptSource`, `PythonFileSource`, `PythonProjectSource` 和 `PersistedScriptLaunchContext` 等主应用声明, 并补齐 `IntentTask`/`TimedTask` 的 `sourceKind` 与 `projectRoot` 持久化上下文
 - `优化` 增加 `ScriptSource(sourceName, extension)` 构造签名, 同步 `engines.execScriptFile` 源码摘要, 明确 `.py` 路由及禁止回退到 JavaScript 引擎
 - `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
-
-# v4.0.1
-
-###### 2026/08/11
-
-##### AI 本机文本生成插件显式选择声明
-
-- `新增` ai/ask 的本机文本生成插件显式选择重载及组件, 提供商和模型类型
-- `约束` 插件选项仅支持单条 user 文本和超时, 并禁止与云端提供商选项混用
 
 ##### 更多版本历史可参阅
 

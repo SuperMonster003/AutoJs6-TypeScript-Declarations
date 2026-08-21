@@ -9,17 +9,65 @@ let localAiPlugin: Internal.Ai.PluginSelection = {
     providerId: 'autojs6.on-device-ai',
     modelId: 'litertlm.0123456789abcdef0123456789abcdef',
 };
+let officialAiPlugin: Internal.Ai.PluginSelector = {
+    modelId: 'litertlm.0123456789abcdef0123456789abcdef',
+};
 let localOnDeviceResult: Promise<string> = ai('Reply with OK', {
     plugin: localAiPlugin,
     timeout: 30_000,
 });
-let localAiAskText: Promise<string> = $ai.ask('Reply with OK', {
-    plugin: localAiPlugin,
+let localAiAskText: Promise<string> = $ai.ask([
+    { role: 'system', content: 'Answer briefly.' },
+    { role: 'assistant', content: 'Understood.' },
+    { role: 'user', content: 'Reply with OK.' },
+], {
+    plugin: true,
+    maxTokens: 16,
 });
-// @ts-expect-error Local plugin selection is not supported by chat.
-$ai.chat('Reply with OK', { plugin: localAiPlugin });
+let localAiChat: Promise<Internal.Ai.PluginChatResponse> = $ai.chat('Reply with OK', {
+    plugin: officialAiPlugin,
+    temperature: 0.7,
+    topK: 40,
+    topP: 0.9,
+});
+localAiChat.then(response => {
+    let route: 'plugin' = response.route;
+    let inputTokens: number | null = response.usage.inputTokens;
+    let durationMillis: number | undefined = response.usage.raw?.durationMillis;
+    void route;
+    void inputTokens;
+    void durationMillis;
+});
+let localAiModels: Promise<Internal.Ai.PluginModel[]> = ai.models();
+let selectedLocalAiModels: Promise<Internal.Ai.PluginModel[]> = $ai.models({
+    plugin: localAiPlugin,
+    timeoutMillis: 30_000,
+});
+let localAiStream: Internal.Ai.PluginStream = ai.stream('Count from 1 to 3', {
+    plugin: true,
+});
+localAiStream.on('open', metadata => {
+    let route: 'plugin' = metadata.route;
+    let selectedModel: string | null = metadata.model;
+    void route;
+    void selectedModel;
+});
+localAiStream.on('usage', usage => {
+    let outputTokens: number | null = usage.outputTokens;
+    void outputTokens;
+});
+localAiStream.on('done', response => {
+    let generatedText: string = response.text;
+    let usage: Internal.Ai.PluginUsage = response.usage;
+    void generatedText;
+    void usage;
+});
 // @ts-expect-error Local plugin selection cannot be mixed with cloud controls.
 $ai.ask('Reply with OK', { plugin: localAiPlugin, provider: 'openai' });
+// @ts-expect-error An explicit third-party component also requires providerId.
+$ai.ask('Reply with OK', { plugin: { component: localAiPlugin.component } });
+// @ts-expect-error Model listing does not accept generation controls.
+$ai.models({ temperature: 0.7 });
 let aiReply: Promise<Internal.Ai.Response> = $ai.chat({
     role: 'user',
     content: 'Hello',
@@ -46,6 +94,10 @@ aiStream.on('delta', (text, chunk) => {
 });
 void localOnDeviceResult;
 void localAiAskText;
+void localAiChat;
+void localAiModels;
+void selectedLocalAiModels;
+void localAiStream;
 
 let speech: Promise<Internal.Tts.Result> = tts('Hello');
 let utterance: Internal.Tts.Utterance = $tts.speakTask('Hello', {
