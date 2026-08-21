@@ -110,6 +110,9 @@ declare namespace Internal {
 
         type PluginSelector = true | OfficialPluginSelection | PluginSelection;
 
+        /** Explicit LiteRT-LM inference backend profile for the local plugin route. */
+        type PluginBackend = 'cpu' | 'gpu' | 'npu';
+
         /**
          * Explicit local plugin route. Cloud provider controls and provider-native
          * request options cannot be combined with this shape.
@@ -124,6 +127,8 @@ declare namespace Internal {
             topP?: number | null;
             /** Provider-enforced output-token ceiling from 1 through 2,147,483,647. */
             maxTokens?: number | null;
+            /** Defaults to CPU; unavailable profiles are rejected without fallback. */
+            backend?: PluginBackend | null;
             /** Enables native JSON Schema constrained decoding; defaults to false. */
             structuredJson?: boolean | null;
             /** JSON Schema object; providing it also enables structured JSON output. */
@@ -166,6 +171,8 @@ declare namespace Internal {
             topP?: number | null;
             /** Provider-enforced per-turn output-token ceiling from 1 through 2,147,483,647. */
             maxTokens?: number | null;
+            /** Fixed for the lifetime of the persistent Conversation; defaults to CPU. */
+            backend?: PluginBackend | null;
             /** Enables native JSON Schema constrained decoding for every turn. */
             structuredJson?: boolean | null;
             /** Fixed JSON Schema object; providing it also enables structured JSON output. */
@@ -201,6 +208,7 @@ declare namespace Internal {
             topK?: never;
             topP?: never;
             maxTokens?: never;
+            backend?: never;
             structuredJson?: never;
             responseSchema?: never;
             profile?: never;
@@ -220,6 +228,7 @@ declare namespace Internal {
 
         interface Options {
             plugin?: never;
+            backend?: never;
             profile?: string | null;
             profileId?: string | null;
             profile_id?: string | null;
@@ -388,7 +397,25 @@ declare namespace Internal {
             capabilityIds: string[];
             maximumContextBytes: number;
             maximumOutputBytes: number;
+            backendProfiles: PluginBackendProfile[];
         }
+
+        interface AvailablePluginBackendProfile {
+            id: PluginBackend;
+            availability: 'available';
+            unavailableReason?: never;
+        }
+
+        interface UnavailablePluginBackendProfile {
+            id: PluginBackend;
+            availability: 'unavailable';
+            unavailableReason:
+                | 'abi-unsupported'
+                | 'opencl-library-unavailable'
+                | 'npu-runtime-not-packaged';
+        }
+
+        type PluginBackendProfile = AvailablePluginBackendProfile | UnavailablePluginBackendProfile;
 
         interface Session {
             readonly provider: string;

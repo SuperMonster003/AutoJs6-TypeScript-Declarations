@@ -146,6 +146,17 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.0.7
+
+###### 2026/08/21
+
+##### AI 本机 backend profile 声明
+
+- `新增` 本机插件生成及持久会话的 `backend` 选项, 覆盖 `cpu`, `gpu` 和 `npu`, 默认 CPU 且不可用 profile 不回退
+- `新增` `ai.models` 的 `backendProfiles` 判别联合类型, 精确声明设备可用性及稳定不可用原因
+- `约束` 模型枚举和云端提供商选项禁止误用本机 `backend`, 持久会话创建后固定同一 profile
+- `依赖` 同步 AutoJs6 主应用与 Ace Editor 内置声明
+
 # v4.0.6
 
 ###### 2026/08/21
@@ -166,17 +177,6 @@ npm update @sm003/autojs6-dts
 - `新增` `ai.session` 及持久会话选项, 覆盖官方插件简写, system preface 和固定生成参数
 - `新增` `Ai.Session` 的 `ask`, `chat`, `stream`, `close` 方法及只读状态, 提供商和模型属性
 - `约束` 会话轮次仅接收当前用户提示字符串, 明确流式取消会关闭整个会话
-- `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
-
-# v4.0.4
-
-###### 2026/08/21
-
-##### AI 本机插件路由声明完善
-
-- `新增` `ai.chat`, `ai.stream` 和 `ai.models` 的本机插件重载, 覆盖路由响应, 流式事件及模型目录
-- `完善` 官方插件简写, 第三方组件选择, 多轮纯文本消息及本地生成参数声明
-- `精确` 插件 token 用量, 生成耗时, 可空模型 ID 及稳定路由错误类型
 - `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
 
 ##### 更多版本历史可参阅

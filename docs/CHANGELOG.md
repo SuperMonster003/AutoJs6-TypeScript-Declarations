@@ -4,6 +4,17 @@
 
 ******
 
+# v4.0.7
+
+###### 2026/08/21
+
+##### AI 本机 backend profile 声明
+
+- `新增` 本机插件生成及持久会话的 `backend` 选项, 覆盖 `cpu`, `gpu` 和 `npu`, 默认 CPU 且不可用 profile 不回退
+- `新增` `ai.models` 的 `backendProfiles` 判别联合类型, 精确声明设备可用性及稳定不可用原因
+- `约束` 模型枚举和云端提供商选项禁止误用本机 `backend`, 持久会话创建后固定同一 profile
+- `依赖` 同步 AutoJs6 主应用与 Ace Editor 内置声明
+
 # v4.0.6
 
 ###### 2026/08/21
