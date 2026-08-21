@@ -46,6 +46,28 @@ let selectedLocalAiModels: Promise<Internal.Ai.PluginModel[]> = $ai.models({
 let localAiStream: Internal.Ai.PluginStream = ai.stream('Count from 1 to 3', {
     plugin: true,
 });
+let localAiSession: Promise<Internal.Ai.Session> = ai.session({
+    plugin: officialAiPlugin,
+    system: 'Remember the first answer.',
+    maxTokens: 64,
+});
+localAiSession.then(session => {
+    let provider: string = session.provider;
+    let model: string = session.model;
+    let state: 'ready' | 'closed' = session.state;
+    let isClosed: boolean = session.isClosed;
+    let firstTurn: Promise<string> = session.ask('Call this value alpha.');
+    let secondTurn: Promise<Internal.Ai.PluginChatResponse> = session.chat('What was the value?');
+    let streamedTurn: Internal.Ai.PluginStream = session.stream('Repeat it once.');
+    streamedTurn.on('done', response => console.log(response.text));
+    void provider;
+    void model;
+    void state;
+    void isClosed;
+    void firstTurn;
+    void secondTurn;
+    session.close();
+});
 localAiStream.on('open', metadata => {
     let route: 'plugin' = metadata.route;
     let selectedModel: string | null = metadata.model;
@@ -68,6 +90,8 @@ $ai.ask('Reply with OK', { plugin: localAiPlugin, provider: 'openai' });
 $ai.ask('Reply with OK', { plugin: { component: localAiPlugin.component } });
 // @ts-expect-error Model listing does not accept generation controls.
 $ai.models({ temperature: 0.7 });
+// @ts-expect-error Persistent sessions accept one new prompt string per turn, not message history.
+localAiSession.then(session => session.ask([{ role: 'user', content: 'No history arrays' }]));
 let aiReply: Promise<Internal.Ai.Response> = $ai.chat({
     role: 'user',
     content: 'Hello',
@@ -98,6 +122,7 @@ void localAiChat;
 void localAiModels;
 void selectedLocalAiModels;
 void localAiStream;
+void localAiSession;
 
 let speech: Promise<Internal.Tts.Result> = tts('Hello');
 let utterance: Internal.Tts.Utterance = $tts.speakTask('Hello', {

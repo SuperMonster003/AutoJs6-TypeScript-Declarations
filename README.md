@@ -146,6 +146,17 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.0.5
+
+###### 2026/08/21
+
+##### AI 持久多轮会话声明
+
+- `新增` `ai.session` 及持久会话选项, 覆盖官方插件简写, system preface 和固定生成参数
+- `新增` `Ai.Session` 的 `ask`, `chat`, `stream`, `close` 方法及只读状态, 提供商和模型属性
+- `约束` 会话轮次仅接收当前用户提示字符串, 明确流式取消会关闭整个会话
+- `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
+
 # v4.0.4
 
 ###### 2026/08/21
@@ -166,16 +177,6 @@ npm update @sm003/autojs6-dts
 - `新增` `yolo`/`$yolo` 模块及 `load`, `detect`, `close` 声明, 覆盖会话选项, 检测结果及稳定错误代码
 - `约束` 声明显式 Provider 组件, CPU 设备及线程, 阈值, 结果数和超时范围
 - `优化` 同步 Node 插件运行器的主应用声明, 移除已淘汰的 NativeNodeEmbedded 和 libuv 诊断桥接声明
-- `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
-
-# v4.0.2
-
-###### 2026/08/12
-
-##### Python 引擎源码路由声明
-
-- `新增` `PythonScriptSource`, `PythonFileSource`, `PythonProjectSource` 和 `PersistedScriptLaunchContext` 等主应用声明, 并补齐 `IntentTask`/`TimedTask` 的 `sourceKind` 与 `projectRoot` 持久化上下文
-- `优化` 增加 `ScriptSource(sourceName, extension)` 构造签名, 同步 `engines.execScriptFile` 源码摘要, 明确 `.py` 路由及禁止回退到 JavaScript 引擎
 - `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
 
 ##### 更多版本历史可参阅

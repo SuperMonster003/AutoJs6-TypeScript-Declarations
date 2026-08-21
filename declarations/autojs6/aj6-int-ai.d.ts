@@ -10,6 +10,7 @@
 /**
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/ai/Ai.kt
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/ai/AiStream.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/ai/AiSessionNativeObject.kt
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/ai/AiService.kt
  */
 
@@ -32,6 +33,8 @@ declare namespace Internal {
         stream(input: Ai.PluginInput, options: Ai.PluginStreamOptions): Ai.PluginStream;
 
         stream(input: Ai.Input, options?: Ai.Options): Ai.Stream;
+
+        session(options?: Ai.PluginSessionOptions | null): Promise<Ai.Session>;
 
         models(options?: Ai.PluginModelListOptions | null): Promise<Ai.PluginModel[]>;
 
@@ -145,6 +148,39 @@ declare namespace Internal {
         type PluginChatOptions = PluginRouteOptions;
 
         type PluginStreamOptions = PluginRouteOptions;
+
+        /** Fixed configuration for one persistent on-device Conversation. */
+        interface PluginSessionOptions {
+            plugin?: PluginSelector;
+            /** Optional system preface sent only when the Conversation is created. */
+            system?: string;
+            /** Finite, non-negative sampling temperature fixed for every turn. */
+            temperature?: number | null;
+            /** Positive-integer top-K sampling limit fixed for every turn. */
+            topK?: number | null;
+            /** Finite top-P sampling threshold in the inclusive range 0 through 1. */
+            topP?: number | null;
+            /** Provider-enforced per-turn output-token ceiling from 1 through 2,147,483,647. */
+            maxTokens?: number | null;
+            /** Per-turn timeout in milliseconds; defaults to 120,000. */
+            timeout?: number | null;
+            timeoutMillis?: number | null;
+            timeoutMs?: number | null;
+            timeout_millis?: number | null;
+            profile?: never;
+            profileId?: never;
+            profile_id?: never;
+            provider?: never;
+            providerId?: never;
+            provider_id?: never;
+            baseUrl?: never;
+            baseURL?: never;
+            base_url?: never;
+            model?: never;
+            apiKey?: never;
+            api_key?: never;
+            stream?: never;
+        }
 
         /** Options for {@link Internal.Ai.models}; the official plugin is the default. */
         interface PluginModelListOptions {
@@ -342,6 +378,25 @@ declare namespace Internal {
             capabilityIds: string[];
             maximumContextBytes: number;
             maximumOutputBytes: number;
+        }
+
+        interface Session {
+            readonly provider: string;
+            readonly model: string;
+            readonly state: 'ready' | 'closed';
+            readonly isClosed: boolean;
+
+            /** Sends only this new user prompt while retaining native Conversation context. */
+            ask(prompt: string): Promise<string>;
+
+            /** Sends only this new user prompt and returns the complete plugin response. */
+            chat(prompt: string): Promise<PluginChatResponse>;
+
+            /** Streams one new user turn. Cancelling it also closes this session. */
+            stream(prompt: string): PluginStream;
+
+            /** Idempotently closes the persistent Conversation and any active turn. */
+            close(): void;
         }
 
         interface PublicError {
