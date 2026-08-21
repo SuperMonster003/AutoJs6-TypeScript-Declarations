@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Aug 11, 2026
+// Last modified: Aug 21, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -61,11 +61,15 @@ declare namespace Internal {
         type Input = string | MessageWithContent | Message[] | Request;
 
         interface PluginAskMessage {
-            role: 'user';
+            role: 'system' | 'user' | 'assistant';
             content: string;
         }
 
-        type PluginAskInput = string | PluginAskMessage | [PluginAskMessage];
+        interface PluginAskUserMessage extends PluginAskMessage {
+            role: 'user';
+        }
+
+        type PluginAskInput = string | PluginAskUserMessage | [...PluginAskMessage[], PluginAskUserMessage];
 
         interface PluginComponent {
             packageName: string;
