@@ -14047,6 +14047,54 @@ declare namespace org {
 	}
 }
 declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace python {
+				export namespace runtime {
+					export namespace api {
+						export class PythonEntryMode extends __javaLibraryRoots.javaRoot.lang.Enum<__javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode> {
+							public static readonly FILE: __javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode;
+							public static readonly MODULE: __javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode;
+							public readonly wireCode: number;
+							public static readonly entries: __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode>;
+							public static getEntries(): __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode>;
+							public getWireCode(): number;
+							public static valueOf(value: string): __javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode;
+							public static values(): __javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode[];
+							protected constructor();
+							public static valueOf(...args: any[]): any;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace python {
+				export namespace runtime {
+					export namespace api {
+						export class PythonExecutionMode extends __javaLibraryRoots.javaRoot.lang.Enum<__javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode> {
+							public static readonly BOUNDED: __javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode;
+							public static readonly LONG_RUNNING: __javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode;
+							public readonly wireCode: number;
+							public static readonly entries: __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode>;
+							public static getEntries(): __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode>;
+							public getWireCode(): number;
+							public static valueOf(value: string): __javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode;
+							public static values(): __javaLibraryRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode[];
+							protected constructor();
+							public static valueOf(...args: any[]): any;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
 	export namespace joda {
 		export namespace time {
 			export abstract class Chronology {

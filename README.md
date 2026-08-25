@@ -146,6 +146,17 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.0.9
+
+###### 2026/08/26
+
+##### AI 统一目标目录与精确路由声明
+
+- `替换` 以 `ai.catalog` 统一声明本机模型与在线配置目标, 删除未发布的旧目录、配置探测及兼容别名
+- `新增` `target` 精确选择、官方 3-Stone AI 默认目标、target/profile/backend/plugin 元数据及 reasoning 输出声明
+- `完善` 生成、流式与持久会话的完整 usage、finish reason 及稳定错误代码, 严格声明目标不存在、未配置、不可用或能力不匹配时不回退
+- `依赖` 重新生成 AutoJs6 主应用、资源及三方库声明, 并同步 Ace Editor 内置声明
+
 # v4.0.8
 
 ###### 2026/08/25
@@ -163,20 +174,9 @@ npm update @sm003/autojs6-dts
 ##### AI 本机 backend profile 声明
 
 - `新增` 本机插件生成及持久会话的 `backend` 选项, 覆盖 `cpu`, `gpu` 和 `npu`, 默认 CPU 且不可用 profile 不回退
-- `新增` `ai.models` 的 `backendProfiles` 判别联合类型, 精确声明设备可用性及稳定不可用原因
+- `新增` 统一目标目录的 `backendProfiles` 判别联合类型, 精确声明设备可用性及稳定不可用原因
 - `约束` 模型枚举和云端提供商选项禁止误用本机 `backend`, 持久会话创建后固定同一 profile
 - `依赖` 同步 AutoJs6 主应用与 Ace Editor 内置声明
-
-# v4.0.6
-
-###### 2026/08/21
-
-##### AI 本机结构化 JSON 声明
-
-- `新增` 本机插件路由及持久会话的 `structuredJson` 和 `responseSchema` 选项
-- `约束` `responseSchema` 必须是 JSON 对象并会隐式启用结构化输出, 会话创建后为每轮固定同一 schema
-- `精确` `ai.ask` 及响应 `text` 仍返回完整 JSON 文本, 流式增量仍为可能尚未完整的文本片段
-- `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
 
 ##### 更多版本历史可参阅
 

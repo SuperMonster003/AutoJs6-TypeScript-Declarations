@@ -1,34 +1,35 @@
 // Type-only smoke sample for the latest AutoJs6 augment APIs.
 
 let aiText: Promise<string> = ai('Summarize this text.');
-let localAiPlugin: Internal.Ai.PluginSelection = {
+let threeStoneAiPlugin: Internal.Ai.PluginSelection = {
     component: {
-        packageName: 'io.github.supermonster003.autojs6.plugin.ondeviceai',
-        className: 'io.github.supermonster003.autojs6.plugin.ondeviceai.provider.OnDeviceAiProviderService',
+        packageName: 'io.github.supermonster003.autojs6.plugin.threestoneai',
+        className: 'io.github.supermonster003.autojs6.plugin.threestoneai.provider.ThreeStoneAiProviderService',
     },
-    providerId: 'autojs6.on-device-ai',
-    modelId: 'litertlm.0123456789abcdef0123456789abcdef',
+    providerId: 'autojs6.three-stone-ai',
 };
-let officialAiPlugin: Internal.Ai.PluginSelector = {
-    modelId: 'litertlm.0123456789abcdef0123456789abcdef',
-};
-let localOnDeviceResult: Promise<string> = ai('Reply with OK', {
-    plugin: localAiPlugin,
+let officialAiPlugin: Internal.Ai.PluginSelector = true;
+let localTarget: Internal.Ai.TargetId = 'local:litertlm.0123456789abcdef0123456789abcdef';
+let pluginTargetResult: Promise<string> = ai('Reply with OK', {
+    plugin: threeStoneAiPlugin,
+    target: localTarget,
     timeout: 30_000,
 });
-let localAiAskText: Promise<string> = $ai.ask([
+let pluginAskText: Promise<string> = $ai.ask([
     { role: 'system', content: 'Answer briefly.' },
     { role: 'assistant', content: 'Understood.' },
     { role: 'user', content: 'Reply with OK.' },
 ], {
-    plugin: true,
+    target: localTarget,
     maxTokens: 16,
 });
-let localAiChat: Promise<Internal.Ai.PluginChatResponse> = $ai.chat('Reply with OK', {
+let pluginChat: Promise<Internal.Ai.PluginChatResponse> = $ai.chat('Reply with OK', {
     plugin: officialAiPlugin,
+    target: localTarget,
     temperature: 0.7,
     topK: 40,
     topP: 0.9,
+    reasoning: true,
     responseSchema: {
         type: 'object',
         properties: {
@@ -38,24 +39,37 @@ let localAiChat: Promise<Internal.Ai.PluginChatResponse> = $ai.chat('Reply with 
         required: ['answer', 'ok'],
     },
 });
-localAiChat.then(response => {
+pluginChat.then(response => {
     let route: 'plugin' = response.route;
     let inputTokens: number | null = response.usage.inputTokens;
-    let durationMillis: number | undefined = response.usage.raw?.durationMillis;
+    let durationMillis: number | null = response.usage.durationMillis;
+    let target: Internal.Ai.Target = response.target;
+    let finishReason: Internal.Ai.PluginFinishReason = response.finishReason;
     void route;
     void inputTokens;
     void durationMillis;
+    void target;
+    void finishReason;
 });
-let localAiModels: Promise<Internal.Ai.PluginModel[]> = ai.models();
-let selectedLocalAiModels: Promise<Internal.Ai.PluginModel[]> = $ai.models({
-    plugin: localAiPlugin,
+let targetCatalog: Promise<Internal.Ai.TargetCatalog> = ai.catalog();
+let selectedTargetCatalog: Promise<Internal.Ai.TargetCatalog> = $ai.catalog({
+    plugin: threeStoneAiPlugin,
     timeoutMillis: 30_000,
 });
-let localAiStream: Internal.Ai.PluginStream = ai.stream('Count from 1 to 3', {
-    plugin: true,
+targetCatalog.then(catalog => {
+    let defaultTarget: Internal.Ai.TargetId | null = catalog.defaultTarget;
+    let firstTarget: Internal.Ai.Target | undefined = catalog.targets[0];
+    let provider: string = catalog.plugin.provider;
+    void defaultTarget;
+    void firstTarget;
+    void provider;
 });
-let localAiSession: Promise<Internal.Ai.Session> = ai.session({
+let pluginStream: Internal.Ai.PluginStream = ai.stream('Count from 1 to 3', {
+    target: localTarget,
+});
+let pluginSession: Promise<Internal.Ai.Session> = ai.session({
     plugin: officialAiPlugin,
+    target: localTarget,
     system: 'Remember the first answer.',
     maxTokens: 64,
     structuredJson: true,
@@ -65,9 +79,12 @@ let localAiSession: Promise<Internal.Ai.Session> = ai.session({
         required: ['answer'],
     },
 });
-localAiSession.then(session => {
+pluginSession.then(session => {
     let provider: string = session.provider;
     let model: string = session.model;
+    let target: Internal.Ai.TargetId = session.target;
+    let profile: string | null = session.profile;
+    let backend: Internal.Ai.PluginBackend | null = session.backend;
     let state: 'ready' | 'closed' = session.state;
     let isClosed: boolean = session.isClosed;
     let firstTurn: Promise<string> = session.ask('Call this value alpha.');
@@ -76,40 +93,45 @@ localAiSession.then(session => {
     streamedTurn.on('done', response => console.log(response.text));
     void provider;
     void model;
+    void target;
+    void profile;
+    void backend;
     void state;
     void isClosed;
     void firstTurn;
     void secondTurn;
     session.close();
 });
-localAiStream.on('open', metadata => {
+pluginStream.on('open', metadata => {
     let route: 'plugin' = metadata.route;
-    let selectedModel: string | null = metadata.model;
+    let selectedModel: string = metadata.model;
+    let selectedTarget: Internal.Ai.Target = metadata.target;
     void route;
     void selectedModel;
+    void selectedTarget;
 });
-localAiStream.on('usage', usage => {
+pluginStream.on('usage', usage => {
     let outputTokens: number | null = usage.outputTokens;
     void outputTokens;
 });
-localAiStream.on('done', response => {
+pluginStream.on('done', response => {
     let generatedText: string = response.text;
     let usage: Internal.Ai.PluginUsage = response.usage;
     void generatedText;
     void usage;
 });
 // @ts-expect-error Local plugin selection cannot be mixed with cloud controls.
-$ai.ask('Reply with OK', { plugin: localAiPlugin, provider: 'openai' });
+$ai.ask('Reply with OK', { plugin: threeStoneAiPlugin, provider: 'openai' });
 // @ts-expect-error An explicit third-party component also requires providerId.
-$ai.ask('Reply with OK', { plugin: { component: localAiPlugin.component } });
-// @ts-expect-error Model listing does not accept generation controls.
-$ai.models({ temperature: 0.7 });
-// @ts-expect-error Model listing does not accept structured generation controls.
-$ai.models({ structuredJson: true });
+$ai.ask('Reply with OK', { plugin: { component: threeStoneAiPlugin.component } });
+// @ts-expect-error Catalog listing does not accept generation controls.
+$ai.catalog({ plugin: true, temperature: 0.7 });
+// @ts-expect-error Catalog listing does not accept a target selector.
+$ai.catalog({ target: localTarget });
 // @ts-expect-error A response schema must be a JSON object, not an array.
 $ai.ask('Reply with JSON', { plugin: true, responseSchema: [] });
 // @ts-expect-error Persistent sessions accept one new prompt string per turn, not message history.
-localAiSession.then(session => session.ask([{ role: 'user', content: 'No history arrays' }]));
+pluginSession.then(session => session.ask([{ role: 'user', content: 'No history arrays' }]));
 let aiReply: Promise<Internal.Ai.Response> = $ai.chat({
     role: 'user',
     content: 'Hello',
@@ -134,13 +156,13 @@ aiStream.on('delta', (text, chunk) => {
     void text;
     void complete;
 });
-void localOnDeviceResult;
-void localAiAskText;
-void localAiChat;
-void localAiModels;
-void selectedLocalAiModels;
-void localAiStream;
-void localAiSession;
+void pluginTargetResult;
+void pluginAskText;
+void pluginChat;
+void targetCatalog;
+void selectedTargetCatalog;
+void pluginStream;
+void pluginSession;
 
 let speech: Promise<Internal.Tts.Result> = tts('Hello');
 let utterance: Internal.Tts.Utterance = $tts.speakTask('Hello', {

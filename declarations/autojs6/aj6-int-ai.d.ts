@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Aug 21, 2026
+// Last modified: Aug 26, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -36,15 +36,7 @@ declare namespace Internal {
 
         session(options?: Ai.PluginSessionOptions | null): Promise<Ai.Session>;
 
-        models(options?: Ai.PluginModelListOptions | null): Promise<Ai.PluginModel[]>;
-
-        profiles(): Ai.Profile[];
-
-        providers(): Ai.Provider[];
-
-        defaultProfile(): Ai.Profile | null;
-
-        isConfigured(): boolean;
+        catalog(options?: Ai.PluginCatalogOptions | null): Promise<Ai.TargetCatalog>;
 
     }
 
@@ -80,15 +72,6 @@ declare namespace Internal {
 
         type PluginInput = string | PluginUserMessage | [...PluginMessage[], PluginUserMessage];
 
-        /** @deprecated Use {@link PluginMessage}. */
-        type PluginAskMessage = PluginMessage;
-
-        /** @deprecated Use {@link PluginUserMessage}. */
-        type PluginAskUserMessage = PluginUserMessage;
-
-        /** @deprecated Use {@link PluginInput}. */
-        type PluginAskInput = PluginInput;
-
         interface PluginComponent {
             packageName: string;
             className: string;
@@ -98,27 +81,23 @@ declare namespace Internal {
         interface PluginSelection {
             component: PluginComponent;
             providerId: string;
-            modelId?: string | null;
         }
 
-        /** Selects the official on-device plugin when component is omitted. */
+        /** Selects the official 3-Stone AI plugin when component is omitted. */
         interface OfficialPluginSelection {
             component?: never;
             providerId?: string | null;
-            modelId?: string | null;
         }
 
         type PluginSelector = true | OfficialPluginSelection | PluginSelection;
 
-        /** Explicit LiteRT-LM inference backend profile for the local plugin route. */
+        /** Stable catalog target ID, for example `local:model-id` or `profile:profile-id`. */
+        type TargetId = string;
+
+        /** Explicit inference backend profile when the selected target exposes one. */
         type PluginBackend = 'cpu' | 'gpu' | 'npu';
 
-        /**
-         * Explicit local plugin route. Cloud provider controls and provider-native
-         * request options cannot be combined with this shape.
-         */
-        interface PluginRouteOptions {
-            plugin: PluginSelector;
+        interface PluginGenerationOptions {
             /** Finite, non-negative sampling temperature. */
             temperature?: number | null;
             /** Positive-integer top-K sampling limit. */
@@ -127,8 +106,10 @@ declare namespace Internal {
             topP?: number | null;
             /** Provider-enforced output-token ceiling from 1 through 2,147,483,647. */
             maxTokens?: number | null;
-            /** Defaults to CPU; unavailable profiles are rejected without fallback. */
+            /** Unavailable profiles are rejected without fallback. */
             backend?: PluginBackend | null;
+            /** Requests reasoning output and requires the target's `reasoning` capability. */
+            reasoning?: boolean | null;
             /** Enables native JSON Schema constrained decoding; defaults to false. */
             structuredJson?: boolean | null;
             /** JSON Schema object; providing it also enables structured JSON output. */
@@ -152,53 +133,32 @@ declare namespace Internal {
             stream?: never;
         }
 
+        /**
+         * Explicit plugin-target route. `target` alone selects the official plugin;
+         * `plugin` without `target` selects that plugin's declared default target.
+         */
+        type PluginRouteOptions = PluginGenerationOptions & (
+            | { target: TargetId; plugin?: PluginSelector }
+            | { plugin: PluginSelector; target?: TargetId | null }
+        );
+
         type PluginAskOptions = PluginRouteOptions;
 
         type PluginChatOptions = PluginRouteOptions;
 
         type PluginStreamOptions = PluginRouteOptions;
 
-        /** Fixed configuration for one persistent on-device Conversation. */
-        interface PluginSessionOptions {
+        /** Fixed configuration for one persistent plugin-target Conversation. */
+        interface PluginSessionOptions extends PluginGenerationOptions {
             plugin?: PluginSelector;
+            /** Exact catalog target; omitted means the plugin-declared default target. */
+            target?: TargetId | null;
             /** Optional system preface sent only when the Conversation is created. */
             system?: string;
-            /** Finite, non-negative sampling temperature fixed for every turn. */
-            temperature?: number | null;
-            /** Positive-integer top-K sampling limit fixed for every turn. */
-            topK?: number | null;
-            /** Finite top-P sampling threshold in the inclusive range 0 through 1. */
-            topP?: number | null;
-            /** Provider-enforced per-turn output-token ceiling from 1 through 2,147,483,647. */
-            maxTokens?: number | null;
-            /** Fixed for the lifetime of the persistent Conversation; defaults to CPU. */
-            backend?: PluginBackend | null;
-            /** Enables native JSON Schema constrained decoding for every turn. */
-            structuredJson?: boolean | null;
-            /** Fixed JSON Schema object; providing it also enables structured JSON output. */
-            responseSchema?: JsonObject | null;
-            /** Per-turn timeout in milliseconds; defaults to 120,000. */
-            timeout?: number | null;
-            timeoutMillis?: number | null;
-            timeoutMs?: number | null;
-            timeout_millis?: number | null;
-            profile?: never;
-            profileId?: never;
-            profile_id?: never;
-            provider?: never;
-            providerId?: never;
-            provider_id?: never;
-            baseUrl?: never;
-            baseURL?: never;
-            base_url?: never;
-            model?: never;
-            apiKey?: never;
-            api_key?: never;
-            stream?: never;
         }
 
-        /** Options for {@link Internal.Ai.models}; the official plugin is the default. */
-        interface PluginModelListOptions {
+        /** Options for {@link Internal.Ai.catalog}; the official plugin is the default. */
+        interface PluginCatalogOptions {
             plugin?: PluginSelector;
             timeout?: number | null;
             timeoutMillis?: number | null;
@@ -209,8 +169,10 @@ declare namespace Internal {
             topP?: never;
             maxTokens?: never;
             backend?: never;
+            reasoning?: never;
             structuredJson?: never;
             responseSchema?: never;
+            target?: never;
             profile?: never;
             profileId?: never;
             profile_id?: never;
@@ -228,6 +190,7 @@ declare namespace Internal {
 
         interface Options {
             plugin?: never;
+            target?: never;
             backend?: never;
             profile?: string | null;
             profileId?: string | null;
@@ -246,37 +209,6 @@ declare namespace Internal {
             timeoutMs?: number | null;
             timeout_millis?: number | null;
             [key: string]: JsonValue | undefined;
-        }
-
-        interface AvailableProfile {
-            id: string;
-            name: string;
-            provider: string;
-            baseUrl: string;
-            model: string;
-            hasApiKey: boolean;
-            isDefault: boolean;
-            status: 'available';
-            errorCode: null;
-        }
-
-        interface UnavailableProfile {
-            id: string;
-            name: null;
-            provider: null;
-            baseUrl: null;
-            model: null;
-            hasApiKey: null;
-            isDefault: boolean;
-            status: 'unavailable';
-            errorCode: 'missing_entry' | 'decryption_failed' | 'invalid_data';
-        }
-
-        type Profile = AvailableProfile | UnavailableProfile;
-
-        interface Provider {
-            id: string;
-            defaultBaseUrl: string | null;
         }
 
         interface ProfileMetadata {
@@ -305,14 +237,9 @@ declare namespace Internal {
             raw: JsonObject | null;
         }
 
-        interface PluginUsageRaw extends JsonObject {
-            durationMillis: number;
-        }
-
         interface PluginUsage extends Usage {
-            reasoningTokens: null;
-            cachedInputTokens: null;
-            raw: PluginUsageRaw | null;
+            durationMillis: number | null;
+            raw: null;
         }
 
         interface ProviderError {
@@ -337,17 +264,19 @@ declare namespace Internal {
 
         interface PluginChatResponse {
             text: string;
-            reasoning: '';
+            reasoning: string;
             toolCalls: [];
             usage: PluginUsage;
-            finishReason: null;
+            finishReason: PluginFinishReason;
             message: null;
             error: null;
             raw: null;
-            profile: null;
+            profile: PluginProfileMetadata | null;
+            target: Target;
+            plugin: PluginIdentity;
             route: 'plugin';
             provider: string;
-            model: string | null;
+            model: string;
         }
 
         interface StreamChunk {
@@ -363,12 +292,15 @@ declare namespace Internal {
         interface PluginStreamMetadata {
             route: 'plugin';
             provider: string;
-            model: string | null;
+            model: string;
+            target: Target;
+            profile: PluginProfileMetadata | null;
+            plugin: PluginIdentity;
         }
 
         interface PluginStreamChunk {
             text: string;
-            reasoning: '';
+            reasoning: string;
             toolCalls: [];
             usage: null;
             finishReason: null;
@@ -378,26 +310,86 @@ declare namespace Internal {
 
         interface PluginStreamResponse {
             text: string;
-            reasoning: '';
+            reasoning: string;
             toolCalls: [];
             usage: PluginUsage;
-            finishReason: null;
+            finishReason: PluginFinishReason;
             message: null;
             error: null;
             raw: null;
-            profile: null;
+            profile: PluginProfileMetadata | null;
+            target: Target;
+            plugin: PluginIdentity;
             route: 'plugin';
             provider: string;
-            model: string | null;
+            model: string;
         }
 
-        interface PluginModel {
-            modelId: string;
-            displayName: string;
-            capabilityIds: string[];
+        type TargetCapability =
+            | 'streaming'
+            | 'reasoning'
+            | 'tools'
+            | 'structured-json'
+            | 'usage'
+            | 'persistent-session';
+
+        type TargetControl =
+            | 'maximum-output-tokens'
+            | 'temperature'
+            | 'top-k'
+            | 'top-p'
+            | 'response-json-schema'
+            | 'backend-profile';
+
+        type PluginFinishReason =
+            | 'stop'
+            | 'length'
+            | 'tool_calls'
+            | 'content_filter'
+            | 'error'
+            | 'other';
+
+        interface PluginIdentity {
+            provider: string;
+            component: PluginComponent;
+        }
+
+        interface PluginProfileMetadata {
+            id: string;
+            provider: string;
+            model: string;
+            target: TargetId;
+        }
+
+        interface TargetLimits {
             maximumContextBytes: number;
             maximumOutputBytes: number;
+        }
+
+        interface Target {
+            id: TargetId;
+            displayName: string;
+            provider: string;
+            profile: string | null;
+            model: string;
+            locality: 'local' | 'remote' | 'hybrid';
+            credentialMode: 'none' | 'plugin-managed';
+            configured: boolean;
+            available: boolean;
+            availability: 'available' | 'unavailable';
+            isDefault: boolean;
+            capabilities: TargetCapability[];
+            supportedControls: TargetControl[];
+            limits: TargetLimits;
+            origins: string[];
             backendProfiles: PluginBackendProfile[];
+        }
+
+        interface TargetCatalog {
+            generation: string;
+            plugin: PluginIdentity;
+            defaultTarget: TargetId | null;
+            targets: Target[];
         }
 
         interface AvailablePluginBackendProfile {
@@ -420,6 +412,9 @@ declare namespace Internal {
         interface Session {
             readonly provider: string;
             readonly model: string;
+            readonly target: TargetId;
+            readonly profile: string | null;
+            readonly backend: PluginBackend | null;
             readonly state: 'ready' | 'closed';
             readonly isClosed: boolean;
 
@@ -451,8 +446,28 @@ declare namespace Internal {
             name: string;
             message: string;
             route: 'plugin';
-            code: string;
+            code: PluginErrorCode;
         }
+
+        type PluginErrorCode =
+            | 'INVALID_REQUEST'
+            | 'AI_PROVIDER_UNAVAILABLE'
+            | 'AI_PROVIDER_DISABLED'
+            | 'AI_PROVIDER_REJECTED'
+            | 'BUSY'
+            | 'FUSED'
+            | 'CANCELLED'
+            | 'TIMED_OUT'
+            | 'BINDER_DIED'
+            | 'TARGET_NOT_FOUND'
+            | 'TARGET_NOT_CONFIGURED'
+            | 'TARGET_UNAVAILABLE'
+            | 'TARGET_CAPABILITY_MISMATCH'
+            | 'BACKEND_UNAVAILABLE'
+            | 'SESSION_CLOSED'
+            | 'SESSION_REJECTED'
+            | 'PROVIDER_FAILED'
+            | 'INTERNAL_FAILURE';
 
         interface Stream extends EventEmitter$ {
             readonly state: 'created' | 'open' | 'done' | 'error' | 'cancelled';

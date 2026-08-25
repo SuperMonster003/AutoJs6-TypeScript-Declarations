@@ -2856,6 +2856,7 @@ declare namespace org {
 					public static expand_hint: number;
 					public static explorer_content: number;
 					public static explorer_item_list: number;
+					public static explorer_path_bar: number;
 					public static fab: number;
 					public static file_charset_colon: number;
 					public static file_charset_guideline: number;
@@ -3204,6 +3205,8 @@ declare namespace org {
 					public static project_toolbar: number;
 					public static properties: number;
 					public static provider: number;
+					public static python_selector_button: number;
+					public static python_selector_input: number;
 					public static radio_button: number;
 					public static record: number;
 					public static recycler: number;
@@ -3285,6 +3288,9 @@ declare namespace org {
 					public static selection_move: number;
 					public static selection_move_icon: number;
 					public static selection_move_text: number;
+					public static selection_plugin: number;
+					public static selection_plugin_icon: number;
+					public static selection_plugin_text: number;
 					public static selection_toolbar: number;
 					public static set_as_default: number;
 					public static settings: number;
@@ -4114,6 +4120,7 @@ declare namespace org {
 					public static description_pointer_location: number;
 					public static description_post_notifications: number;
 					public static description_project_media_access: number;
+					public static description_r8_compiler_explicit_preference: number;
 					public static description_release_history_preference: number;
 					public static description_restart_strategy: number;
 					public static description_rhino_java_primitive_wrap: number;
@@ -4458,6 +4465,9 @@ declare namespace org {
 					public static error_the_transformer_for_required_property_cannot_return_nullish: number;
 					public static error_thread_is_not_alive: number;
 					public static error_timeout_while_querying_plugin_info: number;
+					public static error_typescript_compilation_failed: number;
+					public static error_typescript_compiler_plugin_unavailable: number;
+					public static error_typescript_source_not_executable: number;
 					public static error_unable_to_change_file_encoding_as_current_file_path_is_unknown: number;
 					public static error_unable_to_display_file_details_as_current_file_path_is_unknown: number;
 					public static error_unable_to_display_version_history_as_current_file_path_is_unknown: number;
@@ -5498,6 +5508,14 @@ declare namespace org {
 					public static prompt_restart_may_be_needed_for_language_switch: number;
 					public static property_key_app_version_code: number;
 					public static property_key_app_version_name: number;
+					public static python_long_running_notification_channel_description: number;
+					public static python_long_running_notification_channel_name: number;
+					public static python_long_running_notification_preparing: number;
+					public static python_long_running_notification_running: number;
+					public static python_long_running_notification_starting: number;
+					public static python_long_running_notification_stop: number;
+					public static python_long_running_notification_stopping: number;
+					public static python_long_running_notification_title: number;
 					public static screen_capturer_foreground_notification_channel_name: number;
 					public static screen_capturer_foreground_notification_text: number;
 					public static screen_capturer_foreground_notification_title: number;
@@ -5565,6 +5583,9 @@ declare namespace org {
 					public static summary_post_notifications_permission: number;
 					public static summary_post_notifications_permission_inrt: number;
 					public static summary_pre_execute_script: number;
+					public static summary_r8_compiler_explicit_disabled: number;
+					public static summary_r8_compiler_explicit_disabled_with_selection: number;
+					public static summary_r8_compiler_explicit_selected: number;
 					public static summary_record_prompt: number;
 					public static summary_release_history_preference: number;
 					public static summary_rhino_java_primitive_wrap: number;
@@ -6574,6 +6595,11 @@ declare namespace org {
 					public static text_pruning_native_libraries: number;
 					public static text_querying_plugin_info: number;
 					public static text_quit: number;
+					public static text_r8_compiler: number;
+					public static text_r8_compiler_no_eligible_providers: number;
+					public static text_r8_compiler_provider: number;
+					public static text_r8_compiler_provider_discovery_failed: number;
+					public static text_r8_compiler_use_disabled: number;
 					public static text_re_signing_apk: number;
 					public static text_reading_android_package: number;
 					public static text_reading_splash_resources: number;

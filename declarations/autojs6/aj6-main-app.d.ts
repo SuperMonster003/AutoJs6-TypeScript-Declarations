@@ -6247,40 +6247,46 @@ declare namespace org {
 					public readonly esmEnabled: boolean;
 					public readonly executionId: string;
 					public readonly executionMode: string;
+					public readonly inspectorEnabled: boolean;
 					public readonly javaInteropEnabled: boolean;
 					public readonly moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
 					public readonly moduleSources: __javaRoots.javaRoot.util.Map<string, string>;
 					public readonly rawNodeNetworkModulesEnabled: boolean;
-					public readonly runtimeAdapter: string;
 					public readonly runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>;
 					public readonly sandboxRoot: string;
 					public readonly source: string;
+					public readonly sourceLineOffset: number;
 					public readonly sourceName: string;
 					public readonly spawnDepth: number;
 					public readonly timeoutMs: number;
+					public readonly typeScriptPrecompiledSnapshot: boolean;
+					public readonly typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>;
 					public readonly workerThreadsEnabled: boolean;
 					public readonly workingDirectory: string;
-					public constructor(source: string, sourceName: string, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, esmEnabled: boolean, dynamicImportEnabled: boolean, rawNodeNetworkModulesEnabled: boolean, workerThreadsEnabled: boolean, childProcessEnabled: boolean, javaInteropEnabled: boolean, spawnDepth: number, runtimeAdapter: string, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider);
+					public constructor(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: boolean, dynamicImportEnabled: boolean, rawNodeNetworkModulesEnabled: boolean, inspectorEnabled: boolean, workerThreadsEnabled: boolean, childProcessEnabled: boolean, javaInteropEnabled: boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider);
 					public component1(): string;
 					public component10(): __javaRoots.javaRoot.util.Map<string, string>;
-					public component11(): boolean;
+					public component11(): __javaRoots.javaRoot.util.Map<string, string>;
 					public component12(): boolean;
-					public component13(): boolean;
+					public component13(): __javaRoots.javaRoot.util.Set<string>;
 					public component14(): boolean;
 					public component15(): boolean;
 					public component16(): boolean;
-					public component17(): number;
-					public component18(): string;
-					public component19(): __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
+					public component17(): boolean;
+					public component18(): boolean;
+					public component19(): boolean;
 					public component2(): string;
-					public component3(): string;
+					public component20(): boolean;
+					public component21(): number;
+					public component22(): __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
+					public component3(): number;
 					public component4(): string;
 					public component5(): string;
 					public component6(): string;
-					public component7(): number;
-					public component8(): __javaRoots.javaRoot.util.Map<string, string>;
+					public component7(): string;
+					public component8(): number;
 					public component9(): __javaRoots.javaRoot.util.Map<string, string>;
-					public copy(source: string, sourceName: string, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, esmEnabled: boolean, dynamicImportEnabled: boolean, rawNodeNetworkModulesEnabled: boolean, workerThreadsEnabled: boolean, childProcessEnabled: boolean, javaInteropEnabled: boolean, spawnDepth: number, runtimeAdapter: string, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider): __javaRoots.orgRoot.autojs.autojs.engine.NodePluginScriptRequest;
+					public copy(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: boolean, dynamicImportEnabled: boolean, rawNodeNetworkModulesEnabled: boolean, inspectorEnabled: boolean, workerThreadsEnabled: boolean, childProcessEnabled: boolean, javaInteropEnabled: boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider): __javaRoots.orgRoot.autojs.autojs.engine.NodePluginScriptRequest;
 					public equals(other: any): boolean;
 					public getChildProcessEnabled(): boolean;
 					public getDynamicImportEnabled(): boolean;
@@ -6288,17 +6294,20 @@ declare namespace org {
 					public getEsmEnabled(): boolean;
 					public getExecutionId(): string;
 					public getExecutionMode(): string;
+					public getInspectorEnabled(): boolean;
 					public getJavaInteropEnabled(): boolean;
 					public getModuleSourceProvider(): __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
 					public getModuleSources(): __javaRoots.javaRoot.util.Map<string, string>;
 					public getRawNodeNetworkModulesEnabled(): boolean;
-					public getRuntimeAdapter(): string;
 					public getRuntimeModuleSources(): __javaRoots.javaRoot.util.Map<string, string>;
 					public getSandboxRoot(): string;
 					public getSource(): string;
+					public getSourceLineOffset(): number;
 					public getSourceName(): string;
 					public getSpawnDepth(): number;
 					public getTimeoutMs(): number;
+					public getTypeScriptPrecompiledSnapshot(): boolean;
+					public getTypeScriptPrecompiledSourceNames(): __javaRoots.javaRoot.util.Set<string>;
 					public getWorkerThreadsEnabled(): boolean;
 					public getWorkingDirectory(): string;
 					public hashCode(): number;
@@ -6919,6 +6928,7 @@ declare namespace org {
 					public getScriptExecutions(): __javaRoots.javaRoot.util.Collection<__javaRoots.orgRoot.autojs.autojs.execution.ScriptExecution>;
 					public registerEngineLifecycleCallback(engineLifecycleCallback: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngineManager.EngineLifecycleCallback): void;
 					public registerGlobalScriptExecutionListener(listener: __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecutionListener): boolean;
+					public removeScriptExecution(id: number): void;
 					public static setInstance(service: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngineService): void;
 					public stopAll(): number;
 					public stopAllAndToast(): number;
@@ -7121,7 +7131,7 @@ declare namespace org {
 						public readonly engine: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<any>;
 						public constructor(mScriptEngineManager: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngineManager, task: __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecutionTask);
 						public clearEngine(engine: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<any>): void;
-						public createEngine(activity: __javaRoots.androidRoot.app.Activity): __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<any>;
+						public createEngine(activity: __javaRoots.androidRoot.app.Activity, source: __javaRoots.orgRoot.autojs.autojs.script.ScriptSource): __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<any>;
 						public getEngine(): __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<any>;
 						public isActivityStarted(): boolean;
 						public markActivityStarted(): void;
@@ -12593,9 +12603,11 @@ declare namespace org {
 		export namespace autojs {
 			export namespace script {
 				export class JavaScriptFileSource extends __javaRoots.orgRoot.autojs.autojs.script.JavaScriptSource {
+					public readonly compilerBackedTypeScriptSource: boolean;
 					public readonly engineName: string;
 					public readonly file: __javaRoots.javaRoot.io.File;
 					public readonly nodeProjectRoot: __javaRoots.javaRoot.io.File;
+					public readonly rhinoTypeScriptSource: boolean;
 					public readonly script: string;
 					public readonly scriptReader: __javaRoots.javaRoot.io.Reader;
 					public constructor(file: __javaRoots.javaRoot.io.File);
@@ -12606,6 +12618,8 @@ declare namespace org {
 					public getNodeProjectRoot(): __javaRoots.javaRoot.io.File;
 					public getScript(): string;
 					public getScriptReader(): __javaRoots.javaRoot.io.Reader;
+					public isCompilerBackedTypeScriptSource(): boolean;
+					public isRhinoTypeScriptSource(): boolean;
 					public toString(): string;
 				}
 			}
@@ -12640,9 +12654,12 @@ declare namespace org {
 					public getNonNullScriptReader(): __javaRoots.javaRoot.io.Reader;
 					public getScript(): string;
 					public getScriptReader(): __javaRoots.javaRoot.io.Reader;
+					public static isCompilerBackedTypeScriptFileName(fileName: string): boolean;
 					public static isJavaScriptFileName(fileName: string): boolean;
 					public static isNodeJsFileName(fileName: string): boolean;
+					public static isRhinoTypeScriptFileName(fileName: string): boolean;
 					public static isTypeScriptDeclarationFileName(fileName: string): boolean;
+					public static isUnsupportedSingleFileTypeScriptFileName(fileName: string): boolean;
 					public static parseExecutionMode(script: string): __javaRoots.orgRoot.autojs.autojs.script.JavaScriptSource.ExecutionInfo;
 					public static resolveEngineName(executionMode: number): string;
 					public toString(): string;
@@ -12828,14 +12845,26 @@ declare namespace org {
 			export namespace script {
 				export class PythonProjectLaunchAdmission {
 					public readonly entryFile: __javaRoots.javaRoot.io.File;
+					public readonly entryMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode;
+					public readonly executionMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode;
 					public readonly projectRoot: __javaRoots.javaRoot.io.File;
-					public constructor(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File);
+					public readonly stdin: __javaRoots.orgRoot.autojs.autojs.script.PythonProjectStdinSource;
+					public readonly timeoutMillis: __javaRoots.javaRoot.lang.Long;
+					public constructor(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File, timeoutMillis: __javaRoots.javaRoot.lang.Long, entryMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode, stdin: __javaRoots.orgRoot.autojs.autojs.script.PythonProjectStdinSource, executionMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode);
 					public component1(): __javaRoots.javaRoot.io.File;
 					public component2(): __javaRoots.javaRoot.io.File;
-					public copy(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectLaunchAdmission;
+					public component3(): __javaRoots.javaRoot.lang.Long;
+					public component4(): __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode;
+					public component5(): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectStdinSource;
+					public component6(): __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode;
+					public copy(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File, timeoutMillis: __javaRoots.javaRoot.lang.Long, entryMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode, stdin: __javaRoots.orgRoot.autojs.autojs.script.PythonProjectStdinSource, executionMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectLaunchAdmission;
 					public equals(other: any): boolean;
 					public getEntryFile(): __javaRoots.javaRoot.io.File;
+					public getEntryMode(): __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode;
+					public getExecutionMode(): __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode;
 					public getProjectRoot(): __javaRoots.javaRoot.io.File;
+					public getStdin(): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectStdinSource;
+					public getTimeoutMillis(): __javaRoots.javaRoot.lang.Long;
 					public hashCode(): number;
 					public toString(): string;
 				}
@@ -12848,13 +12877,36 @@ declare namespace org {
 		export namespace autojs {
 			export namespace script {
 				export class PythonProjectSource extends __javaRoots.orgRoot.autojs.autojs.script.PythonFileSource {
+					public readonly entryMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode;
 					public readonly entryPoint: string;
+					public readonly executionMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode;
 					public readonly projectEntryFile: __javaRoots.javaRoot.io.File;
 					public readonly projectRoot: __javaRoots.javaRoot.io.File;
+					public readonly stdin: __javaRoots.orgRoot.autojs.autojs.script.PythonProjectStdinSource;
+					public readonly timeoutMillis: __javaRoots.javaRoot.lang.Long;
 					public static create(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectSource;
+					public static create(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File, timeoutMillis: __javaRoots.javaRoot.lang.Long): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectSource;
+					public static create(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File, timeoutMillis: __javaRoots.javaRoot.lang.Long, entryMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectSource;
+					public static create(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File, timeoutMillis: __javaRoots.javaRoot.lang.Long, entryMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode, stdin: __javaRoots.orgRoot.autojs.autojs.script.PythonProjectStdinSource): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectSource;
+					public static create(projectRoot: __javaRoots.javaRoot.io.File, entryFile: __javaRoots.javaRoot.io.File, timeoutMillis: __javaRoots.javaRoot.lang.Long, entryMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode, stdin: __javaRoots.orgRoot.autojs.autojs.script.PythonProjectStdinSource, executionMode: __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectSource;
+					public getEntryMode(): __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonEntryMode;
 					public getEntryPoint(): string;
+					public getExecutionMode(): __javaRoots.orgRoot.autojs.plugin.python.runtime.api.PythonExecutionMode;
 					public getProjectEntryFile(): __javaRoots.javaRoot.io.File;
 					public getProjectRoot(): __javaRoots.javaRoot.io.File;
+					public getStdin(): __javaRoots.orgRoot.autojs.autojs.script.PythonProjectStdinSource;
+					public getTimeoutMillis(): __javaRoots.javaRoot.lang.Long;
+					protected constructor();
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace script {
+				export abstract class PythonProjectStdinSource {
 					protected constructor();
 				}
 			}
@@ -15432,6 +15484,7 @@ declare namespace org {
 //org.autojs.autojs.concurrent.VolatileBox:1
 //org.autojs.autojs.concurrent.VolatileDispose:1
 //org.autojs.autojs.core.ai.transport.AiHttpErrors.redact..inlined.sortedByDescending.1:1
+//org.autojs.autojs.core.console.StackFrameParser.parse..inlined.sortedBy.1:1
 //org.autojs.autojs.core.image.Shootable:1
 //org.autojs.autojs.core.internal.Functions.Func0:1
 //org.autojs.autojs.core.internal.Functions.Func1:2
@@ -15450,30 +15503,30 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.AidlPluginHost.retryAfterBinderFailure.1:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.withDedicatedServiceBinding.1:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.withService.1:1
+//org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.2:1
+//org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.3:1
+//org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.4:1
+//org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.5:1
+//org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.6:1
+//org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.7:1
+//org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.8:1
+//org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.9:1
+//org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenByDescending.1:1
+//org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenByDescending.2:1
+//org.autojs.autojs.core.plugin.ai.AiProviderHandshakeCoordinator.MetadataValue:1
+//org.autojs.autojs.core.plugin.ai.AiProviderHandshakeCoordinator.MetadataValue.Value:1
+//org.autojs.autojs.core.plugin.ai.AiProviderSelectionPolicy.special..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.ai.AiProviderSelectionPolicy.special..inlined.thenByDescending.1:1
+//org.autojs.autojs.core.plugin.ai.AiProviderSelectionPolicy.special..inlined.thenByDescending.2:1
+//org.autojs.autojs.core.plugin.ai.AiProviderSessionCoordinator.MetadataValue:1
+//org.autojs.autojs.core.plugin.ai.AiProviderSessionCoordinator.MetadataValue.Value:1
+//org.autojs.autojs.core.plugin.ai.AiProviderTargetListingCoordinator.MetadataValue:1
+//org.autojs.autojs.core.plugin.ai.AiProviderTargetListingCoordinator.MetadataValue.Value:1
 //org.autojs.autojs.core.plugin.ai.HandshakeCloseSlot:1
-//org.autojs.autojs.core.plugin.ai.ModelListingCloseRegistry:1
-//org.autojs.autojs.core.plugin.ai.ModelListingCloseSlot:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderDiscoveryPolicy.special..inlined.thenBy.1:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderDiscoveryPolicy.special..inlined.thenBy.2:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderDiscoveryPolicy.special..inlined.thenBy.3:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderDiscoveryPolicy.special..inlined.thenBy.4:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderDiscoveryPolicy.special..inlined.thenBy.5:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderDiscoveryPolicy.special..inlined.thenBy.6:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderDiscoveryPolicy.special..inlined.thenBy.7:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderDiscoveryPolicy.special..inlined.thenBy.8:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderDiscoveryPolicy.special..inlined.thenBy.9:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderDiscoveryPolicy.special..inlined.thenByDescending.1:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderDiscoveryPolicy.special..inlined.thenByDescending.2:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderHandshakeCoordinator.MetadataValue:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderHandshakeCoordinator.MetadataValue.Value:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderModelListingCoordinator.MetadataValue:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderModelListingCoordinator.MetadataValue.Value:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderSelectionPolicy.special..inlined.thenBy.1:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderSelectionPolicy.special..inlined.thenByDescending.1:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderSelectionPolicy.special..inlined.thenByDescending.2:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderSessionCoordinator.MetadataValue:1
-//org.autojs.autojs.core.plugin.ai.OnDeviceAiProviderSessionCoordinator.MetadataValue.Value:1
 //org.autojs.autojs.core.plugin.ai.SessionCoordinatorCloseSlot:1
+//org.autojs.autojs.core.plugin.ai.TargetListingCloseRegistry:1
+//org.autojs.autojs.core.plugin.ai.TargetListingCloseSlot:1
 //org.autojs.autojs.core.plugin.barcode.BarcodePluginHost.retryAfterBinderFailure.1:1
 //org.autojs.autojs.core.plugin.barcode.BarcodePluginHost.withImagePfdService.1:1
 //org.autojs.autojs.core.plugin.barcode.BarcodePluginHost.withImagePfdServiceOnce.1:1
@@ -15533,6 +15586,10 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.explorer.ExplorerActionRegistry.refresh.2.invokeSuspend..inlined.thenBy.1:1
 //org.autojs.autojs.core.plugin.explorer.ExplorerActionRegistry.refresh.2.invokeSuspend..inlined.thenBy.2:1
 //org.autojs.autojs.core.plugin.explorer.output.ExplorerActionOutputTransactionStore.list.lambda.0..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState:2
+//org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState.CloseResult:2
+//org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState.Link:2
+//org.autojs.autojs.core.plugin.jvm.JvmSourceHostExecutionGate:1
 //org.autojs.autojs.core.plugin.lua.LuaBoundedBinderCallLane.Call:1
 //org.autojs.autojs.core.plugin.lua.LuaBoundedBinderCallLane.CallOutcome:1
 //org.autojs.autojs.core.plugin.lua.LuaBoundedBinderCallLane.CallOutcome.Success:1
@@ -15540,6 +15597,7 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.ocr.OcrPluginHost.withImagePfdService.1:1
 //org.autojs.autojs.core.plugin.ocr.OcrPluginHost.withImagePfdServiceOnce.1:1
 //org.autojs.autojs.core.plugin.ocr.OcrPluginHost.withService.1:1
+//org.autojs.autojs.core.plugin.python.PythonMaterialDialogInputController.Pending:1
 //org.autojs.autojs.core.plugin.python.PythonProjectWorkspacePolicy.plan..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.python.PythonProjectWorkspacePolicy.plan.visit..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.python.PythonRuntimeDispatchRegistry:1
@@ -15555,6 +15613,20 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.python.PythonRuntimeProviderSelectionPolicy.special..inlined.thenBy.1:1
 //org.autojs.autojs.core.plugin.python.PythonRuntimeProviderSelectionPolicy.special..inlined.thenByDescending.1:1
 //org.autojs.autojs.core.plugin.python.PythonRuntimeProviderSelectionPolicy.special..inlined.thenByDescending.2:1
+//org.autojs.autojs.core.plugin.r8.R8CompilerPersistentArtifactStore.enforceLimitsLocked..inlined.compareBy.1:1
+//org.autojs.autojs.core.plugin.r8.R8CompilerPersistentArtifactStore.enforceLimitsLocked..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.r8.R8CompilerPersistentArtifactStore.matchingGenerations..inlined.compareByDescending.1:1
+//org.autojs.autojs.core.plugin.r8.R8CompilerPersistentArtifactStore.matchingGenerations..inlined.thenByDescending.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptApkBuildCompiler.createPlan..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptApkBuildCompiler.prepareDirectory..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptApkBuildPlan.special..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptCompilationCacheKey.canonicalBytes..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptCompilationPersistentCache.enforceLimitsLocked..inlined.compareBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptCompilationPersistentCache.enforceLimitsLocked..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptCompilationPersistentCache.enforceLimitsLocked..inlined.thenBy.2:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptCompilationPersistentCache.special..inlined.compareBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptCompilationPersistentCache.special..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptProjectArchive.collectSources..inlined.sortBy.1:1
 //org.autojs.autojs.core.ui.BiMap:2
 //org.autojs.autojs.core.ui.BiMaps.BiMapBuilder:2
 //org.autojs.autojs.core.ui.BiMaps.BiMapImpl:2
@@ -15736,6 +15808,8 @@ declare namespace org {
 //org.autojs.autojs.ui.settings.DexCompilerPreference.discoverEligibleCandidates..inlined.thenBy.1:1
 //org.autojs.autojs.ui.settings.DisplayReleaseHistoryActivity.showCategoryFilterDialog.3.1.2.1:1
 //org.autojs.autojs.ui.settings.DisplayReleaseHistoryActivity.showProcessLogs.job.1.1.1:1
+//org.autojs.autojs.ui.settings.R8CompilerPreference.discoverEligibleCandidates..inlined.compareBy.1:1
+//org.autojs.autojs.ui.settings.R8CompilerPreference.discoverEligibleCandidates..inlined.thenBy.1:1
 //org.autojs.autojs.ui.settings.ReleaseHistoryAdapter.ReleaseHistoryViewHolder.bind..inlined.sortedByDescending.1:1
 //org.autojs.autojs.ui.settings.ReleaseHistoryRepository.loadReleaseHistoryFlow.1.1.1:1
 //org.autojs.autojs.ui.settings.ReleaseHistoryRepository.loadReleaseHistoryFlow.1.3.1:1
