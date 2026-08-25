@@ -8112,6 +8112,9 @@ declare namespace org {
 					public loadJar(dir: string, isRecursive: boolean): void;
 					public loadJar(...paths: string[]): void;
 					public loadJarWithClasspath(program: string, ...orderedClasspath: string[]): void;
+					public loadJarWithR8(program: string, keepRules: string[]): void;
+					public loadJarWithR8(program: string, keepRules: string[], orderedClasspath: string[]): void;
+					public loadJarWithR8(program: string, keepRules: string[], orderedClasspath: string[], consumerRules: string[], consumerRuleClasspathOrdinals: number[]): void;
 					public onExit(): void;
 					public static popException(message: string): void;
 					public putProperty(key: string, value: any): any;

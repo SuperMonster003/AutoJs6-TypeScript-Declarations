@@ -146,6 +146,16 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.0.8
+
+###### 2026/08/25
+
+##### R8 显式编译入口声明
+
+- `新增` `ScriptRuntime.loadJarWithR8` 的 3 个重载, 覆盖显式 keep rules, 有序 classpath 与 consumer-rule ordinal 绑定
+- `约束` 声明保留完整参数数组类型, 与默认关闭且无 D8/dx 回退的宿主入口一致
+- `依赖` 同步 AutoJs6 主应用, API 文档与 Ace Editor 内置声明
+
 # v4.0.7
 
 ###### 2026/08/21
@@ -166,17 +176,6 @@ npm update @sm003/autojs6-dts
 - `新增` 本机插件路由及持久会话的 `structuredJson` 和 `responseSchema` 选项
 - `约束` `responseSchema` 必须是 JSON 对象并会隐式启用结构化输出, 会话创建后为每轮固定同一 schema
 - `精确` `ai.ask` 及响应 `text` 仍返回完整 JSON 文本, 流式增量仍为可能尚未完整的文本片段
-- `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
-
-# v4.0.5
-
-###### 2026/08/21
-
-##### AI 持久多轮会话声明
-
-- `新增` `ai.session` 及持久会话选项, 覆盖官方插件简写, system preface 和固定生成参数
-- `新增` `Ai.Session` 的 `ask`, `chat`, `stream`, `close` 方法及只读状态, 提供商和模型属性
-- `约束` 会话轮次仅接收当前用户提示字符串, 明确流式取消会关闭整个会话
 - `依赖` 重新生成并同步 AutoJs6 主应用, 资源及三方库声明
 
 ##### 更多版本历史可参阅

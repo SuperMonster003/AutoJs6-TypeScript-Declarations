@@ -4,6 +4,16 @@
 
 ******
 
+# v4.0.8
+
+###### 2026/08/25
+
+##### R8 显式编译入口声明
+
+- `新增` `ScriptRuntime.loadJarWithR8` 的 3 个重载, 覆盖显式 keep rules, 有序 classpath 与 consumer-rule ordinal 绑定
+- `约束` 声明保留完整参数数组类型, 与默认关闭且无 D8/dx 回退的宿主入口一致
+- `依赖` 同步 AutoJs6 主应用, API 文档与 Ace Editor 内置声明
+
 # v4.0.7
 
 ###### 2026/08/21
