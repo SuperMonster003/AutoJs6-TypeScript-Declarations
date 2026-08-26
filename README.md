@@ -146,6 +146,17 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.1.0
+
+###### 2026/08/26
+
+##### AI 插件唯一目标接口声明
+
+- `替换` `ai`, `ask`, `chat`, `stream`, `session` 与 `catalog` 统一使用插件目标输入, 选项, 响应和流式类型
+- `精简` 移除未发布的双路径重载, 宿主直连响应形状及过渡类型, 超时只保留 `timeout` 规范属性
+- `完善` 省略选择器时声明官方 3-Stone AI 默认目标, 并统一消息, usage, finish reason, target, session 和稳定错误类型
+- `依赖` 同步 Ace Editor 内置声明与生成的 LSP 声明分组
+
 # v4.0.9
 
 ###### 2026/08/26
@@ -166,17 +177,6 @@ npm update @sm003/autojs6-dts
 - `新增` `ScriptRuntime.loadJarWithR8` 的 3 个重载, 覆盖显式 keep rules, 有序 classpath 与 consumer-rule ordinal 绑定
 - `约束` 声明保留完整参数数组类型, 与默认关闭且无 D8/dx 回退的宿主入口一致
 - `依赖` 同步 AutoJs6 主应用, API 文档与 Ace Editor 内置声明
-
-# v4.0.7
-
-###### 2026/08/21
-
-##### AI 本机 backend profile 声明
-
-- `新增` 本机插件生成及持久会话的 `backend` 选项, 覆盖 `cpu`, `gpu` 和 `npu`, 默认 CPU 且不可用 profile 不回退
-- `新增` 统一目标目录的 `backendProfiles` 判别联合类型, 精确声明设备可用性及稳定不可用原因
-- `约束` 模型枚举和云端提供商选项禁止误用本机 `backend`, 持久会话创建后固定同一 profile
-- `依赖` 同步 AutoJs6 主应用与 Ace Editor 内置声明
 
 ##### 更多版本历史可参阅
 

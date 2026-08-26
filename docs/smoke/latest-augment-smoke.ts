@@ -23,7 +23,7 @@ let pluginAskText: Promise<string> = $ai.ask([
     target: localTarget,
     maxTokens: 16,
 });
-let pluginChat: Promise<Internal.Ai.PluginChatResponse> = $ai.chat('Reply with OK', {
+let pluginChat: Promise<Internal.Ai.Response> = $ai.chat('Reply with OK', {
     plugin: officialAiPlugin,
     target: localTarget,
     temperature: 0.7,
@@ -44,7 +44,7 @@ pluginChat.then(response => {
     let inputTokens: number | null = response.usage.inputTokens;
     let durationMillis: number | null = response.usage.durationMillis;
     let target: Internal.Ai.Target = response.target;
-    let finishReason: Internal.Ai.PluginFinishReason = response.finishReason;
+    let finishReason: Internal.Ai.FinishReason = response.finishReason;
     void route;
     void inputTokens;
     void durationMillis;
@@ -54,7 +54,7 @@ pluginChat.then(response => {
 let targetCatalog: Promise<Internal.Ai.TargetCatalog> = ai.catalog();
 let selectedTargetCatalog: Promise<Internal.Ai.TargetCatalog> = $ai.catalog({
     plugin: threeStoneAiPlugin,
-    timeoutMillis: 30_000,
+    timeout: 30_000,
 });
 targetCatalog.then(catalog => {
     let defaultTarget: Internal.Ai.TargetId | null = catalog.defaultTarget;
@@ -64,7 +64,7 @@ targetCatalog.then(catalog => {
     void firstTarget;
     void provider;
 });
-let pluginStream: Internal.Ai.PluginStream = ai.stream('Count from 1 to 3', {
+let pluginStream: Internal.Ai.Stream = ai.stream('Count from 1 to 3', {
     target: localTarget,
 });
 let pluginSession: Promise<Internal.Ai.Session> = ai.session({
@@ -84,12 +84,12 @@ pluginSession.then(session => {
     let model: string = session.model;
     let target: Internal.Ai.TargetId = session.target;
     let profile: string | null = session.profile;
-    let backend: Internal.Ai.PluginBackend | null = session.backend;
+    let backend: Internal.Ai.Backend | null = session.backend;
     let state: 'ready' | 'closed' = session.state;
     let isClosed: boolean = session.isClosed;
     let firstTurn: Promise<string> = session.ask('Call this value alpha.');
-    let secondTurn: Promise<Internal.Ai.PluginChatResponse> = session.chat('What was the value?');
-    let streamedTurn: Internal.Ai.PluginStream = session.stream('Repeat it once.');
+    let secondTurn: Promise<Internal.Ai.Response> = session.chat('What was the value?');
+    let streamedTurn: Internal.Ai.Stream = session.stream('Repeat it once.');
     streamedTurn.on('done', response => console.log(response.text));
     void provider;
     void model;
@@ -116,11 +116,11 @@ pluginStream.on('usage', usage => {
 });
 pluginStream.on('done', response => {
     let generatedText: string = response.text;
-    let usage: Internal.Ai.PluginUsage = response.usage;
+    let usage: Internal.Ai.Usage = response.usage;
     void generatedText;
     void usage;
 });
-// @ts-expect-error Local plugin selection cannot be mixed with cloud controls.
+// @ts-expect-error Raw provider selection is not part of the plugin-target surface.
 $ai.ask('Reply with OK', { plugin: threeStoneAiPlugin, provider: 'openai' });
 // @ts-expect-error An explicit third-party component also requires providerId.
 $ai.ask('Reply with OK', { plugin: { component: threeStoneAiPlugin.component } });
@@ -136,19 +136,22 @@ let aiReply: Promise<Internal.Ai.Response> = $ai.chat({
     role: 'user',
     content: 'Hello',
 }, {
-    provider: 'openai',
-    model: 'gpt-4.1-mini',
+    target: localTarget,
 });
 let aiStream: Internal.Ai.Stream = ai.stream([
     { role: 'user', content: 'Hello' },
 ]);
-let aiReplyWithoutContent: Promise<Internal.Ai.Response> = ai.chat([
-    { role: 'assistant' },
+let aiReplyWithHistory: Promise<Internal.Ai.Response> = ai.chat([
+    { role: 'assistant', content: 'Ready.' },
+    { role: 'user', content: 'Continue.' },
 ], {
-    model: null,
+    target: null,
 });
 let aiRequestReply: Promise<Internal.Ai.Response> = ai.chat({
-    messages: [{ role: 'assistant' }],
+    messages: [
+        { role: 'assistant', content: 'Ready.' },
+        { role: 'user', content: 'Continue.' },
+    ],
     timeout: null,
 });
 aiStream.on('delta', (text, chunk) => {
@@ -272,7 +275,7 @@ let nullish: boolean = isNullish(null);
 
 void aiText;
 void aiReply;
-void aiReplyWithoutContent;
+void aiReplyWithHistory;
 void aiRequestReply;
 void speech;
 void batteryOptimizationIgnored;

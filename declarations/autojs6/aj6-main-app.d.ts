@@ -15483,7 +15483,6 @@ declare namespace org {
 //org.autojs.autojs.concurrent.Value:1
 //org.autojs.autojs.concurrent.VolatileBox:1
 //org.autojs.autojs.concurrent.VolatileDispose:1
-//org.autojs.autojs.core.ai.transport.AiHttpErrors.redact..inlined.sortedByDescending.1:1
 //org.autojs.autojs.core.console.StackFrameParser.parse..inlined.sortedBy.1:1
 //org.autojs.autojs.core.image.Shootable:1
 //org.autojs.autojs.core.internal.Functions.Func0:1
@@ -15586,6 +15585,8 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.explorer.ExplorerActionRegistry.refresh.2.invokeSuspend..inlined.thenBy.1:1
 //org.autojs.autojs.core.plugin.explorer.ExplorerActionRegistry.refresh.2.invokeSuspend..inlined.thenBy.2:1
 //org.autojs.autojs.core.plugin.explorer.output.ExplorerActionOutputTransactionStore.list.lambda.0..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.explorer.session.ExplorerActionHostSession.validateAndSyncOutputTree..inlined.sortedByDescending.1:1
+//org.autojs.autojs.core.plugin.explorer.session.ExplorerActionOutputTreeStore.list..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState:2
 //org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState.CloseResult:2
 //org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState.Link:2
