@@ -2664,6 +2664,7 @@ declare namespace org {
 					public static app_name: number;
 					public static apps: number;
 					public static archive_extract_current: number;
+					public static archive_filename_encoding: number;
 					public static arrow_icon: number;
 					public static aspect_ratio_colon: number;
 					public static aspect_ratio_guideline: number;
@@ -4188,6 +4189,7 @@ declare namespace org {
 					public static dialog_button_view_shortcuts: number;
 					public static dialog_button_view_update: number;
 					public static dialog_button_view_with_browser: number;
+					public static dialog_message_archive_open_password_required: number;
 					public static dialog_message_archive_password_required: number;
 					public static dialog_message_archive_resource_budget: number;
 					public static dialog_message_archive_skip_unsafe_paths: number;
@@ -4500,6 +4502,7 @@ declare namespace org {
 					public static hint_loop_delay: number;
 					public static hint_loop_times: number;
 					public static hint_pc_server_address_supported_formats: number;
+					public static hint_plugin_process_failed_to_start: number;
 					public static hint_plugin_requires_higher_host_version_with_required_and_current: number;
 					public static hint_plugin_upgrade_required_due_to_protocol_mismatch: number;
 					public static hint_try_clicking_the_activate_button_to_activate_the_plugin: number;
@@ -5467,8 +5470,6 @@ declare namespace org {
 					public static mt_custom: number;
 					public static no_apk_builder_plugin: number;
 					public static no_root_access_for_record: number;
-					public static node_identity_app_label: number;
-					public static node_identity_application_id: number;
 					public static num_zero: number;
 					public static original_developer_full_name: number;
 					public static original_developer_nickname: number;

@@ -4,6 +4,17 @@
 
 ******
 
+# v4.2.0
+
+###### 2026/08/27
+
+##### R8 Retrace 与校验产物导出声明
+
+- `新增` `runtime.retraceR8Stack` 声明, 通过协议 1.1 提供者按 mapping 与 retrace metadata 溯源绑定还原混淆堆栈
+- `新增` `runtime.loadJarWithR8` 的 3 个导出重载, 原子导出经重新哈希的 mapping, seeds, usage 与 retrace metadata, 且不隐式导出 DEX
+- `约束` 所有路径只由宿主解析, 未选择精确提供者或任一哈希、元数据、输出校验失败时均终止且不回退 D8/dx
+- `依赖` 从 AutoJs6 宿主提交 `dafddc732` 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.1.0
 
 ###### 2026/08/26

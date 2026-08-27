@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Aug 21, 2026
+// Last modified: Aug 27, 2026
 //
 // noinspection JSUnusedGlobalSymbols
 
@@ -1279,6 +1279,40 @@ declare namespace Internal {
          * @see org.mozilla.javascript.ContextFactory
          */
         public loadJar(path: string): void;
+
+        /**
+         * Compiles and loads a JAR through the explicitly selected R8 provider.
+         * The route is disabled by default and fails closed without a matching provider;
+         * it never falls back to D8 or dx.
+         * @param program Host-resolved program JAR path.
+         * @param keepRules One or more host-resolved R8 keep-rule paths.
+         */
+        public loadJarWithR8(program: string, keepRules: string[]): void;
+        /**
+         * Compiles and loads a JAR through R8, then atomically exports the verified mapping,
+         * seeds, usage and retrace-metadata artifacts. DEX is not exported by this parameter.
+         */
+        public loadJarWithR8(program: string, keepRules: string[], exportDirectory: string): void;
+        /** Compiles and loads a JAR through R8 with an explicitly ordered classpath. */
+        public loadJarWithR8(program: string, keepRules: string[], orderedClasspath: string[]): void;
+        /** Compiles and loads a JAR through R8 with an ordered classpath and verified export. */
+        public loadJarWithR8(program: string, keepRules: string[], orderedClasspath: string[], exportDirectory: string): void;
+        /**
+         * Compiles and loads a JAR through R8 with consumer rules bound to classpath ordinals.
+         * Each consumer rule must have exactly one matching owner ordinal.
+         */
+        public loadJarWithR8(program: string, keepRules: string[], orderedClasspath: string[], consumerRules: string[], consumerRuleClasspathOrdinals: number[]): void;
+        /**
+         * Full R8 compile/load overload with consumer-rule ownership and verified artifact export.
+         */
+        public loadJarWithR8(program: string, keepRules: string[], orderedClasspath: string[], consumerRules: string[], consumerRuleClasspathOrdinals: number[], exportDirectory: string): void;
+
+        /**
+         * Retraces an obfuscated stack through the selected protocol 1.1 R8 provider.
+         * Mapping and metadata paths are read only by the host; the provider receives canonical
+         * bytes whose hashes and mapping provenance are verified before retracing.
+         */
+        public retraceR8Stack(obfuscatedStackTrace: string, mapping: string, retraceMetadata: string): string;
 
         /**
          * @example

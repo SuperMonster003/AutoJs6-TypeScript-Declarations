@@ -146,6 +146,17 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.2.0
+
+###### 2026/08/27
+
+##### R8 Retrace 与校验产物导出声明
+
+- `新增` `runtime.retraceR8Stack` 声明, 通过协议 1.1 提供者按 mapping 与 retrace metadata 溯源绑定还原混淆堆栈
+- `新增` `runtime.loadJarWithR8` 的 3 个导出重载, 原子导出经重新哈希的 mapping, seeds, usage 与 retrace metadata, 且不隐式导出 DEX
+- `约束` 所有路径只由宿主解析, 未选择精确提供者或任一哈希、元数据、输出校验失败时均终止且不回退 D8/dx
+- `依赖` 从 AutoJs6 宿主提交 `dafddc732` 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.1.0
 
 ###### 2026/08/26
@@ -167,16 +178,6 @@ npm update @sm003/autojs6-dts
 - `新增` `target` 精确选择、官方 3-Stone AI 默认目标、target/profile/backend/plugin 元数据及 reasoning 输出声明
 - `完善` 生成、流式与持久会话的完整 usage、finish reason 及稳定错误代码, 严格声明目标不存在、未配置、不可用或能力不匹配时不回退
 - `依赖` 重新生成 AutoJs6 主应用、资源及三方库声明, 并同步 Ace Editor 内置声明
-
-# v4.0.8
-
-###### 2026/08/25
-
-##### R8 显式编译入口声明
-
-- `新增` `ScriptRuntime.loadJarWithR8` 的 3 个重载, 覆盖显式 keep rules, 有序 classpath 与 consumer-rule ordinal 绑定
-- `约束` 声明保留完整参数数组类型, 与默认关闭且无 D8/dx 回退的宿主入口一致
-- `依赖` 同步 AutoJs6 主应用, API 文档与 Ace Editor 内置声明
 
 ##### 更多版本历史可参阅
 
