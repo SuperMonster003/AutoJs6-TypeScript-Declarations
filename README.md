@@ -146,6 +146,17 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.4.0
+
+###### 2026/08/30
+
+##### PNG 量化质量结果与回退策略声明
+
+- `新增` `images.quantize` 与 `Images.PngQuantizationResult`, 返回索引 PNG 字节, 输出大小, 实际质量和标准化量化误差
+- `完善` 空选项声明为 `minQuality=0` 的尽力而为策略, 显式 `quality` 或 `minQuality` 保持严格下限语义
+- `异常` 主应用声明同步 `PngQuantBridge.QualityTooLowException` 与稳定错误代码, 可区分质量不足和内部失败
+- `依赖` 从 AutoJs6 6.8.0 (5276) 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.3.0
 
 ###### 2026/08/30
@@ -166,17 +177,6 @@ npm update @sm003/autojs6-dts
 - `新增` `runtime.loadJarWithR8` 的 3 个导出重载, 原子导出经重新哈希的 mapping, seeds, usage 与 retrace metadata, 且不隐式导出 DEX
 - `约束` 所有路径只由宿主解析, 未选择精确提供者或任一哈希、元数据、输出校验失败时均终止且不回退 D8/dx
 - `依赖` 从 AutoJs6 宿主提交 `dafddc732` 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
-
-# v4.1.0
-
-###### 2026/08/26
-
-##### AI 插件唯一目标接口声明
-
-- `替换` `ai`, `ask`, `chat`, `stream`, `session` 与 `catalog` 统一使用插件目标输入, 选项, 响应和流式类型
-- `精简` 移除未发布的双路径重载, 宿主直连响应形状及过渡类型, 超时只保留 `timeout` 规范属性
-- `完善` 省略选择器时声明官方 3-Stone AI 默认目标, 并统一消息, usage, finish reason, target, session 和稳定错误类型
-- `依赖` 同步 Ace Editor 内置声明与生成的 LSP 声明分组
 
 ##### 更多版本历史可参阅
 

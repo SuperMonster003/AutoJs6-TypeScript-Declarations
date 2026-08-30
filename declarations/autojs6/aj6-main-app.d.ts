@@ -8971,6 +8971,7 @@ declare namespace org {
 						public newMat(): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public newMat(mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, rect: __javaRoots.orgRoot.opencv.core.Rect): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public static pixel(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, x: number, y: number): number;
+						public quantize(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Result;
 						public read(path: string): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public read(path: string, isStrict: boolean): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public releaseScreenCapturer(): void;
@@ -11788,11 +11789,13 @@ declare namespace org {
 						public static probeLoadedRuntime(): string;
 						public static quantize(bitmap: __javaRoots.androidRoot.graphics.Bitmap, quality: number): number[];
 						public static quantize(bitmap: __javaRoots.androidRoot.graphics.Bitmap, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): number[];
+						public static quantizeWithResult(bitmap: __javaRoots.androidRoot.graphics.Bitmap, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Result;
 					}
 					export namespace PngQuantBridge {
 						export class Options {
 							public static readonly DEFAULT_DITHERING_LEVEL: number;
 							public static readonly DEFAULT_MAX_COLORS: number;
+							public static readonly DEFAULT_MIN_QUALITY: number;
 							public static readonly DEFAULT_POSTERIZE_BITS: number;
 							public static readonly DEFAULT_SPEED: number;
 							public readonly ditheringLevel: number;
@@ -11808,6 +11811,23 @@ declare namespace org {
 							public getMinQuality(): number;
 							public getPosterizeBits(): number;
 							public getSpeed(): number;
+						}
+						export class QualityTooLowException extends __javaRoots.javaRoot.io.IOException {
+							public static readonly CODE: string;
+							public readonly code: string;
+							public constructor(message: string);
+							public getCode(): string;
+						}
+						export class Result {
+							public readonly bytes: number[];
+							public readonly quality: number;
+							public readonly quantizationError: number;
+							public readonly size: number;
+							public constructor(bytes: number[], quality: number, quantizationError: number);
+							public getBytes(): number[];
+							public getQuality(): number;
+							public getQuantizationError(): number;
+							public getSize(): number;
 						}
 					}
 				}

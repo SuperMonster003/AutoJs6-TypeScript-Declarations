@@ -4,6 +4,17 @@
 
 ******
 
+# v4.4.0
+
+###### 2026/08/30
+
+##### PNG 量化质量结果与回退策略声明
+
+- `新增` `images.quantize` 与 `Images.PngQuantizationResult`, 返回索引 PNG 字节, 输出大小, 实际质量和标准化量化误差
+- `完善` 空选项声明为 `minQuality=0` 的尽力而为策略, 显式 `quality` 或 `minQuality` 保持严格下限语义
+- `异常` 主应用声明同步 `PngQuantBridge.QualityTooLowException` 与稳定错误代码, 可区分质量不足和内部失败
+- `依赖` 从 AutoJs6 6.8.0 (5276) 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.3.0
 
 ###### 2026/08/30

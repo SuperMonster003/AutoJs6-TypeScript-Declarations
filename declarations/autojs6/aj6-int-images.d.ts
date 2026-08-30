@@ -1329,6 +1329,13 @@ declare namespace Internal {
          */
         recycle(...images: ImageWrapper[]): boolean;
 
+        /**
+         * Quantizes an image to indexed PNG bytes and reports the measured palette quality.
+         * Empty options use best-effort minimum quality; an explicit quality shortcut is strict.
+         * @throws Images.PngQuantizationQualityTooLowException when an explicit minimum cannot be met
+         */
+        quantize(img: Images.ImageSource, options?: Images.PngQuantizationOptions): Images.PngQuantizationResult;
+
         compress(img: Images.ImageSource, format?: Images.Format, qualityOrOptions?: number | Images.PngQuantizationOptions): ImageWrapper;
 
         compressToBytes(img: Images.ImageSource, format?: Images.Format, qualityOrOptions?: number | Images.PngQuantizationOptions): number[];
@@ -1433,21 +1440,35 @@ declare namespace Images {
 
     /** Named controls for the Image Quantization plugin. Only PNG output accepts this object. */
     interface PngQuantizationOptions {
-        /** Compatibility shortcut used as the default for both quality bounds. */
+        /** Explicit strict-mode shortcut used as the default for both quality bounds. */
         quality?: number;
         /** @default 256 */
         maxColors?: number;
         /** @default 8 */
         speed?: number;
-        /** @default quality */
+        /** @default 0, or quality when the shortcut is explicit */
         minQuality?: number;
-        /** @default quality */
+        /** @default quality, or the calling method's default quality */
         maxQuality?: number;
         /** @default 0 */
         ditheringLevel?: number;
         /** @default 0 */
         posterizeBits?: number;
     }
+
+    /** Indexed PNG bytes and quality metrics measured by libimagequant. */
+    interface PngQuantizationResult {
+        readonly bytes: number[];
+        readonly size: number;
+        /** Actual palette quality in the range 0..100; higher is better. */
+        readonly quality: number;
+        /** Standardized mean squared quantization error; lower is better. */
+        readonly quantizationError: number;
+    }
+
+    /** Typed failure raised when the requested palette cannot meet an explicit minimum quality. */
+    type PngQuantizationQualityTooLowException =
+        org.autojs.autojs.runtime.api.PngQuantBridge.QualityTooLowException;
 
     interface ScreenCaptureOptions {
         width?: number;
