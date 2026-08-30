@@ -146,6 +146,16 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.5.0
+
+###### 2026/08/31
+
+##### PNG 量化色彩与流式文件输出声明
+
+- `新增` `images.quantizeToFile` 与 `Images.PngQuantizationFileResult`, 直接写入 PNG 文件并返回路径, 大小, 实际质量和量化误差
+- `完善` `Images.PngQuantizationOptions.preserveAlpha`, 默认保留透明度, 设为 `false` 时声明完全不透明输出语义
+- `依赖` 从 AutoJs6 6.8.0 (5277) 重新生成文件描述符输出, 色彩选项与结果 Java 声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.4.0
 
 ###### 2026/08/30
@@ -166,17 +176,6 @@ npm update @sm003/autojs6-dts
 - `新增` `Images.PngQuantizationOptions` 及 `images.save`, `saveImage`, `compress`, `compressToBytes` 的对象参数声明, 覆盖颜色预算, 速度, 质量区间, 抖动与 posterize
 - `兼容` 保留数字 `quality` 与省略参数的既有重载语义, 并声明选项对象仅适用于 Image Quantization 插件提供的 PNG 输出
 - `依赖` 从 AutoJs6 6.8.0 (5276) 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
-
-# v4.2.0
-
-###### 2026/08/27
-
-##### R8 Retrace 与校验产物导出声明
-
-- `新增` `runtime.retraceR8Stack` 声明, 通过协议 1.1 提供者按 mapping 与 retrace metadata 溯源绑定还原混淆堆栈
-- `新增` `runtime.loadJarWithR8` 的 3 个导出重载, 原子导出经重新哈希的 mapping, seeds, usage 与 retrace metadata, 且不隐式导出 DEX
-- `约束` 所有路径只由宿主解析, 未选择精确提供者或任一哈希、元数据、输出校验失败时均终止且不回退 D8/dx
-- `依赖` 从 AutoJs6 宿主提交 `dafddc732` 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
 
 ##### 更多版本历史可参阅
 

@@ -4,6 +4,16 @@
 
 ******
 
+# v4.5.0
+
+###### 2026/08/31
+
+##### PNG 量化色彩与流式文件输出声明
+
+- `新增` `images.quantizeToFile` 与 `Images.PngQuantizationFileResult`, 直接写入 PNG 文件并返回路径, 大小, 实际质量和量化误差
+- `完善` `Images.PngQuantizationOptions.preserveAlpha`, 默认保留透明度, 设为 `false` 时声明完全不透明输出语义
+- `依赖` 从 AutoJs6 6.8.0 (5277) 重新生成文件描述符输出, 色彩选项与结果 Java 声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.4.0
 
 ###### 2026/08/30

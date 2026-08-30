@@ -1336,6 +1336,13 @@ declare namespace Internal {
          */
         quantize(img: Images.ImageSource, options?: Images.PngQuantizationOptions): Images.PngQuantizationResult;
 
+        /**
+         * Quantizes an image and streams the indexed PNG directly to a file.
+         * This avoids constructing a complete encoded byte array in script memory.
+         * @throws Images.PngQuantizationQualityTooLowException when an explicit minimum cannot be met
+         */
+        quantizeToFile(img: Images.ImageSource, path: string, options?: Images.PngQuantizationOptions): Images.PngQuantizationFileResult;
+
         compress(img: Images.ImageSource, format?: Images.Format, qualityOrOptions?: number | Images.PngQuantizationOptions): ImageWrapper;
 
         compressToBytes(img: Images.ImageSource, format?: Images.Format, qualityOrOptions?: number | Images.PngQuantizationOptions): number[];
@@ -1454,11 +1461,23 @@ declare namespace Images {
         ditheringLevel?: number;
         /** @default 0 */
         posterizeBits?: number;
+        /** Preserve palette transparency and emit tRNS when needed. @default true */
+        preserveAlpha?: boolean;
     }
 
     /** Indexed PNG bytes and quality metrics measured by libimagequant. */
     interface PngQuantizationResult {
         readonly bytes: number[];
+        readonly size: number;
+        /** Actual palette quality in the range 0..100; higher is better. */
+        readonly quality: number;
+        /** Standardized mean squared quantization error; lower is better. */
+        readonly quantizationError: number;
+    }
+
+    /** File path, encoded size and quality metrics returned by streaming PNG output. */
+    interface PngQuantizationFileResult {
+        readonly path: string;
         readonly size: number;
         /** Actual palette quality in the range 0..100; higher is better. */
         readonly quality: number;
