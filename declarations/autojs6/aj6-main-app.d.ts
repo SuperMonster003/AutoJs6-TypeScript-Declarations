@@ -8943,6 +8943,7 @@ declare namespace org {
 						public readonly screenCaptureOptions: __javaRoots.orgRoot.autojs.autojs.core.image.capture.ScreenCapturer.Options;
 						public readonly screenCapturer: __javaRoots.orgRoot.autojs.autojs.core.image.capture.ScreenCapturer;
 						public constructor(context: __javaRoots.androidRoot.content.Context, scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime);
+						public cancelPendingQuantizations(): void;
 						public captureScreen(): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public captureScreen(path: string): boolean;
 						public clip(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, x: number, y: number, w: number, h: number): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
@@ -11790,20 +11791,36 @@ declare namespace org {
 						public constructor();
 						public static probeLoadedRuntime(): string;
 						public static quantize(bitmap: __javaRoots.androidRoot.graphics.Bitmap, quality: number): number[];
+						public static quantize(bitmap: __javaRoots.androidRoot.graphics.Bitmap, quality: number, cancellationToken: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.CancellationToken): number[];
 						public static quantize(bitmap: __javaRoots.androidRoot.graphics.Bitmap, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): number[];
+						public static quantize(bitmap: __javaRoots.androidRoot.graphics.Bitmap, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options, cancellationToken: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.CancellationToken): number[];
 						public static quantizeToFileDescriptor(bitmap: __javaRoots.androidRoot.graphics.Bitmap, fileDescriptor: __javaRoots.javaRoot.io.FileDescriptor, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.OutputResult;
+						public static quantizeToFileDescriptor(bitmap: __javaRoots.androidRoot.graphics.Bitmap, fileDescriptor: __javaRoots.javaRoot.io.FileDescriptor, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options, cancellationToken: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.CancellationToken): __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.OutputResult;
 						public static quantizeWithResult(bitmap: __javaRoots.androidRoot.graphics.Bitmap, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Result;
+						public static quantizeWithResult(bitmap: __javaRoots.androidRoot.graphics.Bitmap, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options, cancellationToken: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.CancellationToken): __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Result;
 					}
 					export namespace PngQuantBridge {
+						export class CancellationToken {
+							public readonly cancellationRequested: boolean;
+							public readonly cancelled: boolean;
+							public constructor();
+							public cancel(): void;
+							public isCancellationRequested(): boolean;
+							public isCancelled(): boolean;
+						}
 						export class Options {
 							public static readonly DEFAULT_DITHERING_LEVEL: number;
 							public static readonly DEFAULT_MAX_COLORS: number;
+							public static readonly DEFAULT_MAX_MEMORY_BYTES: number;
+							public static readonly DEFAULT_MAX_PIXELS: number;
 							public static readonly DEFAULT_MIN_QUALITY: number;
 							public static readonly DEFAULT_POSTERIZE_BITS: number;
 							public static readonly DEFAULT_PRESERVE_ALPHA: boolean;
 							public static readonly DEFAULT_SPEED: number;
 							public readonly ditheringLevel: number;
 							public readonly maxColors: number;
+							public readonly maxMemoryBytes: number;
+							public readonly maxPixels: number;
 							public readonly maxQuality: number;
 							public readonly minQuality: number;
 							public readonly posterizeBits: number;
@@ -11811,8 +11828,11 @@ declare namespace org {
 							public readonly speed: number;
 							public constructor(maxColors: number, speed: number, minQuality: number, maxQuality: number, ditheringLevel: number, posterizeBits: number);
 							public constructor(maxColors: number, speed: number, minQuality: number, maxQuality: number, ditheringLevel: number, posterizeBits: number, preserveAlpha: boolean);
+							public constructor(maxColors: number, speed: number, minQuality: number, maxQuality: number, ditheringLevel: number, posterizeBits: number, preserveAlpha: boolean, maxPixels: number, maxMemoryBytes: number);
 							public getDitheringLevel(): number;
 							public getMaxColors(): number;
+							public getMaxMemoryBytes(): number;
+							public getMaxPixels(): number;
 							public getMaxQuality(): number;
 							public getMinQuality(): number;
 							public getPosterizeBits(): number;
@@ -11820,10 +11840,13 @@ declare namespace org {
 							public isPreserveAlpha(): boolean;
 						}
 						export class OutputResult {
+							public readonly peakWorkingMemoryBytes: number;
 							public readonly quality: number;
 							public readonly quantizationError: number;
 							public readonly size: number;
 							public constructor(size: number, quality: number, quantizationError: number);
+							public constructor(size: number, quality: number, quantizationError: number, peakWorkingMemoryBytes: number);
+							public getPeakWorkingMemoryBytes(): number;
 							public getQuality(): number;
 							public getQuantizationError(): number;
 							public getSize(): number;
@@ -11834,13 +11857,35 @@ declare namespace org {
 							public constructor(message: string);
 							public getCode(): string;
 						}
+						export class ResourceLimitException extends __javaRoots.javaRoot.lang.RuntimeException {
+							public static readonly ALLOCATION_FAILED: string;
+							public static readonly CODE: string;
+							public static readonly MEMORY_LIMIT: string;
+							public static readonly PIXEL_LIMIT: string;
+							public readonly actualPixels: number;
+							public readonly code: string;
+							public readonly maxMemoryBytes: number;
+							public readonly maxPixels: number;
+							public readonly reason: string;
+							public readonly requiredMemoryBytes: number;
+							public constructor(reason: string, actualPixels: number, maxPixels: number, requiredMemoryBytes: number, maxMemoryBytes: number);
+							public getActualPixels(): number;
+							public getCode(): string;
+							public getMaxMemoryBytes(): number;
+							public getMaxPixels(): number;
+							public getReason(): string;
+							public getRequiredMemoryBytes(): number;
+						}
 						export class Result {
 							public readonly bytes: number[];
+							public readonly peakWorkingMemoryBytes: number;
 							public readonly quality: number;
 							public readonly quantizationError: number;
 							public readonly size: number;
 							public constructor(bytes: number[], quality: number, quantizationError: number);
+							public constructor(bytes: number[], quality: number, quantizationError: number, peakWorkingMemoryBytes: number);
 							public getBytes(): number[];
+							public getPeakWorkingMemoryBytes(): number;
 							public getQuality(): number;
 							public getQuantizationError(): number;
 							public getSize(): number;

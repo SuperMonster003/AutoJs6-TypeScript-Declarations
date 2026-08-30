@@ -146,6 +146,17 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.6.0
+
+###### 2026/08/31
+
+##### PNG 量化资源预算与取消声明
+
+- `新增` `Images.PngQuantizationOptions.maxPixels` 与 `maxMemoryBytes`, 声明默认 16000000 像素和 256 MiB 附加工作内存上限
+- `指标` 字节和文件结果增加 `peakWorkingMemoryBytes`, v4 返回计入预算的峰值内存, 旧插件返回 `-1`
+- `异常` 声明资源上限错误的稳定代码, 原因和预算字段, 并同步显式取消令牌及脚本退出联动对应的 Java API
+- `依赖` 从 AutoJs6 6.8.0 (5277) 重新生成资源控制, 取消与结果 Java 声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.5.0
 
 ###### 2026/08/31
@@ -165,16 +176,6 @@ npm update @sm003/autojs6-dts
 - `新增` `images.quantize` 与 `Images.PngQuantizationResult`, 返回索引 PNG 字节, 输出大小, 实际质量和标准化量化误差
 - `完善` 空选项声明为 `minQuality=0` 的尽力而为策略, 显式 `quality` 或 `minQuality` 保持严格下限语义
 - `异常` 主应用声明同步 `PngQuantBridge.QualityTooLowException` 与稳定错误代码, 可区分质量不足和内部失败
-- `依赖` 从 AutoJs6 6.8.0 (5276) 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
-
-# v4.3.0
-
-###### 2026/08/30
-
-##### PNG 量化具名参数声明
-
-- `新增` `Images.PngQuantizationOptions` 及 `images.save`, `saveImage`, `compress`, `compressToBytes` 的对象参数声明, 覆盖颜色预算, 速度, 质量区间, 抖动与 posterize
-- `兼容` 保留数字 `quality` 与省略参数的既有重载语义, 并声明选项对象仅适用于 Image Quantization 插件提供的 PNG 输出
 - `依赖` 从 AutoJs6 6.8.0 (5276) 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
 
 ##### 更多版本历史可参阅

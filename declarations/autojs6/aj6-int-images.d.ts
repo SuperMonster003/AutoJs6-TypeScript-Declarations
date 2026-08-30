@@ -1333,6 +1333,7 @@ declare namespace Internal {
          * Quantizes an image to indexed PNG bytes and reports the measured palette quality.
          * Empty options use best-effort minimum quality; an explicit quality shortcut is strict.
          * @throws Images.PngQuantizationQualityTooLowException when an explicit minimum cannot be met
+         * @throws Images.PngQuantizationResourceLimitException when the v4 pixel or memory budget is exceeded
          */
         quantize(img: Images.ImageSource, options?: Images.PngQuantizationOptions): Images.PngQuantizationResult;
 
@@ -1340,6 +1341,7 @@ declare namespace Internal {
          * Quantizes an image and streams the indexed PNG directly to a file.
          * This avoids constructing a complete encoded byte array in script memory.
          * @throws Images.PngQuantizationQualityTooLowException when an explicit minimum cannot be met
+         * @throws Images.PngQuantizationResourceLimitException when the v4 pixel or memory budget is exceeded
          */
         quantizeToFile(img: Images.ImageSource, path: string, options?: Images.PngQuantizationOptions): Images.PngQuantizationFileResult;
 
@@ -1463,6 +1465,10 @@ declare namespace Images {
         posterizeBits?: number;
         /** Preserve palette transparency and emit tRNS when needed. @default true */
         preserveAlpha?: boolean;
+        /** Maximum input pixel count. Explicit use requires options API v4. @default 16000000 */
+        maxPixels?: number;
+        /** Maximum additional working-memory bytes. Explicit use requires options API v4. @default 268435456 */
+        maxMemoryBytes?: number;
     }
 
     /** Indexed PNG bytes and quality metrics measured by libimagequant. */
@@ -1473,6 +1479,8 @@ declare namespace Images {
         readonly quality: number;
         /** Standardized mean squared quantization error; lower is better. */
         readonly quantizationError: number;
+        /** Peak additional working memory accounted by v4, or -1 with an older plugin. */
+        readonly peakWorkingMemoryBytes: number;
     }
 
     /** File path, encoded size and quality metrics returned by streaming PNG output. */
@@ -1483,11 +1491,17 @@ declare namespace Images {
         readonly quality: number;
         /** Standardized mean squared quantization error; lower is better. */
         readonly quantizationError: number;
+        /** Peak additional working memory accounted by v4, or -1 with an older plugin. */
+        readonly peakWorkingMemoryBytes: number;
     }
 
     /** Typed failure raised when the requested palette cannot meet an explicit minimum quality. */
     type PngQuantizationQualityTooLowException =
         org.autojs.autojs.runtime.api.PngQuantBridge.QualityTooLowException;
+
+    /** Typed v4 failure raised before the operation can exceed its pixel or working-memory budget. */
+    type PngQuantizationResourceLimitException =
+        org.autojs.autojs.runtime.api.PngQuantBridge.ResourceLimitException;
 
     interface ScreenCaptureOptions {
         width?: number;
