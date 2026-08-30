@@ -146,6 +146,16 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.3.0
+
+###### 2026/08/30
+
+##### PNG 量化具名参数声明
+
+- `新增` `Images.PngQuantizationOptions` 及 `images.save`, `saveImage`, `compress`, `compressToBytes` 的对象参数声明, 覆盖颜色预算, 速度, 质量区间, 抖动与 posterize
+- `兼容` 保留数字 `quality` 与省略参数的既有重载语义, 并声明选项对象仅适用于 Image Quantization 插件提供的 PNG 输出
+- `依赖` 从 AutoJs6 6.8.0 (5276) 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.2.0
 
 ###### 2026/08/27
@@ -167,17 +177,6 @@ npm update @sm003/autojs6-dts
 - `精简` 移除未发布的双路径重载, 宿主直连响应形状及过渡类型, 超时只保留 `timeout` 规范属性
 - `完善` 省略选择器时声明官方 3-Stone AI 默认目标, 并统一消息, usage, finish reason, target, session 和稳定错误类型
 - `依赖` 同步 Ace Editor 内置声明与生成的 LSP 声明分组
-
-# v4.0.9
-
-###### 2026/08/26
-
-##### AI 统一目标目录与精确路由声明
-
-- `替换` 以 `ai.catalog` 统一声明本机模型与在线配置目标, 删除未发布的旧目录、配置探测及兼容别名
-- `新增` `target` 精确选择、官方 3-Stone AI 默认目标、target/profile/backend/plugin 元数据及 reasoning 输出声明
-- `完善` 生成、流式与持久会话的完整 usage、finish reason 及稳定错误代码, 严格声明目标不存在、未配置、不可用或能力不匹配时不回退
-- `依赖` 重新生成 AutoJs6 主应用、资源及三方库声明, 并同步 Ace Editor 内置声明
 
 ##### 更多版本历史可参阅
 

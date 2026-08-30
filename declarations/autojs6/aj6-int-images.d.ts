@@ -1190,24 +1190,25 @@ declare namespace Internal {
          * images.save(images.captureScreen(), files.cwd(), "png", 90);
          * images.save(images.captureScreen(), files.cwd(), undefined, 90); // same as above
          * images.save(images.captureScreen(), files.cwd(), "", 90); // same as above
+         * images.save(images.captureScreen(), files.cwd(), "png", {maxColors: 64, speed: 3});
          * @example Source code summary (zh-CN: 源代码摘要)
          * let javaImages = runtime.getImages();
-         * images.save = function (img, path, format, quality) {
+         * images.save = function (img, path, format, qualityOrOptions) {
          *     format = format || "png";
-         *     quality = quality === undefined ? 100 : quality;
-         *     return javaImages.save(img, path, format, quality);
+         *     qualityOrOptions = qualityOrOptions === undefined ? 100 : qualityOrOptions;
+         *     return javaImages.save(img, path, format, qualityOrOptions);
          * };
          * @param img
          * @param path
          * @param [format="png"]
-         * @param [quality=100]
+         * @param [qualityOrOptions=100]
          * @see runtime.getImages
          * @see org.autojs.autojs.runtime.api.Images.save
          */
-        save(img: ImageWrapper, path: string, format?: Images.Format, quality?: number): boolean;
+        save(img: ImageWrapper, path: string, format?: Images.Format, qualityOrOptions?: number | Images.PngQuantizationOptions): boolean;
 
         /** @see save */
-        saveImage(img: ImageWrapper, path: string, format?: Images.Format, quality?: number): boolean;
+        saveImage(img: ImageWrapper, path: string, format?: Images.Format, qualityOrOptions?: number | Images.PngQuantizationOptions): boolean;
 
         /**
          * Resizes an image.
@@ -1328,9 +1329,9 @@ declare namespace Internal {
          */
         recycle(...images: ImageWrapper[]): boolean;
 
-        compress(img: Images.ImageSource, format?: Images.Format, quality?: number): ImageWrapper;
+        compress(img: Images.ImageSource, format?: Images.Format, qualityOrOptions?: number | Images.PngQuantizationOptions): ImageWrapper;
 
-        compressToBytes(img: Images.ImageSource, format?: Images.Format, quality?: number): number[];
+        compressToBytes(img: Images.ImageSource, format?: Images.Format, qualityOrOptions?: number | Images.PngQuantizationOptions): number[];
 
         downsample(src: Images.DownsampleSource, reqWidth: number, reqHeight: number, withAlpha?: boolean): ImageWrapper;
 
@@ -1429,6 +1430,24 @@ declare namespace Images {
     type BorderTypes = 'CONSTANT' | 'REPLICATE' | 'REFLECT' | 'WRAP' | 'REFLECT_101' | 'TRANSPARENT' | 'REFLECT101' | 'DEFAULT' | 'ISOLATED';
     type ScreenCaptureOrientation = 'none' | 'auto' | 'portrait' | 'landscape' | number;
     type SimilarityMetric = 'psnr' | 'ssim' | 'mssim' | 'hist' | 'mse' | 'ncc' | string;
+
+    /** Named controls for the Image Quantization plugin. Only PNG output accepts this object. */
+    interface PngQuantizationOptions {
+        /** Compatibility shortcut used as the default for both quality bounds. */
+        quality?: number;
+        /** @default 256 */
+        maxColors?: number;
+        /** @default 8 */
+        speed?: number;
+        /** @default quality */
+        minQuality?: number;
+        /** @default quality */
+        maxQuality?: number;
+        /** @default 0 */
+        ditheringLevel?: number;
+        /** @default 0 */
+        posterizeBits?: number;
+    }
 
     interface ScreenCaptureOptions {
         width?: number;

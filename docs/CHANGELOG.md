@@ -4,6 +4,16 @@
 
 ******
 
+# v4.3.0
+
+###### 2026/08/30
+
+##### PNG 量化具名参数声明
+
+- `新增` `Images.PngQuantizationOptions` 及 `images.save`, `saveImage`, `compress`, `compressToBytes` 的对象参数声明, 覆盖颜色预算, 速度, 质量区间, 抖动与 posterize
+- `兼容` 保留数字 `quality` 与省略参数的既有重载语义, 并声明选项对象仅适用于 Image Quantization 插件提供的 PNG 输出
+- `依赖` 从 AutoJs6 6.8.0 (5276) 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.2.0
 
 ###### 2026/08/27

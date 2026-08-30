@@ -316,6 +316,7 @@ declare namespace org {
 					public static pref_editor_pinch_to_zoom_change_text_size_enabled: number;
 					public static pref_enable_a11y_service_with_root_access: number;
 					public static pref_enable_a11y_service_with_secure_settings: number;
+					public static pref_explorer_playback_history: number;
 					public static pref_extending_js_build_in_objects: number;
 					public static pref_gesture_observing: number;
 					public static pref_guard_mode: number;
@@ -1253,6 +1254,7 @@ declare namespace org {
 					public static main_title_text_size_horizontal_with_subtitle: number;
 					public static padding_circular_menu_normal: number;
 					public static padding_circular_menu_recording: number;
+					public static plugin_center_action_icon_size: number;
 					public static plugin_center_item_icon_border_width: number;
 					public static plugin_center_item_side_length: number;
 					public static popup_enter_animation_from_y_delta: number;
@@ -1703,6 +1705,7 @@ declare namespace org {
 					public static ic_expanded: number;
 					public static ic_explicit_black_48dp: number;
 					public static ic_explore_black_48dp: number;
+					public static ic_explorer_plugin_action: number;
 					public static ic_export_black_48dp: number;
 					public static ic_exposure_black_48dp: number;
 					public static ic_exposure_neg_1_black_48dp: number;
@@ -2643,6 +2646,7 @@ declare namespace org {
 					public static action_timed_task: number;
 					public static action_toggle_all: number;
 					public static action_toggle_color_select_layout: number;
+					public static action_typescript_console: number;
 					public static action_undo: number;
 					public static action_use_default_icon: number;
 					public static action_version_history: number;
@@ -2663,6 +2667,8 @@ declare namespace org {
 					public static app_icon: number;
 					public static app_name: number;
 					public static apps: number;
+					public static archive_add_entries: number;
+					public static archive_create_directory: number;
 					public static archive_extract_current: number;
 					public static archive_filename_encoding: number;
 					public static arrow_icon: number;
@@ -2697,6 +2703,7 @@ declare namespace org {
 					public static btn_delete: number;
 					public static btn_details: number;
 					public static btn_maximize: number;
+					public static btn_more: number;
 					public static btn_run_stop: number;
 					public static btn_settings: number;
 					public static btn_update: number;
@@ -2773,6 +2780,7 @@ declare namespace org {
 					public static components_value: number;
 					public static confirm: number;
 					public static console: number;
+					public static console_content: number;
 					public static console_view_container: number;
 					public static container: number;
 					public static container_format_colon: number;
@@ -3220,7 +3228,6 @@ declare namespace org {
 					public static request_screen_capture_delay_max_value: number;
 					public static request_screen_capture_delay_min_value: number;
 					public static request_screen_capture_delay_title: number;
-					public static reserved: number;
 					public static resizer: number;
 					public static resolution_colon: number;
 					public static resolution_guideline: number;
@@ -3417,7 +3424,6 @@ declare namespace org {
 					public static type_value: number;
 					public static undo: number;
 					public static updatable_badge: number;
-					public static updatable_badge_text: number;
 					public static updatable_version_colon: number;
 					public static updatable_version_guideline: number;
 					public static updatable_version_label: number;
@@ -3732,6 +3738,7 @@ declare namespace org {
 					public static menu_editor: number;
 					public static menu_icon_select: number;
 					public static menu_js_sample: number;
+					public static menu_log_bottom_sheet_more: number;
 					public static menu_login: number;
 					public static menu_main: number;
 					public static menu_main_inrt: number;
@@ -4285,6 +4292,7 @@ declare namespace org {
 					public static error_app_not_installed_with_name: number;
 					public static error_archive_extraction_failed: number;
 					public static error_archive_extraction_requires_interaction: number;
+					public static error_archive_input_selection_empty: number;
 					public static error_archive_password_incorrect: number;
 					public static error_argument_name_for_class_name_and_member_func_name_cannot_be_nullish: number;
 					public static error_arguments_cannot_be_empty: number;
@@ -4459,7 +4467,40 @@ declare namespace org {
 					public static error_timeout_while_querying_plugin_info: number;
 					public static error_typescript_compilation_failed: number;
 					public static error_typescript_compiler_plugin_unavailable: number;
+					public static error_typescript_project_rename_failed: number;
+					public static error_typescript_project_rename_rollback_failed: number;
+					public static error_typescript_project_rename_save_first: number;
+					public static error_typescript_project_rename_stale: number;
 					public static error_typescript_source_not_executable: number;
+					public static error_typescript_tsx_attribute_finite_number: number;
+					public static error_typescript_tsx_attribute_name_unsupported: number;
+					public static error_typescript_tsx_attribute_nullish: number;
+					public static error_typescript_tsx_attribute_scalar_required: number;
+					public static error_typescript_tsx_child_array_too_large: number;
+					public static error_typescript_tsx_child_arrays_too_deep: number;
+					public static error_typescript_tsx_children_unsupported: number;
+					public static error_typescript_tsx_event_target_missing: number;
+					public static error_typescript_tsx_event_unsupported: number;
+					public static error_typescript_tsx_factory_arguments: number;
+					public static error_typescript_tsx_fragment_layout_text: number;
+					public static error_typescript_tsx_fragment_props: number;
+					public static error_typescript_tsx_id_duplicate: number;
+					public static error_typescript_tsx_id_invalid: number;
+					public static error_typescript_tsx_invalid_xml_text: number;
+					public static error_typescript_tsx_layout_elements_limit: number;
+					public static error_typescript_tsx_layout_xml_limit: number;
+					public static error_typescript_tsx_onclick_function: number;
+					public static error_typescript_tsx_prop_names_strings: number;
+					public static error_typescript_tsx_props_attributes_limit: number;
+					public static error_typescript_tsx_props_object: number;
+					public static error_typescript_tsx_root_count: number;
+					public static error_typescript_tsx_root_fragment_text: number;
+					public static error_typescript_tsx_supports_intrinsic_only: number;
+					public static error_typescript_tsx_tag_name_unsupported: number;
+					public static error_typescript_tsx_text_attribute_conflict: number;
+					public static error_typescript_tsx_text_children_finite: number;
+					public static error_typescript_tsx_text_children_leaf_only: number;
+					public static error_typescript_tsx_tree_too_deep: number;
 					public static error_unable_to_change_file_encoding_as_current_file_path_is_unknown: number;
 					public static error_unable_to_display_file_details_as_current_file_path_is_unknown: number;
 					public static error_unable_to_display_version_history_as_current_file_path_is_unknown: number;
@@ -4573,6 +4614,7 @@ declare namespace org {
 					public static key_change_working_dir: number;
 					public static key_check_for_updates: number;
 					public static key_check_for_updates_while_ignoring_the_local_version: number;
+					public static key_clear_explorer_playback_history: number;
 					public static key_client_socket_normally_closed: number;
 					public static key_color_select_activity_legacy_layout: number;
 					public static key_delete_permanently_also_clear_history: number;
@@ -4604,6 +4646,7 @@ declare namespace org {
 					public static key_editor_log_button_behavior: number;
 					public static key_editor_log_button_behavior_bottom_sheet: number;
 					public static key_editor_log_button_behavior_fullscreen_page: number;
+					public static key_editor_log_panel_typescript_console_visible: number;
 					public static key_editor_pinch_to_zoom_change_text_size: number;
 					public static key_editor_pinch_to_zoom_change_text_size_enabled: number;
 					public static key_editor_pinch_to_zoom_disable: number;
@@ -4624,6 +4667,7 @@ declare namespace org {
 					public static key_enable_a11y_service_with_secure_settings: number;
 					public static key_enable_observe_key: number;
 					public static key_explorer_file_default_prefix: number;
+					public static key_explorer_playback_history: number;
 					public static key_extending_js_build_in_objects: number;
 					public static key_file_extensions: number;
 					public static key_file_extensions_not_show: number;
@@ -4657,6 +4701,7 @@ declare namespace org {
 					public static key_launcher_icon_adaptive: number;
 					public static key_launcher_icon_transparent_background: number;
 					public static key_launcher_shortcuts: number;
+					public static key_log_activity_typescript_console_visible: number;
 					public static key_manage_ignored_updates: number;
 					public static key_night_mode: number;
 					public static key_night_mode_always_off: number;
@@ -5525,6 +5570,7 @@ declare namespace org {
 					public static summary_ace_word_wrap_enabled: number;
 					public static summary_all_files_access: number;
 					public static summary_all_files_access_inrt: number;
+					public static summary_clear_media_playback_history: number;
 					public static summary_code_editor_settings: number;
 					public static summary_dex_compiler_experimental_disabled: number;
 					public static summary_dex_compiler_experimental_disabled_with_selection: number;
@@ -5574,6 +5620,7 @@ declare namespace org {
 					public static summary_r8_compiler_explicit_disabled: number;
 					public static summary_r8_compiler_explicit_disabled_with_selection: number;
 					public static summary_r8_compiler_explicit_selected: number;
+					public static summary_record_media_playback_progress: number;
 					public static summary_record_prompt: number;
 					public static summary_release_history_preference: number;
 					public static summary_rhino_java_primitive_wrap: number;
@@ -5675,6 +5722,7 @@ declare namespace org {
 					public static text_adb_tool_needed: number;
 					public static text_add_bom: number;
 					public static text_add_color_library: number;
+					public static text_add_files_or_folders: number;
 					public static text_add_symbol_hint: number;
 					public static text_ai: number;
 					public static text_ai_settings: number;
@@ -5776,6 +5824,7 @@ declare namespace org {
 					public static text_archive_extraction_cancelled: number;
 					public static text_archive_extraction_completed: number;
 					public static text_archive_extraction_progress: number;
+					public static text_archive_format_path_segment: number;
 					public static text_archiving_project_files: number;
 					public static text_at_least_one_certificate_issuer_field_is_not_empty: number;
 					public static text_attribute: number;
@@ -5852,6 +5901,7 @@ declare namespace org {
 					public static text_clear: number;
 					public static text_clear_custom_css: number;
 					public static text_clear_file_selection: number;
+					public static text_clear_media_playback_history: number;
 					public static text_clear_pre_execute_script: number;
 					public static text_clear_trash: number;
 					public static text_clear_trash_confirm: number;
@@ -6326,6 +6376,7 @@ declare namespace org {
 					public static text_need_to_enable_a11y_service: number;
 					public static text_new_color_library: number;
 					public static text_new_file: number;
+					public static text_new_folder: number;
 					public static text_new_intelligent_color_library: number;
 					public static text_new_key_store: number;
 					public static text_new_path: number;
@@ -6397,6 +6448,7 @@ declare namespace org {
 					public static text_package_installation_succeeded: number;
 					public static text_package_name: number;
 					public static text_package_name_with_computing: number;
+					public static text_parent_folder: number;
 					public static text_password: number;
 					public static text_password_cannot_be_empty: number;
 					public static text_password_requires_at_least_n_characters: number;
@@ -6588,6 +6640,7 @@ declare namespace org {
 					public static text_reading_splash_resources: number;
 					public static text_recommended: number;
 					public static text_record_finished: number;
+					public static text_record_media_playback_progress: number;
 					public static text_record_prompt: number;
 					public static text_record_stopped: number;
 					public static text_recorded_output_file_type: number;
@@ -6819,6 +6872,11 @@ declare namespace org {
 					public static text_type: number;
 					public static text_type_file: number;
 					public static text_type_folder: number;
+					public static text_typescript_console: number;
+					public static text_typescript_console_hint: number;
+					public static text_typescript_project_rename: number;
+					public static text_typescript_project_rename_applied: number;
+					public static text_typescript_project_rename_preview: number;
 					public static text_unable_to_build_apk_as_autojs6_does_not_include_selected_abi: number;
 					public static text_unavailable: number;
 					public static text_unavailable_abi_for: number;
@@ -6878,6 +6936,7 @@ declare namespace org {
 					public static text_version_info: number;
 					public static text_version_name: number;
 					public static text_version_name_with_computing: number;
+					public static text_video_player: number;
 					public static text_view: number;
 					public static text_view_docs: number;
 					public static text_vivo_background_popup_permission: number;
@@ -6886,6 +6945,7 @@ declare namespace org {
 					public static text_weekly_task: number;
 					public static text_weekly_task_should_check_day_of_week: number;
 					public static text_working_dir_path: number;
+					public static text_working_dir_path_with_value: number;
 					public static text_write_secure_settings: number;
 					public static text_write_system_settings: number;
 					public static text_writing_app_icon: number;

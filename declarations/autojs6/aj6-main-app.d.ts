@@ -1627,6 +1627,7 @@ declare namespace org {
 						public clear(): void;
 						public collapse(): boolean;
 						public copyAll(): void;
+						public static createLogExportFileName(): string;
 						public error(data: any, ...formatArgs: any[]): void;
 						public expand(): boolean;
 						public export(): void;
@@ -1813,12 +1814,17 @@ declare namespace org {
 						public onLogClear(): void;
 						public onNewLog(logEntry: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry): void;
 						public setAssertTextColor(color: number): void;
+						public setCommandInputBusy(busy: boolean): void;
+						public setCommandInputTextColor(color: number): void;
+						public setCommandInputVisible(visible: boolean): void;
 						public setConsole(console: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl): void;
 						public setDebugTextColor(color: number): void;
 						public setEnableStackFrameLinks(enabled: boolean): void;
 						public setErrorTextColor(color: number): void;
 						public setInfoTextColor(color: number): void;
 						public setLogActivity(activity: __javaRoots.orgRoot.autojs.autojs.ui.log.LogActivity): void;
+						public setOnCommandStopListener(listener: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleView.OnCommandStopListener): void;
+						public setOnCommandSubmitListener(listener: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleView.OnCommandSubmitListener): void;
 						public setOnStackFrameClickListener(listener: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleView.OnStackFrameClickListener): void;
 						public setPinchToZoomEnabled(enabled: boolean): void;
 						public setTextColors(colors: __javaRoots.javaRoot.lang.Integer[]): void;
@@ -1828,6 +1834,20 @@ declare namespace org {
 					}
 					export interface ConsoleView extends __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogListener {}
 					export namespace ConsoleView {
+						export class OnCommandStopListener {
+							public constructor(implementation: OnCommandStopListener);
+							public constructor();
+						}
+						export interface OnCommandStopListener {
+							onCommandStop(): void;
+						}
+						export class OnCommandSubmitListener {
+							public constructor(implementation: OnCommandSubmitListener);
+							public constructor();
+						}
+						export interface OnCommandSubmitListener {
+							onCommandSubmit(param0: string): void;
+						}
 						export class OnStackFrameClickListener {
 							public constructor(implementation: OnStackFrameClickListener);
 							public constructor();
@@ -4512,6 +4532,7 @@ declare namespace org {
 						public static readonly autoCheckForUpdatesEnabled: boolean;
 						public static readonly codeHighlightThresholdChars: number;
 						public static readonly currentTheme: string;
+						public static readonly explorerPlaybackHistoryEnabled: boolean;
 						public static readonly extendingJsBuildInObjectsEnabled: boolean;
 						public static readonly fileExtensionsHidden: boolean;
 						public static readonly fileExtensionsShownForAll: boolean;
@@ -4571,6 +4592,7 @@ declare namespace org {
 						public static getStringSet(keyRes: number, defValues: __javaRoots.javaRoot.util.Set<string>): __javaRoots.javaRoot.util.Set<string>;
 						public static isAutoCheckForUpdatesEnabled(): boolean;
 						public static isCodeHighlightEnabledForLength(length: number): boolean;
+						public static isExplorerPlaybackHistoryEnabled(): boolean;
 						public static isExtendingJsBuildInObjectsEnabled(): boolean;
 						public static isFileExtensionsHidden(): boolean;
 						public static isFileExtensionsShownForAll(): boolean;
@@ -6250,6 +6272,7 @@ declare namespace org {
 					public readonly inspectorEnabled: boolean;
 					public readonly javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean;
 					public readonly moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
+					public readonly moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer;
 					public readonly moduleSources: __javaRoots.javaRoot.util.Map<string, string>;
 					public readonly rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean;
 					public readonly runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>;
@@ -6263,22 +6286,25 @@ declare namespace org {
 					public readonly typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>;
 					public readonly workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean;
 					public readonly workingDirectory: string;
-					public constructor(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider);
+					public readonly workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>;
+					public constructor(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider, moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer);
 					public component1(): string;
 					public component10(): __javaRoots.javaRoot.util.Map<string, string>;
 					public component11(): __javaRoots.javaRoot.util.Map<string, string>;
-					public component12(): boolean;
-					public component13(): __javaRoots.javaRoot.util.Set<string>;
-					public component14(): __javaRoots.javaRoot.lang.Boolean;
+					public component12(): __javaRoots.javaRoot.util.Map<string, string>;
+					public component13(): boolean;
+					public component14(): __javaRoots.javaRoot.util.Set<string>;
 					public component15(): __javaRoots.javaRoot.lang.Boolean;
 					public component16(): __javaRoots.javaRoot.lang.Boolean;
-					public component17(): boolean;
-					public component18(): __javaRoots.javaRoot.lang.Boolean;
+					public component17(): __javaRoots.javaRoot.lang.Boolean;
+					public component18(): boolean;
 					public component19(): __javaRoots.javaRoot.lang.Boolean;
 					public component2(): string;
 					public component20(): __javaRoots.javaRoot.lang.Boolean;
-					public component21(): number;
-					public component22(): __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
+					public component21(): __javaRoots.javaRoot.lang.Boolean;
+					public component22(): number;
+					public component23(): __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
+					public component24(): __javaRoots.javaRoot.lang.Integer;
 					public component3(): number;
 					public component4(): string;
 					public component5(): string;
@@ -6286,7 +6312,7 @@ declare namespace org {
 					public component7(): string;
 					public component8(): number;
 					public component9(): __javaRoots.javaRoot.util.Map<string, string>;
-					public copy(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider): __javaRoots.orgRoot.autojs.autojs.engine.NodePluginScriptRequest;
+					public copy(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider, moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer): __javaRoots.orgRoot.autojs.autojs.engine.NodePluginScriptRequest;
 					public equals(other: any): boolean;
 					public getChildProcessEnabled(): __javaRoots.javaRoot.lang.Boolean;
 					public getDynamicImportEnabled(): __javaRoots.javaRoot.lang.Boolean;
@@ -6297,6 +6323,7 @@ declare namespace org {
 					public getInspectorEnabled(): boolean;
 					public getJavaInteropEnabled(): __javaRoots.javaRoot.lang.Boolean;
 					public getModuleSourceProvider(): __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
+					public getModuleSourceProviderVersion(): __javaRoots.javaRoot.lang.Integer;
 					public getModuleSources(): __javaRoots.javaRoot.util.Map<string, string>;
 					public getRawNodeNetworkModulesEnabled(): __javaRoots.javaRoot.lang.Boolean;
 					public getRuntimeModuleSources(): __javaRoots.javaRoot.util.Map<string, string>;
@@ -6310,6 +6337,7 @@ declare namespace org {
 					public getTypeScriptPrecompiledSourceNames(): __javaRoots.javaRoot.util.Set<string>;
 					public getWorkerThreadsEnabled(): __javaRoots.javaRoot.lang.Boolean;
 					public getWorkingDirectory(): string;
+					public getWorkspaceModuleSources(): __javaRoots.javaRoot.util.Map<string, string>;
 					public hashCode(): number;
 					public toString(): string;
 				}
@@ -7670,7 +7698,9 @@ declare namespace org {
 					public static fromFile(file: __javaRoots.javaRoot.io.File): __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig;
 					public static fromFilePath(path: string): __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig;
 					public static fromJson(json: string): __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig;
+					public static fromJsonForExecution(json: string): __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig;
 					public static fromProjectDir(path: string): __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig;
+					public static fromProjectDirForExecution(path: string): __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig;
 					public getAbis(): __javaRoots.javaRoot.util.List<string>;
 					public getAssets(): __javaRoots.javaRoot.util.List<string>;
 					public getBuildDir(): string;
@@ -8917,7 +8947,9 @@ declare namespace org {
 						public captureScreen(path: string): boolean;
 						public clip(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, x: number, y: number, w: number, h: number): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public compress(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, format: string, quality: number): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
+						public compress(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, format: string, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public compressToBytes(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, format: string, quality: number): number[];
+						public compressToBytes(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, format: string, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): number[];
 						public static concat(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, imgA: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, imgB: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, direction: number): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public copy(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public detectAndComputeFeatures(mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, scale: number, cvtColor: number, method: number): __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor;
@@ -8945,6 +8977,7 @@ declare namespace org {
 						public requestScreenCapture(orientation: number, width: number, height: number, isAsync: boolean): __javaRoots.orgRoot.autojs.autojs.runtime.api.ScriptPromiseAdapter;
 						public rotate(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, x: number, y: number, degree: number): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public save(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, path: string, format: string, quality: number): boolean;
+						public save(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, path: string, format: string, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): boolean;
 						public static saveBitmap(bitmap: __javaRoots.androidRoot.graphics.Bitmap, path: string): void;
 						public static scaleBitmap(origin: __javaRoots.androidRoot.graphics.Bitmap, newWidth: number, newHeight: number): __javaRoots.androidRoot.graphics.Bitmap;
 						public setImageCaptureCallback(onScreenCaptureAvailableListener: __javaRoots.orgRoot.autojs.autojs.runtime.api.Images.OnScreenCaptureAvailableListener): void;
@@ -11750,6 +11783,43 @@ declare namespace org {
 		export namespace autojs {
 			export namespace runtime {
 				export namespace api {
+					export class PngQuantBridge {
+						public constructor();
+						public static probeLoadedRuntime(): string;
+						public static quantize(bitmap: __javaRoots.androidRoot.graphics.Bitmap, quality: number): number[];
+						public static quantize(bitmap: __javaRoots.androidRoot.graphics.Bitmap, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): number[];
+					}
+					export namespace PngQuantBridge {
+						export class Options {
+							public static readonly DEFAULT_DITHERING_LEVEL: number;
+							public static readonly DEFAULT_MAX_COLORS: number;
+							public static readonly DEFAULT_POSTERIZE_BITS: number;
+							public static readonly DEFAULT_SPEED: number;
+							public readonly ditheringLevel: number;
+							public readonly maxColors: number;
+							public readonly maxQuality: number;
+							public readonly minQuality: number;
+							public readonly posterizeBits: number;
+							public readonly speed: number;
+							public constructor(maxColors: number, speed: number, minQuality: number, maxQuality: number, ditheringLevel: number, posterizeBits: number);
+							public getDitheringLevel(): number;
+							public getMaxColors(): number;
+							public getMaxQuality(): number;
+							public getMinQuality(): number;
+							public getPosterizeBits(): number;
+							public getSpeed(): number;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
 					export class ProcessShell extends __javaRoots.orgRoot.autojs.autojs.runtime.api.AbstractShell {
 						public readonly errorOutput: __javaRoots.javaRoot.lang.StringBuilder;
 						public readonly errorReader: __javaRoots.javaRoot.io.BufferedReader;
@@ -13572,6 +13642,7 @@ declare namespace org {
 						public static launch(context: __javaRoots.androidRoot.content.Context, scriptName: string, scriptPath: string): void;
 						public onCreateOptionsMenu(menu: __javaRoots.androidRoot.view.Menu): boolean;
 						public onOptionsItemSelected(item: __javaRoots.androidRoot.view.MenuItem): boolean;
+						public onPrepareOptionsMenu(menu: __javaRoots.androidRoot.view.Menu): boolean;
 					}
 				}
 			}
@@ -14709,7 +14780,9 @@ declare namespace org {
 						public static readonly TWO_SIX_FOUR: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly TXZ: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly TYPESCRIPT: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly TYPESCRIPT_COMMONJS_DECLARATION: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly TYPESCRIPT_DECLARATION: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly TYPESCRIPT_MODULE_DECLARATION: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly TYPE_NAME_PREFIX_REGEX: string;
 						public static readonly TZST: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly UFO: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -14850,6 +14923,7 @@ declare namespace org {
 						public readonly textEditable: boolean;
 						public readonly typeData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TypeData;
 						public readonly typeName: string;
+						public readonly videoFile: boolean;
 						public readonly videoPlayable: boolean;
 						public readonly viewerType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.ViewerType;
 						public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE>;
@@ -14870,6 +14944,7 @@ declare namespace org {
 						public isMediaPlayable(): boolean;
 						public isPreviewable(): boolean;
 						public isTextEditable(): boolean;
+						public isVideoFile(): boolean;
 						public isVideoPlayable(): boolean;
 						public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static values(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE[];
@@ -15551,8 +15626,11 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.7:1
 //org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.8:1
 //org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.9:1
+//org.autojs.autojs.core.plugin.center.PluginCenterFrameChunkedListSubmitter:1
+//org.autojs.autojs.core.plugin.center.PluginCenterLegacyRefreshState:1
 //org.autojs.autojs.core.plugin.center.PluginCenterViewModel.toLegacyPluginCenterItem.lambda.1..inlined.sortedByDescending.1:1
 //org.autojs.autojs.core.plugin.center.PluginCenterViewModel.toPluginCenterItem.lambda.1..inlined.sortedByDescending.1:1
+//org.autojs.autojs.core.plugin.center.PluginInfoServiceHost.withInfoService.1:1
 //org.autojs.autojs.core.plugin.center.PluginSettingsFragment.onCreatePreferences..inlined.sortedByDescending.1:1
 //org.autojs.autojs.core.plugin.center.PluginVariantPriorityActivity.applyStoredOrder..inlined.compareBy.1:1
 //org.autojs.autojs.core.plugin.center.PluginVariantPriorityActivity.applyStoredOrder..inlined.thenBy.1:1
@@ -15594,7 +15672,13 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.explorer.ExplorerActionRegistry.refresh.2.invokeSuspend..inlined.thenBy.2:1
 //org.autojs.autojs.core.plugin.explorer.output.ExplorerActionOutputTransactionStore.list.lambda.0..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.explorer.session.ExplorerActionHostSession.validateAndSyncOutputTree..inlined.sortedByDescending.1:1
+//org.autojs.autojs.core.plugin.explorer.session.ExplorerActionOutputBatchStore.list..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.explorer.session.ExplorerActionOutputTreeStore.list..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.explorer.session.ExplorerActionReplacementHistoryStore.cleanupLocked..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.explorer.session.ExplorerActionReplacementHistoryStore.cleanupLocked..inlined.sortedBy.2:1
+//org.autojs.autojs.core.plugin.explorer.session.ExplorerActionReplacementHistoryStore.makeRoomForLocked..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.explorer.session.ExplorerActionTargetTrashBatchStore.list.lambda.0..inlined.sortedByDescending.1:1
+//org.autojs.autojs.core.plugin.explorer.session.ExplorerActionTargetTrashBatchStore.makeRoomLocked..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState:2
 //org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState.CloseResult:2
 //org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState.Link:2
@@ -15635,6 +15719,14 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.typescript.TypeScriptCompilationPersistentCache.enforceLimitsLocked..inlined.thenBy.2:1
 //org.autojs.autojs.core.plugin.typescript.TypeScriptCompilationPersistentCache.special..inlined.compareBy.1:1
 //org.autojs.autojs.core.plugin.typescript.TypeScriptCompilationPersistentCache.special..inlined.thenBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptCompilerWarmBindingRetention:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptCompilerWarmBindingRetention.Result:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptEditorDependencySnapshotProvider.captureRequired..inlined.sortBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptEditorProjectSnapshotProvider.collectSources..inlined.sortBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptPreparedDependencyLayer.special..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptPreparedPackageMetadata.special..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptProjectArchive.collectDependencyLayer..inlined.sortBy.1:1
+//org.autojs.autojs.core.plugin.typescript.TypeScriptProjectArchive.collectPackageMetadata..inlined.sortBy.1:1
 //org.autojs.autojs.core.plugin.typescript.TypeScriptProjectArchive.collectSources..inlined.sortBy.1:1
 //org.autojs.autojs.core.ui.BiMap:2
 //org.autojs.autojs.core.ui.BiMaps.BiMapBuilder:2
