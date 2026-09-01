@@ -2899,6 +2899,7 @@ declare namespace org {
 					public static font_preview_info_size: number;
 					public static font_preview_info_type: number;
 					public static font_preview_progress: number;
+					public static font_preview_unavailable_hint: number;
 					public static font_type_built_in: number;
 					public static font_type_installed: number;
 					public static font_type_not_installed: number;
@@ -3129,6 +3130,10 @@ declare namespace org {
 					public static plugin_center_sort_secondary_spinner: number;
 					public static plugin_center_swipe_refresh: number;
 					public static plugin_floating_action_menu: number;
+					public static plugin_info_colon: number;
+					public static plugin_info_label: number;
+					public static plugin_info_parent: number;
+					public static plugin_info_value: number;
 					public static plugin_item_info_author_colon: number;
 					public static plugin_item_info_author_guideline: number;
 					public static plugin_item_info_author_label: number;
@@ -5680,6 +5685,7 @@ declare namespace org {
 					public static text_ace_editor_font_download_all_running: number;
 					public static text_ace_editor_font_download_confirmation: number;
 					public static text_ace_editor_font_download_failed: number;
+					public static text_ace_editor_font_download_required_for_preview: number;
 					public static text_ace_editor_font_download_to_use: number;
 					public static text_ace_editor_font_feature_cn: number;
 					public static text_ace_editor_font_feature_jp: number;
