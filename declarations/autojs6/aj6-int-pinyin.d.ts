@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.7.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Sep 1, 2026
 //
 // noinspection JSUnusedGlobalSymbols
 
@@ -44,15 +44,15 @@ declare namespace Internal {
         simple(str: string, enableNumericTone?: boolean, enableSegment?: boolean): string;
 
         /**
-         * Current Kotlin implementation is a placeholder and returns an empty string.
+         * Compares the default tone-marked conversion with locale-aware ordering.
+         * The sign of the result indicates ordering; its exact magnitude is unspecified.
          */
-        compare(hanA: string, hanB?: string): string;
+        compare(hanA: string, hanB: string): number;
 
         /**
-         * Current Kotlin implementation is a placeholder and returns an empty string.
-         * Use `pinyin.convert(...).compact()` for the bound result-array helper.
+         * Expands the Cartesian product of a two-dimensional candidate matrix.
          */
-        compact(arr: Pinyin.Matrix, options?: unknown): string;
+        compact(arr: Pinyin.Matrix): Pinyin.Matrix;
 
         fromCodePoint(codePoint: number): string | null;
 
@@ -95,6 +95,17 @@ declare namespace Internal {
              */
             heteronym?: boolean;
 
+            /**
+             * Per-call Han reading overrides. Keys contain 1-32 Han code points;
+             * each value has one tone-marked candidate row per code point.
+             *
+             * Longest matches win. The normalized dictionary is limited to 1,024
+             * entries and 64 KiB and is never persisted across calls.
+             *
+             * @default undefined
+             */
+            customDictionary?: CustomDictionary | null;
+
         }
 
         interface ResultList extends Matrix {
@@ -109,6 +120,8 @@ declare namespace Internal {
         type Matrix = SyllableList[];
 
         type SyllableList = string[];
+
+        type CustomDictionary = Readonly<Record<string, readonly (readonly string[])[]>>;
 
         type ModeLike = PinyinMode | ModeValue | ModeName;
 

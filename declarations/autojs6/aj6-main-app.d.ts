@@ -1720,7 +1720,7 @@ declare namespace org {
 							public readonly titleTextColor: __javaRoots.javaRoot.lang.Integer;
 							public readonly titleTextSize: __javaRoots.javaRoot.lang.Float;
 							public readonly touchable: boolean;
-							public constructor();
+							public constructor(this$0: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl);
 							public clearStates(): void;
 							public getContentBackgroundAlpha(): number;
 							public getContentBackgroundColor(): number;
@@ -8764,7 +8764,7 @@ declare namespace org {
 							public readonly width: number;
 							public readonly x: number;
 							public readonly y: number;
-							public constructor(this$0: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier);
+							public constructor(this$0: __javaRoots.orgRoot.autojs.autojs.runtime.api.Floaty, supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier);
 							public close(): void;
 							public close(removeFromWindows: boolean): void;
 							public disableFocus(): __javaRoots.kotlinRoot.Unit;
@@ -8787,7 +8787,7 @@ declare namespace org {
 							public readonly width: number;
 							public readonly x: number;
 							public readonly y: number;
-							public constructor(this$0: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier);
+							public constructor(this$0: __javaRoots.orgRoot.autojs.autojs.runtime.api.Floaty, supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier);
 							public close(): void;
 							public close(removeFromWindows: boolean): void;
 							public disableFocus(): __javaRoots.kotlinRoot.Unit;
@@ -15894,10 +15894,10 @@ declare namespace org {
 //org.autojs.autojs.tool.Supplier:1
 //org.autojs.autojs.ui.edit.editor.ace.AceEditorFontDialog.Adapter.showVariants..inlined.compareBy.1:1
 //org.autojs.autojs.ui.edit.editor.ace.AceEditorFontDialog.Adapter.showVariants..inlined.thenBy.1:1
-//org.autojs.autojs.ui.edit.editor.ace.AceEditorFontManagerKt.resolveRemoteFontGroups.lambda.0..inlined.compareBy.1:1
-//org.autojs.autojs.ui.edit.editor.ace.AceEditorFontManagerKt.resolveRemoteFontGroups.lambda.0..inlined.compareBy.2:1
-//org.autojs.autojs.ui.edit.editor.ace.AceEditorFontManagerKt.resolveRemoteFontGroups.lambda.0..inlined.thenBy.1:1
-//org.autojs.autojs.ui.edit.editor.ace.AceEditorFontManagerKt.resolveRemoteFontGroups.lambda.0..inlined.thenBy.2:1
+//org.autojs.autojs.ui.edit.editor.ace.AceEditorFontManagerKt.resolveRemoteFontGroups.lambda.1..inlined.compareBy.1:1
+//org.autojs.autojs.ui.edit.editor.ace.AceEditorFontManagerKt.resolveRemoteFontGroups.lambda.1..inlined.compareBy.2:1
+//org.autojs.autojs.ui.edit.editor.ace.AceEditorFontManagerKt.resolveRemoteFontGroups.lambda.1..inlined.thenBy.1:1
+//org.autojs.autojs.ui.edit.editor.ace.AceEditorFontManagerKt.resolveRemoteFontGroups.lambda.1..inlined.thenBy.2:1
 //org.autojs.autojs.ui.edit.editor.ace.AceEditorFontUiPreferences.comparator..inlined.compareBy.1:1
 //org.autojs.autojs.ui.edit.editor.ace.font.FontCatalogParser.parse..inlined.compareBy.1:1
 //org.autojs.autojs.ui.edit.editor.ace.font.FontCatalogParser.parse..inlined.thenBy.1:1
@@ -15924,7 +15924,7 @@ declare namespace org {
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.compareBy.1:1
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.thenBy.1:1
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.thenBy.2:1
-//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select.lambda.19..inlined.sortedBy.1:1
+//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select.lambda.16..inlined.sortedBy.1:1
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.selectSplitModules.lambda.0..inlined.compareByDescending.1:1
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.selectSplitModules.lambda.0..inlined.thenBy.1:1
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.selectStandaloneModules.lambda.0..inlined.compareByDescending.1:1

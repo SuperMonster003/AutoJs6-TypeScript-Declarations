@@ -4,6 +4,16 @@
 
 ******
 
+# v4.7.0
+
+###### 2026/09/01
+
+##### Pinyin 自定义读音与矩阵工具声明
+
+- `新增` `Pinyin.Options.customDictionary` 与 `Pinyin.CustomDictionary`, 声明按调用生效的汉字读音覆盖, 最长匹配优先及 64 KiB/1024 项边界
+- `完善` `pinyin.compare` 返回数值排序结果, `pinyin.compact` 返回候选矩阵的笛卡尔积, 并移除原占位返回类型
+- `依赖` 从 AutoJs6 6.8.0 (5277) 重新生成主应用与共享 Pinyin API 声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.6.1
 
 ###### 2026/09/01

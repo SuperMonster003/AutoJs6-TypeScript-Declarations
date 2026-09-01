@@ -25258,6 +25258,16 @@ declare namespace org {
 //kotlin.reflect.jvm.internal.DescriptorKPropertyN.Getter:1
 //kotlin.reflect.jvm.internal.EquatableCallableSignature:1
 //kotlin.reflect.jvm.internal.FakeOverridesKt.sortedUpperBounds..inlined.sortedBy.1:1
+//kotlin.reflect.jvm.internal.JavaAnnotationConstructor.special..inlined.sortedBy.1:1
+//kotlin.reflect.jvm.internal.JavaKCallable:1
+//kotlin.reflect.jvm.internal.JavaKMutableProperty0:1
+//kotlin.reflect.jvm.internal.JavaKMutableProperty0.Setter:1
+//kotlin.reflect.jvm.internal.JavaKProperty:1
+//kotlin.reflect.jvm.internal.JavaKProperty.Accessor:2
+//kotlin.reflect.jvm.internal.JavaKProperty.Getter:1
+//kotlin.reflect.jvm.internal.JavaKProperty.Setter:1
+//kotlin.reflect.jvm.internal.JavaKProperty0:1
+//kotlin.reflect.jvm.internal.JavaKProperty0.Getter:1
 //kotlin.reflect.jvm.internal.JvmFunctionSignature.FakeJavaAnnotationConstructor.special..inlined.sortedBy.1:1
 //kotlin.reflect.jvm.internal.KClassImpl:1
 //kotlin.reflect.jvm.internal.KotlinKCallable:1
