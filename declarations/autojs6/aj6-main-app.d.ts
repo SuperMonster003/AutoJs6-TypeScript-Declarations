@@ -184,6 +184,7 @@ declare namespace org {
 						public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.apkbuilder.template.RemoteApkBuildClient;
 						public static readonly STATUS_NOT_AVAILABLE: number;
 						public static buildBlocking(context: __javaRoots.androidRoot.content.Context, projectConfig: __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig, outApk: __javaRoots.javaRoot.io.File, cancelSignal: __javaRoots.javaRoot.util.concurrent.atomic.AtomicBoolean, progressListener: __javaRoots.orgRoot.autojs.autojs.apkbuilder.template.RemoteApkBuildClient.ProgressListener, preferredPluginPackageName: string): __javaRoots.orgRoot.autojs.autojs.apkbuilder.template.RemoteApkBuildClient.BuildOutcome;
+						public outcomeForCaughtFailure$app(error: __javaRoots.javaRoot.lang.Throwable, cancelRequested: boolean): __javaRoots.orgRoot.autojs.autojs.apkbuilder.template.RemoteApkBuildClient.BuildOutcome;
 						protected constructor();
 					}
 					export namespace RemoteApkBuildClient {
@@ -12603,63 +12604,6 @@ declare namespace org {
 			export namespace runtime {
 				export namespace api {
 					export namespace augment {
-						export namespace pinyin {
-							export class PinyinCore {
-								public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore;
-								public compact(arr: __javaRoots.javaRoot.util.List<__javaRoots.javaRoot.util.List<string>>): __javaRoots.javaRoot.util.List<__javaRoots.javaRoot.util.List<string>>;
-								public compare(hanA: string, hanB: string): number;
-								public convert(hansArg: string, options: __javaRoots.orgRoot.mozilla.javascript.NativeObject): __javaRoots.javaRoot.util.List<__javaRoots.javaRoot.util.List<string>>;
-								public parseMode$app(o: any): __javaRoots.javaRoot.lang.Integer;
-								public parseStyle$app(o: any): __javaRoots.javaRoot.lang.Integer;
-								public surnamePinyin(hans: string, options: __javaRoots.orgRoot.mozilla.javascript.NativeObject): __javaRoots.javaRoot.util.List<__javaRoots.javaRoot.util.List<string>>;
-								public toFixed$app(pinyin: string, style: number): string;
-								protected constructor();
-							}
-							export namespace PinyinCore {
-								export class PinyinMode extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinMode> {
-									public static readonly NORMAL: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinMode;
-									public static readonly PLACENAME: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinMode;
-									public static readonly PLACE_NAME: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinMode;
-									public static readonly SURNAME: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinMode;
-									public readonly value: number;
-									public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinMode>;
-									public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinMode>;
-									public getValue(): number;
-									public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinMode;
-									public static values(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinMode[];
-									protected constructor();
-									public static valueOf(...args: any[]): any;
-								}
-								export class PinyinStyle extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle> {
-									public static readonly FIRST_LETTER: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle;
-									public static readonly INITIALS: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle;
-									public static readonly NORMAL: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle;
-									public static readonly TO3NE: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle;
-									public static readonly TONE: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle;
-									public static readonly TONE2: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle;
-									public readonly value: number;
-									public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle>;
-									public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle>;
-									public getValue(): number;
-									public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle;
-									public static values(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle[];
-									protected constructor();
-									public static valueOf(...args: any[]): any;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
-declare namespace org {
-	export namespace autojs {
-		export namespace autojs {
-			export namespace runtime {
-				export namespace api {
-					export namespace augment {
 						export namespace threads {
 							export class VolatileDisposeNativeObject extends __javaRoots.orgRoot.mozilla.javascript.NativeObject {
 								public readonly entries: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
@@ -12815,6 +12759,7 @@ declare namespace org {
 					public static isRhinoTypeScriptFileName(fileName: string): boolean;
 					public static isTypeScriptDeclarationFileName(fileName: string): boolean;
 					public static isUnsupportedSingleFileTypeScriptFileName(fileName: string): boolean;
+					public static parseExecutionMode(reader: __javaRoots.javaRoot.io.Reader): __javaRoots.orgRoot.autojs.autojs.script.JavaScriptSource.ExecutionInfo;
 					public static parseExecutionMode(script: string): __javaRoots.orgRoot.autojs.autojs.script.JavaScriptSource.ExecutionInfo;
 					public static resolveEngineName(executionMode: number): string;
 					public toString(): string;
@@ -14122,13 +14067,13 @@ declare namespace org {
 						public hashCode(): number;
 						public toString(): string;
 					}
-					export class PreviewType extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType> {
-						public static readonly HTML: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
-						public static readonly MARKDOWN: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
-						public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType>;
-						public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType>;
-						public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
-						public static values(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType[];
+					export class PreviewerType extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType> {
+						public static readonly HTML: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType;
+						public static readonly MARKDOWN: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType;
+						public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType>;
+						public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType>;
+						public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType;
+						public static values(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType[];
 						protected constructor();
 						public static valueOf(...args: any[]): any;
 					}
@@ -14989,7 +14934,7 @@ declare namespace org {
 						public readonly extensionWithDot: string;
 						public readonly icon: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE.Icon;
 						public readonly identity: number;
-						public readonly previewType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
+						public readonly previewerType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType;
 						public readonly audioPlayable: boolean;
 						public readonly candidateCriteria: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.CandidateCriterion[];
 						public readonly executable: boolean;
@@ -15034,13 +14979,13 @@ declare namespace org {
 					}
 					export class TypeData {
 						public readonly identity: number;
-						public readonly previewType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
+						public readonly previewerType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType;
 						public readonly iconData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData;
-						public constructor(iconData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData, identity: number, previewType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType);
+						public constructor(iconData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData, identity: number, previewerType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType);
 						public component1(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData;
 						public component2(): number;
-						public component3(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType;
-						public copy(iconData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData, identity: number, previewType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewType): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TypeData;
+						public component3(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType;
+						public copy(iconData: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData, identity: number, previewerType: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TypeData;
 						public equals(other: any): boolean;
 						public getIconData(): __javaRoots.orgRoot.autojs.autojs.util.FileUtils.IconData;
 						public hashCode(): number;
@@ -15709,9 +15654,8 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.9:1
 //org.autojs.autojs.core.plugin.center.PluginCenterFrameChunkedListSubmitter:1
 //org.autojs.autojs.core.plugin.center.PluginCenterLegacyRefreshState:1
-//org.autojs.autojs.core.plugin.center.PluginCenterViewModel.toLegacyPluginCenterItem.lambda.1..inlined.sortedByDescending.1:1
-//org.autojs.autojs.core.plugin.center.PluginCenterViewModel.toPluginCenterItem.lambda.1..inlined.sortedByDescending.1:1
 //org.autojs.autojs.core.plugin.center.PluginInfoServiceHost.withInfoService.1:1
+//org.autojs.autojs.core.plugin.center.PluginReleaseTargetPolicy.resolve..inlined.sortedByDescending.1:1
 //org.autojs.autojs.core.plugin.center.PluginSettingsFragment.onCreatePreferences..inlined.sortedByDescending.1:1
 //org.autojs.autojs.core.plugin.center.PluginVariantPriorityActivity.applyStoredOrder..inlined.compareBy.1:1
 //org.autojs.autojs.core.plugin.center.PluginVariantPriorityActivity.applyStoredOrder..inlined.thenBy.1:1

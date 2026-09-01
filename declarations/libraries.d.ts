@@ -23405,6 +23405,7 @@ declare namespace org {
 //androidx.work.impl.utils.futures.AbstractFuture.SetFuture:1
 //androidx.work.impl.utils.futures.SettableFuture:1
 //androidx.work.impl.workers.ConstraintTrackingWorkerKt.awaitConstraintsNotMet..inlined.filterIsInstance.1.2:1
+//com.android.apksig.internal.util.Pair:2
 //com.android.dx.dex.file.UniformListItem:1
 //com.android.dx.merge.DexMerger.IdMerger:1
 //com.android.tools.r8.BaseCommand.Builder:2

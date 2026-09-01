@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.6.1
+
+###### 2026/09/01
+
+##### 预览器命名声明同步
+
+- `替换` 将 `FileUtils.PreviewType` 与 `previewType` 分别统一为 `PreviewerType` 与 `previewerType`, 同步主应用声明中的预览器语义命名
+- `依赖` 从 AutoJs6 6.8.0 (5277) 重新生成主应用, 资源与第三方库声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.6.0
 
 ###### 2026/08/31
@@ -166,17 +175,6 @@ npm update @sm003/autojs6-dts
 - `新增` `images.quantizeToFile` 与 `Images.PngQuantizationFileResult`, 直接写入 PNG 文件并返回路径, 大小, 实际质量和量化误差
 - `完善` `Images.PngQuantizationOptions.preserveAlpha`, 默认保留透明度, 设为 `false` 时声明完全不透明输出语义
 - `依赖` 从 AutoJs6 6.8.0 (5277) 重新生成文件描述符输出, 色彩选项与结果 Java 声明, 并同步 Ace Editor 内置声明和 LSP 分组
-
-# v4.4.0
-
-###### 2026/08/30
-
-##### PNG 量化质量结果与回退策略声明
-
-- `新增` `images.quantize` 与 `Images.PngQuantizationResult`, 返回索引 PNG 字节, 输出大小, 实际质量和标准化量化误差
-- `完善` 空选项声明为 `minQuality=0` 的尽力而为策略, 显式 `quality` 或 `minQuality` 保持严格下限语义
-- `异常` 主应用声明同步 `PngQuantBridge.QualityTooLowException` 与稳定错误代码, 可区分质量不足和内部失败
-- `依赖` 从 AutoJs6 6.8.0 (5276) 重新生成主应用与资源声明, 并同步 Ace Editor 内置声明和 LSP 分组
 
 ##### 更多版本历史可参阅
 

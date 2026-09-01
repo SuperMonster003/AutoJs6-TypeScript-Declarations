@@ -4,6 +4,15 @@
 
 ******
 
+# v4.6.1
+
+###### 2026/09/01
+
+##### 预览器命名声明同步
+
+- `替换` 将 `FileUtils.PreviewType` 与 `previewType` 分别统一为 `PreviewerType` 与 `previewerType`, 同步主应用声明中的预览器语义命名
+- `依赖` 从 AutoJs6 6.8.0 (5277) 重新生成主应用, 资源与第三方库声明, 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.6.0
 
 ###### 2026/08/31
