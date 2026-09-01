@@ -25,6 +25,10 @@ const pinyinText: string = pinyin4j.of('AutoJs6', {
     tone: 'WITHOUT_TONE',
 });
 const pinyinAlias: string = pinyin4j.as('AutoJs6');
+const pinyinReadings: Pinyin4j.Matrix = pinyin4j.readings('重A𠀀', {
+    system: 'HANYU',
+    tone: 'WITH_TONE_NUMBER',
+});
 
 const mediaInfoLegacy: Mediainfo.Result = mediainfo.read('./media/sample.wav');
 const mediaInfoV1: Mediainfo.SnapshotV1 = mediainfo.snapshot('./media/sample.wav', {
@@ -61,6 +65,7 @@ void idDefault;
 void idSized;
 void pinyinText;
 void pinyinAlias;
+void pinyinReadings;
 void mediaInfoLegacy;
 void mediaInfoV1;
 void mediaInfoV2;
