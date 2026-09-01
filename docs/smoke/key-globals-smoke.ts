@@ -26,6 +26,17 @@ const pinyinText: string = pinyin4j.of('AutoJs6', {
 });
 const pinyinAlias: string = pinyin4j.as('AutoJs6');
 
+const mediaInfoLegacy: Mediainfo.Result = mediainfo.read('./media/sample.wav');
+const mediaInfoV1: Mediainfo.SnapshotV1 = mediainfo.snapshot('./media/sample.wav', {
+    includeInform: false,
+});
+const mediaInfoV2: Mediainfo.SnapshotV2 = mediainfo.snapshot('./media/sample.wav', {
+    schema: mediainfo.SNAPSHOT_SCHEMA_V2,
+    includeInform: false,
+});
+const mediaInfoCapabilities: Mediainfo.Capabilities = mediainfo.capabilities();
+const mediaInfoFormat: Mediainfo.SnapshotJsonValue | undefined = mediaInfoV2.tracks.audio?.[0]?.fields.Format;
+
 const byteCount: Converter.BytesResult = cvt.bytes('1 MiB', 'MiB', 'B');
 const strictByteCount: Converter.BytesResult = cvt.bytes.strict('1024', {
     fromUnit: 'B',
@@ -50,6 +61,11 @@ void idDefault;
 void idSized;
 void pinyinText;
 void pinyinAlias;
+void mediaInfoLegacy;
+void mediaInfoV1;
+void mediaInfoV2;
+void mediaInfoCapabilities;
+void mediaInfoFormat;
 void byteCount;
 void strictByteCount;
 void byteLabel;
