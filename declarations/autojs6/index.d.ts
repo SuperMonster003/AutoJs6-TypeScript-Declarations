@@ -22,6 +22,7 @@
 /// <reference path="./aj6-int-init.d.ts" />
 /// <reference path="./aj6-int-jvm-npm.d.ts" />
 /// <reference path="./aj6-int-media.d.ts" />
+/// <reference path="./aj6-int-mediainfo.d.ts" />
 /// <reference path="./aj6-int-notice.d.ts" />
 /// <reference path="./aj6-int-object-observe.d.ts" />
 /// <reference path="./aj6-int-ocr.d.ts" />
