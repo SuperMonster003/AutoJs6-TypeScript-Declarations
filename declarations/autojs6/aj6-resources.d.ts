@@ -317,6 +317,7 @@ declare namespace org {
 					public static pref_editor_pinch_to_zoom_change_text_size_enabled: number;
 					public static pref_enable_a11y_service_with_root_access: number;
 					public static pref_enable_a11y_service_with_secure_settings: number;
+					public static pref_enable_a11y_service_with_shizuku: number;
 					public static pref_explorer_playback_history: number;
 					public static pref_extending_js_build_in_objects: number;
 					public static pref_gesture_observing: number;
@@ -1716,6 +1717,7 @@ declare namespace org {
 					public static ic_exposure_zero_black_48dp: number;
 					public static ic_extension_black_48dp: number;
 					public static ic_eye: number;
+					public static ic_eyedropper_black_48dp: number;
 					public static ic_face_black_48dp: number;
 					public static ic_fast_forward_black_48dp: number;
 					public static ic_fast_rewind_black_48dp: number;
@@ -2787,6 +2789,15 @@ declare namespace org {
 					public static container_format_value: number;
 					public static container_verify_state: number;
 					public static content_container: number;
+					public static control_container: number;
+					public static control_header: number;
+					public static control_header_actions: number;
+					public static control_less: number;
+					public static control_more: number;
+					public static control_restart: number;
+					public static control_start: number;
+					public static control_stop: number;
+					public static control_title: number;
 					public static copy: number;
 					public static countdown_task_hours: number;
 					public static countdown_task_hours_container: number;
@@ -2846,6 +2857,7 @@ declare namespace org {
 					public static editor_file_name_status: number;
 					public static editor_status_bar: number;
 					public static editor_view: number;
+					public static empty: number;
 					public static empty_hint: number;
 					public static error_message: number;
 					public static error_message_container: number;
@@ -3014,6 +3026,7 @@ declare namespace org {
 					public static line_count_parent: number;
 					public static line_count_value: number;
 					public static list: number;
+					public static list_container: number;
 					public static little_triangle: number;
 					public static ll_actions: number;
 					public static loading_bar_container: number;
@@ -3292,6 +3305,8 @@ declare namespace org {
 					public static selection_plugin_text: number;
 					public static selection_toolbar: number;
 					public static settings: number;
+					public static settings_container: number;
+					public static settings_title: number;
 					public static shadow: number;
 					public static signature_algorithms: number;
 					public static signature_scheme_colon: number;
@@ -3324,6 +3339,12 @@ declare namespace org {
 					public static state_parent: number;
 					public static state_value: number;
 					public static status: number;
+					public static status_container: number;
+					public static status_header: number;
+					public static status_less: number;
+					public static status_more: number;
+					public static status_refresh: number;
+					public static status_title: number;
 					public static step_into: number;
 					public static step_out: number;
 					public static step_over: number;
@@ -3565,6 +3586,9 @@ declare namespace org {
 					protected constructor();
 				}
 				export class layout {
+					public static a11y_event_monitor_item: number;
+					public static a11y_service_manager_entry_item: number;
+					public static a11y_service_manager_switch_item: number;
 					public static abc_list_menu_item_checkbox: number;
 					public static activity_about: number;
 					public static activity_about_function_buttons: number;
@@ -3613,6 +3637,8 @@ declare namespace org {
 					public static date_picker_calendar: number;
 					public static date_picker_spinner: number;
 					public static debug_bar: number;
+					public static dialog_a11y_event_monitor: number;
+					public static dialog_a11y_service_manager: number;
 					public static dialog_ace_editor_font_filter: number;
 					public static dialog_ace_editor_font_item: number;
 					public static dialog_build_progress: number;
@@ -4123,6 +4149,7 @@ declare namespace org {
 					public static description_root_mode_preference: number;
 					public static description_root_record_out_file_type_preference: number;
 					public static description_screen_capture_request_delay: number;
+					public static description_screen_color_picker: number;
 					public static description_server_mode: number;
 					public static description_shizuku_access: number;
 					public static description_stable_mode: number;
@@ -4276,10 +4303,12 @@ declare namespace org {
 					public static entry_timed_task_backend_alarm: number;
 					public static entry_timed_task_backend_job: number;
 					public static entry_timed_task_backend_work: number;
+					public static error_a11y_service_not_operational: number;
 					public static error_a_runtime_has_been_set: number;
 					public static error_abandoned_method: number;
 					public static error_ace_editor_unavailable: number;
 					public static error_action_cannot_be_completed_with_negative_coordinate: number;
+					public static error_active_window_root_unavailable: number;
 					public static error_activity_is_required_for_ui_exec_mode: number;
 					public static error_an_error_occurred: number;
 					public static error_an_operation_is_not_implemented: number;
@@ -4363,6 +4392,7 @@ declare namespace org {
 					public static error_file_contains_unaccepted_decoding_replacements: number;
 					public static error_file_in_path_does_not_exist: number;
 					public static error_file_state_unknown_reload_required: number;
+					public static error_find_on_ui_thread_timeout: number;
 					public static error_function_called_in_ui_thread: number;
 					public static error_function_called_more_than_once: number;
 					public static error_get_github_latest_release: number;
@@ -4578,6 +4608,8 @@ declare namespace org {
 					public static item_delete_permanently: number;
 					public static item_move_to_trash: number;
 					public static key_a11y_service: number;
+					public static key_a11y_service_manager_control_level: number;
+					public static key_a11y_service_manager_status_level: number;
 					public static key_about_app_and_developer: number;
 					public static key_about_app_tips: number;
 					public static key_ace_editor_font: number;
@@ -4673,6 +4705,7 @@ declare namespace org {
 					public static key_editor_word_wrap_indent_style_continuation: number;
 					public static key_enable_a11y_service_with_root_access: number;
 					public static key_enable_a11y_service_with_secure_settings: number;
+					public static key_enable_a11y_service_with_shizuku: number;
 					public static key_enable_observe_key: number;
 					public static key_explorer_file_default_prefix: number;
 					public static key_explorer_playback_history: number;
@@ -5569,6 +5602,8 @@ declare namespace org {
 					public static screen_capturer_foreground_notification_channel_name: number;
 					public static screen_capturer_foreground_notification_text: number;
 					public static screen_capturer_foreground_notification_title: number;
+					public static summary_a11y_event_monitor: number;
+					public static summary_a11y_service_self_check: number;
 					public static summary_about_app_tips: number;
 					public static summary_ace_font_ligatures_enabled: number;
 					public static summary_ace_font_styles_enabled: number;
@@ -5607,6 +5642,7 @@ declare namespace org {
 					public static summary_editor_word_wrap_indent_style: number;
 					public static summary_enable_a11y_service_with_root_access: number;
 					public static summary_enable_a11y_service_with_secure_settings: number;
+					public static summary_enable_a11y_service_with_shizuku: number;
 					public static summary_extending_js_build_in_objects: number;
 					public static summary_foreground_service_inrt: number;
 					public static summary_github_token_not_set: number;
@@ -5649,10 +5685,15 @@ declare namespace org {
 					public static symbol_pipe: number;
 					public static symbol_question_mark: number;
 					public static term_internal_strorage: number;
+					public static text_a11y_event_monitor: number;
 					public static text_a11y_service: number;
 					public static text_a11y_service_description: number;
 					public static text_a11y_service_enabled_but_not_running: number;
+					public static text_a11y_service_manager: number;
 					public static text_a11y_service_may_be_needed: number;
+					public static text_a11y_service_restarted: number;
+					public static text_a11y_service_started: number;
+					public static text_a11y_service_stopped: number;
 					public static text_abis: number;
 					public static text_aborting: number;
 					public static text_about: number;
@@ -5743,12 +5784,14 @@ declare namespace org {
 					public static text_act_by_set_text: number;
 					public static text_action: number;
 					public static text_activated_successfully: number;
+					public static text_active_window_root: number;
 					public static text_activity_not_found_for_apk_installing: number;
 					public static text_adb_tool_needed: number;
 					public static text_add_bom: number;
 					public static text_add_color_library: number;
 					public static text_add_files_or_folders: number;
 					public static text_add_symbol_hint: number;
+					public static text_adopted_by_first_event: number;
 					public static text_ai: number;
 					public static text_ai_settings: number;
 					public static text_alias: number;
@@ -5861,6 +5904,7 @@ declare namespace org {
 					public static text_auto_check_for_updates_and_show_snackbar: number;
 					public static text_auto_night_mode: number;
 					public static text_auto_rename: number;
+					public static text_available: number;
 					public static text_available_windows: number;
 					public static text_back: number;
 					public static text_background_color: number;
@@ -5928,6 +5972,7 @@ declare namespace org {
 					public static text_clear: number;
 					public static text_clear_file_selection: number;
 					public static text_clear_media_playback_history: number;
+					public static text_clear_node_cache: number;
 					public static text_clear_pre_execute_script: number;
 					public static text_clear_trash: number;
 					public static text_clear_trash_confirm: number;
@@ -5949,6 +5994,9 @@ declare namespace org {
 					public static text_code_beautify: number;
 					public static text_code_editor: number;
 					public static text_code_editor_settings: number;
+					public static text_code_style: number;
+					public static text_code_style_classic: number;
+					public static text_code_style_flow: number;
 					public static text_collapse_all: number;
 					public static text_color_library: number;
 					public static text_color_palette: number;
@@ -5979,6 +6027,7 @@ declare namespace org {
 					public static text_content: number;
 					public static text_continue: number;
 					public static text_continue_with_plugin_template: number;
+					public static text_control: number;
 					public static text_copy: number;
 					public static text_copy_ace_diagnostics: number;
 					public static text_copy_all: number;
@@ -6138,6 +6187,7 @@ declare namespace org {
 					public static text_enable_a11y_service_with_root_access_timeout: number;
 					public static text_enable_a11y_service_with_secure_settings_automatically: number;
 					public static text_enable_a11y_service_with_secure_settings_timeout: number;
+					public static text_enable_a11y_service_with_shizuku_automatically: number;
 					public static text_enable_plugin: number;
 					public static text_enabled: number;
 					public static text_encoding_cannot_decode_file: number;
@@ -6152,6 +6202,8 @@ declare namespace org {
 					public static text_error_copy_file: number;
 					public static text_error_report: number;
 					public static text_estimated: number;
+					public static text_events: number;
+					public static text_events_dropped_while_paused: number;
 					public static text_exception_info: number;
 					public static text_execute: number;
 					public static text_execute_code: number;
@@ -6176,10 +6228,12 @@ declare namespace org {
 					public static text_extracting_template_apk: number;
 					public static text_failed: number;
 					public static text_failed_to_build: number;
+					public static text_failed_to_clear_node_cache: number;
 					public static text_failed_to_create_key_store: number;
 					public static text_failed_to_delete: number;
 					public static text_failed_to_disable_a11y_service: number;
 					public static text_failed_to_download: number;
+					public static text_failed_to_enable_a11y_service: number;
 					public static text_failed_to_enable_a11y_service_with_root_access: number;
 					public static text_failed_to_enable_a11y_service_with_secure_settings: number;
 					public static text_failed_to_export_log_entries: number;
@@ -6193,6 +6247,7 @@ declare namespace org {
 					public static text_failed_to_login: number;
 					public static text_failed_to_register: number;
 					public static text_failed_to_report: number;
+					public static text_failed_to_restart_a11y_service: number;
 					public static text_failed_to_retrieve: number;
 					public static text_failed_to_save_project_json: number;
 					public static text_failed_to_save_remote_project_to_local_storage: number;
@@ -6294,6 +6349,7 @@ declare namespace org {
 					public static text_import_strategy_overwrite: number;
 					public static text_import_succeed: number;
 					public static text_import_to_my_scripts: number;
+					public static text_in_process_instance: number;
 					public static text_in_progress: number;
 					public static text_info: number;
 					public static text_insist_on_record: number;
@@ -6334,6 +6390,7 @@ declare namespace org {
 					public static text_key_store_password: number;
 					public static text_label_name: number;
 					public static text_label_state: number;
+					public static text_last_event: number;
 					public static text_last_updates_checked_time: number;
 					public static text_latest_activity: number;
 					public static text_latest_package: number;
@@ -6352,6 +6409,7 @@ declare namespace org {
 					public static text_launcher_shortcuts_may_be_lost_after_launcher_icon_changed: number;
 					public static text_layout_inspector_is_dumping: number;
 					public static text_licenses: number;
+					public static text_listeners: number;
 					public static text_loading_a_fallback_solution_with_dots: number;
 					public static text_loading_completed: number;
 					public static text_loading_with_dots: number;
@@ -6432,6 +6490,7 @@ declare namespace org {
 					public static text_no_search_results_for_keyword: number;
 					public static text_no_symbols_hint: number;
 					public static text_no_version_history: number;
+					public static text_node_cache_cleared: number;
 					public static text_nodejs: number;
 					public static text_nodejs_doctor: number;
 					public static text_nodejs_doctor_export_json: number;
@@ -6441,6 +6500,7 @@ declare namespace org {
 					public static text_none: number;
 					public static text_not_granted: number;
 					public static text_not_installed: number;
+					public static text_not_running: number;
 					public static text_not_showing_main_activity: number;
 					public static text_notification: number;
 					public static text_notification_access_permission: number;
@@ -6460,6 +6520,7 @@ declare namespace org {
 					public static text_operation_aborted: number;
 					public static text_operation_completed: number;
 					public static text_operation_is_completed: number;
+					public static text_operational: number;
 					public static text_options: number;
 					public static text_organization: number;
 					public static text_organizational_unit: number;
@@ -6478,6 +6539,7 @@ declare namespace org {
 					public static text_paste: number;
 					public static text_path_colon_value: number;
 					public static text_path_is_empty: number;
+					public static text_pause: number;
 					public static text_pc_server_address: number;
 					public static text_percentage_colon_value: number;
 					public static text_permission_desc_access_coarse_location: number;
@@ -6708,12 +6770,14 @@ declare namespace org {
 					public static text_restore_to_specified_path: number;
 					public static text_restoring: number;
 					public static text_result: number;
+					public static text_resume: number;
 					public static text_retrieving_changelog: number;
 					public static text_retrieving_plugin_list_data: number;
 					public static text_retrieving_release_notes: number;
 					public static text_revoke_autojs6_access_in_shizuku_app: number;
 					public static text_rhino_java_primitive_wrap: number;
 					public static text_root: number;
+					public static text_root_access: number;
 					public static text_root_mode_title: number;
 					public static text_run: number;
 					public static text_run_on_battery_change: number;
@@ -6752,6 +6816,7 @@ declare namespace org {
 					public static text_scheduled_restart_backend: number;
 					public static text_scheduled_restart_start_delay: number;
 					public static text_screen_capture_request_delay: number;
+					public static text_screen_color_picker: number;
 					public static text_script_record: number;
 					public static text_script_running: number;
 					public static text_search: number;
@@ -6771,11 +6836,13 @@ declare namespace org {
 					public static text_select_image: number;
 					public static text_selected_items: number;
 					public static text_selected_plugin: number;
+					public static text_self_check: number;
 					public static text_send: number;
 					public static text_send_shortcut: number;
 					public static text_server_mode: number;
 					public static text_service: number;
 					public static text_service_management: number;
+					public static text_service_status: number;
 					public static text_set_a_name_for_the_new_configuration: number;
 					public static text_set_as_working_dir: number;
 					public static text_set_breakpoint: number;
@@ -6790,6 +6857,8 @@ declare namespace org {
 					public static text_show: number;
 					public static text_show_layout_bounds: number;
 					public static text_show_layout_hierarchy: number;
+					public static text_show_less: number;
+					public static text_show_more: number;
 					public static text_show_widget_information: number;
 					public static text_sign: number;
 					public static text_sign_completed: number;
@@ -6828,6 +6897,7 @@ declare namespace org {
 					public static text_special_permissions: number;
 					public static text_stable_mode: number;
 					public static text_star: number;
+					public static text_start: number;
 					public static text_start_record: number;
 					public static text_start_running: number;
 					public static text_state_or_province: number;
@@ -6857,6 +6927,7 @@ declare namespace org {
 					public static text_symbols_profile_name_hint: number;
 					public static text_symbols_profile_name_invalid: number;
 					public static text_symbols_settings: number;
+					public static text_system_settings: number;
 					public static text_tailor_made_developer: number;
 					public static text_task: number;
 					public static text_text_size: number;
@@ -6897,6 +6968,7 @@ declare namespace org {
 					public static text_unable_to_build_apk_as_autojs6_does_not_include_selected_abi: number;
 					public static text_unavailable: number;
 					public static text_unavailable_abi_for: number;
+					public static text_unbound: number;
 					public static text_under_development: number;
 					public static text_under_development_content: number;
 					public static text_under_development_title: number;
@@ -6918,6 +6990,7 @@ declare namespace org {
 					public static text_updates_snack_bar_act_later: number;
 					public static text_updates_snack_bar_act_view: number;
 					public static text_updating_project_config: number;
+					public static text_uptime: number;
 					public static text_usage_instructions: number;
 					public static text_usage_stats_permission: number;
 					public static text_use_android_n_shortcut: number;
@@ -6961,6 +7034,8 @@ declare namespace org {
 					public static text_waiting_for_all_data_processing_to_complete: number;
 					public static text_weekly_task: number;
 					public static text_weekly_task_should_check_day_of_week: number;
+					public static text_window_state_changes_only: number;
+					public static text_windows: number;
 					public static text_working_dir_path: number;
 					public static text_working_dir_path_with_value: number;
 					public static text_write_secure_settings: number;
@@ -7234,6 +7309,7 @@ declare namespace org {
 					protected constructor();
 				}
 				export class style {
+					public static A11yServiceManagerHeaderButton: number;
 					public static AppTheme: number;
 					public static AppTheme_AppBarOverlay: number;
 					public static AppTheme_FullScreen: number;

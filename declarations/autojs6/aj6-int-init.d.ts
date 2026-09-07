@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Aug 27, 2026
+// Last modified: Sep 7, 2026
 //
 // noinspection JSUnusedGlobalSymbols
 
@@ -63,6 +63,9 @@ declare let $files: Internal.Files;
 
 declare let floaty: Internal.Floaty;
 declare let $floaty: Internal.Floaty;
+
+declare let flow: Internal.FlowApi;
+declare let $flow: Internal.FlowApi;
 
 declare let http: Internal.Http;
 declare let $http: Internal.Http;
@@ -401,6 +404,14 @@ declare class MotionEvent extends android.view.MotionEvent {
 
 declare class UiObject extends org.autojs.autojs.core.automator.UiObject {
     /* Empty body. */
+}
+
+/**
+ * The lazy iterator of `findIterator()`; usable in `for...of`.
+ * zh-CN: `findIterator()` 返回的惰性迭代器; 可用于 `for...of`.
+ */
+declare class UiObjectIterator extends org.autojs.autojs.core.automator.UiObjectIterator {
+    [Symbol.iterator](): Iterator<UiObject>;
 }
 
 declare class UiObjectCollection extends org.autojs.autojs.core.automator.UiObjectCollection {
@@ -1100,6 +1111,15 @@ declare namespace Internal {
 
         // @ts-ignore
         public scrollable(b?: boolean): this;
+
+        /**
+         * Appends the conditions of a selector string (`key=value`, `key~=regex`, `key=/regex/flags`, `key`, `!key`).
+         * zh-CN: 追加字符串选择器语法中的条件 (`key=value`, `key~=regex`, `key=/regex/flags`, `key`, `!key`).
+         * @example
+         * className('Button').select('text=OK enabled').findOnce();
+         */
+        // @ts-ignore
+        public select(syntax: string): this;
 
         // @ts-ignore
         public selected(b?: boolean): this;

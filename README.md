@@ -146,6 +146,18 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.8.0
+
+###### 2026/09/07
+
+##### 无障碍自动化声明
+
+- `新增` `aj6-int-flow.d.ts`: `Flow<T>` 链式对象与 `Flow` 命名空间 (等待选项, 作用域, 默认值, `FlowError` 与错误码), `flow` / `$flow` 命名空间对象 (`Internal.FlowApi`: 等待 / 工具集 / 事件等待起点, `all` / `race` / `any`, `defaults`, `trace`), 以及 `waitAsync` / `waitThenClick` / `clickWait` / `waitForStable` / `waitForStableThenClick` / `clickWhenStable` / `waitForVisible` / `waitForHidden` / `waitForGone` / `clickWhenStableAfter` 全局函数与 `wait.async`
+- `新增` `Internal.Automator` 与全局的工具集 (`smartClick` / `clickIfExists` / `clickAny` / `findAny` / `scrollUntil` / `typeInto` / `dismissPopups` / `collectList` / `launchAndWait` / `backUntil` / `backToApp` / `toggle` / `retry`) 与事件驱动等待 (`waitForIdle` / `waitForEvent` / `waitForToast` / `waitForNotification`), 选项与结果类型置于 `Automator` 命名空间
+- `新增` `Internal.Auto` 的 `wait` / `findWindows` / `findWindowRoots` / `explain` / `dump` / `stats`, `registerEvent` / `registerEvents` 的过滤选项重载, `setWindowFilter` 的匹配对象形式 (`Automator.WindowMatch`), `AutoState.adoptedByEvent`, `Automator.Flags` 新增 `appWindowsFallback` / `eventAssistedPolling`
+- `新增` 字符串选择器重载 `select(syntax)` (全局与 `Internal.Selector`), `findIterator()` 与 `UiObjectIterator`
+- `依赖` 从 AutoJs6 6.8.0 (5278) 重新生成主应用声明 (`UiObject` / `UiSelector` / `UiObjectCollection` 的新增方法与 `UiObjectIterator`), 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.7.0
 
 ###### 2026/09/01
@@ -164,62 +176,3 @@ npm update @sm003/autojs6-dts
 
 - `替换` 将 `FileUtils.PreviewType` 与 `previewType` 分别统一为 `PreviewerType` 与 `previewerType`, 同步主应用声明中的预览器语义命名
 - `依赖` 从 AutoJs6 6.8.0 (5277) 重新生成主应用, 资源与第三方库声明, 并同步 Ace Editor 内置声明和 LSP 分组
-
-# v4.6.0
-
-###### 2026/08/31
-
-##### PNG 量化资源预算与取消声明
-
-- `新增` `Images.PngQuantizationOptions.maxPixels` 与 `maxMemoryBytes`, 声明默认 16000000 像素和 256 MiB 附加工作内存上限
-- `指标` 字节和文件结果增加 `peakWorkingMemoryBytes`, v4 返回计入预算的峰值内存, 旧插件返回 `-1`
-- `异常` 声明资源上限错误的稳定代码, 原因和预算字段, 并同步显式取消令牌及脚本退出联动对应的 Java API
-- `依赖` 从 AutoJs6 6.8.0 (5277) 重新生成资源控制, 取消与结果 Java 声明, 并同步 Ace Editor 内置声明和 LSP 分组
-
-##### 更多版本历史可参阅
-
-* [CHANGELOG.md](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/CHANGELOG.md)
-
-******
-
-### 相关项目
-
-******
-
-[Android d.ts Generator](https://github.com/NativeScript/android-dts-generator) by [NativeScript](https://github.com/NativeScript)
-
-- 由 jar 文件生成 d.ts 声明文件的工具
-
-[AutoJs6-VSCode-Extension](http://vscext-project.autojs6.com) by [SuperMonster003](https://github.com/SuperMonster003)
-
-- AutoJs6 调试器 (VSCode 平台插件)
-
-******
-
-### 打赏 (Tip)
-
-******
-
-<details><summary>查看详情 (Click to show details)</summary><br>
-<div align="center">
-To tip online, scan the QR code below <br>
-扫描对应二维码可打赏 <br><br>
-I believe I could make it better with your support :) <br>
-感谢每一份支持和鼓励 <br><br>
-
-<a href="https://s1.imagehub.cc/images/2023/03/24/83583b97ee8c4d3f7d7acfbe0c60bb8d.png"><img src="https://s1.imagehub.cc/images/2023/03/24/83583b97ee8c4d3f7d7acfbe0c60bb8d.png" alt="qr-alipay-sponsor_521×648" height="224" border="0"/></a>
-<a href="https://s1.imagehub.cc/images/2023/03/24/de74a1d70a60d656431fc5625882f821.png"><img src="https://s1.imagehub.cc/images/2023/03/24/de74a1d70a60d656431fc5625882f821.png" alt="qr-wechat-sponsor_521×648" height="224" border="0"/></a>
-</div>
-</details>
-
-[//]: # (
-    # -----------------------------------------#
-    #               npm commands               #
-    # -----------------------------------------#
-    - User initialization
-        - npm adduser sm003
-    - Pack [ not necessary for publishing ]
-        - npm pack
-    - Publish
-        - npm publish --access public
-)

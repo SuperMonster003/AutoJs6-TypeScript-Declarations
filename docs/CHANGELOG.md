@@ -4,6 +4,18 @@
 
 ******
 
+# v4.8.0
+
+###### 2026/09/07
+
+##### 无障碍自动化声明
+
+- `新增` `aj6-int-flow.d.ts`: `Flow<T>` 链式对象与 `Flow` 命名空间 (等待选项, 作用域, 默认值, `FlowError` 与错误码), `flow` / `$flow` 命名空间对象 (`Internal.FlowApi`: 等待 / 工具集 / 事件等待起点, `all` / `race` / `any`, `defaults`, `trace`), 以及 `waitAsync` / `waitThenClick` / `clickWait` / `waitForStable` / `waitForStableThenClick` / `clickWhenStable` / `waitForVisible` / `waitForHidden` / `waitForGone` / `clickWhenStableAfter` 全局函数与 `wait.async`
+- `新增` `Internal.Automator` 与全局的工具集 (`smartClick` / `clickIfExists` / `clickAny` / `findAny` / `scrollUntil` / `typeInto` / `dismissPopups` / `collectList` / `launchAndWait` / `backUntil` / `backToApp` / `toggle` / `retry`) 与事件驱动等待 (`waitForIdle` / `waitForEvent` / `waitForToast` / `waitForNotification`), 选项与结果类型置于 `Automator` 命名空间
+- `新增` `Internal.Auto` 的 `wait` / `findWindows` / `findWindowRoots` / `explain` / `dump` / `stats`, `registerEvent` / `registerEvents` 的过滤选项重载, `setWindowFilter` 的匹配对象形式 (`Automator.WindowMatch`), `AutoState.adoptedByEvent`, `Automator.Flags` 新增 `appWindowsFallback` / `eventAssistedPolling`
+- `新增` 字符串选择器重载 `select(syntax)` (全局与 `Internal.Selector`), `findIterator()` 与 `UiObjectIterator`
+- `依赖` 从 AutoJs6 6.8.0 (5278) 重新生成主应用声明 (`UiObject` / `UiSelector` / `UiObjectCollection` 的新增方法与 `UiObjectIterator`), 并同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.7.0
 
 ###### 2026/09/01

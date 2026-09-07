@@ -5,7 +5,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 15, 2026
+// Last modified: Sep 7, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -305,6 +305,18 @@ declare function wait<T, R>(condition: Wait.Condition<T>, callback: Wait.Callbac
 declare function wait(condition: Wait.Condition<any>, limit: number, interval: number): boolean;
 declare function wait(condition: Wait.Condition<any>, limit: number): boolean;
 declare function wait(condition: Wait.Condition<any>): boolean;
+
+declare namespace wait {
+
+    /**
+     * The asynchronous form of `wait`: the global `waitAsync` / `flow.wait`.
+     * zh-CN: `wait` 的异步形式: 全局 `waitAsync` / `flow.wait`.
+     * @example
+     * wait.async('OK', 5e3).click().then(() => toastLog('clicked'));
+     */
+    const async: Flow.WaitFunction<UiObject>;
+
+}
 
 declare namespace Wait {
 

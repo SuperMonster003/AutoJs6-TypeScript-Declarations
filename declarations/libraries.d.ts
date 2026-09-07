@@ -3989,9 +3989,6 @@ declare namespace androidx {
 					public readonly collectionItemInfo: __javaLibraryRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat.CollectionItemInfoCompat;
 					public readonly containerTitle: string;
 					public readonly contentDescription: string;
-					public readonly contentInvalid: boolean;
-					public readonly contextClickable: boolean;
-					public readonly dismissable: boolean;
 					public readonly error: string;
 					public readonly extraRenderingInfo: __javaLibraryRoots.androidRoot.view.accessibility.AccessibilityNodeInfo.ExtraRenderingInfo;
 					public readonly extras: __javaLibraryRoots.androidRoot.os.Bundle;
@@ -4009,7 +4006,6 @@ declare namespace androidx {
 					public readonly maxTextLength: number;
 					public readonly minDurationBetweenContentChangesMillis: number;
 					public readonly movementGranularities: number;
-					public readonly multiLine: boolean;
 					public readonly paneTitle: string;
 					public readonly rangeInfo: __javaLibraryRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat.RangeInfoCompat;
 					public readonly roleDescription: string;

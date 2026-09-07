@@ -5,7 +5,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Sep 7, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -360,6 +360,19 @@ declare function expand(): boolean;
 
 declare function find(max?: number): UiObjectCollection;
 
+/**
+ * A lazy search: nodes are produced one by one while the iterator advances; stopping early skips the rest of the tree.
+ * zh-CN: 惰性搜索: 迭代器前进时逐个产出节点; 提前停止则不再遍历其余节点.
+ * @example
+ * for (let w of className('TextView').findIterator()) {
+ *     if (w.clickable()) {
+ *         w.click();
+ *         break;
+ *     }
+ * }
+ */
+declare function findIterator(): UiObjectIterator;
+
 declare function findAndReturnList(node: UiObject, max: number): java.util.List<UiObject>;
 
 declare function findOf(node: UiObject, max?: number): UiObjectCollection;
@@ -397,6 +410,15 @@ declare function scrollRight(): boolean;
 declare function scrollTo(row: number, column: number): boolean;
 
 declare function select(): boolean;
+/**
+ * A selector from the selector string syntax (`key=value`, `key~=regex`, `key=/regex/flags`, `key`, `!key`; quotes for values with spaces).
+ * zh-CN: 由字符串选择器语法 (`key=value`, `key~=regex`, `key=/regex/flags`, `key`, `!key`; 含空格的值用引号) 构成的选择器.
+ * @example
+ * select('text=Login clickable').findOne(5e3);
+ * @example
+ * select('id=/item_\\d+/ depth=8').find();
+ */
+declare function select(syntax: string): Internal.Selector;
 
 declare function setProgress(value: number): boolean;
 

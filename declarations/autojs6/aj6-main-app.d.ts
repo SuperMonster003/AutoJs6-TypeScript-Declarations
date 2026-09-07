@@ -316,37 +316,100 @@ declare namespace org {
 		export namespace autojs {
 			export namespace core {
 				export namespace accessibility {
+					export class A11yEventRecord {
+						public readonly className: string;
+						public readonly contentChangeTypes: number;
+						public readonly eventTime: number;
+						public readonly packageName: string;
+						public readonly receivedAtElapsedRealtime: number;
+						public readonly type: number;
+						public readonly typeName: string;
+						public readonly windowId: number;
+						public constructor(_type_: number, eventTime: number, receivedAtElapsedRealtime: number, packageName: string, className: string, windowId: number, contentChangeTypes: number);
+						public component1(): number;
+						public component2(): number;
+						public component3(): number;
+						public component4(): string;
+						public component5(): string;
+						public component6(): number;
+						public component7(): number;
+						public copy(_type_: number, eventTime: number, receivedAtElapsedRealtime: number, packageName: string, className: string, windowId: number, contentChangeTypes: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.A11yEventRecord;
+						public equals(other: any): boolean;
+						public getClassName(): string;
+						public getContentChangeTypes(): number;
+						public getEventTime(): number;
+						public getPackageName(): string;
+						public getReceivedAtElapsedRealtime(): number;
+						public getType(): number;
+						public getTypeName(): string;
+						public getWindowId(): number;
+						public hashCode(): number;
+						public toString(): string;
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
 					export abstract class AccessibilityBridge {
+						public static readonly FLAG_APP_WINDOWS_FALLBACK: number;
+						public static readonly FLAG_EVENT_ASSISTED_POLLING: number;
 						public static readonly FLAG_FIND_ON_UI_THREAD: number;
 						public static readonly FLAG_USE_SHELL: number;
 						public static readonly FLAG_USE_USAGE_STATS: number;
 						public static readonly MODE_FAST: number;
 						public static readonly MODE_NORMAL: number;
 						public readonly config: __javaRoots.orgRoot.autojs.autojs.runtime.accessibility.AccessibilityConfig;
+						public readonly eventAssistedPolling: boolean;
 						public readonly flags: number;
 						public readonly infoProvider: __javaRoots.orgRoot.autojs.autojs.core.activity.ActivityInfoProvider;
 						public readonly notificationObserver: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityNotificationObserver;
+						public readonly pulse: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventPulse;
 						public readonly rootInActiveWindow: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
 						public readonly rootInCurrentWindow: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
 						public readonly service: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityService;
+						public readonly stats: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats;
+						public readonly tap: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge.Tap;
+						public readonly windowRootPolicy: __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy<__javaRoots.androidRoot.view.accessibility.AccessibilityWindowInfo>;
 						public constructor(context: __javaRoots.androidRoot.content.Context, config: __javaRoots.orgRoot.autojs.autojs.runtime.accessibility.AccessibilityConfig, uiHandler: __javaRoots.orgRoot.autojs.autojs.tool.UiHandler);
+						public awaitServiceAvailable(param0: number): boolean;
 						public ensureServiceStarted(): void;
 						public ensureServiceStarted(param0: boolean): void;
 						public getConfig(): __javaRoots.orgRoot.autojs.autojs.runtime.accessibility.AccessibilityConfig;
 						public getFlags(): number;
 						public getInfoProvider(): __javaRoots.orgRoot.autojs.autojs.core.activity.ActivityInfoProvider;
 						public getNotificationObserver(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityNotificationObserver;
+						public getPulse(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventPulse;
 						public getRootInActiveWindow(): __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
 						public getRootInCurrentWindow(): __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
 						public getService(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityService;
+						public getStats(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats;
+						public getTap(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge.Tap;
+						public getWindowRootPolicy(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy<__javaRoots.androidRoot.view.accessibility.AccessibilityWindowInfo>;
+						public isEventAssistedPolling(): boolean;
 						public post(r: __javaRoots.javaRoot.lang.Runnable): void;
+						public releasePulse(): void;
 						public setAccessibilityListener(listener: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityServiceCallback): void;
-						public setFlags(flags: number): void;
+						public setFlags(value: number): void;
 						public setMode(mode: number): void;
+						public setTap(_set___: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge.Tap): void;
 						public setWindowFilter(windowFilter: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge.WindowFilter): void;
 						public windowRoots(): __javaRoots.javaRoot.util.List<__javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo>;
+						public windows(): __javaRoots.javaRoot.util.List<__javaRoots.androidRoot.view.accessibility.AccessibilityWindowInfo>;
 					}
 					export namespace AccessibilityBridge {
+						export class Tap {
+							public constructor(implementation: Tap);
+							public constructor();
+						}
+						export interface Tap {
+							tap(param0: number, param1: number): boolean;
+						}
 						export class WindowFilter {
 							public constructor(implementation: WindowFilter);
 							public constructor();
@@ -365,27 +428,11 @@ declare namespace org {
 		export namespace autojs {
 			export namespace core {
 				export namespace accessibility {
-					export class AccessibilityDelegate {
-						public constructor(implementation: AccessibilityDelegate);
-						public constructor();
-					}
-					export interface AccessibilityDelegate {
-						readonly eventTypes: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>;
-						getEventTypes(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>;
-						onAccessibilityEvent(param0: __javaRoots.androidRoot.accessibilityservice.AccessibilityService, param1: __javaRoots.androidRoot.view.accessibility.AccessibilityEvent): boolean;
-					}
-				}
-			}
-		}
-	}
-}
-declare namespace org {
-	export namespace autojs {
-		export namespace autojs {
-			export namespace core {
-				export namespace accessibility {
 					export class AccessibilityNodeInfoAllocator {
+						public readonly registeredCount: number;
+						public static readonly tracingOrigin: boolean;
 						public constructor();
+						public constructor(lifecycle: __javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeLifecycle);
 						public add(nodeInfo: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo): __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
 						public findAccessibilityNodeInfosByText(root: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo, text: string): __javaRoots.javaRoot.util.List<__javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo>;
 						public findAccessibilityNodeInfosByText(root: __javaRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat, text: string): __javaRoots.javaRoot.util.List<__javaRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat>;
@@ -395,9 +442,12 @@ declare namespace org {
 						public getChild(parent: __javaRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat, i: number): __javaRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat;
 						public getParent(n: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo): __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
 						public getParent(n: __javaRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat): __javaRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat;
+						public getRegisteredCount(): number;
+						public static isTracingOrigin(): boolean;
 						public recycle(nodeInfo: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo): void;
 						public recycle(nodeInfo: __javaRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat): void;
 						public recycleAll(): number;
+						public static setTracingOrigin(_set___: boolean): void;
 					}
 				}
 			}
@@ -420,7 +470,7 @@ declare namespace org {
 						public removeNotificationListener(listener: __javaRoots.orgRoot.autojs.autojs.core.accessibility.NotificationListener): boolean;
 						public removeToastListener(listener: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityNotificationObserver.ToastListener): boolean;
 					}
-					export interface AccessibilityNotificationObserver extends __javaRoots.orgRoot.autojs.autojs.core.accessibility.NotificationListener, __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityDelegate {}
+					export interface AccessibilityNotificationObserver extends __javaRoots.orgRoot.autojs.autojs.core.accessibility.NotificationListener, __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.AccessibilityDelegate {}
 					export namespace AccessibilityNotificationObserver {
 						export class Toast {
 							public readonly packageName: string;
@@ -449,26 +499,36 @@ declare namespace org {
 			export namespace core {
 				export namespace accessibility {
 					export class AccessibilityService extends __javaRoots.androidRoot.accessibilityservice.AccessibilityService {
-						public readonly bridge: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge;
+						public static readonly PRIORITY_KEY_INTERCEPTOR: number;
+						public static readonly PRIORITY_KEY_OBSERVER: number;
+						public static readonly PRIORITY_OBSERVER: number;
+						public static readonly PRIORITY_SCRIPT: number;
+						public readonly adoptedByEvent: boolean;
+						public readonly boundAtElapsedRealtime: number;
+						public readonly connectedCallbackSeen: boolean;
+						public readonly eventCount: __javaRoots.javaRoot.util.concurrent.atomic.AtomicLong;
 						public readonly fastRootInActiveWindow: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
 						public readonly keyInterrupterObserver: __javaRoots.orgRoot.autojs.autojs.core.accessibility.KeyInterceptor.Observer;
+						public readonly lastEventElapsedRealtime: number;
+						public readonly lastEventType: number;
 						public readonly onKeyObserver: __javaRoots.orgRoot.autojs.autojs.core.accessibility.OnKeyListener.Observer;
 						public readonly rootInActiveWindow: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
 						public constructor();
-						public addAccessibilityEventCallback(ownerId: string, name: string, callback: __javaRoots.orgRoot.autojs.autojs.core.accessibility.SimpleActionAutomator.Companion.AccessibilityEventCallback): void;
-						public static clearAccessibilityEventCallback(): void;
-						public getBridge(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge;
+						public static eventTypeOf(name: string): number;
+						public getBoundAtElapsedRealtime(): number;
+						public getEventCount(): __javaRoots.javaRoot.util.concurrent.atomic.AtomicLong;
 						public getFastRootInActiveWindow(): __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
 						public getKeyInterrupterObserver(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.KeyInterceptor.Observer;
+						public getLastEventElapsedRealtime(): number;
+						public getLastEventType(): number;
 						public getOnKeyObserver(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.OnKeyListener.Observer;
 						public getRootInActiveWindow(): __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
+						public isAdoptedByEvent(): boolean;
+						public isConnectedCallbackSeen(): boolean;
 						public onAccessibilityEvent(event: __javaRoots.androidRoot.view.accessibility.AccessibilityEvent): void;
 						public onDestroy(): void;
 						public onInterrupt(): void;
 						public onUnbind(intent: __javaRoots.androidRoot.content.Intent): boolean;
-						public removeAccessibilityEventCallback(ownerId: string, name: string): void;
-						public removeAllAccessibilityEventCallbacks(ownerId: string): void;
-						public setBridge(_set___: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge): void;
 						public getRootInActiveWindow(...args: any[]): any;
 					}
 					export namespace AccessibilityService {
@@ -519,7 +579,7 @@ declare namespace org {
 					}
 					export namespace KeyInterceptor {
 						export class Observer {
-							public constructor();
+							public constructor(bus: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus<__javaRoots.androidRoot.view.KeyEvent>, priority: number);
 							public addKeyInterrupter(interrupter: __javaRoots.orgRoot.autojs.autojs.core.accessibility.KeyInterceptor): void;
 							public onInterceptKeyEvent(event: __javaRoots.androidRoot.view.KeyEvent): boolean;
 							public removeKeyInterrupter(interrupter: __javaRoots.orgRoot.autojs.autojs.core.accessibility.KeyInterceptor): boolean;
@@ -562,7 +622,7 @@ declare namespace org {
 					}
 					export namespace OnKeyListener {
 						export class Observer {
-							public constructor();
+							public constructor(bus: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus<__javaRoots.androidRoot.view.KeyEvent>, priority: number);
 							public addListener(listener: __javaRoots.orgRoot.autojs.autojs.core.accessibility.OnKeyListener): void;
 							public onKeyEvent(keyCode: number, event: __javaRoots.androidRoot.view.KeyEvent): void;
 							public removeListener(listener: __javaRoots.orgRoot.autojs.autojs.core.accessibility.OnKeyListener): boolean;
@@ -616,6 +676,7 @@ declare namespace org {
 						public quickSettings(): boolean;
 						public recents(): boolean;
 						public registerEvent(eventName: string, callback: __javaRoots.orgRoot.autojs.autojs.core.accessibility.SimpleActionAutomator.Companion.AccessibilityEventCallback): void;
+						public registerEvent(eventName: string, callback: __javaRoots.orgRoot.autojs.autojs.core.accessibility.SimpleActionAutomator.Companion.AccessibilityEventCallback, options: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Options<__javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEvent>): void;
 						public removeAllEventsForThisRuntime(): void;
 						public removeEvent(eventName: string): void;
 						public scrollBackward(i: number): boolean;
@@ -655,19 +716,111 @@ declare namespace org {
 		export namespace autojs {
 			export namespace core {
 				export namespace accessibility {
-					export class UiSelector {
+					export class UiSelector extends __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelectorBuilders {
 						public static readonly ID_IDENTIFIER: string;
+						public readonly bridge$app: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge;
 						public readonly searchAlgorithm$app: __javaRoots.orgRoot.autojs.autojs.core.automator.search.SearchAlgorithm;
 						public readonly selector$app: __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Selector;
 						public constructor();
 						public constructor(accessibilityBridge: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge);
 						public constructor(accessibilityBridge: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge, allocator: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityNodeInfoAllocator);
 						public accessibilityFocus(): boolean;
+						public addFilter$app(filter: __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Filter): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
+						public append(selector: __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
+						public clearAccessibilityFocus(): boolean;
+						public clearFocus(): boolean;
+						public clearSelection(): boolean;
+						public click(): boolean;
+						public collapse(): boolean;
+						public contextClick(): boolean;
+						public copy(): boolean;
+						public cut(): boolean;
+						public dismiss(): boolean;
+						public dragCancel(): boolean;
+						public dragDrop(): boolean;
+						public dragStart(): boolean;
+						public exists(): boolean;
+						public expand(): boolean;
+						public find(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
+						public find(max: number): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
+						public findAndReturnList$app(root: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject, max: number): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>;
+						public findIterator(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectIterator;
+						public findOf$app(root: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
+						public findOnce(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
+						public findOnce(index: number): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
+						/** @deprecated */
+						public findOne(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
+						public findOne(timeout: number): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
+						public findOneOf$app(root: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
+						public findWithin$app(max: number, budget: number): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
+						public focus(): boolean;
+						public getBridge$app(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge;
+						public getSearchAlgorithm$app(): __javaRoots.orgRoot.autojs.autojs.core.automator.search.SearchAlgorithm;
+						public getSelector$app(): __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Selector;
+						public hideTooltip(): boolean;
+						public imeEnter(): boolean;
+						public longClick(): boolean;
+						public moveWindow(x: number, y: number): boolean;
+						public nextAtMovementGranularity(granularity: number, isExtendSelection: boolean): boolean;
+						public nextHtmlElement(element: string): boolean;
+						public pageDown(): boolean;
+						public pageLeft(): boolean;
+						public pageRight(): boolean;
+						public pageUp(): boolean;
+						public paste(): boolean;
+						public performAction(action: number): boolean;
+						public performAction(action: number, ...arguments: __javaRoots.orgRoot.autojs.autojs.core.automator.ActionArgument[]): boolean;
+						public static pickup(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, root: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject, selector: any, compass: string, resultType: any, callback: __javaRoots.orgRoot.mozilla.javascript.Callable): any;
+						public plus(selector: __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
+						public pressAndHold(): boolean;
+						public previousAtMovementGranularity(granularity: number, isExtendSelection: boolean): boolean;
+						public previousHtmlElement(element: string): boolean;
+						public query$app(policy: __javaRoots.orgRoot.autojs.autojs.core.automator.query.PollPolicy, max: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelectorQuery;
+						public scrollBackward(): boolean;
+						public scrollDown(): boolean;
+						public scrollForward(): boolean;
+						public scrollLeft(): boolean;
+						public scrollRight(): boolean;
+						public scrollTo(row: number, column: number): boolean;
+						public scrollUp(): boolean;
+						public searchIn$app<N extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<N>>(root: N, max: number): __javaRoots.javaRoot.util.List<N>;
+						public select(): boolean;
+						public select(syntax: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
+						public setProgress(progress: number): boolean;
+						public setSearchAlgorithm$app(_set___: __javaRoots.orgRoot.autojs.autojs.core.automator.search.SearchAlgorithm): void;
+						public setSelection(s: number, e: number): boolean;
+						public setSelector$app(_set___: __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Selector): void;
+						public setText(text: string): boolean;
+						public show(): boolean;
+						public showTextSuggestions(): boolean;
+						public showTooltip(): boolean;
+						public toString(): string;
+						public toStringReadable(): string;
+						public untilFind(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
+						public untilFindOne(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
+						public useAlgorithm$app(name: string): void;
+						/** @deprecated */
+						public waitFor(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
+						public performAction(...args: any[]): any;
+						public select(...args: any[]): any;
+					}
+					export interface UiSelector extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectActions, __javaRoots.orgRoot.autojs.autojs.runtime.api.StringReadable {}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
+					export abstract class UiSelectorBuilders {
+						public constructor();
 						public accessibilityFocused(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public accessibilityFocused(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public action(...actions: any[]): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public algorithm(str: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public append(selector: __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public bottom(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public bottom(min: number, max: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public bounds(l: number, t: number, r: number, b: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
@@ -726,13 +879,8 @@ declare namespace org {
 						/** @deprecated */
 						public classNameMatches(regex: __javaRoots.orgRoot.mozilla.javascript.regexp.NativeRegExp): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public classNameStartsWith(prefix: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public clearAccessibilityFocus(): boolean;
-						public clearFocus(): boolean;
-						public clearSelection(): boolean;
-						public click(): boolean;
 						public clickable(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public clickable(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public collapse(): boolean;
 						public column(d: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public columnCount(d: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public columnSpan(d: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
@@ -750,13 +898,10 @@ declare namespace org {
 						/** @deprecated */
 						public contentMatches(regex: __javaRoots.orgRoot.mozilla.javascript.regexp.NativeRegExp): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public contentStartsWith(prefix: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public contextClick(): boolean;
 						public contextClickable(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public contextClickable(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public copy(): boolean;
 						public currentApp(name: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public currentApp(app: __javaRoots.orgRoot.autojs.autojs.util.App): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public cut(): boolean;
 						public depth(d: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public desc(s: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public desc(regex: __javaRoots.orgRoot.mozilla.javascript.regexp.NativeRegExp): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
@@ -770,42 +915,22 @@ declare namespace org {
 						/** @deprecated */
 						public descMatches(regex: __javaRoots.orgRoot.mozilla.javascript.regexp.NativeRegExp): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public descStartsWith(prefix: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public dismiss(): boolean;
 						public dismissable(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public dismissable(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public dragCancel(): boolean;
-						public dragDrop(): boolean;
-						public dragStart(): boolean;
 						public drawingOrder(order: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public editable(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public editable(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public enabled(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public enabled(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public exists(): boolean;
-						public expand(): boolean;
 						public filter(filter: __javaRoots.orgRoot.autojs.autojs.core.automator.filter.BooleanFilter.BooleanSupplier): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public find(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
-						public find(max: number): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
-						public findAndReturnList$app(root: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject, max: number): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>;
-						public findOf$app(root: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
-						public findOnce(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
-						public findOnce(index: number): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
-						/** @deprecated */
-						public findOne(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
-						public findOne(timeout: number): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
-						public findOneOf$app(root: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
-						public focus(): boolean;
 						public focusable(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public focusable(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public focused(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public focused(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public getSearchAlgorithm$app(): __javaRoots.orgRoot.autojs.autojs.core.automator.search.SearchAlgorithm;
-						public getSelector$app(): __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Selector;
 						public hasChildren(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public hasChildren(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public height(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public height(min: number, max: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public hideTooltip(): boolean;
 						public id(s: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public id(regex: __javaRoots.orgRoot.mozilla.javascript.regexp.NativeRegExp): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public idContains(s: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
@@ -819,11 +944,9 @@ declare namespace org {
 						/** @deprecated */
 						public idMatches(regex: __javaRoots.orgRoot.mozilla.javascript.regexp.NativeRegExp): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public idStartsWith(prefix: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public imeEnter(): boolean;
 						public indexInParent(index: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public left(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public left(min: number, max: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public longClick(): boolean;
 						public longClickable(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public longClickable(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public maxBottom(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
@@ -844,11 +967,8 @@ declare namespace org {
 						public minRight(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public minTop(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public minWidth(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public moveWindow(x: number, y: number): boolean;
 						public multiLine(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public multiLine(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public nextAtMovementGranularity(granularity: number, isExtendSelection: boolean): boolean;
-						public nextHtmlElement(element: string): boolean;
 						public packageName(s: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public packageName(app: __javaRoots.orgRoot.autojs.autojs.util.App): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public packageName(regex: __javaRoots.orgRoot.mozilla.javascript.regexp.NativeRegExp): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
@@ -862,20 +982,8 @@ declare namespace org {
 						/** @deprecated */
 						public packageNameMatches(regex: __javaRoots.orgRoot.mozilla.javascript.regexp.NativeRegExp): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public packageNameStartsWith(prefix: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public pageDown(): boolean;
-						public pageLeft(): boolean;
-						public pageRight(): boolean;
-						public pageUp(): boolean;
 						public password(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public password(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public paste(): boolean;
-						public performAction(action: number): boolean;
-						public performAction(action: number, ...arguments: __javaRoots.orgRoot.autojs.autojs.core.automator.ActionArgument[]): boolean;
-						public static pickup(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, root: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject, selector: any, compass: string, resultType: any, callback: __javaRoots.orgRoot.mozilla.javascript.Callable): any;
-						public plus(selector: __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public pressAndHold(): boolean;
-						public previousAtMovementGranularity(granularity: number, isExtendSelection: boolean): boolean;
-						public previousHtmlElement(element: string): boolean;
 						public right(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public right(min: number, max: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public row(d: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
@@ -891,26 +999,10 @@ declare namespace org {
 						public screenCenterY(b: boolean, tolerance: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public screenCoverage(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public screenCoverage(min: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public scrollBackward(): boolean;
-						public scrollDown(): boolean;
-						public scrollForward(): boolean;
-						public scrollLeft(): boolean;
-						public scrollRight(): boolean;
-						public scrollTo(row: number, column: number): boolean;
-						public scrollUp(): boolean;
 						public scrollable(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public scrollable(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public select(): boolean;
 						public selected(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public selected(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public setProgress(progress: number): boolean;
-						public setSearchAlgorithm$app(_set___: __javaRoots.orgRoot.autojs.autojs.core.automator.search.SearchAlgorithm): void;
-						public setSelection(s: number, e: number): boolean;
-						public setSelector$app(_set___: __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Selector): void;
-						public setText(text: string): boolean;
-						public show(): boolean;
-						public showTextSuggestions(): boolean;
-						public showTooltip(): boolean;
 						public text(s: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public text(regex: __javaRoots.orgRoot.mozilla.javascript.regexp.NativeRegExp): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public textContains(s: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
@@ -923,21 +1015,217 @@ declare namespace org {
 						/** @deprecated */
 						public textMatches(regex: __javaRoots.orgRoot.mozilla.javascript.regexp.NativeRegExp): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public textStartsWith(prefix: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public toString(): string;
-						public toStringReadable(): string;
 						public top(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public top(min: number, max: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public untilFind(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
-						public untilFindOne(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public visibleToUser(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public visibleToUser(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						/** @deprecated */
-						public waitFor(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
 						public width(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public width(min: number, max: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
-						public performAction(...args: any[]): any;
 					}
-					export interface UiSelector extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectActions, __javaRoots.orgRoot.autojs.autojs.runtime.api.StringReadable {}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
+					export class UiSelectorQuery {
+						public readonly max: number;
+						public readonly policy: __javaRoots.orgRoot.autojs.autojs.core.automator.query.PollPolicy;
+						public constructor(selector: __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector, policy: __javaRoots.orgRoot.autojs.autojs.core.automator.query.PollPolicy, max: number, poller: __javaRoots.orgRoot.autojs.autojs.core.automator.query.Poller);
+						public collection(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
+						public getMax(): number;
+						public getPolicy(): __javaRoots.orgRoot.autojs.autojs.core.automator.query.PollPolicy;
+						public one(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
+					export namespace event {
+						export class A11yEvent {
+							public readonly copy: boolean;
+							public readonly raw: __javaRoots.androidRoot.view.accessibility.AccessibilityEvent;
+							public readonly record: __javaRoots.orgRoot.autojs.autojs.core.accessibility.A11yEventRecord;
+							public readonly service: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityService;
+							public readonly type: number;
+							public readonly wrapper: __javaRoots.orgRoot.autojs.autojs.core.automator.AccessibilityEventWrapper;
+							public constructor(service: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityService, raw: __javaRoots.androidRoot.view.accessibility.AccessibilityEvent);
+							public copied(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEvent;
+							public getRaw(): __javaRoots.androidRoot.view.accessibility.AccessibilityEvent;
+							public getRecord(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.A11yEventRecord;
+							public getService(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityService;
+							public getType(): number;
+							public getWrapper(): __javaRoots.orgRoot.autojs.autojs.core.automator.AccessibilityEventWrapper;
+							public isCopy(): boolean;
+							public seal(): void;
+							public toString(): string;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
+					export namespace event {
+						export class A11yEventBus<E> {
+							public readonly lastDispatchAtMillis: number;
+							public readonly subscriptionCount: number;
+							public constructor(typeOf: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.Integer>, clock: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.javaRoot.lang.Long>, scheduler: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.DeferredScheduler, retain: __javaRoots.kotlinRoot.jvm.functions.Function1<any, E>, log: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.kotlinRoot.Unit>);
+							public count(predicate: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.Boolean>): number;
+							public dispatch(event: E): boolean;
+							public getLastDispatchAtMillis(): number;
+							public getSubscriptionCount(): number;
+							public hasSubscribers(_type_: number): boolean;
+							public subscribe(owner: any, types: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>, priority: number, consumable: boolean, options: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Options<E>, handler: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Handler<E>): __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Subscription<E>;
+							public subscriptionsOf(owner: any): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Subscription<E>>;
+							public unsubscribe(subscription: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Subscription<E>): boolean;
+							public unsubscribeAll(owner: any): number;
+						}
+						export namespace A11yEventBus {
+							export class DeferredScheduler {
+								public constructor(implementation: DeferredScheduler);
+								public constructor();
+							}
+							export interface DeferredScheduler {
+								schedule(param0: number, param1: __javaRoots.javaRoot.lang.Runnable): __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.DeferredScheduler.Cancellable;
+							}
+							export class Handler<E> {
+								public constructor(implementation: Handler<E>);
+								public constructor();
+							}
+							export interface Handler<E> {
+								handle(param0: E): boolean;
+							}
+							export class Options<E> {
+								public readonly debounceMillis: number;
+								public readonly debounced: boolean;
+								public readonly distinct: boolean;
+								public readonly distinctKey: __javaRoots.kotlinRoot.jvm.functions.Function1<E, any>;
+								public readonly distinctWithinMillis: number;
+								public constructor();
+								public constructor(distinctKey: __javaRoots.kotlinRoot.jvm.functions.Function1<any, any>, distinctWithinMillis: number, debounceMillis: number);
+								public getDebounceMillis(): number;
+								public getDistinctKey(): __javaRoots.kotlinRoot.jvm.functions.Function1<E, any>;
+								public getDistinctWithinMillis(): number;
+								public isDebounced(): boolean;
+								public isDistinct(): boolean;
+							}
+							export class Subscription<E> {
+								public readonly active: boolean;
+								public readonly consumable: boolean;
+								public readonly handler$app: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Handler<E>;
+								public readonly hasDelivered$app: boolean;
+								public readonly lastDeliveredAtMillis$app: number;
+								public readonly lastDeliveredKey$app: any;
+								public readonly lastMatchedAtMillis: number;
+								public readonly options: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Options<E>;
+								public readonly owner: any;
+								public readonly pending$app: E;
+								public readonly pendingTask$app: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.DeferredScheduler.Cancellable;
+								public readonly priority: number;
+								public readonly stateLock$app: any;
+								public readonly types: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>;
+								public constructor(owner: any, types: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>, priority: number, consumable: boolean, options: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Options<E>, handler: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Handler<E>);
+								public accepts(_type_: number): boolean;
+								public getConsumable(): boolean;
+								public getHandler$app(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Handler<E>;
+								public getHasDelivered$app(): boolean;
+								public getLastDeliveredAtMillis$app(): number;
+								public getLastDeliveredKey$app(): any;
+								public getLastMatchedAtMillis(): number;
+								public getOptions(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Options<E>;
+								public getOwner(): any;
+								public getPending$app(): E;
+								public getPendingTask$app(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.DeferredScheduler.Cancellable;
+								public getPriority(): number;
+								public getStateLock$app(): any;
+								public getTypes(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>;
+								public isActive(): boolean;
+								public setActive$app(_set___: boolean): void;
+								public setHasDelivered$app(_set___: boolean): void;
+								public setLastDeliveredAtMillis$app(_set___: number): void;
+								public setLastDeliveredKey$app(_set___: any): void;
+								public setLastMatchedAtMillis$app(_set___: number): void;
+								public setPending$app(_set___: E): void;
+								public setPendingTask$app(_set___: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.DeferredScheduler.Cancellable): void;
+								public toString(): string;
+							}
+							export namespace DeferredScheduler {
+								export class Cancellable {
+									public constructor(implementation: Cancellable);
+									public constructor();
+								}
+								export interface Cancellable {
+									cancel(): void;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
+					export namespace event {
+						export class A11yEventPulse {
+							public readonly events: number;
+							public readonly idle: __javaRoots.orgRoot.autojs.autojs.core.automator.event.IdleWaiter;
+							public readonly poller: __javaRoots.orgRoot.autojs.autojs.core.automator.query.Poller;
+							public constructor(bus: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus<__javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEvent>, registry: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry<__javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityService>, clock: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.javaRoot.lang.Long>);
+							public abortingOnServiceLoss<T>(waiter: __javaRoots.orgRoot.autojs.autojs.core.automator.event.EventWaiter<any>, block: __javaRoots.kotlinRoot.jvm.functions.Function0<T>): T;
+							public awaitEvent(millis: number): boolean;
+							public awaitEventOrInterrupt(millis: number): boolean;
+							public awaitIdle(quietFor: number, timeout: number, types: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>): __javaRoots.orgRoot.autojs.autojs.core.automator.event.IdleWaiter.Result;
+							public close(): void;
+							public ensureSubscribed(): void;
+							public getEvents(): number;
+							public getIdle(): __javaRoots.orgRoot.autojs.autojs.core.automator.event.IdleWaiter;
+							public getPoller(): __javaRoots.orgRoot.autojs.autojs.core.automator.query.Poller;
+							public withWaiter<T>(types: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>, block: __javaRoots.kotlinRoot.jvm.functions.Function1<any, T>): T;
+						}
+						export interface A11yEventPulse extends __javaRoots.javaRoot.lang.AutoCloseable {}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
+					export namespace event {
+						export class AccessibilityDelegate {
+							public constructor(implementation: AccessibilityDelegate);
+							public constructor();
+						}
+						export interface AccessibilityDelegate {
+							readonly eventTypes: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>;
+							getEventTypes(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>;
+							onAccessibilityEvent(param0: __javaRoots.androidRoot.accessibilityservice.AccessibilityService, param1: __javaRoots.androidRoot.view.accessibility.AccessibilityEvent): boolean;
+						}
+					}
 				}
 			}
 		}
@@ -954,6 +1242,183 @@ declare namespace org {
 							public add(closeable: __javaRoots.javaRoot.io.Closeable): void;
 							public recycleAll(): void;
 							public remove(closeable: __javaRoots.javaRoot.io.Closeable): void;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
+					export namespace node {
+						export class NodeLifecycle {
+							public readonly policy: __javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeRecyclePolicy;
+							public readonly recycles: boolean;
+							public constructor(policy: __javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeRecyclePolicy, log: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.kotlinRoot.Unit>);
+							public getPolicy(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeRecyclePolicy;
+							public getRecycles(): boolean;
+							public release(recycle: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): boolean;
+							public releaseAll<N>(nodes: __javaRoots.javaRoot.lang.Iterable<N>, except: N, recycle: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): number;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
+					export namespace node {
+						export class NodeRecyclePolicy extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeRecyclePolicy> {
+							public static readonly FIRST_SDK_WITHOUT_RECYCLING: number;
+							public static readonly NO_OP: __javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeRecyclePolicy;
+							public static readonly RECYCLE: __javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeRecyclePolicy;
+							public readonly recycles: boolean;
+							public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeRecyclePolicy>;
+							public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeRecyclePolicy>;
+							public getRecycles(): boolean;
+							public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeRecyclePolicy;
+							public static values(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeRecyclePolicy[];
+							protected constructor();
+							public static valueOf(...args: any[]): any;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
+					export namespace registry {
+						export class A11yServiceRegistry<S> {
+							public readonly adoptedByEvent: boolean;
+							public readonly bound: boolean;
+							public readonly instance: S;
+							public readonly listenerCount: number;
+							public readonly operational: boolean;
+							public readonly snapshot: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.Snapshot<S>;
+							public readonly state: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State;
+							public constructor();
+							public constructor(onListenerError: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.kotlinRoot.Unit>);
+							public addListener(owner: any, listener: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.StateListener<S>): void;
+							public await(target: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State, timeoutMillis: number): boolean;
+							public awaitUnbound(timeoutMillis: number): boolean;
+							public getAdoptedByEvent(): boolean;
+							public getInstance(): S;
+							public getListenerCount(): number;
+							public getSnapshot(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.Snapshot<S>;
+							public getState(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State;
+							public hasListener(owner: any): boolean;
+							public isBound(): boolean;
+							public isOperational(): boolean;
+							public markOperational(): void;
+							public onConnected(service: S): void;
+							public onDisposed(service: S): boolean;
+							public onEvent(service: S): void;
+							public removeListener(owner: any): boolean;
+							public resetOperational(): void;
+						}
+						export namespace A11yServiceRegistry {
+							export class Snapshot<S> {
+								public readonly adoptedByEvent: boolean;
+								public readonly bound: boolean;
+								public readonly instance: S;
+								public readonly operational: boolean;
+								public readonly state: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State;
+								public constructor(state: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State, instance: S, adoptedByEvent: boolean);
+								public component1(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State;
+								public component2(): S;
+								public component3(): boolean;
+								public copy(state: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State, instance: S, adoptedByEvent: boolean): __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.Snapshot<S>;
+								public equals(other: any): boolean;
+								public getAdoptedByEvent(): boolean;
+								public getInstance(): S;
+								public getState(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State;
+								public hashCode(): number;
+								public isBound(): boolean;
+								public isOperational(): boolean;
+								public toString(): string;
+							}
+							export class State extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State> {
+								public static readonly CONNECTED: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State;
+								public static readonly OPERATIONAL: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State;
+								public static readonly UNBOUND: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State;
+								public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State>;
+								public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State>;
+								public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State;
+								public static values(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State[];
+								protected constructor();
+								public static valueOf(...args: any[]): any;
+							}
+							export class StateListener<S> {
+								public constructor(implementation: StateListener<S>);
+								public constructor();
+							}
+							export interface StateListener<S> {
+								onStateChanged(param0: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.Snapshot<S>, param1: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.Snapshot<S>): void;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
+					export namespace window {
+						export class WindowRootPolicy<W> {
+							public readonly fallback: __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback;
+							public readonly filter: __javaRoots.kotlinRoot.jvm.functions.Function1<W, __javaRoots.javaRoot.lang.Boolean>;
+							public readonly mode: __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode;
+							public constructor();
+							public constructor(mode: __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode, filter: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.Boolean>, fallback: __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback);
+							public component1(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode;
+							public component2(): __javaRoots.kotlinRoot.jvm.functions.Function1<W, __javaRoots.javaRoot.lang.Boolean>;
+							public component3(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback;
+							public copy(mode: __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode, filter: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.Boolean>, fallback: __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback): __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy<W>;
+							public equals(other: any): boolean;
+							public getFallback(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback;
+							public getFilter(): __javaRoots.kotlinRoot.jvm.functions.Function1<W, __javaRoots.javaRoot.lang.Boolean>;
+							public getMode(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode;
+							public hashCode(): number;
+							public toString(): string;
+						}
+						export namespace WindowRootPolicy {
+							export class Fallback extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback> {
+								public static readonly APPLICATION_WINDOWS: __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback;
+								public static readonly NONE: __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback;
+								public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback>;
+								public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback>;
+								public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback;
+								public static values(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Fallback[];
+								protected constructor();
+								public static valueOf(...args: any[]): any;
+							}
+							export class Mode extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode> {
+								public static readonly FAST: __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode;
+								public static readonly NORMAL: __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode;
+								public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode>;
+								public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode>;
+								public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode;
+								public static values(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.window.WindowRootPolicy.Mode[];
+								protected constructor();
+								public static valueOf(...args: any[]): any;
+							}
 						}
 					}
 				}
@@ -988,7 +1453,7 @@ declare namespace org {
 						public setUseShell(value: boolean): void;
 						public setUseUsageStats(_set___: boolean): void;
 					}
-					export interface ActivityInfoProvider extends __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityDelegate {}
+					export interface ActivityInfoProvider extends __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.AccessibilityDelegate {}
 				}
 			}
 		}
@@ -1017,6 +1482,8 @@ declare namespace org {
 						public getRaw(): __javaRoots.androidRoot.view.accessibility.AccessibilityEvent;
 						public getSource(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public isFullScreen(): boolean;
+						public seal(): void;
+						public toString(): string;
 					}
 				}
 			}
@@ -1042,12 +1509,80 @@ declare namespace org {
 		export namespace autojs {
 			export namespace core {
 				export namespace automator {
+					export class UiNode<N extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<N>> {
+						public constructor(implementation: UiNode<N>);
+						public constructor();
+					}
+					export interface UiNode<N extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<N>> {
+						accessibilityFocused(): boolean;
+						actionNames(): __javaRoots.javaRoot.util.List<string>;
+						bottom(): number;
+						centerX(): number;
+						centerY(): number;
+						checkable(): boolean;
+						checked(): boolean;
+						child(param0: number): N;
+						childCount(): number;
+						className(): string;
+						clickable(): boolean;
+						column(): number;
+						columnCount(): number;
+						columnSpan(): number;
+						content(): string;
+						contentInvalid(): boolean;
+						contextClickable(): boolean;
+						depth(): number;
+						desc(): string;
+						dismissable(): boolean;
+						drawingOrder(): number;
+						editable(): boolean;
+						enabled(): boolean;
+						focusable(): boolean;
+						focused(): boolean;
+						hasAction(...actions: any[]): boolean;
+						hasChildren(): boolean;
+						height(): number;
+						id(): string;
+						idHex(): string;
+						indexInParent(): number;
+						left(): number;
+						longClickable(): boolean;
+						multiLine(): boolean;
+						packageName(): string;
+						parent(): N;
+						password(): boolean;
+						performAction(param0: number, ...param1: __javaRoots.orgRoot.autojs.autojs.core.automator.ActionArgument[]): boolean;
+						recycle(): void;
+						right(): number;
+						row(): number;
+						rowCount(): number;
+						rowSpan(): number;
+						scrollable(): boolean;
+						selected(): boolean;
+						text(): string;
+						top(): number;
+						visibleToUser(): boolean;
+						width(): number;
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace automator {
 					export class UiObject extends __javaRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat {
 						public static readonly ACTION_APPEND_TEXT: number;
 						public static readonly COMPASS_PASS_ON: string;
+						public static readonly DEFAULT_WAIT_INTERVAL: number;
+						public static readonly DEFAULT_WAIT_TIMEOUT: number;
 						public static readonly RESULT_TYPE_WIDGET: string;
 						public readonly shifted: boolean;
 						public readonly singleton: boolean;
+						public readonly stale: boolean;
 						public constructor(info: any);
 						public constructor(info: any, depth: number);
 						public constructor(info: any, depth: number, indexInParent: number);
@@ -1096,7 +1631,9 @@ declare namespace org {
 						public columnSpan(): number;
 						public compass(compassArg: string): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public content(): string;
+						public contentInvalid(): boolean;
 						public contextClick(): boolean;
+						public contextClickable(): boolean;
 						public copy(): boolean;
 						public static createRoot(root: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public cut(): boolean;
@@ -1104,10 +1641,13 @@ declare namespace org {
 						public desc(): string;
 						public static detect(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, w: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject, compass: string, resultType: any, callback: __javaRoots.orgRoot.mozilla.javascript.Callable): any;
 						public dismiss(): boolean;
+						public dismissable(): boolean;
 						public dragCancel(): boolean;
 						public dragDrop(): boolean;
 						public dragStart(): boolean;
 						public drawingOrder(): number;
+						public dumpSubtree(): string;
+						public dumpSubtree(options: any): string;
 						public editable(): boolean;
 						public enabled(): boolean;
 						public static ensureCompass(s: string): void;
@@ -1119,6 +1659,7 @@ declare namespace org {
 						public findAccessibilityNodeInfosByText(text: string): __javaRoots.javaRoot.util.List<__javaRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat>;
 						public findAccessibilityNodeInfosByViewId(viewId: string): __javaRoots.javaRoot.util.List<__javaRoots.androidxRoot.core.view.accessibility.AccessibilityNodeInfoCompat>;
 						public findOne(selector: __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
+						public fingerprint(): number;
 						public firstChild(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public firstSibling(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public focus(): boolean;
@@ -1142,12 +1683,14 @@ declare namespace org {
 						public isShifted(tolerance: number): boolean;
 						public isSimilar(other: any): boolean;
 						public isSingleton(): boolean;
+						public isStale(): boolean;
 						public lastChild(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public lastSibling(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public left(): number;
 						public longClick(): boolean;
 						public longClickable(): boolean;
 						public moveWindow(x: number, y: number): boolean;
+						public multiLine(): boolean;
 						public nextAtMovementGranularity(granularity: number, isExtendSelection: boolean): boolean;
 						public nextHtmlElement(element: string): boolean;
 						public nextSibling(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
@@ -1199,18 +1742,30 @@ declare namespace org {
 						public snapshot(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public summary(): string;
 						public text(): string;
+						public toJSON(): any;
+						public toJSON(key: any): any;
 						public toString(): string;
 						public top(): number;
 						public visibleToUser(): boolean;
+						public waitForStable(): boolean;
+						public waitForStable(stableFor: number): boolean;
+						public waitForStable(stableFor: number, timeout: number): boolean;
+						public waitForStable(stableFor: number, timeout: number, interval: number): boolean;
+						public waitUntilGone(): boolean;
+						public waitUntilGone(timeout: number): boolean;
+						public waitUntilGone(timeout: number, interval: number): boolean;
 						public width(): number;
+						public child(...args: any[]): any;
 						public getChild(...args: any[]): any;
 						public getParent(...args: any[]): any;
+						public parent(...args: any[]): any;
 						public setText(...args: any[]): any;
 					}
+					export interface UiObject extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject> {}
 					export namespace UiObject {
 						export class Companion {
 							public createRoot(root: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
-							public createRoot$app(root: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo, allocator: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityNodeInfoAllocator): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
+							public createRoot$app(root: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo, allocator: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityNodeInfoAllocator, bridge: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 							public detect(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, w: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject, compass: string, resultType: any, callback: __javaRoots.orgRoot.mozilla.javascript.Callable): any;
 							public ensureCompass(s: string): void;
 							public isCompass(s: any): boolean;
@@ -1291,10 +1846,12 @@ declare namespace org {
 						public readonly nodes: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>;
 						public readonly notEmpty: boolean;
 						public accessibilityFocus(): boolean;
+						public at(i: number): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public clearAccessibilityFocus(): boolean;
 						public clearFocus(): boolean;
 						public clearSelection(): boolean;
 						public click(): boolean;
+						public clickEach(): boolean[];
 						public collapse(): boolean;
 						public contains(o: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject): boolean;
 						public contextClick(): boolean;
@@ -1311,6 +1868,7 @@ declare namespace org {
 						public expand(): boolean;
 						public find(selector: __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
 						public findOne(selector: __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
+						public first(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public focus(): boolean;
 						public get(i: number): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public getNodes(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>;
@@ -1321,12 +1879,15 @@ declare namespace org {
 						public isNotEmpty(): boolean;
 						public isSimilar(other: any): boolean;
 						public iterator(): __javaRoots.javaRoot.util.Iterator<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>;
+						public last(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
 						public longClick(): boolean;
+						public longClickEach(): boolean[];
 						public moveWindow(x: number, y: number): boolean;
 						public nextAtMovementGranularity(granularity: number, isExtendSelection: boolean): boolean;
 						public nextHtmlElement(element: string): boolean;
 						/** @deprecated */
 						public nonEmpty(): boolean;
+						public nonNull(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
 						public static of(list: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
 						public static of(list: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject[]): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
 						public pageDown(): boolean;
@@ -1336,12 +1897,15 @@ declare namespace org {
 						public paste(): boolean;
 						public performAction(action: number): boolean;
 						public performAction(action: number, ...arguments: __javaRoots.orgRoot.autojs.autojs.core.automator.ActionArgument[]): boolean;
+						public performActionEach(action: number, ...arguments: __javaRoots.orgRoot.autojs.autojs.core.automator.ActionArgument[]): boolean[];
 						public pressAndHold(): boolean;
 						public previousAtMovementGranularity(granularity: number, isExtendSelection: boolean): boolean;
 						public previousHtmlElement(element: string): boolean;
 						public scrollBackward(): boolean;
+						public scrollBackwardEach(): boolean[];
 						public scrollDown(): boolean;
 						public scrollForward(): boolean;
+						public scrollForwardEach(): boolean[];
 						public scrollLeft(): boolean;
 						public scrollRight(): boolean;
 						public scrollTo(row: number, column: number): boolean;
@@ -1350,10 +1914,14 @@ declare namespace org {
 						public setProgress(progress: number): boolean;
 						public setSelection(s: number, e: number): boolean;
 						public setText(text: string): boolean;
+						public setTextEach(text: string): boolean[];
 						public show(): boolean;
 						public showTextSuggestions(): boolean;
 						public showTooltip(): boolean;
 						public size(): number;
+						public slice(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
+						public slice(start: number): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
+						public slice(start: number, end: number): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
 						public toArray(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject[];
 						public toList(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>;
 						public toString(): string;
@@ -1361,6 +1929,36 @@ declare namespace org {
 						public performAction(...args: any[]): any;
 					}
 					export interface UiObjectCollection extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectActions {}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace automator {
+					export class UiObjectIterator {
+						public readonly closed: boolean;
+						public readonly produced: number;
+						public readonly visited: number;
+						public constructor(search: __javaRoots.orgRoot.autojs.autojs.core.automator.search.LazySearch<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>);
+						public close(): void;
+						public collect(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObjectCollection;
+						public getProduced(): number;
+						public getVisited(): number;
+						public hasNext(): boolean;
+						public isClosed(): boolean;
+						public iterator(): __javaRoots.javaRoot.util.Iterator<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>;
+						public next(): __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject;
+						public remove(): void;
+						public toList(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>;
+						public toString(): string;
+						public iterator(...args: any[]): any;
+						public next(...args: any[]): any;
+					}
+					export interface UiObjectIterator extends __javaRoots.javaRoot.util.Iterator<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>, __javaRoots.javaRoot.lang.Iterable<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>, __javaRoots.javaRoot.lang.AutoCloseable, __javaRoots.kotlinRoot.jvm.internal.markers.KMappedMarker {}
 				}
 			}
 		}
@@ -1491,11 +2089,213 @@ declare namespace org {
 		export namespace autojs {
 			export namespace core {
 				export namespace automator {
+					export namespace diagnostics {
+						export class A11yStats {
+							public static readonly MAX_RENDERED_SELECTORS: number;
+							public static readonly MAX_SELECTORS: number;
+							public static readonly OTHERS: string;
+							public constructor();
+							public constructor(clock: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.javaRoot.lang.Long>);
+							public recordQuery(selector: string, elapsed: number, attempts: number, found: boolean): void;
+							public recordSearch(selector: string, elapsed: number): void;
+							public recordStep(name: string, elapsed: number, rejected: boolean): void;
+							public reset(): void;
+							public snapshot(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Snapshot;
+						}
+						export namespace A11yStats {
+							export class QueryTiming {
+								public readonly attempts: number;
+								public readonly averageMillis: number;
+								public readonly count: number;
+								public readonly found: number;
+								public readonly maxMillis: number;
+								public readonly missed: number;
+								public readonly totalMillis: number;
+								public constructor(count: number, found: number, attempts: number, totalMillis: number, maxMillis: number);
+								public component1(): number;
+								public component2(): number;
+								public component3(): number;
+								public component4(): number;
+								public component5(): number;
+								public copy(count: number, found: number, attempts: number, totalMillis: number, maxMillis: number): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.QueryTiming;
+								public equals(other: any): boolean;
+								public getAttempts(): number;
+								public getAverageMillis(): number;
+								public getCount(): number;
+								public getFound(): number;
+								public getMaxMillis(): number;
+								public getMissed(): number;
+								public getTotalMillis(): number;
+								public hashCode(): number;
+								public toString(): string;
+							}
+							export class SelectorStats {
+								public readonly found: number;
+								public readonly queries: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public readonly searches: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public readonly selector: string;
+								public constructor(selector: string, searches: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing, queries: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing, found: number);
+								public component1(): string;
+								public component2(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public component3(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public component4(): number;
+								public copy(selector: string, searches: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing, queries: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing, found: number): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.SelectorStats;
+								public equals(other: any): boolean;
+								public getFound(): number;
+								public getQueries(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public getSearches(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public getSelector(): string;
+								public hashCode(): number;
+								public toString(): string;
+							}
+							export class Snapshot {
+								public readonly elapsed: number;
+								public readonly now: number;
+								public readonly queries: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.QueryTiming;
+								public readonly searches: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public readonly selectors: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.SelectorStats>;
+								public readonly since: number;
+								public readonly slowest: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.SelectorStats;
+								public readonly steps: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.StepStats>;
+								public constructor(since: number, now: number, searches: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing, queries: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.QueryTiming, selectors: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.SelectorStats>, steps: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.StepStats>);
+								public getElapsed(): number;
+								public getNow(): number;
+								public getQueries(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.QueryTiming;
+								public getSearches(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public getSelectors(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.SelectorStats>;
+								public getSince(): number;
+								public getSlowest(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.SelectorStats;
+								public getSteps(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.StepStats>;
+								public render(): string;
+								public toString(): string;
+							}
+							export class StepStats {
+								public readonly name: string;
+								public readonly rejected: number;
+								public readonly runs: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public constructor(name: string, runs: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing, rejected: number);
+								public component1(): string;
+								public component2(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public component3(): number;
+								public copy(name: string, runs: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing, rejected: number): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.StepStats;
+								public equals(other: any): boolean;
+								public getName(): string;
+								public getRejected(): number;
+								public getRuns(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public hashCode(): number;
+								public toString(): string;
+							}
+							export class Timing {
+								public readonly averageMillis: number;
+								public readonly count: number;
+								public readonly maxMillis: number;
+								public readonly totalMillis: number;
+								public constructor(count: number, totalMillis: number, maxMillis: number);
+								public component1(): number;
+								public component2(): number;
+								public component3(): number;
+								public copy(count: number, totalMillis: number, maxMillis: number): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats.Timing;
+								public equals(other: any): boolean;
+								public getAverageMillis(): number;
+								public getCount(): number;
+								public getMaxMillis(): number;
+								public getTotalMillis(): number;
+								public hashCode(): number;
+								public toString(): string;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace automator {
+					export namespace event {
+						export class EventWaiter<E> {
+							public static readonly DEFAULT_CAPACITY: number;
+							public static readonly UNBOUNDED: number;
+							public readonly aborted: boolean;
+							public readonly capacity: number;
+							public readonly dropped: number;
+							public readonly hasPending: boolean;
+							public readonly offered: number;
+							public constructor(clock: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.javaRoot.lang.Long>, capacity: number);
+							public abort(cause: __javaRoots.javaRoot.lang.Throwable): void;
+							public await(timeout: number, accept: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.Boolean>): __javaRoots.orgRoot.autojs.autojs.core.automator.event.EventWaiter.Result<E>;
+							public getCapacity(): number;
+							public getDropped(): number;
+							public getHasPending(): boolean;
+							public getOffered(): number;
+							public isAborted(): boolean;
+							public offer(event: E): void;
+						}
+						export namespace EventWaiter {
+							export class Result<E> {
+								public readonly elapsed: number;
+								public readonly event: E;
+								public readonly found: boolean;
+								public readonly seen: number;
+								public constructor(event: E, elapsed: number, seen: number);
+								public getElapsed(): number;
+								public getEvent(): E;
+								public getFound(): boolean;
+								public getSeen(): number;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace automator {
+					export namespace event {
+						export class IdleWaiter {
+							public static readonly NEVER: number;
+							public static readonly UNBOUNDED: number;
+							public constructor(clock: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.javaRoot.lang.Long>);
+							public abort(cause: __javaRoots.javaRoot.lang.Throwable): void;
+							public await(quietFor: number, timeout: number, types: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>): __javaRoots.orgRoot.autojs.autojs.core.automator.event.IdleWaiter.Result;
+							public count(types: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>): number;
+							public lastEventAt(types: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>): number;
+							public onEvent(_type_: number): void;
+						}
+						export namespace IdleWaiter {
+							export class Result {
+								public readonly elapsed: number;
+								public readonly events: number;
+								public readonly quiet: boolean;
+								public constructor(quiet: boolean, elapsed: number, events: number);
+								public getElapsed(): number;
+								public getEvents(): number;
+								public getQuiet(): boolean;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace automator {
 					export namespace filter {
 						export class BooleanFilter {
 							public static readonly DEFAULT: boolean;
 							public constructor(mBooleanSupplier: __javaRoots.orgRoot.autojs.autojs.core.automator.filter.BooleanFilter.BooleanSupplier, mExceptedValue: __javaRoots.javaRoot.lang.Boolean);
-							public filter(node: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject): boolean;
+							public filter(node: __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<any>): boolean;
 							public toString(): string;
 						}
 						export interface BooleanFilter extends __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Filter {}
@@ -1505,7 +2305,7 @@ declare namespace org {
 								public constructor();
 							}
 							export interface BooleanSupplier {
-								get(param0: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject): boolean;
+								get(param0: __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<any>): boolean;
 							}
 						}
 					}
@@ -1525,7 +2325,7 @@ declare namespace org {
 							public constructor();
 						}
 						export interface Filter {
-							filter(param0: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject): boolean;
+							filter(param0: __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<any>): boolean;
 						}
 					}
 				}
@@ -1540,15 +2340,123 @@ declare namespace org {
 				export namespace automator {
 					export namespace filter {
 						export class Selector {
-							public readonly filters: __javaRoots.javaRoot.util.LinkedList<__javaRoots.orgRoot.autojs.autojs.core.automator.filter.Filter>;
+							public readonly filters: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.filter.Filter>;
 							public constructor();
 							public add(filter: __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Filter): boolean;
 							public append(uiSelector: __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector): boolean;
-							public filter(node: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject): boolean;
-							public getFilters(): __javaRoots.javaRoot.util.LinkedList<__javaRoots.orgRoot.autojs.autojs.core.automator.filter.Filter>;
+							public filter(node: __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<any>): boolean;
+							public getFilters(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.automator.filter.Filter>;
 							public toString(): string;
 						}
 						export interface Selector extends __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Filter {}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace automator {
+					export namespace query {
+						export class PollPolicy {
+							public static readonly DEFAULT_INTERVAL: number;
+							public static readonly EVENT_ASSISTED_INTERVAL: number;
+							public static readonly UNBOUNDED: number;
+							public readonly backoff: number;
+							public readonly eventAssisted: boolean;
+							public readonly interval: number;
+							public readonly maxInterval: number;
+							public readonly noop: boolean;
+							public readonly timeout: number;
+							public readonly times: number;
+							public readonly unbounded: boolean;
+							public constructor();
+							public constructor(timeout: number, interval: number, times: number, backoff: number, maxInterval: number, eventAssisted: boolean);
+							public assisted(minInterval: number): __javaRoots.orgRoot.autojs.autojs.core.automator.query.PollPolicy;
+							public component1(): number;
+							public component2(): number;
+							public component3(): number;
+							public component4(): number;
+							public component5(): number;
+							public component6(): boolean;
+							public copy(timeout: number, interval: number, times: number, backoff: number, maxInterval: number, eventAssisted: boolean): __javaRoots.orgRoot.autojs.autojs.core.automator.query.PollPolicy;
+							public equals(other: any): boolean;
+							public getBackoff(): number;
+							public getEventAssisted(): boolean;
+							public getInterval(): number;
+							public getMaxInterval(): number;
+							public getTimeout(): number;
+							public getTimes(): number;
+							public hashCode(): number;
+							public intervalAfter(round: number): number;
+							public isNoop(): boolean;
+							public isUnbounded(): boolean;
+							public toString(): string;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace automator {
+					export namespace query {
+						export class Poller {
+							public constructor(clock: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.javaRoot.lang.Long>, sleep: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>);
+							public constructor(clock: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.javaRoot.lang.Long>, sleep: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>, eventSleep: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>);
+							public poll<T>(policy: __javaRoots.orgRoot.autojs.autojs.core.automator.query.PollPolicy, attempt: __javaRoots.kotlinRoot.jvm.functions.Function1<any, T>): T;
+						}
+						export namespace Poller {
+							export class Progress {
+								public readonly elapsed: number;
+								public readonly remaining: number;
+								public readonly round: number;
+								public readonly timedOut$app: boolean;
+								public constructor(clock: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.javaRoot.lang.Long>, policy: __javaRoots.orgRoot.autojs.autojs.core.automator.query.PollPolicy);
+								public getElapsed(): number;
+								public getRemaining(): number;
+								public getRound(): number;
+								public getTimedOut$app(): boolean;
+								public setRound$app(_set___: number): void;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace automator {
+					export namespace search {
+						export class LazySearch<N extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<N>> {
+							public readonly closed: boolean;
+							public readonly produced: number;
+							public readonly visited: number;
+							public constructor(roots: __javaRoots.javaRoot.util.List<N>, filter: __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Filter, breadthFirst: boolean, lifecycle: __javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeLifecycle);
+							public close(): void;
+							public drain(): __javaRoots.javaRoot.util.List<N>;
+							public getProduced(): number;
+							public getVisited(): number;
+							public hasNext(): boolean;
+							public isClosed(): boolean;
+							public iterator(): __javaRoots.javaRoot.util.Iterator<N>;
+							public next(): N;
+							public remove(): void;
+							public iterator(...args: any[]): any;
+							public next(...args: any[]): any;
+						}
+						export interface LazySearch<N extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<N>> extends __javaRoots.javaRoot.util.Iterator<N>, __javaRoots.javaRoot.lang.Iterable<N>, __javaRoots.javaRoot.lang.AutoCloseable, __javaRoots.kotlinRoot.jvm.internal.markers.KMappedMarker {}
 					}
 				}
 			}
@@ -1566,7 +2474,7 @@ declare namespace org {
 							public constructor();
 						}
 						export interface SearchAlgorithm {
-							search(param0: __javaRoots.orgRoot.autojs.autojs.core.automator.UiObject, param1: __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Filter, param2: number): __javaRoots.javaRoot.util.ArrayList<__javaRoots.orgRoot.autojs.autojs.core.automator.UiObject>;
+							search<N extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<N>>(param0: N, param1: __javaRoots.orgRoot.autojs.autojs.core.automator.filter.Filter, param2: number, param3: __javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeLifecycle): __javaRoots.javaRoot.util.ArrayList<N>;
 						}
 					}
 				}
@@ -4640,6 +5548,7 @@ declare namespace org {
 						public static shouldEnableLargeFileModeForSize(size: number): boolean;
 						public static shouldStartA11yServiceWithRoot(): boolean;
 						public static shouldStartA11yServiceWithSecureSettings(): boolean;
+						public static shouldStartA11yServiceWithShizuku(): boolean;
 						protected constructor();
 					}
 				}
@@ -8619,6 +9528,7 @@ declare namespace org {
 						public constructor(mScriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime);
 						public all(): __javaRoots.orgRoot.mozilla.javascript.NativeArray;
 						public static createExecScriptFileExecutionConfig(launch: __javaRoots.orgRoot.autojs.autojs.script.ScriptLaunchSourceFactory.Launch, config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig): __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig;
+						public static createExecScriptSource(name: string, script: string): __javaRoots.orgRoot.autojs.autojs.script.JavaScriptSource;
 						public execAutoFile(path: string, config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig): __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecution;
 						public execScript(name: string, script: string, config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig): __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecution;
 						public execScriptFile(path: string, config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig): __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecution;
@@ -12437,6 +13347,7 @@ declare namespace org {
 							public readonly globalAssignmentProperties: __javaRoots.javaRoot.util.List<__javaRoots.kotlinRoot.Pair<any, any>>;
 							public readonly key: string;
 							public readonly keys: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.AugmentableKey>;
+							public readonly scriptErrorPassThroughFunctions: __javaRoots.javaRoot.util.Set<string>;
 							public readonly selfAssignmentFunctions: __javaRoots.javaRoot.util.List<any>;
 							public readonly selfAssignmentGetters: __javaRoots.javaRoot.util.List<any>;
 							public readonly selfAssignmentGettersAndSetters: __javaRoots.javaRoot.util.List<__javaRoots.kotlinRoot.Triple<string, any, any>>;
@@ -12465,6 +13376,7 @@ declare namespace org {
 							public getGlobalAssignmentProperties(): __javaRoots.javaRoot.util.List<__javaRoots.kotlinRoot.Pair<any, any>>;
 							public getKey(): string;
 							public getKeys(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.AugmentableKey>;
+							public getScriptErrorPassThroughFunctions(): __javaRoots.javaRoot.util.Set<string>;
 							public getSelfAssignmentFunctions(): __javaRoots.javaRoot.util.List<any>;
 							public getSelfAssignmentGetters(): __javaRoots.javaRoot.util.List<any>;
 							public getSelfAssignmentGettersAndSetters(): __javaRoots.javaRoot.util.List<__javaRoots.kotlinRoot.Triple<string, any, any>>;
@@ -12731,9 +13643,11 @@ declare namespace org {
 			export namespace script {
 				export abstract class JavaScriptSource extends __javaRoots.orgRoot.autojs.autojs.script.ScriptSource {
 					public static readonly ENGINE: string;
+					public static readonly ENGINE_BUN: string;
 					public static readonly ENGINE_NODEJS: string;
 					public static readonly EXECUTION_MODES: __javaRoots.javaRoot.util.Map<string, __javaRoots.javaRoot.lang.Integer>;
 					public static readonly EXECUTION_MODE_AUTO: number;
+					public static readonly EXECUTION_MODE_BUN: number;
 					public static readonly EXECUTION_MODE_JSOX: number;
 					public static readonly EXECUTION_MODE_NODEJS: number;
 					public static readonly EXECUTION_MODE_NORMAL: number;
@@ -12753,6 +13667,7 @@ declare namespace org {
 					public getNonNullScriptReader(): __javaRoots.javaRoot.io.Reader;
 					public getScript(): string;
 					public getScriptReader(): __javaRoots.javaRoot.io.Reader;
+					public static isBunFileName(fileName: string): boolean;
 					public static isCompilerBackedTypeScriptFileName(fileName: string): boolean;
 					public static isJavaScriptFileName(fileName: string): boolean;
 					public static isNodeJsFileName(fileName: string): boolean;
@@ -12763,6 +13678,7 @@ declare namespace org {
 					public static parseExecutionMode(script: string): __javaRoots.orgRoot.autojs.autojs.script.JavaScriptSource.ExecutionInfo;
 					public static resolveEngineName(executionMode: number): string;
 					public toString(): string;
+					public static validateExclusiveEngineMode(executionMode: number): void;
 				}
 				export namespace JavaScriptSource {
 					export class ExecutionInfo {
@@ -13166,10 +14082,12 @@ declare namespace org {
 		export namespace autojs {
 			export namespace script {
 				export class StringScriptSource extends __javaRoots.orgRoot.autojs.autojs.script.JavaScriptSource {
+					public readonly engineName: string;
 					public readonly script: string;
 					public readonly scriptReader: __javaRoots.javaRoot.io.Reader;
 					public constructor(script: string);
 					public constructor(name: string, script: string);
+					public getEngineName(): string;
 					public getScript(): string;
 					public getScriptReader(): __javaRoots.javaRoot.io.Reader;
 				}
@@ -15592,6 +16510,50 @@ declare namespace org {
 //org.autojs.autojs.concurrent.Value:1
 //org.autojs.autojs.concurrent.VolatileBox:1
 //org.autojs.autojs.concurrent.VolatileDispose:1
+//org.autojs.autojs.core.accessibility.control.A11yServiceController:1
+//org.autojs.autojs.core.accessibility.event.A11yEventBus:1
+//org.autojs.autojs.core.accessibility.event.A11yEventBus.Handler:1
+//org.autojs.autojs.core.accessibility.event.A11yEventBus.Options:1
+//org.autojs.autojs.core.accessibility.event.A11yEventBus.Subscription:1
+//org.autojs.autojs.core.accessibility.node.NodeRegistry:1
+//org.autojs.autojs.core.accessibility.registry.A11yServiceRegistry:1
+//org.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.Snapshot:1
+//org.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.StateListener:1
+//org.autojs.autojs.core.accessibility.window.WindowMatch.Facts:1
+//org.autojs.autojs.core.accessibility.window.WindowRootPolicy:1
+//org.autojs.autojs.core.accessibility.window.WindowRootResolver:2
+//org.autojs.autojs.core.accessibility.window.WindowRootResolver.Source:2
+//org.autojs.autojs.core.accessibility.window.WindowRootResolver.fallbackRoots..inlined.sortedBy.1:1
+//org.autojs.autojs.core.automator.UiNode:1
+//org.autojs.autojs.core.automator.diagnostics.A11yStats.snapshot..inlined.compareByDescending.1:1
+//org.autojs.autojs.core.automator.diagnostics.A11yStats.snapshot..inlined.compareByDescending.2:1
+//org.autojs.autojs.core.automator.diagnostics.A11yStats.snapshot..inlined.thenByDescending.1:1
+//org.autojs.autojs.core.automator.diagnostics.A11yStats.snapshot..inlined.thenByDescending.2:1
+//org.autojs.autojs.core.automator.diagnostics.SelectorExplanation:1
+//org.autojs.autojs.core.automator.event.EventWaiter:1
+//org.autojs.autojs.core.automator.event.EventWaiter.Result:1
+//org.autojs.autojs.core.automator.search.LazySearch:1
+//org.autojs.autojs.core.automator.selector.SelectorStringParser.suggest..inlined.sortedBy.1:1
+//org.autojs.autojs.core.automator.toolkit.ActionPerformer:1
+//org.autojs.autojs.core.automator.toolkit.AppLauncher:1
+//org.autojs.autojs.core.automator.toolkit.ListCollector:1
+//org.autojs.autojs.core.automator.toolkit.PopupDismisser:1
+//org.autojs.autojs.core.automator.toolkit.PopupDismisser.Dismissed:1
+//org.autojs.autojs.core.automator.toolkit.PopupDismisser.Guard:1
+//org.autojs.autojs.core.automator.toolkit.ScrollSearch:1
+//org.autojs.autojs.core.automator.toolkit.ScrollSearch.Outcome:1
+//org.autojs.autojs.core.automator.toolkit.Scroller:1
+//org.autojs.autojs.core.automator.toolkit.SmartClick:1
+//org.autojs.autojs.core.automator.toolkit.SmartClick.Outcome:1
+//org.autojs.autojs.core.automator.toolkit.TextEntry:1
+//org.autojs.autojs.core.automator.toolkit.TextEntry.Outcome:1
+//org.autojs.autojs.core.automator.toolkit.Toggle:1
+//org.autojs.autojs.core.automator.toolkit.Toggle.Outcome:1
+//org.autojs.autojs.core.automator.toolkit.Toolkit:1
+//org.autojs.autojs.core.automator.toolkit.Toolkit.Clicked:1
+//org.autojs.autojs.core.automator.toolkit.Toolkit.Found:1
+//org.autojs.autojs.core.automator.toolkit.Toolkit.Polled:1
+//org.autojs.autojs.core.automator.toolkit.ToolkitBindings:1
 //org.autojs.autojs.core.console.StackFrameParser.parse..inlined.sortedBy.1:1
 //org.autojs.autojs.core.image.Shootable:1
 //org.autojs.autojs.core.internal.Functions.Func0:1
@@ -15639,6 +16601,9 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.barcode.BarcodePluginHost.withImagePfdService.1:1
 //org.autojs.autojs.core.plugin.barcode.BarcodePluginHost.withImagePfdServiceOnce.1:1
 //org.autojs.autojs.core.plugin.barcode.BarcodePluginHost.withService.1:1
+//org.autojs.autojs.core.plugin.bun.BunBoundedBinderCallLane.Call:1
+//org.autojs.autojs.core.plugin.bun.BunBoundedBinderCallLane.CallOutcome:1
+//org.autojs.autojs.core.plugin.bun.BunBoundedBinderCallLane.CallOutcome.Success:1
 //org.autojs.autojs.core.plugin.center.PluginCenterActivity.showFilterDialog.FilterOption:1
 //org.autojs.autojs.core.plugin.center.PluginCenterActivity.showFilterDialog.OptionGroupBinder:1
 //org.autojs.autojs.core.plugin.center.PluginCenterActivity.showProcessLogs.job.1.1.1:1
@@ -15715,6 +16680,9 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.ocr.OcrPluginHost.withImagePfdService.1:1
 //org.autojs.autojs.core.plugin.ocr.OcrPluginHost.withImagePfdServiceOnce.1:1
 //org.autojs.autojs.core.plugin.ocr.OcrPluginHost.withService.1:1
+//org.autojs.autojs.core.plugin.python.PythonHostSelectorScope:1
+//org.autojs.autojs.core.plugin.python.PythonHostSelectorScope.PendingNode:1
+//org.autojs.autojs.core.plugin.python.PythonHostSelectorScope.Platform:1
 //org.autojs.autojs.core.plugin.python.PythonMaterialDialogInputController.Pending:1
 //org.autojs.autojs.core.plugin.python.PythonProjectWorkspacePolicy.plan..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.python.PythonProjectWorkspacePolicy.plan.visit..inlined.sortedBy.1:1
