@@ -4,6 +4,17 @@
 
 ******
 
+# v4.8.1
+
+###### 2026/09/08
+
+##### 控制台输入, 显示选项与 UI 模式控制台元素声明
+
+- `新增` `console.rawInput` / `console.input` 恢复为可用声明 (阻塞读取控制台输入栏的一行文本, `input` 作为 JavaScript 表达式求值)
+- `新增` `console.setTimeVisible` / `setTimeFormat` / `setColorful` / `setAvoidStatusBar` / `setInputVisible` 及 `console.build` 的 `timeVisible` / `timeFormat` / `colorful` / `avoidStatusBar` / `inputVisible` 选项
+- `新增` JSX 元素 `<console>` / `<globalconsole>` 及其属性声明 (`global`, `title`, 标题栏与内容区样式, `timeVisible`, `timeFormat`, `colorful`, `inputVisible` 等)
+- `依赖` 适配 AutoJs6 6.8.0 (5279) 的控制台重构
+
 # v4.8.0
 
 ###### 2026/09/07

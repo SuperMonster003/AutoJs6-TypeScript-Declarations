@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Sep 8, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -30,27 +30,40 @@ declare namespace Internal {
         assert(value: boolean | (() => boolean), message?: string): void;
 
         /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * console.rawInput = runtime.console.rawInput.bind(rtConsole);
+         * Reads a line submitted in the console input bar and returns it as-is.
+         * Blocks the script thread until the user submits (must not be called on the UI thread).
+         * The floating console shows itself when nothing else displays the script console.
+         * zh-CN: 读取用户在控制台输入栏提交的一行文本并原样返回.
+         * 阻塞脚本线程直到用户提交 (不能在 UI 线程调用). 若没有其他界面显示脚本控制台, 浮动控制台会自动显示.
+         * @example
+         * let name = console.rawInput();
+         * console.log("Hello, %s", name);
+         * @since 6.8.0
          * @see org.autojs.autojs.core.console.ConsoleImpl.rawInput
          */
         rawInput(): string;
 
         /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * console.rawInput = runtime.console.rawInput.bind(rtConsole);
+         * Prints a prompt like `console.log(data, ...args)`, then reads a line submitted in the console input bar.
+         * zh-CN: 像 `console.log(data, ...args)` 一样打印提示, 然后读取用户在控制台输入栏提交的一行文本.
+         * @example
+         * let name = console.rawInput("Your name:");
+         * console.log("Hello, %s", name);
+         * @since 6.8.0
          * @see org.autojs.autojs.core.console.ConsoleImpl.rawInput
          */
         rawInput(data: any, ...args: any[]): string;
 
         /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * console.input = function (data, param) {
-         *     return eval(console.rawInput.call(console, [].slice(arguments)) + "");
-         * };
+         * Reads a line submitted in the console input bar and evaluates it as a JavaScript expression.
+         * zh-CN: 读取用户在控制台输入栏提交的一行文本, 并作为 JavaScript 表达式求值后返回.
+         * @example
+         * let num = console.input("A number:");
+         * console.log("%s squared is %s", num, num * num);
+         * @since 6.8.0
          * @see console.rawInput
          */
-        input(...data): any;
+        input(data?: any, ...args: any[]): any;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -346,6 +359,46 @@ declare namespace Internal {
 
         setTouchable(touchable?: boolean): this;
 
+        /**
+         * Whether the floating console keeps clear of the status bar (`setPosition(0, 0)` then lands right below it).
+         * zh-CN: 浮动控制台是否避让状态栏 (避让时 `setPosition(0, 0)` 位于状态栏正下方).
+         * @default true
+         * @since 6.8.0
+         */
+        setAvoidStatusBar(avoid?: boolean): this;
+
+        /**
+         * Whether each log line is prefixed with its time (like `12:34:56.789/D: `).
+         * zh-CN: 是否在每条日志前显示时间前缀 (如 `12:34:56.789/D: `).
+         * @default false
+         * @since 6.8.0
+         */
+        setTimeVisible(visible?: boolean): this;
+
+        /**
+         * Pattern of the time prefix (java.text.SimpleDateFormat); omitted or invalid pattern restores the default.
+         * zh-CN: 时间前缀的格式 (java.text.SimpleDateFormat); 省略或无效时恢复默认.
+         * @default "HH:mm:ss.SSS"
+         * @since 6.8.0
+         */
+        setTimeFormat(pattern?: string): this;
+
+        /**
+         * Whether log lines are colored by level; `false` renders every level with the `log` color.
+         * zh-CN: 是否按日志等级着色; 为 `false` 时所有等级使用 `log` 等级的颜色.
+         * @default true
+         * @since 6.8.0
+         */
+        setColorful(colorful?: boolean): this;
+
+        /**
+         * Whether the input bar stays visible even when no script is waiting for input.
+         * zh-CN: 是否常驻显示输入栏 (即使没有脚本在等待输入).
+         * @default false
+         * @since 6.8.0
+         */
+        setInputVisible(visible?: boolean): this;
+
         printAllStackTrace(t: OmniThrowable): void;
 
     }
@@ -400,6 +453,16 @@ declare namespace Internal {
             backgroundAlpha?: number;
             exitOnClose?: number | boolean;
             touchable?: boolean;
+            /** @since 6.8.0 */
+            avoidStatusBar?: boolean;
+            /** @since 6.8.0 */
+            timeVisible?: boolean;
+            /** @since 6.8.0 */
+            timeFormat?: string;
+            /** @since 6.8.0 */
+            colorful?: boolean;
+            /** @since 6.8.0 */
+            inputVisible?: boolean;
         }
 
     }

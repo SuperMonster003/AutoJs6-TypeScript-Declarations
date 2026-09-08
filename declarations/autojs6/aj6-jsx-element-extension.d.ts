@@ -811,6 +811,60 @@ declare namespace AutojsJsx {
         contentPaddingRight?: AutojsValueMap.DIMENSION;
     }
 
+    /**
+     * Attributes of `<console>` / `<globalconsole>`, mirroring the `console.setXxx` script API.
+     * zh-CN: `<console>` / `<globalconsole>` 的属性, 与脚本 API `console.setXxx` 一一对应.
+     * @since 6.8.0
+     */
+    interface AutojsJsConsoleView extends AutojsFrameLayout {
+        /** Show the global console instead of the script console (`<console global>` also works). */
+        global?: AutojsValueMap.BOOLEAN;
+        /** Title text; setting it shows the title bar. */
+        title?: AutojsValueMap.STRING;
+        titleBarVisible?: AutojsValueMap.BOOLEAN;
+        showTitleBar?: AutojsValueMap.BOOLEAN;
+        titleTextSize?: AutojsValueMap.DIMENSION;
+        titleTextColor?: AutojsValueMap.COLOR;
+        titleBackgroundColor?: AutojsValueMap.COLOR;
+        titleBackgroundTint?: AutojsValueMap.COLOR;
+        titleBackgroundAlpha?: AutojsValueMap.FLOAT;
+        titleIconsTint?: AutojsValueMap.COLOR;
+        textSize?: AutojsValueMap.DIMENSION;
+        contentTextSize?: AutojsValueMap.DIMENSION;
+        /** One color for every level, or 6 colors separated by `|` for verbose / log / info / warn / error / assert. */
+        textColor?: AutojsValueMap.COLOR;
+        textColors?: AutojsValueMap.STRING_ALT;
+        contentTextColor?: AutojsValueMap.STRING_ALT;
+        contentTextColors?: AutojsValueMap.STRING_ALT;
+        verboseTextColor?: AutojsValueMap.COLOR;
+        debugTextColor?: AutojsValueMap.COLOR;
+        logTextColor?: AutojsValueMap.COLOR;
+        infoTextColor?: AutojsValueMap.COLOR;
+        warnTextColor?: AutojsValueMap.COLOR;
+        errorTextColor?: AutojsValueMap.COLOR;
+        assertTextColor?: AutojsValueMap.COLOR;
+        contentBackgroundColor?: AutojsValueMap.COLOR;
+        contentBackgroundTint?: AutojsValueMap.COLOR;
+        contentBackgroundAlpha?: AutojsValueMap.FLOAT;
+        backgroundColor?: AutojsValueMap.COLOR;
+        bgColor?: AutojsValueMap.COLOR;
+        backgroundTint?: AutojsValueMap.COLOR;
+        bgTint?: AutojsValueMap.COLOR;
+        backgroundAlpha?: AutojsValueMap.FLOAT;
+        timeVisible?: AutojsValueMap.BOOLEAN;
+        showTime?: AutojsValueMap.BOOLEAN;
+        timestampVisible?: AutojsValueMap.BOOLEAN;
+        /** java.text.SimpleDateFormat pattern, default `HH:mm:ss.SSS`. */
+        timeFormat?: AutojsValueMap.STRING;
+        colorful?: AutojsValueMap.BOOLEAN;
+        logColoring?: AutojsValueMap.BOOLEAN;
+        inputVisible?: AutojsValueMap.BOOLEAN;
+        showInput?: AutojsValueMap.BOOLEAN;
+        inputBarVisible?: AutojsValueMap.BOOLEAN;
+        pinchToZoomEnabled?: AutojsValueMap.BOOLEAN;
+        enablePinchToZoom?: AutojsValueMap.BOOLEAN;
+    }
+
     interface AutojsImageButton extends AutojsImageView {}
 
     interface AutojsVisibilityAwareImageButton extends AutojsImageButton {}
@@ -938,6 +992,10 @@ declare namespace JSX {
         viewpager?: AutojsJsx.AutojsJsViewPager;
         card?: AutojsJsx.AutojsCardView;
         fab?: AutojsJsx.AutojsFloatingActionButton;
+        /** @since 6.8.0 */
+        console?: AutojsJsx.AutojsJsConsoleView;
+        /** @since 6.8.0 */
+        globalconsole?: AutojsJsx.AutojsJsConsoleView;
 
         'x-img'?: AutojsJsx.AutojsViewXImg;
         'x-text'?: AutojsJsx.AutojsViewXText;

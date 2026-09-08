@@ -2503,36 +2503,113 @@ declare namespace org {
 		export namespace autojs {
 			export namespace core {
 				export namespace console {
+					export class ConsoleFloaty extends __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloaty.AbstractResizableExpandableFloaty {
+						public readonly attached: boolean;
+						public readonly consoleView: __javaRoots.orgRoot.autojs.autojs.core.console.FloatingConsoleView;
+						public readonly currentContentPosition: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry.Point;
+						public readonly currentSize: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry.Size;
+						public readonly defaultViewHeight: number;
+						public readonly defaultViewWidth: number;
+						public readonly expandedView: __javaRoots.androidRoot.view.View;
+						public readonly resizeMode: boolean;
+						public readonly titleBarView: __javaRoots.androidRoot.view.View;
+						public constructor(console: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl);
+						public applyContentStyle(): void;
+						public applyDisplayOptions(): void;
+						public applyInputVisibility(): void;
+						public applyPlacement(): void;
+						public applySize(): void;
+						public applyTitle(): void;
+						public applyTitleStyle(): void;
+						public applyTouchable(): void;
+						public clearStates(): void;
+						public enterResizeMode(): void;
+						public exitResizeMode(): void;
+						public getConsoleView(): __javaRoots.orgRoot.autojs.autojs.core.console.FloatingConsoleView;
+						public getCurrentContentPosition(): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry.Point;
+						public getCurrentSize(): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry.Size;
+						public getDefaultViewHeight(): number;
+						public getDefaultViewWidth(): number;
+						public getExpandedView(): __javaRoots.androidRoot.view.View;
+						public getTitleBarView(): __javaRoots.androidRoot.view.View;
+						public inflateCollapsedView(service: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyService, window: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow): __javaRoots.androidRoot.view.View;
+						public inflateExpandedView(service: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyService, window: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow): __javaRoots.androidRoot.view.View;
+						public isAttached(): boolean;
+						public isResizeMode(): boolean;
+						public onAttachedToWindow(window: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow): void;
+						public onBackPressed(window: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow): boolean;
+						public onDetachedFromWindow(window: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow): void;
+						public onInputRequested$app(): void;
+						public postApply(block: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): void;
+						public resetMoreButtonIcon(): void;
+						public setMoreButtonIcon(resId: number): void;
+						public toggleResizeMode(): void;
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
 					export class ConsoleImpl extends __javaRoots.orgRoot.autojs.autojs.runtime.api.AbstractConsole {
 						public static readonly DEFAULT_ALPHA: number;
+						public static readonly DEFAULT_AVOID_STATUS_BAR: boolean;
+						public static readonly DEFAULT_COLORFUL: boolean;
 						public static readonly DEFAULT_EXIT_ON_CLOSE: boolean;
 						public static readonly DEFAULT_EXIT_ON_CLOSE_TIMEOUT: number;
 						public static readonly DEFAULT_GRAVITY: number;
+						public static readonly DEFAULT_INPUT_VISIBLE: boolean;
+						public static readonly DEFAULT_TIME_VISIBLE: boolean;
 						public static readonly DEFAULT_TITLE: string;
+						public static readonly DEFAULT_TITLE_TEXT_COLOR: number;
+						public static readonly DEFAULT_TITLE_TEXT_SIZE: number;
 						public static readonly DEFAULT_TOUCHABLE: boolean;
 						public static readonly DEFAULT_TOUCH_THROUGH: boolean;
+						public static readonly INPUT_ECHO_PREFIX: string;
+						public static readonly MAX_LOG_ENTRIES: number;
+						public readonly avoidStatusBar: boolean;
+						public readonly colorful: boolean;
 						public readonly configurator: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 						public readonly contentBackgroundAlpha: number;
 						public readonly contentBackgroundColor: number;
 						public readonly contentBackgroundTint: __javaRoots.javaRoot.lang.Integer;
 						public readonly contentTextColors: __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.javaRoot.lang.Integer>;
 						public readonly contentTextSize: number;
+						public readonly context: __javaRoots.androidRoot.content.Context;
 						public readonly exitOnClose: any;
+						public readonly floaty: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleFloaty;
+						public readonly floatyWindow: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow;
+						public readonly global: boolean;
 						public readonly gravity: number;
+						public readonly hasPendingInput: boolean;
+						public readonly inputVisible: boolean;
+						public readonly latestLogId: number;
 						public readonly logEntries: __javaRoots.javaRoot.util.ArrayList<__javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry>;
+						public readonly parent: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl;
+						public readonly pendingInputCount: number;
 						public readonly position: __javaRoots.orgRoot.opencv.core.Point;
+						public readonly runtimeExited: boolean;
 						public readonly showing: boolean;
 						public readonly size: __javaRoots.orgRoot.opencv.core.Size;
+						public readonly timeFormat: string;
+						public readonly timeVisible: boolean;
 						public readonly title: string;
 						public readonly titleBackgroundAlpha: number;
 						public readonly titleBackgroundColor: number;
 						public readonly titleBackgroundTint: __javaRoots.javaRoot.lang.Integer;
+						public readonly titleIconsTint: __javaRoots.javaRoot.lang.Integer;
 						public readonly titleTextColor: number;
 						public readonly titleTextSize: number;
 						public readonly touchThrough: boolean;
 						public readonly touchable: boolean;
 						public readonly uiHandler: __javaRoots.orgRoot.autojs.autojs.tool.UiHandler;
 						public constructor(uiHandler: __javaRoots.orgRoot.autojs.autojs.tool.UiHandler);
+						public constructor(uiHandler: __javaRoots.orgRoot.autojs.autojs.tool.UiHandler, parent: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl);
+						public addLogListener(logListener: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogListener): void;
 						public clear(): void;
 						public collapse(): boolean;
 						public copyAll(): void;
@@ -2541,40 +2618,67 @@ declare namespace org {
 						public expand(): boolean;
 						public export(): void;
 						public export(uri: __javaRoots.androidRoot.net.Uri): void;
+						public formatEntry(logEntry: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry, timeVisible: boolean): string;
 						public getConfigurator(): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 						public getContentBackgroundAlpha(): number;
 						public getContentBackgroundColor(): number;
 						public getContentBackgroundTint(): __javaRoots.javaRoot.lang.Integer;
 						public getContentTextColors(): __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.javaRoot.lang.Integer>;
 						public getContentTextSize(): number;
+						public getContext(): __javaRoots.androidRoot.content.Context;
 						public getExitOnClose(): any;
+						public getFloaty(): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleFloaty;
+						public getFloatyWindow(): __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow;
 						public getGravity(): number;
+						public getHasPendingInput(): boolean;
+						public getLatestLogId(): number;
 						public getLogEntries(): __javaRoots.javaRoot.util.ArrayList<__javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry>;
+						public getParent(): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl;
+						public getPendingInputCount(): number;
 						public getPosition(): __javaRoots.orgRoot.opencv.core.Point;
 						public getSize(): __javaRoots.orgRoot.opencv.core.Size;
+						public getTimeFormat(): string;
 						public getTitle(): string;
 						public getTitleBackgroundAlpha(): number;
 						public getTitleBackgroundColor(): number;
 						public getTitleBackgroundTint(): __javaRoots.javaRoot.lang.Integer;
+						public getTitleIconsTint(): __javaRoots.javaRoot.lang.Integer;
 						public getTitleTextColor(): number;
 						public getTitleTextSize(): number;
 						public getUiHandler(): __javaRoots.orgRoot.autojs.autojs.tool.UiHandler;
 						public hide(): void;
 						public hideDelayed(): void;
 						public hideDelayed(exitOnCloseTimeout: number): void;
+						public isAvoidStatusBar(): boolean;
+						public isColorful(): boolean;
+						public isGlobal(): boolean;
+						public isInputVisible(): boolean;
+						public isRuntimeExited(): boolean;
 						public isShowing(): boolean;
+						public isTimeVisible(): boolean;
 						public isTouchThrough(): boolean;
 						public isTouchable(): boolean;
+						public joinLogEntries(timeVisible: boolean): string;
+						public onFloatyAttached$app(): void;
+						public onFloatyDetached$app(): void;
+						public onRuntimeExit(): void;
+						public onUserMoved$app(x: number, y: number): void;
+						public onUserResized$app(width: number, height: number): void;
 						public printAllStackTrace(t: __javaRoots.javaRoot.lang.Throwable): void;
 						public println(level: number, charSequence: string): string;
+						public rawInput(): string;
+						public rawInput(data: any, ...formatArgs: any[]): string;
+						public removeLogListener(logListener: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogListener): void;
 						public reset(): void;
 						public resetBackgroundAlpha(): void;
 						public resetContentBackgroundAlpha(): void;
 						public resetTitleBackgroundAlpha(): void;
 						public send(): void;
+						public setAvoidStatusBar(avoid: boolean): void;
 						public setBackgroundAlpha(alpha: __javaRoots.javaRoot.lang.Double): void;
 						public setBackgroundColor(color: number): void;
-						public setBackgroundTint(color: number): void;
+						public setBackgroundTint(color: __javaRoots.javaRoot.lang.Integer): void;
+						public setColorful(colorful: boolean): void;
 						public setConsoleView(consoleView: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleView): void;
 						public setContentBackgroundAlpha(alpha: __javaRoots.javaRoot.lang.Double): void;
 						public setContentBackgroundColor(color: number): void;
@@ -2586,10 +2690,13 @@ declare namespace org {
 						public setExitOnClose(exitOnClose: boolean): void;
 						public setGravity(gravity: number): void;
 						public setGravity(gravity: string): void;
+						public setInputVisible(visible: boolean): void;
 						public setPosition(x: number, y: number): void;
 						public setSize(w: number, h: number): void;
 						public setTextColor(color: number): void;
 						public setTextSize(size: number): void;
+						public setTimeFormat(pattern: string): void;
+						public setTimeVisible(visible: boolean): void;
 						public setTitle(title: string): void;
 						public setTitleBackgroundAlpha(alpha: __javaRoots.javaRoot.lang.Double): void;
 						public setTitleBackgroundColor(color: number): void;
@@ -2603,6 +2710,8 @@ declare namespace org {
 						public setTouchable(touchable: boolean): void;
 						public show(): void;
 						public show(isReset: boolean): void;
+						public snapshotLogEntries(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry>;
+						public submitInput(text: string): boolean;
 						public write(level: number, data: string): void;
 						public error(...args: any[]): any;
 						public setTouchable(...args: any[]): any;
@@ -2610,6 +2719,8 @@ declare namespace org {
 					}
 					export namespace ConsoleImpl {
 						export class Configurator {
+							public readonly avoidStatusBar: boolean;
+							public readonly colorful: boolean;
 							public readonly contentBackgroundAlpha: number;
 							public readonly contentBackgroundColor: number;
 							public readonly contentBackgroundTint: __javaRoots.javaRoot.lang.Integer;
@@ -2618,8 +2729,11 @@ declare namespace org {
 							public readonly exitOnClose: boolean;
 							public readonly exitOnCloseTimeout: number;
 							public readonly gravity: number;
+							public readonly inputVisible: boolean;
 							public readonly position: __javaRoots.orgRoot.opencv.core.Point;
 							public readonly size: __javaRoots.orgRoot.opencv.core.Size;
+							public readonly timeFormat: string;
+							public readonly timeVisible: boolean;
 							public readonly title: string;
 							public readonly titleBackgroundAlpha: number;
 							public readonly titleBackgroundColor: number;
@@ -2639,6 +2753,7 @@ declare namespace org {
 							public getGravity(): number;
 							public getPosition(): __javaRoots.orgRoot.opencv.core.Point;
 							public getSize(): __javaRoots.orgRoot.opencv.core.Size;
+							public getTimeFormat(): string;
 							public getTitle(): string;
 							public getTitleBackgroundAlpha(): number;
 							public getTitleBackgroundColor(): number;
@@ -2646,27 +2761,36 @@ declare namespace org {
 							public getTitleIconsTint(): __javaRoots.javaRoot.lang.Integer;
 							public getTitleTextColor(): __javaRoots.javaRoot.lang.Integer;
 							public getTitleTextSize(): __javaRoots.javaRoot.lang.Float;
+							public isAvoidStatusBar(): boolean;
+							public isColorful(): boolean;
 							public isExitOnClose(): boolean;
+							public isInputVisible(): boolean;
+							public isTimeVisible(): boolean;
 							public isTouchable(): boolean;
 							public resetExitOnClose$app(): void;
+							public setAvoidStatusBar(avoid: boolean): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setBackgroundAlpha(alpha: __javaRoots.javaRoot.lang.Double): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setBackgroundColor(color: any): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setBackgroundTint(color: any): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
+							public setColorful(colorful: boolean): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setContentBackgroundAlpha(alpha: __javaRoots.javaRoot.lang.Double): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setContentBackgroundColor(_set___: number): void;
 							public setContentBackgroundColor(color: any): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setContentBackgroundTint(_set___: __javaRoots.javaRoot.lang.Integer): void;
-							public setContentBackgroundTint(tint: any): void;
+							public setContentBackgroundTint(tint: any): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setContentTextColors(colors: any[]): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setContentTextSize(size: number): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setExitOnClose(): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setExitOnClose(timeout: number): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setExitOnClose(exitOnClose: boolean): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setGravity(gravity: __javaRoots.javaRoot.lang.Integer): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
+							public setInputVisible(visible: boolean): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setPosition(x: number, y: number): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setSize(w: number, h: number): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setTextColor(color: any): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setTextSize(size: number): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
+							public setTimeFormat(pattern: string): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
+							public setTimeVisible(visible: boolean): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setTitle(title: string): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setTitleBackgroundAlpha(alpha: __javaRoots.javaRoot.lang.Double): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.Configurator;
 							public setTitleBackgroundColor(_set___: number): void;
@@ -2682,13 +2806,14 @@ declare namespace org {
 							public show(isReset: boolean): void;
 						}
 						export class LogEntry {
-							public content: string;
-							public level: number;
+							public readonly content: string;
+							public readonly level: number;
+							public readonly timestamp: number;
 							public readonly id: number;
 							public constructor(id: number, level: number, content: string);
+							public constructor(id: number, level: number, content: string, timestamp: number);
 							public compareTo(other: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry): number;
 							public getId(): number;
-							public setId(_set___: number): void;
 							public compareTo(...args: any[]): any;
 						}
 						export interface LogEntry extends __javaRoots.javaRoot.lang.Comparable<__javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry> {}
@@ -2697,6 +2822,7 @@ declare namespace org {
 							public constructor();
 						}
 						export interface LogListener {
+							onInputRequestsChanged(pendingCount: number): void;
 							onLogClear(): void;
 							onNewLog(param0: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry): void;
 						}
@@ -2712,32 +2838,104 @@ declare namespace org {
 			export namespace core {
 				export namespace console {
 					export class ConsoleView extends __javaRoots.androidRoot.widget.FrameLayout {
+						public readonly colorful: boolean;
+						public readonly commandModeEnabled: boolean;
+						public readonly console: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl;
+						public readonly hasInputFocus: boolean;
+						public readonly hasPendingInput: boolean;
+						public readonly inputBarShown: boolean;
+						public readonly inputBarVisible: boolean;
+						public readonly inputView: __javaRoots.androidRoot.widget.TextView;
+						public readonly logListView: __javaRoots.androidxRoot.recyclerview.widget.RecyclerView;
+						public readonly moreButtonView: __javaRoots.androidRoot.view.View;
+						public readonly onInputBarVisibilityChanged: __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Boolean, __javaRoots.kotlinRoot.Unit>;
+						public readonly onInputFocusChanged: __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Boolean, __javaRoots.kotlinRoot.Unit>;
+						public readonly onInputRequested: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
+						public readonly onInputTouchDown: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
 						public readonly textColors: __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.javaRoot.lang.Integer>;
 						public readonly textSize: number;
+						public readonly timeFormat: string;
+						public readonly timeVisible: boolean;
+						public readonly title: string;
+						public readonly titleBarView: __javaRoots.androidRoot.view.View;
+						public readonly titleBarVisible: boolean;
+						public readonly titleTextColor: number;
+						public readonly titleTextSize: number;
 						public constructor(context: __javaRoots.androidRoot.content.Context);
 						public constructor(context: __javaRoots.androidRoot.content.Context, attrs: __javaRoots.androidRoot.util.AttributeSet);
 						public constructor(context: __javaRoots.androidRoot.content.Context, attrs: __javaRoots.androidRoot.util.AttributeSet, defStyleAttr: number);
+						public clearInputFocus(): void;
+						public createClickableContent(content: string): string;
 						public export(fileName: string): void;
+						public focusInput(): void;
+						public getConsole(): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl;
+						public getHasInputFocus(): boolean;
+						public getHasPendingInput(): boolean;
+						public getInputView(): __javaRoots.androidRoot.widget.TextView;
+						public getLogListView(): __javaRoots.androidxRoot.recyclerview.widget.RecyclerView;
+						public getMoreButtonView(): __javaRoots.androidRoot.view.View;
+						public getOnInputBarVisibilityChanged(): __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Boolean, __javaRoots.kotlinRoot.Unit>;
+						public getOnInputFocusChanged(): __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Boolean, __javaRoots.kotlinRoot.Unit>;
+						public getOnInputRequested(): __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
+						public getOnInputTouchDown(): __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
 						public getTextColors(): __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.javaRoot.lang.Integer>;
 						public getTextSize(): number;
+						public getTimeFormat(): string;
+						public getTitle(): string;
+						public getTitleBarView(): __javaRoots.androidRoot.view.View;
+						public getTitleTextColor(): number;
+						public getTitleTextSize(): number;
+						public isColorful(): boolean;
+						public isCommandModeEnabled(): boolean;
+						public isInputBarShown(): boolean;
+						public isInputBarVisible(): boolean;
+						public isTimeVisible(): boolean;
+						public isTitleBarVisible(): boolean;
+						public onInputRequestsChanged(pendingCount: number): void;
 						public onLogClear(): void;
 						public onNewLog(logEntry: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry): void;
 						public setAssertTextColor(color: number): void;
+						public setBackgroundDrawables(titleBar: __javaRoots.androidRoot.graphics.drawable.Drawable, content: __javaRoots.androidRoot.graphics.drawable.Drawable): void;
+						public setColorful(value: boolean): void;
 						public setCommandInputBusy(busy: boolean): void;
 						public setCommandInputTextColor(color: number): void;
-						public setCommandInputVisible(visible: boolean): void;
+						public setCommandModeEnabled(value: boolean): void;
 						public setConsole(console: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl): void;
+						public setContentBackground(color: number, tint: __javaRoots.javaRoot.lang.Integer, alpha: number): void;
+						public setContentBackgroundAlpha(alpha: number): void;
+						public setContentBackgroundColor(color: number): void;
+						public setContentBackgroundTint(tint: __javaRoots.javaRoot.lang.Integer): void;
+						public setContentPadding(left: number, top: number, right: number, bottom: number): void;
 						public setDebugTextColor(color: number): void;
 						public setEnableStackFrameLinks(enabled: boolean): void;
 						public setErrorTextColor(color: number): void;
 						public setInfoTextColor(color: number): void;
+						public setInputBarVisible(value: boolean): void;
+						public setLevelTextColor(level: number, color: number): void;
 						public setLogActivity(activity: __javaRoots.orgRoot.autojs.autojs.ui.log.LogActivity): void;
+						public setMoreButtonIcon(resId: number, paddingDp: number): void;
 						public setOnCommandStopListener(listener: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleView.OnCommandStopListener): void;
 						public setOnCommandSubmitListener(listener: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleView.OnCommandSubmitListener): void;
+						public setOnInputBarVisibilityChanged(_set___: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): void;
+						public setOnInputFocusChanged(_set___: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): void;
+						public setOnInputRequested(_set___: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): void;
+						public setOnInputTouchDown(_set___: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): void;
+						public setOnMoreButtonClickListener(listener: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleView.OnMoreButtonClickListener): void;
 						public setOnStackFrameClickListener(listener: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleView.OnStackFrameClickListener): void;
 						public setPinchToZoomEnabled(enabled: boolean): void;
 						public setTextColors(colors: __javaRoots.javaRoot.lang.Integer[]): void;
-						public setTextSize(size: number): void;
+						public setTextSize(value: number): void;
+						public setTimeFormat(value: string): void;
+						public setTimeVisible(value: boolean): void;
+						public setTitle(title: string): void;
+						public setTitleBackground(color: number, tint: __javaRoots.javaRoot.lang.Integer, alpha: number): void;
+						public setTitleBackgroundAlpha(alpha: number): void;
+						public setTitleBackgroundColor(color: number): void;
+						public setTitleBackgroundTint(tint: __javaRoots.javaRoot.lang.Integer): void;
+						public setTitleBarVisible(value: boolean): void;
+						public setTitleIconsTint(color: __javaRoots.javaRoot.lang.Integer): void;
+						public setTitleTextColor(value: number): void;
+						public setTitleTextSize(value: number): void;
 						public setVerboseTextColor(color: number): void;
 						public setWarnTextColor(color: number): void;
 					}
@@ -2757,6 +2955,13 @@ declare namespace org {
 						export interface OnCommandSubmitListener {
 							onCommandSubmit(param0: string): void;
 						}
+						export class OnMoreButtonClickListener {
+							public constructor(implementation: OnMoreButtonClickListener);
+							public constructor();
+						}
+						export interface OnMoreButtonClickListener {
+							onMoreButtonClick(param0: __javaRoots.androidRoot.view.View): void;
+						}
 						export class OnStackFrameClickListener {
 							public constructor(implementation: OnStackFrameClickListener);
 							public constructor();
@@ -2764,6 +2969,70 @@ declare namespace org {
 						export interface OnStackFrameClickListener {
 							onStackFrameClick(param0: string, param1: number, param2: number): void;
 						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
+					export class ConsoleWindowGeometry {
+						public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry;
+						public static clampPosition(x: number, y: number, width: number, height: number, screen: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry.Screen): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry.Point;
+						public static clampSize(width: number, height: number, x: number, y: number, minWidth: number, minHeight: number, screen: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry.Screen): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry.Size;
+						public static resolve(gravity: number, isLtr: boolean, x: __javaRoots.javaRoot.lang.Integer, y: __javaRoots.javaRoot.lang.Integer, width: number, height: number, screen: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry.Screen): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry.Point;
+						public static toContentY(windowY: number, screen: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleWindowGeometry.Screen): number;
+						protected constructor();
+					}
+					export namespace ConsoleWindowGeometry {
+						export class Point {
+							public readonly x: number;
+							public readonly y: number;
+							public constructor(x: number, y: number);
+							public equals(other: any): boolean;
+							public getX(): number;
+							public getY(): number;
+							public hashCode(): number;
+							public toString(): string;
+						}
+						export class Screen {
+							public readonly height: number;
+							public readonly topInset: number;
+							public readonly width: number;
+							public constructor(width: number, height: number, topInset: number);
+							public getHeight(): number;
+							public getTopInset(): number;
+							public getWidth(): number;
+						}
+						export class Size {
+							public readonly height: number;
+							public readonly width: number;
+							public constructor(width: number, height: number);
+							public equals(other: any): boolean;
+							public getHeight(): number;
+							public getWidth(): number;
+							public hashCode(): number;
+							public toString(): string;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
+					export class FloatingConsoleView extends __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleView {
+						public constructor(context: __javaRoots.androidRoot.content.Context);
+						public constructor(context: __javaRoots.androidRoot.content.Context, attrs: __javaRoots.androidRoot.util.AttributeSet);
+						public constructor(context: __javaRoots.androidRoot.content.Context, attrs: __javaRoots.androidRoot.util.AttributeSet, defStyleAttr: number);
 					}
 				}
 			}
@@ -6400,7 +6669,6 @@ declare namespace org {
 							public constructor(context: __javaRoots.androidRoot.content.Context);
 							public constructor(context: __javaRoots.androidRoot.content.Context, attrs: __javaRoots.androidRoot.util.AttributeSet);
 							public constructor(context: __javaRoots.androidRoot.content.Context, attrs: __javaRoots.androidRoot.util.AttributeSet, defStyleAttr: number);
-							public onNewLog(logEntry: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry): void;
 						}
 					}
 				}
@@ -8945,7 +9213,7 @@ declare namespace org {
 					public readonly bridges: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptBridges;
 					public readonly closeableManager: __javaRoots.orgRoot.autojs.autojs.core.accessibility.monitor.CloseableManager;
 					public readonly colors: __javaRoots.orgRoot.autojs.autojs.core.image.Colors;
-					public readonly console: __javaRoots.orgRoot.autojs.autojs.core.console.GlobalConsole;
+					public readonly console: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl;
 					public consoleProxyObject: __javaRoots.orgRoot.autojs.autojs.rhino.ProxyObject;
 					public readonly device: __javaRoots.orgRoot.autojs.autojs.runtime.api.Device;
 					public readonly dialogs: __javaRoots.orgRoot.autojs.autojs.runtime.api.Dialogs;
@@ -14456,15 +14724,15 @@ declare namespace org {
 			export namespace ui {
 				export namespace enhancedfloaty {
 					export class FloatyService extends __javaRoots.androidRoot.app.Service {
-						public initialSize: __javaRoots.orgRoot.opencv.core.Size;
 						public static instance: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyService;
+						public static readonly running: boolean;
 						public constructor();
 						public static addWindow(window: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyWindow): void;
+						public static isRunning(): boolean;
 						public onBind(intent: __javaRoots.androidRoot.content.Intent): __javaRoots.androidRoot.os.IBinder;
 						public onCreate(): void;
 						public onDestroy(): void;
 						public static removeWindow(window: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyWindow): void;
-						public static setInitialMeasure(size: __javaRoots.orgRoot.opencv.core.Size): void;
 						public static stopService(): void;
 					}
 				}
@@ -14496,6 +14764,109 @@ declare namespace org {
 						public onServiceDestroy(service: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyService): void;
 						public setWindowLayoutParams(windowLayoutParams: __javaRoots.androidRoot.view.WindowManager.LayoutParams): void;
 						public updateWindowLayoutParams(params: __javaRoots.androidRoot.view.WindowManager.LayoutParams): void;
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace ui {
+				export namespace enhancedfloaty {
+					export class ResizableExpandableFloaty {
+						public constructor(implementation: ResizableExpandableFloaty);
+						public constructor();
+					}
+					export interface ResizableExpandableFloaty {
+						readonly collapsedHiddenWidthRadio: number;
+						readonly collapsedViewPressedAlpha: number;
+						readonly collapsedViewUnpressedAlpha: number;
+						readonly initialExpanded: boolean;
+						readonly initialHeight: number;
+						readonly initialWidth: number;
+						readonly initialX: number;
+						readonly initialY: number;
+						getCollapsedHiddenWidthRadio(): number;
+						getCollapsedViewPressedAlpha(): number;
+						getCollapsedViewUnpressedAlpha(): number;
+						getInitialHeight(): number;
+						getInitialWidth(): number;
+						getInitialX(): number;
+						getInitialY(): number;
+						getMoveCursorView(param0: __javaRoots.androidRoot.view.View): __javaRoots.androidRoot.view.View;
+						getResizerView(param0: __javaRoots.androidRoot.view.View): __javaRoots.androidRoot.view.View;
+						inflateCollapsedView(param0: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyService, param1: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow): __javaRoots.androidRoot.view.View;
+						inflateExpandedView(param0: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyService, param1: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow): __javaRoots.androidRoot.view.View;
+						isInitialExpanded(): boolean;
+						onAttachedToWindow(window: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow): void;
+						onBackPressed(window: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow): boolean;
+						onDetachedFromWindow(window: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloatyWindow): void;
+						shouldRequestFocusWhenExpand(): boolean;
+					}
+					export namespace ResizableExpandableFloaty {
+						export abstract class AbstractResizableExpandableFloaty {
+							public readonly collapsedHiddenWidthRadio: number;
+							public readonly collapsedViewPressedAlpha: number;
+							public readonly collapsedViewUnpressedAlpha: number;
+							public readonly initialExpanded: boolean;
+							public readonly initialHeight: number;
+							public readonly initialWidth: number;
+							public readonly initialX: number;
+							public readonly initialY: number;
+							public constructor();
+							public getCollapsedHiddenWidthRadio(): number;
+							public getCollapsedViewPressedAlpha(): number;
+							public getCollapsedViewUnpressedAlpha(): number;
+							public getInitialHeight(): number;
+							public getInitialWidth(): number;
+							public getInitialX(): number;
+							public getInitialY(): number;
+							public getMoveCursorView(expandedView: __javaRoots.androidRoot.view.View): __javaRoots.androidRoot.view.View;
+							public getResizerView(expandedView: __javaRoots.androidRoot.view.View): __javaRoots.androidRoot.view.View;
+							public isInitialExpanded(): boolean;
+							public isShouldRequestFocusWhenExpand(): boolean;
+							public setCollapsedHiddenWidthRadio(collapsedHiddenWidthRadio: number): void;
+							public setCollapsedViewPressedAlpha(collapsedViewPressedAlpha: number): void;
+							public setCollapsedViewUnpressedAlpha(collapsedViewUnpressedAlpha: number): void;
+							public setInitialExpanded(initialExpanded: boolean): void;
+							public setInitialHeight(initialHeight: number): void;
+							public setInitialWidth(initialWidth: number): void;
+							public setInitialX(initialX: number): void;
+							public setInitialY(initialY: number): void;
+							public setShouldRequestFocusWhenExpand(requestFocusWhenExpand: boolean): void;
+							public shouldRequestFocusWhenExpand(): boolean;
+						}
+						export interface AbstractResizableExpandableFloaty extends __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloaty {}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace ui {
+				export namespace enhancedfloaty {
+					export class ResizableExpandableFloatyWindow extends __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyWindow {
+						public readonly expanded: boolean;
+						public readonly windowAttached: boolean;
+						public readonly windowFocusable: boolean;
+						public constructor(floaty: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableExpandableFloaty);
+						public addOnViewAttachedTask(task: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): void;
+						public clearOnViewAttachedTask(): void;
+						public close(): void;
+						public collapse(): void;
+						public expand(): void;
+						public isExpanded(): boolean;
+						public isWindowAttached(): boolean;
+						public isWindowFocusable(): boolean;
+						public releaseWindowFocus(): void;
+						public requestWindowFocus(): void;
+						public setTouchable(touchable: boolean): void;
+						public setWindowLayoutInScreen(): void;
 					}
 				}
 			}
@@ -16797,6 +17168,7 @@ declare namespace org {
 //org.autojs.autojs.engine.NodeAndroidPackageInstallManager.collectPackageFiles.visit..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.NodeAndroidPackageInstallManager.list.lambda.0..inlined.compareBy.1:1
 //org.autojs.autojs.engine.NodeAndroidPackageInstallManager.list.lambda.0..inlined.thenBy.1:1
+//org.autojs.autojs.engine.NodeBridgeHostEnginesBridge.list.lambda.0..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.NodeBridgeResourceRegistry.closeAll..inlined.compareBy.1:1
 //org.autojs.autojs.engine.NodeBridgeResourceRegistry.closeAll..inlined.thenBy.1:1
 //org.autojs.autojs.engine.NodeBridgeResourceRegistry.dumpActiveResources..inlined.compareBy.1:1
