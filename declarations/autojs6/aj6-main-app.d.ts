@@ -2669,6 +2669,7 @@ declare namespace org {
 						public rawInput(): string;
 						public rawInput(data: any, ...formatArgs: any[]): string;
 						public removeLogListener(logListener: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogListener): void;
+						public requestInput$app(callback: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleInputRequest;
 						public reset(): void;
 						public resetBackgroundAlpha(): void;
 						public resetContentBackgroundAlpha(): void;
@@ -2826,6 +2827,29 @@ declare namespace org {
 							onLogClear(): void;
 							onNewLog(param0: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry): void;
 						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
+					export class ConsoleInputRequest {
+						public readonly done: boolean;
+						public readonly id: number;
+						public readonly owner: any;
+						public constructor(id: number, owner: any);
+						public await(): string;
+						public cancel(): boolean;
+						public complete(text: string): boolean;
+						public getId(): number;
+						public getOwner(): any;
+						public isDone(): boolean;
+						public whenComplete$app(callback: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): void;
 					}
 				}
 			}
@@ -3551,6 +3575,7 @@ declare namespace org {
 						public findPointByColor(imageWrapper: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, color: number, threshold: number): __javaRoots.orgRoot.opencv.core.Point;
 						public findPointByColor(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, color: number, threshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect): __javaRoots.orgRoot.opencv.core.Point;
 						public findPointByColor(imageWrapper: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, color: number, region: __javaRoots.orgRoot.opencv.core.Rect): __javaRoots.orgRoot.opencv.core.Point;
+						public static findPointByColors(bitmap: __javaRoots.androidRoot.graphics.Bitmap, source: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, color: number, threshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, points: number[]): __javaRoots.orgRoot.opencv.core.Point;
 						public findPointByColors(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, firstColor: number, threshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, points: number[]): __javaRoots.orgRoot.opencv.core.Point;
 						public findPointsByColor(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, color: number, threshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect): __javaRoots.orgRoot.opencv.core.Point[];
 						public findPointsByColors(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, firstColor: number, threshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, points: number[]): __javaRoots.orgRoot.opencv.core.Point[];
@@ -7447,6 +7472,7 @@ declare namespace org {
 					public readonly esmEnabled: __javaRoots.javaRoot.lang.Boolean;
 					public readonly executionId: string;
 					public readonly executionMode: string;
+					public readonly idleExitMs: number;
 					public readonly inspectorEnabled: boolean;
 					public readonly javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean;
 					public readonly moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
@@ -7465,7 +7491,7 @@ declare namespace org {
 					public readonly workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean;
 					public readonly workingDirectory: string;
 					public readonly workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>;
-					public constructor(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider, moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer);
+					public constructor(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider, moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer, idleExitMs: number);
 					public component1(): string;
 					public component10(): __javaRoots.javaRoot.util.Map<string, string>;
 					public component11(): __javaRoots.javaRoot.util.Map<string, string>;
@@ -7483,6 +7509,7 @@ declare namespace org {
 					public component22(): number;
 					public component23(): __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
 					public component24(): __javaRoots.javaRoot.lang.Integer;
+					public component25(): number;
 					public component3(): number;
 					public component4(): string;
 					public component5(): string;
@@ -7490,7 +7517,7 @@ declare namespace org {
 					public component7(): string;
 					public component8(): number;
 					public component9(): __javaRoots.javaRoot.util.Map<string, string>;
-					public copy(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider, moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer): __javaRoots.orgRoot.autojs.autojs.engine.NodePluginScriptRequest;
+					public copy(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider, moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer, idleExitMs: number): __javaRoots.orgRoot.autojs.autojs.engine.NodePluginScriptRequest;
 					public equals(other: any): boolean;
 					public getChildProcessEnabled(): __javaRoots.javaRoot.lang.Boolean;
 					public getDynamicImportEnabled(): __javaRoots.javaRoot.lang.Boolean;
@@ -7498,6 +7525,7 @@ declare namespace org {
 					public getEsmEnabled(): __javaRoots.javaRoot.lang.Boolean;
 					public getExecutionId(): string;
 					public getExecutionMode(): string;
+					public getIdleExitMs(): number;
 					public getInspectorEnabled(): boolean;
 					public getJavaInteropEnabled(): __javaRoots.javaRoot.lang.Boolean;
 					public getModuleSourceProvider(): __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
@@ -14859,6 +14887,7 @@ declare namespace org {
 						public clearOnViewAttachedTask(): void;
 						public close(): void;
 						public collapse(): void;
+						public collapse(x: number, y: number): void;
 						public expand(): void;
 						public isExpanded(): boolean;
 						public isWindowAttached(): boolean;
@@ -14866,6 +14895,7 @@ declare namespace org {
 						public releaseWindowFocus(): void;
 						public requestWindowFocus(): void;
 						public setTouchable(touchable: boolean): void;
+						public setWindowLayoutEdgeToEdge(): void;
 						public setWindowLayoutInScreen(): void;
 					}
 				}

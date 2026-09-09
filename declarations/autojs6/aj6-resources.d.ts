@@ -6541,6 +6541,8 @@ declare namespace org {
 					public static text_no_search_results_for_keyword: number;
 					public static text_no_symbols_hint: number;
 					public static text_no_version_history: number;
+					public static text_node_audio_recording: number;
+					public static text_node_audio_recording_channel: number;
 					public static text_node_cache_cleared: number;
 					public static text_nodejs: number;
 					public static text_nodejs_doctor: number;

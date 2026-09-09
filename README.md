@@ -146,6 +146,14 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.9.0
+
+###### 2026/09/10
+
+##### MediaInfo 多流查询
+
+- `新增` MediaInfo 流序号, 流计数, InfoKind 与能力声明, 同步 Rhino 查询选项与 Ace Editor 补全
+
 # v4.8.1
 
 ###### 2026/09/08
