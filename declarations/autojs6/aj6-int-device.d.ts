@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Sep 13, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -43,6 +43,16 @@ declare namespace Internal {
         get orientation(): number;
 
         get density(): number;
+
+        /**
+         * The running system's memory page size in bytes, such as 4096 or 16384.
+         * Read-only and cached within the current process. Requires no extra permission or plugin.
+         * Does not indicate whether an APK or native library is compatible with that page size.
+         * @since 6.8.0
+         * @example
+         * console.log(device.pageSize); // e.g. 16384
+         */
+        get pageSize(): number;
 
         summary(): string;
 
