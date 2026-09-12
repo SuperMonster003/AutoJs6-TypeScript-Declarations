@@ -9280,12 +9280,12 @@ declare namespace kotlin {
 declare namespace kotlin {
 	export namespace jvm {
 		export namespace functions {
-			export class Function3<P1, P2, P3, R> {
-				public constructor(implementation: Function3<P1, P2, P3, R>);
+			export class Function4<P1, P2, P3, P4, R> {
+				public constructor(implementation: Function4<P1, P2, P3, P4, R>);
 				public constructor();
 			}
-			export interface Function3<P1, P2, P3, R> extends __javaLibraryRoots.kotlinRoot.Function<R> {
-				invoke(param0: P1, param1: P2, param2: P3): R;
+			export interface Function4<P1, P2, P3, P4, R> extends __javaLibraryRoots.kotlinRoot.Function<R> {
+				invoke(param0: P1, param1: P2, param2: P3, param3: P4): R;
 			}
 		}
 	}
@@ -13994,6 +13994,63 @@ declare namespace org {
 declare namespace org {
 	export namespace autojs {
 		export namespace plugin {
+			export namespace common {
+				export namespace api {
+					export class PluginInfo {
+						public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.common.api.PluginInfo>;
+						public readonly author: string;
+						public readonly capabilities: __javaLibraryRoots.androidRoot.os.Bundle;
+						public readonly collaborators: string[];
+						public readonly description: string;
+						public readonly engine: string;
+						public readonly id: string;
+						public readonly instruction: string;
+						public readonly name: string;
+						public readonly supportedAbis: string[];
+						public readonly variant: string;
+						public readonly versionCode: number;
+						public readonly versionDate: string;
+						public readonly versionName: string;
+						public constructor();
+						public constructor(name: string, description: string, instruction: string, author: string, collaborators: string[], versionName: string, versionCode: number, versionDate: string, id: string, engine: string, variant: string, supportedAbis: string[], capabilities: __javaLibraryRoots.androidRoot.os.Bundle);
+						public describeContents(): number;
+						public getAuthor(): string;
+						public getCapabilities(): __javaLibraryRoots.androidRoot.os.Bundle;
+						public getCollaborators(): string[];
+						public getDescription(): string;
+						public getEngine(): string;
+						public getId(): string;
+						public getInstruction(): string;
+						public getName(): string;
+						public getSupportedAbis(): string[];
+						public getVariant(): string;
+						public getVersionCode(): number;
+						public getVersionDate(): string;
+						public getVersionName(): string;
+						public setAuthor(_set___: string): void;
+						public setCapabilities(_set___: __javaLibraryRoots.androidRoot.os.Bundle): void;
+						public setCollaborators(_set___: string[]): void;
+						public setDescription(_set___: string): void;
+						public setEngine(_set___: string): void;
+						public setId(_set___: string): void;
+						public setInstruction(_set___: string): void;
+						public setName(_set___: string): void;
+						public setSupportedAbis(_set___: string[]): void;
+						public setVariant(_set___: string): void;
+						public setVersionCode(_set___: number): void;
+						public setVersionDate(_set___: string): void;
+						public setVersionName(_set___: string): void;
+						public writeToParcel(dest: __javaLibraryRoots.androidRoot.os.Parcel, flags: number): void;
+					}
+					export interface PluginInfo extends __javaLibraryRoots.androidRoot.os.Parcelable {}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
 			export namespace mlkit {
 				export namespace barcode {
 					export namespace api {
@@ -14036,6 +14093,32 @@ declare namespace org {
 						cancel(param0: string): void;
 						getNativeDiagnostics(): __javaLibraryRoots.androidRoot.os.Bundle;
 						resolveModuleSource(param0: __javaLibraryRoots.androidRoot.os.Bundle): __javaLibraryRoots.androidRoot.os.Bundle;
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace paddle {
+				export namespace ocr {
+					export namespace api {
+						export class OcrOptions {
+							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.paddle.ocr.api.OcrOptions>;
+							public cpuThreadNum: number;
+							public detLongSize: number;
+							public extras: __javaLibraryRoots.androidRoot.os.Bundle;
+							public scoreThreshold: number;
+							public useOpenCL: boolean;
+							public useSlim: boolean;
+							public constructor();
+							public describeContents(): number;
+							public readFromParcel(_aidl_parcel: __javaLibraryRoots.androidRoot.os.Parcel): void;
+							public writeToParcel(_aidl_parcel: __javaLibraryRoots.androidRoot.os.Parcel, _aidl_flag: number): void;
+						}
+						export interface OcrOptions extends __javaLibraryRoots.androidRoot.os.Parcelable {}
 					}
 				}
 			}

@@ -5727,6 +5727,50 @@ declare namespace org {
 	export namespace autojs {
 		export namespace autojs {
 			export namespace core {
+				export namespace plugin {
+					export namespace ocr {
+						export class OcrPluginHost {
+							public static readonly ACTION_OCR: string;
+							public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.core.plugin.ocr.OcrPluginHost;
+							public readonly AUTOMATIC_ENGINE_ORDER: __javaRoots.javaRoot.util.List<string>;
+							public availableEngines(context: __javaRoots.androidRoot.content.Context): __javaRoots.javaRoot.util.List<string>;
+							public detect(context: __javaRoots.androidRoot.content.Context, target: __javaRoots.orgRoot.autojs.autojs.core.plugin.ocr.OcrPluginHost.Discovered, bitmap: __javaRoots.androidRoot.graphics.Bitmap, options: __javaRoots.orgRoot.autojs.plugin.paddle.ocr.api.OcrOptions, callTimeoutMs: number, $completion: __javaRoots.kotlinRoot.coroutines.Continuation<any>): any;
+							public discover(context: __javaRoots.androidRoot.content.Context, packageName: string, $completion: __javaRoots.kotlinRoot.coroutines.Continuation<any>): any;
+							public getAUTOMATIC_ENGINE_ORDER(): __javaRoots.javaRoot.util.List<string>;
+							public probe(context: __javaRoots.androidRoot.content.Context, packageName: string, $completion: __javaRoots.kotlinRoot.coroutines.Continuation<any>): any;
+							public recognizeText(context: __javaRoots.androidRoot.content.Context, target: __javaRoots.orgRoot.autojs.autojs.core.plugin.ocr.OcrPluginHost.Discovered, bitmap: __javaRoots.androidRoot.graphics.Bitmap, options: __javaRoots.orgRoot.autojs.plugin.paddle.ocr.api.OcrOptions, callTimeoutMs: number, $completion: __javaRoots.kotlinRoot.coroutines.Continuation<any>): any;
+							public select(context: __javaRoots.androidRoot.content.Context, engineId: string, engine: string, variant: string, $completion: __javaRoots.kotlinRoot.coroutines.Continuation<any>): any;
+							public selectOrThrow(context: __javaRoots.androidRoot.content.Context, engineId: string, engine: string, variant: string, moduleLabel: string, automatic: boolean, $completion: __javaRoots.kotlinRoot.coroutines.Continuation<any>): any;
+							protected constructor();
+						}
+						export namespace OcrPluginHost {
+							export class Discovered {
+								public readonly error: __javaRoots.javaRoot.lang.Throwable;
+								public readonly pluginInfo: __javaRoots.orgRoot.autojs.plugin.common.api.PluginInfo;
+								public readonly serviceInfo: __javaRoots.androidRoot.content.pm.ServiceInfo;
+								public constructor(serviceInfo: __javaRoots.androidRoot.content.pm.ServiceInfo, pluginInfo: __javaRoots.orgRoot.autojs.plugin.common.api.PluginInfo, error: __javaRoots.javaRoot.lang.Throwable);
+								public component1(): __javaRoots.androidRoot.content.pm.ServiceInfo;
+								public component2(): __javaRoots.orgRoot.autojs.plugin.common.api.PluginInfo;
+								public component3(): __javaRoots.javaRoot.lang.Throwable;
+								public copy(serviceInfo: __javaRoots.androidRoot.content.pm.ServiceInfo, pluginInfo: __javaRoots.orgRoot.autojs.plugin.common.api.PluginInfo, error: __javaRoots.javaRoot.lang.Throwable): __javaRoots.orgRoot.autojs.autojs.core.plugin.ocr.OcrPluginHost.Discovered;
+								public equals(other: any): boolean;
+								public getError(): __javaRoots.javaRoot.lang.Throwable;
+								public getPluginInfo(): __javaRoots.orgRoot.autojs.plugin.common.api.PluginInfo;
+								public getServiceInfo(): __javaRoots.androidRoot.content.pm.ServiceInfo;
+								public hashCode(): number;
+								public toString(): string;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
 				export namespace pref {
 					export class Pref {
 						public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.core.pref.Pref;
@@ -13780,17 +13824,19 @@ declare namespace org {
 							export namespace Ocr {
 								export namespace Companion {
 									export class OcrMode extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.ocr.Ocr.Companion.OcrMode> {
+										public static readonly AUTO: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.ocr.Ocr.Companion.OcrMode;
 										public static readonly MLKIT: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.ocr.Ocr.Companion.OcrMode;
 										public static readonly PADDLE: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.ocr.Ocr.Companion.OcrMode;
 										public static readonly RAPID: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.ocr.Ocr.Companion.OcrMode;
-										public static readonly UNKNOWN: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.ocr.Ocr.Companion.OcrMode;
-										public readonly detect: __javaRoots.kotlinRoot.jvm.functions.Function3<__javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, __javaRoots.orgRoot.mozilla.javascript.NativeObject, __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.OcrResult>>;
-										public readonly recognizeText: __javaRoots.kotlinRoot.jvm.functions.Function3<__javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, __javaRoots.orgRoot.mozilla.javascript.NativeObject, __javaRoots.javaRoot.util.List<string>>;
+										public readonly detect: __javaRoots.kotlinRoot.jvm.functions.Function4<__javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, __javaRoots.orgRoot.mozilla.javascript.NativeObject, __javaRoots.orgRoot.autojs.autojs.core.plugin.ocr.OcrPluginHost.Discovered, __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.OcrResult>>;
+										public readonly engine: string;
+										public readonly recognizeText: __javaRoots.kotlinRoot.jvm.functions.Function4<__javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, __javaRoots.orgRoot.mozilla.javascript.NativeObject, __javaRoots.orgRoot.autojs.autojs.core.plugin.ocr.OcrPluginHost.Discovered, __javaRoots.javaRoot.util.List<string>>;
 										public readonly value: string;
 										public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.ocr.Ocr.Companion.OcrMode>;
-										public getDetect(): __javaRoots.kotlinRoot.jvm.functions.Function3<__javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, __javaRoots.orgRoot.mozilla.javascript.NativeObject, __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.OcrResult>>;
+										public getDetect(): __javaRoots.kotlinRoot.jvm.functions.Function4<__javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, __javaRoots.orgRoot.mozilla.javascript.NativeObject, __javaRoots.orgRoot.autojs.autojs.core.plugin.ocr.OcrPluginHost.Discovered, __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.OcrResult>>;
+										public getEngine(): string;
 										public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.ocr.Ocr.Companion.OcrMode>;
-										public getRecognizeText(): __javaRoots.kotlinRoot.jvm.functions.Function3<__javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, __javaRoots.orgRoot.mozilla.javascript.NativeObject, __javaRoots.javaRoot.util.List<string>>;
+										public getRecognizeText(): __javaRoots.kotlinRoot.jvm.functions.Function4<__javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, __javaRoots.orgRoot.mozilla.javascript.NativeObject, __javaRoots.orgRoot.autojs.autojs.core.plugin.ocr.OcrPluginHost.Discovered, __javaRoots.javaRoot.util.List<string>>;
 										public getValue(): string;
 										public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.ocr.Ocr.Companion.OcrMode;
 										public static values(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.ocr.Ocr.Companion.OcrMode[];
@@ -13941,12 +13987,14 @@ declare namespace org {
 					public static readonly ENGINE: string;
 					public static readonly ENGINE_BUN: string;
 					public static readonly ENGINE_NODEJS: string;
+					public static readonly ENGINE_QUICKJS: string;
 					public static readonly EXECUTION_MODES: __javaRoots.javaRoot.util.Map<string, __javaRoots.javaRoot.lang.Integer>;
 					public static readonly EXECUTION_MODE_AUTO: number;
 					public static readonly EXECUTION_MODE_BUN: number;
 					public static readonly EXECUTION_MODE_JSOX: number;
 					public static readonly EXECUTION_MODE_NODEJS: number;
 					public static readonly EXECUTION_MODE_NORMAL: number;
+					public static readonly EXECUTION_MODE_QUICKJS: number;
 					public static readonly EXECUTION_MODE_RAW: number;
 					public static readonly EXECUTION_MODE_RHINO: number;
 					public static readonly EXECUTION_MODE_UI: number;
@@ -13967,6 +14015,7 @@ declare namespace org {
 					public static isCompilerBackedTypeScriptFileName(fileName: string): boolean;
 					public static isJavaScriptFileName(fileName: string): boolean;
 					public static isNodeJsFileName(fileName: string): boolean;
+					public static isQuickJsFileName(fileName: string): boolean;
 					public static isRhinoTypeScriptFileName(fileName: string): boolean;
 					public static isTypeScriptDeclarationFileName(fileName: string): boolean;
 					public static isUnsupportedSingleFileTypeScriptFileName(fileName: string): boolean;
@@ -16907,6 +16956,7 @@ declare namespace org {
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.remoteBuildCandidates..inlined.thenBy.1:1
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.remoteBuildCandidates..inlined.thenByDescending.1:1
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.remoteBuildCandidates..inlined.thenByDescending.2:1
+//org.autojs.autojs.apkbuilder.template.NativeBuildAlignment.inspect.lambda.0.0..inlined.sortedBy.1:1
 //org.autojs.autojs.concurrent.ConcurrentArrayList:1
 //org.autojs.autojs.concurrent.Value:1
 //org.autojs.autojs.concurrent.VolatileBox:1
@@ -17100,6 +17150,9 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.python.PythonRuntimeProviderSelectionPolicy.special..inlined.thenBy.1:1
 //org.autojs.autojs.core.plugin.python.PythonRuntimeProviderSelectionPolicy.special..inlined.thenByDescending.1:1
 //org.autojs.autojs.core.plugin.python.PythonRuntimeProviderSelectionPolicy.special..inlined.thenByDescending.2:1
+//org.autojs.autojs.core.plugin.quickjs.QuickJsBoundedBinderCallLane.Call:1
+//org.autojs.autojs.core.plugin.quickjs.QuickJsBoundedBinderCallLane.CallOutcome:1
+//org.autojs.autojs.core.plugin.quickjs.QuickJsBoundedBinderCallLane.CallOutcome.Success:1
 //org.autojs.autojs.core.plugin.r8.R8CompilerPersistentArtifactStore.enforceLimitsLocked..inlined.compareBy.1:1
 //org.autojs.autojs.core.plugin.r8.R8CompilerPersistentArtifactStore.enforceLimitsLocked..inlined.thenBy.1:1
 //org.autojs.autojs.core.plugin.r8.R8CompilerPersistentArtifactStore.matchingGenerations..inlined.compareByDescending.1:1
@@ -17291,6 +17344,7 @@ declare namespace org {
 //org.autojs.autojs.ui.floating.LayoutFloatyWindow.switchWindow.lambda.1..inlined.compareBy.1:1
 //org.autojs.autojs.ui.fragment.BaseViewBindingFragment:1
 //org.autojs.autojs.ui.main.scripts.AndroidPackageArchiveInspector.chooseBase..inlined.sortedBy.1:1
+//org.autojs.autojs.ui.main.scripts.ApkInfoDialogManager.showMoreInfoDialog.1.1:1
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.compareBy.1:1
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.thenBy.1:1
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.thenBy.2:1

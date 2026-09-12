@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.8.4
 //
-// Last modified: Jul 27, 2026
+// Last modified: Sep 12, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -101,7 +101,9 @@ declare namespace Internal {
         detect(img: ImageWrapper | string, options?: DetectOptionsAny): org.autojs.autojs.runtime.api.OcrResult[];
         detect(img: ImageWrapper | string, region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
 
+        /** Resolved engine; auto selection returns an empty string when no enabled plugin is available. */
         get mode(): ModeName;
+        /** Fix an engine, or use auto, an empty string, null or undefined to restore live auto selection. */
         set mode(mode: Mode);
 
         tap(mode: Mode): void;
@@ -126,8 +128,8 @@ declare namespace Internal {
 
     namespace Ocr {
 
-        type Mode = OcrPaddle | OcrMLKit | OcrRapid | 'paddle' | 'mlkit' | 'rapid' | string;
-        type ModeName = 'unknown' | 'mlkit' | 'paddle' | 'rapid' | string;
+        type Mode = OcrPaddle | OcrMLKit | OcrRapid | 'auto' | '' | 'paddle' | 'mlkit' | 'rapid' | string | null | undefined;
+        type ModeName = '' | 'mlkit' | 'paddle' | 'rapid';
         type DetectOptionsAny = DetectOptionsMLKit | DetectOptionsPaddle | DetectOptionsRapid;
 
         type RecognizeTextMethod = (img: ImageWrapper) => string[];
@@ -135,7 +137,8 @@ declare namespace Internal {
 
         interface DetectOptions {
             region?: OmniRegion;
-            mode?: ModeName;
+            /** Per-call selection. Omission follows ocr.mode; explicit nullish values request auto selection. */
+            mode?: Mode;
         }
 
         interface PluginOptions extends DetectOptions {
