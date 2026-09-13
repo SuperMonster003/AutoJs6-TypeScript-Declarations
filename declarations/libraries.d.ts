@@ -2032,6 +2032,7 @@ declare namespace androidx {
 				public setStatusBarBackgroundResource(resId: number): void;
 				public setVisibility(visibility: number): void;
 				public generateLayoutParams(...args: any[]): any;
+				public requestChildRectangleOnScreen(...args: any[]): any;
 			}
 			export interface CoordinatorLayout extends __javaLibraryRoots.androidRoot.view.ViewGroup {}
 			export namespace CoordinatorLayout {
@@ -5929,6 +5930,7 @@ declare namespace androidx {
 				public addFocusables(...args: any[]): any;
 				public focusSearch(...args: any[]): any;
 				public generateLayoutParams(...args: any[]): any;
+				public requestChildRectangleOnScreen(...args: any[]): any;
 			}
 			export interface RecyclerView extends __javaLibraryRoots.androidRoot.view.ViewGroup, __javaLibraryRoots.androidxRoot.core.view.ScrollingView {}
 			export namespace RecyclerView {

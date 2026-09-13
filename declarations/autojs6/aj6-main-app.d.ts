@@ -5520,18 +5520,22 @@ declare namespace org {
 				export namespace looper {
 					export class Timer {
 						public static readonly EMPTY_RUNNABLE: __javaRoots.javaRoot.lang.Runnable;
+						public readonly onPendingCallbacksChanged$app: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
 						public constructor(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, maxCallbackMillisForAllThread: __javaRoots.orgRoot.autojs.autojs.concurrent.VolatileBox<__javaRoots.javaRoot.lang.Long>, timerId: number);
 						public constructor(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, maxCallbackMillisForAllThread: __javaRoots.orgRoot.autojs.autojs.concurrent.VolatileBox<__javaRoots.javaRoot.lang.Long>, looper: __javaRoots.androidRoot.os.Looper, timerId: number);
 						public clearImmediate(n: number): boolean;
 						public clearInterval(n: number): boolean;
 						public clearTimeout(n: number): boolean;
+						public getOnPendingCallbacksChanged$app(): __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
 						public static getTimerId(n: number): number;
 						public hasPendingCallbacks(): boolean;
 						public postDelayed(r: __javaRoots.javaRoot.lang.Runnable, interval: number): void;
 						public removeAllCallbacks(): void;
 						public setImmediate(callback: __javaRoots.orgRoot.mozilla.javascript.Callable, ...args: any[]): number;
 						public setInterval(callback: __javaRoots.orgRoot.mozilla.javascript.Callable, interval: number, ...args: any[]): number;
+						public setOnPendingCallbacksChanged$app(_set___: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): void;
 						public setTimeout(callback: __javaRoots.orgRoot.mozilla.javascript.Callable, delay: number, ...args: any[]): number;
+						public wakeForIdleCheck$app(): void;
 					}
 				}
 			}
@@ -17251,6 +17255,7 @@ declare namespace org {
 //org.autojs.autojs.engine.NodeAndroidPackageInstallManager.collectPackageFiles.visit..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.NodeAndroidPackageInstallManager.list.lambda.0..inlined.compareBy.1:1
 //org.autojs.autojs.engine.NodeAndroidPackageInstallManager.list.lambda.0..inlined.thenBy.1:1
+//org.autojs.autojs.engine.NodeBridgeDeviceActions.listApps..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.NodeBridgeHostEnginesBridge.list.lambda.0..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.NodeBridgeResourceRegistry.closeAll..inlined.compareBy.1:1
 //org.autojs.autojs.engine.NodeBridgeResourceRegistry.closeAll..inlined.thenBy.1:1

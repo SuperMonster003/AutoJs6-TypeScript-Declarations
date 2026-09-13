@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 7, 2026
+// Last modified: Sep 13, 2026
 //
 // noinspection JSUnusedGlobalSymbols
 
@@ -1335,17 +1335,18 @@ declare namespace Internal {
         public retraceR8Stack(obfuscatedStackTrace: string, mapping: string, retraceMetadata: string): string;
 
         /**
+         * Requests Android runtime permissions declared by the current host or packaged app.
+         * Accepts full permission names or case-insensitive names without "android.permission.".
+         * Returns immediately without a result callback. Retry the operation after authorization.
+         * ACCESS_LOCAL_NETWORK is requested only on Android 17+ when the app targets API 37+.
+         * Network operations do not request this permission automatically.
          * @example
-         * runtime.requestPermissions("access_fine_location"); // GPS
-         * runtime.requestPermissions("record_audio"); // REC
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-         *     permissions = Permissions.getPermissionsNeedToRequest(context, permissions);
-         *     permissions.length && Permissions.requestPermissions(context, permissions);
-         * }
+         * runtime.requestPermissions(["access_fine_location", "record_audio"]);
+         * runtime.requestPermissions(["access_local_network"]);
+         * runtime.requestPermissions(["android.permission.POST_NOTIFICATIONS"]);
          * @see org.autojs.autojs.core.permission.Permissions
          */
-        public requestPermissions(permissions: ('access_fine_location' | 'record_audio')[]): void;
+        public requestPermissions(permissions: string[]): void;
 
         /**
          * @example

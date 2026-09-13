@@ -4,6 +4,15 @@
 
 ******
 
+# v4.11.1
+
+###### 2026/09/13
+
+##### Android 本地网络权限
+
+- `修复` `runtime.requestPermissions` 的通用权限名类型, 将参数声明为 `string[]`, 更正数组示例并说明 `access_local_network` 的系统与 targetSdk 条件
+- `更新` 从 AutoJs6 6.8.0 (5280) 重新生成主应用与资源声明, 同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.11.0
 
 ###### 2026/09/13

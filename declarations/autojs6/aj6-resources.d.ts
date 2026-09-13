@@ -3901,6 +3901,7 @@ declare namespace org {
 					public static description_keep_screen_on_when_in_foreground_preference: number;
 					public static description_launcher_icon_preference: number;
 					public static description_launcher_shortcuts: number;
+					public static description_local_network_permission: number;
 					public static description_manage_ignored_updates_preference: number;
 					public static description_night_mode: number;
 					public static description_night_mode_preference: number;
@@ -4195,6 +4196,8 @@ declare namespace org {
 					public static error_invalid_time_format_pattern: number;
 					public static error_ip_address_should_not_be_empty: number;
 					public static error_ipv6_port_requires_brackets: number;
+					public static error_local_network_permission_hint: number;
+					public static error_local_network_permission_required: number;
 					public static error_lua_runtime_ambiguous: number;
 					public static error_lua_runtime_identity_or_bind: number;
 					public static error_lua_runtime_incompatible: number;
@@ -4518,6 +4521,7 @@ declare namespace org {
 					public static key_launcher_icon_adaptive: number;
 					public static key_launcher_icon_transparent_background: number;
 					public static key_launcher_shortcuts: number;
+					public static key_local_network_permission: number;
 					public static key_log_activity_input_bar_visible: number;
 					public static key_log_activity_log_coloring: number;
 					public static key_log_activity_text_size: number;
@@ -6205,6 +6209,8 @@ declare namespace org {
 					public static text_loading_a_fallback_solution_with_dots: number;
 					public static text_loading_completed: number;
 					public static text_loading_with_dots: number;
+					public static text_local_network_permission: number;
+					public static text_local_network_permission_settings: number;
 					public static text_locate_current_theme_color: number;
 					public static text_log: number;
 					public static text_log_coloring: number;
