@@ -3584,6 +3584,7 @@ declare namespace org {
 					public static licenses: number;
 					public static mpl_20_full: number;
 					public static mpl_20_summary: number;
+					public static sdk37_test_ca: number;
 					public static text_tool: number;
 					protected constructor();
 				}
@@ -4234,6 +4235,7 @@ declare namespace org {
 					public static error_no_write_settings_permission: number;
 					public static error_official_plugin_missing: number;
 					public static error_only_one_child_for_scroll_view: number;
+					public static error_package_installation_confirmation_expired: number;
 					public static error_package_installation_confirmation_missing: number;
 					public static error_package_installation_status: number;
 					public static error_parse_github_release_assets: number;
@@ -6333,7 +6335,11 @@ declare namespace org {
 					public static text_others: number;
 					public static text_output_apk_path: number;
 					public static text_overwrite: number;
+					public static text_package_installation: number;
+					public static text_package_installation_confirmation_pending: number;
+					public static text_package_installation_result_available: number;
 					public static text_package_installation_succeeded: number;
+					public static text_package_installation_waiting: number;
 					public static text_package_name: number;
 					public static text_package_name_with_computing: number;
 					public static text_parent_folder: number;

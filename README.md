@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.12.0
+
+###### 2026/09/13
+
+##### Pangu 文本间距
+
+- `新增` 全局 `pangu` 声明, 覆盖 pangu.js 10.1.0 的 `version`, `spaceText` 与 `hasProperSpacing`, 并为 `require('pangu')` 提供具体返回类型
+- `更新` 同步 AutoJs6 主应用声明与 Ace Editor 内置声明, 重新生成 LSP 分组与索引
+
 # v4.11.1
 
 ###### 2026/09/13

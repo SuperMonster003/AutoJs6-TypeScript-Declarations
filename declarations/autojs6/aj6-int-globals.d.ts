@@ -5,7 +5,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 7, 2026
+// Last modified: Sep 13, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -22,6 +22,8 @@ declare let WIDTH: number;
 declare let axios: any;
 declare let cheerio: any;
 declare let dayjs: any;
+/** The built-in pangu.js text API. Available since AutoJs6 6.8.0. */
+declare let pangu: Internal.Pangu;
 
 /**
  * @see runtime.sleep

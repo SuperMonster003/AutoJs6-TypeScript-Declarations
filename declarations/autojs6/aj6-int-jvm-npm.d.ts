@@ -15,6 +15,8 @@ declare namespace Internal {
 
     interface Require {
 
+        (id: 'pangu' | 'pangu.js' | 'pangu.min' | 'pangu.min.js'): Internal.Pangu;
+
         (id: Require.ID, parent?: { id?: string }): Require.Result;
 
         debug: boolean;
@@ -124,6 +126,8 @@ declare namespace Internal {
             'ocr-paddle' |
             'object-observe-lite.min' |
             'paddle-ocr' |
+            'pangu' |
+            'pangu.min' |
             'polyfill' |
             'promise' |
             'redirect' |

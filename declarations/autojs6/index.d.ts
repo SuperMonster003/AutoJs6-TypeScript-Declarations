@@ -34,6 +34,7 @@
 /// <reference path="./aj6-int-object-observe.d.ts" />
 /// <reference path="./aj6-int-ocr.d.ts" />
 /// <reference path="./aj6-int-opencc.d.ts" />
+/// <reference path="./aj6-int-pangu.d.ts" />
 /// <reference path="./aj6-int-pinyin.d.ts" />
 /// <reference path="./aj6-int-pinyin4j.d.ts" />
 /// <reference path="./aj6-int-plugins.d.ts" />

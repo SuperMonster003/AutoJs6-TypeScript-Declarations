@@ -9340,6 +9340,7 @@ declare namespace org {
 					public readonly js_mod_dayjs$app: __javaRoots.orgRoot.mozilla.javascript.BaseFunction;
 					public readonly js_mod_i18n$app: __javaRoots.orgRoot.mozilla.javascript.BaseFunction;
 					public readonly js_mod_internal$app: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject;
+					public readonly js_mod_pangu$app: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject;
 					public readonly js_object_observe_lite_min$app: __javaRoots.orgRoot.mozilla.javascript.BaseFunction;
 					public readonly js_structured_clone$app: __javaRoots.orgRoot.mozilla.javascript.BaseFunction;
 					public readonly ownerId: string;
@@ -9378,6 +9379,7 @@ declare namespace org {
 					public getJs_mod_dayjs$app(): __javaRoots.orgRoot.mozilla.javascript.BaseFunction;
 					public getJs_mod_i18n$app(): __javaRoots.orgRoot.mozilla.javascript.BaseFunction;
 					public getJs_mod_internal$app(): __javaRoots.orgRoot.mozilla.javascript.ScriptableObject;
+					public getJs_mod_pangu$app(): __javaRoots.orgRoot.mozilla.javascript.ScriptableObject;
 					public getJs_object_observe_lite_min$app(): __javaRoots.orgRoot.mozilla.javascript.BaseFunction;
 					public getJs_structured_clone$app(): __javaRoots.orgRoot.mozilla.javascript.BaseFunction;
 					public getLoopers(): __javaRoots.orgRoot.autojs.autojs.core.looper.Loopers;
