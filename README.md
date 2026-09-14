@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.15.0
+
+###### 2026/09/14
+
+##### 模板匹配增强
+
+- `新增` `images.matchTemplate` 与 `images.findPointByImage` 的 `scales` 选项, 匹配项的 `width`, `height`, `scale`, `center`, `rect` 属性, 以及 `MatchingResult` 的 `size`, `isEmpty()`, `isNotEmpty()`, `filter()` 声明
+- `更新` `images.matchTemplate` 参数接受图片路径并补充 `useTransparentMask` 选项, 从 AutoJs6 6.8.0 (5280) 重新生成主应用与资源声明, 同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.14.0
 
 ###### 2026/09/14

@@ -4473,35 +4473,47 @@ declare namespace org {
 			export namespace core {
 				export namespace image {
 					export class TemplateMatching {
+						public static readonly DEFAULT_SCALES: number[];
 						public static readonly MATCHING_METHOD_DEFAULT: number;
 						public static readonly MATCHING_METHOD_DEFAULT_WITH_TRANSPARENT_MASK: number;
 						public static readonly MATCHING_METHOD_NONE: number;
 						public static readonly MAX_LEVEL_AUTO: number;
 						public constructor();
-						public static fastTemplateMatching(img: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, template: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, options: __javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Options): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Match>;
-						public static matchTemplate(img: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, template: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, matchingMethod: number): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
-						public static matchTemplate(img: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, template: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, matchingMethod: number, transparentMask: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
-						public static singleTemplateMatching(mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, mat2: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, options: __javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Options): __javaRoots.orgRoot.opencv.core.Point;
+						public static fastTemplateMatching(img: __javaRoots.orgRoot.opencv.core.Mat, template: __javaRoots.orgRoot.opencv.core.Mat, options: __javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Options): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Match>;
+						public static matchTemplate(img: __javaRoots.orgRoot.opencv.core.Mat, template: __javaRoots.orgRoot.opencv.core.Mat, matchingMethod: number): __javaRoots.orgRoot.opencv.core.Mat;
+						public static matchTemplate(img: __javaRoots.orgRoot.opencv.core.Mat, template: __javaRoots.orgRoot.opencv.core.Mat, matchingMethod: number, transparentMask: __javaRoots.orgRoot.opencv.core.Mat): __javaRoots.orgRoot.opencv.core.Mat;
+						public static singleTemplateMatching(mat: __javaRoots.orgRoot.opencv.core.Mat, mat2: __javaRoots.orgRoot.opencv.core.Mat, options: __javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Options): __javaRoots.orgRoot.opencv.core.Point;
 					}
 					export namespace TemplateMatching {
 						export class Match {
+							public readonly height: number;
 							public readonly point: __javaRoots.orgRoot.opencv.core.Point;
+							public readonly scale: number;
 							public readonly similarity: number;
+							public readonly width: number;
+							public readonly center: __javaRoots.orgRoot.opencv.core.Point;
+							public readonly rect: __javaRoots.orgRoot.opencv.core.Rect;
 							public constructor(point: __javaRoots.orgRoot.opencv.core.Point, similarity: number);
+							public constructor(point: __javaRoots.orgRoot.opencv.core.Point, similarity: number, width: number, height: number, scale: number);
+							public getCenter(): __javaRoots.orgRoot.opencv.core.Point;
+							public getRect(): __javaRoots.orgRoot.opencv.core.Rect;
 							public toString(): string;
 						}
 						export class Options {
 							public readonly limit: number;
 							public readonly matchingMethod: number;
 							public readonly maxLevel: number;
+							public readonly scales: number[];
 							public readonly strictThreshold: number;
 							public readonly useTransparentMask: boolean;
 							public readonly weakThreshold: number;
 							public constructor(matchingMethod: number, weakThreshold: number, strictThreshold: number, maxLevel: number);
 							public constructor(matchingMethod: number, weakThreshold: number, strictThreshold: number, maxLevel: number, useTransparentMask: boolean, limit: number);
+							public constructor(matchingMethod: number, weakThreshold: number, strictThreshold: number, maxLevel: number, useTransparentMask: boolean, limit: number, scales: number[]);
 							public getLimit(): number;
 							public getMatchingMethod(): number;
 							public getMaxLevel(): number;
+							public getScales(): number[];
 							public getStrictThreshold(): number;
 							public getUseTransparentMask(): boolean;
 							public getWeakThreshold(): number;
@@ -10228,6 +10240,7 @@ declare namespace org {
 						public findImage(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper): __javaRoots.orgRoot.opencv.core.Point;
 						public findImage(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, threshold: number): __javaRoots.orgRoot.opencv.core.Point;
 						public findImage(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, weakThreshold: number, strictThreshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, maxLevel: number): __javaRoots.orgRoot.opencv.core.Point;
+						public findImage(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, weakThreshold: number, strictThreshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, maxLevel: number, scales: number[]): __javaRoots.orgRoot.opencv.core.Point;
 						public findImage(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, threshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect): __javaRoots.orgRoot.opencv.core.Point;
 						public flip(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, horizontal: boolean, vertical: boolean): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public fromBase64(data: string): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
@@ -10241,6 +10254,7 @@ declare namespace org {
 						public invert(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public load(src: string): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public matchTemplate(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, weakThreshold: number, strictThreshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, maxLevel: number, limit: number, useTransparentMask: boolean): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Match>;
+						public matchTemplate(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, weakThreshold: number, strictThreshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, maxLevel: number, limit: number, useTransparentMask: boolean, scales: number[]): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Match>;
 						public newMat(): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public newMat(mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, rect: __javaRoots.orgRoot.opencv.core.Rect): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public static pixel(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, x: number, y: number): number;

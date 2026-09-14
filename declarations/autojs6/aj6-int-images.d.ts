@@ -1026,6 +1026,8 @@ declare namespace Internal {
          * @param [options.level=-1]
          * @param [options.region]
          * @param [options.max=5]
+         * @param [options.scales] Template scale factors to try in turn (a number or a list); each match reports its `scale`, `width` and `height`. @since 6.8.0
+         * @param [options.useTransparentMask=false] Exclude the transparent pixels (alpha below 128) of a 4-channel template from the comparison.
          * @example
          * images.requestScreenCapture(false);
          * let capt = images.captureScreen();
@@ -1072,12 +1074,26 @@ declare namespace Internal {
          * }
          * @see org.autojs.autojs.runtime.api.Images.matchTemplate
          */
-        matchTemplate(img: ImageWrapper, template: ImageWrapper, options?: {
+        matchTemplate(img: Images.ImageSource, template: Images.ImageSource, options?: {
             threshold?: number;
             weakThreshold?: number;
             level?: number;
             region?: OmniRegion;
             max?: number;
+            /**
+             * Template scale factors to try in turn, e.g. `[0.9, 1, 1.1]`; scales that do not fit into the image are skipped.
+             * @since 6.8.0
+             */
+            scales?: number | number[];
+            /**
+             * Alias of `scales`.
+             * @since 6.8.0
+             */
+            scale?: number | number[];
+            /** Exclude the transparent pixels (alpha below 128) of a 4-channel template from the comparison. */
+            useTransparentMask?: boolean;
+            /** Alias of `useTransparentMask`, only used when the former is absent. */
+            transparentMask?: boolean;
         }): Images.MatchingResult;
 
         /**
@@ -1462,6 +1478,11 @@ declare namespace Images {
     type SizeWidth = Percentage$;
     type SizeHeight = Percentage$;
     type Size = SizeWidth | [SizeWidth] | [SizeWidth, SizeHeight];
+    /**
+     * One template match: `point` is the top-left corner, `similarity` is 1 for a perfect match,
+     * `width`, `height` and `scale` describe the matched area at the matched template scale,
+     * `center` and `rect` derive from them (all but `point` and `similarity` since 6.8.0).
+     */
     type TemplateMatch = org.autojs.autojs.core.image.TemplateMatching.Match;
     type MatchingResultSortToken = 'left' | 'right' | 'top' | 'bottom' | 'best' | 'worst';
     type MatchingResultSortStrategy = MatchingResultSortToken | `${MatchingResultSortToken}-${MatchingResultSortToken}` | string;
@@ -1566,6 +1587,16 @@ declare namespace Images {
         weakThreshold?: number;
         level?: number;
         region?: OmniRegion;
+        /**
+         * Template scale factors to try in turn, e.g. `[0.9, 1, 1.1]`; the best match over all scales is returned.
+         * @since 6.8.0
+         */
+        scales?: number | number[];
+        /**
+         * Alias of `scales`.
+         * @since 6.8.0
+         */
+        scale?: number | number[];
     }
 
     type DetectAndComputeFeaturesOptions = {
@@ -1675,6 +1706,26 @@ declare namespace Images {
          * }
          */
         get points(): OpenCV.Points;
+
+        /**
+         * Number of matches.
+         * @since 6.8.0
+         */
+        readonly size: number;
+
+        /** @since 6.8.0 */
+        isEmpty(): boolean;
+
+        /** @since 6.8.0 */
+        isNotEmpty(): boolean;
+
+        /**
+         * Returns a new result holding the matches for which the predicate is truthy; the original is not modified.
+         * @example
+         * let upperHalf = images.matchTemplate(img, template, { max: 20 }).filter(m => m.center.y < img.height / 2);
+         * @since 6.8.0
+         */
+        filter(predicate: (match: Images.TemplateMatch) => any): Images.MatchingResult;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
