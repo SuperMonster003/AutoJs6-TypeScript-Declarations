@@ -8886,12 +8886,14 @@ declare namespace org {
 					public readonly launcherVisible: boolean;
 					public readonly logShortcutVisible: boolean;
 					public readonly logsVisible: boolean;
+					public readonly requiresSharedStorage: boolean;
 					public readonly runOnBoot: boolean;
 					public readonly settingsShortcutVisible: boolean;
 					public readonly slug: string;
 					public readonly splashVisible: boolean;
 					public constructor();
 					public applyOriginalJsonKeys(json: __javaRoots.comRoot.google.gson.JsonObject, detectConflicts: boolean): void;
+					public getRequiresSharedStorage(): boolean;
 					public getSlug(): string;
 					public isLauncherVisible(): boolean;
 					public isLogShortcutVisible(): boolean;
@@ -8903,6 +8905,7 @@ declare namespace org {
 					public setLauncherVisible(_set___: boolean): void;
 					public setLogShortcutVisible(_set___: boolean): void;
 					public setLogsVisible(_set___: boolean): void;
+					public setRequiresSharedStorage(_set___: boolean): void;
 					public setRunOnBoot(_set___: boolean): void;
 					public setSettingsShortcutVisible(_set___: boolean): void;
 					public setSlug(_set___: string): void;
@@ -17314,6 +17317,7 @@ declare namespace org {
 //org.autojs.autojs.tool.Func1:2
 //org.autojs.autojs.tool.LimitedHashMap:2
 //org.autojs.autojs.tool.MapBuilder:2
+//org.autojs.autojs.tool.ProcessExitHistory.select..inlined.sortedByDescending.1:1
 //org.autojs.autojs.tool.SimpleCache:1
 //org.autojs.autojs.tool.SimpleCache.Item:1
 //org.autojs.autojs.tool.SimpleCache.NullSupplier:1

@@ -4,6 +4,15 @@
 
 ******
 
+# v4.13.0
+
+###### 2026/09/14
+
+##### 打包应用共享存储配置
+
+- `新增` LaunchConfig.requiresSharedStorage 及对应 getter / setter 声明
+- `更新` 同步 AutoJs6 6.8.0 (5280) 的资源与依赖声明及 Ace Editor LSP 分组
+
 # v4.12.0
 
 ###### 2026/09/13

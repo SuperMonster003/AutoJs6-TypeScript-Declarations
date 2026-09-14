@@ -2699,6 +2699,7 @@ declare namespace org {
 					public static checkbox_launch_launcher_visible: number;
 					public static checkbox_launch_log_shortcut_visible: number;
 					public static checkbox_launch_logs_visible: number;
+					public static checkbox_launch_requires_shared_storage: number;
 					public static checkbox_launch_run_on_boot: number;
 					public static checkbox_launch_settings_shortcut_visible: number;
 					public static checkbox_launch_splash_visible: number;
@@ -3017,6 +3018,7 @@ declare namespace org {
 					public static recycler: number;
 					public static recycler_view: number;
 					public static redo: number;
+					public static refresh: number;
 					public static rename: number;
 					public static repeat_count: number;
 					public static repeat_count_container: number;
@@ -3029,6 +3031,7 @@ declare namespace org {
 					public static repeat_until_date_container: number;
 					public static replace: number;
 					public static replacement: number;
+					public static report: number;
 					public static request_screen_capture_delay_max_value: number;
 					public static request_screen_capture_delay_min_value: number;
 					public static request_screen_capture_delay_title: number;
@@ -3381,6 +3384,7 @@ declare namespace org {
 					public static activity_plugin_settings: number;
 					public static activity_plugin_variant_priority: number;
 					public static activity_preferences: number;
+					public static activity_process_exit_history: number;
 					public static activity_project_config: number;
 					public static activity_script_widget_settings: number;
 					public static activity_settings_inrt: number;
@@ -5458,6 +5462,7 @@ declare namespace org {
 					public static summary_post_notifications_permission: number;
 					public static summary_post_notifications_permission_inrt: number;
 					public static summary_pre_execute_script: number;
+					public static summary_process_exit_history: number;
 					public static summary_r8_compiler_explicit_disabled: number;
 					public static summary_r8_compiler_explicit_disabled_with_selection: number;
 					public static summary_r8_compiler_explicit_selected: number;
@@ -6150,6 +6155,9 @@ declare namespace org {
 					public static text_in_progress: number;
 					public static text_info: number;
 					public static text_input_bar: number;
+					public static text_inrt_shared_storage_required: number;
+					public static text_inrt_storage_permission_missing: number;
+					public static text_inrt_storage_settings_unavailable: number;
 					public static text_insist_on_record: number;
 					public static text_inspect_layout: number;
 					public static text_inspect_layout_bounds: number;
@@ -6198,6 +6206,8 @@ declare namespace org {
 					public static text_launch_launcher_visible: number;
 					public static text_launch_log_shortcut_visible: number;
 					public static text_launch_logs_visible: number;
+					public static text_launch_requires_shared_storage: number;
+					public static text_launch_requires_shared_storage_summary: number;
 					public static text_launch_run_on_boot: number;
 					public static text_launch_settings_shortcut_visible: number;
 					public static text_launch_slug: number;
@@ -6375,6 +6385,7 @@ declare namespace org {
 					public static text_permission_desc_expand_status_bar: number;
 					public static text_permission_desc_flashlight: number;
 					public static text_permission_desc_foreground_service: number;
+					public static text_permission_desc_foreground_service_media_playback: number;
 					public static text_permission_desc_foreground_service_media_projection: number;
 					public static text_permission_desc_foreground_service_special_use: number;
 					public static text_permission_desc_get_accounts: number;
@@ -6504,6 +6515,22 @@ declare namespace org {
 					public static text_press_again_to_exit: number;
 					public static text_press_back_or_vol_down_to_close_window: number;
 					public static text_preview: number;
+					public static text_process_exit_history: number;
+					public static text_process_exit_history_anr: number;
+					public static text_process_exit_history_crash: number;
+					public static text_process_exit_history_current_app: number;
+					public static text_process_exit_history_empty: number;
+					public static text_process_exit_history_failed: number;
+					public static text_process_exit_history_low_memory: number;
+					public static text_process_exit_history_memory_limiter: number;
+					public static text_process_exit_history_no_description: number;
+					public static text_process_exit_history_record: number;
+					public static text_process_exit_history_scope: number;
+					public static text_process_exit_history_self_exit: number;
+					public static text_process_exit_history_system: number;
+					public static text_process_exit_history_unknown: number;
+					public static text_process_exit_history_unsupported: number;
+					public static text_process_exit_history_user_stop: number;
 					public static text_process_log: number;
 					public static text_processing: number;
 					public static text_processing_source: number;
@@ -6629,6 +6656,7 @@ declare namespace org {
 					public static text_scheduled_restart_start_delay: number;
 					public static text_screen_capture_request_delay: number;
 					public static text_screen_color_picker: number;
+					public static text_script_music: number;
 					public static text_script_record: number;
 					public static text_script_running: number;
 					public static text_search: number;
