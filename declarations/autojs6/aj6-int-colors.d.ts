@@ -6091,6 +6091,57 @@ declare namespace Internal {
         isEqual(colorA: OmniColor, colorB: OmniColor, alphaMatters?: boolean): boolean;
 
         /**
+         * Distance between two colors on the same scale as the color matching threshold,
+         * so `colors.isSimilar(a, b, threshold, algorithm)` equals `colors.distance(a, b, algorithm) <= threshold`.
+         * The 'equal' algorithm returns the largest component difference.
+         * @example
+         * console.log(colors.distance('red', 'red')); // 0
+         * console.log(colors.distance('orange', 'dark-orange')); // 8.33
+         * console.log(colors.distance('orange', 'dark-orange', 'hs'));
+         * @param colorA
+         * @param colorB
+         * @param [algorithm="diff"]
+         * @since 6.8.0
+         */
+        distance(colorA: OmniColor, colorB: OmniColor, algorithm?: DetectionAlgorithm): number;
+        distance(colorA: OmniColor, colorB: OmniColor, options: {
+            algorithm?: DetectionAlgorithm;
+        }): number;
+
+        /**
+         * Inverts the RGB components and keeps the alpha component.
+         * @example
+         * console.log(colors.toHex(colors.invert('#FF0000'))); // "#00FFFF"
+         * console.log(colors.toHex(colors.invert('#80FF0000'), 8)); // "#8000FFFF"
+         * @since 6.8.0
+         */
+        invert(color: OmniColor): ColorInt;
+
+        /**
+         * Linear blend of two colors (alpha included); `ratio` is the weight of `colorB` in [0..1].
+         * @example
+         * console.log(colors.toHex(colors.blend('black', 'white'))); // "#7F7F7F"
+         * console.log(colors.toHex(colors.blend('black', 'white', 0))); // "#000000"
+         * console.log(colors.toHex(colors.blend('black', 'white', '100%'))); // "#FFFFFF"
+         * @param colorA
+         * @param colorB
+         * @param [ratio=0.5]
+         * @since 6.8.0
+         */
+        blend(colorA: OmniColor, colorB: OmniColor, ratio?: number | PercentString): ColorInt;
+
+        /**
+         * WCAG contrast ratio between a foreground and an opaque background, in [1..21].
+         * A translucent foreground is composited over the background first;
+         * a translucent background throws.
+         * @example
+         * console.log(colors.contrast('black', 'white')); // 21
+         * console.log(colors.contrast('#777777', 'white') >= 4.5); // true
+         * @since 6.8.0
+         */
+        contrast(foreground: OmniColor, background: OmniColor): number;
+
+        /**
          * @deprecated Use `colors.isEqual` instead.
          * @example Source code summary (zh-CN: 源代码摘要)
          * public boolean equals(int c1, int c2) {
@@ -6287,6 +6338,21 @@ declare namespace Internal {
         }): boolean;
 
         isEqual(other: OmniColor, alphaMatters?: boolean): boolean;
+
+        /** @since 6.8.0 */
+        distance(other: OmniColor, algorithm?: DetectionAlgorithm): number;
+        distance(other: OmniColor, options: {
+            algorithm?: DetectionAlgorithm;
+        }): number;
+
+        /** @since 6.8.0 */
+        invert(): ColorInt;
+
+        /** @since 6.8.0 */
+        blend(other: OmniColor, ratio?: number | PercentString): ColorInt;
+
+        /** @since 6.8.0 */
+        contrast(background: OmniColor): number;
 
         // @ts-ignore
         equals(other: OmniColor): boolean;

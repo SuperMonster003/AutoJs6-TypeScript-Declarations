@@ -108,6 +108,34 @@ declare namespace Internal {
             options?: Images.ColorSearchOptions,
         ): OpenCV.Points;
 
+        /**
+         * Counts the pixels matching a color, using the same rule as `findPointsByColor`
+         * (every RGB component differs by at most the threshold) without building a point array.
+         * @example
+         * let img = images.captureScreen();
+         * let region = [ 100, 200, 300, 40 ];
+         * let ratio = images.countPointsByColor(img, '#ffffff', { region, threshold: 8 }) / (region[2] * region[3]);
+         * console.log(ratio > 0.9 ? 'mostly white' : 'not white');
+         * img.recycle();
+         * @since 6.8.0
+         */
+        countPointsByColor(
+            image: Images.ImageSource,
+            color: Color$,
+            options?: Images.ColorSearchOptions,
+        ): number;
+
+        /**
+         * Mean color of an image or of a region of it.
+         * Grayscale images yield an opaque gray; images without an alpha channel yield alpha 255.
+         * @example
+         * let img = images.captureScreen();
+         * console.log(colors.toHex(images.getMeanColor(img, [ 0, 0, 200, 100 ])));
+         * img.recycle();
+         * @since 6.8.0
+         */
+        getMeanColor(image: Images.ImageSource, region?: OmniRegion): ColorInt;
+
         findPointByImage(
             image: Images.ImageSource,
             template: Images.ImageSource,
@@ -1095,23 +1123,31 @@ declare namespace Internal {
         medianBlur(src: ImageWrapper, ksize: Side | [Side, Side]): ImageWrapper;
 
         /**
+         * Reads all ARGB pixels of an image (row-major, `width * height` entries).
+         * A path argument is read and recycled internally; an ImageWrapper argument stays usable
+         * and must be recycled by the caller.
          * @example
          * console.log(images.readPixels("test.png").data.slice(0, 10));
+         * @example
+         * let img = images.captureScreen();
+         * let { data, width } = images.readPixels(img);
+         * console.log(colors.toHex(data[10 * width + 20])); // pixel at (20, 10)
+         * img.recycle();
          * @example Source code summary (zh-CN: 源代码摘要)
-         * images.readPixels = function (path) {
-         *     let img = images.read(path);
+         * images.readPixels = function (image) {
+         *     let img = typeof image === 'string' ? images.read(image) : image;
          *     let bitmap = img.getBitmap();
          *     let w = bitmap.getWidth();
          *     let h = bitmap.getHeight();
          *     let pixels = util.java.array("int", w * h);
          *     bitmap.getPixels(pixels, 0, w, 0, 0, w, h);
-         *     img.recycle();
+         *     if (typeof image === 'string') img.recycle();
          *     return {data: pixels, width: w, height: h};
          * };
          * @see read
          * @see ImageWrapper.getBitmap
          */
-        readPixels(path: string): { data: number[], width: Width, height: Height };
+        readPixels(image: Images.ImageSource): { data: number[], width: Width, height: Height };
 
         /**
          * @example

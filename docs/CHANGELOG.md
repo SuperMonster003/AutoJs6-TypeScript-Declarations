@@ -4,6 +4,16 @@
 
 ******
 
+# v4.14.0
+
+###### 2026/09/14
+
+##### 图色模块增强
+
+- `新增` `images.countPointsByColor` 与 `images.getMeanColor` 声明, `images.readPixels` 接受 ImageWrapper 或文件路径
+- `新增` `colors.distance`, `colors.invert`, `colors.blend`, `colors.contrast` 及 Color 实例对应方法声明
+- `更新` 从 AutoJs6 6.8.0 (5280) 重新生成主应用与资源声明, 同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.13.0
 
 ###### 2026/09/14
