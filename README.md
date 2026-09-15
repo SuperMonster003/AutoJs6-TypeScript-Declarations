@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.16.0
+
+###### 2026/09/15
+
+##### 特征匹配增强
+
+- `新增` `images.matchFeatures` 的 `ransacThreshold`, `minInliers`, `maxFeatures` 选项及图片参数, `ObjectFrame` 的 `width`, `height`, `angle`, `bounds`, `points`, `matches`, `inliers` 属性, 以及 `ImageFeatures` 的 `count`, `method`, `oneShot()` 声明
+- `更新` `images.detectAndComputeFeatures` 补充 `maxFeatures` 选项及 `scale` 取值说明, 匹配器名称不区分大小写, 从 AutoJs6 6.8.0 (5280) 重新生成主应用与资源声明, 同步 Ace Editor 内置声明和 LSP 分组
+
 # v4.15.0
 
 ###### 2026/09/14

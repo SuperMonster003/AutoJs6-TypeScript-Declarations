@@ -1413,15 +1413,24 @@ declare namespace Internal {
 
         __buildRegion(region?: OmniRegion, imageWidth?: number, imageHeight?: number): org.opencv.core.Rect | null;
 
+        /**
+         * 检测图片 (或其 region 区域) 的关键点并计算描述子, 返回可反复用于 matchFeatures() 的特征对象.
+         * 检测始终在灰度图上进行, 1 / 3 / 4 通道图片均可直接传入.
+         * @param img 图片或图片路径
+         * @param options 选项参数
+         */
         detectAndComputeFeatures(img: Images.ImageSource, options?: Images.DetectAndComputeFeaturesOptions): Images.ImageFeatures;
 
         /**
-         * 特征匹配.
-         * @param sceneFeatures 场景图片 (大图) 的特征对象
-         * @param objectFeatures 目标图片 (小图) 的特征对象
+         * 特征匹配, 在场景中寻找目标并返回目标四角在场景原图坐标系中的位置.
+         * 直接传入图片或图片路径时会按 method / scale / maxFeatures 选项即时检测特征并在匹配后自动回收;
+         * 传入的 ImageFeatures 不会被回收 (除非已标记为一次性对象).
+         * @param scene 场景图片 (大图) 或其特征对象
+         * @param object 目标图片 (小图) 或其特征对象
          * @param options 选项参数
+         * @returns 目标四边形, 未找到 (匹配或内点不足, 或投影为退化四边形) 时为 null
          */
-        matchFeatures(sceneFeatures: Images.ImageFeatures, objectFeatures: Images.ImageFeatures, options?: Images.FeatureMatchingOptions): Images.ObjectFrame | null;
+        matchFeatures(scene: Images.ImageFeatures | Images.ImageSource, object: Images.ImageFeatures | Images.ImageSource, options?: Images.FeatureMatchingOptions): Images.ObjectFrame | null;
 
         psnr(imageA: Images.ComparableImageSource, imageB: Images.ComparableImageSource): number;
 
@@ -1599,37 +1608,73 @@ declare namespace Images {
         scale?: number | number[];
     }
 
+    type FeatureDetectionMethod = number | 'SIFT' | 'ORB';
+
     type DetectAndComputeFeaturesOptions = {
         region?: OmniRegion;
+        /**
+         * 检测前对区域应用的缩放比例, 取值 (0, 8].
+         * 未指定或为 0 时自动确定 (约 100 万像素以内为 1, 更大的图片按约 100 万像素且最长边不超过 1600 缩小).
+         * 大于 1 的值会先放大图片, 适用于关键点不足的小图标.
+         */
         scale?: number;
         /**
-         * true: cvtColor will be Imgproc.COLOR_RGBA2GRAY<br>
-         * false: cvtColor will be -1
+         * 检测方法. 数值为 ImageFeatureMatching.FEATURE_MATCHING_METHOD_SIFT / FEATURE_MATCHING_METHOD_ORB.
+         * @default 'SIFT'
+         */
+        method?: Images.FeatureDetectionMethod;
+        /**
+         * 关键点数量上限 (按响应强度保留最优者). 0 或未指定时使用方法默认值: SIFT 不限制, ORB 为 20000.
+         */
+        maxFeatures?: number;
+        /**
+         * 仅为兼容保留. 检测始终在灰度图上进行.
+         * @deprecated
          */
         grayscale?: boolean;
-        /**
-         * Numbers:<br>
-         * ImageFeatureMatching.FEATURE_MATCHING_METHOD_SIFT<br>
-         * ImageFeatureMatching.FEATURE_MATCHING_METHOD_ORB
-         */
-        method?: number | 'SIFT' | 'ORB';
     };
+
+    type FeatureMatcherType = 'FLANNBASED' | 'BRUTEFORCE' | 'BRUTEFORCE_L1' | 'BRUTEFORCE_HAMMING' | 'BRUTEFORCE_HAMMINGLUT' | 'BRUTEFORCE_SL2';
 
     type FeatureMatchingOptions = {
         /**
-         * 特征匹配方式.
-         * @default 'FLANNBASED'
+         * 描述子匹配器, 为 org.opencv.features2d.DescriptorMatcher 的常量名 (不区分大小写) 或常量值.
+         * 未指定时二进制描述子 (ORB) 使用 BRUTEFORCE_HAMMING, 浮点描述子 (SIFT) 使用 FLANNBASED;
+         * 与描述子类型不兼容的指定会自动改为对应默认值.
          */
-        matcher?: 'FLANNBASED' | 'BRUTEFORCE' | 'BRUTEFORCE_L1' | 'BRUTEFORCE_HAMMING' | 'BRUTEFORCE_HAMMINGLUT' | 'BRUTEFORCE_SL2';
+        matcher?: Images.FeatureMatcherType | Lowercase<Images.FeatureMatcherType> | number;
         /**
-         *  绘制匹配详情的图片路径, 主要用于调试, 通过本地图片查看匹配情况.
+         * Lowe 比例测试阈值, 取值 (0, 1], 越小越严格.
+         * @default 0.8 (二进制描述子) / 0.7 (浮点描述子)
+         */
+        threshold?: number;
+        /**
+         * RANSAC 重投影误差阈值 (像素).
+         * @default 3
+         */
+        ransacThreshold?: number;
+        /**
+         * 返回边框所需的最少内点数 (不小于 4).
+         * @default 4
+         */
+        minInliers?: number;
+        /**
+         * 绘制匹配示意图的 JPG 保存路径 (目标图与场景图并排并以连线标出匹配), 用于调试.
          */
         drawMatches?: string;
         /**
-         * 匹配阈值.
-         * @default 0.7
+         * 直接传入图片 (而非 ImageFeatures) 时使用的检测方法.
+         * @default 'SIFT'
          */
-        threshold?: number;
+        method?: Images.FeatureDetectionMethod;
+        /**
+         * 直接传入图片时使用的检测缩放比例.
+         */
+        scale?: number;
+        /**
+         * 直接传入图片时使用的关键点数量上限.
+         */
+        maxFeatures?: number;
     };
 
     class MatchingResult {
@@ -1887,30 +1932,57 @@ declare namespace Images {
         sortBy(compareFn?: ((a: Images.TemplateMatch, b: Images.TemplateMatch) => number) | Images.MatchingResultSortStrategy): Images.MatchingResult;
     }
 
+    /**
+     * images.detectAndComputeFeatures() 返回的特征描述对象.
+     */
     class ImageFeatures {
         public recycled: boolean;
         public javaObject: org.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor;
+        /** 特征计算时实际使用的缩放比例. */
         public scale: number;
+        /** 特征对应的原图区域. */
         public region: org.opencv.core.Rect;
+        /** 检测到的关键点数量, 为 0 时 (如纯色图片) 匹配结果必为 null. */
+        public readonly count: number;
+        /** 检测方法名称, 如 "SIFT" 或 "ORB". */
+        public readonly method: 'SIFT' | 'ORB' | string;
         public onRecycled: (features: Images.ImageFeatures) => any;
         public isRecycled(): boolean;
         public recycle(): void;
         public setOneShot(b: boolean): Images.ImageFeatures;
+        /** 标记为一次性对象, 被 matchFeatures() 使用后自动回收. */
+        public oneShot(): Images.ImageFeatures;
         public shoot(): void;
     }
 
     /**
-     * 特征匹配返回的结果, 表示一个四边形.
+     * 特征匹配返回的结果, 表示目标在场景中的四边形.
+     * 四角与目标图片自身的四角一一对应, 因此旋转或透视变形的目标会得到旋转的边框.
      */
     class ObjectFrame {
-        constructor(topLeft: org.opencv.core.Point, topRight: org.opencv.core.Point, bottomLeft: org.opencv.core.Point, bottomRight: org.opencv.core.Point);
-        public topLeft: org.opencv.core.Point;
-        public topRight: org.opencv.core.Point;
-        public bottomLeft: org.opencv.core.Point;
-        public bottomRight: org.opencv.core.Point;
-        public centerX: number;
-        public centerY: number;
-        public center: org.opencv.core.Point;
+        constructor(topLeft: org.opencv.core.Point, topRight: org.opencv.core.Point, bottomLeft: org.opencv.core.Point, bottomRight: org.opencv.core.Point, matches?: number, inliers?: number);
+        public readonly topLeft: org.opencv.core.Point;
+        public readonly topRight: org.opencv.core.Point;
+        public readonly bottomLeft: org.opencv.core.Point;
+        public readonly bottomRight: org.opencv.core.Point;
+        public readonly centerX: number;
+        public readonly centerY: number;
+        public readonly center: org.opencv.core.Point;
+        /** 上边长度, 即目标在场景中的宽度. */
+        public readonly width: number;
+        /** 左边长度, 即目标在场景中的高度. */
+        public readonly height: number;
+        /** 上边的旋转角度 (度), 取值 (-180, 180], 正值为屏幕上的顺时针方向. */
+        public readonly angle: number;
+        /** 四角点的轴对齐外接矩形. */
+        public readonly bounds: org.opencv.core.Rect;
+        /** 场景坐标系中的 RANSAC 内点. */
+        public readonly points: org.opencv.core.Point[];
+        /** 通过比例测试的匹配数. */
+        public readonly matches: number;
+        /** 支撑该边框的 RANSAC 内点数, 越多越可靠. */
+        public readonly inliers: number;
+        /** 四角点, 中心点, 尺寸, 角度及匹配统计摘要. */
         public summary(): string;
     }
 
