@@ -21699,6 +21699,23 @@ declare namespace org {
 declare namespace org {
 	export namespace opencv {
 		export namespace core {
+			export class DMatch {
+				public distance: number;
+				public imgIdx: number;
+				public queryIdx: number;
+				public trainIdx: number;
+				public constructor();
+				public constructor(_queryIdx: number, _trainIdx: number, _distance: number);
+				public constructor(_queryIdx: number, _trainIdx: number, _imgIdx: number, _distance: number);
+				public lessThan(it: __javaLibraryRoots.orgRoot.opencv.core.DMatch): boolean;
+				public toString(): string;
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace opencv {
+		export namespace core {
 			export class KeyPoint {
 				public angle: number;
 				public class_id: number;
@@ -21895,6 +21912,23 @@ declare namespace org {
 				public static fromNativeAddr(addr: number): __javaLibraryRoots.orgRoot.opencv.core.MatOfByte;
 				public toArray(): number[];
 				public toList(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.javaRoot.lang.Byte>;
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace opencv {
+		export namespace core {
+			export class MatOfDMatch extends __javaLibraryRoots.orgRoot.opencv.core.Mat {
+				public constructor();
+				public constructor(m: __javaLibraryRoots.orgRoot.opencv.core.Mat);
+				public constructor(...ap: __javaLibraryRoots.orgRoot.opencv.core.DMatch[]);
+				public alloc(elemNumber: number): void;
+				public fromArray(...a: __javaLibraryRoots.orgRoot.opencv.core.DMatch[]): void;
+				public fromList(ldm: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.DMatch>): void;
+				public static fromNativeAddr(addr: number): __javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch;
+				public toArray(): __javaLibraryRoots.orgRoot.opencv.core.DMatch[];
+				public toList(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.DMatch>;
 			}
 		}
 	}
@@ -22204,6 +22238,54 @@ declare namespace org {
 				public set(vals: number[]): void;
 				public toString(): string;
 				public clone(...args: any[]): any;
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace opencv {
+		export namespace features2d {
+			export class DescriptorMatcher extends __javaLibraryRoots.orgRoot.opencv.core.Algorithm {
+				public static readonly BRUTEFORCE: number;
+				public static readonly BRUTEFORCE_HAMMING: number;
+				public static readonly BRUTEFORCE_HAMMINGLUT: number;
+				public static readonly BRUTEFORCE_L1: number;
+				public static readonly BRUTEFORCE_SL2: number;
+				public static readonly FLANNBASED: number;
+				public readonly maskSupported: boolean;
+				public readonly trainDescriptors: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.Mat>;
+				public static __fromPtr__(addr: number): __javaLibraryRoots.orgRoot.opencv.features2d.DescriptorMatcher;
+				public add(descriptors: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.Mat>): void;
+				public clear(): void;
+				public clone(): __javaLibraryRoots.orgRoot.opencv.features2d.DescriptorMatcher;
+				public clone(emptyTrainData: boolean): __javaLibraryRoots.orgRoot.opencv.features2d.DescriptorMatcher;
+				public static create(matcherType: number): __javaLibraryRoots.orgRoot.opencv.features2d.DescriptorMatcher;
+				public static create(descriptorMatcherType: string): __javaLibraryRoots.orgRoot.opencv.features2d.DescriptorMatcher;
+				public empty(): boolean;
+				public getTrainDescriptors(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.Mat>;
+				public isMaskSupported(): boolean;
+				public knnMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, k: number): void;
+				public knnMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, k: number, masks: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.Mat>): void;
+				public knnMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, k: number, masks: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.Mat>, compactResult: boolean): void;
+				public knnMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, trainDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, k: number): void;
+				public knnMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, trainDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, k: number, mask: __javaLibraryRoots.orgRoot.opencv.core.Mat): void;
+				public knnMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, trainDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, k: number, mask: __javaLibraryRoots.orgRoot.opencv.core.Mat, compactResult: boolean): void;
+				public match(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, trainDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch): void;
+				public match(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, trainDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch, mask: __javaLibraryRoots.orgRoot.opencv.core.Mat): void;
+				public match(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch): void;
+				public match(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch, masks: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.Mat>): void;
+				public radiusMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, maxDistance: number): void;
+				public radiusMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, maxDistance: number, masks: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.Mat>): void;
+				public radiusMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, maxDistance: number, masks: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.Mat>, compactResult: boolean): void;
+				public radiusMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, trainDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, maxDistance: number): void;
+				public radiusMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, trainDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, maxDistance: number, mask: __javaLibraryRoots.orgRoot.opencv.core.Mat): void;
+				public radiusMatch(queryDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, trainDescriptors: __javaLibraryRoots.orgRoot.opencv.core.Mat, matches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.opencv.core.MatOfDMatch>, maxDistance: number, mask: __javaLibraryRoots.orgRoot.opencv.core.Mat, compactResult: boolean): void;
+				public read(fileName: string): void;
+				public train(): void;
+				public write(fileName: string): void;
+				protected constructor();
+				public clone(...args: any[]): any;
+				public static __fromPtr__(...args: any[]): any;
 			}
 		}
 	}

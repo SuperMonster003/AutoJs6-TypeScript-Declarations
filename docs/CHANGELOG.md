@@ -4,6 +4,20 @@
 
 ******
 
+# v4.16.0
+
+###### 2026/09/16
+
+##### 图色与图像匹配增强
+
+- `新增` `images.countPointsByColor` 与 `images.getMeanColor` 声明, `images.readPixels` 接受 ImageWrapper 或文件路径
+- `新增` `colors.distance`, `colors.invert`, `colors.blend`, `colors.contrast` 及 Color 实例对应方法声明
+- `新增` `images.matchTemplate` 与 `images.findPointByImage` 的 `scales` 选项, 匹配项的 `width`, `height`, `scale`, `center`, `rect` 属性, 以及 `MatchingResult` 的 `size`, `isEmpty()`, `isNotEmpty()`, `filter()` 声明
+- `完善` `images.matchTemplate` 参数接受图片路径并补充 `useTransparentMask` 选项
+- `新增` `images.matchFeatures` 的 `ransacThreshold`, `minInliers`, `maxFeatures` 选项及图片参数, `ObjectFrame` 的 `width`, `height`, `angle`, `bounds`, `points`, `matches`, `inliers` 属性, 以及 `ImageFeatures` 的 `count`, `method`, `oneShot()` 声明
+- `完善` `images.detectAndComputeFeatures` 补充 `maxFeatures` 选项及 `scale` 取值说明, 匹配器名称不区分大小写
+- `更新` 合并 AutoJs6 6.8.0 (5280) 的主应用, 资源与三方库声明, 保留 Flow 任务栈及坐标点击声明
+
 # v4.15.0
 
 ###### 2026/09/16

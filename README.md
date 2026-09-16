@@ -146,6 +146,20 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.16.0
+
+###### 2026/09/16
+
+##### 图色与图像匹配增强
+
+- `新增` `images.countPointsByColor` 与 `images.getMeanColor` 声明, `images.readPixels` 接受 ImageWrapper 或文件路径
+- `新增` `colors.distance`, `colors.invert`, `colors.blend`, `colors.contrast` 及 Color 实例对应方法声明
+- `新增` `images.matchTemplate` 与 `images.findPointByImage` 的 `scales` 选项, 匹配项的 `width`, `height`, `scale`, `center`, `rect` 属性, 以及 `MatchingResult` 的 `size`, `isEmpty()`, `isNotEmpty()`, `filter()` 声明
+- `完善` `images.matchTemplate` 参数接受图片路径并补充 `useTransparentMask` 选项
+- `新增` `images.matchFeatures` 的 `ransacThreshold`, `minInliers`, `maxFeatures` 选项及图片参数, `ObjectFrame` 的 `width`, `height`, `angle`, `bounds`, `points`, `matches`, `inliers` 属性, 以及 `ImageFeatures` 的 `count`, `method`, `oneShot()` 声明
+- `完善` `images.detectAndComputeFeatures` 补充 `maxFeatures` 选项及 `scale` 取值说明, 匹配器名称不区分大小写
+- `更新` 合并 AutoJs6 6.8.0 (5280) 的主应用, 资源与三方库声明, 保留 Flow 任务栈及坐标点击声明
+
 # v4.15.0
 
 ###### 2026/09/16
@@ -165,12 +179,3 @@ npm update @sm003/autojs6-dts
 - `新增` Flow 链式 clickIfExists / clickAny / findAny, whenPresent 和 repeatUntil 声明
 - `更新` waitForStable 的 snapshot 投影与集合返回类型, stableFor 默认值与运行时保持一致
 - `更新` 同步宿主生成声明与 Ace Editor LSP 聚合文件和索引
-
-# v4.13.0
-
-###### 2026/09/14
-
-##### 打包应用共享存储配置
-
-- `新增` LaunchConfig.requiresSharedStorage 及对应 getter / setter 声明
-- `更新` 同步 AutoJs6 6.8.0 (5280) 的资源与依赖声明及 Ace Editor LSP 分组
