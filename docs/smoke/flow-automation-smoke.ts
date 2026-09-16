@@ -36,3 +36,25 @@ flow.whenPresent('Optional dialog', 42);
 flow.repeatUntil(() => undefined, 'Ready', { retryOn: () => Promise.resolve(true) });
 // @ts-expect-error snapshot values must be structural data, not functions.
 waitForStable('Ready', { snapshot: () => () => true });
+
+let coordinateClick: Flow<Automator.SmartClickBoundsResult> = flow.smartClickBounds('Ready', {
+    offset: [-12, 5], verify: 'Done',
+});
+coordinateClick.then(result => { let method: 'gesture' = result.method; void method; });
+let coordinateOptional: Flow<boolean> = flow.of(null).clickBoundsIfExists('Dismiss', 400);
+let coordinateCandidate: Flow<Automator.ClickedBoundsCandidate | null> = flow.clickBoundsAny(['Accept', 'Continue']);
+let directOptional: boolean = automator.clickBoundsIfExists('Dismiss', { offset: -4 });
+let directCandidate: Automator.ClickedBoundsCandidate | null = clickBoundsAny(['Accept', 'Continue']);
+let directClick: Automator.SmartClickBoundsResult = smartClickBounds('Ready');
+waitThenClickBounds('Ready').clickBoundsAfter(100, 200).clickBounds(-5, 5);
+flow.clickBoundsWait('Ready').waitThenClickBounds('Next').clickBoundsWhenStable('Done');
+flow.waitForStableThenClickBounds('Ready', { stableFor: 300 });
+clickBoundsWhenStable('Ready', { stableFor: 300 });
+waitForStableThenClickBounds('Ready', { stableFor: 300 });
+clickBoundsWhenStableAfter('Ready', { stableFor: 300, delay: 200 });
+flow.clickBoundsWhenStableAfter('Ready', { delay: 200 }).smartClickBounds();
+flow.repeatUntil(() => undefined, 'Ready', { maxAttempts: 0, timeout: 3000 });
+// @ts-expect-error coordinate clicks do not accept node/ancestor fallback policies.
+smartClickBounds('Ready', { climb: false });
+// @ts-expect-error coordinate clicks always use gestures.
+flow.clickBoundsIfExists('Ready', { gestureFallback: false });

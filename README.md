@@ -146,6 +146,16 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.15.0
+
+###### 2026/09/16
+
+##### 坐标点击与 Flow 任务栈
+
+- `新增` smartClickBounds / clickBoundsIfExists / clickBoundsAny 及 Flow 等待, 延时和别名声明
+- `更新` maxAttempts 默认 0 表示不限尝试次数, FlowError.flowStack 提供异步任务诊断
+- `更新` 同步宿主生成声明, Ace Editor 内置声明, LSP 聚合文件和索引
+
 # v4.14.0
 
 ###### 2026/09/16
@@ -164,12 +174,3 @@ npm update @sm003/autojs6-dts
 
 - `新增` LaunchConfig.requiresSharedStorage 及对应 getter / setter 声明
 - `更新` 同步 AutoJs6 6.8.0 (5280) 的资源与依赖声明及 Ace Editor LSP 分组
-
-# v4.12.0
-
-###### 2026/09/13
-
-##### Pangu 文本间距
-
-- `新增` 全局 `pangu` 声明, 覆盖 pangu.js 10.1.0 的 `version`, `spaceText` 与 `hasProperSpacing`, 并为 `require('pangu')` 提供具体返回类型
-- `更新` 同步 AutoJs6 主应用声明与 Ace Editor 内置声明, 重新生成 LSP 分组与索引

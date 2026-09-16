@@ -63,21 +63,26 @@ declare namespace Internal {
 
         /** `wait(cond, ...).click()`. */
         waitThenClick: Flow.WaitFunction<UiObject>;
+        waitThenClickBounds: Flow.WaitFunction<UiObject>;
 
         /** Alias of `waitThenClick`. */
         clickWait: Flow.WaitFunction<UiObject>;
+        clickBoundsWait: Flow.WaitFunction<UiObject>;
 
         /** `wait(cond, ...).longClick()`. */
         waitThenLongClick: Flow.WaitFunction<UiObject>;
 
         /** `waitForStable(cond, ...).click()`. */
         waitForStableThenClick: Flow.WaitFunction<UiObject>;
+        waitForStableThenClickBounds: Flow.WaitFunction<UiObject>;
 
         /** Alias of `waitForStableThenClick`. */
         clickWhenStable: Flow.WaitFunction<UiObject>;
+        clickBoundsWhenStable: Flow.WaitFunction<UiObject>;
 
         /** `waitForStable(cond, ...).sleep(delayMin, delayMax).click()`. */
         clickWhenStableAfter: Flow.WaitAfterFunction;
+        clickBoundsWhenStableAfter: Flow.WaitAfterFunction;
 
         /**
          * Starts a chain with a sleep, as the global `sleep`. zh-CN: 以一次休眠起链, 参数同全局 `sleep`.
@@ -137,7 +142,11 @@ declare namespace Internal {
 
         smartClick(target: Automator.Target, options?: Automator.SmartClickOptions, onOk?: Flow.OnOk<Automator.SmartClickResult>, onErr?: Flow.OnErr): Flow<Automator.SmartClickResult>;
 
+        smartClickBounds(target: Automator.Target, options?: Automator.ClickBoundsOptions, onOk?: Flow.OnOk<Automator.SmartClickBoundsResult>, onErr?: Flow.OnErr): Flow<Automator.SmartClickBoundsResult>;
+
         clickIfExists(target: Automator.Target, options?: Automator.SmartClickOptions | number, onOk?: Flow.OnOk<boolean>, onErr?: Flow.OnErr): Flow<boolean>;
+
+        clickBoundsIfExists(target: Automator.Target, options?: Automator.ClickBoundsOptions | number, onOk?: Flow.OnOk<boolean>, onErr?: Flow.OnErr): Flow<boolean>;
 
         /** Optional handler on a worker; awaits returned work and preserves the root's null value. zh-CN: 工作线程上的可选处理; 等待返回的任务并透传起点的 null 值. */
         whenPresent(cond: Flow.SelectorCond, handler: (match: UiObject[]) => any, options: Flow.WhenPresentOptions & { resultType: '[]' }): Flow<null>;
@@ -146,6 +155,8 @@ declare namespace Internal {
         repeatUntil: Flow.RepeatUntilFunction;
 
         clickAny(targets: Automator.Target | Automator.Target[], options?: Automator.SmartClickOptions | number, onOk?: Flow.OnOk<Automator.ClickedCandidate | null>, onErr?: Flow.OnErr): Flow<Automator.ClickedCandidate | null>;
+
+        clickBoundsAny(targets: Automator.Target | Automator.Target[], options?: Automator.ClickBoundsOptions | number, onOk?: Flow.OnOk<Automator.ClickedBoundsCandidate | null>, onErr?: Flow.OnErr): Flow<Automator.ClickedBoundsCandidate | null>;
 
         findAny(targets: Automator.Target | Automator.Target[], options?: Automator.ToolOptions | number, onOk?: Flow.OnOk<Automator.FoundCandidate | null>, onErr?: Flow.OnErr): Flow<Automator.FoundCandidate | null>;
 
@@ -226,11 +237,16 @@ interface Flow<T = any> {
     waitForActivity: Flow.NativeWaitFunction;
     waitForPackage: Flow.NativeWaitFunction;
     waitThenClick: Flow.WaitFunction<UiObject>;
+    waitThenClickBounds: Flow.WaitFunction<UiObject>;
     clickWait: Flow.WaitFunction<UiObject>;
+    clickBoundsWait: Flow.WaitFunction<UiObject>;
     waitThenLongClick: Flow.WaitFunction<UiObject>;
     waitForStableThenClick: Flow.WaitFunction<UiObject>;
+    waitForStableThenClickBounds: Flow.WaitFunction<UiObject>;
     clickWhenStable: Flow.WaitFunction<UiObject>;
+    clickBoundsWhenStable: Flow.WaitFunction<UiObject>;
     clickWhenStableAfter: Flow.WaitAfterFunction;
+    clickBoundsWhenStableAfter: Flow.WaitAfterFunction;
 
     // Node actions on the current value (a UiObject, a collection / array of them, or a point for click / longClick);
     // success keeps the target as the value, `false` rejects ACTION_FAILED under `strictActions`.
@@ -263,7 +279,9 @@ interface Flow<T = any> {
     performAction(action: number | string, ...args: any[]): Flow<T>;
     /** A sleep, then `click`. zh-CN: 先休眠再 `click`. */
     clickAfter(millis: number, onOk?: Flow.OnOk<T>, onErr?: Flow.OnErr): Flow<T>;
+    clickBoundsAfter(millis: number, onOk?: Flow.OnOk<T>, onErr?: Flow.OnErr): Flow<T>;
     clickAfter(millisMin: number, millisMax: number | string, onOk?: Flow.OnOk<T>, onErr?: Flow.OnErr): Flow<T>;
+    clickBoundsAfter(millisMin: number, millisMax: number | string, onOk?: Flow.OnOk<T>, onErr?: Flow.OnErr): Flow<T>;
     /** A sleep, then `longClick`. zh-CN: 先休眠再 `longClick`. */
     longClickAfter(millis: number, onOk?: Flow.OnOk<T>, onErr?: Flow.OnErr): Flow<T>;
     longClickAfter(millisMin: number, millisMax: number | string, onOk?: Flow.OnOk<T>, onErr?: Flow.OnErr): Flow<T>;
@@ -291,10 +309,13 @@ interface Flow<T = any> {
 
     /** Smart-clicks the current node. zh-CN: 智能点击当前节点. */
     smartClick(options?: Automator.SmartClickOptions, onOk?: Flow.OnOk<Automator.SmartClickResult>, onErr?: Flow.OnErr): Flow<Automator.SmartClickResult>;
+    smartClickBounds(options?: Automator.ClickBoundsOptions, onOk?: Flow.OnOk<Automator.SmartClickBoundsResult>, onErr?: Flow.OnErr): Flow<Automator.SmartClickBoundsResult>;
 
     /** Explicit target; defaults to one lookup. Missing returns false, action errors reject. */
     clickIfExists(target: Automator.Target, options?: Automator.SmartClickOptions | number, onOk?: Flow.OnOk<boolean>, onErr?: Flow.OnErr): Flow<boolean>;
+    clickBoundsIfExists(target: Automator.Target, options?: Automator.ClickBoundsOptions | number, onOk?: Flow.OnOk<boolean>, onErr?: Flow.OnErr): Flow<boolean>;
     clickAny(targets: Automator.Target | Automator.Target[], options?: Automator.SmartClickOptions | number, onOk?: Flow.OnOk<Automator.ClickedCandidate | null>, onErr?: Flow.OnErr): Flow<Automator.ClickedCandidate | null>;
+    clickBoundsAny(targets: Automator.Target | Automator.Target[], options?: Automator.ClickBoundsOptions | number, onOk?: Flow.OnOk<Automator.ClickedBoundsCandidate | null>, onErr?: Flow.OnErr): Flow<Automator.ClickedBoundsCandidate | null>;
     findAny(targets: Automator.Target | Automator.Target[], options?: Automator.ToolOptions | number, onOk?: Flow.OnOk<Automator.FoundCandidate | null>, onErr?: Flow.OnErr): Flow<Automator.FoundCandidate | null>;
 
     /** Skips absence only, awaits the handler's Flow/Promise, and preserves T. Handler runs on a worker. zh-CN: 仅在目标缺失时跳过, 等待处理器返回的 Flow/Promise 并透传 T; 处理器在工作线程运行. */
@@ -390,6 +411,8 @@ declare namespace Flow {
      * zh-CN: 步骤失败的错误 (`name` 为 `'FlowError'`); 工具集与事件等待的同步函数也抛出它.
      */
     interface FlowError extends Error {
+        /** Async step creation stack, when available. zh-CN: 可用时提供异步步骤创建栈. */
+        readonly flowStack?: string;
         readonly name: 'FlowError';
         readonly code: ErrorCode;
         /** The failed step, such as `'wait'`, `'click'`, `'smartClick'`, `'sync'`. zh-CN: 失败的步骤, 如 `'wait'`, `'click'`, `'smartClick'`, `'sync'`. */
@@ -467,7 +490,7 @@ declare namespace Flow {
     interface RepeatUntilOptions extends ScopeOptions {
         /** Finite total milliseconds, default flow.defaults().timeout; 0 checks once without an action. */
         timeout?: number;
-        /** Maximum action invocations, including the first; default 10, non-negative integer. */
+        /** Maximum action invocations, including the first; default 0 means unlimited, subject to timeout. Non-negative integer. */
         maxAttempts?: number;
         /** Delay between actions, default flow.defaults().interval. */
         interval?: number;
@@ -550,13 +573,21 @@ declare const waitAsync: Flow.WaitFunction<UiObject>;
 
 declare const waitThenClick: Flow.WaitFunction<UiObject>;
 
+declare const waitThenClickBounds: Flow.WaitFunction<UiObject>;
+
 declare const clickWait: Flow.WaitFunction<UiObject>;
+
+declare const clickBoundsWait: Flow.WaitFunction<UiObject>;
 
 declare const waitForStable: Flow.WaitFunction<UiObject>;
 
 declare const waitForStableThenClick: Flow.WaitFunction<UiObject>;
 
+declare const waitForStableThenClickBounds: Flow.WaitFunction<UiObject>;
+
 declare const clickWhenStable: Flow.WaitFunction<UiObject>;
+
+declare const clickBoundsWhenStable: Flow.WaitFunction<UiObject>;
 
 declare const waitForVisible: Flow.WaitFunction<UiObject>;
 
@@ -565,3 +596,5 @@ declare const waitForHidden: Flow.WaitHiddenFunction;
 declare const waitForGone: Flow.WaitHiddenFunction;
 
 declare const clickWhenStableAfter: Flow.WaitAfterFunction;
+
+declare const clickBoundsWhenStableAfter: Flow.WaitAfterFunction;

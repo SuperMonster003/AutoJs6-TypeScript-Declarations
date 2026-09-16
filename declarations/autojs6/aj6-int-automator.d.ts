@@ -418,12 +418,15 @@ declare namespace Internal {
          * console.log(res.method); // 'node' | 'ancestor' | 'gesture'
          */
         smartClick(target: Automator.Target, options?: Automator.SmartClickOptions): Automator.SmartClickResult;
+        smartClickBounds(target: Automator.Target, options?: Automator.ClickBoundsOptions): Automator.SmartClickBoundsResult;
 
         /** `smartClick` when the target shows up within `timeout` (default 0: a single look), else `false`. zh-CN: 目标在 `timeout` (默认 0: 只看一次) 内出现则 `smartClick`, 否则 `false`. */
         clickIfExists(target: Automator.Target, options?: Automator.SmartClickOptions | number): boolean;
+        clickBoundsIfExists(target: Automator.Target, options?: Automator.ClickBoundsOptions | number): boolean;
 
         /** Clicks the first candidate that shows up; `null` when none did within `timeout`. zh-CN: 点击最先出现的候选; 时限内都未出现为 `null`. */
         clickAny(targets: Automator.Target | Automator.Target[], options?: Automator.SmartClickOptions | number): Automator.ClickedCandidate | null;
+        clickBoundsAny(targets: Automator.Target | Automator.Target[], options?: Automator.ClickBoundsOptions | number): Automator.ClickedBoundsCandidate | null;
 
         /** The first candidate that shows up; `null` when none did within `timeout`. zh-CN: 最先出现的候选; 时限内都未出现为 `null`. */
         findAny(targets: Automator.Target | Automator.Target[], options?: Automator.ToolOptions | number): Automator.FoundCandidate | null;
@@ -778,7 +781,7 @@ declare namespace Automator {
         maxClimb?: number;
         /** Fall back to a gesture at the node center; default `true`. zh-CN: 回退到节点中心的手势点按; 默认 `true`. */
         gestureFallback?: boolean;
-        /** The gesture offset from the center. zh-CN: 手势相对中心的偏移. */
+        /** The signed integer pixel offset from the center. zh-CN: 手势相对中心的有符号整数像素偏移. */
         offset?: number | [number, number];
         /** A target that must show up after the click, or a predicate. zh-CN: 点击后必须出现的目标, 或断言函数. */
         verify?: Target;
@@ -787,6 +790,13 @@ declare namespace Automator {
         /** Polling interval for `verify`; default 100. zh-CN: `verify` 的轮询间隔; 默认 100. */
         verifyInterval?: number;
     }
+
+    /** Direct bounds taps accept signed integer pixel offsets, verification and common tool options. */
+    type ClickBoundsOptions = Omit<SmartClickOptions, 'climb' | 'maxClimb' | 'gestureFallback'>;
+
+    type SmartClickBoundsResult = Omit<SmartClickResult, 'method'> & { method: 'gesture' };
+
+    type ClickedBoundsCandidate = Omit<ClickedCandidate, 'method'> & { method: 'gesture' };
 
     interface SmartClickResult {
         ok: true;
@@ -1287,16 +1297,19 @@ declare function input(index: number, text: string): boolean;
  * @see Internal.Automator.smartClick
  */
 declare function smartClick(target: Automator.Target, options?: Automator.SmartClickOptions): Automator.SmartClickResult;
+declare function smartClickBounds(target: Automator.Target, options?: Automator.ClickBoundsOptions): Automator.SmartClickBoundsResult;
 
 /**
  * @see Internal.Automator.clickIfExists
  */
 declare function clickIfExists(target: Automator.Target, options?: Automator.SmartClickOptions | number): boolean;
+declare function clickBoundsIfExists(target: Automator.Target, options?: Automator.ClickBoundsOptions | number): boolean;
 
 /**
  * @see Internal.Automator.clickAny
  */
 declare function clickAny(targets: Automator.Target | Automator.Target[], options?: Automator.SmartClickOptions | number): Automator.ClickedCandidate | null;
+declare function clickBoundsAny(targets: Automator.Target | Automator.Target[], options?: Automator.ClickBoundsOptions | number): Automator.ClickedBoundsCandidate | null;
 
 /**
  * @see Internal.Automator.findAny

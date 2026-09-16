@@ -4,6 +4,16 @@
 
 ******
 
+# v4.15.0
+
+###### 2026/09/16
+
+##### 坐标点击与 Flow 任务栈
+
+- `新增` smartClickBounds / clickBoundsIfExists / clickBoundsAny 及 Flow 等待, 延时和别名声明
+- `更新` maxAttempts 默认 0 表示不限尝试次数, FlowError.flowStack 提供异步任务诊断
+- `更新` 同步宿主生成声明, Ace Editor 内置声明, LSP 聚合文件和索引
+
 # v4.14.0
 
 ###### 2026/09/16
