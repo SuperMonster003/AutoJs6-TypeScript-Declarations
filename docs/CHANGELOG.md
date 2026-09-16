@@ -4,6 +4,16 @@
 
 ******
 
+# v4.14.0
+
+###### 2026/09/16
+
+##### Flow 可选步骤与有界循环
+
+- `新增` Flow 链式 clickIfExists / clickAny / findAny, whenPresent 和 repeatUntil 声明
+- `更新` waitForStable 的 snapshot 投影与集合返回类型, stableFor 默认值与运行时保持一致
+- `更新` 同步宿主生成声明与 Ace Editor LSP 聚合文件和索引
+
 # v4.13.0
 
 ###### 2026/09/14

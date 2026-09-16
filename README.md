@@ -146,6 +146,25 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.14.0
+
+###### 2026/09/16
+
+##### Flow 可选步骤与有界循环
+
+- `新增` Flow 链式 clickIfExists / clickAny / findAny, whenPresent 和 repeatUntil 声明
+- `更新` waitForStable 的 snapshot 投影与集合返回类型, stableFor 默认值与运行时保持一致
+- `更新` 同步宿主生成声明与 Ace Editor LSP 聚合文件和索引
+
+# v4.13.0
+
+###### 2026/09/14
+
+##### 打包应用共享存储配置
+
+- `新增` LaunchConfig.requiresSharedStorage 及对应 getter / setter 声明
+- `更新` 同步 AutoJs6 6.8.0 (5280) 的资源与依赖声明及 Ace Editor LSP 分组
+
 # v4.12.0
 
 ###### 2026/09/13
@@ -154,71 +173,3 @@ npm update @sm003/autojs6-dts
 
 - `新增` 全局 `pangu` 声明, 覆盖 pangu.js 10.1.0 的 `version`, `spaceText` 与 `hasProperSpacing`, 并为 `require('pangu')` 提供具体返回类型
 - `更新` 同步 AutoJs6 主应用声明与 Ace Editor 内置声明, 重新生成 LSP 分组与索引
-
-# v4.11.1
-
-###### 2026/09/13
-
-##### Android 本地网络权限
-
-- `修复` `runtime.requestPermissions` 的通用权限名类型, 将参数声明为 `string[]`, 更正数组示例并说明 `access_local_network` 的系统与 targetSdk 条件
-- `更新` 从 AutoJs6 6.8.0 (5280) 重新生成主应用与资源声明, 同步 Ace Editor 内置声明和 LSP 分组
-
-# v4.11.0
-
-###### 2026/09/13
-
-##### 设备内存页大小
-
-- `新增` `device.pageSize` 与 `$device.pageSize` 只读数值声明, 以字节返回当前系统的内存页大小
-- `更新` 从 AutoJs6 6.8.0 (5280) 重新生成主应用与资源声明, 同步 Ace Editor 内置声明和 LSP 分组
-
-# v4.10.0
-
-###### 2026/09/12
-
-##### OCR 自动选择模式
-
-- `新增` OCR 模式支持 `auto`, 空字符串及 nullish 重置, 读取类型限定为实际引擎名称或空字符串, 同步 `tap`, 单次调用选项与 Ace Editor 补全
-- `更新` 从 AutoJs6 6.8.0 (5280) 重新生成主应用与资源声明, 同步 Ace Editor 内置声明和 LSP 分组
-
-# v4.9.0
-
-###### 2026/09/10
-
-##### MediaInfo 多流查询
-
-- `新增` MediaInfo 流序号, 流计数, InfoKind 与能力声明, 同步 Rhino 查询选项与 Ace Editor 补全
-
-# v4.8.1
-
-###### 2026/09/08
-
-##### 控制台输入, 显示选项与 UI 模式控制台元素声明
-
-- `新增` `console.rawInput` / `console.input` 恢复为可用声明 (阻塞读取控制台输入栏的一行文本, `input` 作为 JavaScript 表达式求值)
-- `新增` `console.setTimeVisible` / `setTimeFormat` / `setColorful` / `setAvoidStatusBar` / `setInputVisible` 及 `console.build` 的 `timeVisible` / `timeFormat` / `colorful` / `avoidStatusBar` / `inputVisible` 选项
-- `新增` JSX 元素 `<console>` / `<globalconsole>` 及其属性声明 (`global`, `title`, 标题栏与内容区样式, `timeVisible`, `timeFormat`, `colorful`, `inputVisible` 等)
-- `依赖` 适配 AutoJs6 6.8.0 (5279) 的控制台重构
-
-# v4.8.0
-
-###### 2026/09/07
-
-##### 无障碍自动化声明
-
-- `新增` `aj6-int-flow.d.ts`: `Flow<T>` 链式对象与 `Flow` 命名空间 (等待选项, 作用域, 默认值, `FlowError` 与错误码), `flow` / `$flow` 命名空间对象 (`Internal.FlowApi`: 等待 / 工具集 / 事件等待起点, `all` / `race` / `any`, `defaults`, `trace`), 以及 `waitAsync` / `waitThenClick` / `clickWait` / `waitForStable` / `waitForStableThenClick` / `clickWhenStable` / `waitForVisible` / `waitForHidden` / `waitForGone` / `clickWhenStableAfter` 全局函数与 `wait.async`
-- `新增` `Internal.Automator` 与全局的工具集 (`smartClick` / `clickIfExists` / `clickAny` / `findAny` / `scrollUntil` / `typeInto` / `dismissPopups` / `collectList` / `launchAndWait` / `backUntil` / `backToApp` / `toggle` / `retry`) 与事件驱动等待 (`waitForIdle` / `waitForEvent` / `waitForToast` / `waitForNotification`), 选项与结果类型置于 `Automator` 命名空间
-- `新增` `Internal.Auto` 的 `wait` / `findWindows` / `findWindowRoots` / `explain` / `dump` / `stats`, `registerEvent` / `registerEvents` 的过滤选项重载, `setWindowFilter` 的匹配对象形式 (`Automator.WindowMatch`), `AutoState.adoptedByEvent`, `Automator.Flags` 新增 `appWindowsFallback` / `eventAssistedPolling`
-- `新增` 字符串选择器重载 `select(syntax)` (全局与 `Internal.Selector`), `findIterator()` 与 `UiObjectIterator`
-- `依赖` 从 AutoJs6 6.8.0 (5278) 重新生成主应用声明 (`UiObject` / `UiSelector` / `UiObjectCollection` 的新增方法与 `UiObjectIterator`), 并同步 Ace Editor 内置声明和 LSP 分组
-
-# v4.7.0
-
-###### 2026/09/01
-
-##### Pinyin 自定义读音与矩阵工具声明
-
-- `新增` `Pinyin.Options.customDictionary` 与 `Pinyin.CustomDictionary`, 声明按调用生效的汉字读音覆盖, 最长匹配优先及 64 KiB/1024 项边界
-- `完善` `pinyin.compare` 返回数值排序结果, `pinyin.compact` 返回候选矩阵的笛卡尔积, 并移除原占位返回类型
-- `依赖` 从 AutoJs6 6.8.0 (5277) 重新生成主应用与共享 Pinyin API 声明, 并同步 Ace Editor 内置声明和 LSP 分组

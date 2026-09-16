@@ -3513,35 +3513,42 @@ declare namespace org {
 						public constructor(implementation: ColorDetector);
 						public constructor();
 						public static get(color: number, algorithm: string, threshold: number): __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector;
+						public static getHueFromRGB(r: number, g: number, b: number): number;
 					}
 					export interface ColorDetector {
 						detectColor(param0: number, param1: number, param2: number): boolean;
+						distance(param0: number, param1: number, param2: number): number;
 					}
 					export namespace ColorDetector {
 						export abstract class AbstractColorDetector {
 							public constructor(color: number);
 						}
 						export interface AbstractColorDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector {}
-						export class DifferenceDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector.AbstractColorDetector {
+						export class DifferenceDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector.ThresholdColorDetector {
 							public constructor(color: number, threshold: number);
-							public detectColor(r: number, g: number, b: number): boolean;
+							public distance(r: number, g: number, b: number): number;
 						}
 						export class EqualityDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector.AbstractColorDetector {
 							public constructor(color: number);
 							public detectColor(r: number, g: number, b: number): boolean;
+							public distance(r: number, g: number, b: number): number;
 						}
-						export class HSDistanceDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector.AbstractColorDetector {
+						export class HSDistanceDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector.ThresholdColorDetector {
 							public constructor(color: number, similarity: number);
 							public constructor(color: number, threshold: number);
-							public detectColor(r: number, g: number, b: number): boolean;
+							public distance(r: number, g: number, b: number): number;
 						}
-						export class RGBDistanceDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector.AbstractColorDetector {
+						export class RGBDistanceDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector.ThresholdColorDetector {
+							public constructor(color: number, threshold: number);
+							public distance(r: number, g: number, b: number): number;
+						}
+						export abstract class ThresholdColorDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector.AbstractColorDetector {
 							public constructor(color: number, threshold: number);
 							public detectColor(r: number, g: number, b: number): boolean;
 						}
-						export class WeightedRGBDistanceDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector.AbstractColorDetector {
+						export class WeightedRGBDistanceDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector.ThresholdColorDetector {
 							public constructor(color: number, threshold: number);
-							public detectColor(r: number, g: number, b: number): boolean;
+							public distance(r: number, g: number, b: number): number;
 						}
 					}
 				}
@@ -3556,6 +3563,8 @@ declare namespace org {
 				export namespace image {
 					export class ColorFinder {
 						public constructor(screenMetrics: __javaRoots.orgRoot.autojs.autojs.runtime.api.ScreenMetrics);
+						public countPointsByColor(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, color: number, threshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect): number;
+						public static countPointsByColor(source: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, color: number, threshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect): number;
 						public detectMultiColors(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, x: number, y: number, firstColor: number, threshold: number, region: __javaRoots.orgRoot.opencv.core.Rect, points: number[]): boolean;
 						/** @deprecated */
 						public findAllMultiColors(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, firstColor: number, threshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, points: number[]): __javaRoots.orgRoot.opencv.core.Point[];
@@ -4408,6 +4417,7 @@ declare namespace org {
 						public pixel(x: number, y: number): number;
 						public recycle(): void;
 						public static recycleAll(): void;
+						public static recycleAll(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime): void;
 						public saveTo(path: string): boolean;
 						public setOneShot(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public shoot(): void;
@@ -4463,35 +4473,47 @@ declare namespace org {
 			export namespace core {
 				export namespace image {
 					export class TemplateMatching {
+						public static readonly DEFAULT_SCALES: number[];
 						public static readonly MATCHING_METHOD_DEFAULT: number;
 						public static readonly MATCHING_METHOD_DEFAULT_WITH_TRANSPARENT_MASK: number;
 						public static readonly MATCHING_METHOD_NONE: number;
 						public static readonly MAX_LEVEL_AUTO: number;
 						public constructor();
-						public static fastTemplateMatching(img: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, template: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, options: __javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Options): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Match>;
-						public static matchTemplate(img: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, template: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, matchingMethod: number): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
-						public static matchTemplate(img: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, template: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, matchingMethod: number, transparentMast: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
-						public static singleTemplateMatching(mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, mat2: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, options: __javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Options): __javaRoots.orgRoot.opencv.core.Point;
+						public static fastTemplateMatching(img: __javaRoots.orgRoot.opencv.core.Mat, template: __javaRoots.orgRoot.opencv.core.Mat, options: __javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Options): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Match>;
+						public static matchTemplate(img: __javaRoots.orgRoot.opencv.core.Mat, template: __javaRoots.orgRoot.opencv.core.Mat, matchingMethod: number): __javaRoots.orgRoot.opencv.core.Mat;
+						public static matchTemplate(img: __javaRoots.orgRoot.opencv.core.Mat, template: __javaRoots.orgRoot.opencv.core.Mat, matchingMethod: number, transparentMask: __javaRoots.orgRoot.opencv.core.Mat): __javaRoots.orgRoot.opencv.core.Mat;
+						public static singleTemplateMatching(mat: __javaRoots.orgRoot.opencv.core.Mat, mat2: __javaRoots.orgRoot.opencv.core.Mat, options: __javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Options): __javaRoots.orgRoot.opencv.core.Point;
 					}
 					export namespace TemplateMatching {
 						export class Match {
+							public readonly height: number;
 							public readonly point: __javaRoots.orgRoot.opencv.core.Point;
+							public readonly scale: number;
 							public readonly similarity: number;
+							public readonly width: number;
+							public readonly center: __javaRoots.orgRoot.opencv.core.Point;
+							public readonly rect: __javaRoots.orgRoot.opencv.core.Rect;
 							public constructor(point: __javaRoots.orgRoot.opencv.core.Point, similarity: number);
+							public constructor(point: __javaRoots.orgRoot.opencv.core.Point, similarity: number, width: number, height: number, scale: number);
+							public getCenter(): __javaRoots.orgRoot.opencv.core.Point;
+							public getRect(): __javaRoots.orgRoot.opencv.core.Rect;
 							public toString(): string;
 						}
 						export class Options {
 							public readonly limit: number;
 							public readonly matchingMethod: number;
 							public readonly maxLevel: number;
+							public readonly scales: number[];
 							public readonly strictThreshold: number;
 							public readonly useTransparentMask: boolean;
 							public readonly weakThreshold: number;
 							public constructor(matchingMethod: number, weakThreshold: number, strictThreshold: number, maxLevel: number);
 							public constructor(matchingMethod: number, weakThreshold: number, strictThreshold: number, maxLevel: number, useTransparentMask: boolean, limit: number);
+							public constructor(matchingMethod: number, weakThreshold: number, strictThreshold: number, maxLevel: number, useTransparentMask: boolean, limit: number, scales: number[]);
 							public getLimit(): number;
 							public getMatchingMethod(): number;
 							public getMaxLevel(): number;
+							public getScales(): number[];
 							public getStrictThreshold(): number;
 							public getUseTransparentMask(): boolean;
 							public getWeakThreshold(): number;
@@ -5620,6 +5642,7 @@ declare namespace org {
 						public clone(): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public convertTo(_type_: number): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public convertTo(_type_: number, isRelease: boolean): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
+						public static from(source: __javaRoots.orgRoot.opencv.core.Mat): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public isReleased(): boolean;
 						public static ones(size_width: number, size_height: number, _type_: number): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public release(): void;
@@ -10155,37 +10178,72 @@ declare namespace org {
 			export namespace runtime {
 				export namespace api {
 					export class ImageFeatureMatching {
+						public static readonly DEFAULT_ORB_FEATURES: number;
+						public static readonly DEFAULT_RANSAC_REPROJECTION_THRESHOLD: number;
+						public static readonly DEFAULT_SIFT_FEATURES: number;
 						public static FEATURE_MATCHING_METHOD_ORB: number;
 						public static FEATURE_MATCHING_METHOD_SIFT: number;
+						public static readonly MIN_POINTS_FOR_HOMOGRAPHY: number;
 						public constructor();
 						public static createFeatureMatchingDescriptor(src: __javaRoots.orgRoot.opencv.core.Mat, cvtColorFlag: number, scale: number, method: number): __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor;
+						public static createFeatureMatchingDescriptor(src: __javaRoots.orgRoot.opencv.core.Mat, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.DetectionOptions): __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor;
 						public static featureMatching(sceneDesc: __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor, objectDesc: __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor, matcherType: number, debugMatchesImagePath: string, threshold: number): __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingResult;
+						public static featureMatching(sceneDesc: __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor, objectDesc: __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.MatchingOptions): __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingResult;
 					}
 					export namespace ImageFeatureMatching {
+						export class DetectionOptions {
+							public readonly cvtColorFlag: number;
+							public readonly maxFeatures: number;
+							public readonly method: number;
+							public readonly scale: number;
+							public constructor(method: number, scale: number, cvtColorFlag: number, maxFeatures: number);
+						}
 						export class FeatureMatchingDescriptor {
 							public readonly corners: __javaRoots.orgRoot.opencv.core.MatOfPoint2f;
 							public readonly descriptors: __javaRoots.orgRoot.opencv.core.Mat;
+							public readonly image: __javaRoots.orgRoot.opencv.core.Mat;
 							public readonly keyPoint: __javaRoots.orgRoot.opencv.core.MatOfKeyPoint;
-							public readonly nativePtr: number;
+							public readonly keyPointCount: number;
+							public readonly method: number;
+							public readonly released: boolean;
+							public readonly scale: number;
 							public constructor(descriptors: __javaRoots.orgRoot.opencv.core.Mat, keyPoint: __javaRoots.orgRoot.opencv.core.MatOfKeyPoint, corners: __javaRoots.orgRoot.opencv.core.MatOfPoint2f);
+							public constructor(descriptors: __javaRoots.orgRoot.opencv.core.Mat, keyPoint: __javaRoots.orgRoot.opencv.core.MatOfKeyPoint, corners: __javaRoots.orgRoot.opencv.core.MatOfPoint2f, image: __javaRoots.orgRoot.opencv.core.Mat, method: number, scale: number);
 							public getCorners(): __javaRoots.orgRoot.opencv.core.MatOfPoint2f;
 							public getDescriptors(): __javaRoots.orgRoot.opencv.core.Mat;
+							public getImage(): __javaRoots.orgRoot.opencv.core.Mat;
 							public getKeyPoint(): __javaRoots.orgRoot.opencv.core.MatOfKeyPoint;
-							public getNativePtr(): number;
+							public getKeyPointCount(): number;
+							public getMethod(): number;
+							public getScale(): number;
+							public isReleased(): boolean;
 							public release(): void;
-							public setNativePtr(nativePtr: number): void;
 						}
 						export class FeatureMatchingResult {
+							public readonly inlierCount: number;
+							public readonly matchCount: number;
 							public readonly matches: __javaRoots.orgRoot.opencv.core.Mat;
 							public readonly points: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.opencv.core.Point>;
 							public readonly quad: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.opencv.core.Point>;
 							public constructor(pts: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.opencv.core.Point>, quad: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.opencv.core.Point>, matches: __javaRoots.orgRoot.opencv.core.Mat);
+							public constructor(pts: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.opencv.core.Point>, quad: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.opencv.core.Point>, matches: __javaRoots.orgRoot.opencv.core.Mat, matchCount: number, inlierCount: number);
 							public equals(o: any): boolean;
+							public getInlierCount(): number;
+							public getMatchCount(): number;
 							public getMatches(): __javaRoots.orgRoot.opencv.core.Mat;
 							public getPoints(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.opencv.core.Point>;
 							public getQuad(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.opencv.core.Point>;
 							public hashCode(): number;
+							public release(): void;
 							public toString(): string;
+						}
+						export class MatchingOptions {
+							public readonly drawMatches: boolean;
+							public readonly matcherType: number;
+							public readonly minInliers: number;
+							public readonly ransacReprojectionThreshold: number;
+							public readonly ratioThreshold: number;
+							public constructor(matcherType: number, ratioThreshold: number, ransacReprojectionThreshold: number, minInliers: number, drawMatches: boolean);
 						}
 					}
 				}
@@ -10214,13 +10272,16 @@ declare namespace org {
 						public static concat(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, imgA: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, imgB: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, direction: number): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public copy(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public detectAndComputeFeatures(mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, scale: number, cvtColor: number, method: number): __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor;
+						public detectAndComputeFeatures(mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, scale: number, cvtColor: number, method: number, maxFeatures: number): __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor;
 						public findImage(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper): __javaRoots.orgRoot.opencv.core.Point;
 						public findImage(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, threshold: number): __javaRoots.orgRoot.opencv.core.Point;
 						public findImage(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, weakThreshold: number, strictThreshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, maxLevel: number): __javaRoots.orgRoot.opencv.core.Point;
+						public findImage(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, weakThreshold: number, strictThreshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, maxLevel: number, scales: number[]): __javaRoots.orgRoot.opencv.core.Point;
 						public findImage(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, threshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect): __javaRoots.orgRoot.opencv.core.Point;
 						public flip(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, horizontal: boolean, vertical: boolean): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public fromBase64(data: string): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public fromBytes(bytes: number[]): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
+						public getMeanColor(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, rect: __javaRoots.orgRoot.opencv.core.Rect): number;
 						public getScreenCaptureOptions(): __javaRoots.orgRoot.autojs.autojs.core.image.capture.ScreenCapturer.Options;
 						public getScreenCapturer(): __javaRoots.orgRoot.autojs.autojs.core.image.capture.ScreenCapturer;
 						public hasActiveScreenCapturer(): boolean;
@@ -10229,6 +10290,7 @@ declare namespace org {
 						public invert(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public load(src: string): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public matchTemplate(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, weakThreshold: number, strictThreshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, maxLevel: number, limit: number, useTransparentMask: boolean): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Match>;
+						public matchTemplate(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, template: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, weakThreshold: number, strictThreshold: number, rect: __javaRoots.orgRoot.opencv.core.Rect, maxLevel: number, limit: number, useTransparentMask: boolean, scales: number[]): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Match>;
 						public newMat(): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public newMat(mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, rect: __javaRoots.orgRoot.opencv.core.Rect): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public static pixel(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, x: number, y: number): number;
@@ -17255,6 +17317,7 @@ declare namespace org {
 //org.autojs.autojs.core.ui.inflater.inflaters.ViewSwitcherInflater:1
 //org.autojs.autojs.core.ui.inflater.inflaters.WebViewInflater:1
 //org.autojs.autojs.core.ui.inflater.util.ValueMapper:1
+//org.autojs.autojs.engine.BunPluginWorkspaceArchive.Companion.writeArchive.lambda.0..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.LuaModuleSnapshot.Companion.create..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.NodeAndroidPackageInstallManager.collectPackageFiles..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.NodeAndroidPackageInstallManager.collectPackageFiles.visit..inlined.sortedBy.1:1
@@ -17354,6 +17417,7 @@ declare namespace org {
 //org.autojs.autojs.ui.edit.toolbar.ToolbarFragment:1
 //org.autojs.autojs.ui.floating.LayoutFloatyWindow.switchWindow.lambda.1..inlined.compareBy.1:1
 //org.autojs.autojs.ui.fragment.BaseViewBindingFragment:1
+//org.autojs.autojs.ui.main.drawer.DrawerFragment.onCreate.12.3.1:1
 //org.autojs.autojs.ui.main.scripts.AndroidPackageArchiveInspector.chooseBase..inlined.sortedBy.1:1
 //org.autojs.autojs.ui.main.scripts.ApkInfoDialogManager.showMoreInfoDialog.1.1:1
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.compareBy.1:1

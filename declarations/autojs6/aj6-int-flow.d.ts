@@ -5,7 +5,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 7, 2026
+// Last modified: Sep 16, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -138,6 +138,12 @@ declare namespace Internal {
         smartClick(target: Automator.Target, options?: Automator.SmartClickOptions, onOk?: Flow.OnOk<Automator.SmartClickResult>, onErr?: Flow.OnErr): Flow<Automator.SmartClickResult>;
 
         clickIfExists(target: Automator.Target, options?: Automator.SmartClickOptions | number, onOk?: Flow.OnOk<boolean>, onErr?: Flow.OnErr): Flow<boolean>;
+
+        /** Optional handler on a worker; awaits returned work and preserves the root's null value. zh-CN: 工作线程上的可选处理; 等待返回的任务并透传起点的 null 值. */
+        whenPresent(cond: Flow.SelectorCond, handler: (match: UiObject[]) => any, options: Flow.WhenPresentOptions & { resultType: '[]' }): Flow<null>;
+        whenPresent<R = UiObject>(cond: Flow.Cond<R>, handler: (match: R) => any, options?: Flow.WhenPresentOptions): Flow<null>;
+
+        repeatUntil: Flow.RepeatUntilFunction;
 
         clickAny(targets: Automator.Target | Automator.Target[], options?: Automator.SmartClickOptions | number, onOk?: Flow.OnOk<Automator.ClickedCandidate | null>, onErr?: Flow.OnErr): Flow<Automator.ClickedCandidate | null>;
 
@@ -285,6 +291,16 @@ interface Flow<T = any> {
 
     /** Smart-clicks the current node. zh-CN: 智能点击当前节点. */
     smartClick(options?: Automator.SmartClickOptions, onOk?: Flow.OnOk<Automator.SmartClickResult>, onErr?: Flow.OnErr): Flow<Automator.SmartClickResult>;
+
+    /** Explicit target; defaults to one lookup. Missing returns false, action errors reject. */
+    clickIfExists(target: Automator.Target, options?: Automator.SmartClickOptions | number, onOk?: Flow.OnOk<boolean>, onErr?: Flow.OnErr): Flow<boolean>;
+    clickAny(targets: Automator.Target | Automator.Target[], options?: Automator.SmartClickOptions | number, onOk?: Flow.OnOk<Automator.ClickedCandidate | null>, onErr?: Flow.OnErr): Flow<Automator.ClickedCandidate | null>;
+    findAny(targets: Automator.Target | Automator.Target[], options?: Automator.ToolOptions | number, onOk?: Flow.OnOk<Automator.FoundCandidate | null>, onErr?: Flow.OnErr): Flow<Automator.FoundCandidate | null>;
+
+    /** Skips absence only, awaits the handler's Flow/Promise, and preserves T. Handler runs on a worker. zh-CN: 仅在目标缺失时跳过, 等待处理器返回的 Flow/Promise 并透传 T; 处理器在工作线程运行. */
+    whenPresent(cond: Flow.SelectorCond, handler: (match: UiObject[]) => any, options: Flow.WhenPresentOptions & { resultType: '[]' }): Flow<T>;
+    whenPresent<R = UiObject>(cond: Flow.Cond<R>, handler: (match: R) => any, options?: Flow.WhenPresentOptions): Flow<T>;
+    repeatUntil: Flow.RepeatUntilFunction;
     /** Scrolls the current node (the container, unless `options.container` is given) until `target` shows up. zh-CN: 滚动当前节点 (容器, 除非给出 `options.container`) 直到 `target` 出现. */
     scrollUntil(target: Automator.Target, options?: Automator.ScrollUntilOptions, onOk?: Flow.OnOk<UiObject>, onErr?: Flow.OnErr): Flow<UiObject>;
     /** Types into the current node (`null`: the focused field). zh-CN: 向当前节点输入 (`null`: 焦点输入框). */
@@ -422,10 +438,12 @@ declare namespace Flow {
         compass?: Detect.Compass;
         /** The `pickup` result type of a selector condition. zh-CN: 选择器条件的 `pickup` 结果类型. */
         resultType?: Pickup.ResultType;
-        /** Stability waits: the unchanged span in milliseconds; default `flow.defaults().stableFor` (500). zh-CN: 稳定类等待: 无变化时长 (毫秒); 默认 `flow.defaults().stableFor` (500). */
+        /** Stability waits: the unchanged span in milliseconds; default `flow.defaults().stableFor` (0). zh-CN: 稳定类等待: 无变化时长 (毫秒); 默认 `flow.defaults().stableFor` (0). */
         stableFor?: number;
         /** Stability waits: what is compared between sightings; default `'fingerprint'`. zh-CN: 稳定类等待: 两次看到目标之间比较什么; 默认 `'fingerprint'`. */
         compare?: Compare;
+        /** A worker-side projection copied structurally at sampling time. Mutually exclusive with compare; resolves the original sample. zh-CN: 在工作线程采样并按结构复制投影值; 与 compare 互斥, 仍以原始样本结算. */
+        snapshot?: (value: any) => Snapshot;
         /** Stability waits: what to do when the target disappears; default `'reset'`. zh-CN: 稳定类等待: 目标消失时的处理; 默认 `'reset'`. */
         missing?: Missing;
         /** Whether a following action reporting `false` rejects; default `flow.defaults().strictActions`. zh-CN: 随后的动作返回 `false` 时是否拒绝; 默认 `flow.defaults().strictActions`. */
@@ -440,6 +458,27 @@ declare namespace Flow {
         root?: UiObject;
         compass?: Detect.Compass;
         resultType?: Pickup.ResultType;
+    }
+
+    type Snapshot = null | undefined | boolean | number | string | Snapshot[] | { [key: string]: Snapshot };
+
+    type WhenPresentOptions = Pick<WaitOptions, 'timeout' | 'interval' | 'times' | 'root' | 'compass' | 'resultType' | 'recoverService'>;
+
+    interface RepeatUntilOptions extends ScopeOptions {
+        /** Finite total milliseconds, default flow.defaults().timeout; 0 checks once without an action. */
+        timeout?: number;
+        /** Maximum action invocations, including the first; default 10, non-negative integer. */
+        maxAttempts?: number;
+        /** Delay between actions, default flow.defaults().interval. */
+        interval?: number;
+        /** Synchronous worker predicate for action errors; default propagate. Cancellation never retries. */
+        retryOn?: (error: any, attempt: number) => boolean;
+    }
+
+    interface RepeatUntilFunction {
+        (action: (attempt: number) => any, cond: SelectorCond, options: RepeatUntilOptions & { resultType: '[]' }): Flow<UiObject[]>;
+        (action: (attempt: number) => any, cond: SelectorCond, options?: RepeatUntilOptions): Flow<UiObject>;
+        <R>(action: (attempt: number) => any, cond: (() => R) | Flow<R> | PromiseLike<R>, options?: RepeatUntilOptions): Flow<R>;
     }
 
     interface Defaults {
@@ -464,6 +503,7 @@ declare namespace Flow {
 
     /** `(cond, timeout?, interval?, onOk?, onErr?)` or `(cond, options, onOk?, onErr?)`. */
     interface WaitFunction<V = any> {
+        (cond: SelectorCond, options: WaitOptions & { resultType: '[]' }, onOk?: OnOk<UiObject[]>, onErr?: OnErr): Flow<UiObject[]>;
         (cond: SelectorCond, timeout?: number, interval?: number, onOk?: OnOk<V>, onErr?: OnErr): Flow<V>;
         (cond: SelectorCond, options: WaitOptions, onOk?: OnOk<V>, onErr?: OnErr): Flow<V>;
         <T>(cond: () => T, timeout?: number, interval?: number, onOk?: OnOk<T>, onErr?: OnErr): Flow<T>;
