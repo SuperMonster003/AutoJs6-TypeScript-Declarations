@@ -1854,7 +1854,7 @@ declare class LayoutParams extends android.view.WindowManager.LayoutParams {
     /* Empty body. */
 }
 
-declare class Level extends org.apache.log4j.Level {
+declare class Level extends org.autojs.autojs.core.console.log.Level {
     /* Empty body. */
 }
 
@@ -1870,11 +1870,11 @@ declare class TypedValue extends android.util.TypedValue {
     /* Empty body. */
 }
 
-declare class LogConfigurator extends de.mindpipe.android.logging.log4j.LogConfigurator {
+declare class LogConfigurator extends org.autojs.autojs.core.console.log.LogConfigurator {
     /* Empty body. */
 }
 
-declare class LogManager extends org.apache.log4j.LogManager {
+declare class LogManager extends org.autojs.autojs.core.console.log.LogManager {
     /* Empty body. */
 }
 

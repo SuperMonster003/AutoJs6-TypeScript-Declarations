@@ -146,6 +146,16 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.17.0
+
+###### 2026/09/18
+
+##### 内置日志器与三方库声明精简
+
+- `更新` 全局代理 `Level` / `LogConfigurator` / `LogManager` 改为继承 AutoJs6 内置的 `org.autojs.autojs.core.console.log` 同名类, `console.setGlobalLogConfig` 的示例与源码摘要同步 (宿主 6.8.0 以内置滚动文件日志器替换 log4j)
+- `更新` 三方库声明不再包含宿主已移除的库: log4j 与 android-logging-log4j, Flexmark, JavaMail, JUnit, github-api 与 Jackson, commons-io 与 commons-lang3, kotlin-reflect, SpongyCastle, media3 与 Guava (`libraries.d.ts` 26,864 -> 25,081 行)
+- `更新` 合并 AutoJs6 6.8.0 (5282) 的主应用与资源声明: 新增 `org.autojs.autojs.core.console.log` 包 (Appender / Level / LogConfigurator / LogEvent / Logger / LoggerRepository / LogManager) 与邮件插件契约类, 资源 ID 随宿主增删
+
 # v4.16.0
 
 ###### 2026/09/16
@@ -170,12 +180,3 @@ npm update @sm003/autojs6-dts
 - `更新` maxAttempts 默认 0 表示不限尝试次数, FlowError.flowStack 提供异步任务诊断
 - `更新` 同步宿主生成声明, Ace Editor 内置声明, LSP 聚合文件和索引
 
-# v4.14.0
-
-###### 2026/09/16
-
-##### Flow 可选步骤与有界循环
-
-- `新增` Flow 链式 clickIfExists / clickAny / findAny, whenPresent 和 repeatUntil 声明
-- `更新` waitForStable 的 snapshot 投影与集合返回类型, stableFor 默认值与运行时保持一致
-- `更新` 同步宿主生成声明与 Ace Editor LSP 聚合文件和索引

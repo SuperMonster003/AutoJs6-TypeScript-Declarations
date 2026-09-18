@@ -4,6 +4,16 @@
 
 ******
 
+# v4.17.0
+
+###### 2026/09/18
+
+##### 内置日志器与三方库声明精简
+
+- `更新` 全局代理 `Level` / `LogConfigurator` / `LogManager` 改为继承 AutoJs6 内置的 `org.autojs.autojs.core.console.log` 同名类, `console.setGlobalLogConfig` 的示例与源码摘要同步 (宿主 6.8.0 以内置滚动文件日志器替换 log4j)
+- `更新` 三方库声明不再包含宿主已移除的库: log4j 与 android-logging-log4j, Flexmark, JavaMail, JUnit, github-api 与 Jackson, commons-io 与 commons-lang3, kotlin-reflect, SpongyCastle, media3 与 Guava (`libraries.d.ts` 26,864 -> 25,081 行)
+- `更新` 合并 AutoJs6 6.8.0 (5282) 的主应用与资源声明: 新增 `org.autojs.autojs.core.console.log` 包 (Appender / Level / LogConfigurator / LogEvent / Logger / LoggerRepository / LogManager) 与邮件插件契约类, 资源 ID 随宿主增删
+
 # v4.16.0
 
 ###### 2026/09/16

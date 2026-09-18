@@ -224,15 +224,15 @@ declare namespace Internal {
          * });
          * @example
          * void function disableGlobalLog() {
-         *     let _lc = new Packages['de.mindpipe.android.logging.log4j'].LogConfigurator();
-         *     _lc.setRootLevel(org.apache.log4j.Level.OFF);
+         *     let _lc = new LogConfigurator(); // org.autojs.autojs.core.console.log.LogConfigurator
+         *     _lc.setRootLevel(Level.OFF); // org.autojs.autojs.core.console.log.Level
          *     _lc.setUseFileAppender(false);
          *     _lc.setResetConfiguration(true);
          *     _lc.configure();
          * }();
          * @example Source code summary (zh-CN: 源代码摘要)
          * console.setGlobalLogConfig = function (config) {
-         *     let logConfigurator = new Packages['de.mindpipe.android.logging.log4j'].LogConfigurator();
+         *     let logConfigurator = new LogConfigurator(); // org.autojs.autojs.core.console.log.LogConfigurator
          *     if (config.file) {
          *         logConfigurator.setFileName(files.path(config.file));
          *         logConfigurator.setUseFileAppender(true);
@@ -241,7 +241,7 @@ declare namespace Internal {
          *     logConfigurator.setMaxFileSize(option(config.maxFileSize, 512 << 10));
          *     logConfigurator.setImmediateFlush(option(config.immediateFlush, true));
          *     let rootLevel = option(config.rootLevel, "ALL");
-         *     logConfigurator.setRootLevel(org.apache.log4j.Level[rootLevel.toUpperCase()]);
+         *     logConfigurator.setRootLevel(Level.valueOf(rootLevel.toUpperCase())); // org.autojs.autojs.core.console.log.Level
          *     logConfigurator.setMaxBackupSize(option(config.maxBackupSize, 5));
          *     logConfigurator.setResetConfiguration(option(config.resetConfiguration, true));
          *     logConfigurator.configure();

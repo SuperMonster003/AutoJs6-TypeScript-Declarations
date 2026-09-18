@@ -2861,6 +2861,41 @@ declare namespace org {
 		export namespace autojs {
 			export namespace core {
 				export namespace console {
+					export class ConsoleTimeSettings extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.core.console.ConsoleTimeSettings> {
+						public static readonly CONSOLE_ELEMENT: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleTimeSettings;
+						public static readonly EDITOR_PANEL: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleTimeSettings;
+						public static readonly FLOATING_WINDOW: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleTimeSettings;
+						public static readonly GLOBAL_CONSOLE_ELEMENT: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleTimeSettings;
+						public static readonly LOG_ACTIVITY: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleTimeSettings;
+						public readonly defaultVisible: boolean;
+						public readonly formatKeyRes: number;
+						public readonly timeFormat: string;
+						public readonly timeVisible: boolean;
+						public readonly visibleKeyRes: number;
+						public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.core.console.ConsoleTimeSettings>;
+						public getDefaultVisible(): boolean;
+						public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.core.console.ConsoleTimeSettings>;
+						public getFormatKeyRes(): number;
+						public getTimeFormat(): string;
+						public getVisibleKeyRes(): number;
+						public isTimeVisible(): boolean;
+						public setTimeFormat(value: string): void;
+						public setTimeVisible(value: boolean): void;
+						public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleTimeSettings;
+						public static values(): __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleTimeSettings[];
+						protected constructor();
+						public static valueOf(...args: any[]): any;
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
 					export class ConsoleView extends __javaRoots.androidRoot.widget.FrameLayout {
 						public readonly colorful: boolean;
 						public readonly commandModeEnabled: boolean;
@@ -2918,6 +2953,7 @@ declare namespace org {
 						public onInputRequestsChanged(pendingCount: number): void;
 						public onLogClear(): void;
 						public onNewLog(logEntry: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry): void;
+						public restoreTimePreferences$app(settings: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleTimeSettings): void;
 						public setAssertTextColor(color: number): void;
 						public setBackgroundDrawables(titleBar: __javaRoots.androidRoot.graphics.drawable.Drawable, content: __javaRoots.androidRoot.graphics.drawable.Drawable): void;
 						public setColorful(value: boolean): void;
@@ -3071,6 +3107,229 @@ declare namespace org {
 					export class GlobalConsole extends __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl {
 						public constructor(uiHandler: __javaRoots.orgRoot.autojs.autojs.tool.UiHandler);
 						public println(level: number, charSequence: string): string;
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
+					export namespace log {
+						export class Appender {
+							public constructor(implementation: Appender);
+							public constructor();
+						}
+						export interface Appender {
+							append(param0: __javaRoots.orgRoot.autojs.autojs.core.console.log.LogEvent): void;
+							close(): void;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
+					export namespace log {
+						export class Level {
+							public static readonly ALL: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public static readonly DEBUG: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public static readonly ERROR: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public static readonly FATAL: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public static readonly INFO: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public static readonly OFF: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public static readonly TRACE: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public static readonly WARN: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public compareTo(other: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level): number;
+							public isGreaterOrEqual(other: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level): boolean;
+							public toInt(): number;
+							public static toLevel(value: number): __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public static toLevel(name: string): __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public static toLevel(name: string, defaultLevel: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level): __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public toString(): string;
+							public static valueOf(name: string): __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							protected constructor();
+							public compareTo(...args: any[]): any;
+						}
+						export interface Level extends __javaRoots.javaRoot.lang.Comparable<__javaRoots.orgRoot.autojs.autojs.core.console.log.Level> {}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
+					export namespace log {
+						export class LogConfigurator {
+							public static readonly DEFAULT_FILE_NAME: string;
+							public static readonly DEFAULT_FILE_PATTERN: string;
+							public static readonly DEFAULT_LOGCAT_PATTERN: string;
+							public static readonly DEFAULT_MAX_BACKUP_SIZE: number;
+							public static readonly DEFAULT_MAX_FILE_SIZE: number;
+							public readonly fileName: string;
+							public readonly filePattern: string;
+							public readonly immediateFlush: boolean;
+							public readonly internalDebugging: boolean;
+							public readonly logCatPattern: string;
+							public readonly maxBackupSize: number;
+							public readonly maxFileSize: number;
+							public readonly resetConfiguration: boolean;
+							public readonly rootLevel: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public readonly useFileAppender: boolean;
+							public readonly useLogCatAppender: boolean;
+							public constructor();
+							public constructor(fileName: string);
+							public constructor(fileName: string, maxBackupSize: number, maxFileSize: number, filePattern: string, rootLevel: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level);
+							public constructor(fileName: string, rootLevel: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level);
+							public constructor(fileName: string, rootLevel: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level, filePattern: string);
+							public configure(): void;
+							public getFileName(): string;
+							public getFilePattern(): string;
+							public getLogCatPattern(): string;
+							public getMaxBackupSize(): number;
+							public getMaxFileSize(): number;
+							public getRootLevel(): __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public isImmediateFlush(): boolean;
+							public isInternalDebugging(): boolean;
+							public isResetConfiguration(): boolean;
+							public isUseFileAppender(): boolean;
+							public isUseLogCatAppender(): boolean;
+							public setFileName(_set___: string): void;
+							public setFilePattern(_set___: string): void;
+							public setImmediateFlush(_set___: boolean): void;
+							public setInternalDebugging(_set___: boolean): void;
+							public setLevel(loggerName: string, level: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level): void;
+							public setLogCatPattern(_set___: string): void;
+							public setMaxBackupSize(_set___: number): void;
+							public setMaxFileSize(_set___: number): void;
+							public setResetConfiguration(_set___: boolean): void;
+							public setRootLevel(_set___: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level): void;
+							public setUseFileAppender(_set___: boolean): void;
+							public setUseLogCatAppender(_set___: boolean): void;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
+					export namespace log {
+						export class LogEvent {
+							public readonly className: string;
+							public readonly level: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public readonly loggerName: string;
+							public readonly message: string;
+							public readonly threadName: string;
+							public readonly timestamp: number;
+							public constructor(level: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level, message: string, loggerName: string, className: string, threadName: string, timestamp: number);
+							public getClassName(): string;
+							public getLevel(): __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public getLoggerName(): string;
+							public getMessage(): string;
+							public getThreadName(): string;
+							public getTimestamp(): number;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
+					export namespace log {
+						export class LogManager {
+							public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.core.console.log.LogManager;
+							public static readonly loggerRepository: __javaRoots.orgRoot.autojs.autojs.core.console.log.LoggerRepository;
+							public static readonly rootLogger: __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger;
+							public static getLogger(clazz: __javaRoots.javaRoot.lang.Class<any>): __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger;
+							public static getLogger(name: string): __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger;
+							public static getLoggerRepository(): __javaRoots.orgRoot.autojs.autojs.core.console.log.LoggerRepository;
+							public static getRootLogger(): __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger;
+							public static resetConfiguration(): void;
+							public static shutdown(): void;
+							protected constructor();
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
+					export namespace log {
+						export class Logger {
+							public readonly level: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public readonly name: string;
+							public static readonly rootLogger: __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger;
+							public constructor(name: string);
+							public debug(message: any): void;
+							public error(message: any): void;
+							public fatal(message: any): void;
+							public getLevel(): __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public static getLogger(clazz: __javaRoots.javaRoot.lang.Class<any>): __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger;
+							public static getLogger(name: string): __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger;
+							public getName(): string;
+							public static getRootLogger(): __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger;
+							public info(message: any): void;
+							public isEnabledFor(level: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level): boolean;
+							public log(level: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level, message: any): void;
+							public setLevel(_set___: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level): void;
+							public trace(message: any): void;
+							public warn(message: any): void;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace console {
+					export namespace log {
+						export class LoggerRepository {
+							public static readonly DEFAULT_ROOT_LEVEL: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level;
+							public static readonly ROOT_NAME: string;
+							public readonly appenderCount: number;
+							public readonly rootLogger: __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger;
+							public constructor();
+							public addAppender(appender: __javaRoots.orgRoot.autojs.autojs.core.console.log.Appender): void;
+							public dispatch$app(logger: __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger, level: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level, message: string): void;
+							public getAppenderCount(): number;
+							public getLogger(name: string): __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger;
+							public getRootLogger(): __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger;
+							public isEnabled(logger: __javaRoots.orgRoot.autojs.autojs.core.console.log.Logger, level: __javaRoots.orgRoot.autojs.autojs.core.console.log.Level): boolean;
+							public removeAllAppenders(): void;
+							public resetConfiguration(): void;
+							public shutdown(): void;
+						}
 					}
 				}
 			}
@@ -8769,6 +9028,7 @@ declare namespace org {
 					public static readAsset(assets: __javaRoots.androidRoot.content.res.AssetManager, path: string): string;
 					public readBytes(stream: __javaRoots.javaRoot.io.InputStream): number[];
 					public static readBytes(path: string): number[];
+					public relativePathWithin$app(path: string, directory: string): string;
 					public static remove(path: string): boolean;
 					public static removeDir(path: string): boolean;
 					public static rename(path: string, newName: string): boolean;
@@ -16953,7 +17213,6 @@ declare namespace org {
 			export namespace util {
 				export class TextUtils {
 					public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.util.TextUtils;
-					public static htmlToMarkdown(html: string): string;
 					public static joinSpanned(spannedList: __javaRoots.javaRoot.util.List<__javaRoots.androidRoot.text.Spanned>): __javaRoots.androidRoot.text.Spanned;
 					public static joinSpanned(spannedList: __javaRoots.javaRoot.util.List<__javaRoots.androidRoot.text.Spanned>, delimiter: string): __javaRoots.androidRoot.text.Spanned;
 					public static markdownToHtml(markdown: string): string;
@@ -17195,6 +17454,7 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState.CloseResult:2
 //org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState.Link:2
 //org.autojs.autojs.core.plugin.jvm.JvmSourceHostExecutionGate:1
+//org.autojs.autojs.core.plugin.jvm.JvmSourcePackageSnapshotPolicy.collectDirectory..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.lua.LuaBoundedBinderCallLane.Call:1
 //org.autojs.autojs.core.plugin.lua.LuaBoundedBinderCallLane.CallOutcome:1
 //org.autojs.autojs.core.plugin.lua.LuaBoundedBinderCallLane.CallOutcome.Success:1
@@ -17303,7 +17563,6 @@ declare namespace org {
 //org.autojs.autojs.core.ui.inflater.inflaters.TextClockInflater:1
 //org.autojs.autojs.core.ui.inflater.inflaters.TextSwitcherInflater:1
 //org.autojs.autojs.core.ui.inflater.inflaters.TextViewInflater:1
-//org.autojs.autojs.core.ui.inflater.inflaters.TextViewLegacyInflater:1
 //org.autojs.autojs.core.ui.inflater.inflaters.TextureViewInflater:1
 //org.autojs.autojs.core.ui.inflater.inflaters.TimePickerInflater:1
 //org.autojs.autojs.core.ui.inflater.inflaters.ToggleButtonInflater:1
@@ -17356,7 +17615,7 @@ declare namespace org {
 //org.autojs.autojs.model.autocomplete.DictionaryTree.Node:1
 //org.autojs.autojs.project.FuzzyDeserializer:1
 //org.autojs.autojs.rhino.AndroidClassLoader.jarToDexR8..inlined.sortedBy.1:1
-//org.autojs.autojs.rhino.AndroidClassLoader.jarToDexR8..inlined.sortedBy.2:1
+//org.autojs.autojs.rhino.ClassFileDexer.dexOutputs..inlined.sortedBy.1:1
 //org.autojs.autojs.runtime.api.augment.proxy.JavaProxyObject:1
 //org.autojs.autojs.runtime.api.augment.selector.SelectorMethodResolver.resolve..inlined.sortedBy.1:1
 //org.autojs.autojs.runtime.api.augment.util.VersionCodes.Searcher.searchAll..inlined.sortedByDescending.1:1
@@ -17369,7 +17628,7 @@ declare namespace org {
 //org.autojs.autojs.runtime.api.tts.TtsOptionsParser.OptionalField:1
 //org.autojs.autojs.storage.database.Database:1
 //org.autojs.autojs.storage.database.ModelChange:1
-//org.autojs.autojs.storage.history.HistoryCleanupWorker.cleanupEmergencyDraftsLocked..inlined.sortedByDescending.1:1
+//org.autojs.autojs.storage.history.HistoryCleanup.cleanupEmergencyDraftsLocked..inlined.sortedBy.1:1
 //org.autojs.autojs.theme.app.ColorSelectBaseActivity.checkAndGetTargetInfoForThemeColorLocate..inlined.sortedBy.1:1
 //org.autojs.autojs.theme.app.ColorSelectBaseActivity.showColorHistory.1.5.invokeSuspend..inlined.sortedByDescending.1:1
 //org.autojs.autojs.theme.app.ColorSelectBaseActivity.showColorPickerHistory.1.history.1.invokeSuspend..inlined.sortedByDescending.1:1
@@ -17389,6 +17648,7 @@ declare namespace org {
 //org.autojs.autojs.tool.SparseArrayEntries:1
 //org.autojs.autojs.tool.StateObserver.SimpleOnStateChangedListener:1
 //org.autojs.autojs.tool.Supplier:1
+//org.autojs.autojs.ui.devplugin.ServerModeManagerDialog.refresh..inlined.sortedBy.1:1
 //org.autojs.autojs.ui.edit.editor.ace.AceEditorFontDialog.Adapter.showVariants..inlined.compareBy.1:1
 //org.autojs.autojs.ui.edit.editor.ace.AceEditorFontDialog.Adapter.showVariants..inlined.thenBy.1:1
 //org.autojs.autojs.ui.edit.editor.ace.AceEditorFontManagerKt.resolveRemoteFontGroups.lambda.1..inlined.compareBy.1:1
@@ -17417,7 +17677,7 @@ declare namespace org {
 //org.autojs.autojs.ui.edit.toolbar.ToolbarFragment:1
 //org.autojs.autojs.ui.floating.LayoutFloatyWindow.switchWindow.lambda.1..inlined.compareBy.1:1
 //org.autojs.autojs.ui.fragment.BaseViewBindingFragment:1
-//org.autojs.autojs.ui.main.drawer.DrawerFragment.onCreate.12.3.1:1
+//org.autojs.autojs.ui.main.drawer.DrawerFragment.onCreate.13.3.1:1
 //org.autojs.autojs.ui.main.scripts.AndroidPackageArchiveInspector.chooseBase..inlined.sortedBy.1:1
 //org.autojs.autojs.ui.main.scripts.ApkInfoDialogManager.showMoreInfoDialog.1.1:1
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.compareBy.1:1
@@ -17439,6 +17699,11 @@ declare namespace org {
 //org.autojs.autojs.ui.settings.ReleaseHistoryRepository.loadReleaseHistoryFlow.1.1.1:1
 //org.autojs.autojs.ui.settings.ReleaseHistoryRepository.loadReleaseHistoryFlow.1.3.1:1
 //org.autojs.autojs.ui.storage.BaseSearchSortListActivity:2
+//org.autojs.autojs.ui.storage.RevisionListActivity.compareSelected..inlined.sortedBy.1:1
+//org.autojs.autojs.ui.storage.RevisionListActivity.sortItems..inlined.sortedBy.1:1
+//org.autojs.autojs.ui.storage.RevisionListActivity.sortItems..inlined.sortedBy.2:1
+//org.autojs.autojs.ui.storage.RevisionListActivity.sortItems..inlined.sortedByDescending.1:1
+//org.autojs.autojs.ui.storage.RevisionListActivity.sortItems..inlined.sortedByDescending.2:1
 //org.autojs.autojs.ui.storage.TrashActivity.sortItems..inlined.sortedBy.1:1
 //org.autojs.autojs.ui.storage.TrashActivity.sortItems..inlined.sortedBy.2:1
 //org.autojs.autojs.ui.storage.TrashActivity.sortItems..inlined.sortedBy.3:1
