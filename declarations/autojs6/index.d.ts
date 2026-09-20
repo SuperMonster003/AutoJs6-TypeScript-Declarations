@@ -14,6 +14,7 @@
 /// <reference path="./aj6-int-device.d.ts" />
 /// <reference path="./aj6-int-dialogs.d.ts" />
 /// <reference path="./aj6-int-engines.d.ts" />
+/// <reference path="./aj6-int-epub.d.ts" />
 /// <reference path="./aj6-int-events.d.ts" />
 /// <reference path="./aj6-int-files.d.ts" />
 /// <reference path="./aj6-int-floaty.d.ts" />
