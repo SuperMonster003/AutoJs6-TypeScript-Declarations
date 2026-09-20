@@ -146,6 +146,16 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.18.0
+
+###### 2026/09/20
+
+##### 邮件模块声明
+
+- `新增` 全局对象 `mail` / `$mail` 声明 (AutoJs6 6.8.0, 由 Angus Mail 插件提供): `connect` / `connectAsync`, `setDefault`, `default`, `close`, `providers`, `accounts`, `MailError` 及转发到默认客户端的全部客户端方法
+- `新增` `Internal.Mail` 命名空间: `Client` 与 `Operations` (收发, 文件夹, 列表, 搜索, 读取, 附件与原文下载, 标记, 移动, 复制, 删除, 清除, 追加与监听的同步及 `Async` 形态), `Watch` 事件发射器, `Message` / `Attachment` / `Address` / `SendMessage`, `AccountOptions` / `Provider` / `SavedAccount`, `SearchQuery` / `SearchResult`, `Folder` / `FolderStatus` / `SendResult` / `SessionTestResult` 与 `ErrorCode`
+- `新增` `docs/smoke/mail-smoke.ts` 编译样例, 覆盖别名与令牌连接, 搜索回退标记, 附件下载, 标记与移动, 监听事件及负例
+
 # v4.17.0
 
 ###### 2026/09/18
@@ -169,14 +179,4 @@ npm update @sm003/autojs6-dts
 - `新增` `images.matchFeatures` 的 `ransacThreshold`, `minInliers`, `maxFeatures` 选项及图片参数, `ObjectFrame` 的 `width`, `height`, `angle`, `bounds`, `points`, `matches`, `inliers` 属性, 以及 `ImageFeatures` 的 `count`, `method`, `oneShot()` 声明
 - `完善` `images.detectAndComputeFeatures` 补充 `maxFeatures` 选项及 `scale` 取值说明, 匹配器名称不区分大小写
 - `更新` 合并 AutoJs6 6.8.0 (5280) 的主应用, 资源与三方库声明, 保留 Flow 任务栈及坐标点击声明
-
-# v4.15.0
-
-###### 2026/09/16
-
-##### 坐标点击与 Flow 任务栈
-
-- `新增` smartClickBounds / clickBoundsIfExists / clickBoundsAny 及 Flow 等待, 延时和别名声明
-- `更新` maxAttempts 默认 0 表示不限尝试次数, FlowError.flowStack 提供异步任务诊断
-- `更新` 同步宿主生成声明, Ace Editor 内置声明, LSP 聚合文件和索引
 

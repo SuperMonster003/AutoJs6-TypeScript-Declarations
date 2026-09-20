@@ -1,6 +1,6 @@
 {
   "name": "@sm003/autojs6-dts",
-  "version": "4.17.0",
+  "version": "4.18.0",
   "types": "declarations/autojs6/index.d.ts",
   "files": [
     "declarations/android.d.ts",

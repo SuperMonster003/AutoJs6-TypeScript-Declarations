@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 13, 2026
+// Last modified: Sep 20, 2026
 //
 // noinspection JSUnusedGlobalSymbols
 
@@ -75,6 +75,10 @@ declare let $i18n: Internal.I18n;
 
 declare let images: Internal.Images;
 declare let $images: Internal.Images;
+
+/** The mail API of the external Angus Mail plugin. Available since AutoJs6 6.8.0. */
+declare let mail: Internal.Mail;
+declare let $mail: Internal.Mail;
 
 declare let media: Internal.Media;
 declare let $media: Internal.Media;
