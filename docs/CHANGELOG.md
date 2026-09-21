@@ -13,6 +13,7 @@
 - `新增` 全局对象 `epub` / `$epub` 声明 (AutoJs6 6.8.0, 由 Readium EPUB Reader 插件提供): `open` / `openAsync`, 便捷层 `metadata` / `toc` / `readingOrder` / `text` / `cover` / `search` 及其 `Async` 形态, 阅读器 `read` / `readAsync`, `isAvailable` / `isAvailableAsync` 与 `EpubError`
 - `新增` `Internal.Epub` 命名空间: `Book` (元数据, 目录, 阅读顺序, 位置数, 正文提取 `text` / `textAll`, 封面与资源导出, 全文搜索及关闭), `ReaderSession` 事件发射器 (`open` / `progress` / `bookmark` / `error` / `close` 事件, 跳转, 翻页, 偏好, 书签与关闭), `Locator`, `Metadata` / `TocEntry` / `ReadingOrderEntry` / `SearchHit` / `Bookmark`, `ReadOptions` / `Preferences` / `TextOptions` / `ExportOptions` / `SearchOptions` 与 `ErrorCode`
 - `新增` `docs/smoke/epub-smoke.ts` 编译样例, 覆盖书籍对象, 便捷层, 阅读器会话事件与控制, 错误类及负例
+- `新增` `epub.annotations` / `annotationsAsync` 与 `Book.annotations` / `annotationsAsync` (Readium EPUB Reader 插件 1.1.0, EPUB 契约版本 2: 阅读器为一本书保存的高亮与笔记, 按阅读顺序, 最多 2000 条, 插件为 1.0.0 时为 `PLUGIN_INCOMPATIBLE`), `Internal.Epub.Annotation` / `AnnotationStyle` 与 `ReaderSession` 的 `highlight` 事件 (`HighlightEvent`, `action` 为 `added` / `updated` / `removed`); `docs/smoke/epub-smoke.ts` 补充高亮与笔记用例与负例
 
 ##### 邮件模块声明
 

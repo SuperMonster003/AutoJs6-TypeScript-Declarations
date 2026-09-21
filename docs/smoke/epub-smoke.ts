@@ -92,6 +92,15 @@ session.setPreferences({ scroll: true, columnCount: '1', textAlign: 'justify', h
 let bookmarks: Internal.Epub.Bookmark[] = session.bookmarks();
 let createdAt: number = bookmarks[0].createdAt;
 let excerpt: string | undefined = bookmarks[0].text;
+let annotations: Internal.Epub.Annotation[] = book.annotations();
+let quote: string | undefined = annotations[0].quote;
+let style: Internal.Epub.AnnotationStyle = annotations[0].style;
+let updatedAt: number = annotations[0].updatedAt;
+let withNotes: Internal.Epub.Annotation[] = annotations.filter((a: Internal.Epub.Annotation) => a.note !== undefined);
+book.annotationsAsync().then((list: Internal.Epub.Annotation[]) => console.log(list.length));
+let quick: Internal.Epub.Annotation[] = epub.annotations({ path: './books/moby-dick.epub' });
+epub.annotationsAsync('./books/moby-dick.epub').then((list: Internal.Epub.Annotation[]) => session.goTo(list[0].locator));
+session.on('highlight', (e: Internal.Epub.HighlightEvent) => console.log(e.action, e.id, e.style, e.color, e.quote, e.note, e.locator?.href));
 let sessionDescription: string = session.toString();
 session.close();
 session.close({ finish: true });
@@ -118,6 +127,8 @@ session.setPreferences({ theme: 'neon' });
 session.goTo();
 // @ts-expect-error The column count is auto, 1 or 2.
 session.setPreferences({ columnCount: 3 });
+// @ts-expect-error annotations takes no arguments (the list is read-only and unfiltered).
+book.annotations({ withNotes: true });
 // @ts-expect-error finish is a boolean.
 session.close({ finish: 'yes' });
 // @ts-expect-error A locator needs an href.

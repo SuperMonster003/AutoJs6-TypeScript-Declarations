@@ -30,7 +30,7 @@ declare namespace Internal {
      * Books are named by file paths (relative paths resolve against the script working directory,
      * URIs are not accepted). {@link open} keeps a book open in the plugin process until its
      * `close()` or the script exits; the convenience methods ({@link metadata}, {@link toc},
-     * {@link readingOrder}, {@link text}, {@link cover}, {@link search}) open and close the book
+     * {@link readingOrder}, {@link text}, {@link cover}, {@link search}, {@link annotations}) open and close the book
      * around one call; {@link read} starts the plugin's reader and returns a session whose events
      * arrive on the script thread.
      *
@@ -128,9 +128,20 @@ declare namespace Internal {
         searchAsync(source: Epub.Source, query: string, options?: Epub.SearchOptions): Promise<Epub.SearchHit[]>;
 
         /**
+         * Opens the book, reads the reader's highlights and notes and closes it. See
+         * {@link Epub.Book.annotations}. Readium EPUB Reader plugin 1.1.0 (EPUB contract
+         * version 2); `PLUGIN_INCOMPATIBLE` with plugin 1.0.0.
+         * @since 6.8.0
+         */
+        annotations(source: Epub.Source): Epub.Annotation[];
+
+        /** @since 6.8.0 */
+        annotationsAsync(source: Epub.Source): Promise<Epub.Annotation[]>;
+
+        /**
          * Creates a reader session in the plugin process, starts the plugin's reader Activity and
          * returns the session at once; `open` fires when the reader shows the start position,
-         * then page turns, jumps and bookmark changes arrive as events until `close`. At most one
+         * then page turns, jumps, bookmark and highlight changes arrive as events until `close`. At most one
          * of `href`, `progression` and `locator` names the start position (the last reading
          * position otherwise). The script keeps running while the session is open; a script exit
          * ends the session and leaves the reader to the user.
@@ -368,6 +379,17 @@ declare namespace Internal {
 
             searchAsync(query: string, options?: SearchOptions): Promise<SearchHit[]>;
 
+            /**
+             * The reader's highlights and notes of this book in reading order (at most 2000),
+             * read from the plugin on every call (the reader may change them while the book is
+             * open). Readium EPUB Reader plugin 1.1.0 (EPUB contract version 2):
+             * `PLUGIN_INCOMPATIBLE` with plugin 1.0.0. Read-only; changes arrive as the
+             * `highlight` events of a {@link ReaderSession}.
+             */
+            annotations(): Annotation[];
+
+            annotationsAsync(): Promise<Annotation[]>;
+
             /** Closes the book; idempotent. Unclosed books close on script exit. */
             close(): void;
 
@@ -434,6 +456,32 @@ declare namespace Internal {
             text?: string;
         }
 
+        type AnnotationStyle = 'highlight' | 'underline' | string;
+
+        /**
+         * A highlight or note the reader keeps for a book (Readium EPUB Reader plugin 1.1.0,
+         * EPUB contract version 2), as listed by {@link Book.annotations}.
+         */
+        interface Annotation {
+            /** The reader's own id, stable while the highlight exists. */
+            id: number;
+            style: AnnotationStyle;
+            /** `#RRGGBB`. */
+            color: string;
+            /** The user's note; absent when the highlight has none. */
+            note?: string;
+            /** The selected text. */
+            quote?: string;
+            /** Chapter title when the reader recorded one. */
+            title?: string;
+            /** The selection; accepted by {@link ReaderSession.goTo} and {@link ReadOptions.locator}. */
+            locator: Locator;
+            /** UTC milliseconds. */
+            createdAt: number;
+            /** UTC milliseconds; equals `createdAt` until the first edit. */
+            updatedAt: number;
+        }
+
         /**
          * `user` (the user left the reader), `host` (the script called `close`), `replaced`
          * (a newer session took over), `timeout` (the reader did not show within 60 s), `error`
@@ -468,6 +516,25 @@ declare namespace Internal {
             createdAt: number | null;
             title: string | null;
             text: string | null;
+        }
+
+        /**
+         * A highlight or note added, edited or removed in the reader (Readium EPUB Reader
+         * plugin 1.1.0, EPUB contract version 2); the fields of {@link Annotation} with `null`
+         * for the absent ones.
+         */
+        interface HighlightEvent {
+            action: 'added' | 'updated' | 'removed' | string;
+            id: number;
+            style: AnnotationStyle;
+            color: string;
+            note: string | null;
+            quote: string | null;
+            title: string | null;
+            locator: Locator | null;
+            /** UTC milliseconds. */
+            createdAt: number | null;
+            updatedAt: number | null;
         }
 
         interface CloseEvent {
@@ -534,6 +601,7 @@ declare namespace Internal {
             on(eventName: 'open', listener: (event: OpenEvent) => void): this;
             on(eventName: 'progress', listener: (event: ProgressEvent) => void): this;
             on(eventName: 'bookmark', listener: (event: BookmarkEvent) => void): this;
+            on(eventName: 'highlight', listener: (event: HighlightEvent) => void): this;
             on(eventName: 'error', listener: (error: EpubError) => void): this;
             on(eventName: 'close', listener: (event: CloseEvent) => void): this;
             on(eventName: string, listener: (...args: any[]) => void): this;
@@ -541,6 +609,7 @@ declare namespace Internal {
             once(eventName: 'open', listener: (event: OpenEvent) => void): this;
             once(eventName: 'progress', listener: (event: ProgressEvent) => void): this;
             once(eventName: 'bookmark', listener: (event: BookmarkEvent) => void): this;
+            once(eventName: 'highlight', listener: (event: HighlightEvent) => void): this;
             once(eventName: 'error', listener: (error: EpubError) => void): this;
             once(eventName: 'close', listener: (event: CloseEvent) => void): this;
             once(eventName: string, listener: (...args: any[]) => void): this;
