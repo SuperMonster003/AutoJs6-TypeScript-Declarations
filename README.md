@@ -157,6 +157,11 @@ npm update @sm003/autojs6-dts
 - `新增` `docs/smoke/epub-smoke.ts` 编译样例, 覆盖书籍对象, 便捷层, 阅读器会话事件与控制, 错误类及负例
 - `新增` `epub.annotations` / `annotationsAsync` 与 `Book.annotations` / `annotationsAsync` (Readium EPUB Reader 插件 1.1.0, EPUB 契约版本 2: 阅读器为一本书保存的高亮与笔记, 按阅读顺序, 最多 2000 条, 插件为 1.0.0 时为 `PLUGIN_INCOMPATIBLE`), `Internal.Epub.Annotation` / `AnnotationStyle` 与 `ReaderSession` 的 `highlight` 事件 (`HighlightEvent`, `action` 为 `added` / `updated` / `removed`); `docs/smoke/epub-smoke.ts` 补充高亮与笔记用例与负例
 
+##### 邮件模块声明
+
+- `新增` 服务商预设 `Provider` 的 `pop3Xoauth2TwoLine` 字段 (Angus Mail 插件预设目录版本 3: POP3 的 `AUTH XOAUTH2` 是否只接受两行形式, Outlook.com 与 Microsoft 365 为 `true`)
+- `新增` `SavedAccount.oauth` 与 `SavedAccountOAuth` (Angus Mail 插件 1.2.0: 在插件设置页经浏览器以 Google / Microsoft 账号登录的账户在 `mail.accounts.list()` 中带有 `provider` / `authorizedAt` / `expiresAt` / `needsReauth`, 令牌本身不出现)
+
 # v4.18.0
 
 ###### 2026/09/20

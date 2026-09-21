@@ -232,6 +232,12 @@ declare namespace Internal {
             name?: string;
             provider?: string;
             auth?: AuthMethod;
+            /**
+             * Present when the account was signed in through the browser on the plugin's settings page
+             * (Angus Mail 1.2.0): `auth` is then `xoauth2` and the plugin renews the access token itself.
+             * The tokens never appear here.
+             */
+            oauth?: SavedAccountOAuth;
             receive?: ReceiveProtocol;
             imap?: ProviderEndpoint;
             pop3?: ProviderEndpoint;
@@ -241,6 +247,17 @@ declare namespace Internal {
             updatedAt?: number;
             /** Present (with the other fields absent) when the saved data cannot be parsed. */
             error?: string;
+        }
+
+        interface SavedAccountOAuth {
+            /** The identity provider of the sign-in. */
+            provider: 'google' | 'microsoft';
+            /** UTC milliseconds of the sign-in; 0 when unknown. */
+            authorizedAt: number;
+            /** UTC milliseconds after which the current access token expires; the plugin renews it before a session. */
+            expiresAt: number;
+            /** True when a refresh was refused: sessions fail with AUTH_FAILED until the user signs in again in the plugin settings. */
+            needsReauth: boolean;
         }
 
         interface Accounts {

@@ -101,6 +101,13 @@ let resolved: Internal.Mail.Provider | null = mail.providers.resolve('someone@fo
 let providerId: string | undefined = resolved?.id;
 let saved: Internal.Mail.SavedAccount[] = mail.accounts.list();
 let hasWork: boolean = mail.accounts.has('work');
+let signedIn: Internal.Mail.SavedAccountOAuth | undefined = saved[0]?.oauth;
+if (signedIn !== undefined) {
+    let signInProvider: 'google' | 'microsoft' = signedIn.provider;
+    let signInExpiresAt: number = signedIn.expiresAt;
+    let signInAuthorizedAt: number = signedIn.authorizedAt;
+    let mustSignInAgain: boolean = signedIn.needsReauth;
+}
 
 let failure: Internal.Mail.MailError = new mail.MailError('boom', 'TIMEOUT', null, true);
 let code: string = failure.code;
