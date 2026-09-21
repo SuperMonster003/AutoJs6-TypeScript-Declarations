@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 20, 2026
+// Last modified: Sep 21, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -556,6 +556,37 @@ declare namespace Internal {
             once(eventName: 'error', listener: (error: MailError) => void): this;
             once(eventName: 'close', listener: (reason: WatchCloseReason) => void): this;
             once(eventName: string, listener: (...args: any[]) => void): this;
+        }
+
+        /**
+         * The argument a script started by the "On mail arrived" task of AutoJs6 receives as
+         * `engines.myEngine().execArgv.mail` (Angus Mail plugin 1.1.0, mail contract version 2):
+         * one new message seen by a background watch configured on the plugin's Watches page. The
+         * message is the envelope only (`bodyLoaded` is false); load the body through a client
+         * connected by the alias, for example `mail.connect(argv.mail.alias).get(argv.mail.message)`.
+         *
+         * @example
+         * let argv = engines.myEngine().execArgv;
+         * if (argv.mail) {
+         *     console.log(argv.mail.triggerId, argv.mail.message.subject);
+         *     let client = mail.connect(argv.mail.alias);
+         *     console.log(client.get(argv.mail.message).text);
+         *     client.close();
+         * }
+         */
+        interface TriggerEvent {
+            readonly type: 'mail';
+            /** The watch on the plugin's Watches page that saw the message. */
+            readonly triggerId: string;
+            /** The alias of the saved account the watch runs on; `mail.connect(alias)` opens it. */
+            readonly alias: string;
+            /** The address of that account. */
+            readonly address: string;
+            readonly folder: string;
+            /** The envelope of the new message, as delivered by `watch` (`bodyLoaded` is false). */
+            readonly message: Message;
+            /** UTC milliseconds of the plugin's clock when the watch reported the message. */
+            readonly receivedAt: number;
         }
 
         interface EndpointReport {

@@ -114,6 +114,13 @@ try {
     }
 }
 
+let trigger: Internal.Mail.TriggerEvent | undefined = engines.myEngine().execArgv.mail;
+if (trigger) {
+    let kind: 'mail' = trigger.type;
+    let arrived: Internal.Mail.Message = trigger.message;
+    console.log(kind, trigger.triggerId, trigger.alias, trigger.folder, arrived.subject, trigger.receivedAt);
+}
+
 // @ts-expect-error address is required.
 mail.connect({ provider: 'qq', password: 'authorization-code' });
 // @ts-expect-error The fallback option only accepts client, none or always.

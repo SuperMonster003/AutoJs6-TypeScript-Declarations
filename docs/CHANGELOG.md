@@ -17,6 +17,7 @@
 ##### 邮件模块声明
 
 - `新增` 服务商预设 `Provider` 的 `pop3Xoauth2TwoLine` 字段 (Angus Mail 插件预设目录版本 3: POP3 的 `AUTH XOAUTH2` 是否只接受两行形式, Outlook.com 与 Microsoft 365 为 `true`)
+- `新增` `Internal.Mail.TriggerEvent` 接口: AutoJs6 "邮件到达时" 任务启动的脚本通过 `engines.myEngine().execArgv.mail` 收到的事件 (Angus Mail 插件 1.1.0 后台守望, 邮件契约版本 2: `triggerId`, `alias`, `address`, `folder`, 信封 `message` 与 `receivedAt`)
 
 # v4.18.0
 
