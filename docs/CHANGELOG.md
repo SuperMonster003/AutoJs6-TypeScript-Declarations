@@ -14,6 +14,10 @@
 - `新增` `Internal.Epub` 命名空间: `Book` (元数据, 目录, 阅读顺序, 位置数, 正文提取 `text` / `textAll`, 封面与资源导出, 全文搜索及关闭), `ReaderSession` 事件发射器 (`open` / `progress` / `bookmark` / `error` / `close` 事件, 跳转, 翻页, 偏好, 书签与关闭), `Locator`, `Metadata` / `TocEntry` / `ReadingOrderEntry` / `SearchHit` / `Bookmark`, `ReadOptions` / `Preferences` / `TextOptions` / `ExportOptions` / `SearchOptions` 与 `ErrorCode`
 - `新增` `docs/smoke/epub-smoke.ts` 编译样例, 覆盖书籍对象, 便捷层, 阅读器会话事件与控制, 错误类及负例
 
+##### 邮件模块声明
+
+- `新增` 服务商预设 `Provider` 的 `pop3Xoauth2TwoLine` 字段 (Angus Mail 插件预设目录版本 3: POP3 的 `AUTH XOAUTH2` 是否只接受两行形式, Outlook.com 与 Microsoft 365 为 `true`)
+
 # v4.18.0
 
 ###### 2026/09/20

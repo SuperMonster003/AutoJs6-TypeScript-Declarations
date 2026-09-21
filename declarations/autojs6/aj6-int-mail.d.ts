@@ -212,6 +212,8 @@ declare namespace Internal {
             requiresClientId: boolean;
             /** Whether IMAP IDLE really pushes new mail; null when unverified. */
             idlePush: boolean | null;
+            /** Whether the POP3 server takes `AUTH XOAUTH2` only in the two-line form (Outlook.com, Microsoft 365). */
+            pop3Xoauth2TwoLine: boolean;
             docsUrl: string | null;
             notes: string | null;
         }
