@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Aug 26, 2026
+// Last modified: Sep 23, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -17,6 +17,9 @@
 declare namespace Internal {
 
     interface Ai {
+
+        /** Registered-script execution helpers, available in host build 5287 and later. */
+        readonly agent: Ai.Agent;
 
         (input: Ai.Input, options?: Ai.Options): Promise<string>;
 
@@ -37,6 +40,21 @@ declare namespace Internal {
         type JsonPrimitive = string | number | boolean | null;
         type JsonValue = JsonPrimitive | JsonObject | JsonValue[];
         type JsonObject = { [key: string]: JsonValue };
+
+        interface Agent {
+            /** Last accepted JSON report wins until execution ends. Maximum UTF-8 JSON size: 64 KiB.
+             * Returns false with a warning outside registered execution. Does not finish the script. */
+            result(value: JsonValue): boolean;
+
+            /** Returns a fresh snapshot, or null outside registered execution. */
+            context(): AgentExecutionContext | null;
+        }
+
+        interface AgentExecutionContext {
+            runId: string;
+            parameters: { [key: string]: string | number | boolean };
+            presetName: string | null;
+        }
 
         interface Message {
             role: 'system' | 'user' | 'assistant';

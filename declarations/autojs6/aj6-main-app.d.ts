@@ -8598,8 +8598,37 @@ declare namespace org {
 	export namespace autojs {
 		export namespace autojs {
 			export namespace execution {
+				export class AgentScriptExecutionState {
+					public static readonly MAX_PARAMETERS_BYTES: number;
+					public static readonly MAX_RESULT_BYTES: number;
+					public readonly parametersJson: string;
+					public readonly presetName: string;
+					public readonly resultJson: string;
+					public readonly runId: string;
+					public constructor(runId: string, parametersJson: string, presetName: string);
+					public contextJson(): string;
+					public static contextJson(engine: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<any>): string;
+					public finish(): void;
+					public static fromEngine(engine: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<any>): __javaRoots.orgRoot.autojs.autojs.execution.AgentScriptExecutionState;
+					public getParametersJson(): string;
+					public getPresetName(): string;
+					public getResultJson(): string;
+					public getRunId(): string;
+					public static report(engine: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<any>, json: string): boolean;
+					public reportResult(json: string): boolean;
+					public toString(): string;
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace execution {
 				export class ExecutionConfig {
 					public static readonly tag: string;
+					public readonly agentExecutionState: __javaRoots.orgRoot.autojs.autojs.execution.AgentScriptExecutionState;
 					public readonly arguments: any;
 					public readonly delay: number;
 					public readonly envPath: string[];
@@ -8623,6 +8652,7 @@ declare namespace org {
 					public copy(workingDirectory: string, envPath: string[], intentFlags: number, delay: number, interval: number, loopTimes: number, scriptConfig: __javaRoots.orgRoot.autojs.autojs.project.ScriptConfig): __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig;
 					public describeContents(): number;
 					public equals(other: any): boolean;
+					public getAgentExecutionState(): __javaRoots.orgRoot.autojs.autojs.execution.AgentScriptExecutionState;
 					public getArgument(key: string): any;
 					public getArguments(): any;
 					public getArguments(): __javaRoots.javaRoot.util.HashMap<string, any>;
@@ -8637,6 +8667,7 @@ declare namespace org {
 					public static getTag(): string;
 					public getWorkingDirectory(): string;
 					public hashCode(): number;
+					public setAgentExecutionState$app(_set___: __javaRoots.orgRoot.autojs.autojs.execution.AgentScriptExecutionState): void;
 					public setArgument(key: string, _object_: any): void;
 					public setDelay(_set___: number): void;
 					public setEnvPath(_set___: string[]): void;
@@ -8716,16 +8747,27 @@ declare namespace org {
 					public static readonly NO_ID: number;
 				}
 				export interface ScriptExecution {
+					readonly agentContext: __javaRoots.orgRoot.autojs.autojs.execution.AgentScriptExecutionState;
+					readonly agentParametersJson: string;
+					readonly agentPresetName: string;
+					readonly agentResult: string;
+					readonly agentRunId: string;
 					readonly config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig;
 					readonly engine: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<__javaRoots.orgRoot.autojs.autojs.script.ScriptSource>;
 					readonly id: number;
 					readonly listener: __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecutionListener;
 					readonly source: __javaRoots.orgRoot.autojs.autojs.script.ScriptSource;
+					getAgentContext(): __javaRoots.orgRoot.autojs.autojs.execution.AgentScriptExecutionState;
+					getAgentParametersJson(): string;
+					getAgentPresetName(): string;
+					getAgentResult(): string;
+					getAgentRunId(): string;
 					getConfig(): __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig;
 					getEngine(): __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<__javaRoots.orgRoot.autojs.autojs.script.ScriptSource>;
 					getId(): number;
 					getListener(): __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecutionListener;
 					getSource(): __javaRoots.orgRoot.autojs.autojs.script.ScriptSource;
+					setAgentResult(json: string): boolean;
 				}
 				export namespace ScriptExecution {
 					export abstract class AbstractScriptExecution {
@@ -9118,6 +9160,51 @@ declare namespace org {
 	export namespace autojs {
 		export namespace autojs {
 			export namespace project {
+				export class AgentManifest {
+					public readonly confirm: string;
+					public readonly description: string;
+					public readonly examples: __javaRoots.javaRoot.util.List<string>;
+					public readonly id: string;
+					public readonly parameters: __javaRoots.comRoot.google.gson.JsonObject;
+					public readonly result: __javaRoots.comRoot.google.gson.JsonObject;
+					public readonly risk: string;
+					public readonly tags: __javaRoots.javaRoot.util.List<string>;
+					public readonly timeoutMs: number;
+					public constructor();
+					public constructor(id: string, description: string, parameters: __javaRoots.comRoot.google.gson.JsonObject, result: __javaRoots.comRoot.google.gson.JsonObject, risk: string, confirm: string, timeoutMs: number, examples: __javaRoots.javaRoot.util.List<string>, tags: __javaRoots.javaRoot.util.List<string>);
+					public component1(): string;
+					public component2(): string;
+					public component3(): __javaRoots.comRoot.google.gson.JsonObject;
+					public component4(): __javaRoots.comRoot.google.gson.JsonObject;
+					public component5(): string;
+					public component6(): string;
+					public component7(): number;
+					public component8(): __javaRoots.javaRoot.util.List<string>;
+					public component9(): __javaRoots.javaRoot.util.List<string>;
+					public copy(id: string, description: string, parameters: __javaRoots.comRoot.google.gson.JsonObject, result: __javaRoots.comRoot.google.gson.JsonObject, risk: string, confirm: string, timeoutMs: number, examples: __javaRoots.javaRoot.util.List<string>, tags: __javaRoots.javaRoot.util.List<string>): __javaRoots.orgRoot.autojs.autojs.project.AgentManifest;
+					public static emptyParameters(): __javaRoots.comRoot.google.gson.JsonObject;
+					public equals(other: any): boolean;
+					public getConfirm(): string;
+					public getDescription(): string;
+					public getExamples(): __javaRoots.javaRoot.util.List<string>;
+					public getId(): string;
+					public getParameters(): __javaRoots.comRoot.google.gson.JsonObject;
+					public getResult(): __javaRoots.comRoot.google.gson.JsonObject;
+					public getRisk(): string;
+					public getTags(): __javaRoots.javaRoot.util.List<string>;
+					public getTimeoutMs(): number;
+					public hashCode(): number;
+					public toJsonObject(): __javaRoots.comRoot.google.gson.JsonObject;
+					public toString(): string;
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace project {
 				export class BuildInfo {
 					public readonly buildId: string;
 					public readonly buildNumber: number;
@@ -9208,6 +9295,7 @@ declare namespace org {
 					public static readonly DEFAULT_MAIN_SCRIPT_FILE_NAME: string;
 					public static readonly DEFAULT_PERMISSIONS: __javaRoots.javaRoot.util.List<string>;
 					public readonly abis: __javaRoots.javaRoot.util.List<string>;
+					public readonly agent: __javaRoots.orgRoot.autojs.autojs.project.AgentManifest;
 					public readonly assets: __javaRoots.javaRoot.util.List<string>;
 					public readonly buildDir: string;
 					public readonly buildInfo: __javaRoots.orgRoot.autojs.autojs.project.BuildInfo;
@@ -9242,6 +9330,7 @@ declare namespace org {
 					public static fromProjectDir(path: string): __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig;
 					public static fromProjectDirForExecution(path: string): __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig;
 					public getAbis(): __javaRoots.javaRoot.util.List<string>;
+					public getAgent(): __javaRoots.orgRoot.autojs.autojs.project.AgentManifest;
 					public getAssets(): __javaRoots.javaRoot.util.List<string>;
 					public getBuildDir(): string;
 					public getBuildInfo(): __javaRoots.orgRoot.autojs.autojs.project.BuildInfo;
@@ -9270,6 +9359,7 @@ declare namespace org {
 					public static normalizeSignatureScheme(input: string): string;
 					public recordOriginalJsonKey(canonicalKey: string, originalKey: string): void;
 					public setAbis(abis: __javaRoots.javaRoot.util.List<string>): __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig;
+					public setAgent(agent: __javaRoots.orgRoot.autojs.autojs.project.AgentManifest): __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig;
 					public setAssets(assets: __javaRoots.javaRoot.util.List<string>): void;
 					public setBuildInfo(buildInfo: __javaRoots.orgRoot.autojs.autojs.project.BuildInfo): __javaRoots.orgRoot.autojs.autojs.project.ProjectConfig;
 					public setFeatures(features: __javaRoots.javaRoot.util.List<string>): void;
@@ -13233,6 +13323,7 @@ declare namespace org {
 								public getEnableChannelInvalidModificationWarnings(): boolean;
 								public getUseDynamicDefaultNotificationId(): boolean;
 								public getUseScriptNameAsDefaultChannelId(): boolean;
+								public pristine$app(): __javaRoots.orgRoot.autojs.autojs.runtime.api.Notice.Companion.Config;
 								public setDefaultAppendScriptName(_set___: any): void;
 								public setDefaultAutoCancel(_set___: __javaRoots.javaRoot.lang.Boolean): void;
 								public setDefaultBigContent(_set___: string): void;
@@ -14827,6 +14918,7 @@ declare namespace org {
 					public readonly action: string;
 					public readonly category: string;
 					public readonly dataType: string;
+					public readonly extras: string;
 					public readonly intentFilter: __javaRoots.androidRoot.content.IntentFilter;
 					public readonly local: boolean;
 					public readonly projectRoot: string;
@@ -14836,6 +14928,7 @@ declare namespace org {
 					public getAction(): string;
 					public getCategory(): string;
 					public getDataType(): string;
+					public getExtras(): string;
 					public getIntentFilter(): __javaRoots.androidRoot.content.IntentFilter;
 					public getProjectRoot(): string;
 					public getScriptPath(): string;
@@ -14844,6 +14937,7 @@ declare namespace org {
 					public setAction(action: string): void;
 					public setCategory(category: string): void;
 					public setDataType(dataType: string): void;
+					public setExtras(extras: string): void;
 					public setLocal(local: boolean): void;
 					public setProjectRoot(projectRoot: string): void;
 					public setScriptPath(scriptPath: string): void;
@@ -15767,6 +15861,7 @@ declare namespace org {
 						public toString(): string;
 					}
 					export class PreviewerType extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType> {
+						public static readonly EPUB: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType;
 						public static readonly HTML: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType;
 						public static readonly MARKDOWN: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType;
 						public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.util.FileUtils.PreviewerType>;
@@ -15972,6 +16067,7 @@ declare namespace org {
 						public static readonly EMF: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly EML: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly EPS: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
+						public static readonly EPUB: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly ERLANG: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly ESM: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
 						public static readonly EVB: __javaRoots.orgRoot.autojs.autojs.util.FileUtils.TYPE;
@@ -17287,6 +17383,7 @@ declare namespace org {
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.remoteBuildCandidates..inlined.thenByDescending.1:1
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.remoteBuildCandidates..inlined.thenByDescending.2:1
 //org.autojs.autojs.apkbuilder.template.NativeBuildAlignment.inspect.lambda.0.0..inlined.sortedBy.1:1
+//org.autojs.autojs.app.tool.AiAgentTool.1.1:1
 //org.autojs.autojs.concurrent.ConcurrentArrayList:1
 //org.autojs.autojs.concurrent.Value:1
 //org.autojs.autojs.concurrent.VolatileBox:1
@@ -17354,6 +17451,7 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.AidlPluginHost.retryAfterBinderFailure.1:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.withDedicatedServiceBinding.1:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.withService.1:1
+//org.autojs.autojs.core.plugin.agent.AiAgentLinkController.withLink.1:1
 //org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.1:1
 //org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.2:1
 //org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.3:1
@@ -17409,6 +17507,7 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.center.PluginVariantPriorityStore.selectByPriority..inlined.compareBy.1:1
 //org.autojs.autojs.core.plugin.center.PluginVariantPriorityStore.selectByPriority..inlined.thenByDescending.1:1
 //org.autojs.autojs.core.plugin.center.PluginVisibilityStore.listHidden..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.center.wizard.PluginInstallWizardLoader.buildItems..inlined.compareBy.1:1
 //org.autojs.autojs.core.plugin.dex.CloseOnceSlot:1
 //org.autojs.autojs.core.plugin.dex.DexCompilerExperimentalPolicy.selectAndPin..inlined.compareByDescending.1:1
 //org.autojs.autojs.core.plugin.dex.DexCompilerExperimentalPolicy.selectAndPin..inlined.thenBy.1:1
@@ -17438,6 +17537,7 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.docs.OfflineDocsPluginStateMonitor.inspect..inlined.thenBy.1:1
 //org.autojs.autojs.core.plugin.docs.OfflineDocsVerificationCache:1
 //org.autojs.autojs.core.plugin.docs.OfflineDocsVerificationCache.Entry:1
+//org.autojs.autojs.core.plugin.epub.EpubPluginHost.lease.1:1
 //org.autojs.autojs.core.plugin.explorer.ExplorerActionRegistry.refresh.2.invokeSuspend..inlined.compareByDescending.1:1
 //org.autojs.autojs.core.plugin.explorer.ExplorerActionRegistry.refresh.2.invokeSuspend..inlined.thenBy.1:1
 //org.autojs.autojs.core.plugin.explorer.ExplorerActionRegistry.refresh.2.invokeSuspend..inlined.thenBy.2:1
@@ -17577,6 +17677,7 @@ declare namespace org {
 //org.autojs.autojs.core.ui.inflater.inflaters.WebViewInflater:1
 //org.autojs.autojs.core.ui.inflater.util.ValueMapper:1
 //org.autojs.autojs.engine.BunPluginWorkspaceArchive.Companion.writeArchive.lambda.0..inlined.sortedBy.1:1
+//org.autojs.autojs.engine.ControlledJavaInteropPolicy.policyJson.lambda.0..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.LuaModuleSnapshot.Companion.create..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.NodeAndroidPackageInstallManager.collectPackageFiles..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.NodeAndroidPackageInstallManager.collectPackageFiles.visit..inlined.sortedBy.1:1
@@ -17613,6 +17714,8 @@ declare namespace org {
 //org.autojs.autojs.model.autocomplete.DictionaryTree:1
 //org.autojs.autojs.model.autocomplete.DictionaryTree.Entry:1
 //org.autojs.autojs.model.autocomplete.DictionaryTree.Node:1
+//org.autojs.autojs.project.AgentScriptCatalog.listScripts.scan..inlined.compareBy.1:1
+//org.autojs.autojs.project.AgentScriptCatalog.listScripts.scan..inlined.thenBy.1:1
 //org.autojs.autojs.project.FuzzyDeserializer:1
 //org.autojs.autojs.rhino.AndroidClassLoader.jarToDexR8..inlined.sortedBy.1:1
 //org.autojs.autojs.rhino.ClassFileDexer.dexOutputs..inlined.sortedBy.1:1
@@ -17678,6 +17781,7 @@ declare namespace org {
 //org.autojs.autojs.ui.floating.LayoutFloatyWindow.switchWindow.lambda.1..inlined.compareBy.1:1
 //org.autojs.autojs.ui.fragment.BaseViewBindingFragment:1
 //org.autojs.autojs.ui.main.drawer.DrawerFragment.onCreate.13.3.1:1
+//org.autojs.autojs.ui.main.drawer.DrawerFragment.onCreate.14.3.1:1
 //org.autojs.autojs.ui.main.scripts.AndroidPackageArchiveInspector.chooseBase..inlined.sortedBy.1:1
 //org.autojs.autojs.ui.main.scripts.ApkInfoDialogManager.showMoreInfoDialog.1.1:1
 //org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.compareBy.1:1

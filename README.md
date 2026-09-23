@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.20.0
+
+###### 2026/09/23
+
+##### Agent 登记脚本执行通道
+
+- `新增` `ai.agent.result(value)` 与 `ai.agent.context()` 声明及 `AgentExecutionContext`, 对应 AutoJs6 6.8.0 / build 5287
+- `新增` 登记脚本结果的 JSON 值类型, 64 KiB 上限与上下文快照说明, `docs/smoke/ai-agent-execution-smoke.ts` 覆盖有效调用与未开放任务 API 的负例
+
 # v4.19.0
 
 ###### 2026/09/21
@@ -161,6 +170,7 @@ npm update @sm003/autojs6-dts
 
 - `新增` 服务商预设 `Provider` 的 `pop3Xoauth2TwoLine` 字段 (Angus Mail 插件预设目录版本 3: POP3 的 `AUTH XOAUTH2` 是否只接受两行形式, Outlook.com 与 Microsoft 365 为 `true`)
 - `新增` `SavedAccount.oauth` 与 `SavedAccountOAuth` (Angus Mail 插件 1.2.0: 在插件设置页经浏览器以 Google / Microsoft 账号登录的账户在 `mail.accounts.list()` 中带有 `provider` / `authorizedAt` / `expiresAt` / `needsReauth`, 令牌本身不出现)
+- `新增` `Internal.Mail.TriggerEvent` 接口: AutoJs6 "邮件到达时" 任务启动的脚本通过 `engines.myEngine().execArgv.mail` 收到的事件 (Angus Mail 插件 1.1.0 后台守望, 邮件契约版本 2: `triggerId`, `alias`, `address`, `folder`, 信封 `message` 与 `receivedAt`)
 
 # v4.18.0
 
@@ -171,13 +181,3 @@ npm update @sm003/autojs6-dts
 - `新增` 全局对象 `mail` / `$mail` 声明 (AutoJs6 6.8.0, 由 Angus Mail 插件提供): `connect` / `connectAsync`, `setDefault`, `default`, `close`, `providers`, `accounts`, `MailError` 及转发到默认客户端的全部客户端方法
 - `新增` `Internal.Mail` 命名空间: `Client` 与 `Operations` (收发, 文件夹, 列表, 搜索, 读取, 附件与原文下载, 标记, 移动, 复制, 删除, 清除, 追加与监听的同步及 `Async` 形态), `Watch` 事件发射器, `Message` / `Attachment` / `Address` / `SendMessage`, `AccountOptions` / `Provider` / `SavedAccount`, `SearchQuery` / `SearchResult`, `Folder` / `FolderStatus` / `SendResult` / `SessionTestResult` 与 `ErrorCode`
 - `新增` `docs/smoke/mail-smoke.ts` 编译样例, 覆盖别名与令牌连接, 搜索回退标记, 附件下载, 标记与移动, 监听事件及负例
-
-# v4.17.0
-
-###### 2026/09/18
-
-##### 内置日志器与三方库声明精简
-
-- `更新` 全局代理 `Level` / `LogConfigurator` / `LogManager` 改为继承 AutoJs6 内置的 `org.autojs.autojs.core.console.log` 同名类, `console.setGlobalLogConfig` 的示例与源码摘要同步 (宿主 6.8.0 以内置滚动文件日志器替换 log4j)
-- `更新` 三方库声明不再包含宿主已移除的库: log4j 与 android-logging-log4j, Flexmark, JavaMail, JUnit, github-api 与 Jackson, commons-io 与 commons-lang3, kotlin-reflect, SpongyCastle, media3 与 Guava (`libraries.d.ts` 26,864 -> 25,081 行)
-- `更新` 合并 AutoJs6 6.8.0 (5282) 的主应用与资源声明: 新增 `org.autojs.autojs.core.console.log` 包 (Appender / Level / LogConfigurator / LogEvent / Logger / LoggerRepository / LogManager) 与邮件插件契约类, 资源 ID 随宿主增删

@@ -4,6 +4,15 @@
 
 ******
 
+# v4.20.0
+
+###### 2026/09/23
+
+##### Agent 登记脚本执行通道
+
+- `新增` `ai.agent.result(value)` 与 `ai.agent.context()` 声明及 `AgentExecutionContext`, 对应 AutoJs6 6.8.0 / build 5287
+- `新增` 登记脚本结果的 JSON 值类型, 64 KiB 上限与上下文快照说明, `docs/smoke/ai-agent-execution-smoke.ts` 覆盖有效调用与未开放任务 API 的负例
+
 # v4.19.0
 
 ###### 2026/09/21
