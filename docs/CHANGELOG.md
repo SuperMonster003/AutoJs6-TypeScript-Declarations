@@ -4,6 +4,16 @@
 
 ******
 
+# v4.21.0
+
+###### 2026/09/24
+
+##### Agent 任务 API
+
+- `新增` ai.agent.run/create/get/list/catalog/presets/status, AgentRun 只读属性, 事件, 询问回应, 确认, 取消, result Promise 与 join, 对应 AutoJs6 6.8.0 / build 5293
+- `新增` 任务选项, 预算, 历史摘要, 登记脚本元数据与事件类型, 明确 detached 生命周期, 超时及结果与链路错误的区别
+- `新增` docs/smoke/ai-agent-task-smoke.ts, 覆盖任务 API 与非法选项, 事件和回应类型
+
 # v4.20.0
 
 ###### 2026/09/23

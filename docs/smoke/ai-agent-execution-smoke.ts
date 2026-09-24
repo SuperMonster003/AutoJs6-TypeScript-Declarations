@@ -14,5 +14,3 @@ ai.agent.result();
 ai.agent.result(() => 1);
 // @ts-expect-error Context takes no arguments.
 ai.agent.context('task');
-// @ts-expect-error Task creation belongs to the later task API.
-ai.agent.run('goal');

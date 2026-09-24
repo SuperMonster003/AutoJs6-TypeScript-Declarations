@@ -16730,6 +16730,7 @@ declare namespace org {
 				public readonly frameIndex: number;
 				public frozen: boolean;
 				public readonly localShift: number;
+				public readonly newTarget: any;
 				public readonly parentFrame: T;
 				public readonly parentPC: number;
 				public pc: number;
@@ -16740,7 +16741,7 @@ declare namespace org {
 				public readonly stack: any[];
 				public readonly stackAttributes: number[];
 				public stackTop: number;
-				public thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
+				public thisObj: any;
 				public throwable: any;
 				public readonly useActivation: boolean;
 				public varSource: __javaLibraryRoots.orgRoot.mozilla.javascript.ACallFrame<T, U>;
@@ -16797,6 +16798,7 @@ declare namespace org {
 				public readonly arity: number;
 				public readonly className: string;
 				public readonly ["constructor"]: boolean;
+				public readonly declarationScope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
 				public readonly functionName: string;
 				public readonly homeObject: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public readonly length: number;
@@ -16804,15 +16806,18 @@ declare namespace org {
 				public readonly typeOf: string;
 				public constructor();
 				public constructor(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, prototype: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable);
+				public constructor(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope);
 				public constructor(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, prototype: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable);
-				public constructor(isGenerator: boolean);
-				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
-				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
+				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, nt: any, s: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, args: any[]): any;
+				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, thisObj: any, args: any[]): any;
+				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, args: any[]): any;
+				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, nt: any, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
-				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public createObject(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
+				public createObject(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, nt: any): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public getArity(): number;
 				public getClassName(): string;
+				public getDeclarationScope(): __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
 				public getFunctionName(): string;
 				public getHomeObject(): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public getLength(): number;
@@ -16825,6 +16830,8 @@ declare namespace org {
 				public setPrototypeProperty(prototype: any): void;
 				public setPrototypePropertyAttributes(attributes: number): void;
 				public setStandardPropertyAttributes(attributes: number): void;
+				public call(...args: any[]): any;
+				public construct(...args: any[]): any;
 				public delete(...args: any[]): any;
 				public get(...args: any[]): any;
 				public getAncestor(...args: any[]): any;
@@ -16848,8 +16855,8 @@ declare namespace org {
 				public readonly length: number;
 				public constructor(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, targetFunction: __javaLibraryRoots.orgRoot.mozilla.javascript.Callable, boundThis: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, boundArgs: any[]);
 				public constructor(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, targetFunction: __javaLibraryRoots.orgRoot.mozilla.javascript.Callable, boundThis: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, boundArgs: any[]);
-				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, extraArgs: any[]): any;
-				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, extraArgs: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
+				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, nt: any, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, extraArgs: any[]): any;
+				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, nt: any, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, extraArgs: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public getFunctionName(): string;
 				public getLength(): number;
 				public hasInstance(instance: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable): boolean;
@@ -16862,14 +16869,11 @@ declare namespace org {
 declare namespace org {
 	export namespace mozilla {
 		export namespace javascript {
-			export class BuiltInSlot<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject> extends __javaLibraryRoots.orgRoot.mozilla.javascript.Slot<__javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable> {
-				public getValue(start: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable): any;
-				public setValue(value: any, owner: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, start: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, isThrow: boolean): boolean;
+			export class BuiltInSlot<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject> {
 				public setValueFromDescriptor(value: any, owner: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, start: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, isThrow: boolean): void;
 				protected constructor();
-				public getValue(...args: any[]): any;
-				public setValue(...args: any[]): any;
 			}
+			export interface BuiltInSlot<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject> extends __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot<__javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Descriptor<T>, __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, T> {}
 			export namespace BuiltInSlot {
 				export class AttributeSetter<U extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject> {
 					public constructor(implementation: AttributeSetter<U>);
@@ -16877,6 +16881,22 @@ declare namespace org {
 				}
 				export interface AttributeSetter<U extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject> extends __javaLibraryRoots.javaRoot.io.Serializable {
 					apply(param0: U, param1: number): void;
+				}
+				export class Descriptor<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject> extends __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot.Descriptor<__javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Descriptor<T>, __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, T> {
+					public constructor(name: any, indexOrHash: number, getter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Getter<T>, setter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Setter<T>, attrUpdater: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.AttributeSetter<T>, propDescSetter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.PropDescriptionSetter<T>);
+					public constructor(name: any, getter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Getter<T>);
+					public constructor(name: any, getter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Getter<T>, setter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Setter<T>);
+					public constructor(name: any, getter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Getter<T>, setter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Setter<T>, attrUpdater: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.AttributeSetter<T>);
+					public constructor(name: any, getter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Getter<T>, setter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Setter<T>, attrUpdater: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.AttributeSetter<T>, propDescSetter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.PropDescriptionSetter<T>);
+					public createSlot(owner: T, attr: number): __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot<T>;
+					public getValue(slot: __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot<__javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Descriptor<T>, __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, T>, start: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable): any;
+					public setAttributes(slot: __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot<__javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Descriptor<T>, __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, T>, value: number): void;
+					public setValue(slot: __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot<__javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Descriptor<T>, __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, T>, value: any, owner: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, start: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, isThrow: boolean): boolean;
+					public constructor(...args: any[]);
+					public createSlot(...args: any[]): any;
+					public getValue(...args: any[]): any;
+					public setAttributes(...args: any[]): any;
+					public setValue(...args: any[]): any;
 				}
 				export class Getter<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject> {
 					public constructor(implementation: Getter<T>);
@@ -16911,8 +16931,8 @@ declare namespace org {
 				public constructor();
 			}
 			export interface Callable {
-				call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
-				call(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, param1: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, param2: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, param3: any[]): any;
+				call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, thisObj: any, args: any[]): any;
+				call(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, param1: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, param2: any, param3: any[]): any;
 			}
 		}
 	}
@@ -16957,6 +16977,40 @@ declare namespace org {
 declare namespace org {
 	export namespace mozilla {
 		export namespace javascript {
+			export abstract class CompactSlot<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot.Descriptor<T, U, O>, U extends __javaLibraryRoots.orgRoot.mozilla.javascript.PropHolder<U>, O extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject> extends __javaLibraryRoots.orgRoot.mozilla.javascript.Slot<U> {
+				public readonly indexOrHash: number;
+				public readonly key: any;
+				public readonly name: any;
+				public getIndexOrHash(): number;
+				public getKey(): any;
+				public getName(): any;
+				public getValue(start: U): any;
+				public keyMatches(key: any, indexOrHash: number): boolean;
+				public setValue(value: any, owner: U, start: U, isThrow: boolean): boolean;
+				protected constructor();
+				public getValue(...args: any[]): any;
+				public setValue(...args: any[]): any;
+			}
+			export namespace CompactSlot {
+				export abstract class Descriptor<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot.Descriptor<T, U, O>, U extends __javaLibraryRoots.orgRoot.mozilla.javascript.PropHolder<U>, O extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject> {
+					public readonly indexOrHash: number;
+					public readonly name: any;
+					public createSlot(param0: O, param1: number): __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot<T, U, O>;
+					public getIndexOrHash(): number;
+					public getName(): any;
+					public getValue(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot<T, U, O>, param1: U): any;
+					public setAttributes(slot: __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot<T, U, O>, value: number): void;
+					public setValue(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot<T, U, O>, param1: any, param2: U, param3: U, param4: boolean): boolean;
+					protected constructor();
+				}
+				export interface Descriptor<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.CompactSlot.Descriptor<T, U, O>, U extends __javaLibraryRoots.orgRoot.mozilla.javascript.PropHolder<U>, O extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject> extends __javaLibraryRoots.javaRoot.io.Serializable {}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace mozilla {
+		export namespace javascript {
 			export class CompilationResult<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptOrFn<T>> {
 				public constructor(implementation: CompilationResult<T>);
 				public constructor();
@@ -16964,6 +17018,49 @@ declare namespace org {
 			export interface CompilationResult<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptOrFn<T>> {
 				readonly debuggableScript: __javaLibraryRoots.orgRoot.mozilla.javascript.debug.DebuggableScript;
 				getDebuggableScript(): __javaLibraryRoots.orgRoot.mozilla.javascript.debug.DebuggableScript;
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace mozilla {
+		export namespace javascript {
+			export abstract class CompileSpec<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptOrFn<T>> {
+				public readonly compilationErrorReporter: __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter;
+				public readonly compiler: __javaLibraryRoots.orgRoot.mozilla.javascript.Evaluator;
+				public readonly compilerEnvironsProcessor: any;
+				public readonly lineno: number;
+				public readonly scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
+				public readonly securityDomain: any;
+				public readonly source: string;
+				public readonly sourceCodeSupplier: __javaLibraryRoots.orgRoot.mozilla.javascript.SourceCodeSupplier;
+				public readonly sourceMapper: __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper;
+				public readonly sourceName: string;
+				public constructor(builder: __javaLibraryRoots.orgRoot.mozilla.javascript.CompileSpec.Builder<T, any>);
+				public getCompilationErrorReporter(): __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter;
+				public getCompiler(): __javaLibraryRoots.orgRoot.mozilla.javascript.Evaluator;
+				public getCompilerEnvironsProcessor(): any;
+				public getLineno(): number;
+				public getScope(): __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
+				public getSecurityDomain(): any;
+				public getSource(): string;
+				public getSourceCodeSupplier(): __javaLibraryRoots.orgRoot.mozilla.javascript.SourceCodeSupplier;
+				public getSourceMapper(): __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper;
+				public getSourceName(): string;
+			}
+			export namespace CompileSpec {
+				export abstract class Builder<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptOrFn<T>, U extends __javaLibraryRoots.orgRoot.mozilla.javascript.CompileSpec.Builder<T, U>> {
+					public build(): __javaLibraryRoots.orgRoot.mozilla.javascript.CompileSpec<T>;
+					public compilationErrorReporter(compilationErrorReporter: __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter): U;
+					public compiler(compiler: __javaLibraryRoots.orgRoot.mozilla.javascript.Evaluator): U;
+					public compilerEnvironsProcessor(compilerEnvironsProcessor: any): U;
+					public lineno(lineno: number): U;
+					public securityDomain(securityDomain: any): U;
+					public sourceCodeSupplier(sourceCodeSupplier: __javaLibraryRoots.orgRoot.mozilla.javascript.SourceCodeSupplier): U;
+					public sourceMapper(sourceMapper: __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper): U;
+					public sourceName(sourceName: string): U;
+					protected constructor();
+				}
 			}
 		}
 	}
@@ -16989,6 +17086,7 @@ declare namespace org {
 				public readonly recordingComments: boolean;
 				public readonly recordingLocalJsDocComments: boolean;
 				public readonly reservedKeywordAsIdentifier: boolean;
+				public readonly sourceCodeProvider: __javaLibraryRoots.orgRoot.mozilla.javascript.SourceCodeProvider;
 				public readonly sourceMapper: __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper;
 				public readonly strictMode: boolean;
 				public readonly warnTrailingComma: boolean;
@@ -17000,6 +17098,7 @@ declare namespace org {
 				public getLanguageVersion(): number;
 				/** @deprecated */
 				public getOptimizationLevel(): number;
+				public getSourceCodeProvider(): __javaLibraryRoots.orgRoot.mozilla.javascript.SourceCodeProvider;
 				public getSourceMapper(): __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper;
 				public getWarnTrailingComma(): boolean;
 				public homeObject(): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
@@ -17043,6 +17142,7 @@ declare namespace org {
 				public setRecoverFromErrors(recover: boolean): void;
 				public setReservedKeywordAsIdentifier(flag: boolean): void;
 				public setSecurityDomain(domain: any): void;
+				public setSourceCodeProvider(sourceCodeProvider: __javaLibraryRoots.orgRoot.mozilla.javascript.SourceCodeProvider): void;
 				public setSourceMapper(sourceMapper: __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper): void;
 				public setStrictMode(strict: boolean): void;
 				public setWarnTrailingComma(warn: boolean): void;
@@ -17098,8 +17198,9 @@ declare namespace org {
 				public constructor();
 			}
 			export interface Constructable {
+				construct(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, param1: any, param2: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, param3: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
-				construct(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, param1: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, param2: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
+				construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 			}
 		}
 	}
@@ -17150,6 +17251,7 @@ declare namespace org {
 				public readonly errorReporter: __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter;
 				public readonly evaluationMethod: __javaLibraryRoots.orgRoot.mozilla.javascript.Context.EvaluationMethod;
 				public readonly factory: __javaLibraryRoots.orgRoot.mozilla.javascript.ContextFactory;
+				public readonly finalizationEnabled: boolean;
 				public readonly generateObserverCount: boolean;
 				public readonly generatingDebug: boolean;
 				public readonly generatingDebugChanged: boolean;
@@ -17251,6 +17353,7 @@ declare namespace org {
 				public initStandardObjects(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel, sealed: boolean): __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel;
 				public isActivationNeeded(name: string): boolean;
 				public static isCurrentContextStrict(): boolean;
+				public isFinalizationEnabled(): boolean;
 				public isGenerateObserverCount(): boolean;
 				public isGeneratingDebug(): boolean;
 				public isGeneratingDebugChanged(): boolean;
@@ -17302,6 +17405,7 @@ declare namespace org {
 				public setDebugger(_debugger_: __javaLibraryRoots.orgRoot.mozilla.javascript.debug.Debugger, contextData: any): void;
 				public setErrorReporter(reporter: __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter): __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter;
 				public setEvaluationMethod(evaluationMethod: __javaLibraryRoots.orgRoot.mozilla.javascript.Context.EvaluationMethod): void;
+				public setFinalizationEnabled(enabled: boolean): void;
 				public setGenerateObserverCount(generateObserverCount: boolean): void;
 				public setGeneratingDebug(generatingDebug: boolean): void;
 				public setGeneratingSource(generatingSource: boolean): void;
@@ -17468,8 +17572,8 @@ declare namespace org {
 				public readonly prototype: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public constructor();
 				public constructor(obj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable);
-				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
-				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
+				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, args: any[]): any;
+				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, nt: any, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public delete(index: number): void;
 				public delete(name: string): void;
 				public delete(key: __javaLibraryRoots.orgRoot.mozilla.javascript.Symbol): void;
@@ -17582,8 +17686,8 @@ declare namespace org {
 			export interface Function extends __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, __javaLibraryRoots.orgRoot.mozilla.javascript.Callable, __javaLibraryRoots.orgRoot.mozilla.javascript.Constructable {
 				readonly ["constructor"]: boolean;
 				readonly declarationScope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
-				call(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, param1: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, param2: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, param3: any[]): any;
-				construct(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, param1: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, param2: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
+				call(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, param1: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, param2: any, param3: any[]): any;
+				construct(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, param1: any, param2: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, param3: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				getDeclarationScope(): __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
 				isConstructor(): boolean;
 				call(...args: any[]): any;
@@ -17596,39 +17700,18 @@ declare namespace org {
 	export namespace mozilla {
 		export namespace javascript {
 			export class FunctionCompileSpec {
-				public readonly compilationErrorReporter: __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter;
-				public readonly compiler: __javaLibraryRoots.orgRoot.mozilla.javascript.Evaluator;
-				public readonly compilerEnvironsProcessor: any;
-				public readonly lineno: number;
 				public readonly scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
-				public readonly securityDomain: any;
-				public readonly source: string;
-				public readonly sourceMapper: __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper;
-				public readonly sourceName: string;
-				public constructor(source: string, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, sourceName: string, lineno: number, securityDomain: any, compiler: __javaLibraryRoots.orgRoot.mozilla.javascript.Evaluator, compilationErrorReporter: __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter, compilerEnvironsProcessor: any, sourceMapper: __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper);
+				public constructor(builder: __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec.Builder);
 				public static fromReader(reader: __javaLibraryRoots.javaRoot.io.Reader, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope): __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec.Builder;
 				public static fromSource(source: string, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope): __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec.Builder;
-				public getCompilationErrorReporter(): __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter;
-				public getCompiler(): __javaLibraryRoots.orgRoot.mozilla.javascript.Evaluator;
-				public getCompilerEnvironsProcessor(): any;
-				public getLineno(): number;
 				public getScope(): __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
-				public getSecurityDomain(): any;
-				public getSource(): string;
-				public getSourceMapper(): __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper;
-				public getSourceName(): string;
 			}
+			export interface FunctionCompileSpec extends __javaLibraryRoots.orgRoot.mozilla.javascript.CompileSpec<__javaLibraryRoots.orgRoot.mozilla.javascript.JSFunction> {}
 			export namespace FunctionCompileSpec {
-				export class Builder {
+				export class Builder extends __javaLibraryRoots.orgRoot.mozilla.javascript.CompileSpec.Builder<__javaLibraryRoots.orgRoot.mozilla.javascript.JSFunction, __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec.Builder> {
 					public build(): __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec;
-					public compilationErrorReporter(compilationErrorReporter: __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter): __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec.Builder;
-					public compiler(compiler: __javaLibraryRoots.orgRoot.mozilla.javascript.Evaluator): __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec.Builder;
-					public compilerEnvironsProcessor(compilerEnvironsProcessor: any): __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec.Builder;
-					public lineno(lineno: number): __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec.Builder;
-					public securityDomain(securityDomain: any): __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec.Builder;
-					public sourceMapper(sourceMapper: __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper): __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec.Builder;
-					public sourceName(sourceName: string): __javaLibraryRoots.orgRoot.mozilla.javascript.FunctionCompileSpec.Builder;
-					protected constructor();
+					public constructor(...args: any[]);
+					public build(...args: any[]): any;
 				}
 			}
 		}
@@ -17740,15 +17823,15 @@ declare namespace org {
 				public readonly paramAndVarCount: number;
 				public readonly paramCount: number;
 				public readonly parent: __javaLibraryRoots.orgRoot.mozilla.javascript.debug.DebuggableScript;
-				public readonly rawSource: string;
 				public readonly script: boolean;
 				public readonly securityController: __javaLibraryRoots.orgRoot.mozilla.javascript.SecurityController;
 				public readonly securityDomain: any;
 				public readonly shorthand: boolean;
+				public readonly source: string;
 				public readonly sourceName: string;
 				public readonly strict: boolean;
 				public readonly topLevel: boolean;
-				public constructor(code: __javaLibraryRoots.orgRoot.mozilla.javascript.JSCode<T>, _constructor_: __javaLibraryRoots.orgRoot.mozilla.javascript.JSCode<T>, parent: __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<any>, paramAndVarNames: string[], paramIsConst: boolean[], isStrict: boolean, isScript: boolean, isTopLevel: boolean, isES6Generator: boolean, isShorthand: boolean, hasPrototype: boolean, hasLexicalThis: boolean, isEvalFunction: boolean, hasRestArg: boolean, sourceFile: string, rawSource: string, rawSourceStart: number, rawSourceEnd: number, name: string, languageVersion: number, paramAndVarCount: number, paramCount: number, arity: number, hasDefaultParameters: boolean, requiresActivationFrame: boolean, requiresArgumentObject: boolean, declaredAsFunctionExpression: boolean, securityController: __javaLibraryRoots.orgRoot.mozilla.javascript.SecurityController, securityDomain: any, functionType: number);
+				public constructor(code: __javaLibraryRoots.orgRoot.mozilla.javascript.JSCode<T>, _constructor_: __javaLibraryRoots.orgRoot.mozilla.javascript.JSCode<T>, parent: __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<any>, paramAndVarNames: string[], paramIsConst: boolean[], isStrict: boolean, isScript: boolean, isTopLevel: boolean, isES6Generator: boolean, isShorthand: boolean, hasPrototype: boolean, hasLexicalThis: boolean, isEvalFunction: boolean, hasRestArg: boolean, sourceFile: string, sourceCodeProvider: __javaLibraryRoots.orgRoot.mozilla.javascript.SourceCodeProvider, sourceStart: number, sourceEnd: number, name: string, languageVersion: number, paramAndVarCount: number, paramCount: number, arity: number, hasDefaultParameters: boolean, requiresActivationFrame: boolean, requiresArgumentObject: boolean, declaredAsFunctionExpression: boolean, derivedConstructor: boolean, securityController: __javaLibraryRoots.orgRoot.mozilla.javascript.SecurityController, securityDomain: any, functionType: number);
 				public declaredAsFunctionExpression(): boolean;
 				public getArity(): number;
 				public getCode(): __javaLibraryRoots.orgRoot.mozilla.javascript.JSCode<T>;
@@ -17766,13 +17849,13 @@ declare namespace org {
 				public getParamOrVarConst(index: number): boolean;
 				public getParamOrVarName(index: number): string;
 				public getParent(): __javaLibraryRoots.orgRoot.mozilla.javascript.debug.DebuggableScript;
-				public getRawSource(): string;
 				public getSecurityController(): __javaLibraryRoots.orgRoot.mozilla.javascript.SecurityController;
 				public getSecurityDomain(): any;
+				public getSource(): string;
 				public getSourceName(): string;
 				public hasDefaultParameters(): boolean;
-				public hasFunctionNamed(name: string): boolean;
 				public hasLexicalThis(): boolean;
+				public hasNoFunctionStatementNamed(name: string): boolean;
 				public hasPrototype(): boolean;
 				public hasRestArg(): boolean;
 				public isES6Generator(): boolean;
@@ -17803,13 +17886,14 @@ declare namespace org {
 				public readonly functionName: string;
 				public readonly homeObject: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public readonly length: number;
+				public readonly lexicalNewTarget: any;
 				public readonly rawSource: string;
 				public readonly script: boolean;
 				public readonly shorthand: boolean;
 				public readonly strict: boolean;
-				public constructor(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, descriptor: __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<__javaLibraryRoots.orgRoot.mozilla.javascript.JSFunction>, lexicalThis: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, homeObject: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable);
-				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
-				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
+				public constructor(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, descriptor: __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<__javaLibraryRoots.orgRoot.mozilla.javascript.JSFunction>, lexicalThis: any, lexicalNewTarget: any, homeObject: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable);
+				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, nt: any, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, args: any[]): any;
+				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, nt: any, s: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public static createFunction(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, desc: __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<__javaLibraryRoots.orgRoot.mozilla.javascript.JSFunction>, homeObject: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, staticSecurityDomain: any): __javaLibraryRoots.orgRoot.mozilla.javascript.JSFunction;
 				public static createScript(desc: __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<__javaLibraryRoots.orgRoot.mozilla.javascript.JSScript>, homeObject: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, staticSecurityDomain: any): __javaLibraryRoots.orgRoot.mozilla.javascript.JSScript;
 				public getArity(): number;
@@ -17817,12 +17901,13 @@ declare namespace org {
 				public getDeclarationScope(): __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
 				public getDescriptor(): __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<__javaLibraryRoots.orgRoot.mozilla.javascript.JSFunction>;
 				public getFunctionName(): string;
-				public getFunctionThis(functionThis: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
+				public getFunctionThis(functionThis: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable): any;
 				public getHomeObject(): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public getLength(): number;
+				public getLexicalNewTarget(): any;
 				public getRawSource(): string;
-				public getThisObj(thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
-				public hasFunctionNamed(name: string): boolean;
+				public getThisObj(thisObj: any): any;
+				public hasNoFunctionStatementNamed(name: string): boolean;
 				public isConstructor(): boolean;
 				public isScript(): boolean;
 				public isShorthand(): boolean;
@@ -17845,7 +17930,7 @@ declare namespace org {
 				public readonly descriptor: __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<__javaLibraryRoots.orgRoot.mozilla.javascript.JSScript>;
 				public readonly homeObject: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public constructor(descriptor: __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<__javaLibraryRoots.orgRoot.mozilla.javascript.JSScript>, homeObject: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable);
-				public exec(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable): any;
+				public exec(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any): any;
 				public getDescriptor(): __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<__javaLibraryRoots.orgRoot.mozilla.javascript.JSScript>;
 				public getHomeObject(): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public exec(...args: any[]): any;
@@ -17938,8 +18023,8 @@ declare namespace org {
 				public readonly className: string;
 				public readonly implementation: any;
 				public constructor();
-				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
-				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
+				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, args: any[]): any;
+				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, nt: any, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public static equalImplementations(c1: __javaLibraryRoots.orgRoot.mozilla.javascript.NativeContinuation, c2: __javaLibraryRoots.orgRoot.mozilla.javascript.NativeContinuation): boolean;
 				public getClassName(): string;
 				public getImplementation(): any;
@@ -17976,8 +18061,8 @@ declare namespace org {
 				public constructor(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, cl: __javaLibraryRoots.javaRoot.lang.Class<any>, isAdapter: boolean);
 				public constructor(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, cl: __javaLibraryRoots.javaRoot.lang.Class<any>);
 				public constructor(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, cl: __javaLibraryRoots.javaRoot.lang.Class<any>, isAdapter: boolean);
-				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
-				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
+				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, args: any[]): any;
+				public construct(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, nt: any, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public equals(obj: any): boolean;
 				public get(name: string, start: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable): any;
 				public getClassName(): string;
@@ -18014,7 +18099,7 @@ declare namespace org {
 				public constructor(method: __javaLibraryRoots.javaRoot.lang.reflect.Method, name: string);
 				/** @deprecated */
 				public constructor(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, method: __javaLibraryRoots.javaRoot.lang.reflect.Method, name: string);
-				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
+				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, nt: any, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, args: any[]): any;
 				public getFunctionName(): string;
 				public toString(): string;
 				public call(...args: any[]): any;
@@ -18410,7 +18495,7 @@ declare namespace org {
 				exec(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable): any;
 				/** @deprecated */
 				exec(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope): any;
-				exec(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, param1: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, param2: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable): any;
+				exec(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, param1: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, param2: any): any;
 				getDescriptor(): __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<__javaLibraryRoots.orgRoot.mozilla.javascript.JSScript>;
 			}
 		}
@@ -18420,37 +18505,16 @@ declare namespace org {
 	export namespace mozilla {
 		export namespace javascript {
 			export class ScriptCompileSpec {
-				public readonly compilationErrorReporter: __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter;
-				public readonly compiler: __javaLibraryRoots.orgRoot.mozilla.javascript.Evaluator;
-				public readonly compilerEnvironsProcessor: any;
-				public readonly lineno: number;
-				public readonly securityDomain: any;
-				public readonly source: string;
-				public readonly sourceMapper: __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper;
-				public readonly sourceName: string;
-				public constructor(source: string, sourceName: string, lineno: number, securityDomain: any, compiler: __javaLibraryRoots.orgRoot.mozilla.javascript.Evaluator, compilationErrorReporter: __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter, compilerEnvironsProcessor: any, sourceMapper: __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper);
+				public constructor(builder: __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec.Builder);
 				public static fromReader(reader: __javaLibraryRoots.javaRoot.io.Reader): __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec.Builder;
 				public static fromSource(source: string): __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec.Builder;
-				public getCompilationErrorReporter(): __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter;
-				public getCompiler(): __javaLibraryRoots.orgRoot.mozilla.javascript.Evaluator;
-				public getCompilerEnvironsProcessor(): any;
-				public getLineno(): number;
-				public getSecurityDomain(): any;
-				public getSource(): string;
-				public getSourceMapper(): __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper;
-				public getSourceName(): string;
 			}
+			export interface ScriptCompileSpec extends __javaLibraryRoots.orgRoot.mozilla.javascript.CompileSpec<__javaLibraryRoots.orgRoot.mozilla.javascript.JSScript> {}
 			export namespace ScriptCompileSpec {
-				export class Builder {
+				export class Builder extends __javaLibraryRoots.orgRoot.mozilla.javascript.CompileSpec.Builder<__javaLibraryRoots.orgRoot.mozilla.javascript.JSScript, __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec.Builder> {
 					public build(): __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec;
-					public compilationErrorReporter(compilationErrorReporter: __javaLibraryRoots.orgRoot.mozilla.javascript.ErrorReporter): __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec.Builder;
-					public compiler(compiler: __javaLibraryRoots.orgRoot.mozilla.javascript.Evaluator): __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec.Builder;
-					public compilerEnvironsProcessor(compilerEnvironsProcessor: any): __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec.Builder;
-					public lineno(lineno: number): __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec.Builder;
-					public securityDomain(securityDomain: any): __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec.Builder;
-					public sourceMapper(sourceMapper: __javaLibraryRoots.orgRoot.mozilla.javascript.sourcemap.SourceMapper): __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec.Builder;
-					public sourceName(sourceName: string): __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptCompileSpec.Builder;
-					protected constructor();
+					public constructor(...args: any[]);
+					public build(...args: any[]): any;
 				}
 			}
 		}
@@ -18562,10 +18626,7 @@ declare namespace org {
 				public avoidObjectDetection(): boolean;
 				public static callMethod(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, obj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, methodName: string, args: any[]): any;
 				public static callMethod(obj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, methodName: string, args: any[]): any;
-				public static defineBuiltInProperty<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject>(owner: T, name: any, attributes: number, getter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Getter<T>): void;
-				public static defineBuiltInProperty<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject>(owner: T, name: any, attributes: number, getter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Getter<T>, setter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Setter<T>): void;
-				public static defineBuiltInProperty<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject>(owner: T, name: any, attributes: number, getter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Getter<T>, setter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Setter<T>, attrSetter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.AttributeSetter<T>): void;
-				public static defineBuiltInProperty<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject>(owner: T, name: any, attributes: number, getter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Getter<T>, setter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Setter<T>, attrSetter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.AttributeSetter<T>, propDescSetter: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.PropDescriptionSetter<T>): void;
+				public static defineBuiltInProperty<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject>(owner: T, attributes: number, descriptor: __javaLibraryRoots.orgRoot.mozilla.javascript.BuiltInSlot.Descriptor<T>): void;
 				public defineBuiltinProperty(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, name: string, length: number, target: __javaLibraryRoots.orgRoot.mozilla.javascript.SerializableCallable): void;
 				public defineBuiltinProperty(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, name: string, length: number, target: __javaLibraryRoots.orgRoot.mozilla.javascript.SerializableCallable, attributes: number, propertyAttributes: number): void;
 				public static defineClass<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable>(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, clazz: __javaLibraryRoots.javaRoot.lang.Class<T>): void;
@@ -18743,8 +18804,8 @@ declare namespace org {
 				public readonly staticSecurityDomainClassInternal: __javaLibraryRoots.javaRoot.lang.Class<any>;
 				public static readonly staticSecurityDomainClass: __javaLibraryRoots.javaRoot.lang.Class<any>;
 				public constructor();
-				public callWithDomain(securityDomain: any, cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, callable: __javaLibraryRoots.orgRoot.mozilla.javascript.Callable, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
-				public callWithDomain(securityDomain: any, cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, script: __javaLibraryRoots.orgRoot.mozilla.javascript.Script, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
+				public callWithDomain(securityDomain: any, cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, callable: __javaLibraryRoots.orgRoot.mozilla.javascript.Callable, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, args: any[]): any;
+				public callWithDomain(securityDomain: any, cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, script: __javaLibraryRoots.orgRoot.mozilla.javascript.Script, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, args: any[]): any;
 				public createClassLoader(param0: __javaLibraryRoots.javaRoot.lang.ClassLoader, param1: any): __javaLibraryRoots.orgRoot.mozilla.javascript.GeneratedClassLoader;
 				public static createLoader(parent: __javaLibraryRoots.javaRoot.lang.ClassLoader, staticDomain: any): __javaLibraryRoots.orgRoot.mozilla.javascript.GeneratedClassLoader;
 				/** @deprecated */
@@ -18773,10 +18834,17 @@ declare namespace org {
 declare namespace org {
 	export namespace mozilla {
 		export namespace javascript {
-			export class Slot<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.PropHolder<T>> {
+			export abstract class Slot<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.PropHolder<T>> {
+				public readonly indexOrHash: number;
+				public readonly key: any;
+				public readonly name: any;
+				public getIndexOrHash(): number;
+				public getKey(): any;
+				public getName(): any;
 				public getValue(start: T): any;
+				public keyMatches(param0: any, param1: number): boolean;
 				public setValue(value: any, owner: T, start: T): boolean;
-				public setValue(value: any, owner: T, start: T, isThrow: boolean): boolean;
+				public setValue(param0: any, param1: T, param2: T, param3: boolean): boolean;
 				protected constructor();
 			}
 			export interface Slot<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.PropHolder<T>> extends __javaLibraryRoots.javaRoot.io.Serializable {}
@@ -18859,6 +18927,34 @@ declare namespace org {
 				protected constructor();
 			}
 			export interface SlotMapOwner<T extends __javaLibraryRoots.orgRoot.mozilla.javascript.PropHolder<T>> extends __javaLibraryRoots.orgRoot.mozilla.javascript.PropHolder<T> {}
+		}
+	}
+}
+declare namespace org {
+	export namespace mozilla {
+		export namespace javascript {
+			export class SourceCodeProvider {
+				public constructor(implementation: SourceCodeProvider);
+				public constructor();
+				public static make(generatingSource: boolean, sourceCodeSupplier: __javaLibraryRoots.orgRoot.mozilla.javascript.SourceCodeSupplier, rawSource: string): __javaLibraryRoots.orgRoot.mozilla.javascript.SourceCodeProvider;
+			}
+			export interface SourceCodeProvider {
+				readonly rawSource: string;
+				getRawSource(): string;
+				getSource(param0: __javaLibraryRoots.orgRoot.mozilla.javascript.JSDescriptor<any>, param1: number, param2: number): string;
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace mozilla {
+		export namespace javascript {
+			export class SourceCodeSupplier {
+				public constructor(implementation: SourceCodeSupplier);
+				public constructor();
+			}
+			export interface SourceCodeSupplier extends __javaLibraryRoots.javaRoot.io.Serializable {
+			}
 		}
 	}
 }
@@ -18959,7 +19055,7 @@ declare namespace org {
 			export class Synchronizer extends __javaLibraryRoots.orgRoot.mozilla.javascript.Delegator {
 				public constructor(obj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable);
 				public constructor(obj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, syncObject: any);
-				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
+				public call(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, args: any[]): any;
 				public call(...args: any[]): any;
 			}
 		}
@@ -19024,6 +19120,7 @@ declare namespace org {
 				public static readonly ELSE: number;
 				public static readonly EMPTY: number;
 				public static readonly ENTERWITH: number;
+				public static readonly ENTER_SCOPE: number;
 				public static readonly ENUM_ID: number;
 				public static readonly ENUM_INIT_ARRAY: number;
 				public static readonly ENUM_INIT_KEYS: number;
@@ -19076,7 +19173,7 @@ declare namespace org {
 				public static readonly LB: number;
 				public static readonly LC: number;
 				public static readonly LE: number;
-				public static readonly LEAVEWITH: number;
+				public static readonly LEAVE_SCOPE: number;
 				public static readonly LET: number;
 				public static readonly LETEXPR: number;
 				public static readonly LOCAL_BLOCK: number;
@@ -19092,6 +19189,7 @@ declare namespace org {
 				public static readonly NE: number;
 				public static readonly NEG: number;
 				public static readonly NEW: number;
+				public static readonly NEW_TARGET: number;
 				public static readonly NOT: number;
 				public static readonly NULL: number;
 				public static readonly NULLISH_COALESCING: number;
@@ -19116,6 +19214,8 @@ declare namespace org {
 				public static readonly RETURN_RESULT: number;
 				public static readonly RP: number;
 				public static readonly RSH: number;
+				public static readonly SCOPEEXPR: number;
+				public static readonly SCOPE_BLOCK: number;
 				public static readonly SCRIPT: number;
 				public static readonly SEMI: number;
 				public static readonly SET: number;
@@ -19211,6 +19311,7 @@ declare namespace org {
 				public static getBuiltinCtor(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, _type_: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins): __javaLibraryRoots.orgRoot.mozilla.javascript.Function;
 				public getBuiltinCtor(_type_: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins): __javaLibraryRoots.orgRoot.mozilla.javascript.BaseFunction;
 				public getBuiltinPrototype(_type_: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
+				public getBuiltinPrototype(_type_: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public static getBuiltinPrototype(scope: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel, _type_: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins): __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable;
 				public getGlobalThis(): __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject;
 				public has(name: string, start: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope): boolean;
@@ -19240,6 +19341,7 @@ declare namespace org {
 					public static readonly DataView: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Date: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Error: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
+					public static readonly Float16Array: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Float32Array: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Float64Array: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Function: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
@@ -19247,16 +19349,21 @@ declare namespace org {
 					public static readonly Int16Array: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Int32Array: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Int8Array: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
+					public static readonly Map: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Number: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Object: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Promise: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
+					public static readonly Proxy: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly RegExp: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
+					public static readonly Set: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly String: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Symbol: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Uint16Array: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Uint32Array: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Uint8Array: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static readonly Uint8ClampedArray: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
+					public static readonly WeakMap: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
+					public static readonly WeakSet: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static valueOf(name: string): __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins;
 					public static values(): __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.Builtins[];
 					protected constructor();
@@ -19266,6 +19373,22 @@ declare namespace org {
 					public readonly className: string;
 					public constructor();
 					public getClassName(): string;
+				}
+				export class NativeErrors extends __javaLibraryRoots.javaRoot.lang.Enum<__javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors> {
+					public static readonly AggregateError: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors;
+					public static readonly Error: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors;
+					public static readonly EvalError: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors;
+					public static readonly InternalError: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors;
+					public static readonly JavaException: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors;
+					public static readonly RangeError: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors;
+					public static readonly ReferenceError: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors;
+					public static readonly SyntaxError: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors;
+					public static readonly TypeError: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors;
+					public static readonly URIError: __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors;
+					public static valueOf(name: string): __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors;
+					public static values(): __javaLibraryRoots.orgRoot.mozilla.javascript.TopLevel.NativeErrors[];
+					protected constructor();
+					public static valueOf(...args: any[]): any;
 				}
 			}
 		}
@@ -19307,9 +19430,11 @@ declare namespace org {
 			}
 			export interface VarScope extends __javaLibraryRoots.orgRoot.mozilla.javascript.PropHolder<__javaLibraryRoots.orgRoot.mozilla.javascript.VarScope>, __javaLibraryRoots.orgRoot.mozilla.javascript.ConstProperties<__javaLibraryRoots.orgRoot.mozilla.javascript.VarScope> {
 				readonly ancestor: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
+				readonly nestedScope: boolean;
 				readonly parentScope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
 				getAncestor(): __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
 				getParentScope(): __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope;
+				isNestedScope(): boolean;
 				getAncestor(...args: any[]): any;
 			}
 		}
@@ -19444,10 +19569,12 @@ declare namespace org {
 			export namespace ast {
 				export class FunctionNode extends __javaLibraryRoots.orgRoot.mozilla.javascript.ast.ScriptNode {
 					public static readonly ARROW_FUNCTION: number;
+					public static readonly FUNCTION_BLOCK_SCOPED: number;
 					public static readonly FUNCTION_EXPRESSION: number;
 					public static readonly FUNCTION_EXPRESSION_STATEMENT: number;
 					public static readonly FUNCTION_STATEMENT: number;
 					public readonly ES6Generator: boolean;
+					public readonly annexBHoisted: boolean;
 					public readonly body: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.AstNode;
 					public readonly defaultParams: __javaLibraryRoots.javaRoot.util.List<any>;
 					public readonly destructuringRvalues: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.mozilla.javascript.Node[]>;
@@ -19490,6 +19617,7 @@ declare namespace org {
 					public getResumptionPoints(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.mozilla.javascript.Node>;
 					public getRp(): number;
 					public hasRestParameter(): boolean;
+					public isAnnexBHoisted(): boolean;
 					public isES6Generator(): boolean;
 					public isExpressionClosure(): boolean;
 					public isGenerator(): boolean;
@@ -19503,6 +19631,7 @@ declare namespace org {
 					public putDestructuringRvalues(left: __javaLibraryRoots.orgRoot.mozilla.javascript.Node, right: __javaLibraryRoots.orgRoot.mozilla.javascript.Node): void;
 					public requiresActivation(): boolean;
 					public requiresArgumentObject(): boolean;
+					public setAnnexBHoisted(hoisted: boolean): void;
 					public setBody(body: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.AstNode): void;
 					public setFunctionIsGetterMethod(): void;
 					public setFunctionIsNormalMethod(): void;
@@ -19639,6 +19768,7 @@ declare namespace org {
 					public readonly statements: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.mozilla.javascript.ast.AstNode>;
 					public readonly symbolTable: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol>;
 					public readonly top: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.ScriptNode;
+					public readonly varSymbolTable: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol>;
 					public constructor();
 					public constructor(pos: number);
 					public constructor(pos: number, len: number);
@@ -19651,8 +19781,13 @@ declare namespace org {
 					public getSymbol(name: string): __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol;
 					public getSymbolTable(): __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol>;
 					public getTop(): __javaLibraryRoots.orgRoot.mozilla.javascript.ast.ScriptNode;
+					public getVarSymbol(name: string): __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol;
+					public getVarSymbolTable(): __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol>;
 					public static joinScopes(source: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope, dest: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope): void;
+					public static joinVarScopes(source: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope, dest: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope): void;
+					public moveSymbol(name: string, dest: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope): void;
 					public putSymbol(_symbol_: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol): void;
+					public putVarSymbol(_symbol_: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol): void;
 					public replaceWith(newScope: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope): void;
 					public setParentScope(parentScope: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope): void;
 					public setSymbolTable(table: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol>): void;
@@ -19695,9 +19830,11 @@ declare namespace org {
 					public readonly templateLiteralCount: number;
 					public constructor();
 					public constructor(pos: number);
+					public addAnnexBFunction(letSymbol: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol, fn: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.FunctionNode): void;
 					public addFunction(fnNode: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.FunctionNode): number;
 					public addRegExp(re: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.RegExpLiteral): void;
 					public addTemplateLiteral(templateLiteral: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.TemplateLiteral): void;
+					public doAnnexBHoisting(): void;
 					public flattenSymbolTable(flattenAllTables: boolean): void;
 					public getBaseLineno(): number;
 					public getCompilerData(): any;
@@ -19752,25 +19889,46 @@ declare namespace org {
 			export namespace ast {
 				export class Symbol {
 					public readonly containingTable: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope;
-					public readonly declType: number;
+					public readonly declType: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type;
+					public readonly declTypeLexical: boolean;
 					public readonly declTypeName: string;
+					public readonly declaredScope: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope;
 					public readonly index: number;
 					public readonly name: string;
 					public readonly node: __javaLibraryRoots.orgRoot.mozilla.javascript.Node;
 					public constructor();
-					public constructor(declType: number, name: string);
+					public constructor(declType: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type, name: string);
 					public getContainingTable(): __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope;
-					public getDeclType(): number;
+					public getDeclType(): __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type;
 					public getDeclTypeName(): string;
+					public getDeclaredScope(): __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope;
 					public getIndex(): number;
 					public getName(): string;
 					public getNode(): __javaLibraryRoots.orgRoot.mozilla.javascript.Node;
+					public isDeclTypeLexical(): boolean;
+					public static isDeclTypeLexical(declType: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type): boolean;
 					public setContainingTable(containingTable: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope): void;
-					public setDeclType(declType: number): void;
+					public setDeclType(declType: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type): void;
+					public setDeclaredScope(declaredScope: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Scope): void;
 					public setIndex(index: number): void;
 					public setName(name: string): void;
 					public setNode(node: __javaLibraryRoots.orgRoot.mozilla.javascript.Node): void;
 					public toString(): string;
+				}
+				export namespace Symbol {
+					export class Type extends __javaLibraryRoots.javaRoot.lang.Enum<__javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type> {
+						public static readonly CONST: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type;
+						public static readonly FUNCTION_LET: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type;
+						public static readonly FUNCTION_VAR: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type;
+						public static readonly LET: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type;
+						public static readonly LP: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type;
+						public static readonly VAR: __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type;
+						public static fromToken(token: number): __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type;
+						public static valueOf(name: string): __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type;
+						public static values(): __javaLibraryRoots.orgRoot.mozilla.javascript.ast.Symbol.Type[];
+						protected constructor();
+						public static valueOf(...args: any[]): any;
+					}
 				}
 			}
 		}
@@ -19835,7 +19993,7 @@ declare namespace org {
 				}
 				export interface DebugFrame {
 					onDebuggerStatement(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context): void;
-					onEnter(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, activation: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaLibraryRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): void;
+					onEnter(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, activation: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, thisObj: any, args: any[]): void;
 					onExceptionThrown(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, ex: __javaLibraryRoots.javaRoot.lang.Throwable): void;
 					onExit(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, byThrow: boolean, resultOrException: any): void;
 					onLineChange(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, lineNumber: number): void;
@@ -20294,7 +20452,9 @@ declare namespace org {
 			export namespace typedarrays {
 				export class NativeArrayBuffer extends __javaLibraryRoots.orgRoot.mozilla.javascript.ScriptableObject {
 					public static readonly CLASS_NAME: string;
+					/** @deprecated */
 					public readonly buffer: number[];
+					public readonly byteBuffer: __javaLibraryRoots.javaRoot.nio.ByteBuffer;
 					public readonly className: string;
 					public readonly detached: boolean;
 					public readonly length: number;
@@ -20302,13 +20462,14 @@ declare namespace org {
 					public constructor();
 					public constructor(len: number);
 					public detach(): void;
+					/** @deprecated */
 					public getBuffer(): number[];
+					public getByteBuffer(): __javaLibraryRoots.javaRoot.nio.ByteBuffer;
 					public getClassName(): string;
 					public getLength(): number;
 					public static init(cx: __javaLibraryRoots.orgRoot.mozilla.javascript.Context, scope: __javaLibraryRoots.orgRoot.mozilla.javascript.VarScope, sealed: boolean): any;
 					public isDetached(): boolean;
 					public isResizable(): boolean;
-					public slice(s: number, e: number): __javaLibraryRoots.orgRoot.mozilla.javascript.typedarrays.NativeArrayBuffer;
 				}
 			}
 		}
@@ -24975,6 +25136,7 @@ declare namespace org {
 //org.mozilla.javascript.AInterpreter.ContinuationJump:2
 //org.mozilla.javascript.BuiltInSlot:1
 //org.mozilla.javascript.BuiltInSlot.AttributeSetter:1
+//org.mozilla.javascript.BuiltInSlot.Descriptor:1
 //org.mozilla.javascript.BuiltInSlot.Getter:1
 //org.mozilla.javascript.BuiltInSlot.PropDescriptionSetter:1
 //org.mozilla.javascript.BuiltInSlot.Setter:1
@@ -24982,18 +25144,25 @@ declare namespace org {
 //org.mozilla.javascript.ClassDescriptor.BuiltInJSCodeResume:1
 //org.mozilla.javascript.ClassDescriptor.BuiltInPropDesc:1
 //org.mozilla.javascript.CodeGenerator:1
+//org.mozilla.javascript.CompactSlot:3
+//org.mozilla.javascript.CompactSlot.Descriptor:3
 //org.mozilla.javascript.CompilationResult:1
+//org.mozilla.javascript.CompileSpec:1
+//org.mozilla.javascript.CompileSpec.Builder:2
+//org.mozilla.javascript.CompileSpec.CompileFn:1
 //org.mozilla.javascript.CompoundOperationMap:1
 //org.mozilla.javascript.ConstProperties:1
-//org.mozilla.javascript.Context.CompileFn:1
 //org.mozilla.javascript.Context.Compiled:1
 //org.mozilla.javascript.ContextAction:1
 //org.mozilla.javascript.EmbeddedSlotMap:1
 //org.mozilla.javascript.EmbeddedSlotMap.Iter:1
 //org.mozilla.javascript.HashSlotMap:1
+//org.mozilla.javascript.ImmutableSmallSlotMap:1
+//org.mozilla.javascript.ImmutableSmallSlotMap.Iter:1
 //org.mozilla.javascript.Interpreter.InterpreterCompilationResult:1
 //org.mozilla.javascript.InterpreterData:1
 //org.mozilla.javascript.InterpreterData.Builder:1
+//org.mozilla.javascript.InterpreterV2.V2CompilationResult:1
 //org.mozilla.javascript.JSCode:1
 //org.mozilla.javascript.JSCode.Builder:1
 //org.mozilla.javascript.JSCode.NullBuilder:1
@@ -25010,19 +25179,25 @@ declare namespace org {
 //org.mozilla.javascript.Slot:1
 //org.mozilla.javascript.SlotMap:1
 //org.mozilla.javascript.SlotMap.SlotComputer:2
+//org.mozilla.javascript.SlotMapDescriptor:1
+//org.mozilla.javascript.SlotMapDescriptor.Builder:1
 //org.mozilla.javascript.SlotMapOwner:1
 //org.mozilla.javascript.SlotMapOwner.EmptySlotMap:1
 //org.mozilla.javascript.SlotMapOwner.Iter:1
 //org.mozilla.javascript.SlotMapOwner.SingleEntrySlotMap:1
 //org.mozilla.javascript.SlotMapOwner.ThreadSafeEmptySlotMap:1
 //org.mozilla.javascript.SlotMapOwner.ThreadSafeSingleEntrySlotMap:1
+//org.mozilla.javascript.StandardSlot:1
 //org.mozilla.javascript.ThreadSafeCompoundOperationMap:1
 //org.mozilla.javascript.ThreadSafeCompoundOperationMap.Iter:1
 //org.mozilla.javascript.ThreadSafeEmbeddedSlotMap:1
 //org.mozilla.javascript.ThreadSafeHashSlotMap:1
+//org.mozilla.javascript.ThreadSafeImmutableSmallSlotMap:1
 //org.mozilla.javascript.interpreterv2.CompilerData:1
 //org.mozilla.javascript.interpreterv2.CompilerData.Builder:1
 //org.mozilla.javascript.optimizer.Codegen.CodegenCompilationResult:1
+//org.mozilla.javascript.optimizer.MHJSCode:1
+//org.mozilla.javascript.optimizer.MHJSCode.Builder:1
 //org.mozilla.javascript.optimizer.OptJSCode:1
 //org.mozilla.javascript.optimizer.OptJSCode.Builder:1
 //org.mozilla.javascript.typedarrays.NativeTypedArrayIterator:1

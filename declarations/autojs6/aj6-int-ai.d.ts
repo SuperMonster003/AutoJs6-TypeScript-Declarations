@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 23, 2026
+// Last modified: Sep 24, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -18,7 +18,7 @@ declare namespace Internal {
 
     interface Ai {
 
-        /** Registered-script execution helpers, available in host build 5287 and later. */
+        /** Agent tasks require host build 5293+; registered-script result/context require 5287+. */
         readonly agent: Ai.Agent;
 
         (input: Ai.Input, options?: Ai.Options): Promise<string>;
@@ -42,6 +42,18 @@ declare namespace Internal {
         type JsonObject = { [key: string]: JsonValue };
 
         interface Agent {
+            /** Validates arguments synchronously. Plugin unavailability returns a rejected handle. */
+            run(goal: string, options?: AgentRunOptions): AgentRun;
+            /** Copies options; per-call budget, tools, roots and cautious policy may only narrow. */
+            create(options: AgentRunOptions): AgentAssistant;
+            /** Observes an existing task. Null when the ID is no longer retained. */
+            get(id: string): AgentRun | null;
+            list(filter?: AgentListFilter): Promise<AgentRunSummary[]>;
+            /** Reads registered metadata, including when the plugin is not connected. */
+            catalog(query?: string): Promise<AgentScriptEntry[]>;
+            presets(): Promise<string[]>;
+            status(): AgentLinkStatus;
+
             /** Last accepted JSON report wins until execution ends. Maximum UTF-8 JSON size: 64 KiB.
              * Returns false with a warning outside registered execution. Does not finish the script. */
             result(value: JsonValue): boolean;
@@ -49,6 +61,184 @@ declare namespace Internal {
             /** Returns a fresh snapshot, or null outside registered execution. */
             context(): AgentExecutionContext | null;
         }
+
+        interface AgentAssistant {
+            /** Each access returns an independent JSON snapshot. */
+            readonly options: AgentRunOptions;
+            run(goal: string, overrides?: AgentRunOptions): AgentRun;
+        }
+
+        type AgentToolGroup = 'observe' | 'act' | 'ocr' | 'gesture' | 'script' | 'files' | 'shell' | 'memory' | 'user';
+        type AgentTerminalState = 'completed' | 'partial' | 'failed' | 'blocked' | 'cancelled';
+        type AgentState = 'queued' | 'running' | 'waiting_input' | 'waiting_confirmation' | 'cancelling' | AgentTerminalState;
+
+        interface AgentBudget {
+            maxSteps?: number;
+            maxModelCalls?: number;
+            maxDurationMs?: number;
+            maxTotalTokens?: number;
+        }
+
+        interface AgentRunOptions {
+            preset?: string;
+            target?: TargetId;
+            tools?: AgentToolGroup[] | { enable?: AgentToolGroup[]; disable?: AgentToolGroup[] };
+            /** Positive integers within both host hard ceilings and the plugin's configured budget. */
+            budget?: AgentBudget;
+            confirm?: 'default' | 'cautious';
+            interaction?: 'plugin' | 'script';
+            detached?: boolean;
+            context?: string;
+            parameters?: JsonObject;
+            memory?: boolean;
+            scriptRoots?: string[];
+            locale?: string;
+        }
+
+        interface AgentRun {
+            readonly id: string;
+            readonly state: AgentState;
+            readonly goal: string;
+            readonly startedAt: number;
+            readonly detached: boolean;
+            /** Control/link failure only; task failures appear in AgentResult.error. */
+            readonly error: AgentError | null;
+            /** Resolves every task terminal status. Rejects on control/link failures. */
+            readonly result: Promise<AgentResult>;
+            on<K extends keyof AgentEventMap>(event: K, listener: (event: AgentEventMap[K]) => void): this;
+            off<K extends keyof AgentEventMap>(event: K, listener: (event: AgentEventMap[K]) => void): this;
+            once<K extends keyof AgentEventMap>(event: K, listener: (event: AgentEventMap[K]) => void): this;
+            respond(requestId: string, value: string | boolean): boolean;
+            confirm(requestId: string, allowed: boolean, scope?: 'once' | 'run'): boolean;
+            /** Requests cancellation; already completed external actions are not undone. */
+            cancel(reason?: string): this;
+            /** Originating script thread only, never UI. JOIN_TIMEOUT does not cancel the task. */
+            join(timeoutMs?: number): AgentResult;
+        }
+
+        interface AgentError {
+            code: string;
+            message: string;
+            hint?: string;
+        }
+
+        interface AgentUsage {
+            modelCalls: number;
+            inputTokens?: number;
+            outputTokens?: number;
+            totalTokens?: number;
+            estimated: boolean;
+        }
+
+        interface AgentResult {
+            id: string;
+            status: AgentTerminalState;
+            /** Legacy interrupted history can contain only id/status/error. */
+            summary?: string;
+            evidence?: string[];
+            unfinished?: string[];
+            steps?: number;
+            toolCalls?: number;
+            usage?: AgentUsage;
+            durationMs?: number;
+            script?: { id: string; path: string; executionId: number; result?: JsonValue; resultTruncated?: boolean };
+            orderStatus?: 'none' | 'cart' | 'pending_payment' | 'submitted' | 'paid';
+            error?: AgentError;
+            truncated?: boolean;
+        }
+
+        interface AgentRunSummary {
+            id: string;
+            goal: string;
+            state: AgentState;
+            startedAt: number;
+            detached: boolean;
+            preset: string;
+        }
+
+        interface AgentListFilter {
+            state?: AgentState | AgentState[];
+            preset?: string;
+            since?: number;
+            until?: number;
+            /** Inclusive range 1..50, default 50. */
+            limit?: number;
+        }
+
+        interface AgentLinkStatus {
+            state: string;
+            queuedCount: number;
+            runningRunId?: string;
+            errorCode?: string;
+        }
+
+        interface AgentScriptEntry {
+            id: string;
+            path: string;
+            kind: 'project' | 'file';
+            description: string;
+            parameters: JsonObject;
+            result?: JsonObject;
+            risk: 'readonly' | 'normal' | 'sensitive';
+            confirm: 'never' | 'before-run';
+            timeoutMs: number;
+            examples: string[];
+            tags: string[];
+            updatedAt: number;
+        }
+
+        interface AgentInputEvent {
+            requestId: string;
+            kind: 'text' | 'choice' | 'confirm';
+            question: string;
+            choices: string[];
+            memoryKey?: string;
+            timeoutMs: number;
+            readOnly: boolean;
+        }
+
+        interface AgentConfirmationEvent {
+            requestId: string;
+            tool: string;
+            description: string;
+            risk: 'normal' | 'sensitive';
+            arguments: JsonObject;
+            allowRunScope: boolean;
+            timeoutMs: number;
+            readOnly: boolean;
+        }
+
+        interface AgentProgressEvent {
+            step: number;
+            message: string;
+            budget: { steps: number; modelCalls: number; durationMs: number; tokens: number };
+        }
+
+        interface AgentStepEvent {
+            index: number;
+            kind: string;
+            decision: JsonObject;
+            tool?: string;
+            arguments?: JsonObject;
+            confirmation?: 'allowed' | 'denied' | 'auto';
+            observation?: string;
+            elapsedMs: number;
+            usage?: AgentUsage;
+            error?: string;
+            truncated?: boolean;
+        }
+
+        interface AgentEventMap {
+            state: { from: AgentState; to: AgentState };
+            progress: AgentProgressEvent;
+            step: AgentStepEvent;
+            input: AgentInputEvent;
+            confirmation: AgentConfirmationEvent;
+            done: AgentResult;
+            error: AgentError;
+        }
+
+        type AgentEvent = AgentEventMap[keyof AgentEventMap];
 
         interface AgentExecutionContext {
             runId: string;
