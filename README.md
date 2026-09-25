@@ -146,6 +146,26 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.21.1
+
+###### 2026/09/25
+
+##### Agent 1.0.0 发布配套
+
+- `优化` Agent 选项的编辑器提示, 说明默认预设与入队快照, 模型目标选择, 全局工具权限, 预算默认值和协议上限, 审慎模式及记忆自动注入的范围
+- `修复` 声明包依赖自身旧版本, 导致安装时额外下载重复声明的问题
+- `优化` README 发行历史与完整更新日志保持一致
+
+# v4.21.0
+
+###### 2026/09/24
+
+##### Agent 任务 API
+
+- `新增` ai.agent.run/create/get/list/catalog/presets/status, AgentRun 只读属性, 事件, 询问回应, 确认, 取消, result Promise 与 join, 对应 AutoJs6 6.8.0 / build 5293
+- `新增` 任务选项, 预算, 历史摘要, 登记脚本元数据与事件类型, 明确 detached 生命周期, 超时及结果与链路错误的区别
+- `新增` docs/smoke/ai-agent-task-smoke.ts, 覆盖任务 API 与非法选项, 事件和回应类型
+
 # v4.20.0
 
 ###### 2026/09/23
@@ -154,30 +174,3 @@ npm update @sm003/autojs6-dts
 
 - `新增` `ai.agent.result(value)` 与 `ai.agent.context()` 声明及 `AgentExecutionContext`, 对应 AutoJs6 6.8.0 / build 5287
 - `新增` 登记脚本结果的 JSON 值类型, 64 KiB 上限与上下文快照说明, `docs/smoke/ai-agent-execution-smoke.ts` 覆盖有效调用与未开放任务 API 的负例
-
-# v4.19.0
-
-###### 2026/09/21
-
-##### 电子书模块声明
-
-- `新增` 全局对象 `epub` / `$epub` 声明 (AutoJs6 6.8.0, 由 Readium EPUB Reader 插件提供): `open` / `openAsync`, 便捷层 `metadata` / `toc` / `readingOrder` / `text` / `cover` / `search` 及其 `Async` 形态, 阅读器 `read` / `readAsync`, `isAvailable` / `isAvailableAsync` 与 `EpubError`
-- `新增` `Internal.Epub` 命名空间: `Book` (元数据, 目录, 阅读顺序, 位置数, 正文提取 `text` / `textAll`, 封面与资源导出, 全文搜索及关闭), `ReaderSession` 事件发射器 (`open` / `progress` / `bookmark` / `error` / `close` 事件, 跳转, 翻页, 偏好, 书签与关闭), `Locator`, `Metadata` / `TocEntry` / `ReadingOrderEntry` / `SearchHit` / `Bookmark`, `ReadOptions` / `Preferences` / `TextOptions` / `ExportOptions` / `SearchOptions` 与 `ErrorCode`
-- `新增` `docs/smoke/epub-smoke.ts` 编译样例, 覆盖书籍对象, 便捷层, 阅读器会话事件与控制, 错误类及负例
-- `新增` `epub.annotations` / `annotationsAsync` 与 `Book.annotations` / `annotationsAsync` (Readium EPUB Reader 插件 1.1.0, EPUB 契约版本 2: 阅读器为一本书保存的高亮与笔记, 按阅读顺序, 最多 2000 条, 插件为 1.0.0 时为 `PLUGIN_INCOMPATIBLE`), `Internal.Epub.Annotation` / `AnnotationStyle` 与 `ReaderSession` 的 `highlight` 事件 (`HighlightEvent`, `action` 为 `added` / `updated` / `removed`); `docs/smoke/epub-smoke.ts` 补充高亮与笔记用例与负例
-
-##### 邮件模块声明
-
-- `新增` 服务商预设 `Provider` 的 `pop3Xoauth2TwoLine` 字段 (Angus Mail 插件预设目录版本 3: POP3 的 `AUTH XOAUTH2` 是否只接受两行形式, Outlook.com 与 Microsoft 365 为 `true`)
-- `新增` `SavedAccount.oauth` 与 `SavedAccountOAuth` (Angus Mail 插件 1.2.0: 在插件设置页经浏览器以 Google / Microsoft 账号登录的账户在 `mail.accounts.list()` 中带有 `provider` / `authorizedAt` / `expiresAt` / `needsReauth`, 令牌本身不出现)
-- `新增` `Internal.Mail.TriggerEvent` 接口: AutoJs6 "邮件到达时" 任务启动的脚本通过 `engines.myEngine().execArgv.mail` 收到的事件 (Angus Mail 插件 1.1.0 后台守望, 邮件契约版本 2: `triggerId`, `alias`, `address`, `folder`, 信封 `message` 与 `receivedAt`)
-
-# v4.18.0
-
-###### 2026/09/20
-
-##### 邮件模块声明
-
-- `新增` 全局对象 `mail` / `$mail` 声明 (AutoJs6 6.8.0, 由 Angus Mail 插件提供): `connect` / `connectAsync`, `setDefault`, `default`, `close`, `providers`, `accounts`, `MailError` 及转发到默认客户端的全部客户端方法
-- `新增` `Internal.Mail` 命名空间: `Client` 与 `Operations` (收发, 文件夹, 列表, 搜索, 读取, 附件与原文下载, 标记, 移动, 复制, 删除, 清除, 追加与监听的同步及 `Async` 形态), `Watch` 事件发射器, `Message` / `Attachment` / `Address` / `SendMessage`, `AccountOptions` / `Provider` / `SavedAccount`, `SearchQuery` / `SearchResult`, `Folder` / `FolderStatus` / `SendResult` / `SessionTestResult` 与 `ErrorCode`
-- `新增` `docs/smoke/mail-smoke.ts` 编译样例, 覆盖别名与令牌连接, 搜索回退标记, 附件下载, 标记与移动, 监听事件及负例

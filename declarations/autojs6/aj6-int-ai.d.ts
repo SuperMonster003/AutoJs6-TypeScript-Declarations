@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 24, 2026
+// Last modified: Sep 25, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -18,7 +18,9 @@ declare namespace Internal {
 
     interface Ai {
 
-        /** Agent tasks require host build 5293+; registered-script result/context require 5287+. */
+        /** Agent tasks require host build 5293+ and an attached AI Agent plugin.
+         * Agent 1.0.0 uses the host's 3-Stone AI model catalog.
+         * Registered-script result/context require host build 5287+. */
         readonly agent: Ai.Agent;
 
         (input: Ai.Input, options?: Ai.Options): Promise<string>;
@@ -73,23 +75,33 @@ declare namespace Internal {
         type AgentState = 'queued' | 'running' | 'waiting_input' | 'waiting_confirmation' | 'cancelling' | AgentTerminalState;
 
         interface AgentBudget {
+            /** Initial default 40; positive integer, protocol maximum 200. */
             maxSteps?: number;
+            /** Initial default 60; positive integer, protocol maximum 300. */
             maxModelCalls?: number;
+            /** Initial default 600000 (detached: 1800000); maximum 1800000 (detached: 3600000). */
             maxDurationMs?: number;
+            /** Initial default 300000; positive integer, protocol maximum 1000000. */
             maxTotalTokens?: number;
         }
 
         interface AgentRunOptions {
+            /** Omission uses the plugin's selected default preset. Settings are snapshotted on enqueue. */
             preset?: string;
+            /** Exact model target. Omission uses the preset, then an available local or first available target. */
             target?: TargetId;
+            /** Narrows global permissions and the preset; cannot enable a globally disabled tool group. */
             tools?: AgentToolGroup[] | { enable?: AgentToolGroup[]; disable?: AgentToolGroup[] };
             /** Positive integers within both host hard ceilings and the plugin's configured budget. */
             budget?: AgentBudget;
+            /** Cannot relax cautious mode set globally or by the preset. */
             confirm?: 'default' | 'cautious';
             interaction?: 'plugin' | 'script';
             detached?: boolean;
             context?: string;
             parameters?: JsonObject;
+            /** False disables automatic injection only. Disable the memory tool group to forbid queries/proposals.
+             * True cannot widen the preset's memory scope or re-enable disabled injection. */
             memory?: boolean;
             scriptRoots?: string[];
             locale?: string;

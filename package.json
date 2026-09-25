@@ -1,6 +1,6 @@
 {
   "name": "@sm003/autojs6-dts",
-  "version": "4.21.0",
+  "version": "4.21.1",
   "types": "declarations/autojs6/index.d.ts",
   "files": [
     "declarations/android.d.ts",
@@ -43,8 +43,5 @@
   },
   "bugs": {
     "url": "https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/issues"
-  },
-  "dependencies": {
-    "@sm003/autojs6-dts": "4.20.0"
   }
 }
