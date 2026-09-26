@@ -22,6 +22,8 @@ let link: Internal.Ai.AgentLinkStatus = ai.agent.status();
 // AI Agent 1.1.0 development: the global setting must explicitly enable this group first.
 let dynamicAssistant = ai.agent.create({ tools: ['script_dynamic', 'user'], interaction: 'plugin' });
 let narrowDynamic: Internal.Ai.AgentRunOptions = { tools: { disable: ['script_dynamic'] } };
+let mcpAssistant = ai.agent.create({ tools: ['mcp', 'user'], interaction: 'plugin' });
+let narrowMcp: Internal.Ai.AgentRunOptions = { tools: { disable: ['mcp'] } };
 void dynamicAssistant;
 void narrowDynamic;
 // @ts-expect-error Model tool names are not public JavaScript methods.

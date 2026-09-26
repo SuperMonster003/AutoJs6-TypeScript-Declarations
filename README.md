@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.23.0
+
+###### 2026/09/26
+
+##### Agent 1.2.0 开发配套
+
+- `新增` AgentToolGroup 的 mcp 工具组, 默认关闭, 由插件配置服务器与允许使用的工具
+- `优化` 编辑器提示说明 MCP 服务器风险设置与宿主兼容要求
+
 # v4.22.0
 
 ###### 2026/09/26
@@ -164,13 +173,3 @@ npm update @sm003/autojs6-dts
 - `优化` Agent 选项的编辑器提示, 说明默认预设与入队快照, 模型目标选择, 全局工具权限, 预算默认值和协议上限, 审慎模式及记忆自动注入的范围
 - `修复` 声明包依赖自身旧版本, 导致安装时额外下载重复声明的问题
 - `优化` README 发行历史与完整更新日志保持一致
-
-# v4.21.0
-
-###### 2026/09/24
-
-##### Agent 任务 API
-
-- `新增` ai.agent.run/create/get/list/catalog/presets/status, AgentRun 只读属性, 事件, 询问回应, 确认, 取消, result Promise 与 join, 对应 AutoJs6 6.8.0 / build 5293
-- `新增` 任务选项, 预算, 历史摘要, 登记脚本元数据与事件类型, 明确 detached 生命周期, 超时及结果与链路错误的区别
-- `新增` docs/smoke/ai-agent-task-smoke.ts, 覆盖任务 API 与非法选项, 事件和回应类型
