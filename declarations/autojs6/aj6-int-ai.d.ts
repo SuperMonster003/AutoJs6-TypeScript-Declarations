@@ -70,7 +70,8 @@ declare namespace Internal {
             run(goal: string, overrides?: AgentRunOptions): AgentRun;
         }
 
-        type AgentToolGroup = 'observe' | 'act' | 'ocr' | 'gesture' | 'script' | 'files' | 'shell' | 'memory' | 'user';
+        /** script_dynamic requires AI Agent 1.1.0 and a compatible host. It starts disabled and confirms each source separately. */
+        type AgentToolGroup = 'observe' | 'act' | 'ocr' | 'gesture' | 'script' | 'script_dynamic' | 'files' | 'shell' | 'memory' | 'user';
         type AgentTerminalState = 'completed' | 'partial' | 'failed' | 'blocked' | 'cancelled';
         type AgentState = 'queued' | 'running' | 'waiting_input' | 'waiting_confirmation' | 'cancelling' | AgentTerminalState;
 
@@ -90,7 +91,8 @@ declare namespace Internal {
             preset?: string;
             /** Exact model target. Omission uses the preset, then an available local or first available target. */
             target?: TargetId;
-            /** Narrows global permissions and the preset; cannot enable a globally disabled tool group. */
+            /** Narrows global permissions and the preset; cannot enable a globally disabled tool group.
+             * gesture, script_dynamic, files and shell start disabled. Generated scripts always require individual confirmation. */
             tools?: AgentToolGroup[] | { enable?: AgentToolGroup[]; disable?: AgentToolGroup[] };
             /** Positive integers within both host hard ceilings and the plugin's configured budget. */
             budget?: AgentBudget;

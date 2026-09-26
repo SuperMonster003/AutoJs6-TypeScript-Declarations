@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.22.0
+
+###### 2026/09/26
+
+##### Agent 1.1.0 开发配套
+
+- `新增` AgentToolGroup 的 script_dynamic 工具组, 支持在任务与预设选项中限制动态脚本执行
+- `优化` 编辑器提示说明动态脚本默认关闭且每份源码单独确认, 区分模型工具与公开 JavaScript 方法
+
 # v4.21.1
 
 ###### 2026/09/25
@@ -165,12 +174,3 @@ npm update @sm003/autojs6-dts
 - `新增` ai.agent.run/create/get/list/catalog/presets/status, AgentRun 只读属性, 事件, 询问回应, 确认, 取消, result Promise 与 join, 对应 AutoJs6 6.8.0 / build 5293
 - `新增` 任务选项, 预算, 历史摘要, 登记脚本元数据与事件类型, 明确 detached 生命周期, 超时及结果与链路错误的区别
 - `新增` docs/smoke/ai-agent-task-smoke.ts, 覆盖任务 API 与非法选项, 事件和回应类型
-
-# v4.20.0
-
-###### 2026/09/23
-
-##### Agent 登记脚本执行通道
-
-- `新增` `ai.agent.result(value)` 与 `ai.agent.context()` 声明及 `AgentExecutionContext`, 对应 AutoJs6 6.8.0 / build 5287
-- `新增` 登记脚本结果的 JSON 值类型, 64 KiB 上限与上下文快照说明, `docs/smoke/ai-agent-execution-smoke.ts` 覆盖有效调用与未开放任务 API 的负例

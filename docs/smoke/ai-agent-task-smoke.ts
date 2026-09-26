@@ -18,6 +18,16 @@ let recent: Promise<Internal.Ai.AgentRunSummary[]> = ai.agent.list({ state: ['co
 let registered: Promise<Internal.Ai.AgentScriptEntry[]> = ai.agent.catalog('downloads');
 let presets: Promise<string[]> = ai.agent.presets();
 let link: Internal.Ai.AgentLinkStatus = ai.agent.status();
+
+// AI Agent 1.1.0 development: the global setting must explicitly enable this group first.
+let dynamicAssistant = ai.agent.create({ tools: ['script_dynamic', 'user'], interaction: 'plugin' });
+let narrowDynamic: Internal.Ai.AgentRunOptions = { tools: { disable: ['script_dynamic'] } };
+void dynamicAssistant;
+void narrowDynamic;
+// @ts-expect-error Model tool names are not public JavaScript methods.
+ai.agent.script_run_source('console.log(1 + 1);');
+// @ts-expect-error A tool name is not a tool group.
+ai.agent.run('goal', { tools: ['script_run_source'] });
 task.cancel('finished');
 // @ts-expect-error Handle metadata is read-only.
 task.id = 'different';
