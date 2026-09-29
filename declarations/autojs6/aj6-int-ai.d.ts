@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 25, 2026
+// Last modified: Sep 29, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -18,8 +18,10 @@ declare namespace Internal {
 
     interface Ai {
 
-        /** Agent tasks require host build 5293+ and an attached AI Agent plugin.
-         * Agent 1.0.0 uses the host's 3-Stone AI model catalog.
+        /** Task APIs require host build 5293+; the current 3-Stove Agent plugin requires 5298+.
+         * Plugin Center is the sole enable switch; enabled plugins connect on demand.
+         * Official first installs enable automatically, while explicit disable choices remain.
+         * The model catalog comes from 3-Stone AI through the host.
          * Registered-script result/context require host build 5287+. */
         readonly agent: Ai.Agent;
 
@@ -44,16 +46,19 @@ declare namespace Internal {
         type JsonObject = { [key: string]: JsonValue };
 
         interface Agent {
-            /** Validates arguments synchronously. Plugin unavailability returns a rejected handle. */
+            /** Validates arguments synchronously and connects on demand. Plugin unavailability returns a rejected handle.
+             * Run on a script worker thread when the connection is not ready. */
             run(goal: string, options?: AgentRunOptions): AgentRun;
             /** Copies options; per-call budget, tools, roots and cautious policy may only narrow. */
             create(options: AgentRunOptions): AgentAssistant;
-            /** Observes an existing task. Null when the ID is no longer retained. */
+            /** Observes an existing task without replay. Null when the ID is no longer retained.
+             * Initial connection waits require a script worker thread. */
             get(id: string): AgentRun | null;
             list(filter?: AgentListFilter): Promise<AgentRunSummary[]>;
             /** Reads registered metadata, including when the plugin is not connected. */
             catalog(query?: string): Promise<AgentScriptEntry[]>;
             presets(): Promise<string[]>;
+            /** Read-only snapshot; detached does not imply disabled and this call never connects. */
             status(): AgentLinkStatus;
 
             /** Last accepted JSON report wins until execution ends. Maximum UTF-8 JSON size: 64 KiB.
