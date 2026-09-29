@@ -4,6 +4,15 @@
 
 ******
 
+# v4.24.0
+
+###### 2026/09/29
+
+##### Agent 1.3.0 开发配套
+
+- `新增` AgentRunOptions 的 plan 选项 (计划模式, 省略沿用预设), AgentInputEvent 的 plan 类型与 steps 字段
+- `新增` AgentRun.respond 接受 1 到 8 条字符串组成的数组以回应计划审阅
+
 # v4.23.0
 
 ###### 2026/09/26

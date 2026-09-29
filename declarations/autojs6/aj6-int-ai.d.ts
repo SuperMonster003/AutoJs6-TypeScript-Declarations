@@ -108,6 +108,9 @@ declare namespace Internal {
             memory?: boolean;
             scriptRoots?: string[];
             locale?: string;
+            /** Plan mode: the model first proposes 1 to 8 steps, reviewed through an input event of kind plan before the first tool runs.
+             * Omission follows the preset's plan mode switch. */
+            plan?: boolean;
         }
 
         interface AgentRun {
@@ -123,7 +126,8 @@ declare namespace Internal {
             on<K extends keyof AgentEventMap>(event: K, listener: (event: AgentEventMap[K]) => void): this;
             off<K extends keyof AgentEventMap>(event: K, listener: (event: AgentEventMap[K]) => void): this;
             once<K extends keyof AgentEventMap>(event: K, listener: (event: AgentEventMap[K]) => void): this;
-            respond(requestId: string, value: string | boolean): boolean;
+            /** text/choice take a string, confirm a boolean, plan an array of 1 to 8 non-blank steps (at most 200 characters each). */
+            respond(requestId: string, value: string | boolean | string[]): boolean;
             confirm(requestId: string, allowed: boolean, scope?: 'once' | 'run'): boolean;
             /** Requests cancellation; already completed external actions are not undone. */
             cancel(reason?: string): this;
@@ -204,9 +208,11 @@ declare namespace Internal {
 
         interface AgentInputEvent {
             requestId: string;
-            kind: 'text' | 'choice' | 'confirm';
+            kind: 'text' | 'choice' | 'confirm' | 'plan';
             question: string;
             choices: string[];
+            /** Present for kind plan: the proposed steps, which may be edited before they are sent back with respond. */
+            steps?: string[];
             memoryKey?: string;
             timeoutMs: number;
             readOnly: boolean;

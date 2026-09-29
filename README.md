@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.24.0
+
+###### 2026/09/29
+
+##### Agent 1.3.0 开发配套
+
+- `新增` AgentRunOptions 的 plan 选项 (计划模式, 省略沿用预设), AgentInputEvent 的 plan 类型与 steps 字段
+- `新增` AgentRun.respond 接受 1 到 8 条字符串组成的数组以回应计划审阅
+
 # v4.23.0
 
 ###### 2026/09/26
@@ -163,13 +172,3 @@ npm update @sm003/autojs6-dts
 
 - `新增` AgentToolGroup 的 script_dynamic 工具组, 支持在任务与预设选项中限制动态脚本执行
 - `优化` 编辑器提示说明动态脚本默认关闭且每份源码单独确认, 区分模型工具与公开 JavaScript 方法
-
-# v4.21.1
-
-###### 2026/09/25
-
-##### Agent 1.0.0 发布配套
-
-- `优化` Agent 选项的编辑器提示, 说明默认预设与入队快照, 模型目标选择, 全局工具权限, 预算默认值和协议上限, 审慎模式及记忆自动注入的范围
-- `修复` 声明包依赖自身旧版本, 导致安装时额外下载重复声明的问题
-- `优化` README 发行历史与完整更新日志保持一致

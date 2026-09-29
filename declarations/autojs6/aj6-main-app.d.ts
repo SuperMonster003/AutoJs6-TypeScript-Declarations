@@ -17383,7 +17383,7 @@ declare namespace org {
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.remoteBuildCandidates..inlined.thenByDescending.1:1
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.remoteBuildCandidates..inlined.thenByDescending.2:1
 //org.autojs.autojs.apkbuilder.template.NativeBuildAlignment.inspect.lambda.0.0..inlined.sortedBy.1:1
-//org.autojs.autojs.app.tool.AiAgentTool.1.1:1
+//org.autojs.autojs.app.tool.ThreeStoveAgentTool.1.1:1
 //org.autojs.autojs.concurrent.ConcurrentArrayList:1
 //org.autojs.autojs.concurrent.Value:1
 //org.autojs.autojs.concurrent.VolatileBox:1
@@ -17451,7 +17451,7 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.AidlPluginHost.retryAfterBinderFailure.1:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.withDedicatedServiceBinding.1:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.withService.1:1
-//org.autojs.autojs.core.plugin.agent.AiAgentLinkController.withLink.1:1
+//org.autojs.autojs.core.plugin.agent.ThreeStoveAgentLinkController.withLink.1:1
 //org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.1:1
 //org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.2:1
 //org.autojs.autojs.core.plugin.ai.AiProviderDiscoveryPolicy.special..inlined.thenBy.3:1
