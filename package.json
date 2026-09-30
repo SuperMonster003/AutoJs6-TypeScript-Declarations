@@ -22,7 +22,8 @@
     "prepack": ""
   },
   "publishConfig": {
-    "ignore": []
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "description": "TypeScript Declarations for AutoJs6",
   "keywords": [
