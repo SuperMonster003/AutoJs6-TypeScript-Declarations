@@ -4,6 +4,16 @@
 
 ******
 
+# v4.27.0
+
+###### 2026/10/02
+
+##### Installer 高级安装选项
+
+- `新增` grantAllRequestedPermissions, requestUpdateOwnership, dexopt, installReason, packageSource 选项及封闭枚举, 需要宿主 5308+ 和插件对应能力
+- `新增` optimizing 会话阶段, updateOwner 可空读回结果和 dexopt 六种观察状态; accepted 不保证实际执行编译
+- `优化` 区分省略与显式 false/none, 说明平台与授权边界以及安装成功后的附加操作不回滚安装, 不提供本地策略的脚本绕过选项
+
 # v4.26.1
 
 ###### 2026/10/02

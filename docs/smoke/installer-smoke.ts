@@ -62,6 +62,16 @@ function installerApiSmoke(file: java.io.File, uri: android.net.Uri) {
     let automaticPersistent: Promise<boolean> = installer.setDefaultAsync(true, { mode: 'persistent' });
     let preferredDefault: boolean = installer.setDefault(true, { authorizer: 'root', mode: 'preferred' });
     let notificationError: Internal.Installer.ErrorCode = 'NOTIFICATION_UNAVAILABLE';
+    let advanced: Internal.Installer.InstallOptions = {
+        authorizer: 'root', grantAllRequestedPermissions: true, requestUpdateOwnership: false,
+        dexopt: 'speed-profile', installReason: 'user', packageSource: 'local-file',
+    };
+    let advancedResult: Promise<Internal.Installer.InstallResult> = installer.installAsync(file, advanced);
+    let explicitNoOp = installer.install(file, { grantAllRequestedPermissions: false, dexopt: 'none' });
+    let actualUpdateOwner: string | null | undefined = one.updateOwner;
+    let dexoptResult: Internal.Installer.DexoptResult | undefined = one.dexopt;
+    let dexoptStatus: Internal.Installer.DexoptStatus | undefined = one.dexopt?.status;
+    let optimizing: Internal.Installer.SessionState = 'optimizing';
     let users: Internal.Installer.DeviceUser[] = installer.users();
     let asyncUsers: Promise<Internal.Installer.DeviceUser[]> = installer.usersAsync();
     let failure: Internal.Installer.InstallerError = new installer.InstallerError('failed', 'INSTALL_FAILED', -1, 'INSTALL_FAILED_TEST_ONLY', 'com.example.app', 'shizuku', false);
@@ -95,6 +105,16 @@ function installerApiSmoke(file: java.io.File, uri: android.net.Uri) {
     installer.setDefault(true, { mode: 'all' });
     // @ts-expect-error The local protocol receipt is not a public script property.
     installer.persistentConfigured;
+    // @ts-expect-error Android numeric constants are not public install reason values.
+    installer.install(file, { installReason: 4 });
+    // @ts-expect-error Unknown compilation filters are rejected.
+    installer.install(file, { dexopt: 'everything' });
+    // @ts-expect-error Explicit null is not omission.
+    installer.install(file, { requestUpdateOwnership: null });
+    // @ts-expect-error Advanced options are installation-only.
+    installer.uninstall('com.example.app', { dexopt: 'none' });
+    // @ts-expect-error Local policy cannot be bypassed by a script option.
+    installer.install(file, { overrideSignaturePolicy: true });
     // @ts-expect-error The enabled parameter precedes default-installer options.
     installer.setDefault({ authorizer: 'root' });
     // @ts-expect-error Session result is readonly.

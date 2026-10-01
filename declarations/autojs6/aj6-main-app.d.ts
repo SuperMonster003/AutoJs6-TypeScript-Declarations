@@ -17389,6 +17389,7 @@ declare namespace org {
 //org.autojs.autojs.core.accessibility.event.A11yEventBus.Handler:1
 //org.autojs.autojs.core.accessibility.event.A11yEventBus.Options:1
 //org.autojs.autojs.core.accessibility.event.A11yEventBus.Subscription:1
+//org.autojs.autojs.core.accessibility.inspector.TreeMatch:1
 //org.autojs.autojs.core.accessibility.node.NodeRegistry:1
 //org.autojs.autojs.core.accessibility.registry.A11yServiceRegistry:1
 //org.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.Snapshot:1

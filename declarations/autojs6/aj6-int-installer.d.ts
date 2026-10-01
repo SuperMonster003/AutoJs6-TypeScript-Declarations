@@ -19,6 +19,8 @@ declare namespace Internal {
      * UI thread. Promise callbacks and session events run on the creating script thread.
      * Dhizuku, notification installation and persistent defaults require host build 5306+ and
      * a plugin advertising the corresponding V2 capability. Existing V1 calls remain supported.
+     * Advanced install options require host 5308+ and V3 advanced-install-options on the same
+     * selected plugin. Omission preserves legacy defaults; explicit false/none still needs V3.
      * @since 6.8.0
      * @see https://docs.autojs6.com/#/installer
      */
@@ -71,6 +73,10 @@ declare namespace Internal {
         type ActualAuthorizer = Exclude<AuthorizerName, 'auto'>;
         type Interaction = 'auto' | 'dialog' | 'silent' | 'notification';
         type DefaultMode = 'preferred' | 'persistent';
+        type DexoptMode = 'none' | 'verify' | 'speed-profile' | 'speed';
+        type DexoptStatus = 'accepted' | 'failed' | 'cancelled' | 'timeout' | 'unavailable' | 'unknown';
+        type InstallReason = 'unknown' | 'device-restore' | 'device-setup' | 'user' | 'policy';
+        type PackageSource = 'unspecified' | 'store' | 'local-file' | 'downloaded-file' | 'other';
         type User = number | 'current' | 'all';
 
         /** A local path, file:// URI, readable content:// URI, File or Uri. Relative paths use the script cwd. */
@@ -95,6 +101,27 @@ declare namespace Internal {
             allowDowngrade?: boolean;
             allowTestOnly?: boolean;
             bypassLowTargetSdk?: boolean;
+            /**
+             * V3. Omitted means no request. True uses Shizuku/Root to request system-grantable
+             * permissions and supported installer-changeable app-ops. Android restrictions still
+             * apply; this does not grant accessibility, overlays or arbitrary signature permissions.
+             */
+            grantAllRequestedPermissions?: boolean;
+            /**
+             * V3, API 34+ for true. Enforcement can start only on initial installation; Android
+             * may ignore updates or existing other-user packages. False does not revoke an owner.
+             * The request is not a guarantee; inspect updateOwner/notes on a successful result.
+             */
+            requestUpdateOwnership?: boolean;
+            /**
+             * V3. Defaults to no extra manual compilation. Non-none requires Shizuku/Root;
+             * verify needs API 26+. None does not disable Android's normal compilation.
+             */
+            dexopt?: DexoptMode;
+            /** V3, API 26+. Omission preserves the backend's existing reason. */
+            installReason?: InstallReason;
+            /** V3, API 33+. Omission preserves existing local-file attribution on API 33+. */
+            packageSource?: PackageSource;
             /**
              * At most 255 UTF-8 bytes. Default follows the identity: shell for Shizuku ADB,
              * plugin for Root/none, owner for Dhizuku. Dhizuku refuses a different installer.
@@ -147,6 +174,14 @@ declare namespace Internal {
             durationMillis?: number;
             sourceDeleted?: boolean;
             notes?: string[];
+            /**
+             * Observation visible to the calling identity after ownership was requested. Null
+             * means Android returned no owner, including visibility filtering; it does not prove
+             * globally absent ownership. A failed read omits the field and reports notes.
+             */
+            updateOwner?: string | null;
+            /** Extra manual dexopt observation; its failure does not reverse confirmed installation. */
+            dexopt?: DexoptResult;
             /** A real InstallerError instance, including failed items in a completed batch. */
             error?: InstallerError;
         }
@@ -158,7 +193,14 @@ declare namespace Internal {
             error?: InstallerError;
         }
 
-        type SessionState = 'pending' | 'preparing' | 'confirming' | 'writing' | 'committing' | 'completed' | 'failed' | 'cancelled';
+        interface DexoptResult {
+            filter: Exclude<DexoptMode, 'none'>;
+            /** Accepted includes a system skip; it does not prove compilation actually ran. */
+            status: DexoptStatus;
+            message?: string;
+        }
+
+        type SessionState = 'pending' | 'preparing' | 'confirming' | 'writing' | 'committing' | 'optimizing' | 'completed' | 'failed' | 'cancelled';
 
         interface StageDetail {
             /** Zero-based batch index. */

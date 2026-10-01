@@ -146,6 +146,16 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.27.0
+
+###### 2026/10/02
+
+##### Installer 高级安装选项
+
+- `新增` grantAllRequestedPermissions, requestUpdateOwnership, dexopt, installReason, packageSource 选项及封闭枚举, 需要宿主 5308+ 和插件对应能力
+- `新增` optimizing 会话阶段, updateOwner 可空读回结果和 dexopt 六种观察状态; accepted 不保证实际执行编译
+- `优化` 区分省略与显式 false/none, 说明平台与授权边界以及安装成功后的附加操作不回滚安装, 不提供本地策略的脚本绕过选项
+
 # v4.26.1
 
 ###### 2026/10/02
@@ -163,13 +173,3 @@ npm update @sm003/autojs6-dts
 
 - `新增` Dhizuku 授权名称, notification 安装交互, setDefault 的 preferred/persistent 模式与 NOTIFICATION_UNAVAILABLE 错误类型
 - `优化` JSDoc 明确宿主 5306+/插件能力协商, Dhizuku 当前 owner/profile 用户与安装标志限制, 通知模式不用于卸载及持久默认项取消语义
-
-# v4.25.0
-
-###### 2026/10/01
-
-##### Installer 脚本接口
-
-- `新增` installer / $installer 模块声明, 包含同步与 Async 安装, 卸载, 安装包检查, 授权方式, 默认安装器和用户列表
-- `新增` InstallSession 的事件, 取消, 等待与结果类型, InstallerError 错误字段, 单个来源 / 批量 / splits 的精确重载
-- `优化` JSDoc 说明默认交互, 来源删除, 同步线程要求, 等待超时与脚本停止的取消边界
