@@ -4,6 +4,15 @@
 
 ******
 
+# v4.26.0
+
+###### 2026/10/02
+
+##### Installer P8 能力
+
+- `新增` Dhizuku 授权名称, notification 安装交互, setDefault 的 preferred/persistent 模式与 NOTIFICATION_UNAVAILABLE 错误类型
+- `优化` JSDoc 明确宿主 5306+/插件能力协商, Dhizuku 当前 owner/profile 用户与安装标志限制, 通知模式不用于卸载及持久默认项取消语义
+
 # v4.25.0
 
 ###### 2026/10/01

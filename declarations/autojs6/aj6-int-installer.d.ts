@@ -1,6 +1,6 @@
 // Type definitions for AutoJs6 internal module installer
 // TypeScript Version: 5.1.3
-// Last modified: Oct 1, 2026
+// Last modified: Oct 2, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -17,6 +17,8 @@ declare namespace Internal {
      * Probe isAvailable/status before use; actions throw or reject PLUGIN_UNAVAILABLE without
      * a compatible, enabled and authorized plugin. Synchronous calls cannot block the Android
      * UI thread. Promise callbacks and session events run on the creating script thread.
+     * Dhizuku, notification installation and persistent defaults require host build 5306+ and
+     * a plugin advertising the corresponding V2 capability. Existing V1 calls remain supported.
      * @since 6.8.0
      * @see https://docs.autojs6.com/#/installer
      */
@@ -43,7 +45,11 @@ declare namespace Internal {
 
         readonly authorizer: Installer.Authorizers;
         isDefault(): boolean;
-        /** Requires Shizuku or Root. True means the requested enabled/disabled state was reached; enabled defaults to true. */
+        /**
+         * True means the requested scope reached enabled/disabled. Defaults: true, preferred.
+         * Preferred uses Shizuku/Root. Persistent currently uses explicitly selected Dhizuku.
+         * Removing persistent scope can leave a preferred default, so isDefault() may stay true.
+         */
         setDefault(enabled?: boolean, options?: Installer.DefaultOptions): boolean;
         setDefaultAsync(enabled?: boolean, options?: Installer.DefaultOptions): Promise<boolean>;
         users(): Installer.DeviceUser[];
@@ -55,9 +61,10 @@ declare namespace Internal {
     }
 
     namespace Installer {
-        type AuthorizerName = 'auto' | 'none' | 'shizuku' | 'root';
+        type AuthorizerName = 'auto' | 'none' | 'shizuku' | 'root' | 'dhizuku';
         type ActualAuthorizer = Exclude<AuthorizerName, 'auto'>;
-        type Interaction = 'auto' | 'dialog' | 'silent';
+        type Interaction = 'auto' | 'dialog' | 'silent' | 'notification';
+        type DefaultMode = 'preferred' | 'persistent';
         type User = number | 'current' | 'all';
 
         /** A local path, file:// URI, readable content:// URI, File or Uri. Relative paths use the script cwd. */
@@ -67,14 +74,25 @@ declare namespace Internal {
 
         /** Unknown keys and explicit null values are INVALID_ARGUMENT. There is no options.splits field. */
         interface InstallOptions {
-            /** Defaults to auto; an explicit choice does not fall back to another authorizer. */
+            /**
+             * Defaults to auto; explicit choices never fall back. Dhizuku requires API 26+, an
+             * activated device/profile owner and separate plugin consent. It only targets the
+             * current owner/profile user and rejects the three privileged flags below.
+             */
             authorizer?: AuthorizerName;
-            /** Defaults to auto. Silent never falls back to a confirmation dialog. */
+            /**
+             * Defaults to auto. Silent never falls back to a confirmation dialog. Notification
+             * requires its V2 feature and usable notifications, else NOTIFICATION_UNAVAILABLE.
+             * Android confirmation, when needed, is still entered through the notification action.
+             */
             interaction?: Interaction;
             allowDowngrade?: boolean;
             allowTestOnly?: boolean;
             bypassLowTargetSdk?: boolean;
-            /** Installer package name, at most 255 UTF-8 bytes. Omitted or empty string uses the plugin. */
+            /**
+             * At most 255 UTF-8 bytes. Default follows the identity: shell for Shizuku ADB,
+             * plugin for Root/none, owner for Dhizuku. Dhizuku refuses a different installer.
+             */
             installer?: string;
             /** Defaults to current; numeric IDs are integers in 0..2147483647. */
             user?: User;
@@ -91,8 +109,9 @@ declare namespace Internal {
 
         interface UninstallOptions {
             authorizer?: AuthorizerName;
-            interaction?: Interaction;
-            /** Defaults to false; keeping data requires a privileged authorizer. */
+            /** Notification presentation is installation-only. */
+            interaction?: Exclude<Interaction, 'notification'>;
+            /** Defaults to false; needs Shizuku/Root. Dhizuku refuses keepData and other/all users. */
             keepData?: boolean;
             user?: User;
             /** Milliseconds, integer 1..7200000, default 1800000. */
@@ -102,6 +121,8 @@ declare namespace Internal {
         interface DefaultOptions {
             /** Defaults to auto. */
             authorizer?: AuthorizerName;
+            /** Preferred by default; persistent requires its negotiated V2 feature and supporting authorizer. */
+            mode?: DefaultMode;
         }
 
         interface InstallResult {
@@ -184,7 +205,7 @@ declare namespace Internal {
             /** Defaults to auto, which aggregates readiness without exposing the plugin's configured order. */
             state(name?: AuthorizerName): AuthorizerState;
             /**
-             * Default wait 300000 ms, integer 1..7200000. Use shizuku/root to request their consent.
+             * Default wait 300000 ms, integer 1..7200000. Use shizuku/root/dhizuku for their consent.
              * Auto only checks already-ready paths and does not initiate privileged consent.
              */
             request(name: AuthorizerName, timeout?: number): boolean;
@@ -202,6 +223,7 @@ declare namespace Internal {
         interface Status {
             available: boolean;
             pluginVersion?: string;
+            /** Negotiated version, not an assumption that every optional feature is implemented. */
             contractVersion?: number;
             reason?: string;
         }
@@ -237,7 +259,8 @@ declare namespace Internal {
             | 'UNSUPPORTED_FORMAT' | 'INVALID_PACKAGE' | 'INCOMPATIBLE_DEVICE'
             | 'AUTHORIZER_UNAVAILABLE' | 'AUTHORIZER_DENIED' | 'AUTHORIZER_REQUIRED'
             | 'USER_CANCELLED' | 'USER_ACTION_TIMEOUT' | 'SIGNATURE_MISMATCH' | 'INSUFFICIENT_STORAGE'
-            | 'INSTALL_FAILED' | 'UNINSTALL_FAILED' | 'BLOCKED_BY_POLICY' | 'TIMEOUT' | 'CANCELLED' | 'INTERNAL';
+            | 'INSTALL_FAILED' | 'UNINSTALL_FAILED' | 'BLOCKED_BY_POLICY' | 'TIMEOUT' | 'CANCELLED' | 'INTERNAL'
+            | 'NOTIFICATION_UNAVAILABLE';
 
         interface InstallerError extends Error {
             readonly name: 'InstallerError';

@@ -54,6 +54,12 @@ function installerApiSmoke(file: java.io.File, uri: android.net.Uri) {
     let isDefault: boolean = installer.isDefault();
     let setDefault: boolean = installer.setDefault();
     let setDefaultAsync: Promise<boolean> = installer.setDefaultAsync(true, { authorizer: 'root' });
+    let ownerGrant: Promise<boolean> = installer.authorizer.requestAsync('dhizuku');
+    let notificationInstall: Promise<Internal.Installer.InstallResult> = installer.installAsync(file, { authorizer: 'dhizuku', interaction: 'notification' });
+    let persistentDefault: Promise<boolean> = installer.setDefaultAsync(true, { authorizer: 'dhizuku', mode: 'persistent' });
+    let persistentRemoved: boolean = installer.setDefault(false, { authorizer: 'dhizuku', mode: 'persistent' });
+    let preferredDefault: boolean = installer.setDefault(true, { authorizer: 'root', mode: 'preferred' });
+    let notificationError: Internal.Installer.ErrorCode = 'NOTIFICATION_UNAVAILABLE';
     let users: Internal.Installer.DeviceUser[] = installer.users();
     let asyncUsers: Promise<Internal.Installer.DeviceUser[]> = installer.usersAsync();
     let failure: Internal.Installer.InstallerError = new installer.InstallerError('failed', 'INSTALL_FAILED', -1, 'INSTALL_FAILED_TEST_ONLY', 'com.example.app', 'shizuku', false);
@@ -79,10 +85,12 @@ function installerApiSmoke(file: java.io.File, uri: android.net.Uri) {
     installer.install(file, null);
     // @ts-expect-error Numeric user IDs are numbers, not numeric strings.
     installer.install(file, { user: '10' });
-    // @ts-expect-error Dhizuku is not an implemented authorizer.
-    installer.authorizer.request('dhizuku');
-    // @ts-expect-error Notification is not an interaction mode.
-    installer.install(file, { interaction: 'notification' });
+    // @ts-expect-error Unknown authorizers remain invalid.
+    installer.authorizer.request('dhizuku-unknown');
+    // @ts-expect-error Notification is installation-only.
+    installer.uninstall('com.example.app', { interaction: 'notification' });
+    // @ts-expect-error Unknown default scopes remain invalid.
+    installer.setDefault(true, { mode: 'all' });
     // @ts-expect-error The enabled parameter precedes default-installer options.
     installer.setDefault({ authorizer: 'root' });
     // @ts-expect-error Session result is readonly.
