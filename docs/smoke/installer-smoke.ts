@@ -58,6 +58,8 @@ function installerApiSmoke(file: java.io.File, uri: android.net.Uri) {
     let notificationInstall: Promise<Internal.Installer.InstallResult> = installer.installAsync(file, { authorizer: 'dhizuku', interaction: 'notification' });
     let persistentDefault: Promise<boolean> = installer.setDefaultAsync(true, { authorizer: 'dhizuku', mode: 'persistent' });
     let persistentRemoved: boolean = installer.setDefault(false, { authorizer: 'dhizuku', mode: 'persistent' });
+    let rootPersistent: boolean = installer.setDefault(true, { authorizer: 'root', mode: 'persistent' });
+    let automaticPersistent: Promise<boolean> = installer.setDefaultAsync(true, { mode: 'persistent' });
     let preferredDefault: boolean = installer.setDefault(true, { authorizer: 'root', mode: 'preferred' });
     let notificationError: Internal.Installer.ErrorCode = 'NOTIFICATION_UNAVAILABLE';
     let users: Internal.Installer.DeviceUser[] = installer.users();
@@ -91,6 +93,8 @@ function installerApiSmoke(file: java.io.File, uri: android.net.Uri) {
     installer.uninstall('com.example.app', { interaction: 'notification' });
     // @ts-expect-error Unknown default scopes remain invalid.
     installer.setDefault(true, { mode: 'all' });
+    // @ts-expect-error The local protocol receipt is not a public script property.
+    installer.persistentConfigured;
     // @ts-expect-error The enabled parameter precedes default-installer options.
     installer.setDefault({ authorizer: 'root' });
     // @ts-expect-error Session result is readonly.

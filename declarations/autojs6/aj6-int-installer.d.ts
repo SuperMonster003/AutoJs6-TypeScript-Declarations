@@ -44,11 +44,17 @@ declare namespace Internal {
         inspectAsync(source: Installer.Source): Promise<Installer.PackageArchiveInfo>;
 
         readonly authorizer: Installer.Authorizers;
+        /** Current APK intent resolution only; true does not prove a persistent policy. */
         isDefault(): boolean;
         /**
          * True means the requested scope reached enabled/disabled. Defaults: true, preferred.
-         * Preferred uses Shizuku/Root. Persistent currently uses explicitly selected Dhizuku.
+         * Preferred uses Shizuku/Root. Persistent accepts Dhizuku on API 26..33 or Root in user 0
+         * with a compatible independent system-UID bridge. Dhizuku rejects persistent on API 34+.
+         * Persistent auto considers only enabled/ready Root or supported Dhizuku, skipping
+         * Shizuku/none. Explicit selection and execution failures never change identity or mode.
          * Removing persistent scope can leave a preferred default, so isDefault() may stay true.
+         * Partial writes/process death do not guarantee rollback. persistentConfigured is a
+         * local protocol receipt (host 5307+), not a current-policy proof or script property.
          */
         setDefault(enabled?: boolean, options?: Installer.DefaultOptions): boolean;
         setDefaultAsync(enabled?: boolean, options?: Installer.DefaultOptions): Promise<boolean>;
@@ -119,9 +125,13 @@ declare namespace Internal {
         }
 
         interface DefaultOptions {
-            /** Defaults to auto. */
+            /** Auto uses configured order; persistent filters to eligible Root/Dhizuku only. */
             authorizer?: AuthorizerName;
-            /** Preferred by default; persistent requires its negotiated V2 feature and supporting authorizer. */
+            /**
+             * Preferred by default. Persistent requires its negotiated V2 feature and a supporting
+             * identity: Dhizuku API 26..33 or a system-UID Root bridge in user 0. Root compatibility
+             * is device-specific; API 24/Magisk 25.2/SELinux Enforcing is the verified environment.
+             */
             mode?: DefaultMode;
         }
 

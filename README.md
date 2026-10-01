@@ -146,29 +146,30 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
-# v4.24.0
+# v4.26.1
 
-###### 2026/09/29
+###### 2026/10/02
 
-##### Agent 1.3.0 开发配套
+##### Installer 持久默认边界
 
-- `新增` AgentRunOptions 的 plan 选项 (计划模式, 省略沿用预设), AgentInputEvent 的 plan 类型与 steps 字段
-- `新增` AgentRun.respond 接受 1 到 8 条字符串组成的数组以回应计划审阅
+- `优化` JSDoc 明确 Dhizuku 持久默认仅限 API 26-33, Root 独立 system 身份与 user 0, persistent 的 auto 筛选和失败不回退
+- `优化` 区分实际默认解析与本地配置回执, 保留布尔脚本结果, 说明部分失败和进程退出不保证回滚
 
-# v4.23.0
+# v4.26.0
 
-###### 2026/09/26
+###### 2026/10/02
 
-##### Agent 1.2.0 开发配套
+##### Installer P8 能力
 
-- `新增` AgentToolGroup 的 mcp 工具组, 默认关闭, 由插件配置服务器与允许使用的工具
-- `优化` 编辑器提示说明 MCP 服务器风险设置与宿主兼容要求
+- `新增` Dhizuku 授权名称, notification 安装交互, setDefault 的 preferred/persistent 模式与 NOTIFICATION_UNAVAILABLE 错误类型
+- `优化` JSDoc 明确宿主 5306+/插件能力协商, Dhizuku 当前 owner/profile 用户与安装标志限制, 通知模式不用于卸载及持久默认项取消语义
 
-# v4.22.0
+# v4.25.0
 
-###### 2026/09/26
+###### 2026/10/01
 
-##### Agent 1.1.0 开发配套
+##### Installer 脚本接口
 
-- `新增` AgentToolGroup 的 script_dynamic 工具组, 支持在任务与预设选项中限制动态脚本执行
-- `优化` 编辑器提示说明动态脚本默认关闭且每份源码单独确认, 区分模型工具与公开 JavaScript 方法
+- `新增` installer / $installer 模块声明, 包含同步与 Async 安装, 卸载, 安装包检查, 授权方式, 默认安装器和用户列表
+- `新增` InstallSession 的事件, 取消, 等待与结果类型, InstallerError 错误字段, 单个来源 / 批量 / splits 的精确重载
+- `优化` JSDoc 说明默认交互, 来源删除, 同步线程要求, 等待超时与脚本停止的取消边界
