@@ -2420,7 +2420,6 @@ declare namespace org {
 					public static ic_theaters_black_48dp: number;
 					public static ic_three_dots_outline: number;
 					public static ic_three_dots_outline_small: number;
-					public static ic_three_stove_agent_black_48dp: number;
 					public static ic_thumb_down_black_48dp: number;
 					public static ic_thumb_up_black_48dp: number;
 					public static ic_thumbs_up_down_black_48dp: number;
@@ -4041,7 +4040,6 @@ declare namespace org {
 					public static description_stable_mode: number;
 					public static description_terminal: number;
 					public static description_theme_color_preference: number;
-					public static description_three_stove_agent: number;
 					public static description_timed_task_backend: number;
 					public static description_timed_task_backend_more: number;
 					public static description_usage_stats_access: number;
@@ -4205,9 +4203,6 @@ declare namespace org {
 					public static error_an_error_occurred: number;
 					public static error_an_operation_is_not_implemented: number;
 					public static error_android_package_archive_invalid: number;
-					public static error_android_package_file_unavailable: number;
-					public static error_android_package_installation_failed: number;
-					public static error_android_package_operation_in_progress: number;
 					public static error_apk_builder_remote_build_not_supported_by_plugin: number;
 					public static error_apk_builder_template_host_version_outside_range: number;
 					public static error_apk_builder_template_untrusted_signing_certificate: number;
@@ -4306,6 +4301,7 @@ declare namespace org {
 					public static error_images_must_have_the_same_size: number;
 					public static error_images_must_have_the_same_size_and_type: number;
 					public static error_input_fields_check_failed: number;
+					public static error_installer_plugin_required_for_package_format: number;
 					public static error_invalid_color: number;
 					public static error_invalid_compass: number;
 					public static error_invalid_github_repo: number;
@@ -4360,9 +4356,6 @@ declare namespace org {
 					public static error_no_write_settings_permission: number;
 					public static error_official_plugin_missing: number;
 					public static error_only_one_child_for_scroll_view: number;
-					public static error_package_installation_confirmation_expired: number;
-					public static error_package_installation_confirmation_missing: number;
-					public static error_package_installation_status: number;
 					public static error_parse_github_release_assets: number;
 					public static error_parse_version_info: number;
 					public static error_pattern_syntax: number;
@@ -4383,7 +4376,6 @@ declare namespace org {
 					public static error_regex_find_prev: number;
 					public static error_repeated_colon_symbol: number;
 					public static error_repeated_dot_symbol: number;
-					public static error_request_install_packages_permission_denied: number;
 					public static error_required_property_is_nullish_or_does_not_exist: number;
 					public static error_resolved_path_for_a_relative_path_cannot_be_null: number;
 					public static error_save_failed: number;
@@ -4480,6 +4472,7 @@ declare namespace org {
 					public static hint_archive_password: number;
 					public static hint_find_with_regex: number;
 					public static hint_github_token: number;
+					public static hint_installer_plugin_recommended: number;
 					public static hint_long_click_run_to_debug: number;
 					public static hint_loop_delay: number;
 					public static hint_loop_times: number;
@@ -5546,7 +5539,7 @@ declare namespace org {
 					public static plugin_local_network_granted: number;
 					public static plugin_markdown_previewer_name: number;
 					public static plugin_readium_epub_reader_name: number;
-					public static plugin_three_ember_player_name: number;
+					public static plugin_three_amber_player_name: number;
 					public static plugin_three_terra_player_name: number;
 					public static prompt_ace_editor_plugin_required: number;
 					public static prompt_add_ignored_app_version: number;
@@ -5799,7 +5792,6 @@ declare namespace org {
 					public static text_action: number;
 					public static text_activated_successfully: number;
 					public static text_active_window_root: number;
-					public static text_activity_not_found_for_apk_installing: number;
 					public static text_adb_tool_needed: number;
 					public static text_add_application: number;
 					public static text_add_bom: number;
@@ -6649,11 +6641,6 @@ declare namespace org {
 					public static text_others: number;
 					public static text_output_apk_path: number;
 					public static text_overwrite: number;
-					public static text_package_installation: number;
-					public static text_package_installation_confirmation_pending: number;
-					public static text_package_installation_result_available: number;
-					public static text_package_installation_succeeded: number;
-					public static text_package_installation_waiting: number;
 					public static text_package_name: number;
 					public static text_package_name_with_computing: number;
 					public static text_parent_folder: number;
@@ -6904,7 +6891,6 @@ declare namespace org {
 					public static text_r8_compiler_provider_discovery_failed: number;
 					public static text_r8_compiler_use_disabled: number;
 					public static text_re_signing_apk: number;
-					public static text_reading_android_package: number;
 					public static text_reading_splash_resources: number;
 					public static text_recommended: number;
 					public static text_reconnect: number;
@@ -7351,16 +7337,6 @@ declare namespace org {
 					public static text_xiaomi_background_popup_permission: number;
 					public static text_yearly_task: number;
 					public static text_zero_means_unlimited: number;
-					public static three_stove_agent_state_activation: number;
-					public static three_stove_agent_state_attached: number;
-					public static three_stove_agent_state_attaching: number;
-					public static three_stove_agent_state_authorization: number;
-					public static three_stove_agent_state_detached: number;
-					public static three_stove_agent_state_disabled: number;
-					public static three_stove_agent_state_failed: number;
-					public static three_stove_agent_state_host_unavailable: number;
-					public static three_stove_agent_state_incompatible: number;
-					public static three_stove_agent_state_not_installed: number;
 					public static uri_autojs6_download_link: number;
 					public static url_github_autojs6: number;
 					public static url_github_autojs6_issues: number;

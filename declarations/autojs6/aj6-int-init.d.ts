@@ -76,6 +76,10 @@ declare let $i18n: Internal.I18n;
 declare let images: Internal.Images;
 declare let $images: Internal.Images;
 
+/** The installer API of the external 3-Setup Installer plugin. Available since AutoJs6 6.8.0. */
+declare let installer: Internal.Installer;
+declare let $installer: Internal.Installer;
+
 /** The mail API of the external Angus Mail plugin. Available since AutoJs6 6.8.0. */
 declare let mail: Internal.Mail;
 declare let $mail: Internal.Mail;

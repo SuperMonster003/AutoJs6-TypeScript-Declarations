@@ -16840,9 +16840,6 @@ declare namespace org {
 					public goToAppDetailSettings(context: __javaRoots.androidRoot.content.Context): boolean;
 					/** @deprecated */
 					public goToAppDetailSettings(context: __javaRoots.androidRoot.content.Context, packageName: string): boolean;
-					public static installApk(context: __javaRoots.androidRoot.content.Context, path: string): boolean;
-					public static installApk(context: __javaRoots.androidRoot.content.Context, path: string, fileProviderAuthority: string): boolean;
-					public static installApk(context: __javaRoots.androidRoot.content.Context, path: string, fileProviderAuthority: string, exceptionHolder: __javaRoots.orgRoot.autojs.autojs.util.IntentUtils.ExceptionHolder): boolean;
 					public joinQQGroup(context: __javaRoots.androidRoot.content.Context, key: string): boolean;
 					public static launchAppDetailsSettings(context: __javaRoots.androidRoot.content.Context): boolean;
 					public static launchAppDetailsSettings(context: __javaRoots.androidRoot.content.Context, packageName: string): boolean;
@@ -17383,7 +17380,6 @@ declare namespace org {
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.remoteBuildCandidates..inlined.thenByDescending.1:1
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.remoteBuildCandidates..inlined.thenByDescending.2:1
 //org.autojs.autojs.apkbuilder.template.NativeBuildAlignment.inspect.lambda.0.0..inlined.sortedBy.1:1
-//org.autojs.autojs.app.tool.ThreeStoveAgentTool.1.1:1
 //org.autojs.autojs.concurrent.ConcurrentArrayList:1
 //org.autojs.autojs.concurrent.Value:1
 //org.autojs.autojs.concurrent.VolatileBox:1
@@ -17719,9 +17715,11 @@ declare namespace org {
 //org.autojs.autojs.project.FuzzyDeserializer:1
 //org.autojs.autojs.rhino.AndroidClassLoader.jarToDexR8..inlined.sortedBy.1:1
 //org.autojs.autojs.rhino.ClassFileDexer.dexOutputs..inlined.sortedBy.1:1
+//org.autojs.autojs.runtime.api.augment.installer.InstallerBlockingWait:1
 //org.autojs.autojs.runtime.api.augment.proxy.JavaProxyObject:1
 //org.autojs.autojs.runtime.api.augment.selector.SelectorMethodResolver.resolve..inlined.sortedBy.1:1
 //org.autojs.autojs.runtime.api.augment.util.VersionCodes.Searcher.searchAll..inlined.sortedByDescending.1:1
+//org.autojs.autojs.runtime.api.installer.InstallerService.call.1:1
 //org.autojs.autojs.runtime.api.tts.AndroidTtsBackend.engines.lambda.0..inlined.sortedBy.1:1
 //org.autojs.autojs.runtime.api.tts.TtsBackendKt.selectOfflineTtsVoice..inlined.compareByDescending.1:1
 //org.autojs.autojs.runtime.api.tts.TtsBackendKt.selectOfflineTtsVoice..inlined.thenBy.1:1
@@ -17781,18 +17779,7 @@ declare namespace org {
 //org.autojs.autojs.ui.floating.LayoutFloatyWindow.switchWindow.lambda.1..inlined.compareBy.1:1
 //org.autojs.autojs.ui.fragment.BaseViewBindingFragment:1
 //org.autojs.autojs.ui.main.drawer.DrawerFragment.onCreate.13.3.1:1
-//org.autojs.autojs.ui.main.drawer.DrawerFragment.onCreate.14.3.1:1
-//org.autojs.autojs.ui.main.scripts.AndroidPackageArchiveInspector.chooseBase..inlined.sortedBy.1:1
 //org.autojs.autojs.ui.main.scripts.ApkInfoDialogManager.showMoreInfoDialog.1.1:1
-//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.compareBy.1:1
-//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.thenBy.1:1
-//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select..inlined.thenBy.2:1
-//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.select.lambda.16..inlined.sortedBy.1:1
-//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.selectSplitModules.lambda.0..inlined.compareByDescending.1:1
-//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.selectSplitModules.lambda.0..inlined.thenBy.1:1
-//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.selectStandaloneModules.lambda.0..inlined.compareByDescending.1:1
-//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.Toc.selectStandaloneModules.lambda.0..inlined.thenBy.1:1
-//org.autojs.autojs.ui.main.scripts.BundletoolTocDecoder.ValueAlternatives:1
 //org.autojs.autojs.ui.settings.DexCompilerPreference.discoverEligibleCandidates..inlined.compareBy.1:1
 //org.autojs.autojs.ui.settings.DexCompilerPreference.discoverEligibleCandidates..inlined.thenBy.1:1
 //org.autojs.autojs.ui.settings.DisplayReleaseHistoryActivity.showCategoryFilterDialog.3.1.2.1:1
@@ -17802,6 +17789,7 @@ declare namespace org {
 //org.autojs.autojs.ui.settings.ReleaseHistoryAdapter.ReleaseHistoryViewHolder.bind..inlined.sortedByDescending.1:1
 //org.autojs.autojs.ui.settings.ReleaseHistoryRepository.loadReleaseHistoryFlow.1.1.1:1
 //org.autojs.autojs.ui.settings.ReleaseHistoryRepository.loadReleaseHistoryFlow.1.3.1:1
+//org.autojs.autojs.ui.settings.ThreeStoveAgentGuide.1.1:1
 //org.autojs.autojs.ui.storage.BaseSearchSortListActivity:2
 //org.autojs.autojs.ui.storage.RevisionListActivity.compareSelected..inlined.sortedBy.1:1
 //org.autojs.autojs.ui.storage.RevisionListActivity.sortItems..inlined.sortedBy.1:1

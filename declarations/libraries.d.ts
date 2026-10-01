@@ -25086,6 +25086,16 @@ declare namespace org {
 //okio.internal.ZipFilesKt.buildIndex..inlined.sortedBy.1:1
 //org.autojs.plugin.jvmsource.api.JvmJsonArguments.Encoder.appendValue.lambda.2..inlined.sortedBy.1:1
 //org.autojs.plugin.jvmsource.api.JvmSourcePackageCodec.validateSources..inlined.sortedBy.1:1
+//org.autojs.plugin.packagearchive.AndroidPackageArchiveInspector.chooseBase..inlined.sortedBy.1:1
+//org.autojs.plugin.packagearchive.BundletoolTocDecoder.Toc.select..inlined.compareBy.1:1
+//org.autojs.plugin.packagearchive.BundletoolTocDecoder.Toc.select..inlined.thenBy.1:1
+//org.autojs.plugin.packagearchive.BundletoolTocDecoder.Toc.select..inlined.thenBy.2:1
+//org.autojs.plugin.packagearchive.BundletoolTocDecoder.Toc.select.lambda.16..inlined.sortedBy.1:1
+//org.autojs.plugin.packagearchive.BundletoolTocDecoder.Toc.selectSplitModules.lambda.0..inlined.compareByDescending.1:1
+//org.autojs.plugin.packagearchive.BundletoolTocDecoder.Toc.selectSplitModules.lambda.0..inlined.thenBy.1:1
+//org.autojs.plugin.packagearchive.BundletoolTocDecoder.Toc.selectStandaloneModules.lambda.0..inlined.compareByDescending.1:1
+//org.autojs.plugin.packagearchive.BundletoolTocDecoder.Toc.selectStandaloneModules.lambda.0..inlined.thenBy.1:1
+//org.autojs.plugin.packagearchive.BundletoolTocDecoder.ValueAlternatives:1
 //org.autojs.plugin.protocol.wire.TaggedWireWriter.encode..inlined.compareBy.1:1
 //org.autojs.plugin.protocol.wire.TaggedWireWriter.encode..inlined.thenBy.1:1
 //org.jdeferred.AlwaysCallback:2

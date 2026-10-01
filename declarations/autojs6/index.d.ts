@@ -25,6 +25,7 @@
 /// <reference path="./aj6-int-images.d.ts" />
 /// <reference path="./aj6-int-i18n.d.ts" />
 /// <reference path="./aj6-int-init.d.ts" />
+/// <reference path="./aj6-int-installer.d.ts" />
 /// <reference path="./aj6-int-jsox.d.ts" />
 /// <reference path="./aj6-int-jvm-npm.d.ts" />
 /// <reference path="./aj6-int-mail.d.ts" />
