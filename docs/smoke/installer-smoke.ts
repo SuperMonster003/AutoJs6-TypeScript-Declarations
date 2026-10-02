@@ -68,6 +68,11 @@ function installerApiSmoke(file: java.io.File, uri: android.net.Uri) {
     };
     let advancedResult: Promise<Internal.Installer.InstallResult> = installer.installAsync(file, advanced);
     let explicitNoOp = installer.install(file, { grantAllRequestedPermissions: false, dexopt: 'none' });
+    let profileResets = installer.install(file, {
+        authorizer: 'auto', user: 'current', deleteSource: false, dexopt: 'none',
+        installer: null, installReason: null, packageSource: null,
+    });
+    let requestedDeletion: boolean | undefined = profileResets.sourceDeleteRequested;
     let actualUpdateOwner: string | null | undefined = one.updateOwner;
     let dexoptResult: Internal.Installer.DexoptResult | undefined = one.dexopt;
     let dexoptStatus: Internal.Installer.DexoptStatus | undefined = one.dexopt?.status;
@@ -111,6 +116,12 @@ function installerApiSmoke(file: java.io.File, uri: android.net.Uri) {
     installer.install(file, { dexopt: 'everything' });
     // @ts-expect-error Explicit null is not omission.
     installer.install(file, { requestUpdateOwnership: null });
+    // @ts-expect-error Null resets are limited to the three nullable fields.
+    installer.install(file, { dexopt: null });
+    // @ts-expect-error Explicit false is valid, but null does not request profile inheritance.
+    installer.install(file, { deleteSource: null });
+    // @ts-expect-error Profile selection and capability markers are not public script options.
+    installer.install(file, { applySourceProfiles: true });
     // @ts-expect-error Advanced options are installation-only.
     installer.uninstall('com.example.app', { dexopt: 'none' });
     // @ts-expect-error Local policy cannot be bypassed by a script option.

@@ -4,6 +4,15 @@
 
 ******
 
+# v4.28.0
+
+###### 2026/10/02
+
+##### Installer 来源配置
+
+- `新增` installer/installReason/packageSource 的 null 重置类型和 sourceDeleteRequested 结果字段, 与宿主 5312+ 的来源配置能力对应
+- `优化` 说明省略字段继承, 显式选项优先, 会话级选项边界和批量共享来源保留; 其他 null 及脚本配置选择字段仍拒绝
+
 # v4.27.0
 
 ###### 2026/10/02

@@ -84,7 +84,14 @@ declare namespace Internal {
         /** One application: an ordinary source or an explicit non-empty set of at most 64 split files. */
         type InstallSource = Source | { splits: Source[] };
 
-        /** Unknown keys and explicit null values are INVALID_ARGUMENT. There is no options.splits field. */
+        /**
+         * With host 5312+ and the plugin's V3 source-profiles feature, omitted per-package fields
+         * can inherit the first enabled source/package-prefix profile. Explicit false/auto/current/
+         * none take precedence. Only installer/installReason/packageSource accept null resets;
+         * other null values and unknown keys are INVALID_ARGUMENT. There is no options.splits.
+         * Profiles never override interaction, timeout or continueOnError. A real confirmation
+         * dialog may still change the final item options, subject to mandatory installation policy.
+         */
         interface InstallOptions {
             /**
              * Defaults to auto; explicit choices never fall back. Dhizuku requires API 26+, an
@@ -102,7 +109,7 @@ declare namespace Internal {
             allowTestOnly?: boolean;
             bypassLowTargetSdk?: boolean;
             /**
-             * V3. Omitted means no request. True uses Shizuku/Root to request system-grantable
+             * V3. Omitted means no request unless inherited from a profile. True uses Shizuku/Root to request system-grantable
              * permissions and supported installer-changeable app-ops. Android restrictions still
              * apply; this does not grant accessibility, overlays or arbitrary signature permissions.
              */
@@ -118,20 +125,23 @@ declare namespace Internal {
              * verify needs API 26+. None does not disable Android's normal compilation.
              */
             dexopt?: DexoptMode;
-            /** V3, API 26+. Omission preserves the backend's existing reason. */
-            installReason?: InstallReason;
-            /** V3, API 33+. Omission preserves existing local-file attribution on API 33+. */
-            packageSource?: PackageSource;
+            /** V3, API 26+ for non-null. Null resets inheritance to the backend default and still requires V3 support. */
+            installReason?: InstallReason | null;
+            /** V3, API 33+ for non-null. Null resets inheritance to existing local-file attribution on API 33+. */
+            packageSource?: PackageSource | null;
             /**
              * At most 255 UTF-8 bytes. Default follows the identity: shell for Shizuku ADB,
              * plugin for Root/none, owner for Dhizuku. Dhizuku refuses a different installer.
+             * Null or the empty string explicitly resets an inherited installer to that default.
              */
-            installer?: string;
+            installer?: string | null;
             /** Defaults to current; numeric IDs are integers in 0..2147483647. */
             user?: User;
             /**
-             * Defaults to false. After confirmed success, try deleting path/file URI sources.
-             * Content URI sources and failed items are retained. Check sourceDeleted and notes.
+             * Defaults to false unless inherited. Explicit false always vetoes host deletion.
+             * After confirmed success, try deleting owned path/file URI sources. Content URIs
+             * and aliases shared with retained/failed/unprocessed items stay retained. An invalid
+             * negotiated cleanup decision also retains the file. Check sourceDeleted and notes.
              */
             deleteSource?: boolean;
             /** Defaults to true. Failed batch items carry error; false terminates at the first failure. */
@@ -173,6 +183,8 @@ declare namespace Internal {
             interaction?: Exclude<Interaction, 'auto'>;
             durationMillis?: number;
             sourceDeleted?: boolean;
+            /** Effective request from negotiated source profiles; true does not mean deletion succeeded. */
+            sourceDeleteRequested?: boolean;
             notes?: string[];
             /**
              * Observation visible to the calling identity after ownership was requested. Null

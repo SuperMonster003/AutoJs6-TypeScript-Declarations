@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.28.0
+
+###### 2026/10/02
+
+##### Installer 来源配置
+
+- `新增` installer/installReason/packageSource 的 null 重置类型和 sourceDeleteRequested 结果字段, 与宿主 5312+ 的来源配置能力对应
+- `优化` 说明省略字段继承, 显式选项优先, 会话级选项边界和批量共享来源保留; 其他 null 及脚本配置选择字段仍拒绝
+
 # v4.27.0
 
 ###### 2026/10/02
@@ -164,12 +173,3 @@ npm update @sm003/autojs6-dts
 
 - `优化` JSDoc 明确 Dhizuku 持久默认仅限 API 26-33, Root 独立 system 身份与 user 0, persistent 的 auto 筛选和失败不回退
 - `优化` 区分实际默认解析与本地配置回执, 保留布尔脚本结果, 说明部分失败和进程退出不保证回滚
-
-# v4.26.0
-
-###### 2026/10/02
-
-##### Installer P8 能力
-
-- `新增` Dhizuku 授权名称, notification 安装交互, setDefault 的 preferred/persistent 模式与 NOTIFICATION_UNAVAILABLE 错误类型
-- `优化` JSDoc 明确宿主 5306+/插件能力协商, Dhizuku 当前 owner/profile 用户与安装标志限制, 通知模式不用于卸载及持久默认项取消语义
