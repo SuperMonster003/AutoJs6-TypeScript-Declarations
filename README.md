@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.29.0
+
+###### 2026/10/02
+
+##### 选择器数值区间
+
+- `新增` UiSelector 与全局选择器函数 minDepth / maxDepth / minIndexInParent / maxIndexInParent (含边界, 需要宿主 6.8.0+), 与 select() 字符串语法的 minDepth=3 等键对应
+- `修复` 内置选择器声明补充缺失的 childCount / minChildCount / maxChildCount
+
 # v4.28.0
 
 ###### 2026/10/02
@@ -165,11 +174,3 @@ npm update @sm003/autojs6-dts
 - `新增` optimizing 会话阶段, updateOwner 可空读回结果和 dexopt 六种观察状态; accepted 不保证实际执行编译
 - `优化` 区分省略与显式 false/none, 说明平台与授权边界以及安装成功后的附加操作不回滚安装, 不提供本地策略的脚本绕过选项
 
-# v4.26.1
-
-###### 2026/10/02
-
-##### Installer 持久默认边界
-
-- `优化` JSDoc 明确 Dhizuku 持久默认仅限 API 26-33, Root 独立 system 身份与 user 0, persistent 的 auto 筛选和失败不回退
-- `优化` 区分实际默认解析与本地配置回执, 保留布尔脚本结果, 说明部分失败和进程退出不保证回滚

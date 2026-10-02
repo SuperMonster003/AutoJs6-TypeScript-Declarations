@@ -515,6 +515,8 @@ declare function checkable(b?: boolean): Internal.Selector;
 
 declare function checked(b?: boolean): Internal.Selector;
 
+declare function childCount(count: number): Internal.Selector;
+
 declare function className(str: Selector.ClassName | Selector.ClassNameAbbr | string): Internal.Selector;
 
 declare function classNameContains(str: string): Internal.Selector;
@@ -616,7 +618,13 @@ declare function maxCenterX(value: number): Internal.Selector;
 
 declare function maxCenterY(value: number): Internal.Selector;
 
+declare function maxChildCount(max: number): Internal.Selector;
+
+declare function maxDepth(max: number): Internal.Selector;
+
 declare function maxHeight(value: number): Internal.Selector;
+
+declare function maxIndexInParent(max: number): Internal.Selector;
 
 declare function maxLeft(value: number): Internal.Selector;
 
@@ -632,7 +640,13 @@ declare function minCenterX(value: number): Internal.Selector;
 
 declare function minCenterY(value: number): Internal.Selector;
 
+declare function minChildCount(min: number): Internal.Selector;
+
+declare function minDepth(min: number): Internal.Selector;
+
 declare function minHeight(value: number): Internal.Selector;
+
+declare function minIndexInParent(min: number): Internal.Selector;
 
 declare function minLeft(value: number): Internal.Selector;
 

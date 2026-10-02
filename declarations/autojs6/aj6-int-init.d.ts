@@ -868,6 +868,9 @@ declare namespace Internal {
         public checked(b?: boolean): this;
 
         // @ts-ignore
+        public childCount(count: number): this;
+
+        // @ts-ignore
         public className(str: Selector.ClassName | Selector.ClassNameAbbr | string): this;
 
         // @ts-ignore
@@ -1019,7 +1022,16 @@ declare namespace Internal {
         public maxCenterY(value: number): this;
 
         // @ts-ignore
+        public maxChildCount(max: number): this;
+
+        // @ts-ignore
+        public maxDepth(max: number): this;
+
+        // @ts-ignore
         public maxHeight(value: number): this;
+
+        // @ts-ignore
+        public maxIndexInParent(max: number): this;
 
         // @ts-ignore
         public maxLeft(value: number): this;
@@ -1043,7 +1055,16 @@ declare namespace Internal {
         public minCenterY(value: number): this;
 
         // @ts-ignore
+        public minChildCount(min: number): this;
+
+        // @ts-ignore
+        public minDepth(min: number): this;
+
+        // @ts-ignore
         public minHeight(value: number): this;
+
+        // @ts-ignore
+        public minIndexInParent(min: number): this;
 
         // @ts-ignore
         public minLeft(value: number): this;

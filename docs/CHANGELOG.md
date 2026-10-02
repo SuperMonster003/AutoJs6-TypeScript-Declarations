@@ -4,6 +4,15 @@
 
 ******
 
+# v4.29.0
+
+###### 2026/10/02
+
+##### 选择器数值区间
+
+- `新增` UiSelector 与全局选择器函数 minDepth / maxDepth / minIndexInParent / maxIndexInParent (含边界, 需要宿主 6.8.0+), 与 select() 字符串语法的 minDepth=3 等键对应
+- `修复` 内置选择器声明补充缺失的 childCount / minChildCount / maxChildCount
+
 # v4.28.0
 
 ###### 2026/10/02

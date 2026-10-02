@@ -953,7 +953,9 @@ declare namespace org {
 						public maxCenterX(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public maxCenterY(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public maxChildCount(max: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
+						public maxDepth(max: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public maxHeight(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
+						public maxIndexInParent(max: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public maxLeft(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public maxRight(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public maxTop(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
@@ -962,7 +964,9 @@ declare namespace org {
 						public minCenterX(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public minCenterY(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public minChildCount(min: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
+						public minDepth(min: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public minHeight(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
+						public minIndexInParent(min: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public minLeft(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public minRight(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public minTop(value: number): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
@@ -17389,6 +17393,9 @@ declare namespace org {
 //org.autojs.autojs.core.accessibility.event.A11yEventBus.Handler:1
 //org.autojs.autojs.core.accessibility.event.A11yEventBus.Options:1
 //org.autojs.autojs.core.accessibility.event.A11yEventBus.Subscription:1
+//org.autojs.autojs.core.accessibility.inspector.ClassPresetFilter.special..inlined.sortedBy.1:1
+//org.autojs.autojs.core.accessibility.inspector.TreeCandidates.Companion.collect..inlined.compareByDescending.1:1
+//org.autojs.autojs.core.accessibility.inspector.TreeCandidates.Companion.collect..inlined.thenBy.1:1
 //org.autojs.autojs.core.accessibility.inspector.TreeMatch:1
 //org.autojs.autojs.core.accessibility.node.NodeRegistry:1
 //org.autojs.autojs.core.accessibility.registry.A11yServiceRegistry:1
@@ -17719,8 +17726,10 @@ declare namespace org {
 //org.autojs.autojs.runtime.api.augment.installer.InstallerBlockingWait:1
 //org.autojs.autojs.runtime.api.augment.proxy.JavaProxyObject:1
 //org.autojs.autojs.runtime.api.augment.selector.SelectorMethodResolver.resolve..inlined.sortedBy.1:1
+//org.autojs.autojs.runtime.api.augment.terminal.TerminalBlockingWait:1
 //org.autojs.autojs.runtime.api.augment.util.VersionCodes.Searcher.searchAll..inlined.sortedByDescending.1:1
 //org.autojs.autojs.runtime.api.installer.InstallerService.call.1:1
+//org.autojs.autojs.runtime.api.terminal.TerminalService.guarded.1:1
 //org.autojs.autojs.runtime.api.tts.AndroidTtsBackend.engines.lambda.0..inlined.sortedBy.1:1
 //org.autojs.autojs.runtime.api.tts.TtsBackendKt.selectOfflineTtsVoice..inlined.compareByDescending.1:1
 //org.autojs.autojs.runtime.api.tts.TtsBackendKt.selectOfflineTtsVoice..inlined.thenBy.1:1
