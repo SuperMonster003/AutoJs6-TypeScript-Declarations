@@ -7,6 +7,7 @@
 /// <reference path="./aj6-int-barcode.d.ts" />
 /// <reference path="./aj6-int-base64.d.ts" />
 /// <reference path="./aj6-int-colors.d.ts" />
+/// <reference path="./aj6-int-compose.d.ts" />
 /// <reference path="./aj6-int-console.d.ts" />
 /// <reference path="./aj6-int-continuation.d.ts" />
 /// <reference path="./aj6-int-converter.d.ts" />

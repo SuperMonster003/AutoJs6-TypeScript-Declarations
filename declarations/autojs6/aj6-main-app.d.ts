@@ -783,7 +783,7 @@ declare namespace org {
 						public scrollRight(): boolean;
 						public scrollTo(row: number, column: number): boolean;
 						public scrollUp(): boolean;
-						public searchIn$app<N extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<N>>(root: N, max: number): __javaRoots.javaRoot.util.List<N>;
+						public searchIn$app<N extends __javaRoots.orgRoot.autojs.autojs.core.automator.UiNode<N>>(root: N, max: number, lifecycle: __javaRoots.orgRoot.autojs.autojs.core.accessibility.node.NodeLifecycle): __javaRoots.javaRoot.util.List<N>;
 						public select(): boolean;
 						public select(syntax: string): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 						public setProgress(progress: number): boolean;
@@ -3570,14 +3570,21 @@ declare namespace org {
 				export namespace floaty {
 					export class BaseResizableFloatyWindow extends __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.ResizableFloatyWindow {
 						public readonly adjustEnabled: boolean;
+						public readonly closeObserver$app: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
+						public readonly creationObserver$app: __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Throwable, __javaRoots.kotlinRoot.Unit>;
 						public readonly rootView: __javaRoots.androidRoot.widget.FrameLayout;
 						public constructor(context: __javaRoots.androidRoot.content.Context, viewSupplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier);
+						public close(): void;
 						public disableWindowFocus(): void;
+						public getCloseObserver$app(): __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
+						public getCreationObserver$app(): __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Throwable, __javaRoots.kotlinRoot.Unit>;
 						public getRootView(): __javaRoots.androidRoot.widget.FrameLayout;
 						public isAdjustEnabled(): boolean;
 						public onCreate(service: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyService, manager: __javaRoots.androidRoot.view.WindowManager): void;
 						public requestWindowFocus(): void;
 						public setAdjustEnabled(enabled: boolean): void;
+						public setCloseObserver$app(_set___: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): void;
+						public setCreationObserver$app(_set___: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): void;
 						public setOnCloseButtonClickListener(listener: __javaRoots.androidRoot.view.View.OnClickListener): void;
 						public waitForCreation(): __javaRoots.javaRoot.lang.RuntimeException;
 						public getRootView(...args: any[]): any;
@@ -3602,13 +3609,20 @@ declare namespace org {
 			export namespace core {
 				export namespace floaty {
 					export class RawWindow extends __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyWindow {
+						public readonly closeObserver$app: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
 						public readonly contentView: __javaRoots.androidRoot.view.View;
+						public readonly creationObserver$app: __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Throwable, __javaRoots.kotlinRoot.Unit>;
 						public constructor(context: __javaRoots.androidRoot.content.Context, supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier);
+						public close(): void;
 						public disableWindowFocus(): void;
+						public getCloseObserver$app(): __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
 						public getContentView(): __javaRoots.androidRoot.view.View;
+						public getCreationObserver$app(): __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Throwable, __javaRoots.kotlinRoot.Unit>;
 						public onCreate(floatyService: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyService, windowManager: __javaRoots.androidRoot.view.WindowManager): void;
 						public requestWindowFocus(): void;
+						public setCloseObserver$app(_set___: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): void;
 						public setContentView(_set___: __javaRoots.androidRoot.view.View): void;
+						public setCreationObserver$app(_set___: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): void;
 						public setTouchable(touchable: boolean): void;
 						public waitForCreation(): __javaRoots.javaRoot.lang.RuntimeException;
 					}
@@ -6006,6 +6020,25 @@ declare namespace org {
 							public hashCode(): number;
 							public installed(): boolean;
 							public toString(): string;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace plugin {
+					export namespace compose {
+						export class ComposeInsetsHost {
+							public constructor(implementation: ComposeInsetsHost);
+							public constructor();
+						}
+						export interface ComposeInsetsHost {
+							acquireComposeInsets(): __javaRoots.javaRoot.io.Closeable;
 						}
 					}
 				}
@@ -8712,8 +8745,8 @@ declare namespace org {
 					public readonly eventEmitter: __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter;
 					public readonly onActivityResultDelegateMediator: __javaRoots.orgRoot.autojs.autojs.app.OnActivityResultDelegate.Mediator;
 					public constructor();
+					public acquireComposeInsets(): __javaRoots.javaRoot.io.Closeable;
 					public emit(event: string, ...args: any[]): void;
-					public static execute(context: __javaRoots.androidRoot.content.Context, manager: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngineManager, task: __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecutionTask): __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecuteActivity.ActivityScriptExecution;
 					public finish(): void;
 					public getEmitter(): __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter;
 					public getEventEmitter(): __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter;
@@ -8722,8 +8755,9 @@ declare namespace org {
 					public onGenericMotionEvent(event: __javaRoots.androidRoot.view.MotionEvent): boolean;
 					public onKeyDown(keyCode: number, event: __javaRoots.androidRoot.view.KeyEvent): boolean;
 					public onOptionsItemSelected(item: __javaRoots.androidRoot.view.MenuItem): boolean;
+					public static start(context: __javaRoots.androidRoot.content.Context, execution: __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecuteActivity.ActivityScriptExecution): boolean;
 				}
-				export interface ScriptExecuteActivity extends __javaRoots.orgRoot.autojs.autojs.app.OnActivityResultDelegate.DelegateHost {}
+				export interface ScriptExecuteActivity extends __javaRoots.orgRoot.autojs.autojs.app.OnActivityResultDelegate.DelegateHost, __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ComposeInsetsHost {}
 				export namespace ScriptExecuteActivity {
 					export class ActivityScriptExecution extends __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecution.AbstractScriptExecution {
 						public readonly activityStarted: boolean;
@@ -9730,6 +9764,7 @@ declare namespace org {
 					public readonly topLevelScope: __javaRoots.orgRoot.autojs.autojs.rhino.TopLevelScope;
 					public readonly uiHandler: __javaRoots.orgRoot.autojs.autojs.tool.UiHandler;
 					public static readonly applicationContext: __javaRoots.androidRoot.content.Context;
+					public beforeSetUiContent(view: __javaRoots.androidRoot.view.View): void;
 					public cancelScriptJobs(): void;
 					public createContinuation(): __javaRoots.orgRoot.autojs.autojs.rhino.continuation.Continuation;
 					public createContinuation(scope: __javaRoots.orgRoot.mozilla.javascript.Scriptable): __javaRoots.orgRoot.autojs.autojs.rhino.continuation.Continuation;
@@ -10385,12 +10420,14 @@ declare namespace org {
 					export class Floaty {
 						public constructor(uiHandler: __javaRoots.orgRoot.autojs.autojs.tool.UiHandler, scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime);
 						public closeAll(): void;
+						public createManagedWindow$app(raw: boolean, supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier, onCreated: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.kotlinRoot.Unit>, onClosed: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.runtime.api.Floaty.ManagedWindow;
 						public ensurePermission(): void;
 						public getClip(maxDelayAfterWindowReady: number): string;
 						public hasPermission(): boolean;
 						public rawWindow(view: __javaRoots.androidRoot.view.View): __javaRoots.orgRoot.autojs.autojs.runtime.api.Floaty.JsRawWindow;
 						public rawWindow(supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier): __javaRoots.orgRoot.autojs.autojs.runtime.api.Floaty.JsRawWindow;
 						public requestPermission(): boolean;
+						public reserveManagedClose$app(onClosed: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): __javaRoots.javaRoot.io.Closeable;
 						public window(view: __javaRoots.androidRoot.view.View): __javaRoots.orgRoot.autojs.autojs.runtime.api.Floaty.JsResizableWindow;
 						public window(supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier): __javaRoots.orgRoot.autojs.autojs.runtime.api.Floaty.JsResizableWindow;
 					}
@@ -10448,6 +10485,30 @@ declare namespace org {
 						export interface JsWindow {
 							close(param0: boolean): void;
 						}
+						export class ManagedWindow {
+							public readonly closed: boolean;
+							public readonly height: number;
+							public readonly raw: boolean;
+							public readonly width: number;
+							public readonly x: number;
+							public readonly y: number;
+							public constructor(this$0: boolean, raw: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier, supplier: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.kotlinRoot.Unit>, onCreated: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>);
+							public close(removeFromWindows: boolean): void;
+							public disableFocus(): void;
+							public getHeight(): number;
+							public getRaw(): boolean;
+							public getWidth(): number;
+							public getX(): number;
+							public getY(): number;
+							public isClosed(): boolean;
+							public requestFocus(): void;
+							public setAdjustEnabled(enabled: boolean): void;
+							public setPosition(x: number, y: number): void;
+							public setSize(width: number, height: number): void;
+							public setTouchable(touchable: boolean): void;
+							public start$app(): void;
+						}
+						export interface ManagedWindow extends __javaRoots.orgRoot.autojs.autojs.runtime.api.Floaty.JsWindow {}
 					}
 				}
 			}
@@ -14114,6 +14175,7 @@ declare namespace org {
 							public readonly key: string;
 							public readonly keys: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.AugmentableKey>;
 							public readonly scriptErrorPassThroughFunctions: __javaRoots.javaRoot.util.Set<string>;
+							public readonly scriptErrorPassThroughInvoke: boolean;
 							public readonly selfAssignmentFunctions: __javaRoots.javaRoot.util.List<any>;
 							public readonly selfAssignmentGetters: __javaRoots.javaRoot.util.List<any>;
 							public readonly selfAssignmentGettersAndSetters: __javaRoots.javaRoot.util.List<__javaRoots.kotlinRoot.Triple<string, any, any>>;
@@ -14143,6 +14205,7 @@ declare namespace org {
 							public getKey(): string;
 							public getKeys(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.AugmentableKey>;
 							public getScriptErrorPassThroughFunctions(): __javaRoots.javaRoot.util.Set<string>;
+							public getScriptErrorPassThroughInvoke(): boolean;
 							public getSelfAssignmentFunctions(): __javaRoots.javaRoot.util.List<any>;
 							public getSelfAssignmentGetters(): __javaRoots.javaRoot.util.List<any>;
 							public getSelfAssignmentGettersAndSetters(): __javaRoots.javaRoot.util.List<__javaRoots.kotlinRoot.Triple<string, any, any>>;
@@ -17388,6 +17451,26 @@ declare namespace org {
 //org.autojs.autojs.concurrent.Value:1
 //org.autojs.autojs.concurrent.VolatileBox:1
 //org.autojs.autojs.concurrent.VolatileDispose:1
+//org.autojs.autojs.core.accessibility.codegen.CodeGenCandidate:1
+//org.autojs.autojs.core.accessibility.codegen.CodeGenOutcome:1
+//org.autojs.autojs.core.accessibility.codegen.CodeGenRequest:1
+//org.autojs.autojs.core.accessibility.codegen.CodeGenResult:1
+//org.autojs.autojs.core.accessibility.codegen.NodeTree:1
+//org.autojs.autojs.core.accessibility.codegen.NodeTree.Entry:1
+//org.autojs.autojs.core.accessibility.codegen.TargetSet:1
+//org.autojs.autojs.core.accessibility.codegen.TargetSets.Pending:1
+//org.autojs.autojs.core.accessibility.codegen.TargetSets.Tree:1
+//org.autojs.autojs.core.accessibility.codegen.features.CandidateFeatures.Group:1
+//org.autojs.autojs.core.accessibility.codegen.features.CandidateFeatures.WindowStatistics:1
+//org.autojs.autojs.core.accessibility.codegen.rank.Ranked:1
+//org.autojs.autojs.core.accessibility.codegen.rank.RuleRanker.rank..inlined.compareByDescending.1:1
+//org.autojs.autojs.core.accessibility.codegen.rank.RuleRanker.rank..inlined.thenBy.1:1
+//org.autojs.autojs.core.accessibility.codegen.search.CandidateSearch:1
+//org.autojs.autojs.core.accessibility.codegen.search.SearchResult:1
+//org.autojs.autojs.core.accessibility.codegen.verify.PlanVerifier:1
+//org.autojs.autojs.core.accessibility.codegen.verify.PlanVerifier.MatchKey:1
+//org.autojs.autojs.core.accessibility.codegen.verify.Verification:1
+//org.autojs.autojs.core.accessibility.codegen.verify.Verified:1
 //org.autojs.autojs.core.accessibility.control.A11yServiceController:1
 //org.autojs.autojs.core.accessibility.event.A11yEventBus:1
 //org.autojs.autojs.core.accessibility.event.A11yEventBus.Handler:1
@@ -17787,6 +17870,8 @@ declare namespace org {
 //org.autojs.autojs.ui.edit.theme.ColorThemeGenerator.generate..inlined.thenByDescending.1:1
 //org.autojs.autojs.ui.edit.toolbar.ToolbarFragment:1
 //org.autojs.autojs.ui.floating.LayoutFloatyWindow.switchWindow.lambda.1..inlined.compareBy.1:1
+//org.autojs.autojs.ui.floating.codegen.CodeGenOptionsState.Conversion:1
+//org.autojs.autojs.ui.floating.codegen.CodeGenOptionsState.Ready:1
 //org.autojs.autojs.ui.fragment.BaseViewBindingFragment:1
 //org.autojs.autojs.ui.main.drawer.DrawerFragment.onCreate.13.3.1:1
 //org.autojs.autojs.ui.main.scripts.ApkInfoDialogManager.showMoreInfoDialog.1.1:1

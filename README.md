@@ -146,6 +146,17 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.30.0
+
+###### 2026/10/03
+
+##### Compose UI
+
+- `新增` compose / $compose 与 ComposeError, 覆盖 29 个节点工厂, 可调用挂载入口, 状态与 ref, 批处理, 主题, 会话和悬浮窗
+- `新增` 按组件区分的事件参数, 节点属性读取与写入类型, 20 个有序 Modifier 方法及 Snackbar 会话命令
+- `优化` 同步配套宿主的公开 Java / 资源 / 共享库声明, 组件目录与文档通过同一冻结清单核对
+- `提示` 需要包含 compose 模块的配套 AutoJs6 6.8.0 本地构建及 Compose UI 插件; TSX, 混合布局和 compose.dialog 仍属后续版本
+
 # v4.29.0
 
 ###### 2026/10/02
@@ -163,14 +174,3 @@ npm update @sm003/autojs6-dts
 
 - `新增` installer/installReason/packageSource 的 null 重置类型和 sourceDeleteRequested 结果字段, 与宿主 5312+ 的来源配置能力对应
 - `优化` 说明省略字段继承, 显式选项优先, 会话级选项边界和批量共享来源保留; 其他 null 及脚本配置选择字段仍拒绝
-
-# v4.27.0
-
-###### 2026/10/02
-
-##### Installer 高级安装选项
-
-- `新增` grantAllRequestedPermissions, requestUpdateOwnership, dexopt, installReason, packageSource 选项及封闭枚举, 需要宿主 5308+ 和插件对应能力
-- `新增` optimizing 会话阶段, updateOwner 可空读回结果和 dexopt 六种观察状态; accepted 不保证实际执行编译
-- `优化` 区分省略与显式 false/none, 说明平台与授权边界以及安装成功后的附加操作不回滚安装, 不提供本地策略的脚本绕过选项
-

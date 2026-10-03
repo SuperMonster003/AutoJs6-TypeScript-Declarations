@@ -37,6 +37,11 @@ declare let $base64: Internal.Base64;
 declare let colors: Internal.Colors;
 declare let $colors: Internal.Colors;
 
+/** Compose UI plugin API. mount requires UI mode; floaty also supports non-UI scripts. */
+declare let compose: Internal.Compose;
+declare let $compose: Internal.Compose;
+declare const ComposeError: Internal.ComposeErrorConstructor;
+
 declare let console: Internal.Console;
 declare let $console: Internal.Console;
 

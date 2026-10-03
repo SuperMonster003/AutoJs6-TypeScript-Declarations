@@ -5287,6 +5287,15 @@ declare namespace androidx {
 }
 declare namespace androidx {
 	export namespace lifecycle {
+		export class AtomicReference<V> {
+			public constructor(initialValue: V);
+			public compareAndSet(expectedValue: V, newValue: V): boolean;
+			public get(): V;
+		}
+	}
+}
+declare namespace androidx {
+	export namespace lifecycle {
 		export class HasDefaultViewModelProviderFactory {
 			public constructor(implementation: HasDefaultViewModelProviderFactory);
 			public constructor();
@@ -5303,13 +5312,15 @@ declare namespace androidx {
 	export namespace lifecycle {
 		export abstract class Lifecycle {
 			public readonly currentState: __javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State;
-			public readonly internalScopeRef: __javaLibraryRoots.javaRoot.util.concurrent.atomic.AtomicReference<any>;
+			public readonly currentStateFlow: __javaLibraryRoots.kotlinxRoot.coroutines.flow.StateFlow<__javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State>;
+			public readonly internalScopeRef: __javaLibraryRoots.androidxRoot.lifecycle.AtomicReference<any>;
 			public constructor();
 			public addObserver(param0: __javaLibraryRoots.androidxRoot.lifecycle.LifecycleObserver): void;
 			public getCurrentState(): __javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State;
-			public getInternalScopeRef(): __javaLibraryRoots.javaRoot.util.concurrent.atomic.AtomicReference<any>;
+			public getCurrentStateFlow(): __javaLibraryRoots.kotlinxRoot.coroutines.flow.StateFlow<__javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State>;
+			public getInternalScopeRef(): __javaLibraryRoots.androidxRoot.lifecycle.AtomicReference<any>;
 			public removeObserver(param0: __javaLibraryRoots.androidxRoot.lifecycle.LifecycleObserver): void;
-			public setInternalScopeRef(_set___: __javaLibraryRoots.javaRoot.util.concurrent.atomic.AtomicReference<any>): void;
+			public setInternalScopeRef(_set___: __javaLibraryRoots.androidxRoot.lifecycle.AtomicReference<any>): void;
 		}
 		export namespace Lifecycle {
 			export class State extends __javaLibraryRoots.javaRoot.lang.Enum<__javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State> {
@@ -5318,6 +5329,8 @@ declare namespace androidx {
 				public static readonly INITIALIZED: __javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State;
 				public static readonly RESUMED: __javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State;
 				public static readonly STARTED: __javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State;
+				public static readonly entries: __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State>;
+				public static getEntries(): __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State>;
 				public isAtLeast(state: __javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State): boolean;
 				public static valueOf(value: string): __javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State;
 				public static values(): __javaLibraryRoots.androidxRoot.lifecycle.Lifecycle.State[];
@@ -5382,20 +5395,30 @@ declare namespace androidx {
 	export namespace lifecycle {
 		export abstract class ViewModel {
 			public constructor();
-			public constructor(...closeables: __javaLibraryRoots.javaRoot.io.Closeable[]);
-			public addCloseable(closeable: __javaLibraryRoots.javaRoot.io.Closeable): void;
+			public constructor(viewModelScope: __javaLibraryRoots.kotlinxRoot.coroutines.CoroutineScope);
+			public constructor(viewModelScope: __javaLibraryRoots.kotlinxRoot.coroutines.CoroutineScope, ...closeables: __javaLibraryRoots.javaRoot.lang.AutoCloseable[]);
+			public constructor(...closeables: __javaLibraryRoots.javaRoot.lang.AutoCloseable[]);
+			public addCloseable(closeable: __javaLibraryRoots.javaRoot.lang.AutoCloseable): void;
+			public addCloseable(key: string, closeable: __javaLibraryRoots.javaRoot.lang.AutoCloseable): void;
+			public clear$lifecycle_viewmodel_release(): void;
+			public getCloseable<T extends __javaLibraryRoots.javaRoot.lang.AutoCloseable>(key: string): T;
 		}
 	}
 }
 declare namespace androidx {
 	export namespace lifecycle {
 		export class ViewModelProvider {
+			public static readonly VIEW_MODEL_KEY: __javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras.Key<string>;
 			public constructor(store: __javaLibraryRoots.androidxRoot.lifecycle.ViewModelStore, factory: __javaLibraryRoots.androidxRoot.lifecycle.ViewModelProvider.Factory);
 			public constructor(store: __javaLibraryRoots.androidxRoot.lifecycle.ViewModelStore, factory: __javaLibraryRoots.androidxRoot.lifecycle.ViewModelProvider.Factory, defaultCreationExtras: __javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras);
 			public constructor(owner: __javaLibraryRoots.androidxRoot.lifecycle.ViewModelStoreOwner);
 			public constructor(owner: __javaLibraryRoots.androidxRoot.lifecycle.ViewModelStoreOwner, factory: __javaLibraryRoots.androidxRoot.lifecycle.ViewModelProvider.Factory);
+			public static create(store: __javaLibraryRoots.androidxRoot.lifecycle.ViewModelStore, factory: __javaLibraryRoots.androidxRoot.lifecycle.ViewModelProvider.Factory, extras: __javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras): __javaLibraryRoots.androidxRoot.lifecycle.ViewModelProvider;
+			public static create(owner: __javaLibraryRoots.androidxRoot.lifecycle.ViewModelStoreOwner, factory: __javaLibraryRoots.androidxRoot.lifecycle.ViewModelProvider.Factory, extras: __javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras): __javaLibraryRoots.androidxRoot.lifecycle.ViewModelProvider;
 			public get<T extends __javaLibraryRoots.androidxRoot.lifecycle.ViewModel>(modelClass: __javaLibraryRoots.javaRoot.lang.Class<T>): T;
 			public get<T extends __javaLibraryRoots.androidxRoot.lifecycle.ViewModel>(key: string, modelClass: __javaLibraryRoots.javaRoot.lang.Class<T>): T;
+			public get<T extends __javaLibraryRoots.androidxRoot.lifecycle.ViewModel>(key: string, modelClass: __javaLibraryRoots.kotlinRoot.reflect.KClass<T>): T;
+			public get<T extends __javaLibraryRoots.androidxRoot.lifecycle.ViewModel>(modelClass: __javaLibraryRoots.kotlinRoot.reflect.KClass<T>): T;
 		}
 		export namespace ViewModelProvider {
 			export class Factory {
@@ -5406,6 +5429,7 @@ declare namespace androidx {
 			export interface Factory {
 				create<T extends __javaLibraryRoots.androidxRoot.lifecycle.ViewModel>(modelClass: __javaLibraryRoots.javaRoot.lang.Class<T>): T;
 				create<T extends __javaLibraryRoots.androidxRoot.lifecycle.ViewModel>(modelClass: __javaLibraryRoots.javaRoot.lang.Class<T>, extras: __javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras): T;
+				create<T extends __javaLibraryRoots.androidxRoot.lifecycle.ViewModel>(modelClass: __javaLibraryRoots.kotlinRoot.reflect.KClass<T>, extras: __javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras): T;
 			}
 		}
 	}
@@ -5437,10 +5461,13 @@ declare namespace androidx {
 	export namespace lifecycle {
 		export namespace viewmodel {
 			export abstract class CreationExtras {
-				public readonly map$lifecycle_viewmodel_release: __javaLibraryRoots.javaRoot.util.Map<__javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras.Key<any>, any>;
+				public readonly extras$lifecycle_viewmodel_release: __javaLibraryRoots.javaRoot.util.Map<__javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras.Key<any>, any>;
 				public constructor();
+				public equals(other: any): boolean;
 				public get<T>(param0: __javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras.Key<T>): T;
-				public getMap$lifecycle_viewmodel_release(): __javaLibraryRoots.javaRoot.util.Map<__javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras.Key<any>, any>;
+				public getExtras$lifecycle_viewmodel_release(): __javaLibraryRoots.javaRoot.util.Map<__javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras.Key<any>, any>;
+				public hashCode(): number;
+				public toString(): string;
 			}
 			export namespace CreationExtras {
 				export class Key<T> {
@@ -5457,10 +5484,11 @@ declare namespace androidx {
 	export namespace lifecycle {
 		export namespace viewmodel {
 			export class ViewModelInitializer<T extends __javaLibraryRoots.androidxRoot.lifecycle.ViewModel> {
-				public readonly clazz$lifecycle_viewmodel_release: __javaLibraryRoots.javaRoot.lang.Class<T>;
+				public readonly clazz$lifecycle_viewmodel_release: __javaLibraryRoots.kotlinRoot.reflect.KClass<T>;
 				public readonly initializer$lifecycle_viewmodel_release: __javaLibraryRoots.kotlinRoot.jvm.functions.Function1<__javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras, T>;
 				public constructor(clazz: __javaLibraryRoots.javaRoot.lang.Class<T>, initializer: __javaLibraryRoots.kotlinRoot.jvm.functions.Function1<any, T>);
-				public getClazz$lifecycle_viewmodel_release(): __javaLibraryRoots.javaRoot.lang.Class<T>;
+				public constructor(clazz: __javaLibraryRoots.kotlinRoot.reflect.KClass<T>, initializer: __javaLibraryRoots.kotlinRoot.jvm.functions.Function1<any, T>);
+				public getClazz$lifecycle_viewmodel_release(): __javaLibraryRoots.kotlinRoot.reflect.KClass<T>;
 				public getInitializer$lifecycle_viewmodel_release(): __javaLibraryRoots.kotlinRoot.jvm.functions.Function1<__javaLibraryRoots.androidxRoot.lifecycle.viewmodel.CreationExtras, T>;
 			}
 		}
@@ -6445,19 +6473,13 @@ declare namespace androidx {
 declare namespace androidx {
 	export namespace savedstate {
 		export class SavedStateRegistry {
-			public readonly allowingSavingState$savedstate_release: boolean;
 			public readonly restored: boolean;
-			public constructor();
+			public constructor(impl: __javaLibraryRoots.androidxRoot.savedstate.internal.SavedStateRegistryImpl);
 			public consumeRestoredStateForKey(key: string): __javaLibraryRoots.androidRoot.os.Bundle;
 			public getSavedStateProvider(key: string): __javaLibraryRoots.androidxRoot.savedstate.SavedStateRegistry.SavedStateProvider;
-			public isAllowingSavingState$savedstate_release(): boolean;
 			public isRestored(): boolean;
-			public performAttach$savedstate_release(lifecycle: __javaLibraryRoots.androidxRoot.lifecycle.Lifecycle): void;
-			public performRestore$savedstate_release(savedState: __javaLibraryRoots.androidRoot.os.Bundle): void;
-			public performSave(outBundle: __javaLibraryRoots.androidRoot.os.Bundle): void;
 			public registerSavedStateProvider(key: string, provider: __javaLibraryRoots.androidxRoot.savedstate.SavedStateRegistry.SavedStateProvider): void;
 			public runOnNextRecreation(clazz: __javaLibraryRoots.javaRoot.lang.Class<__javaLibraryRoots.androidxRoot.savedstate.SavedStateRegistry.AutoRecreated>): void;
-			public setAllowingSavingState$savedstate_release(_set___: boolean): void;
 			public unregisterSavedStateProvider(key: string): void;
 		}
 		export namespace SavedStateRegistry {
@@ -6487,6 +6509,29 @@ declare namespace androidx {
 		export interface SavedStateRegistryOwner extends __javaLibraryRoots.androidxRoot.lifecycle.LifecycleOwner {
 			readonly savedStateRegistry: __javaLibraryRoots.androidxRoot.savedstate.SavedStateRegistry;
 			getSavedStateRegistry(): __javaLibraryRoots.androidxRoot.savedstate.SavedStateRegistry;
+		}
+	}
+}
+declare namespace androidx {
+	export namespace savedstate {
+		export namespace internal {
+			export class SavedStateRegistryImpl {
+				public readonly allowingSavingState$savedstate_release: boolean;
+				public readonly onAttach$savedstate_release: __javaLibraryRoots.kotlinRoot.jvm.functions.Function0<__javaLibraryRoots.kotlinRoot.Unit>;
+				public readonly restored: boolean;
+				public constructor(owner: __javaLibraryRoots.androidxRoot.savedstate.SavedStateRegistryOwner, onAttach: __javaLibraryRoots.kotlinRoot.jvm.functions.Function0<__javaLibraryRoots.kotlinRoot.Unit>);
+				public consumeRestoredStateForKey(key: string): __javaLibraryRoots.androidRoot.os.Bundle;
+				public getOnAttach$savedstate_release(): __javaLibraryRoots.kotlinRoot.jvm.functions.Function0<__javaLibraryRoots.kotlinRoot.Unit>;
+				public getSavedStateProvider(key: string): __javaLibraryRoots.androidxRoot.savedstate.SavedStateRegistry.SavedStateProvider;
+				public isAllowingSavingState$savedstate_release(): boolean;
+				public isRestored(): boolean;
+				public performAttach(): void;
+				public performRestore$savedstate_release(savedState: __javaLibraryRoots.androidRoot.os.Bundle): void;
+				public performSave$savedstate_release(outBundle: __javaLibraryRoots.androidRoot.os.Bundle): void;
+				public registerSavedStateProvider(key: string, provider: __javaLibraryRoots.androidxRoot.savedstate.SavedStateRegistry.SavedStateProvider): void;
+				public setAllowingSavingState$savedstate_release(_set___: boolean): void;
+				public unregisterSavedStateProvider(key: string): void;
+			}
 		}
 	}
 }
@@ -13497,6 +13542,541 @@ declare namespace org {
 						public writeToParcel(dest: __javaLibraryRoots.androidRoot.os.Parcel, flags: number): void;
 					}
 					export interface PluginInfo extends __javaLibraryRoots.androidRoot.os.Parcelable {}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class ChildrenPolicy extends __javaLibraryRoots.javaRoot.lang.Enum<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy> {
+							public static readonly LAZY_ITEMS: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy;
+							public static readonly MANY: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy;
+							public static readonly NONE: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy;
+							public static readonly SINGLE: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy;
+							public static readonly entries: __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy>;
+							public static getEntries(): __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy>;
+							public static valueOf(value: string): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy;
+							public static values(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy[];
+							protected constructor();
+							public static valueOf(...args: any[]): any;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class ComponentCatalog {
+							public static readonly V1: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentCatalog;
+							public readonly components: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentSpec>;
+							public readonly modifiers: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ModifierSpec>;
+							public readonly shortcuts: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ShortcutSpec>;
+							public readonly systemEvents: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.EventSpec>;
+							public constructor(components: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentSpec>, modifiers: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ModifierSpec>, shortcuts: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ShortcutSpec>, systemEvents: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.EventSpec>);
+							public component(name: string): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentSpec;
+							public getComponents(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentSpec>;
+							public getModifiers(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ModifierSpec>;
+							public getShortcuts(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ShortcutSpec>;
+							public getSystemEvents(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.EventSpec>;
+							public modifier(name: string): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ModifierSpec;
+							public normalizeProperties(component: string, props: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>, modifier: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.NormalizedProps;
+							public requireComponent(name: string): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentSpec;
+							public validateModifier(op: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp, parentType: string, checkParent: boolean): void;
+							public validateNode(node: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiNode, parentType: string): void;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class ComponentInvocation extends __javaLibraryRoots.javaRoot.lang.Enum<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentInvocation> {
+							public static readonly COMMAND: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentInvocation;
+							public static readonly NODE: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentInvocation;
+							public static readonly entries: __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentInvocation>;
+							public static getEntries(): __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentInvocation>;
+							public static valueOf(value: string): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentInvocation;
+							public static values(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentInvocation[];
+							protected constructor();
+							public static valueOf(...args: any[]): any;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class ComponentSpec {
+							public readonly childrenPolicy: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy;
+							public readonly commands: __javaLibraryRoots.javaRoot.util.List<string>;
+							public readonly events: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.EventSpec>;
+							public readonly invocation: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentInvocation;
+							public readonly name: string;
+							public readonly props: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropSpec>;
+							public readonly scope: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind;
+							public readonly slots: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.SlotSpec>;
+							public constructor(name: string, props: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropSpec>, slots: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.SlotSpec>, events: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.EventSpec>, childrenPolicy: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy, scope: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind, commands: __javaLibraryRoots.javaRoot.util.List<string>, invocation: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentInvocation);
+							public getChildrenPolicy(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ChildrenPolicy;
+							public getCommands(): __javaLibraryRoots.javaRoot.util.List<string>;
+							public getEvents(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.EventSpec>;
+							public getInvocation(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentInvocation;
+							public getName(): string;
+							public getProps(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropSpec>;
+							public getScope(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind;
+							public getSlots(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.SlotSpec>;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class EventSpec {
+							public readonly name: string;
+							public readonly payloadFields: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadFieldSpec>;
+							public constructor(name: string, payloadFields: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadFieldSpec>);
+							public getName(): string;
+							public getPayloadFields(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadFieldSpec>;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class ModifierArgSpec {
+							public readonly callback: boolean;
+							public readonly defaultValue: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue;
+							public readonly name: string;
+							public readonly type: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ValueType;
+							public constructor(name: string, _type_: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ValueType, defaultValue: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue, callback: boolean);
+							public getCallback(): boolean;
+							public getDefaultValue(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue;
+							public getName(): string;
+							public getType(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ValueType;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class ModifierSignature {
+							public readonly args: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ModifierArgSpec>;
+							public readonly requiredCount: number;
+							public constructor(args: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ModifierArgSpec>);
+							public getArgs(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ModifierArgSpec>;
+							public getRequiredCount(): number;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class ModifierSpec {
+							public readonly allowedParents: __javaLibraryRoots.javaRoot.util.List<string>;
+							public readonly commands: __javaLibraryRoots.javaRoot.util.List<string>;
+							public readonly name: string;
+							public readonly scope: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind;
+							public readonly signatures: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ModifierSignature>;
+							public constructor(name: string, signatures: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ModifierSignature>, scope: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind, allowedParents: __javaLibraryRoots.javaRoot.util.List<string>, commands: __javaLibraryRoots.javaRoot.util.List<string>);
+							public getAllowedParents(): __javaLibraryRoots.javaRoot.util.List<string>;
+							public getCommands(): __javaLibraryRoots.javaRoot.util.List<string>;
+							public getName(): string;
+							public getScope(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind;
+							public getSignatures(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ModifierSignature>;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class NormalizedProps {
+							public readonly modifier: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+							public readonly props: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+							public constructor(props: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>, modifier: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>);
+							public getModifier(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+							public getProps(): __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class PayloadFieldSpec {
+							public readonly name: string;
+							public readonly required: boolean;
+							public readonly type: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType;
+							public constructor(name: string, _type_: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType, required: boolean);
+							public getName(): string;
+							public getRequired(): boolean;
+							public getType(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class PayloadType extends __javaLibraryRoots.javaRoot.lang.Enum<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType> {
+							public static readonly BOOLEAN: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType;
+							public static readonly INTEGER: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType;
+							public static readonly LONG: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType;
+							public static readonly NUMBER: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType;
+							public static readonly STRING: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType;
+							public static readonly entries: __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType>;
+							public static getEntries(): __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType>;
+							public static valueOf(value: string): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType;
+							public static values(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PayloadType[];
+							protected constructor();
+							public static valueOf(...args: any[]): any;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class PropSpec {
+							public readonly aliases: __javaLibraryRoots.javaRoot.util.List<string>;
+							public readonly defaultValue: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue;
+							public readonly name: string;
+							public readonly required: boolean;
+							public readonly type: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ValueType;
+							public readonly update: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropertyUpdate;
+							public constructor(name: string, _type_: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ValueType, required: boolean, defaultValue: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue, aliases: __javaLibraryRoots.javaRoot.util.List<string>, update: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropertyUpdate);
+							public getAliases(): __javaLibraryRoots.javaRoot.util.List<string>;
+							public getDefaultValue(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue;
+							public getName(): string;
+							public getRequired(): boolean;
+							public getType(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ValueType;
+							public getUpdate(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropertyUpdate;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class PropertyUpdate extends __javaLibraryRoots.javaRoot.lang.Enum<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropertyUpdate> {
+							public static readonly EDIT_COMMAND: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropertyUpdate;
+							public static readonly SET_PROPS: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropertyUpdate;
+							public static readonly entries: __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropertyUpdate>;
+							public static getEntries(): __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropertyUpdate>;
+							public static valueOf(value: string): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropertyUpdate;
+							public static values(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.PropertyUpdate[];
+							protected constructor();
+							public static valueOf(...args: any[]): any;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class ShortcutSpec {
+							public readonly expandList: boolean;
+							public readonly modifierName: string;
+							public readonly name: string;
+							public constructor(name: string, modifierName: string, expandList: boolean);
+							public getExpandList(): boolean;
+							public getModifierName(): string;
+							public getName(): string;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class SlotSpec {
+							public readonly name: string;
+							public readonly required: boolean;
+							public constructor(name: string, required: boolean);
+							public getName(): string;
+							public getRequired(): boolean;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace catalog {
+						export class ValueType {
+							public readonly enumValues: __javaLibraryRoots.javaRoot.util.List<string>;
+							public readonly integral: boolean;
+							public readonly kinds: __javaLibraryRoots.javaRoot.util.Set<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind>;
+							public readonly listKinds: __javaLibraryRoots.javaRoot.util.Set<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind>;
+							public readonly listMaximum: number;
+							public readonly listMinimum: number;
+							public readonly maximum: __javaLibraryRoots.javaRoot.lang.Double;
+							public readonly minimum: __javaLibraryRoots.javaRoot.lang.Double;
+							public readonly minimumExclusive: boolean;
+							public constructor(kinds: __javaLibraryRoots.javaRoot.util.Set<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind>, enumValues: __javaLibraryRoots.javaRoot.util.List<string>, minimum: __javaLibraryRoots.javaRoot.lang.Double, maximum: __javaLibraryRoots.javaRoot.lang.Double, minimumExclusive: boolean, integral: boolean, listKinds: __javaLibraryRoots.javaRoot.util.Set<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind>, listMinimum: number, listMaximum: number);
+							public accepts(value: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue): boolean;
+							public getEnumValues(): __javaLibraryRoots.javaRoot.util.List<string>;
+							public getIntegral(): boolean;
+							public getKinds(): __javaLibraryRoots.javaRoot.util.Set<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind>;
+							public getListKinds(): __javaLibraryRoots.javaRoot.util.Set<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind>;
+							public getListMaximum(): number;
+							public getListMinimum(): number;
+							public getMaximum(): __javaLibraryRoots.javaRoot.lang.Double;
+							public getMinimum(): __javaLibraryRoots.javaRoot.lang.Double;
+							public getMinimumExclusive(): boolean;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
+						export abstract class ComposeParcelable {
+							public describeContents(): number;
+							public equals(other: any): boolean;
+							public fields$compose_ui_api(): __javaLibraryRoots.javaRoot.util.List<any>;
+							public hashCode(): number;
+							public toString(): string;
+							public writeToParcel(destination: __javaLibraryRoots.androidRoot.os.Parcel, flags: number): void;
+							protected constructor();
+						}
+						export interface ComposeParcelable extends __javaLibraryRoots.androidRoot.os.Parcelable {}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
+						export class ModifierOp extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
+							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+							public readonly args: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+							public readonly name: string;
+							public readonly scope: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind;
+							public constructor(name: string, args: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>, scope: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind);
+							public fields$compose_ui_api(): __javaLibraryRoots.javaRoot.util.List<any>;
+							public getArgs(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+							public getName(): string;
+							public getScope(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
+						export class ScopeKind extends __javaLibraryRoots.javaRoot.lang.Enum<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind> {
+							public static readonly ANY: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind;
+							public static readonly BOX: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind;
+							public static readonly COLUMN_ROW: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind;
+							public static readonly entries: __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind>;
+							public static getEntries(): __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind>;
+							public static valueOf(value: string): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind;
+							public static values(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ScopeKind[];
+							protected constructor();
+							public static valueOf(...args: any[]): any;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
+						export class UiNode extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
+							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiNode>;
+							public readonly callbacks: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.javaRoot.lang.Integer>;
+							public readonly children: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.javaRoot.lang.Integer>;
+							public readonly key: string;
+							public readonly modifier: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+							public readonly nodeId: number;
+							public readonly props: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+							public readonly slots: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.javaRoot.lang.Integer>;
+							public readonly type: string;
+							public constructor(nodeId: number, _type_: string, key: string, props: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>, modifier: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>, children: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.javaRoot.lang.Integer>, slots: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.javaRoot.lang.Integer>, callbacks: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.javaRoot.lang.Integer>);
+							public fields$compose_ui_api(): __javaLibraryRoots.javaRoot.util.List<any>;
+							public getCallbacks(): __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.javaRoot.lang.Integer>;
+							public getChildren(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.javaRoot.lang.Integer>;
+							public getKey(): string;
+							public getModifier(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+							public getNodeId(): number;
+							public getProps(): __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+							public getSlots(): __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.javaRoot.lang.Integer>;
+							public getType(): string;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
+						export abstract class UiValue extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
+							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+							public readonly depth$compose_ui_api: number;
+							public readonly kind: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public getDepth$compose_ui_api(): number;
+							public getKind(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							protected constructor();
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
+						export class ValueKind extends __javaLibraryRoots.javaRoot.lang.Enum<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind> {
+							public static readonly BITMAP: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly BOOLEAN: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly COLOR: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly DP: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly ENUM: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly ICON_NAME: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly LIST: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly NULL: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly NUMBER: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly SHAPE: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly SP: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly STRING: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly TEXT_STYLE: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static readonly entries: __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind>;
+							public static getEntries(): __javaLibraryRoots.kotlinRoot.enums.EnumEntries<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind>;
+							public static valueOf(value: string): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
+							public static values(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind[];
+							protected constructor();
+							public static valueOf(...args: any[]): any;
+						}
+					}
 				}
 			}
 		}
@@ -23086,17 +23666,25 @@ declare namespace org {
 //androidx.customview.widget.FocusStrategy.SequentialComparator:1
 //androidx.dynamicanimation.animation.DynamicAnimation:1
 //androidx.dynamicanimation.animation.FloatPropertyCompat:1
+//androidx.emoji2.text.EmojiProcessor.EmojiProcessCallback:1
 //androidx.fragment.app.FragmentHostCallback:1
+//androidx.lifecycle.AtomicReference:1
+//androidx.lifecycle.BlockRunner:1
 //androidx.lifecycle.ComputableLiveData:1
+//androidx.lifecycle.CoroutineLiveData:1
 //androidx.lifecycle.FlowExtKt.flowWithLifecycle.1.1.1:1
+//androidx.lifecycle.FlowLiveDataConversions.asLiveData.1.1:1
 //androidx.lifecycle.LiveData:1
 //androidx.lifecycle.LiveDataKt.observe.wrappedObserver.1:1
+//androidx.lifecycle.LiveDataScope:1
+//androidx.lifecycle.LiveDataScopeImpl:1
 //androidx.lifecycle.MediatorLiveData:1
 //androidx.lifecycle.MediatorLiveData.Source:1
 //androidx.lifecycle.MutableLiveData:1
 //androidx.lifecycle.Observer:1
 //androidx.lifecycle.SavedStateHandle.SavingStateLiveData:1
 //androidx.lifecycle.ViewModelLazy:1
+//androidx.lifecycle.serialization.SavedStateHandleDelegate:1
 //androidx.lifecycle.viewmodel.CreationExtras.Key:1
 //androidx.lifecycle.viewmodel.ViewModelInitializer:1
 //androidx.loader.app.LoaderManager.LoaderCallbacks:1
@@ -23163,9 +23751,26 @@ declare namespace org {
 //androidx.room.util.SchemaInfoUtilKt.readIndex.lambda.13..inlined.sortedBy.2:1
 //androidx.room.util.TableInfoKt.toStringCommon..inlined.sortedBy.1:1
 //androidx.room.util.TableInfoKt.toStringCommon..inlined.sortedBy.2:1
+//androidx.savedstate.serialization.SavedStateRegistryOwnerDelegate:1
+//androidx.savedstate.serialization.serializers.JavaSerializableSerializer:1
+//androidx.savedstate.serialization.serializers.MutableStateFlowSerializer:1
+//androidx.savedstate.serialization.serializers.ParcelableSerializer:1
+//androidx.savedstate.serialization.serializers.SparseArraySerializer:1
+//androidx.savedstate.serialization.serializers.SparseArraySerializer.SparseArraySurrogate:1
+//androidx.savedstate.serialization.serializers.SparseArraySerializer.SparseArraySurrogate..serializer:1
 //androidx.startup.Initializer:1
 //androidx.transition.PathProperty:1
 //androidx.webkit.OutcomeReceiverCompat:2
+//androidx.window.core.ConsumerAdapter.ConsumerHandler:1
+//androidx.window.core.FailedSpecification:1
+//androidx.window.core.PredicateAdapter.BaseHandler:1
+//androidx.window.core.PredicateAdapter.PairPredicateStubHandler:2
+//androidx.window.core.PredicateAdapter.PredicateStubHandler:1
+//androidx.window.core.SpecificationComputer:1
+//androidx.window.core.ValidSpecification:1
+//androidx.window.reflection.Consumer2:1
+//androidx.window.reflection.JFunction2:2
+//androidx.window.reflection.Predicate2:1
 //androidx.work.WorkRequest.Builder:2
 //androidx.work.impl.ToContinuation:1
 //androidx.work.impl.constraints.ConstraintListener:1
@@ -25242,6 +25847,47 @@ declare namespace org {
 //kotlinx.coroutines.sync.MutexImpl.SelectInstanceWithOwner:1
 //kotlinx.coroutines.sync.MutexKt.withLock.1:1
 //kotlinx.coroutines.sync.SemaphoreKt.withPermit.1:1
+//kotlinx.serialization.ContextualSerializer:1
+//kotlinx.serialization.DeserializationStrategy:1
+//kotlinx.serialization.KSerializer:1
+//kotlinx.serialization.PolymorphicSerializer:1
+//kotlinx.serialization.SealedClassSerializer:1
+//kotlinx.serialization.SerializationStrategy:1
+//kotlinx.serialization.internal.AbstractCollectionSerializer:3
+//kotlinx.serialization.internal.AbstractPolymorphicSerializer:1
+//kotlinx.serialization.internal.ArrayListSerializer:1
+//kotlinx.serialization.internal.CacheEntry:1
+//kotlinx.serialization.internal.ClassValueCache:1
+//kotlinx.serialization.internal.ClassValueParametrizedCache:1
+//kotlinx.serialization.internal.ClassValueReferences:1
+//kotlinx.serialization.internal.CollectionLikeSerializer:3
+//kotlinx.serialization.internal.CollectionSerializer:3
+//kotlinx.serialization.internal.ConcurrentHashMapCache:1
+//kotlinx.serialization.internal.ConcurrentHashMapParametrizedCache:1
+//kotlinx.serialization.internal.EnumSerializer:1
+//kotlinx.serialization.internal.GeneratedSerializer:1
+//kotlinx.serialization.internal.HashMapSerializer:2
+//kotlinx.serialization.internal.HashSetSerializer:1
+//kotlinx.serialization.internal.KeyValueSerializer:3
+//kotlinx.serialization.internal.LinkedHashMapSerializer:2
+//kotlinx.serialization.internal.LinkedHashSetSerializer:1
+//kotlinx.serialization.internal.MapEntrySerializer:2
+//kotlinx.serialization.internal.MapEntrySerializer.MapEntry:2
+//kotlinx.serialization.internal.MapLikeSerializer:4
+//kotlinx.serialization.internal.MutableSoftReference:1
+//kotlinx.serialization.internal.NullableSerializer:1
+//kotlinx.serialization.internal.ObjectSerializer:1
+//kotlinx.serialization.internal.PairSerializer:2
+//kotlinx.serialization.internal.ParametrizedCacheEntry:1
+//kotlinx.serialization.internal.ParametrizedSerializerCache:1
+//kotlinx.serialization.internal.PrimitiveArrayBuilder:1
+//kotlinx.serialization.internal.PrimitiveArraySerializer:3
+//kotlinx.serialization.internal.ReferenceArraySerializer:2
+//kotlinx.serialization.internal.SerializerCache:1
+//kotlinx.serialization.internal.TaggedDecoder:1
+//kotlinx.serialization.internal.TaggedEncoder:1
+//kotlinx.serialization.internal.TripleSerializer:3
+//kotlinx.serialization.modules.PolymorphicModuleBuilder:1
 //me.zhanghai.android.materialprogressbar.BaseProgressLayerDrawable:2
 //net.lingala.zip4j.io.inputstream.CipherInputStream:1
 //net.lingala.zip4j.io.outputstream.CipherOutputStream:1
