@@ -6051,6 +6051,100 @@ declare namespace org {
 		export namespace autojs {
 			export namespace core {
 				export namespace plugin {
+					export namespace compose {
+						export class ComposeSessionRenderer {
+							public constructor(implementation: ComposeSessionRenderer);
+							public constructor();
+						}
+						export interface ComposeSessionRenderer {
+							apply(param0: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiPatchBatch): void;
+							attach(): void;
+							detach(): void;
+							dispose(): void;
+							execute(param0: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiCommand): void;
+							open(param0: __javaRoots.orgRoot.autojs.plugin.compose.api.loading.ComposeUiEventSink): void;
+							setTheme(param0: __javaRoots.orgRoot.autojs.plugin.compose.api.model.ThemeSpec): void;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace plugin {
+					export namespace compose {
+						export class ComposeUiError extends __javaRoots.javaRoot.lang.RuntimeException {
+							public readonly code: string;
+							public readonly nodeId: __javaRoots.javaRoot.lang.Integer;
+							public readonly prop: string;
+							public readonly retryable: boolean;
+							public constructor(code: string, message: string, nodeId: __javaRoots.javaRoot.lang.Integer, prop: string, cause: __javaRoots.javaRoot.lang.Throwable);
+							public getCode(): string;
+							public getNodeId(): __javaRoots.javaRoot.lang.Integer;
+							public getProp(): string;
+							public getRetryable(): boolean;
+							public localizedMessage(context: __javaRoots.androidRoot.content.Context): string;
+							public localizedMessage$app(readString: __javaRoots.kotlinRoot.jvm.functions.Function1<any, string>): string;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace plugin {
+					export namespace compose {
+						export class ScriptControlChannel {
+							public constructor(implementation: ScriptControlChannel);
+							public constructor();
+						}
+						export interface ScriptControlChannel extends __javaRoots.javaRoot.lang.AutoCloseable {
+							close(): void;
+							request(): void;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace plugin {
+					export namespace compose {
+						export class ScriptUiDispatcher {
+							public constructor(implementation: ScriptUiDispatcher);
+							public constructor();
+						}
+						export interface ScriptUiDispatcher extends __javaRoots.javaRoot.lang.AutoCloseable {
+							readonly dispatchThread: boolean;
+							close(): void;
+							createControlChannel(action: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ScriptControlChannel;
+							dispatch(action: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): void;
+							isDispatchThread(): boolean;
+							post(param0: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): void;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace plugin {
 					export namespace ocr {
 						export class OcrPluginHost {
 							public static readonly ACTION_OCR: string;
@@ -9766,6 +9860,7 @@ declare namespace org {
 					public static readonly applicationContext: __javaRoots.androidRoot.content.Context;
 					public beforeSetUiContent(view: __javaRoots.androidRoot.view.View): void;
 					public cancelScriptJobs(): void;
+					public composeForTsx$app(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.Compose;
 					public createContinuation(): __javaRoots.orgRoot.autojs.autojs.rhino.continuation.Continuation;
 					public createContinuation(scope: __javaRoots.orgRoot.mozilla.javascript.Scriptable): __javaRoots.orgRoot.autojs.autojs.rhino.continuation.Continuation;
 					public exit(): void;
@@ -14259,6 +14354,777 @@ declare namespace org {
 						}
 						export interface Invokable {
 							invoke(...args: any[]): any;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class Compose extends __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.Augmentable {
+								public readonly globalAssignmentProperties: __javaRoots.javaRoot.util.List<__javaRoots.kotlinRoot.Pair<any, any>>;
+								public readonly graph$app: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeGraph;
+								public readonly keys: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.AugmentableKey>;
+								public readonly platform$app: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptPlatform;
+								public readonly reactive$app: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeReactiveRuntime;
+								public readonly scope$app: __javaRoots.orgRoot.autojs.autojs.rhino.TopLevelScope;
+								public readonly scriptErrorPassThroughInvoke: boolean;
+								public readonly selfAssignmentGetters: __javaRoots.javaRoot.util.List<any>;
+								public readonly selfAssignmentProperties: __javaRoots.javaRoot.util.List<__javaRoots.kotlinRoot.Pair<any, any>>;
+								public readonly values$app: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues;
+								public constructor(runtime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime);
+								public constructor(runtime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, platform: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptPlatform, values: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues);
+								public batch$app(_function_: __javaRoots.orgRoot.mozilla.javascript.Function): any;
+								public beforeSetContentView(view: any): void;
+								public call$app(_function_: __javaRoots.orgRoot.mozilla.javascript.Function, receiver: __javaRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
+								public checkThread$app(): void;
+								public close(): void;
+								public createTsx$app(_type_: any, props: any, children: __javaRoots.javaRoot.util.List<any>): any;
+								public ended$app(session: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptSession): void;
+								public getGlobalAssignmentProperties(): __javaRoots.javaRoot.util.List<__javaRoots.kotlinRoot.Pair<any, any>>;
+								public getGraph$app(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeGraph;
+								public getKeys(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.AugmentableKey>;
+								public getPlatform$app(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptPlatform;
+								public getReactive$app(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeReactiveRuntime;
+								public getScope$app(): __javaRoots.orgRoot.autojs.autojs.rhino.TopLevelScope;
+								public getScriptErrorPassThroughInvoke(): boolean;
+								public getSelfAssignmentGetters(): __javaRoots.javaRoot.util.List<any>;
+								public getSelfAssignmentProperties(): __javaRoots.javaRoot.util.List<__javaRoots.kotlinRoot.Pair<any, any>>;
+								public getValues$app(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues;
+								public guardError$app<T>(action: __javaRoots.kotlinRoot.jvm.functions.Function0<T>): T;
+								public guarded$app<T>(action: __javaRoots.kotlinRoot.jvm.functions.Function0<T>): T;
+								public invoke(...args: any[]): any;
+								public isTsxType$app(_type_: any): boolean;
+								public post$app(args: any[], session: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptSession): void;
+								public renderFailure$app(failure: __javaRoots.javaRoot.lang.Throwable): __javaRoots.javaRoot.lang.Throwable;
+								public reportRenderFailure$app(failure: __javaRoots.javaRoot.lang.Throwable): void;
+								public usable$app(): void;
+							}
+							export interface Compose extends __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.Invokable, __javaRoots.javaRoot.io.Closeable {}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeFloatyControl {
+								public constructor(implementation: ComposeFloatyControl);
+								public constructor();
+							}
+							export interface ComposeFloatyControl extends __javaRoots.javaRoot.io.Closeable {
+								readonly height: number;
+								readonly width: number;
+								readonly x: number;
+								readonly y: number;
+								disableFocus(): void;
+								getHeight(): number;
+								getWidth(): number;
+								getX(): number;
+								getY(): number;
+								requestFocus(): void;
+								setAdjustEnabled(param0: boolean): void;
+								setPosition(param0: number, param1: number): void;
+								setSize(param0: number, param1: number): void;
+								setTouchable(param0: boolean): void;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeFloatyOptions {
+								public readonly focusable: boolean;
+								public readonly height: __javaRoots.javaRoot.lang.Integer;
+								public readonly raw: boolean;
+								public readonly touchable: boolean;
+								public readonly width: __javaRoots.javaRoot.lang.Integer;
+								public readonly x: __javaRoots.javaRoot.lang.Integer;
+								public readonly y: __javaRoots.javaRoot.lang.Integer;
+								public constructor();
+								public constructor(raw: boolean, x: __javaRoots.javaRoot.lang.Integer, y: __javaRoots.javaRoot.lang.Integer, width: __javaRoots.javaRoot.lang.Integer, height: __javaRoots.javaRoot.lang.Integer, touchable: boolean, focusable: boolean);
+								public component1(): boolean;
+								public component2(): __javaRoots.javaRoot.lang.Integer;
+								public component3(): __javaRoots.javaRoot.lang.Integer;
+								public component4(): __javaRoots.javaRoot.lang.Integer;
+								public component5(): __javaRoots.javaRoot.lang.Integer;
+								public component6(): boolean;
+								public component7(): boolean;
+								public copy(raw: boolean, x: __javaRoots.javaRoot.lang.Integer, y: __javaRoots.javaRoot.lang.Integer, width: __javaRoots.javaRoot.lang.Integer, height: __javaRoots.javaRoot.lang.Integer, touchable: boolean, focusable: boolean): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyOptions;
+								public equals(other: any): boolean;
+								public getFocusable(): boolean;
+								public getHeight(): __javaRoots.javaRoot.lang.Integer;
+								public getRaw(): boolean;
+								public getTouchable(): boolean;
+								public getWidth(): __javaRoots.javaRoot.lang.Integer;
+								public getX(): __javaRoots.javaRoot.lang.Integer;
+								public getY(): __javaRoots.javaRoot.lang.Integer;
+								public hashCode(): number;
+								public toString(): string;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeFloatyWindow extends __javaRoots.orgRoot.mozilla.javascript.NativeObject {
+								public readonly className: string;
+								public readonly entries: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+								public readonly keys: __javaRoots.javaRoot.util.Set<any>;
+								public constructor(owner: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.Compose, session: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptSession, control: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyControl, raw: boolean);
+								public entrySet(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+								public getClassName(): string;
+								public getEntries(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+								public getKeys(): __javaRoots.javaRoot.util.Set<any>;
+								public getSize(): number;
+								public getValues(): __javaRoots.javaRoot.util.Collection<any>;
+								public keySet(): __javaRoots.javaRoot.util.Set<any>;
+								public size(): number;
+								public values(): __javaRoots.javaRoot.util.Collection<any>;
+								public entrySet(...args: any[]): any;
+								public keySet(...args: any[]): any;
+								public values(...args: any[]): any;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeModifier extends __javaRoots.orgRoot.mozilla.javascript.NativeObject {
+								public readonly className: string;
+								public readonly entries: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+								public readonly keys: __javaRoots.javaRoot.util.Set<any>;
+								public constructor(values: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues, scope: __javaRoots.orgRoot.mozilla.javascript.Scriptable);
+								public constructor(values: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues, scope: __javaRoots.orgRoot.mozilla.javascript.VarScope);
+								public append(name: string, arguments: any[]): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeModifier;
+								public entrySet(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+								public getClassName(): string;
+								public getEntries(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+								public getKeys(): __javaRoots.javaRoot.util.Set<any>;
+								public getSize(): number;
+								public getValues(): __javaRoots.javaRoot.util.Collection<any>;
+								public keySet(): __javaRoots.javaRoot.util.Set<any>;
+								public resolve(allocateCallback: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.Integer>): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+								public size(): number;
+								public values(): __javaRoots.javaRoot.util.Collection<any>;
+								public entrySet(...args: any[]): any;
+								public keySet(...args: any[]): any;
+								public values(...args: any[]): any;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeNode {
+								public readonly affinity$app: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding;
+								public readonly children: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>;
+								public readonly deferredEdit$app: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiCommand.Edit;
+								public readonly editor$app: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeEditor;
+								public readonly graph$app: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeGraph;
+								public readonly js: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeNativeObject;
+								public readonly key: string;
+								public readonly mountedOnce$app: boolean;
+								public readonly nodeId: number;
+								public readonly parent: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public readonly stableId$app: number;
+								public readonly state$app: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeState;
+								public readonly type: string;
+								public constructor(graph: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeGraph, _type_: string, key: string, stableId: number);
+								public append(child: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public blur(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public clear(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public edit(edit: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public focus(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public get(name: string): any;
+								public getAffinity$app(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding;
+								public getChildren(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>;
+								public getDeferredEdit$app(): __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiCommand.Edit;
+								public getEditor$app(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeEditor;
+								public getGraph$app(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeGraph;
+								public getJs(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeNativeObject;
+								public getKey(): string;
+								public getMountedOnce$app(): boolean;
+								public getNodeId(): number;
+								public getParent(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public getStableId$app(): number;
+								public getState$app(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeState;
+								public getType(): string;
+								public insert(index: number, child: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public off(name: string, callback: __javaRoots.orgRoot.mozilla.javascript.Function): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public on(name: string, callback: __javaRoots.orgRoot.mozilla.javascript.Function): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public remove(child: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public replace(children: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public scrollTo(target: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public set(properties: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public setAffinity$app(_set___: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding): void;
+								public setDeferredEdit$app(_set___: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiCommand.Edit): void;
+								public setEditor$app(_set___: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeEditor): void;
+								public setMountedOnce$app(_set___: boolean): void;
+								public setState$app(_set___: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeState): void;
+								public slot(name: string, child: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public toString(): string;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeNodeBinding {
+								public constructor(implementation: ComposeNodeBinding);
+								public constructor();
+							}
+							export interface ComposeNodeBinding {
+								readonly closed: boolean;
+								execute(param0: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiCommand): void;
+								isClosed(): boolean;
+								publish(param0: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeSnapshot): void;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeNodeEditor {
+								public readonly end: number;
+								public readonly sequence: number;
+								public readonly start: number;
+								public readonly text: string;
+								public constructor();
+								public constructor(text: string, start: number, end: number, sequence: number);
+								public component1(): string;
+								public component2(): number;
+								public component3(): number;
+								public component4(): number;
+								public copy(text: string, start: number, end: number, sequence: number): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeEditor;
+								public equals(other: any): boolean;
+								public getEnd(): number;
+								public getSequence(): number;
+								public getStart(): number;
+								public getText(): string;
+								public hashCode(): number;
+								public toString(): string;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeNodeGraph {
+								public readonly scope: __javaRoots.orgRoot.mozilla.javascript.VarScope;
+								public readonly translateError: __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Throwable, __javaRoots.javaRoot.lang.RuntimeException>;
+								public readonly tsxOwner$app: any;
+								public readonly values: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues;
+								public constructor(scope: __javaRoots.orgRoot.mozilla.javascript.VarScope, values: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues, invokeCallback: __javaRoots.kotlinRoot.jvm.functions.Function3<any, any, any, __javaRoots.kotlinRoot.Unit>, checkThread: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>, translateError: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.RuntimeException>, warn: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>);
+								public accept(binding: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding, snapshot: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeSnapshot): void;
+								public close(): void;
+								public command$app(node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, command: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiCommand): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public create(_type_: string, props: any, children: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public edit$app(node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, raw: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public errorNodeId$app(node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode): __javaRoots.javaRoot.lang.Integer;
+								public get$app(node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, name: string): any;
+								public getScope(): __javaRoots.orgRoot.mozilla.javascript.VarScope;
+								public getTranslateError(): __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Throwable, __javaRoots.javaRoot.lang.RuntimeException>;
+								public getTsxOwner$app(): any;
+								public getValues(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues;
+								public hasBinding$app(binding: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding): boolean;
+								public insert$app(parent: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, index: number, raw: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public isMounted$app(node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode): boolean;
+								public mount(root: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, binding: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding, replacing: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding): void;
+								public node(value: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public off$app(node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, name: string, callback: __javaRoots.orgRoot.mozilla.javascript.Function): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public on$app(node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, name: string, callback: __javaRoots.orgRoot.mozilla.javascript.Function): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public reconcile(previousRoot: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, draftRoot: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public reject(binding: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding, snapshot: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeSnapshot): void;
+								public remove$app(parent: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, raw: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public render(previousRoot: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, build: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public replace$app(parent: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, raw: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public root$app(value: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public scrollTo$app(node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, raw: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public set$app(node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, props: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public slot$app(parent: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, name: string, raw: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public snapshot(root: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeSnapshot;
+								public transaction<T>(action: __javaRoots.kotlinRoot.jvm.functions.Function0<T>): T;
+								public unmount(binding: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding): void;
+							}
+							export interface ComposeNodeGraph extends __javaRoots.javaRoot.lang.AutoCloseable {}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeNodeListeners {
+								public readonly functions: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.mozilla.javascript.Function>;
+								public readonly token: number;
+								public constructor(token: number, functions: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.mozilla.javascript.Function>);
+								public component1(): number;
+								public component2(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.mozilla.javascript.Function>;
+								public copy(token: number, functions: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.mozilla.javascript.Function>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeListeners;
+								public equals(other: any): boolean;
+								public getFunctions(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.mozilla.javascript.Function>;
+								public getToken(): number;
+								public hashCode(): number;
+								public toString(): string;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeNodeNativeObject extends __javaRoots.orgRoot.mozilla.javascript.NativeObject {
+								public readonly className: string;
+								public readonly entries: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+								public readonly keys: __javaRoots.javaRoot.util.Set<any>;
+								public readonly node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public constructor(node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode);
+								public entrySet(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+								public getClassName(): string;
+								public getEntries(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+								public getKeys(): __javaRoots.javaRoot.util.Set<any>;
+								public getNode(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public getSize(): number;
+								public getValues(): __javaRoots.javaRoot.util.Collection<any>;
+								public keySet(): __javaRoots.javaRoot.util.Set<any>;
+								public put(name: string, start: __javaRoots.orgRoot.mozilla.javascript.Scriptable, value: any): void;
+								public size(): number;
+								public values(): __javaRoots.javaRoot.util.Collection<any>;
+								public entrySet(...args: any[]): any;
+								public keySet(...args: any[]): any;
+								public put(...args: any[]): any;
+								public values(...args: any[]): any;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeNodeRef {
+								public constructor(implementation: ComposeNodeRef);
+								public constructor();
+							}
+							export interface ComposeNodeRef {
+								readonly current: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								getCurrent(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								setCurrent(param0: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode): void;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeNodeSnapshot {
+								public readonly callbacks: __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.orgRoot.autojs.plugin.compose.api.model.UiEvent, __javaRoots.kotlinRoot.Unit>>;
+								public readonly editors$app: __javaRoots.javaRoot.util.Map<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeEditor>;
+								public readonly refs: __javaRoots.javaRoot.util.Map<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeRef, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>;
+								public readonly retainedImages: __javaRoots.javaRoot.util.List<any>;
+								public readonly root: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public readonly scriptCallbackCount: number;
+								public readonly states$app: __javaRoots.javaRoot.util.Map<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeState>;
+								public readonly tree: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiTree;
+								public constructor(root: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, tree: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiTree, callbacks: __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>>, retainedImages: __javaRoots.javaRoot.util.List<any>, refs: __javaRoots.javaRoot.util.Map<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeRef, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>, scriptCallbackCount: number, states: __javaRoots.javaRoot.util.Map<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeState>, editors: __javaRoots.javaRoot.util.Map<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeEditor>);
+								public getCallbacks(): __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.orgRoot.autojs.plugin.compose.api.model.UiEvent, __javaRoots.kotlinRoot.Unit>>;
+								public getEditors$app(): __javaRoots.javaRoot.util.Map<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeEditor>;
+								public getRefs(): __javaRoots.javaRoot.util.Map<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeRef, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>;
+								public getRetainedImages(): __javaRoots.javaRoot.util.List<any>;
+								public getRoot(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public getScriptCallbackCount(): number;
+								public getStates$app(): __javaRoots.javaRoot.util.Map<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeState>;
+								public getTree(): __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiTree;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeNodeState {
+								public readonly children: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>;
+								public readonly explicitModifier: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeModifier;
+								public readonly images: __javaRoots.javaRoot.util.Map<string, __javaRoots.javaRoot.util.List<any>>;
+								public readonly listeners: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeListeners>;
+								public readonly modifier: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+								public readonly modifierCallbacks: __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.orgRoot.mozilla.javascript.Function>;
+								public readonly parent: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public readonly props: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+								public readonly ref: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeRef;
+								public readonly slots: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>;
+								public readonly source: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+								public constructor();
+								public constructor(source: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>, props: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>, modifier: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>, explicitModifier: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeModifier, modifierCallbacks: __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.orgRoot.mozilla.javascript.Function>, listeners: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeListeners>, images: __javaRoots.javaRoot.util.Map<string, __javaRoots.javaRoot.util.List<any>>, children: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>, slots: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>, parent: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, ref: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeRef);
+								public component1(): __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+								public component10(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public component11(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeRef;
+								public component2(): __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+								public component3(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+								public component4(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeModifier;
+								public component5(): __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.orgRoot.mozilla.javascript.Function>;
+								public component6(): __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeListeners>;
+								public component7(): __javaRoots.javaRoot.util.Map<string, __javaRoots.javaRoot.util.List<any>>;
+								public component8(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>;
+								public component9(): __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>;
+								public copy(source: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>, props: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>, modifier: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>, explicitModifier: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeModifier, modifierCallbacks: __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.orgRoot.mozilla.javascript.Function>, listeners: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeListeners>, images: __javaRoots.javaRoot.util.Map<string, __javaRoots.javaRoot.util.List<any>>, children: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>, slots: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>, parent: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, ref: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeRef): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeState;
+								public equals(other: any): boolean;
+								public getChildren(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>;
+								public getExplicitModifier(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeModifier;
+								public getImages(): __javaRoots.javaRoot.util.Map<string, __javaRoots.javaRoot.util.List<any>>;
+								public getListeners(): __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeListeners>;
+								public getModifier(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+								public getModifierCallbacks(): __javaRoots.javaRoot.util.Map<__javaRoots.javaRoot.lang.Integer, __javaRoots.orgRoot.mozilla.javascript.Function>;
+								public getParent(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode;
+								public getProps(): __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+								public getRef(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeRef;
+								public getSlots(): __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode>;
+								public getSource(): __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+								public hashCode(): number;
+								public toString(): string;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeReactiveRuntime {
+								public readonly rendering: boolean;
+								public constructor(scope: __javaRoots.orgRoot.mozilla.javascript.VarScope, checkThread: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>, post: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>, onError: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>);
+								public batch<T>(action: __javaRoots.kotlinRoot.jvm.functions.Function0<T>): T;
+								public close(): void;
+								public isRendering(): boolean;
+								public reaction(action: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeReactiveRuntime.Reaction;
+								public state(initial: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeReactiveRuntime.State;
+							}
+							export interface ComposeReactiveRuntime extends __javaRoots.javaRoot.io.Closeable {}
+							export namespace ComposeReactiveRuntime {
+								export class Reaction {
+									public readonly reads$app: __javaRoots.javaRoot.util.LinkedHashSet<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeReactiveRuntime.State>;
+									public constructor(this$0: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>);
+									public close(): void;
+									public getReads$app(): __javaRoots.javaRoot.util.LinkedHashSet<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeReactiveRuntime.State>;
+									public invalidate(): void;
+									public run(): void;
+									public setReads$app(_set___: __javaRoots.javaRoot.util.LinkedHashSet<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeReactiveRuntime.State>): void;
+								}
+								export interface Reaction extends __javaRoots.javaRoot.io.Closeable {}
+								export class State extends __javaRoots.orgRoot.mozilla.javascript.NativeObject {
+									public readonly className: string;
+									public readonly entries: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+									public readonly keys: __javaRoots.javaRoot.util.Set<any>;
+									public readonly subscribers$app: __javaRoots.javaRoot.util.LinkedHashSet<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeReactiveRuntime.Reaction>;
+									public constructor(this$0: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeReactiveRuntime, initial: any);
+									public entrySet(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+									public getClassName(): string;
+									public getEntries(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
+									public getKeys(): __javaRoots.javaRoot.util.Set<any>;
+									public getSize(): number;
+									public getSubscribers$app(): __javaRoots.javaRoot.util.LinkedHashSet<__javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeReactiveRuntime.Reaction>;
+									public getValues(): __javaRoots.javaRoot.util.Collection<any>;
+									public keySet(): __javaRoots.javaRoot.util.Set<any>;
+									public read(): any;
+									public size(): number;
+									public values(): __javaRoots.javaRoot.util.Collection<any>;
+									public write(next: any): void;
+									public entrySet(...args: any[]): any;
+									public keySet(...args: any[]): any;
+									public values(...args: any[]): any;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeScriptPlatform {
+								public constructor(implementation: ComposeScriptPlatform);
+								public constructor();
+							}
+							export interface ComposeScriptPlatform extends __javaRoots.javaRoot.io.Closeable {
+								readonly dispatcher: __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ScriptUiDispatcher;
+								readonly mainExecutor: __javaRoots.javaRoot.util.concurrent.Executor;
+								createFloatyRenderer(sessionId: number, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyOptions, beforeMount: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>, onDestroyed: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>, onFailure: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptPlatform.Opened;
+								createRenderer(param0: number, param1: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>, param2: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptPlatform.Opened;
+								errorMessage(error: __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ComposeUiError): string;
+								getDispatcher(): __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ScriptUiDispatcher;
+								getMainExecutor(): __javaRoots.javaRoot.util.concurrent.Executor;
+								post(param0: number, param1: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): void;
+								report(param0: __javaRoots.javaRoot.lang.Throwable): void;
+								resolveImage(param0: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues.ResolvedImage;
+								version(): __javaRoots.javaRoot.util.Map<string, any>;
+								warn(param0: string): void;
+							}
+							export namespace ComposeScriptPlatform {
+								export class Opened {
+									public readonly components: __javaRoots.javaRoot.util.Set<string>;
+									public readonly lifetime: __javaRoots.javaRoot.io.Closeable;
+									public readonly renderer: __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ComposeSessionRenderer;
+									public readonly watchInvalidation: __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>, __javaRoots.javaRoot.io.Closeable>;
+									public readonly window: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyControl;
+									public constructor(renderer: __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ComposeSessionRenderer, components: __javaRoots.javaRoot.util.Set<string>, window: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyControl, lifetime: __javaRoots.javaRoot.io.Closeable, watchInvalidation: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.io.Closeable>);
+									public component1(): __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ComposeSessionRenderer;
+									public component2(): __javaRoots.javaRoot.util.Set<string>;
+									public component3(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyControl;
+									public component4(): __javaRoots.javaRoot.io.Closeable;
+									public component5(): __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>, __javaRoots.javaRoot.io.Closeable>;
+									public copy(renderer: __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ComposeSessionRenderer, components: __javaRoots.javaRoot.util.Set<string>, window: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyControl, lifetime: __javaRoots.javaRoot.io.Closeable, watchInvalidation: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.io.Closeable>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptPlatform.Opened;
+									public equals(other: any): boolean;
+									public getComponents(): __javaRoots.javaRoot.util.Set<string>;
+									public getLifetime(): __javaRoots.javaRoot.io.Closeable;
+									public getRenderer(): __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ComposeSessionRenderer;
+									public getWatchInvalidation(): __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>, __javaRoots.javaRoot.io.Closeable>;
+									public getWindow(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyControl;
+									public hashCode(): number;
+									public toString(): string;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeScriptSession {
+								public readonly closed: boolean;
+								public readonly floaty: boolean;
+								public readonly id: number;
+								public readonly js: __javaRoots.orgRoot.mozilla.javascript.NativeObject;
+								public readonly mountedView: any;
+								public constructor(owner: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.Compose, id: number, initialTheme: __javaRoots.orgRoot.autojs.plugin.compose.api.model.ThemeSpec, floatyOptions: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyOptions, replacingUi: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding);
+								public attach(): void;
+								public close(): void;
+								public execute(command: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiCommand): void;
+								public floatingWindow(): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyWindow;
+								public getId(): number;
+								public getJs(): __javaRoots.orgRoot.mozilla.javascript.NativeObject;
+								public getMountedView(): any;
+								public isClosed(): boolean;
+								public isFloaty(): boolean;
+								public open(source: any): void;
+								public publish(snapshot: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeSnapshot): void;
+								public setTheme(theme: __javaRoots.orgRoot.autojs.plugin.compose.api.model.ThemeSpec): void;
+								public stopRenderer(): void;
+							}
+							export interface ComposeScriptSession extends __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding, __javaRoots.javaRoot.io.Closeable {}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
+							export class ComposeScriptValues {
+								public constructor();
+								public constructor(imageResolver: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues.ResolvedImage>, colorParser: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.Integer>);
+								public arrayValues(raw: any, component: string, prop: string, maximum: number): __javaRoots.javaRoot.util.List<any>;
+								public contextual$app<T>(component: string, prop: string, action: __javaRoots.kotlinRoot.jvm.functions.Function0<T>): T;
+								public eventName(component: string, name: string): string;
+								public integer(component: string, prop: string, raw: any, minimum: number, maximum: number): number;
+								public modifierArgument$app(component: string, name: string, raw: any, _type_: __javaRoots.orgRoot.autojs.plugin.compose.api.catalog.ValueType): __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue;
+								public normalize(component: string, raw: __javaRoots.javaRoot.util.Map<string, any>, explicitModifier: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeModifier, allocateCallback: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.Integer>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues.ConvertedProperties;
+								public objectProperties(value: any, component: string): __javaRoots.javaRoot.util.Map<string, any>;
+								public property(component: string, name: string, raw: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues.ConvertedProperty;
+								public theme(raw: any): __javaRoots.orgRoot.autojs.plugin.compose.api.model.ThemeSpec;
+								public toRaw(value: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue, scope: __javaRoots.orgRoot.mozilla.javascript.Scriptable): any;
+								public toRaw(value: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue, scope: __javaRoots.orgRoot.mozilla.javascript.VarScope): any;
+							}
+							export namespace ComposeScriptValues {
+								export class ConvertedProperties {
+									public readonly modifier: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+									public readonly props: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+									public readonly retainedImages: __javaRoots.javaRoot.util.List<any>;
+									public constructor(props: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>, modifier: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>, retainedImages: __javaRoots.javaRoot.util.List<any>);
+									public component1(): __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+									public component2(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+									public component3(): __javaRoots.javaRoot.util.List<any>;
+									public copy(props: __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>, modifier: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>, retainedImages: __javaRoots.javaRoot.util.List<any>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues.ConvertedProperties;
+									public equals(other: any): boolean;
+									public getModifier(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.plugin.compose.api.model.ModifierOp>;
+									public getProps(): __javaRoots.javaRoot.util.Map<string, __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
+									public getRetainedImages(): __javaRoots.javaRoot.util.List<any>;
+									public hashCode(): number;
+									public toString(): string;
+								}
+								export class ConvertedProperty {
+									public readonly name: string;
+									public readonly retainedImages: __javaRoots.javaRoot.util.List<any>;
+									public readonly value: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue;
+									public constructor(name: string, value: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue, retainedImages: __javaRoots.javaRoot.util.List<any>);
+									public component1(): string;
+									public component2(): __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue;
+									public component3(): __javaRoots.javaRoot.util.List<any>;
+									public copy(name: string, value: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue, retainedImages: __javaRoots.javaRoot.util.List<any>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues.ConvertedProperty;
+									public equals(other: any): boolean;
+									public getName(): string;
+									public getRetainedImages(): __javaRoots.javaRoot.util.List<any>;
+									public getValue(): __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue;
+									public hashCode(): number;
+									public toString(): string;
+								}
+								export class ResolvedImage {
+									public readonly owner: any;
+									public readonly reference: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue.BitmapRef;
+									public constructor(reference: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue.BitmapRef, owner: any);
+									public component1(): __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue.BitmapRef;
+									public component2(): any;
+									public copy(reference: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue.BitmapRef, owner: any): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptValues.ResolvedImage;
+									public equals(other: any): boolean;
+									public getOwner(): any;
+									public getReference(): __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiValue.BitmapRef;
+									public hashCode(): number;
+									public toString(): string;
+								}
+							}
 						}
 					}
 				}

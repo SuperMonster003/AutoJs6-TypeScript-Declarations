@@ -1,5 +1,10 @@
 // noinspection SpellCheckingInspection
 
+/** Compiler-owned classic JSX hook. Tag-specific props are checked before lowering. */
+declare function __autojs6Tsx(type: unknown, props: unknown, ...children: unknown[]): unknown;
+/** Opaque token consumed by the classic factory; it is not an array or a Compose node. */
+declare const __autojs6TsxFragment: object;
+
 declare namespace AutojsJsx {
     namespace AutojsValueMap {
         namespace R {
@@ -301,6 +306,8 @@ declare namespace AutojsJsx {
     }
 
     interface AutojsBaseView {
+        /** TypeScript's carrier for existing nested XML JSX children, not a native XML attribute. */
+        children?: unknown;
         id?: AutojsValueMap.ID;
         gravity?: AutojsValueMap.GRAVITY;
         layout_weight?: AutojsValueMap.FLOAT;
@@ -962,6 +969,11 @@ declare namespace AutojsJsx {
 }
 
 declare namespace JSX {
+    /** Check nested Compose children while leaving legacy XML child values opaque. */
+    interface ElementChildrenAttribute { children: {}; }
+    // Deliberately no JSX.Element: legacy XML and Compose share classic emit but return
+    // different runtime values. Their JSX expressions retain the existing implicit any;
+    // attributes and normal factory calls stay typed, and the runtime rejects mixed trees.
     interface IntrinsicElements {
         vertical?: AutojsJsx.AutojsJsLinearLayout;
         frame?: AutojsJsx.AutojsJsFrameLayout;
@@ -1004,3 +1016,41 @@ declare namespace JSX {
         'x-img-button'?: AutojsJsx.AutojsViewXImgButton;
     }
 }
+
+// <autojs6-compose-jsx:v1>
+// Generated from org.autojs.plugin.compose.api.catalog.ComponentCatalog.V1; schema=1; contract=1; sha256=573d91aa8ca860dcc79c688765eb1d6f9a0f59dc81094d1fa2834efd83376fed.
+// Ordinary factories provide value-tag typing; these names never replace legacy XML tags.
+declare namespace JSX {
+    interface IntrinsicElements {
+        "compose:AlertDialog": Internal.ComposeProps<"AlertDialog">;
+        "compose:Box": Internal.ComposeProps<"Box">;
+        "compose:Button": Internal.ComposeProps<"Button">;
+        "compose:Card": Internal.ComposeProps<"Card">;
+        "compose:Checkbox": Internal.ComposeProps<"Checkbox">;
+        "compose:CircularProgressIndicator": Internal.ComposeProps<"CircularProgressIndicator">;
+        "compose:Column": Internal.ComposeProps<"Column">;
+        "compose:ElevatedButton": Internal.ComposeProps<"ElevatedButton">;
+        "compose:FilledTonalButton": Internal.ComposeProps<"FilledTonalButton">;
+        "compose:HorizontalDivider": Internal.ComposeProps<"HorizontalDivider">;
+        "compose:Icon": Internal.ComposeProps<"Icon">;
+        "compose:IconButton": Internal.ComposeProps<"IconButton">;
+        "compose:Image": Internal.ComposeProps<"Image">;
+        "compose:LazyColumn": Internal.ComposeProps<"LazyColumn">;
+        "compose:LazyRow": Internal.ComposeProps<"LazyRow">;
+        "compose:LinearProgressIndicator": Internal.ComposeProps<"LinearProgressIndicator">;
+        "compose:OutlinedButton": Internal.ComposeProps<"OutlinedButton">;
+        "compose:OutlinedTextField": Internal.ComposeProps<"OutlinedTextField">;
+        "compose:RadioButton": Internal.ComposeProps<"RadioButton">;
+        "compose:Row": Internal.ComposeProps<"Row">;
+        "compose:Scaffold": Internal.ComposeProps<"Scaffold">;
+        "compose:Slider": Internal.ComposeProps<"Slider">;
+        "compose:Spacer": Internal.ComposeProps<"Spacer">;
+        "compose:Surface": Internal.ComposeProps<"Surface">;
+        "compose:Switch": Internal.ComposeProps<"Switch">;
+        "compose:Text": Internal.ComposeProps<"Text">;
+        "compose:TextButton": Internal.ComposeProps<"TextButton">;
+        "compose:TextField": Internal.ComposeProps<"TextField">;
+        "compose:TopAppBar": Internal.ComposeProps<"TopAppBar">;
+    }
+}
+// </autojs6-compose-jsx:v1>

@@ -9275,6 +9275,19 @@ declare namespace kotlin {
 declare namespace kotlin {
 	export namespace jvm {
 		export namespace functions {
+			export class Function3<P1, P2, P3, R> {
+				public constructor(implementation: Function3<P1, P2, P3, R>);
+				public constructor();
+			}
+			export interface Function3<P1, P2, P3, R> extends __javaLibraryRoots.kotlinRoot.Function<R> {
+				invoke(param0: P1, param1: P2, param2: P3): R;
+			}
+		}
+	}
+}
+declare namespace kotlin {
+	export namespace jvm {
+		export namespace functions {
 			export class Function4<P1, P2, P3, P4, R> {
 				public constructor(implementation: Function4<P1, P2, P3, P4, R>);
 				public constructor();
@@ -13933,6 +13946,25 @@ declare namespace org {
 		export namespace plugin {
 			export namespace compose {
 				export namespace api {
+					export namespace loading {
+						export class ComposeUiEventSink {
+							public constructor(implementation: ComposeUiEventSink);
+							public constructor();
+						}
+						export interface ComposeUiEventSink {
+							enqueue(param0: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiEvent): void;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
 					export namespace model {
 						export abstract class ComposeParcelable {
 							public describeContents(): number;
@@ -14002,6 +14034,120 @@ declare namespace org {
 			export namespace compose {
 				export namespace api {
 					export namespace model {
+						export class TextSelection extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
+							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.TextSelection>;
+							public readonly end: number;
+							public readonly start: number;
+							public constructor(start: number, end: number);
+							public fields$compose_ui_api(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.javaRoot.lang.Integer>;
+							public getEnd(): number;
+							public getStart(): number;
+							public fields$compose_ui_api(...args: any[]): any;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
+						export class ThemeSpec extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
+							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ThemeSpec>;
+							public readonly colorOverrides: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.javaRoot.lang.Integer>;
+							public readonly dark: __javaLibraryRoots.javaRoot.lang.Boolean;
+							public readonly dynamicColor: boolean;
+							public readonly fontFamily: string;
+							public readonly fontScale: __javaLibraryRoots.javaRoot.lang.Double;
+							public readonly seedArgb: __javaLibraryRoots.javaRoot.lang.Integer;
+							public constructor();
+							public constructor(seedArgb: __javaLibraryRoots.javaRoot.lang.Integer, colorOverrides: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.javaRoot.lang.Integer>, dark: __javaLibraryRoots.javaRoot.lang.Boolean, dynamicColor: boolean, fontFamily: string, fontScale: __javaLibraryRoots.javaRoot.lang.Double);
+							public fields$compose_ui_api(): __javaLibraryRoots.javaRoot.util.List<any>;
+							public getColorOverrides(): __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.javaRoot.lang.Integer>;
+							public getDark(): __javaLibraryRoots.javaRoot.lang.Boolean;
+							public getDynamicColor(): boolean;
+							public getFontFamily(): string;
+							public getFontScale(): __javaLibraryRoots.javaRoot.lang.Double;
+							public getSeedArgb(): __javaLibraryRoots.javaRoot.lang.Integer;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
+						export abstract class UiCommand extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
+							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiCommand>;
+							protected constructor();
+						}
+						export namespace UiCommand {
+							export class Edit extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiCommand {
+								public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiCommand.Edit>;
+								public readonly editSeq: number;
+								public readonly nodeId: number;
+								public readonly selection: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.TextSelection;
+								public readonly text: string;
+								public constructor(nodeId: number, text: string, selection: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.TextSelection, editSeq: number);
+								public fields$compose_ui_api(): __javaLibraryRoots.javaRoot.util.List<any>;
+								public getEditSeq(): number;
+								public getNodeId(): number;
+								public getSelection(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.TextSelection;
+								public getText(): string;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
+						export class UiEvent extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
+							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiEvent>;
+							public readonly callbackId: number;
+							public readonly generation: number;
+							public readonly nodeId: number;
+							public readonly payload: __javaLibraryRoots.androidRoot.os.Bundle;
+							public readonly payloadValues$compose_ui_api: __javaLibraryRoots.javaRoot.util.Map<string, any>;
+							public readonly sessionId: number;
+							public readonly type: string;
+							public constructor(sessionId: number, generation: number, nodeId: number, _type_: string, callbackId: number, payload: __javaLibraryRoots.androidRoot.os.Bundle);
+							public fields$compose_ui_api(): __javaLibraryRoots.javaRoot.util.List<any>;
+							public getCallbackId(): number;
+							public getGeneration(): number;
+							public getNodeId(): number;
+							public getPayload(): __javaLibraryRoots.androidRoot.os.Bundle;
+							public getPayloadValues$compose_ui_api(): __javaLibraryRoots.javaRoot.util.Map<string, any>;
+							public getSessionId(): number;
+							public getType(): string;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
 						export class UiNode extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
 							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiNode>;
 							public readonly callbacks: __javaLibraryRoots.javaRoot.util.Map<string, __javaLibraryRoots.javaRoot.lang.Integer>;
@@ -14035,6 +14181,66 @@ declare namespace org {
 			export namespace compose {
 				export namespace api {
 					export namespace model {
+						export abstract class UiPatch extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
+							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiPatch>;
+							protected constructor();
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
+						export class UiPatchBatch extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
+							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiPatchBatch>;
+							public readonly generation: number;
+							public readonly patches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiPatch>;
+							public readonly sessionId: number;
+							public constructor(sessionId: number, generation: number, patches: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiPatch>);
+							public fields$compose_ui_api(): __javaLibraryRoots.javaRoot.util.List<any>;
+							public getGeneration(): number;
+							public getPatches(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiPatch>;
+							public getSessionId(): number;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
+						export class UiTree extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
+							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiTree>;
+							public readonly nodes: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiNode>;
+							public readonly rootId: number;
+							public constructor(rootId: number, nodes: __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiNode>);
+							public fields$compose_ui_api(): __javaLibraryRoots.javaRoot.util.List<any>;
+							public getNodes(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiNode>;
+							public getRootId(): number;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace model {
 						export abstract class UiValue extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ComposeParcelable {
 							public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue>;
 							public readonly depth$compose_ui_api: number;
@@ -14042,6 +14248,17 @@ declare namespace org {
 							public getDepth$compose_ui_api(): number;
 							public getKind(): __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.ValueKind;
 							protected constructor();
+						}
+						export namespace UiValue {
+							export class BitmapRef extends __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue {
+								public static readonly CREATOR: __javaLibraryRoots.androidRoot.os.Parcelable.Creator<__javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiValue.BitmapRef>;
+								public readonly handle$compose_ui_api: number;
+								public constructor(bitmap: __javaLibraryRoots.androidRoot.graphics.Bitmap);
+								public fields$compose_ui_api(): __javaLibraryRoots.javaRoot.util.List<__javaLibraryRoots.javaRoot.lang.Long>;
+								public get(): __javaLibraryRoots.androidRoot.graphics.Bitmap;
+								public getHandle$compose_ui_api(): number;
+								public fields$compose_ui_api(...args: any[]): any;
+							}
 						}
 					}
 				}
