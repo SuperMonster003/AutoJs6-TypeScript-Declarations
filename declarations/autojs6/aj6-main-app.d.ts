@@ -3613,6 +3613,7 @@ declare namespace org {
 						public readonly contentView: __javaRoots.androidRoot.view.View;
 						public readonly creationObserver$app: __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Throwable, __javaRoots.kotlinRoot.Unit>;
 						public constructor(context: __javaRoots.androidRoot.content.Context, supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier);
+						public constructor(context: __javaRoots.androidRoot.content.Context, supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier, configureParameters: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>);
 						public close(): void;
 						public disableWindowFocus(): void;
 						public getCloseObserver$app(): __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
@@ -10517,7 +10518,7 @@ declare namespace org {
 					export class Floaty {
 						public constructor(uiHandler: __javaRoots.orgRoot.autojs.autojs.tool.UiHandler, scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime);
 						public closeAll(): void;
-						public createManagedWindow$app(raw: boolean, supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier, onCreated: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.kotlinRoot.Unit>, onClosed: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.runtime.api.Floaty.ManagedWindow;
+						public createManagedWindow$app(raw: boolean, supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier, onCreated: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.kotlinRoot.Unit>, onClosed: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>, rawWindowParameters: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.runtime.api.Floaty.ManagedWindow;
 						public ensurePermission(): void;
 						public getClip(maxDelayAfterWindowReady: number): string;
 						public hasPermission(): boolean;
@@ -10589,7 +10590,7 @@ declare namespace org {
 							public readonly width: number;
 							public readonly x: number;
 							public readonly y: number;
-							public constructor(this$0: boolean, raw: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier, supplier: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.kotlinRoot.Unit>, onCreated: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>);
+							public constructor(this$0: boolean, raw: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier, supplier: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.kotlinRoot.Unit>, onCreated: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>, onClosed: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>);
 							public close(removeFromWindows: boolean): void;
 							public disableFocus(): void;
 							public getHeight(): number;
@@ -14425,6 +14426,34 @@ declare namespace org {
 				export namespace api {
 					export namespace augment {
 						export namespace compose {
+							export class ComposeDialogOptions {
+								public readonly cancelable: boolean;
+								public readonly type: string;
+								public constructor();
+								public constructor(_type_: string, cancelable: boolean);
+								public component1(): string;
+								public component2(): boolean;
+								public copy(_type_: string, cancelable: boolean): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeDialogOptions;
+								public equals(other: any): boolean;
+								public getCancelable(): boolean;
+								public getType(): string;
+								public hashCode(): number;
+								public toString(): string;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace runtime {
+				export namespace api {
+					export namespace augment {
+						export namespace compose {
 							export class ComposeFloatyControl {
 								public constructor(implementation: ComposeFloatyControl);
 								public constructor();
@@ -15013,6 +15042,7 @@ declare namespace org {
 								readonly mainExecutor: __javaRoots.javaRoot.util.concurrent.Executor;
 								container(value: any): any;
 								createContainerRenderer(sessionId: number, container: any, beforeMount: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>, onDestroyed: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptPlatform.Opened;
+								createDialogRenderer(sessionId: number, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeDialogOptions, beforeMount: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>, onDestroyed: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>, onFailure: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptPlatform.Opened;
 								createFloatyRenderer(sessionId: number, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyOptions, beforeMount: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>, onDestroyed: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>, onFailure: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptPlatform.Opened;
 								createRenderer(param0: number, param1: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>, param2: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeScriptPlatform.Opened;
 								errorMessage(error: __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ComposeUiError): string;
@@ -15067,12 +15097,13 @@ declare namespace org {
 							export class ComposeScriptSession {
 								public readonly closed: boolean;
 								public readonly container: any;
+								public readonly dialog: boolean;
 								public readonly floaty: boolean;
 								public readonly id: number;
 								public readonly js: __javaRoots.orgRoot.mozilla.javascript.NativeObject;
 								public readonly mountedView: any;
 								public readonly uiRoot: boolean;
-								public constructor(owner: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.Compose, id: number, initialTheme: __javaRoots.orgRoot.autojs.plugin.compose.api.model.ThemeSpec, floatyOptions: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyOptions, replacingUi: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding, container: any);
+								public constructor(owner: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.Compose, id: number, initialTheme: __javaRoots.orgRoot.autojs.plugin.compose.api.model.ThemeSpec, floatyOptions: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeFloatyOptions, replacingUi: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNodeBinding, container: any, dialogOptions: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeDialogOptions);
 								public attach(): void;
 								public close(): void;
 								public execute(command: __javaRoots.orgRoot.autojs.plugin.compose.api.model.UiCommand): void;
@@ -15082,6 +15113,7 @@ declare namespace org {
 								public getJs(): __javaRoots.orgRoot.mozilla.javascript.NativeObject;
 								public getMountedView(): any;
 								public isClosed(): boolean;
+								public isDialog(): boolean;
 								public isFloaty(): boolean;
 								public isUiRoot(): boolean;
 								public nativeLease$app(node: __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNode, view: __javaRoots.androidRoot.view.View): __javaRoots.orgRoot.autojs.autojs.runtime.api.augment.compose.ComposeNativeViewLease;
@@ -18856,6 +18888,13 @@ declare namespace org {
 //org.autojs.autojs.ui.settings.ReleaseHistoryRepository.loadReleaseHistoryFlow.1.1.1:1
 //org.autojs.autojs.ui.settings.ReleaseHistoryRepository.loadReleaseHistoryFlow.1.3.1:1
 //org.autojs.autojs.ui.settings.ThreeStoveAgentGuide.1.1:1
+//org.autojs.autojs.ui.settings.codegen.CodeGenModelsActivity.observeStoreChanges.1.1:1
+//org.autojs.autojs.ui.settings.codegen.CodeGenModelsViewModel.build..inlined.compareBy.1:1
+//org.autojs.autojs.ui.settings.codegen.CodeGenModelsViewModel.build..inlined.sortedBy.1:1
+//org.autojs.autojs.ui.settings.codegen.CodeGenModelsViewModel.build..inlined.thenBy.1:1
+//org.autojs.autojs.ui.settings.codegen.CodeGenModelsViewModel.build..inlined.thenBy.2:1
+//org.autojs.autojs.ui.settings.codegen.CodeGenModelsViewModel.build..inlined.thenByDescending.1:1
+//org.autojs.autojs.ui.settings.codegen.CodeGenModelsViewModel.build.lambda.9..inlined.sortedByDescending.1:1
 //org.autojs.autojs.ui.storage.BaseSearchSortListActivity:2
 //org.autojs.autojs.ui.storage.RevisionListActivity.compareSelected..inlined.sortedBy.1:1
 //org.autojs.autojs.ui.storage.RevisionListActivity.sortItems..inlined.sortedBy.1:1

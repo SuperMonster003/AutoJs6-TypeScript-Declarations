@@ -18,6 +18,8 @@ const fixture = resolve(root, "docs/smoke/compose-tsx-smoke.tsx");
 const text = readFileSync(fixture, "utf8");
 const interopFixture = resolve(root, "docs/smoke/compose-interop-smoke.tsx");
 const interopText = readFileSync(interopFixture, "utf8");
+const dialogFixture = resolve(root, "docs/smoke/compose-dialog-smoke.tsx");
+const dialogText = readFileSync(dialogFixture, "utf8");
 const oldProjectionSource = [
     "declare namespace AutoJs6Tsx { interface Element { readonly __xmlElementBrand: unique symbol; } }",
     "declare namespace JSX { type Element = AutoJs6Tsx.Element; }",
@@ -48,7 +50,7 @@ for (const runtime of runtimePaths) {
         jsx: ts.JsxEmit.React, jsxFactory: "__autojs6Tsx", jsxFragmentFactory: "__autojs6TsxFragment",
     };
     if (Number(ts.versionMajorMinor.split(".")[0]) >= 6) options.ignoreDeprecations = "6.0";
-    const program = ts.createProgram([index, fixture, interopFixture], options);
+    const program = ts.createProgram([index, fixture, interopFixture, dialogFixture], options);
     const diagnostics = ts.getPreEmitDiagnostics(program);
     assert.equal(diagnostics.length, 0, diagnostics.map((d) => `${d.file?.fileName}:${d.start}: ${ts.flattenDiagnosticMessageText(d.messageText, " ")}`).join("\n"));
     const checker = program.getTypeChecker();
@@ -90,6 +92,7 @@ for (const runtime of runtimePaths) {
     assert(ts.getPreEmitDiagnostics(strictLeaf.program).some((d) => d.code === 2322), "Exact optional props should reject a supplied never-typed leaf child");
     reports.push({typescriptVersion: ts.version, expectedErrors: (text.match(/@ts-expect-error/g) || []).length,
         interopExpectedErrors: (interopText.match(/@ts-expect-error/g) || []).length,
+        dialogExpectedErrors: (dialogText.match(/@ts-expect-error/g) || []).length,
         diagnosticCount: diagnostics.length, expressionTypes, classicEmitChecked: true,
         oldXmlOnlyProjectionDiagnosticCodes: [...new Set(oldDiagnostics.map((d) => d.code))],
         leafElementRejectedOnlyWithExactOptionalProperties: true,

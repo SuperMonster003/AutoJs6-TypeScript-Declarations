@@ -27,7 +27,7 @@ declare namespace Internal {
         (root: ComposeNode | (() => ComposeNode), options?: ComposeMountOptions | null): ComposeSession;
         /** null when the plugin is unavailable, disabled, unauthorized or incompatible. */
         readonly version: { plugin: string; contract: number; compose: string } | null;
-        /** Snapshot of open sessions, including the sessions owned by floating windows. */
+        /** Snapshot of open UI, container, floating-window and dialog sessions. */
         readonly sessions: ReadonlyArray<ComposeSession>;
         readonly ComposeError: ComposeErrorConstructor;
         isAvailable(): boolean;
@@ -46,6 +46,12 @@ declare namespace Internal {
          */
         attach(container: ComposeNativeView, root: ComposeNode | (() => ComposeNode), options?: ComposeMountOptions | null): ComposeSession;
         floaty(root: ComposeNode | (() => ComposeNode), options?: ComposeFloatyOptions | null): ComposeFloatyWindow;
+        /**
+         * Opens an independent dialog session. UI scripts use their own Activity window;
+         * non-UI scripts require existing overlay permission, which is never requested here.
+         * Requires a renderer advertising dialog-v1. Opening another dialog replaces no session.
+         */
+        dialog(root: ComposeNode | (() => ComposeNode), options?: ComposeDialogOptions | null): ComposeSession;
         /** Queues once on the owning script dispatcher; delay is an integer in 0..2147483647 ms. */
         post(callback: () => void, delay?: number): void;
         /** Returns a fresh copy; {} before the first explicit theme call. */
@@ -244,6 +250,13 @@ declare namespace Internal {
         /** Physical integer pixels, MATCH_PARENT=-1, WRAP_CONTENT=-2. */
         width?: number; height?: number; touchable?: boolean; focusable?: boolean;
     }
+    type ComposeDialogType = 'alert' | 'bottomSheet';
+    interface ComposeDialogOptions extends ComposeMountOptions {
+        /** Omitted means alert; explicit null/undefined are invalid at runtime. */
+        type?: ComposeDialogType;
+        /** Omitted means true. false disables back/outside/swipe dismissal; close() still works. */
+        cancelable?: boolean;
+    }
     type ComposeSnackbarOptions = Omit<ComposeCatalogProps['Snackbar'], 'message' | 'duration' | 'actionLabel'> & {
         actionLabel?: string | null | undefined;
         /** null selects short; an explicitly present undefined is rejected at runtime. */
@@ -341,6 +354,8 @@ declare namespace Internal {
         type FloatyWindow = ComposeFloatyWindow;
         type MountOptions = ComposeMountOptions;
         type FloatyOptions = ComposeFloatyOptions;
+        type DialogOptions = ComposeDialogOptions;
+        type DialogType = ComposeDialogType;
         type Theme = ComposeTheme;
         type ThemeSnapshot = ComposeThemeSnapshot;
         type Selection = ComposeSelection;

@@ -4,6 +4,16 @@
 
 ******
 
+# v4.34.0
+
+###### 2026/10/07
+
+##### Compose UI 对话框
+
+- `新增` compose.dialog 与 DialogOptions / DialogType, 支持独立对话框和底部弹层, 返回原有 ComposeSession
+- `优化` 精确声明 alert / bottomSheet 类型, cancelable 和主题覆盖, 保留同步根输入与已有会话方法
+- `提示` 需要匹配的宿主 5321 和支持 dialog-v1 的 Compose UI; TSX 配套 TypeScript Engine 0.6.6. 非 UI 脚本须预先具有悬浮窗权限, 不自动申请
+
 # v4.33.0
 
 ###### 2026/10/07
