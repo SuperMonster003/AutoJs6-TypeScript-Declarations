@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import {createRequire} from "node:module";
+import {spawnSync} from "node:child_process";
 import {readFileSync} from "node:fs";
 import {dirname, resolve} from "node:path";
 import {fileURLToPath} from "node:url";
@@ -13,6 +14,17 @@ for (let i = 2; i < process.argv.length; i += 2) {
     runtimePaths.push(resolve(process.argv[i + 1]));
 }
 assert(runtimePaths.length > 0, "Supply at least one actual TypeScript compiler module");
+if (runtimePaths.length > 1) {
+    const reports = [];
+    for (const runtime of runtimePaths) {
+        const run = spawnSync(process.execPath, [fileURLToPath(import.meta.url), "--typescript", runtime],
+            {encoding: "utf8", maxBuffer: 4 * 1024 * 1024});
+        assert.equal(run.status, 0, run.stderr || run.stdout || String(run.error));
+        reports.push(...JSON.parse(run.stdout).reports);
+    }
+    process.stdout.write(JSON.stringify({reports}, null, 2) + "\n");
+    process.exit(0);
+}
 const index = resolve(root, "declarations/autojs6/index.d.ts");
 const fixture = resolve(root, "docs/smoke/compose-tsx-smoke.tsx");
 const text = readFileSync(fixture, "utf8");
@@ -20,6 +32,8 @@ const interopFixture = resolve(root, "docs/smoke/compose-interop-smoke.tsx");
 const interopText = readFileSync(interopFixture, "utf8");
 const dialogFixture = resolve(root, "docs/smoke/compose-dialog-smoke.tsx");
 const dialogText = readFileSync(dialogFixture, "utf8");
+const v2Fixture = resolve(root, "docs/smoke/compose-v2-smoke.tsx");
+const v2Text = readFileSync(v2Fixture, "utf8");
 const oldProjectionSource = [
     "declare namespace AutoJs6Tsx { interface Element { readonly __xmlElementBrand: unique symbol; } }",
     "declare namespace JSX { type Element = AutoJs6Tsx.Element; }",
@@ -44,13 +58,19 @@ function createProgram(ts, options, source, extra = "") {
 const reports = [];
 for (const runtime of runtimePaths) {
     const ts = require(runtime);
+    // Native declarations form a large graph. Check each declaration body in a bounded
+    // child process so its compiler graph is released before the JSX comparison programs.
+    const bodyRun = spawnSync(process.execPath, [resolve(root, "tools/verify-compose-declaration-body.mjs"), "--typescript", runtime],
+        {encoding: "utf8", maxBuffer: 1024 * 1024});
+    assert.equal(bodyRun.status, 0, bodyRun.stderr || bodyRun.stdout || String(bodyRun.error));
+    const bodyReport = JSON.parse(bodyRun.stdout);
     const options = {
         strict: true, exactOptionalPropertyTypes: true, skipLibCheck: true, noEmit: true,
         target: ts.ScriptTarget.ES2018, module: ts.ModuleKind.CommonJS, lib: ["lib.es2018.d.ts"], types: [],
         jsx: ts.JsxEmit.React, jsxFactory: "__autojs6Tsx", jsxFragmentFactory: "__autojs6TsxFragment",
     };
     if (Number(ts.versionMajorMinor.split(".")[0]) >= 6) options.ignoreDeprecations = "6.0";
-    const program = ts.createProgram([index, fixture, interopFixture, dialogFixture], options);
+    const program = ts.createProgram([index, fixture, interopFixture, dialogFixture, v2Fixture], options);
     const diagnostics = ts.getPreEmitDiagnostics(program);
     assert.equal(diagnostics.length, 0, diagnostics.map((d) => `${d.file?.fileName}:${d.start}: ${ts.flattenDiagnosticMessageText(d.messageText, " ")}`).join("\n"));
     const checker = program.getTypeChecker();
@@ -93,6 +113,9 @@ for (const runtime of runtimePaths) {
     reports.push({typescriptVersion: ts.version, expectedErrors: (text.match(/@ts-expect-error/g) || []).length,
         interopExpectedErrors: (interopText.match(/@ts-expect-error/g) || []).length,
         dialogExpectedErrors: (dialogText.match(/@ts-expect-error/g) || []).length,
+        v2ExpectedErrors: (v2Text.match(/@ts-expect-error/g) || []).length,
+        composeDeclarationSemanticDiagnostics: bodyReport.diagnosticCount,
+        declarationBodyHeapMiB: bodyReport.heapMiB,
         diagnosticCount: diagnostics.length, expressionTypes, classicEmitChecked: true,
         oldXmlOnlyProjectionDiagnosticCodes: [...new Set(oldDiagnostics.map((d) => d.code))],
         leafElementRejectedOnlyWithExactOptionalProperties: true,

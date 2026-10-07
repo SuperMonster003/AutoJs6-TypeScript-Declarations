@@ -1,7 +1,7 @@
 // Type definitions for AutoJs6 internal module compose
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
-// Last modified: Oct 7, 2026
+// Last modified: Oct 8, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -9,11 +9,12 @@
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/compose/Compose.kt
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/compose/ComposeNodeGraph.kt
  * @Source %AutoJs6%/plugin-api/compose-ui-api/src/main/java/org/autojs/plugin/compose/api/catalog/V1Catalog.kt
+ * @Source %AutoJs6%/plugin-api/compose-ui-api/src/main/java/org/autojs/plugin/compose/api/v2/ComposeUiV2.kt
  */
 declare namespace Internal {
-    /** Effective script names include the separately negotiated F2 interop extension. */
-    type ComposeNodeName = ComposeCatalogNodeName | ComposeInteropNodeName;
-    interface ComposeScriptCatalog extends ComposeCatalogProps, ComposeInteropCatalogProps {}
+    /** V2 nodes require contract 2; F2 AndroidView remains a separately negotiated extension. */
+    type ComposeNodeName = ComposeCatalogNodeName | ComposeInteropNodeName | ComposeV2NodeName;
+    interface ComposeScriptCatalog extends ComposeCatalogProps, ComposeInteropCatalogProps, ComposeV2CatalogProps {}
 
     /**
      * Compose UI plugin API, available since AutoJs6 6.8.0. mount requires "ui" mode;
@@ -165,11 +166,19 @@ declare namespace Internal {
     type ComposeFieldName = 'TextField' | 'OutlinedTextField';
     type ComposeToggleName = 'Checkbox' | 'RadioButton' | 'Switch';
     type ComposeManyChildrenName = 'Box' | 'Column' | 'Row' | 'Card' | 'Button' | 'ElevatedButton' |
-        'FilledTonalButton' | 'OutlinedButton' | 'TextButton' | 'IconButton' | 'LazyColumn' | 'LazyRow';
-    type ComposeSingleChildName = 'Scaffold' | 'Surface';
-    type ComposeChildrenArguments<N extends ComposeNodeName> = N extends ComposeManyChildrenName ? ComposeChild[] :
+        'FilledTonalButton' | 'OutlinedButton' | 'TextButton' | 'IconButton' | 'LazyColumn' | 'LazyRow' | ComposeV2ManyChildrenName;
+    type ComposeSingleChildName = 'Scaffold' | 'Surface' | ComposeV2SingleChildName;
+    /** Item containers reject text and unrelated nodes; nonempty counts remain runtime checks. */
+    type ComposeItemChild<N extends ComposeNodeName> = ComposeNode<N> | null | undefined | false | ReadonlyArray<ComposeItemChild<N>>;
+    type ComposeChildrenInput<N extends ComposeNodeName> =
+        N extends 'NavigationBar' ? ComposeItemChild<'NavigationBarItem'> :
+        N extends 'NavigationRail' ? ComposeItemChild<'NavigationRailItem'> :
+        N extends 'TabRow' ? ComposeItemChild<'Tab'> :
+        N extends 'SegmentedButton' ? ComposeItemChild<'SegmentedButtonItem'> :
+        N extends ComposeManyChildrenName ? ComposeChild : N extends ComposeSingleChildName ? ComposeSlotInput : never;
+    type ComposeChildrenArguments<N extends ComposeNodeName> = N extends ComposeManyChildrenName ? ComposeChildrenInput<N>[] :
         N extends ComposeSingleChildName ? [child?: ComposeSlotInput] : [];
-    type ComposeFactoryArguments<N extends ComposeNodeName> = N extends 'Icon' | 'Image' | 'AlertDialog' | 'AndroidView' ?
+    type ComposeFactoryArguments<N extends ComposeNodeName> = N extends 'Icon' | 'Image' | 'AlertDialog' | 'AndroidView' | ComposeV2RequiredPropsName ?
         [props: ComposeProps<N>, ...children: ComposeChildrenArguments<N>] :
         [props?: ComposeProps<N> | null | undefined, ...children: ComposeChildrenArguments<N>] | ComposeChildrenArguments<N>;
     type ComposeFactories = { readonly [N in ComposeNodeName]: (...args: ComposeFactoryArguments<N>) => ComposeNode<N>; };
@@ -185,7 +194,8 @@ declare namespace Internal {
         (N extends ComposeFieldName ? { valueChange: (this: ComposeNode<N>, text: string, selection: ComposeSelection, editSeq: number) => void } : {}) &
         (N extends ComposeToggleName ? { checkedChange: (this: ComposeNode<N>, checked: boolean) => void } : {}) &
         (N extends 'Slider' ? { valueChange: (this: ComposeNode<N>, value: number) => void; valueChangeFinished: (this: ComposeNode<N>) => void } : {}) &
-        (N extends 'AlertDialog' ? { dismissRequest: (this: ComposeNode<N>) => void } : {});
+        (N extends 'AlertDialog' ? { dismissRequest: (this: ComposeNode<N>) => void } : {}) &
+        (N extends ComposeV2NodeName ? ComposeV2NodeEvents[N] : {});
     type ComposeEventProps<N extends ComposeNodeName> = {
         [K in keyof ComposeNodeEvents<N> as K extends string ? `on${Capitalize<K>}` : never]?: ComposeNodeEvents<N>[K] | null;
     };
@@ -195,21 +205,26 @@ declare namespace Internal {
     type ComposeEventListener<N extends ComposeNodeName, K extends ComposeEventInputName<N>> =
         ComposeNodeEvents<N>[ComposeCanonicalEvent<K> & keyof ComposeNodeEvents<N>];
     type ComposeSlotName<N extends ComposeNodeName> =
+        N extends ComposeV2NodeName ? ComposeV2SlotNames[N] :
         N extends ComposeFieldName ? 'label' | 'leadingIcon' | 'placeholder' | 'supportingText' | 'trailingIcon' :
         N extends 'AlertDialog' ? 'confirm' | 'dismiss' | 'icon' | 'text' | 'title' :
         N extends 'Scaffold' ? 'content' | 'snackbarHost' | 'topBar' :
         N extends 'TopAppBar' ? 'actions' | 'navigationIcon' | 'title' :
         N extends Exclude<ComposeManyChildrenName, 'LazyColumn' | 'LazyRow'> | 'Surface' ? 'content' : never;
-    type ComposeSlots<N extends ComposeNodeName> = { [S in ComposeSlotName<N>]?: ComposeSlotInput; };
-    type ComposeScriptCatalogProps<N extends ComposeNodeName> = N extends 'LazyColumn' | 'LazyRow' ?
+    type ComposeSlotFields<N extends ComposeNodeName> = { [S in ComposeSlotName<N>]?: ComposeSlotInput; };
+    type ComposeSlots<N extends ComposeNodeName> = [ComposeSlotName<N>] extends [never] ? Readonly<Record<string, never>> : ComposeSlotFields<N>;
+    type ComposeScriptCatalogProps<N extends ComposeNodeName> = N extends 'LazyColumn' | 'LazyRow' | 'LazyVerticalGrid' ?
         Omit<ComposeScriptCatalog[N], 'contentPadding'> & { contentPadding?: ComposePaddingInput } : ComposeScriptCatalog[N];
     type ComposeMutableProps<N extends ComposeNodeName> = object & Partial<ComposeScriptCatalogProps<N>> & ComposeShortcutProps &
-        ComposeEventProps<N> & ComposeSlots<N> & { modifier?: ComposeModifier | null; ref?: ComposeRef | null; slots?: ComposeSlots<N> | null; };
+        ComposeEventProps<N> & ComposeSlotFields<N> & { modifier?: ComposeModifier | null; ref?: ComposeRef | null; slots?: ComposeSlots<N> | null; };
     type ComposeProps<N extends ComposeNodeName> = ComposeScriptCatalogProps<N> & ComposeMutableProps<N> & {
         key?: string | number | null;
-        children?: N extends ComposeManyChildrenName ? ComposeChild : N extends ComposeSingleChildName ? ComposeSlotInput : never;
+        children?: ComposeChildrenInput<N>;
     } & (N extends 'AlertDialog' ?
-        ({ confirm: ComposeRequiredSlotInput } | { slots: ComposeSlots<N> & { confirm: ComposeRequiredSlotInput } }) : {});
+        ({ confirm: ComposeRequiredSlotInput } | { slots: ComposeSlots<N> & { confirm: ComposeRequiredSlotInput } }) : {}) &
+        (N extends ComposeV2NodeName ? [ComposeV2RequiredSlots[N]] extends [never] ? {} :
+            ({ [S in ComposeV2RequiredSlots[N]]: ComposeRequiredSlotInput } |
+                { slots: ComposeSlots<N> & { [S in ComposeV2RequiredSlots[N]]: ComposeRequiredSlotInput } }) : {});
 
     /** Long-lived handle. key is string-normalized; nodeId is -1 while detached. */
     interface ComposeNodeHandle<N extends ComposeNodeName> {
@@ -233,7 +248,7 @@ declare namespace Internal {
         /** Requires a mounted focusable component or clickable modifier. */
         focus(): this;
         blur(): this;
-        /** A number is a lazy-list index. Ordinary scroll modifiers require {offset: px}. */
+        /** A number is a lazy-list/grid item or pager page index. Offsets use physical pixels. */
         scrollTo(target: ComposeScrollTarget): this;
         toString(): string;
     }
@@ -1227,3 +1242,627 @@ declare namespace Internal {
     type ComposeInteropNodeName = "AndroidView";
 }
 // </autojs6-compose-interop:f2>
+
+// <autojs6-compose-catalog:v2>
+// Generated from org.autojs.plugin.compose.api.v2.ComposeUiV2.catalog; schema=1; contract=2; sha256=f46009f6ca2c69cfcbfcfa8f829ec678ffe81e647eb48812db6ee2b2f087f712.
+// Input helper types are defined by the surrounding P6 declaration file.
+declare namespace Internal {
+    interface ComposeV2CatalogProps {
+        /** @invocation NODE @children NONE @scope ANY */
+        "AssistChip": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "enabled"?: boolean;
+        };
+        /** @invocation NODE @children SINGLE @scope ANY */
+        "Badge": {
+            /** @catalog {"constraints":{},"default":{"kind":"STRING","value":""},"update":"SET_PROPS"} */
+            "text"?: string;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "visible"?: boolean;
+        };
+        /** @invocation NODE @children NONE @scope ANY */
+        "DatePicker": {
+            /** @catalog {"constraints":{},"default":{"kind":"ENUM","value":"picker"},"update":"SET_PROPS"} */
+            "displayMode"?: "input" | "picker";
+            /** @catalog {"constraints":{"integral":true,"maximum":253402214400000.0,"minimum":-12212553600000.0},"default":{"kind":"NULL","value":null},"update":"SET_PROPS"} */
+            "selectedDateMillis"?: null | number;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "showModeToggle"?: boolean;
+            /** @catalog {"constraints":{"integral":true,"maximum":9999.0,"minimum":1583.0},"default":{"kind":"NUMBER","value":2100.0},"update":"SET_PROPS"} */
+            "yearEnd"?: number;
+            /** @catalog {"constraints":{"integral":true,"maximum":9999.0,"minimum":1583.0},"default":{"kind":"NUMBER","value":1900.0},"update":"SET_PROPS"} */
+            "yearStart"?: number;
+        };
+        /** @invocation NODE @children MANY @scope ANY */
+        "DropdownMenu": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "open"?: boolean;
+        };
+        /** @invocation NODE @children NONE @scope ANY */
+        "DropdownMenuItem": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "enabled"?: boolean;
+        };
+        /** @invocation NODE @children NONE @scope ANY */
+        "FilterChip": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "enabled"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "selected"?: boolean;
+        };
+        /** @invocation NODE @children MANY @scope ANY */
+        "FloatingActionButton": {
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "containerColor"?: ComposeColorInput | null;
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "contentColor"?: ComposeColorInput | null;
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "shape"?: ComposeShapeInput;
+        };
+        /** @invocation NODE @children LAZY_ITEMS @scope ANY */
+        "HorizontalPager": {
+            /** @catalog {"constraints":{"integral":true,"maximum":2147483647.0,"minimum":0.0},"default":{"kind":"NUMBER","value":0.0},"update":"SET_PROPS"} */
+            "page"?: number;
+            /** @catalog {"constraints":{"minimum":0.0},"default":{"kind":"DP","value":0.0},"update":"SET_PROPS"} */
+            "pageSpacing"?: ComposeDpInput;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "userScrollEnabled"?: boolean;
+        };
+        /** @invocation NODE @children NONE @scope ANY */
+        "InputChip": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "enabled"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "selected"?: boolean;
+        };
+        /** @invocation NODE @children LAZY_ITEMS @scope ANY */
+        "LazyVerticalGrid": {
+            /** @catalog {"constraints":{"integral":true,"maximum":64.0,"minimum":1.0},"default":{"kind":"NUMBER","value":2.0},"update":"SET_PROPS"} */
+            "columns"?: number;
+            /** @catalog {"constraints":{"listKinds":["DP"],"listMaximum":4,"listMinimum":1},"default":{"kind":"DP","value":0.0},"update":"SET_PROPS"} */
+            "contentPadding"?: ComposeDpInput | ReadonlyArray<ComposeDpInput>;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "reverseLayout"?: boolean;
+            /** @catalog {"constraints":{"minimum":0.0},"default":{"kind":"DP","value":0.0},"update":"SET_PROPS"} */
+            "spacing"?: ComposeDpInput;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "userScrollEnabled"?: boolean;
+        };
+        /** @invocation NODE @children SINGLE @scope ANY */
+        "ModalBottomSheet": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "cancelable"?: boolean;
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "containerColor"?: ComposeColorInput | null;
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "contentColor"?: ComposeColorInput | null;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "open"?: boolean;
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "shape"?: ComposeShapeInput;
+        };
+        /** @invocation NODE @children MANY @scope ANY */
+        "NavigationBar": {
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "containerColor"?: ComposeColorInput | null;
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "contentColor"?: ComposeColorInput | null;
+        };
+        /** @invocation NODE @children NONE @scope ANY */
+        "NavigationBarItem": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "alwaysShowLabel"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "enabled"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "selected"?: boolean;
+        };
+        /** @invocation NODE @children SINGLE @scope ANY */
+        "NavigationDrawer": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "gesturesEnabled"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "open"?: boolean;
+        };
+        /** @invocation NODE @children NONE @scope ANY */
+        "NavigationDrawerItem": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "enabled"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "selected"?: boolean;
+        };
+        /** @invocation NODE @children MANY @scope ANY */
+        "NavigationRail": {
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "containerColor"?: ComposeColorInput | null;
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "contentColor"?: ComposeColorInput | null;
+        };
+        /** @invocation NODE @children NONE @scope ANY */
+        "NavigationRailItem": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "alwaysShowLabel"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "enabled"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "selected"?: boolean;
+        };
+        /** @invocation NODE @children SINGLE @scope ANY */
+        "PullToRefresh": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "enabled"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "refreshing"?: boolean;
+        };
+        /** @invocation NODE @children MANY @scope ANY */
+        "SearchBar": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "enabled"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "expanded"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"STRING","value":""},"update":"SET_PROPS"} */
+            "query"?: string;
+        };
+        /** @invocation NODE @children MANY @scope ANY */
+        "SegmentedButton": {
+            /** @catalog {"constraints":{},"default":{"kind":"ENUM","value":"single"},"update":"SET_PROPS"} */
+            "mode"?: "multi" | "single";
+        };
+        /** @invocation NODE @children NONE @scope ANY */
+        "SegmentedButtonItem": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "enabled"?: boolean;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "selected"?: boolean;
+        };
+        /** @invocation NODE @children NONE @scope ANY */
+        "Tab": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "enabled"?: boolean;
+        };
+        /** @invocation NODE @children MANY @scope ANY */
+        "TabRow": {
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "containerColor"?: ComposeColorInput | null;
+            /** @catalog {"constraints":{},"default":null,"update":"SET_PROPS"} */
+            "contentColor"?: ComposeColorInput | null;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "scrollable"?: boolean;
+            /** @catalog {"constraints":{"integral":true,"maximum":2147483647.0,"minimum":0.0},"default":{"kind":"NUMBER","value":0.0},"update":"SET_PROPS"} */
+            "selectedIndex"?: number;
+        };
+        /** @invocation NODE @children NONE @scope ANY */
+        "TimePicker": {
+            /** @catalog {"constraints":{},"default":{"kind":"ENUM","value":"picker"},"update":"SET_PROPS"} */
+            "displayMode"?: "input" | "picker";
+            /** @catalog {"constraints":{"integral":true,"maximum":23.0,"minimum":0.0},"default":{"kind":"NUMBER","value":0.0},"update":"SET_PROPS"} */
+            "hour"?: number;
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":true},"update":"SET_PROPS"} */
+            "is24Hour"?: boolean;
+            /** @catalog {"constraints":{"integral":true,"maximum":59.0,"minimum":0.0},"default":{"kind":"NUMBER","value":0.0},"update":"SET_PROPS"} */
+            "minute"?: number;
+        };
+        /** @invocation NODE @children SINGLE @scope ANY */
+        "Tooltip": {
+            /** @catalog {"constraints":{},"default":{"kind":"BOOLEAN","value":false},"update":"SET_PROPS"} */
+            "open"?: boolean;
+        };
+    }
+    type ComposeV2NodeName = "AssistChip" | "Badge" | "DatePicker" | "DropdownMenu" | "DropdownMenuItem" | "FilterChip" | "FloatingActionButton" | "HorizontalPager" | "InputChip" | "LazyVerticalGrid" | "ModalBottomSheet" | "NavigationBar" | "NavigationBarItem" | "NavigationDrawer" | "NavigationDrawerItem" | "NavigationRail" | "NavigationRailItem" | "PullToRefresh" | "SearchBar" | "SegmentedButton" | "SegmentedButtonItem" | "Tab" | "TabRow" | "TimePicker" | "Tooltip";
+    type ComposeV2CommandName = never;
+    type ComposeV2ManyChildrenName = "DropdownMenu" | "FloatingActionButton" | "HorizontalPager" | "LazyVerticalGrid" | "NavigationBar" | "NavigationRail" | "SearchBar" | "SegmentedButton" | "TabRow";
+    type ComposeV2SingleChildName = "Badge" | "ModalBottomSheet" | "NavigationDrawer" | "PullToRefresh" | "Tooltip";
+    type ComposeV2RequiredPropsName = "AssistChip" | "DropdownMenu" | "DropdownMenuItem" | "FilterChip" | "InputChip" | "NavigationBarItem" | "NavigationDrawer" | "NavigationDrawerItem" | "NavigationRailItem" | "SegmentedButtonItem" | "Tooltip";
+    interface ComposeV2SlotNames {
+        "AssistChip": "label" | "leadingIcon" | "trailingIcon";
+        "Badge": "content";
+        "DatePicker": never;
+        "DropdownMenu": "anchor";
+        "DropdownMenuItem": "leadingIcon" | "text" | "trailingIcon";
+        "FilterChip": "label" | "leadingIcon" | "trailingIcon";
+        "FloatingActionButton": "content";
+        "HorizontalPager": never;
+        "InputChip": "label" | "leadingIcon" | "trailingIcon";
+        "LazyVerticalGrid": never;
+        "ModalBottomSheet": "content";
+        "NavigationBar": never;
+        "NavigationBarItem": "icon" | "label";
+        "NavigationDrawer": "content" | "drawerContent";
+        "NavigationDrawerItem": "badge" | "icon" | "label";
+        "NavigationRail": "header";
+        "NavigationRailItem": "icon" | "label";
+        "PullToRefresh": "content";
+        "SearchBar": "content" | "leadingIcon" | "placeholder" | "trailingIcon";
+        "SegmentedButton": never;
+        "SegmentedButtonItem": "icon" | "label";
+        "Tab": "icon" | "text";
+        "TabRow": never;
+        "TimePicker": never;
+        "Tooltip": "content" | "tooltip";
+    }
+    interface ComposeV2RequiredSlots {
+        "AssistChip": "label";
+        "Badge": never;
+        "DatePicker": never;
+        "DropdownMenu": "anchor";
+        "DropdownMenuItem": "text";
+        "FilterChip": "label";
+        "FloatingActionButton": never;
+        "HorizontalPager": never;
+        "InputChip": "label";
+        "LazyVerticalGrid": never;
+        "ModalBottomSheet": never;
+        "NavigationBar": never;
+        "NavigationBarItem": "icon";
+        "NavigationDrawer": "drawerContent";
+        "NavigationDrawerItem": "label";
+        "NavigationRail": never;
+        "NavigationRailItem": "icon";
+        "PullToRefresh": never;
+        "SearchBar": never;
+        "SegmentedButton": never;
+        "SegmentedButtonItem": "label";
+        "Tab": never;
+        "TabRow": never;
+        "TimePicker": never;
+        "Tooltip": "tooltip";
+    }
+    interface ComposeV2NodeEvents {
+        "AssistChip": {
+        };
+        "Badge": {
+        };
+        "DatePicker": {
+            "dateChange": (this: ComposeNode<"DatePicker">, selectedDateMillis: number | null) => void;
+            "displayModeChange": (this: ComposeNode<"DatePicker">, displayMode: "input" | "picker") => void;
+        };
+        "DropdownMenu": {
+            "dismissRequest": (this: ComposeNode<"DropdownMenu">) => void;
+        };
+        "DropdownMenuItem": {
+        };
+        "FilterChip": {
+            "selectedChange": (this: ComposeNode<"FilterChip">, selected: boolean) => void;
+        };
+        "FloatingActionButton": {
+        };
+        "HorizontalPager": {
+            "pageChange": (this: ComposeNode<"HorizontalPager">, page: number) => void;
+        };
+        "InputChip": {
+            "selectedChange": (this: ComposeNode<"InputChip">, selected: boolean) => void;
+        };
+        "LazyVerticalGrid": {
+        };
+        "ModalBottomSheet": {
+            "dismissRequest": (this: ComposeNode<"ModalBottomSheet">) => void;
+        };
+        "NavigationBar": {
+        };
+        "NavigationBarItem": {
+        };
+        "NavigationDrawer": {
+            "openChange": (this: ComposeNode<"NavigationDrawer">, open: boolean) => void;
+        };
+        "NavigationDrawerItem": {
+        };
+        "NavigationRail": {
+        };
+        "NavigationRailItem": {
+        };
+        "PullToRefresh": {
+            "refresh": (this: ComposeNode<"PullToRefresh">) => void;
+        };
+        "SearchBar": {
+            "expandedChange": (this: ComposeNode<"SearchBar">, expanded: boolean) => void;
+            "queryChange": (this: ComposeNode<"SearchBar">, text: string) => void;
+            "search": (this: ComposeNode<"SearchBar">, text: string) => void;
+        };
+        "SegmentedButton": {
+        };
+        "SegmentedButtonItem": {
+            "selectedChange": (this: ComposeNode<"SegmentedButtonItem">, selected: boolean) => void;
+        };
+        "Tab": {
+        };
+        "TabRow": {
+        };
+        "TimePicker": {
+            "timeChange": (this: ComposeNode<"TimePicker">, hour: number, minute: number) => void;
+        };
+        "Tooltip": {
+            "openChange": (this: ComposeNode<"Tooltip">, open: boolean) => void;
+        };
+    }
+    interface ComposeNodeProperties {
+        "AssistChip": {
+            get "enabled"(): boolean;
+            set "enabled"(value: boolean);
+        };
+        "Badge": {
+            get "text"(): string;
+            set "text"(value: string);
+            get "visible"(): boolean;
+            set "visible"(value: boolean);
+        };
+        "DatePicker": {
+            get "displayMode"(): "input" | "picker";
+            set "displayMode"(value: "input" | "picker");
+            get "selectedDateMillis"(): null | number;
+            set "selectedDateMillis"(value: null | number);
+            get "showModeToggle"(): boolean;
+            set "showModeToggle"(value: boolean);
+            get "yearEnd"(): number;
+            set "yearEnd"(value: number);
+            get "yearStart"(): number;
+            set "yearStart"(value: number);
+        };
+        "DropdownMenu": {
+            get "open"(): boolean;
+            set "open"(value: boolean);
+        };
+        "DropdownMenuItem": {
+            get "enabled"(): boolean;
+            set "enabled"(value: boolean);
+        };
+        "FilterChip": {
+            get "enabled"(): boolean;
+            set "enabled"(value: boolean);
+            get "selected"(): boolean;
+            set "selected"(value: boolean);
+        };
+        "FloatingActionButton": {
+            get "containerColor"(): number | null | undefined;
+            set "containerColor"(value: ComposeColorInput | null);
+            get "contentColor"(): number | null | undefined;
+            set "contentColor"(value: ComposeColorInput | null);
+            get "shape"(): ComposeShapeValue | undefined;
+            set "shape"(value: ComposeShapeInput);
+        };
+        "HorizontalPager": {
+            get "page"(): number;
+            set "page"(value: number);
+            get "pageSpacing"(): number;
+            set "pageSpacing"(value: ComposeDpInput);
+            get "userScrollEnabled"(): boolean;
+            set "userScrollEnabled"(value: boolean);
+        };
+        "InputChip": {
+            get "enabled"(): boolean;
+            set "enabled"(value: boolean);
+            get "selected"(): boolean;
+            set "selected"(value: boolean);
+        };
+        "LazyVerticalGrid": {
+            get "columns"(): number;
+            set "columns"(value: number);
+            get "contentPadding"(): number | Array<number>;
+            set "contentPadding"(value: ComposePaddingInput);
+            get "reverseLayout"(): boolean;
+            set "reverseLayout"(value: boolean);
+            get "spacing"(): number;
+            set "spacing"(value: ComposeDpInput);
+            get "userScrollEnabled"(): boolean;
+            set "userScrollEnabled"(value: boolean);
+        };
+        "ModalBottomSheet": {
+            get "cancelable"(): boolean;
+            set "cancelable"(value: boolean);
+            get "containerColor"(): number | null | undefined;
+            set "containerColor"(value: ComposeColorInput | null);
+            get "contentColor"(): number | null | undefined;
+            set "contentColor"(value: ComposeColorInput | null);
+            get "open"(): boolean;
+            set "open"(value: boolean);
+            get "shape"(): ComposeShapeValue | undefined;
+            set "shape"(value: ComposeShapeInput);
+        };
+        "NavigationBar": {
+            get "containerColor"(): number | null | undefined;
+            set "containerColor"(value: ComposeColorInput | null);
+            get "contentColor"(): number | null | undefined;
+            set "contentColor"(value: ComposeColorInput | null);
+        };
+        "NavigationBarItem": {
+            get "alwaysShowLabel"(): boolean;
+            set "alwaysShowLabel"(value: boolean);
+            get "enabled"(): boolean;
+            set "enabled"(value: boolean);
+            get "selected"(): boolean;
+            set "selected"(value: boolean);
+        };
+        "NavigationDrawer": {
+            get "gesturesEnabled"(): boolean;
+            set "gesturesEnabled"(value: boolean);
+            get "open"(): boolean;
+            set "open"(value: boolean);
+        };
+        "NavigationDrawerItem": {
+            get "enabled"(): boolean;
+            set "enabled"(value: boolean);
+            get "selected"(): boolean;
+            set "selected"(value: boolean);
+        };
+        "NavigationRail": {
+            get "containerColor"(): number | null | undefined;
+            set "containerColor"(value: ComposeColorInput | null);
+            get "contentColor"(): number | null | undefined;
+            set "contentColor"(value: ComposeColorInput | null);
+        };
+        "NavigationRailItem": {
+            get "alwaysShowLabel"(): boolean;
+            set "alwaysShowLabel"(value: boolean);
+            get "enabled"(): boolean;
+            set "enabled"(value: boolean);
+            get "selected"(): boolean;
+            set "selected"(value: boolean);
+        };
+        "PullToRefresh": {
+            get "enabled"(): boolean;
+            set "enabled"(value: boolean);
+            get "refreshing"(): boolean;
+            set "refreshing"(value: boolean);
+        };
+        "SearchBar": {
+            get "enabled"(): boolean;
+            set "enabled"(value: boolean);
+            get "expanded"(): boolean;
+            set "expanded"(value: boolean);
+            get "query"(): string;
+            set "query"(value: string);
+        };
+        "SegmentedButton": {
+            get "mode"(): "multi" | "single";
+            set "mode"(value: "multi" | "single");
+        };
+        "SegmentedButtonItem": {
+            get "enabled"(): boolean;
+            set "enabled"(value: boolean);
+            get "selected"(): boolean;
+            set "selected"(value: boolean);
+        };
+        "Tab": {
+            get "enabled"(): boolean;
+            set "enabled"(value: boolean);
+        };
+        "TabRow": {
+            get "containerColor"(): number | null | undefined;
+            set "containerColor"(value: ComposeColorInput | null);
+            get "contentColor"(): number | null | undefined;
+            set "contentColor"(value: ComposeColorInput | null);
+            get "scrollable"(): boolean;
+            set "scrollable"(value: boolean);
+            get "selectedIndex"(): number;
+            set "selectedIndex"(value: number);
+        };
+        "TimePicker": {
+            get "displayMode"(): "input" | "picker";
+            set "displayMode"(value: "input" | "picker");
+            get "hour"(): number;
+            set "hour"(value: number);
+            get "is24Hour"(): boolean;
+            set "is24Hour"(value: boolean);
+            get "minute"(): number;
+            set "minute"(value: number);
+        };
+        "Tooltip": {
+            get "open"(): boolean;
+            set "open"(value: boolean);
+        };
+    }
+    interface ComposeNodePropertyValues {
+        "AssistChip": {
+            "enabled": boolean;
+        };
+        "Badge": {
+            "text": string;
+            "visible": boolean;
+        };
+        "DatePicker": {
+            "displayMode": "input" | "picker";
+            "selectedDateMillis": null | number;
+            "showModeToggle": boolean;
+            "yearEnd": number;
+            "yearStart": number;
+        };
+        "DropdownMenu": {
+            "open": boolean;
+        };
+        "DropdownMenuItem": {
+            "enabled": boolean;
+        };
+        "FilterChip": {
+            "enabled": boolean;
+            "selected": boolean;
+        };
+        "FloatingActionButton": {
+            "containerColor": number | null | undefined;
+            "contentColor": number | null | undefined;
+            "shape": ComposeShapeValue | undefined;
+        };
+        "HorizontalPager": {
+            "page": number;
+            "pageSpacing": number;
+            "userScrollEnabled": boolean;
+        };
+        "InputChip": {
+            "enabled": boolean;
+            "selected": boolean;
+        };
+        "LazyVerticalGrid": {
+            "columns": number;
+            "contentPadding": number | Array<number>;
+            "reverseLayout": boolean;
+            "spacing": number;
+            "userScrollEnabled": boolean;
+        };
+        "ModalBottomSheet": {
+            "cancelable": boolean;
+            "containerColor": number | null | undefined;
+            "contentColor": number | null | undefined;
+            "open": boolean;
+            "shape": ComposeShapeValue | undefined;
+        };
+        "NavigationBar": {
+            "containerColor": number | null | undefined;
+            "contentColor": number | null | undefined;
+        };
+        "NavigationBarItem": {
+            "alwaysShowLabel": boolean;
+            "enabled": boolean;
+            "selected": boolean;
+        };
+        "NavigationDrawer": {
+            "gesturesEnabled": boolean;
+            "open": boolean;
+        };
+        "NavigationDrawerItem": {
+            "enabled": boolean;
+            "selected": boolean;
+        };
+        "NavigationRail": {
+            "containerColor": number | null | undefined;
+            "contentColor": number | null | undefined;
+        };
+        "NavigationRailItem": {
+            "alwaysShowLabel": boolean;
+            "enabled": boolean;
+            "selected": boolean;
+        };
+        "PullToRefresh": {
+            "enabled": boolean;
+            "refreshing": boolean;
+        };
+        "SearchBar": {
+            "enabled": boolean;
+            "expanded": boolean;
+            "query": string;
+        };
+        "SegmentedButton": {
+            "mode": "multi" | "single";
+        };
+        "SegmentedButtonItem": {
+            "enabled": boolean;
+            "selected": boolean;
+        };
+        "Tab": {
+            "enabled": boolean;
+        };
+        "TabRow": {
+            "containerColor": number | null | undefined;
+            "contentColor": number | null | undefined;
+            "scrollable": boolean;
+            "selectedIndex": number;
+        };
+        "TimePicker": {
+            "displayMode": "input" | "picker";
+            "hour": number;
+            "is24Hour": boolean;
+            "minute": number;
+        };
+        "Tooltip": {
+            "open": boolean;
+        };
+    }
+}
+// </autojs6-compose-catalog:v2>

@@ -1073,3 +1073,37 @@ declare namespace JSX {
     }
 }
 // </autojs6-compose-interop-jsx:f2>
+
+// <autojs6-compose-jsx:v2>
+// Generated from org.autojs.plugin.compose.api.v2.ComposeUiV2.catalog; schema=1; contract=2; sha256=f46009f6ca2c69cfcbfcfa8f829ec678ffe81e647eb48812db6ee2b2f087f712.
+// Ordinary factories provide value-tag typing; these names never replace legacy XML tags.
+declare namespace JSX {
+    interface IntrinsicElements {
+        "compose:AssistChip": Internal.ComposeProps<"AssistChip">;
+        "compose:Badge": Internal.ComposeProps<"Badge">;
+        "compose:DatePicker": Internal.ComposeProps<"DatePicker">;
+        "compose:DropdownMenu": Internal.ComposeProps<"DropdownMenu">;
+        "compose:DropdownMenuItem": Internal.ComposeProps<"DropdownMenuItem">;
+        "compose:FilterChip": Internal.ComposeProps<"FilterChip">;
+        "compose:FloatingActionButton": Internal.ComposeProps<"FloatingActionButton">;
+        "compose:HorizontalPager": Internal.ComposeProps<"HorizontalPager">;
+        "compose:InputChip": Internal.ComposeProps<"InputChip">;
+        "compose:LazyVerticalGrid": Internal.ComposeProps<"LazyVerticalGrid">;
+        "compose:ModalBottomSheet": Internal.ComposeProps<"ModalBottomSheet">;
+        "compose:NavigationBar": Internal.ComposeProps<"NavigationBar">;
+        "compose:NavigationBarItem": Internal.ComposeProps<"NavigationBarItem">;
+        "compose:NavigationDrawer": Internal.ComposeProps<"NavigationDrawer">;
+        "compose:NavigationDrawerItem": Internal.ComposeProps<"NavigationDrawerItem">;
+        "compose:NavigationRail": Internal.ComposeProps<"NavigationRail">;
+        "compose:NavigationRailItem": Internal.ComposeProps<"NavigationRailItem">;
+        "compose:PullToRefresh": Internal.ComposeProps<"PullToRefresh">;
+        "compose:SearchBar": Internal.ComposeProps<"SearchBar">;
+        "compose:SegmentedButton": Internal.ComposeProps<"SegmentedButton">;
+        "compose:SegmentedButtonItem": Internal.ComposeProps<"SegmentedButtonItem">;
+        "compose:Tab": Internal.ComposeProps<"Tab">;
+        "compose:TabRow": Internal.ComposeProps<"TabRow">;
+        "compose:TimePicker": Internal.ComposeProps<"TimePicker">;
+        "compose:Tooltip": Internal.ComposeProps<"Tooltip">;
+    }
+}
+// </autojs6-compose-jsx:v2>

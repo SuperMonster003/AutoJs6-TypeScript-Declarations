@@ -14348,6 +14348,30 @@ declare namespace org {
 declare namespace org {
 	export namespace autojs {
 		export namespace plugin {
+			export namespace compose {
+				export namespace api {
+					export namespace v2 {
+						export class ComposeUiV2 {
+							public static readonly FEATURE: string;
+							public static readonly INSTANCE: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.v2.ComposeUiV2;
+							public static readonly REQUIRED_HOST_VERSION_CODE: number;
+							public static readonly VERSION: number;
+							public static readonly catalog: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentCatalog;
+							public static readonly componentNames: __javaLibraryRoots.javaRoot.util.Set<string>;
+							public static readonly interopCatalog: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.catalog.ComponentCatalog;
+							public validateNode(node: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiNode, parentType: string, checkParent: boolean): void;
+							public validateTree(tree: __javaLibraryRoots.orgRoot.autojs.plugin.compose.api.model.UiTree, allowDetachedRoot: boolean): void;
+							protected constructor();
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace plugin {
 			export namespace mlkit {
 				export namespace barcode {
 					export namespace api {

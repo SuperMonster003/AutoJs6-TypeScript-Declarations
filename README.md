@@ -146,31 +146,33 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
-# v4.30.0
+# v4.35.0
 
-###### 2026/10/03
+###### 2026/10/08
 
-##### Compose UI
+##### Compose UI 契约 V2
 
-- `新增` compose / $compose 与 ComposeError, 覆盖 29 个节点工厂, 可调用挂载入口, 状态与 ref, 批处理, 主题, 会话和悬浮窗
-- `新增` 按组件区分的事件参数, 节点属性读取与写入类型, 20 个有序 Modifier 方法及 Snackbar 会话命令
-- `优化` 同步配套宿主的公开 Java / 资源 / 共享库声明, 组件目录与文档通过同一冻结清单核对
-- `提示` 需要包含 compose 模块的配套 AutoJs6 6.8.0 本地构建及 Compose UI 插件; TSX, 混合布局和 compose.dialog 仍属后续版本
+- `新增` 导航栏, 导航抽屉, 标签, 底部弹层, 菜单, 日期和时间选择, 分页, 网格, Chip, Badge, 分段按钮, 浮动按钮, 搜索, Tooltip 和下拉刷新等 25 个节点工厂及 TSX 标签
+- `优化` V2 属性, 默认读取值, 必填插槽, 子项类型及事件参数直接由追加式契约目录生成, 保留冻结 V1 和独立 F2 互操作目录
+- `提示` 新组件需要配套宿主 5322 和契约 V2 渲染插件, TSX 配套 TypeScript Engine 0.6.7 与 Ace Editor 1.29.0; 数值范围, 子项数量和跨属性约束仍由运行时校验
 
-# v4.29.0
+# v4.34.0
 
-###### 2026/10/02
+###### 2026/10/07
 
-##### 选择器数值区间
+##### Compose UI 对话框
 
-- `新增` UiSelector 与全局选择器函数 minDepth / maxDepth / minIndexInParent / maxIndexInParent (含边界, 需要宿主 6.8.0+), 与 select() 字符串语法的 minDepth=3 等键对应
-- `修复` 内置选择器声明补充缺失的 childCount / minChildCount / maxChildCount
+- `新增` compose.dialog 与 DialogOptions / DialogType, 支持独立对话框和底部弹层, 返回原有 ComposeSession
+- `优化` 精确声明 alert / bottomSheet 类型, cancelable 和主题覆盖, 保留同步根输入与已有会话方法
+- `提示` 需要匹配的宿主 5321 和支持 dialog-v1 的 Compose UI; TSX 配套 TypeScript Engine 0.6.6. 非 UI 脚本须预先具有悬浮窗权限, 不自动申请
 
-# v4.28.0
+# v4.33.0
 
-###### 2026/10/02
+###### 2026/10/07
 
-##### Installer 来源配置
+##### Compose UI 互操作
 
-- `新增` installer/installReason/packageSource 的 null 重置类型和 sourceDeleteRequested 结果字段, 与宿主 5312+ 的来源配置能力对应
-- `优化` 说明省略字段继承, 显式选项优先, 会话级选项边界和批量共享来源保留; 其他 null 及脚本配置选择字段仍拒绝
+- `新增` compose.attach 与 AndroidView 节点, 实际 View getter, 同步 View 工厂, XML `<compose>` 容器及对应 TSX 类型
+- `优化` 互操作目录独立生成和检查, 保留冻结 V1 的 30 项组件 / 114 个属性及 29 项 JSX 映射
+- `修复` XML TSX onClick 的实际原生 View 参数和 EventEmitter 接收者声明, 配合 ui.inflate 的 TSX 点击绑定
+- `提示` 需要匹配的宿主 5320 和支持互操作扩展的 Compose UI; TSX 配套 TypeScript Engine 0.6.5. 原生对象的具体身份和容器归属由运行时校验
