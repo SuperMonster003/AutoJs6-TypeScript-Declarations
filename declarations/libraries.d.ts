@@ -6991,6 +6991,8 @@ declare namespace com {
 				}
 				export class OptionMenuItemSpec extends __javaLibraryRoots.javaRoot.lang.Record {
 					public constructor(title: string, onClickListener: __javaLibraryRoots.comRoot.afollestad.materialdialogs.MaterialDialog.OptionMenuItemSpec.OnClickListener);
+					public constructor(title: string, onClickListener: __javaLibraryRoots.comRoot.afollestad.materialdialogs.MaterialDialog.OptionMenuItemSpec.OnClickListener, checked: __javaLibraryRoots.javaRoot.lang.Boolean);
+					public checked(): __javaLibraryRoots.javaRoot.lang.Boolean;
 					public equals(o: any): boolean;
 					public hashCode(): number;
 					public onClickListener(): __javaLibraryRoots.comRoot.afollestad.materialdialogs.MaterialDialog.OptionMenuItemSpec.OnClickListener;
