@@ -58,6 +58,7 @@
 /// <reference path="./aj6-int-storages.d.ts" />
 /// <reference path="./aj6-int-sysprops.d.ts" />
 /// <reference path="./aj6-int-tasks.d.ts" />
+/// <reference path="./aj6-int-terminal.d.ts" />
 /// <reference path="./aj6-int-threads.d.ts" />
 /// <reference path="./aj6-int-timers.d.ts" />
 /// <reference path="./aj6-int-toast.d.ts" />

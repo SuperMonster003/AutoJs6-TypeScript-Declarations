@@ -93,6 +93,9 @@ declare let $mail: Internal.Mail;
 declare let epub: Internal.Epub;
 declare let $epub: Internal.Epub;
 
+declare let terminal: Internal.Terminal;
+declare let $terminal: Internal.Terminal;
+
 declare let media: Internal.Media;
 declare let $media: Internal.Media;
 
