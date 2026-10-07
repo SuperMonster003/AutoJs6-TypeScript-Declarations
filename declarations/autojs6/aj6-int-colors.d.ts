@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.8.4
 //
-// Last modified: Jul 27, 2026
+// Last modified: Oct 7, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -11,6 +11,7 @@
  * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/colors/Colors.kt
  * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/colors/Color.kt
  * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/colors/ColorNativeObject.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/colors/ColorsTheme.kt
  * @Source /src/main/java/org/autojs/autojs/core/image/ColorTable.kt
  */
 
@@ -33,6 +34,11 @@ declare namespace Internal {
         android: typeof org.autojs.autojs.core.image.ColorTable.Android;
         all: Colors.ColorMap;
         themeColor: org.autojs.autojs.theme.ThemeColor;
+        /**
+         * Reads and changes the AutoJs6 theme color and controls intelligent color libraries.
+         * @since 6.8.0
+         */
+        theme: Colors.Theme;
 
         /**
          * <p style="background-color: #F0F8FF">#F0F8FF</p>
@@ -6136,10 +6142,148 @@ declare namespace Internal {
          * a translucent background throws.
          * @example
          * console.log(colors.contrast('black', 'white')); // 21
-         * console.log(colors.contrast('#777777', 'white') >= 4.5); // true
+         * console.log(colors.contrast('#777777', 'white') >= 4.5); // false
          * @since 6.8.0
          */
         contrast(foreground: OmniColor, background: OmniColor): number;
+
+        /**
+         * OKLab components `[L, a, b]` of a color: L in [0..1], a and b about [-0.4..0.4].
+         * Components are not rounded and the alpha component is not included.
+         * @example
+         * console.log(colors.toOklab('red')); // about [0.628, 0.2249, 0.1258]
+         * @since 6.8.0
+         */
+        toOklab(color: OmniColor): number[];
+
+        /**
+         * A color from OKLab components. Components outside sRGB keep their lightness and hue and lose chroma.
+         * An alpha up to 1 is a fraction (1 is opaque), above 1 it is in [0..255]; the color is opaque without it.
+         * @example
+         * console.log(colors.toHex(colors.oklab(0.628, 0.2249, 0.1258))); // "#FF0000"
+         * console.log(colors.toHex(colors.oklab('50%', 0, 0))); // "#636363"
+         * console.log(colors.toHex(colors.oklab(0.5, 0, 0, 0.5), 8)); // "#80636363"
+         * @param L - lightness in [0..1], or a percentage such as '50%'
+         * @param a - green-red axis, about [-0.4..0.4]
+         * @param b - blue-yellow axis, about [-0.4..0.4]
+         * @param [alpha]
+         * @since 6.8.0
+         */
+        oklab(L: number | PercentString, a: number, b: number, alpha?: number): ColorInt;
+        /**
+         * @param components - `[L, a, b]` or `[L, a, b, alpha]`
+         * @since 6.8.0
+         */
+        oklab(components: (number | PercentString)[]): ColorInt;
+
+        /**
+         * OKLCH components `[L, C, h]` of a color: L in [0..1], chroma C from 0, hue h in degrees in [0..360).
+         * Achromatic colors have a hue of 0. Components are not rounded and the alpha component is not included.
+         * @example
+         * console.log(colors.toOklch('red')); // about [0.628, 0.2577, 29.2339]
+         * @since 6.8.0
+         */
+        toOklch(color: OmniColor): number[];
+
+        /**
+         * A color from OKLCH components. Chroma outside sRGB is reduced while lightness and hue are kept.
+         * An alpha up to 1 is a fraction (1 is opaque), above 1 it is in [0..255]; the color is opaque without it.
+         * @example
+         * console.log(colors.toHex(colors.oklch(0.7, 0.1, 200))); // "#40B1B7"
+         * console.log(colors.toHex(colors.oklch(0.7, 0.1, 200, 0.5), 8)); // "#8040B1B7"
+         * console.log(colors.oklch(0.6, 0.1, -20) === colors.oklch(0.6, 0.1, 340)); // true
+         * @param L - lightness in [0..1], or a percentage such as '50%'
+         * @param C - chroma, not negative (at most about 0.37 in sRGB)
+         * @param h - hue in degrees
+         * @param [alpha]
+         * @since 6.8.0
+         */
+        oklch(L: number | PercentString, C: number, h: number, alpha?: number): ColorInt;
+        /**
+         * @param components - `[L, C, h]` or `[L, C, h, alpha]`
+         * @since 6.8.0
+         */
+        oklch(components: (number | PercentString)[]): ColorInt;
+
+        /**
+         * The color with the same OKLCH hue and chroma (gamut permitting) whose lightness is closest to the original
+         * and whose contrast against the opaque background reaches `ratio`. A color that already reaches it is
+         * returned as is; when no lightness can reach it, black or white, whichever contrasts more.
+         * The alpha component of `color` is ignored in the calculation and kept in the result.
+         * @example
+         * console.log(colors.toHex(colors.ensureContrast('#FFC107', 'white'))); // "#977000"
+         * console.log(colors.toHex(colors.ensureContrast('#FFC107', 'white', 3))); // "#BC8D00"
+         * @param color
+         * @param background - an opaque color
+         * @param [ratio=4.5] - target contrast ratio in [1..21]; 4.5 is WCAG AA for text
+         * @since 6.8.0
+         */
+        ensureContrast(color: OmniColor, background: OmniColor, ratio?: number): ColorInt;
+
+        /**
+         * Harmony colors made by rotating the OKLCH hue, the color itself first.
+         * Lightness and chroma are kept; results are opaque. Near-gray colors repeat themselves.
+         * @example
+         * console.log(colors.harmony('#2196F3', 'complementary').map(c => colors.toHex(c))); // ["#2196F3", "#C97E00"]
+         * console.log(colors.harmony('#2196F3', 'triadic').map(c => colors.toHex(c))); // ["#2196F3", "#E45D7C", "#71A412"]
+         * @since 6.8.0
+         */
+        harmony(color: OmniColor, type: Colors.HarmonyType): ColorInt[];
+
+        /**
+         * A tonal scale of the color's OKLCH hue from light to dark; results are opaque.
+         * The default ten tones are close to Material 50 to 900.
+         * @example
+         * console.log(colors.tones('#2196F3', 3).map(c => colors.toHex(c))); // ["#EEF6FF", "#1C92EE", "#00345D"]
+         * @param color
+         * @param [count=10] - an integer in [2..20]
+         * @since 6.8.0
+         */
+        tones(color: OmniColor, count?: number): ColorInt[];
+
+        /**
+         * Accent and dark colors derived from a primary color, as the "Derived colors" setting of the theme color
+         * does on "Auto". The accent keeps a contrast of 3 against both window backgrounds (#FAFAFA and #212121)
+         * when possible; the dark color is 0.08 darker in OKLCH lightness. All three colors are opaque.
+         * @example
+         * let { primary, accent, dark } = colors.derive('#2196F3');
+         * console.log(colors.toHex(accent)); // "#0095F9"
+         * console.log(colors.toHex(dark)); // "#007DD2"
+         * @since 6.8.0
+         */
+        derive(color: OmniColor): Colors.DerivedColors;
+
+        /**
+         * The night counterpart of a day color: OKLCH lightness pulled into about [0.25..0.5] and never lighter than
+         * the input, with more chroma for pale colors so the hue stays recognizable. The result is opaque.
+         * @example
+         * console.log(colors.toHex(colors.nightVariant('#E0F2F1'))); // "#196D6B"
+         * @since 6.8.0
+         */
+        nightVariant(color: OmniColor): ColorInt;
+
+        /**
+         * How a color looks with a color vision deficiency, with the full-severity matrices of
+         * Machado, Oliveira and Fernandes (2009). The alpha component is kept.
+         * @example
+         * console.log(colors.toHex(colors.simulate('#FF0000', 'protanopia'))); // "#6D5F00"
+         * @see https://www.inf.ufrgs.br/~oliveira/pubs_files/CVD_Simulation/CVD_Simulation.html
+         * @since 6.8.0
+         */
+        simulate(color: OmniColor, deficiency: Colors.ColorVisionDeficiency): ColorInt;
+
+        /**
+         * Dominant colors of an image, most frequent first (Wu quantization refined by weighted k-means in OKLab).
+         * There may be fewer colors than `count`. Pixels with an alpha below 128 are ignored.
+         * Only an ImageWrapper is accepted; an image marked with oneShot() is recycled afterwards.
+         * @example
+         * let img = images.read('./picture.png');
+         * console.log(colors.extract(img).map(c => colors.toHex(c)));
+         * console.log(colors.extract(img, { count: 3, region: [0, 0, 200, 200] }));
+         * img.recycle();
+         * @since 6.8.0
+         */
+        extract(image: ImageWrapper, options?: Colors.ExtractOptions): ColorInt[];
 
         /**
          * @deprecated Use `colors.isEqual` instead.
@@ -6499,7 +6643,148 @@ declare namespace Colors {
         | 'yellow-100' | 'yellow-200' | 'yellow-300' | 'yellow-400' | 'yellow-500' | 'yellow-600' | 'yellow-700' | 'yellow-800' | 'yellow-900' | 'yellow-a100' | 'yellow-a200'
         | 'yellow-a400' | 'yellow-a700' | 'yellow-green';
 
-    type DetectionAlgorithm = 'diff' | 'rgb' | 'equal' | 'rgb+' | 'hs' | 'h';
+    type DetectionAlgorithm = 'diff' | 'rgb' | 'equal' | 'rgb+' | 'hs' | 'h' | 'oklab';
+
+    type HarmonyType = 'complementary' | 'analogous' | 'triadic' | 'splitComplementary' | 'tetradic';
+
+    type ColorVisionDeficiency = 'protanopia' | 'deuteranopia' | 'tritanopia';
+
+    interface DerivedColors {
+        primary: ColorInt;
+        accent: ColorInt;
+        dark: ColorInt;
+    }
+
+    interface ExtractOptions {
+        /** An integer in [1..16], 5 by default. */
+        count?: number;
+        /** The same as the region option of images.findColor; the whole image by default. */
+        region?: OmniRegion;
+        /** Sample every `step` pixels in both directions (a positive integer); about 65536 samples by default. */
+        step?: number;
+    }
+
+    /**
+     * `colors.theme`: reads and changes the AutoJs6 theme color and controls intelligent color libraries.
+     * Changes made with set and reset act like choosing a color on the theme color page (an active intelligent
+     * library stops). Changes within 500 ms are merged, recorded once in the theme color history as
+     * "Script: name", and can be undone with "Undo script change" on the theme color page.
+     * @since 6.8.0
+     */
+    interface Theme {
+
+        /**
+         * The primary color of the theme color, or the script color still waiting in the 500 ms merge window.
+         * @since 6.8.0
+         */
+        get(): ColorInt;
+
+        /**
+         * Sets the theme color. Without `accent` or `dark`, the "Derived colors" setting decides them:
+         * derived from the primary color on "Auto" (as colors.derive), otherwise the same as the primary color.
+         * @example
+         * colors.theme.set('#2196F3');
+         * colors.theme.set('#2196F3', { accent: '#FF9800' });
+         * @param color - the primary color; its alpha component is ignored
+         * @param [options]
+         * @since 6.8.0
+         */
+        set(color: OmniColor, options?: ThemeSetOptions): void;
+
+        /**
+         * Sets the default theme color of AutoJs6 (#FFDEAD), merged and undoable like set.
+         * @since 6.8.0
+         */
+        reset(): void;
+
+        /**
+         * Summaries of all color libraries: preset plain libraries, preset intelligent libraries,
+         * user plain libraries and user intelligent libraries, in this order.
+         * @since 6.8.0
+         */
+        libraries(): ThemeLibrary[];
+
+        /**
+         * Activates an intelligent color library, optionally from an enabled group with colors.
+         * Throws for unknown ids, plain libraries and unusable groups. Activation discards the undo record.
+         * @example
+         * let lib = colors.theme.libraries().find(lib => lib.intelligent);
+         * colors.theme.activate(lib.id);
+         * @param libraryId - an intelligent library id from colors.theme.libraries()
+         * @param [options]
+         * @since 6.8.0
+         */
+        activate(libraryId: number, options?: { group?: number }): void;
+
+        /**
+         * Stops the active intelligent library and keeps its current color; false when none is active.
+         * @since 6.8.0
+         */
+        deactivate(): boolean;
+
+        /**
+         * Moves the active intelligent library to its next group at once, without the "Script start" trigger;
+         * false when none is active. The group does not change while the theme color pages are open.
+         * @since 6.8.0
+         */
+        next(): boolean;
+
+        /**
+         * Switches the state of the active intelligent library whose state source is "Script states"; the state is
+         * kept across restarts. Throws when no such library is active or `name` is not one of its states.
+         * @example
+         * colors.theme.state('busy');
+         * try {
+         *     // Long running work.
+         * } finally {
+         *     colors.theme.state('idle');
+         * }
+         * @since 6.8.0
+         */
+        state(name: string): void;
+
+        /**
+         * The current theme color and where it comes from.
+         * @since 6.8.0
+         */
+        current(): ThemeCurrent;
+
+    }
+
+    interface ThemeSetOptions {
+        /** The accent color, used by floating action buttons and the like. */
+        accent?: OmniColor;
+        /** The dark color, used by the status bar and the like. */
+        dark?: OmniColor;
+    }
+
+    interface ThemeLibrary {
+        id: number;
+        /** Names of preset libraries follow the application language. */
+        name: string;
+        kind: 'preset' | 'created' | 'imported' | 'cloned';
+        intelligent: boolean;
+        /** Colors of a plain library, or groups of an intelligent library. */
+        size: number;
+    }
+
+    interface ThemeCurrent {
+        libraryId: number;
+        libraryName: string | null;
+        /** Whether the color comes from an active intelligent library. */
+        intelligent: boolean;
+        /** The current group of the intelligent library, otherwise null. */
+        groupId: number | null;
+        /** The current group of the intelligent library, or the color name in a plain library. */
+        groupName: string | null;
+        /** The state name with the "Script states" source, the internal state key with other sources, null without an intelligent library. */
+        state: string | null;
+        color: ColorInt;
+        accent: ColorInt;
+        dark: ColorInt;
+        /** The summary shown on the theme color page. */
+        summary: string;
+    }
 
     // noinspection SpellCheckingInspection
     type ConversionCodes =

@@ -4,6 +4,26 @@
 
 ******
 
+# v4.32.0
+
+###### 2026/10/07
+
+##### 颜色
+
+- `新增` colors.toOklab / oklab / toOklch / oklch, ensureContrast, harmony, tones, derive, nightVariant, simulate 与 extract, DetectionAlgorithm 增加 'oklab'
+- `新增` colors.theme 主题色控制 (get, set, reset, libraries, activate, deactivate, next, state, current) 及 Colors.Theme, ThemeLibrary, ThemeCurrent 等类型
+- `修复` colors.contrast 示例中 #777777 与白色对比度的判断结果
+- `提示` 需要 AutoJs6 6.8.0
+
+##### 终端
+
+- `新增` terminal / $terminal 与 Internal.Terminal 的会话, 打开与执行选项, 环境, 插件状态和错误类型, 对应 3-Shell Terminal 插件
+
+##### 声明同步
+
+- `优化` 同步宿主的公开 Java 与资源声明, 包含智能颜色库相关资源及代码生成模型目录资源
+- `优化` 公开声明移除 floaty 的内部观察者 API, 未使用的 Compose 错误资源, 以及 libraries 中重复的 AtomicReference 和已弃用的生命周期 API
+
 # v4.31.0
 
 ###### 2026/10/04
