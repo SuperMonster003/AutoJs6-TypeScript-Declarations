@@ -4,6 +4,17 @@
 
 ******
 
+# v4.33.0
+
+###### 2026/10/07
+
+##### Compose UI 互操作
+
+- `新增` compose.attach 与 AndroidView 节点, 实际 View getter, 同步 View 工厂, XML `<compose>` 容器及对应 TSX 类型
+- `优化` 互操作目录独立生成和检查, 保留冻结 V1 的 30 项组件 / 114 个属性及 29 项 JSX 映射
+- `修复` XML TSX onClick 的实际原生 View 参数和 EventEmitter 接收者声明, 配合 ui.inflate 的 TSX 点击绑定
+- `提示` 需要匹配的宿主 5320 和支持互操作扩展的 Compose UI; TSX 配套 TypeScript Engine 0.6.5. 原生对象的具体身份和容器归属由运行时校验
+
 # v4.32.0
 
 ###### 2026/10/07

@@ -1,7 +1,7 @@
 // Type definitions for AutoJs6 internal module compose
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
-// Last modified: Oct 3, 2026
+// Last modified: Oct 7, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -11,10 +11,15 @@
  * @Source %AutoJs6%/plugin-api/compose-ui-api/src/main/java/org/autojs/plugin/compose/api/catalog/V1Catalog.kt
  */
 declare namespace Internal {
+    /** Effective script names include the separately negotiated F2 interop extension. */
+    type ComposeNodeName = ComposeCatalogNodeName | ComposeInteropNodeName;
+    interface ComposeScriptCatalog extends ComposeCatalogProps, ComposeInteropCatalogProps {}
+
     /**
      * Compose UI plugin API, available since AutoJs6 6.8.0. mount requires "ui" mode;
      * floaty also supports non-UI scripts and requires the host's overlay permission.
-     * Nodes, state, render functions and callbacks belong to the creating script dispatcher.
+     * Nodes, state, render functions and ordinary events belong to the creating script dispatcher.
+     * Synchronous AndroidView factories are prepared on the Android main thread.
      * Workers may use post to schedule mutations. Nested mounts from render are rejected.
      * @see https://docs.autojs6.com/#/compose
      */
@@ -26,7 +31,7 @@ declare namespace Internal {
         readonly sessions: ReadonlyArray<ComposeSession>;
         readonly ComposeError: ComposeErrorConstructor;
         isAvailable(): boolean;
-        createElement<N extends ComposeCatalogNodeName>(type: N, ...args: ComposeFactoryArguments<N>): ComposeNode<N>;
+        createElement<N extends ComposeNodeName>(type: N, ...args: ComposeFactoryArguments<N>): ComposeNode<N>;
         modifier(): ComposeModifier;
         state<T>(initial: T): ComposeState<T>;
         ref<T extends ComposeNode = ComposeNode>(): ComposeRef<T>;
@@ -34,6 +39,12 @@ declare namespace Internal {
         batch<T>(callback: () => T): T;
         /** Replaces this script's previous UI mount after validating the new tree. */
         mount(root: ComposeNode | (() => ComposeNode), options?: ComposeMountOptions | null): ComposeSession;
+        /**
+         * Attaches to this script's XML <compose> container, found through ui/window ID lookup.
+         * A successful attachment replaces only that container's previous session. Ordinary Views,
+         * containers from another script and already closed resources are checked at runtime.
+         */
+        attach(container: ComposeNativeView, root: ComposeNode | (() => ComposeNode), options?: ComposeMountOptions | null): ComposeSession;
         floaty(root: ComposeNode | (() => ComposeNode), options?: ComposeFloatyOptions | null): ComposeFloatyWindow;
         /** Queues once on the owning script dispatcher; delay is an integer in 0..2147483647 ms. */
         post(callback: () => void, delay?: number): void;
@@ -48,6 +59,15 @@ declare namespace Internal {
      * Boxing and mapping the public members also contain TypeScript's unresolved-type error-any.
      */
     type ComposeExternalObject<T extends { value: unknown }> = object & { [K in keyof T['value']]: T['value'][K] };
+    /** Native groups may be disabled; function/Promise objects are never native View inputs. */
+    type ComposeNativeView = ComposeExternalObject<{ value: android.view.View }> & {
+        readonly call?: never; readonly apply?: never; readonly then?: never;
+    };
+    type ComposeViewContext = ComposeExternalObject<{ value: android.content.Context }>;
+    /** Called synchronously on the Android main thread while preparing create/set, not recomposition. */
+    type ComposeViewFactory = (this: void, context: ComposeViewContext) => ComposeNativeView;
+    type ComposeViewInput = ComposeNativeView | ComposeViewFactory;
+
     type ComposeColorInput = ColorHex | ColorInt | ColorName | Internal.Color |
         ComposeExternalObject<{ value: org.autojs.autojs.theme.ThemeColor }>;
     /** Bare numbers are dp; strings require a dp suffix. Runtime checks finite/range constraints. */
@@ -141,52 +161,52 @@ declare namespace Internal {
     type ComposeManyChildrenName = 'Box' | 'Column' | 'Row' | 'Card' | 'Button' | 'ElevatedButton' |
         'FilledTonalButton' | 'OutlinedButton' | 'TextButton' | 'IconButton' | 'LazyColumn' | 'LazyRow';
     type ComposeSingleChildName = 'Scaffold' | 'Surface';
-    type ComposeChildrenArguments<N extends ComposeCatalogNodeName> = N extends ComposeManyChildrenName ? ComposeChild[] :
+    type ComposeChildrenArguments<N extends ComposeNodeName> = N extends ComposeManyChildrenName ? ComposeChild[] :
         N extends ComposeSingleChildName ? [child?: ComposeSlotInput] : [];
-    type ComposeFactoryArguments<N extends ComposeCatalogNodeName> = N extends 'Icon' | 'Image' | 'AlertDialog' ?
+    type ComposeFactoryArguments<N extends ComposeNodeName> = N extends 'Icon' | 'Image' | 'AlertDialog' | 'AndroidView' ?
         [props: ComposeProps<N>, ...children: ComposeChildrenArguments<N>] :
         [props?: ComposeProps<N> | null | undefined, ...children: ComposeChildrenArguments<N>] | ComposeChildrenArguments<N>;
-    type ComposeFactories = { readonly [N in ComposeCatalogNodeName]: (...args: ComposeFactoryArguments<N>) => ComposeNode<N>; };
+    type ComposeFactories = { readonly [N in ComposeNodeName]: (...args: ComposeFactoryArguments<N>) => ComposeNode<N>; };
 
-    interface ComposeBaseEvents<N extends ComposeCatalogNodeName> {
+    interface ComposeBaseEvents<N extends ComposeNodeName> {
         click: (this: ComposeNode<N>) => void;
         longClick: (this: ComposeNode<N>) => void;
         focusChange: (this: ComposeNode<N>, focused: boolean) => void;
         /** firstVisibleIndex is null for ordinary scroll modifiers; offset is in physical pixels. */
         scroll: (this: ComposeNode<N>, firstVisibleIndex: number | null, offset: number) => void;
     }
-    type ComposeNodeEvents<N extends ComposeCatalogNodeName> = ComposeBaseEvents<N> &
+    type ComposeNodeEvents<N extends ComposeNodeName> = ComposeBaseEvents<N> &
         (N extends ComposeFieldName ? { valueChange: (this: ComposeNode<N>, text: string, selection: ComposeSelection, editSeq: number) => void } : {}) &
         (N extends ComposeToggleName ? { checkedChange: (this: ComposeNode<N>, checked: boolean) => void } : {}) &
         (N extends 'Slider' ? { valueChange: (this: ComposeNode<N>, value: number) => void; valueChangeFinished: (this: ComposeNode<N>) => void } : {}) &
         (N extends 'AlertDialog' ? { dismissRequest: (this: ComposeNode<N>) => void } : {});
-    type ComposeEventProps<N extends ComposeCatalogNodeName> = {
+    type ComposeEventProps<N extends ComposeNodeName> = {
         [K in keyof ComposeNodeEvents<N> as K extends string ? `on${Capitalize<K>}` : never]?: ComposeNodeEvents<N>[K] | null;
     };
-    type ComposeEventNames<N extends ComposeCatalogNodeName> = keyof ComposeNodeEvents<N> & string;
-    type ComposeEventInputName<N extends ComposeCatalogNodeName> = ComposeEventNames<N> | `on${Capitalize<ComposeEventNames<N>>}`;
+    type ComposeEventNames<N extends ComposeNodeName> = keyof ComposeNodeEvents<N> & string;
+    type ComposeEventInputName<N extends ComposeNodeName> = ComposeEventNames<N> | `on${Capitalize<ComposeEventNames<N>>}`;
     type ComposeCanonicalEvent<K extends string> = K extends `on${infer E}` ? Uncapitalize<E> : K;
-    type ComposeEventListener<N extends ComposeCatalogNodeName, K extends ComposeEventInputName<N>> =
+    type ComposeEventListener<N extends ComposeNodeName, K extends ComposeEventInputName<N>> =
         ComposeNodeEvents<N>[ComposeCanonicalEvent<K> & keyof ComposeNodeEvents<N>];
-    type ComposeSlotName<N extends ComposeCatalogNodeName> =
+    type ComposeSlotName<N extends ComposeNodeName> =
         N extends ComposeFieldName ? 'label' | 'leadingIcon' | 'placeholder' | 'supportingText' | 'trailingIcon' :
         N extends 'AlertDialog' ? 'confirm' | 'dismiss' | 'icon' | 'text' | 'title' :
         N extends 'Scaffold' ? 'content' | 'snackbarHost' | 'topBar' :
         N extends 'TopAppBar' ? 'actions' | 'navigationIcon' | 'title' :
         N extends Exclude<ComposeManyChildrenName, 'LazyColumn' | 'LazyRow'> | 'Surface' ? 'content' : never;
-    type ComposeSlots<N extends ComposeCatalogNodeName> = { [S in ComposeSlotName<N>]?: ComposeSlotInput; };
-    type ComposeScriptCatalogProps<N extends ComposeCatalogNodeName> = N extends 'LazyColumn' | 'LazyRow' ?
-        Omit<ComposeCatalogProps[N], 'contentPadding'> & { contentPadding?: ComposePaddingInput } : ComposeCatalogProps[N];
-    type ComposeMutableProps<N extends ComposeCatalogNodeName> = object & Partial<ComposeScriptCatalogProps<N>> & ComposeShortcutProps &
+    type ComposeSlots<N extends ComposeNodeName> = { [S in ComposeSlotName<N>]?: ComposeSlotInput; };
+    type ComposeScriptCatalogProps<N extends ComposeNodeName> = N extends 'LazyColumn' | 'LazyRow' ?
+        Omit<ComposeScriptCatalog[N], 'contentPadding'> & { contentPadding?: ComposePaddingInput } : ComposeScriptCatalog[N];
+    type ComposeMutableProps<N extends ComposeNodeName> = object & Partial<ComposeScriptCatalogProps<N>> & ComposeShortcutProps &
         ComposeEventProps<N> & ComposeSlots<N> & { modifier?: ComposeModifier | null; ref?: ComposeRef | null; slots?: ComposeSlots<N> | null; };
-    type ComposeProps<N extends ComposeCatalogNodeName> = ComposeScriptCatalogProps<N> & ComposeMutableProps<N> & {
+    type ComposeProps<N extends ComposeNodeName> = ComposeScriptCatalogProps<N> & ComposeMutableProps<N> & {
         key?: string | number | null;
         children?: N extends ComposeManyChildrenName ? ComposeChild : N extends ComposeSingleChildName ? ComposeSlotInput : never;
     } & (N extends 'AlertDialog' ?
         ({ confirm: ComposeRequiredSlotInput } | { slots: ComposeSlots<N> & { confirm: ComposeRequiredSlotInput } }) : {});
 
     /** Long-lived handle. key is string-normalized; nodeId is -1 while detached. */
-    interface ComposeNodeHandle<N extends ComposeCatalogNodeName> {
+    interface ComposeNodeHandle<N extends ComposeNodeName> {
         readonly type: N;
         readonly key: string | null;
         readonly nodeId: number;
@@ -211,7 +231,7 @@ declare namespace Internal {
         scrollTo(target: ComposeScrollTarget): this;
         toString(): string;
     }
-    type ComposeNode<N extends ComposeCatalogNodeName = ComposeCatalogNodeName> = N extends ComposeCatalogNodeName ?
+    type ComposeNode<N extends ComposeNodeName = ComposeNodeName> = N extends ComposeNodeName ?
         ComposeNodeHandle<N> & ComposeNodeShortcuts & ComposeNodeProperties[N] &
         (N extends ComposeFieldName ? { edit(edit: ComposeEdit): ComposeNode<N> } : {}) : never;
 
@@ -306,10 +326,14 @@ declare namespace Internal {
     }
 
     namespace Compose {
-        type ComponentName = ComposeCatalogNodeName;
+        type ComponentName = ComposeNodeName;
         type Node<N extends ComponentName = ComponentName> = ComposeNode<N>;
         type Props<N extends ComponentName> = ComposeProps<N>;
         type Child = ComposeChild;
+        type NativeView = ComposeNativeView;
+        type ViewInput = ComposeViewInput;
+        type ViewFactory = ComposeViewFactory;
+        type ViewContext = ComposeViewContext;
         type State<T> = ComposeState<T>;
         type Ref<T extends ComposeNode = ComposeNode> = ComposeRef<T>;
         type Modifier = ComposeModifier;
@@ -330,6 +354,10 @@ declare namespace Internal {
 // Catalog property accessors: reads expose normalized values; writes accept script inputs.
 declare namespace Internal {
     interface ComposeNodeProperties {
+        "AndroidView": {
+            get "view"(): ComposeNativeView;
+            set "view"(value: ComposeViewInput);
+        };
         "AlertDialog": {
             get "containerColor"(): number | null | undefined;
             set "containerColor"(value: ComposeColorInput | null);
@@ -636,6 +664,7 @@ declare namespace Internal {
         };
     }
     interface ComposeNodePropertyValues {
+        "AndroidView": { "view": ComposeNativeView; };
         "AlertDialog": {
             "containerColor": number | null | undefined;
             "open": boolean;
@@ -1172,3 +1201,14 @@ declare namespace Internal {
     type ComposeCatalogCommandName = "Snackbar";
 }
 // </autojs6-compose-catalog:v1>
+
+// <autojs6-compose-interop:f2>
+// Generated from org.autojs.plugin.compose.api.interop.AndroidViewInteropV1; schema=1; contract=1; extension=1; feature=android-view-interop-v1; sha256=cbee120589a49e97f8bf5ea546b508f0a1f8b77b685e8affd8b03da67b838a37.
+// Script View inputs remain outside the frozen V1 wire value inventory.
+declare namespace Internal {
+    interface ComposeInteropCatalogProps {
+        "AndroidView": { "view": ComposeViewInput; };
+    }
+    type ComposeInteropNodeName = "AndroidView";
+}
+// </autojs6-compose-interop:f2>
