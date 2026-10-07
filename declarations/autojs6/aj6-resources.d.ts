@@ -3699,6 +3699,10 @@ declare namespace org {
 				export class raw {
 					public static ace_font_catalog_public_key_v1: number;
 					public static ace_font_catalog_v1: number;
+					public static codegen_model_catalog_debug_test_public_key_v1: number;
+					public static codegen_model_catalog_debug_test_v1: number;
+					public static codegen_model_catalog_public_key_v1: number;
+					public static codegen_model_catalog_v1: number;
 					public static color_search_help_document: number;
 					public static isrg_root_x1: number;
 					public static licenses: number;
@@ -4240,24 +4244,6 @@ declare namespace org {
 					public static error_check_for_update: number;
 					public static error_colon_must_follow_a_valid_ip_address: number;
 					public static error_compass_cannot_be_null: number;
-					public static error_compose_duplicate_key: number;
-					public static error_compose_host_too_old: number;
-					public static error_compose_internal: number;
-					public static error_compose_invalid_argument: number;
-					public static error_compose_invalid_modifier: number;
-					public static error_compose_limit_exceeded: number;
-					public static error_compose_node_detached: number;
-					public static error_compose_permission_required: number;
-					public static error_compose_plugin_incompatible: number;
-					public static error_compose_plugin_system_disabled: number;
-					public static error_compose_render_failed: number;
-					public static error_compose_renderer_failed: number;
-					public static error_compose_scope_mismatch: number;
-					public static error_compose_session_closed: number;
-					public static error_compose_shared_dependencies: number;
-					public static error_compose_ui_mode_required: number;
-					public static error_compose_unknown_component: number;
-					public static error_compose_unknown_prop: number;
 					public static error_conditions_not_met_for_record: number;
 					public static error_connect_to_remote: number;
 					public static error_connection_failed_with_host: number;
@@ -4592,6 +4578,7 @@ declare namespace org {
 					public static key_client_mode_reconnect_on_network_change: number;
 					public static key_client_mode_restore_on_launch: number;
 					public static key_client_socket_normally_closed: number;
+					public static key_codegen_model_current: number;
 					public static key_color_select_activity_legacy_layout: number;
 					public static key_console_element_time_format: number;
 					public static key_console_element_time_visible: number;
@@ -5558,8 +5545,8 @@ declare namespace org {
 					public static plugin_local_network_enable_explanation: number;
 					public static plugin_local_network_granted: number;
 					public static plugin_markdown_previewer_name: number;
-					public static plugin_readium_epub_reader_name: number;
 					public static plugin_three_amber_player_name: number;
+					public static plugin_three_folio_epub_name: number;
 					public static plugin_three_terra_player_name: number;
 					public static prompt_ace_editor_plugin_required: number;
 					public static prompt_add_ignored_app_version: number;
