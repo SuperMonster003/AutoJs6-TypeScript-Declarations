@@ -146,6 +146,15 @@ npm update @sm003/autojs6-dts
 
 [comment]: <> (Version history only shows last 3 versions)
 
+# v4.36.0
+
+###### 2026/10/08
+
+##### Compose UI 片段复用
+
+- `新增` compose.memo 与 ComposeMemoOptions, 在 render 中复用依赖值与读取的 state 均未变化的节点片段, 支持按 key 匹配列表条目
+- `提示` 需要配套宿主 6.8.0 / 5323; 依赖比较, 槽位匹配, 调用时机和 256 项依赖上限由运行时校验. TSX 配套 TypeScript Engine 0.6.8 与 Ace Editor 1.30.0
+
 # v4.35.0
 
 ###### 2026/10/08
@@ -165,14 +174,3 @@ npm update @sm003/autojs6-dts
 - `新增` compose.dialog 与 DialogOptions / DialogType, 支持独立对话框和底部弹层, 返回原有 ComposeSession
 - `优化` 精确声明 alert / bottomSheet 类型, cancelable 和主题覆盖, 保留同步根输入与已有会话方法
 - `提示` 需要匹配的宿主 5321 和支持 dialog-v1 的 Compose UI; TSX 配套 TypeScript Engine 0.6.6. 非 UI 脚本须预先具有悬浮窗权限, 不自动申请
-
-# v4.33.0
-
-###### 2026/10/07
-
-##### Compose UI 互操作
-
-- `新增` compose.attach 与 AndroidView 节点, 实际 View getter, 同步 View 工厂, XML `<compose>` 容器及对应 TSX 类型
-- `优化` 互操作目录独立生成和检查, 保留冻结 V1 的 30 项组件 / 114 个属性及 29 项 JSX 映射
-- `修复` XML TSX onClick 的实际原生 View 参数和 EventEmitter 接收者声明, 配合 ui.inflate 的 TSX 点击绑定
-- `提示` 需要匹配的宿主 5320 和支持互操作扩展的 Compose UI; TSX 配套 TypeScript Engine 0.6.5. 原生对象的具体身份和容器归属由运行时校验

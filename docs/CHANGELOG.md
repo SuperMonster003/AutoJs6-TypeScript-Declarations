@@ -4,6 +4,15 @@
 
 ******
 
+# v4.36.0
+
+###### 2026/10/08
+
+##### Compose UI 片段复用
+
+- `新增` compose.memo 与 ComposeMemoOptions, 在 render 中复用依赖值与读取的 state 均未变化的节点片段, 支持按 key 匹配列表条目
+- `提示` 需要配套宿主 6.8.0 / 5323; 依赖比较, 槽位匹配, 调用时机和 256 项依赖上限由运行时校验. TSX 配套 TypeScript Engine 0.6.8 与 Ace Editor 1.30.0
+
 # v4.35.0
 
 ###### 2026/10/08

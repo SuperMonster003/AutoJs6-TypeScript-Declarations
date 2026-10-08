@@ -38,6 +38,15 @@ declare namespace Internal {
         ref<T extends ComposeNode = ComposeNode>(): ComposeRef<T>;
         /** Synchronous transaction; returns the callback result, not a Promise. */
         batch<T>(callback: () => T): T;
+        /**
+         * Reuses a render fragment instead of rebuilding its nodes. Valid only while a render
+         * function runs (host 6.8.0 / 5323). The previous node returns while every dependency is
+         * unchanged (Object.is for primitives, identity for objects), no compose.state read by
+         * build has been written since, and the node is still in the previous tree. Slots match by
+         * options.key or call order within the render or enclosing memo, and by function literal.
+         * build must list closure values in deps; at most 256 entries, 5000 fragments per render.
+         */
+        memo<T extends ComposeNode>(build: () => T, deps: ReadonlyArray<unknown>, options?: ComposeMemoOptions | null): T;
         /** Replaces this script's previous UI mount after validating the new tree. */
         mount(root: ComposeNode | (() => ComposeNode), options?: ComposeMountOptions | null): ComposeSession;
         /**
@@ -256,6 +265,10 @@ declare namespace Internal {
         ComposeNodeHandle<N> & ComposeNodeShortcuts & ComposeNodeProperties[N] &
         (N extends ComposeFieldName ? { edit(edit: ComposeEdit): ComposeNode<N> } : {}) : never;
 
+    interface ComposeMemoOptions {
+        /** Stable slot identity within one scope, such as a list row key; duplicates are rejected. */
+        key?: string | number | null;
+    }
     interface ComposeMountOptions {
         /** Omitted/null inherits module defaults; explicit undefined supplies empty overrides. */
         theme?: ComposeTheme | null | undefined;

@@ -106,6 +106,12 @@ const session = compose.mount(() => compose.Column({}, compose.Text({text: Strin
 const mountAlias: Internal.Compose.Session = compose(scaffold, {theme: {dark: 'system'}});
 const updateResult: number = session.update(() => { count.value++; return count.value; });
 const batchResult: string = compose.batch(() => { field.text = 'batched'; return 'done'; });
+const memoSession = compose.mount(() => {
+    const rows = [1, 2].map((id) => compose.memo(() => compose.Text({key: `row-${id}`, text: `Row ${id}`}), [id], {key: `row-${id}`}));
+    const header: Internal.Compose.Node<'Text'> = compose.memo(() => compose.Text({text: 'Header'}), [], null);
+    const counter = compose.memo(() => compose.Text({text: String(count.value)}), [], {key: 3});
+    return compose.Column({}, header, counter, rows);
+});
 compose.post(() => { count.value++; }, 10);
 session.post(() => { slider.value = 0.2; });
 session.showSnackbar('Saved', {actionLabel: 'Undo', duration: 'long', onAction() {}, onDismiss() {}})
@@ -207,3 +213,13 @@ overlay.on('close', () => {}).setPosition(1, 2);
 compose.theme({colors: {madeUpColor: 'blue'}});
 // @ts-expect-error Invalid enum.
 compose.Text({overflow: 'truncate'});
+// @ts-expect-error memo requires a dependency array.
+compose.memo(() => compose.Text());
+// @ts-expect-error memo dependencies are an array, not a single value.
+compose.memo(() => compose.Text(), 1);
+// @ts-expect-error A memo fragment returns one Compose node.
+compose.memo(() => 'text', []);
+// @ts-expect-error memo keys are strings or numbers.
+compose.memo(() => compose.Text(), [], {key: true});
+// @ts-expect-error memo has no other options.
+compose.memo(() => compose.Text(), [], {cache: false});
