@@ -7937,7 +7937,7 @@ declare namespace org {
 					public readonly executionId: string;
 					public readonly executionMode: string;
 					public readonly idleExitMs: number;
-					public readonly inspectorEnabled: boolean;
+					public readonly inspectorEnabled: __javaRoots.javaRoot.lang.Boolean;
 					public readonly javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean;
 					public readonly moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
 					public readonly moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer;
@@ -7955,7 +7955,7 @@ declare namespace org {
 					public readonly workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean;
 					public readonly workingDirectory: string;
 					public readonly workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>;
-					public constructor(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider, moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer, idleExitMs: number);
+					public constructor(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: __javaRoots.javaRoot.lang.Boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider, moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer, idleExitMs: number);
 					public component1(): string;
 					public component10(): __javaRoots.javaRoot.util.Map<string, string>;
 					public component11(): __javaRoots.javaRoot.util.Map<string, string>;
@@ -7965,7 +7965,7 @@ declare namespace org {
 					public component15(): __javaRoots.javaRoot.lang.Boolean;
 					public component16(): __javaRoots.javaRoot.lang.Boolean;
 					public component17(): __javaRoots.javaRoot.lang.Boolean;
-					public component18(): boolean;
+					public component18(): __javaRoots.javaRoot.lang.Boolean;
 					public component19(): __javaRoots.javaRoot.lang.Boolean;
 					public component2(): string;
 					public component20(): __javaRoots.javaRoot.lang.Boolean;
@@ -7981,7 +7981,7 @@ declare namespace org {
 					public component7(): string;
 					public component8(): number;
 					public component9(): __javaRoots.javaRoot.util.Map<string, string>;
-					public copy(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider, moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer, idleExitMs: number): __javaRoots.orgRoot.autojs.autojs.engine.NodePluginScriptRequest;
+					public copy(source: string, sourceName: string, sourceLineOffset: number, workingDirectory: string, sandboxRoot: string, executionId: string, executionMode: string, timeoutMs: number, env: __javaRoots.javaRoot.util.Map<string, string>, moduleSources: __javaRoots.javaRoot.util.Map<string, string>, workspaceModuleSources: __javaRoots.javaRoot.util.Map<string, string>, runtimeModuleSources: __javaRoots.javaRoot.util.Map<string, string>, typeScriptPrecompiledSnapshot: boolean, typeScriptPrecompiledSourceNames: __javaRoots.javaRoot.util.Set<string>, esmEnabled: __javaRoots.javaRoot.lang.Boolean, dynamicImportEnabled: __javaRoots.javaRoot.lang.Boolean, rawNodeNetworkModulesEnabled: __javaRoots.javaRoot.lang.Boolean, inspectorEnabled: __javaRoots.javaRoot.lang.Boolean, workerThreadsEnabled: __javaRoots.javaRoot.lang.Boolean, childProcessEnabled: __javaRoots.javaRoot.lang.Boolean, javaInteropEnabled: __javaRoots.javaRoot.lang.Boolean, spawnDepth: number, moduleSourceProvider: __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider, moduleSourceProviderVersion: __javaRoots.javaRoot.lang.Integer, idleExitMs: number): __javaRoots.orgRoot.autojs.autojs.engine.NodePluginScriptRequest;
 					public equals(other: any): boolean;
 					public getChildProcessEnabled(): __javaRoots.javaRoot.lang.Boolean;
 					public getDynamicImportEnabled(): __javaRoots.javaRoot.lang.Boolean;
@@ -7990,7 +7990,7 @@ declare namespace org {
 					public getExecutionId(): string;
 					public getExecutionMode(): string;
 					public getIdleExitMs(): number;
-					public getInspectorEnabled(): boolean;
+					public getInspectorEnabled(): __javaRoots.javaRoot.lang.Boolean;
 					public getJavaInteropEnabled(): __javaRoots.javaRoot.lang.Boolean;
 					public getModuleSourceProvider(): __javaRoots.orgRoot.autojs.plugin.nodejs.api.INodeJsModuleSourceProvider;
 					public getModuleSourceProviderVersion(): __javaRoots.javaRoot.lang.Integer;
@@ -8761,6 +8761,8 @@ declare namespace org {
 		export namespace autojs {
 			export namespace execution {
 				export class ExecutionConfig {
+					public nodeLaunchStartedAtMs: number;
+					public nodeTypeScriptPrepareMs: number;
 					public static readonly tag: string;
 					public readonly agentExecutionState: __javaRoots.orgRoot.autojs.autojs.execution.AgentScriptExecutionState;
 					public readonly arguments: any;
@@ -10257,6 +10259,7 @@ declare namespace org {
 						public getAlarmMaxVolume(): number;
 						public getAlarmVolume(): number;
 						public getAndroidId(): string;
+						public getAndroidId(useSystemId: boolean): string;
 						public getAvailMem(): number;
 						public getBattery(): number;
 						public getBrightness(): number;
@@ -15460,6 +15463,7 @@ declare namespace org {
 					public constructor(path: string);
 					public getEngineName(): string;
 					public getFile(): __javaRoots.javaRoot.io.File;
+					public static isAutoFileName(fileName: string): boolean;
 					public toString(): string;
 				}
 			}
@@ -18473,6 +18477,8 @@ declare namespace org {
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.remoteBuildCandidates..inlined.thenByDescending.1:1
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.remoteBuildCandidates..inlined.thenByDescending.2:1
 //org.autojs.autojs.apkbuilder.template.NativeBuildAlignment.inspect.lambda.0.0..inlined.sortedBy.1:1
+//org.autojs.autojs.apkbuilder.template.PackagedNativeLibraryPolicy.selectCxxRuntime..inlined.compareBy.1:1
+//org.autojs.autojs.apkbuilder.template.PackagedNativeLibraryPolicy.selectCxxRuntime..inlined.thenBy.1:1
 //org.autojs.autojs.concurrent.ConcurrentArrayList:1
 //org.autojs.autojs.concurrent.Value:1
 //org.autojs.autojs.concurrent.VolatileBox:1
@@ -18496,6 +18502,7 @@ declare namespace org {
 //org.autojs.autojs.core.accessibility.codegen.rank.RuleRanker.rank..inlined.compareByDescending.1:1
 //org.autojs.autojs.core.accessibility.codegen.rank.RuleRanker.rank..inlined.thenBy.1:1
 //org.autojs.autojs.core.accessibility.codegen.search.CandidateSearch:1
+//org.autojs.autojs.core.accessibility.codegen.search.Relation:1
 //org.autojs.autojs.core.accessibility.codegen.search.SearchResult:1
 //org.autojs.autojs.core.accessibility.codegen.store.DuplicateCheck.evaluate..inlined.compareByDescending.1:1
 //org.autojs.autojs.core.accessibility.codegen.store.DuplicateCheck.evaluate..inlined.compareByDescending.2:1
@@ -18876,6 +18883,7 @@ declare namespace org {
 //org.autojs.autojs.theme.ThemeColorApplyPolicy:1
 //org.autojs.autojs.theme.ThemeColorApplyPolicy.Action:1
 //org.autojs.autojs.theme.ThemeColorApplyPolicy.Action.Apply:1
+//org.autojs.autojs.theme.ThemeColorTargetRegistry:1
 //org.autojs.autojs.theme.app.ColorSelectBaseActivity.checkAndGetTargetInfoForThemeColorLocate..inlined.sortedBy.1:1
 //org.autojs.autojs.theme.app.ColorSelectBaseActivity.loadColorHistoryItems..inlined.sortedByDescending.1:1
 //org.autojs.autojs.theme.app.ColorSelectBaseActivity.showColorPickerHistory.1.history.1.invokeSuspend..inlined.sortedByDescending.1:1

@@ -159,6 +159,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.37.0
+
+###### 2026/10/12
+
+* `Feature` Type declarations and completion: device.getAndroidId accepts a useSystemId boolean to read the system value for the app's Android user through Shizuku/Root on Android 8.0+, throws on permission or read failure, and ignores the flag on older systems
+
 ### v4.36.0
 
 ###### 2026/10/08
@@ -177,16 +183,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 * `Feature` 25 node factories and TSX tags for navigation bars/drawers, tabs, bottom sheets, menus, date/time pickers, pagers, grids, Chip, Badge, segmented buttons, floating buttons, search, Tooltip and pull-to-refresh
 * `Improvement` V2 properties, default read values, required slots, child types and event arguments generated directly from the append-only contract catalog, preserving frozen V1 and the separate F2 interoperability catalog
 * `Hint` New components require matching host 5322 and a contract V2 rendering plugin; TSX requires TypeScript Engine 0.6.7 and Ace Editor 1.29.0. Numeric ranges, child counts and cross-property constraints remain runtime-validated
-
-### v4.34.0
-
-###### 2026/10/07
-
-##### Compose UI dialogs
-
-* `Feature` compose.dialog and DialogOptions / DialogType support standalone dialogs and bottom sheets, returning the existing ComposeSession
-* `Improvement` Precise alert / bottomSheet types, cancelable and theme overrides, preserving synchronous root input and existing session methods
-* `Hint` Requires matching host 5321 and Compose UI supporting dialog-v1; TSX requires matching TypeScript Engine 0.6.6. Non-UI scripts must already have overlay permission; it is not requested automatically
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

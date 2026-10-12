@@ -159,6 +159,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.37.0
+
+###### 2026/10/12
+
+* `Función` Declaraciones de tipos y autocompletado: device.getAndroidId acepta el booleano useSystemId para leer el valor del sistema del usuario Android de la aplicación mediante Shizuku/Root en Android 8.0+, lanza una excepción si falla el permiso o la lectura e ignora el parámetro en sistemas anteriores
+
 ### v4.36.0
 
 ###### 2026/10/08
@@ -177,16 +183,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 * `Función` 25 fábricas de nodos y etiquetas TSX para barras y paneles de navegación, pestañas, paneles inferiores, menús, selectores de fecha y hora, paginadores, cuadrículas, Chip, Badge, botones segmentados, botones flotantes, búsqueda, Tooltip y actualización al deslizar hacia abajo
 * `Mejora` Propiedades de V2, valores de lectura predeterminados, ranuras obligatorias, tipos de elementos secundarios y argumentos de eventos generados directamente desde el catálogo de contratos de solo anexado, conservando V1 congelado y el catálogo de interoperabilidad independiente F2
 * `Nota` Los nuevos componentes requieren el host correspondiente 5322 y un plugin de renderizado del contrato V2; TSX requiere TypeScript Engine 0.6.7 y Ace Editor 1.29.0. Los intervalos numéricos, las cantidades de elementos secundarios y las restricciones entre propiedades siguen validándose en tiempo de ejecución
-
-### v4.34.0
-
-###### 2026/10/07
-
-##### Diálogos de Compose UI
-
-* `Función` compose.dialog y DialogOptions / DialogType admiten diálogos independientes y paneles inferiores, y devuelven el ComposeSession existente
-* `Mejora` Declaraciones precisas de los tipos alert / bottomSheet, cancelable y sustituciones de tema, conservando la entrada raíz síncrona y los métodos de sesión existentes
-* `Nota` Requiere el host correspondiente 5321 y Compose UI compatible con dialog-v1; TSX requiere TypeScript Engine 0.6.6. Los scripts que no sean de UI deben tener previamente el permiso de ventanas flotantes; no se solicita automáticamente
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

@@ -346,7 +346,9 @@ declare namespace Internal {
         getAlarmVolume(): number;
 
         /**
-         * Returns ANDROID_ID of current device
+         * Returns the calling application's ANDROID_ID without requesting elevated access.
+         * On Android 8.0+, this is normally scoped by signing key, Android user and device.
+         * Equivalent to getAndroidId(false).
          * @example
          * console.log(device.getAndroidId()); // e.g. 87b***f275***0e1
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -357,6 +359,17 @@ declare namespace Internal {
          * @see android.provider.Settings
          */
         getAndroidId(): string;
+
+        /**
+         * Reads the system Android ID when useSystemId is true, or the ordinary app ID when false.
+         * On Android 8.0+, true tries authorized Shizuku first, then Root, and throws if both fail.
+         * The system value belongs to the Android user running the app, including a work profile.
+         * Before Android 8.0, the flag is ignored and no elevated permission is requested.
+         * @since 6.8.0
+         * @param useSystemId Whether to read the system user value through Shizuku or Root.
+         * @throws If elevated access cannot return a valid system ID on Android 8.0+.
+         */
+        getAndroidId(useSystemId: boolean): string;
 
         /**
          * @example

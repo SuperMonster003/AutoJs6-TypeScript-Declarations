@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.37.0
+
+###### 2026/10/12
+
+* `ميزة` تعريفات الأنواع والإكمال: تقبل device.getAndroidId المعامل المنطقي useSystemId لقراءة قيمة النظام لمستخدم Android الذي يشغل التطبيق عبر Shizuku/Root على Android 8.0+, وتطرح استثناء عند فشل الإذن أو القراءة, وتتجاهل المعامل على الأنظمة الأقدم
+
 # v4.36.0
 
 ###### 2026/10/08

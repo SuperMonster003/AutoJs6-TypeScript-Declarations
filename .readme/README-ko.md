@@ -159,6 +159,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.37.0
+
+###### 2026/10/12
+
+* `기능` 타입 선언 및 자동 완성: device.getAndroidId가 useSystemId 불리언 매개변수를 지원하며, Android 8.0+에서 Shizuku/Root로 앱이 실행되는 Android 사용자의 시스템 값을 읽음. 권한 또는 읽기 실패 시 예외를 발생시키고 이전 시스템에서는 매개변수를 무시
+
 ### v4.36.0
 
 ###### 2026/10/08
@@ -177,16 +183,6 @@ npm update @sm003/autojs6-dts
 * `기능` 탐색 모음, 탐색 드로어, 탭, 하단 시트, 메뉴, 날짜 및 시간 선택, 페이지 전환, 그리드, Chip, Badge, 분할 버튼, 플로팅 버튼, 검색, Tooltip, 당겨서 새로 고침 등을 위한 노드 팩토리 25개 및 TSX 태그
 * `개선` V2 속성, 기본 읽기 값, 필수 슬롯, 하위 항목 타입 및 이벤트 인수를 추가만 가능한 계약 카탈로그에서 직접 생성하고, 동결된 V1 및 독립적인 F2 상호 운용 카탈로그 유지
 * `안내` 새 컴포넌트에는 대응하는 호스트 5322 및 계약 V2 렌더링 플러그인 필요. TSX에는 TypeScript Engine 0.6.7 및 Ace Editor 1.29.0 필요; 수치 범위, 하위 항목 수 및 속성 간 제약은 계속 런타임에서 검증
-
-### v4.34.0
-
-###### 2026/10/07
-
-##### Compose UI 대화상자
-
-* `기능` compose.dialog 및 DialogOptions / DialogType는 독립 대화상자와 하단 시트를 지원하며 기존 ComposeSession 반환
-* `개선` alert / bottomSheet 타입, cancelable 및 테마 재정의를 정확하게 선언하고 동기 루트 입력 및 기존 세션 메서드 유지
-* `안내` 대응하는 호스트 5321 및 dialog-v1을 지원하는 Compose UI 필요; TSX에 필요한 엔진은 TypeScript Engine 0.6.6. UI 모드가 아닌 스크립트는 오버레이 권한이 미리 있어야 하며 자동으로 요청하지 않음
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

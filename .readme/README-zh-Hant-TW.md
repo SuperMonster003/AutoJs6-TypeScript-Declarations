@@ -159,6 +159,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.37.0
+
+###### 2026/10/12
+
+* `新增` 型別宣告與補全: device.getAndroidId 支援 useSystemId 布林參數, 在 Android 8.0+ 上透過 Shizuku/Root 取得執行應用所屬 Android 使用者的系統值, 權限或讀取失敗時擲出例外, 舊系統忽略此參數
+
 ### v4.36.0
 
 ###### 2026/10/08
@@ -177,16 +183,6 @@ npm update @sm003/autojs6-dts
 * `新增` 導航欄, 導航抽屜, 標籤, 底部彈層, 選單, 日期和時間選擇, 分頁, 網格, Chip, Badge, 分段按鈕, 浮動按鈕, 搜尋, Tooltip 和下拉重新整理等 25 個節點工廠及 TSX 標籤
 * `最佳化` V2 屬性, 預設讀取值, 必填插槽, 子項型別及事件引數直接由追加式契約目錄生成, 保留凍結 V1 和獨立 F2 互操作目錄
 * `提示` 新元件需要配套宿主 5322 和契約 V2 渲染外掛, TSX 配套 TypeScript Engine 0.6.7 與 Ace Editor 1.29.0; 數值範圍, 子項數量和跨屬性約束仍由執行時校驗
-
-### v4.34.0
-
-###### 2026/10/07
-
-##### Compose UI 對話方塊
-
-* `新增` compose.dialog 與 DialogOptions / DialogType, 支援獨立對話方塊和底部彈層, 返回原有 ComposeSession
-* `最佳化` 精確宣告 alert / bottomSheet 型別, cancelable 和主題覆蓋, 保留同步根輸入與已有會話方法
-* `提示` 需要匹配的宿主 5321 和支援 dialog-v1 的 Compose UI; TSX 配套 TypeScript Engine 0.6.6. 非 UI 指令碼須預先具有懸浮窗許可權, 不自動申請
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-TW.md)
 

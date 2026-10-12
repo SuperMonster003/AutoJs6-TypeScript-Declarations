@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.37.0": {
+      "released_date": "2026/10/12",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Déclarations de types et complétion: device.getAndroidId accepte le booléen useSystemId pour lire la valeur système de l'utilisateur Android de l'application via Shizuku/Root sous Android 8.0+, lève une exception en cas d'échec d'autorisation ou de lecture et ignore ce paramètre sur les anciens systèmes"
+        }
+      ]
+    },
     "v4.36.0": {
       "released_date": "2026/10/08",
       "entries": [

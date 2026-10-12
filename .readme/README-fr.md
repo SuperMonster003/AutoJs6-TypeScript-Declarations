@@ -159,6 +159,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.37.0
+
+###### 2026/10/12
+
+* `Fonctionnalité` Déclarations de types et complétion: device.getAndroidId accepte le booléen useSystemId pour lire la valeur système de l'utilisateur Android de l'application via Shizuku/Root sous Android 8.0+, lève une exception en cas d'échec d'autorisation ou de lecture et ignore ce paramètre sur les anciens systèmes
+
 ### v4.36.0
 
 ###### 2026/10/08
@@ -177,16 +183,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 * `Fonctionnalité` 25 fabriques de noeuds et balises TSX: barres/tiroirs de navigation, onglets, panneaux inférieurs, menus, dates/heures, pagination, grilles, Chip, Badge, boutons segmentés/flottants, recherche, Tooltip et actualisation par glissement
 * `Amélioration` Propriétés V2, valeurs lues par défaut, emplacements requis, types d'enfants et événements générés depuis le catalogue de contrat append-only; conservation de V1 figé et du catalogue d'interopérabilité F2 séparé
 * `Note` Les composants nécessitent l'hôte 5322 et un plugin de rendu de contrat V2; TSX nécessite TypeScript Engine 0.6.7 et Ace Editor 1.29.0. Plages numériques, nombres d'enfants et contraintes croisées restent vérifiés à l'exécution
-
-### v4.34.0
-
-###### 2026/10/07
-
-##### Boîtes de dialogue Compose UI
-
-* `Fonctionnalité` compose.dialog et DialogOptions / DialogType prennent en charge les dialogues indépendants et panneaux inférieurs, renvoyant le ComposeSession existant
-* `Amélioration` Types précis alert / bottomSheet, cancelable et remplacements de thème, avec entrée racine synchrone et méthodes de session conservées
-* `Note` Nécessite l'hôte 5321 et Compose UI prenant en charge dialog-v1; TSX nécessite TypeScript Engine 0.6.6. Les scripts hors UI doivent déjà avoir l'autorisation de superposition, sans demande automatique
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

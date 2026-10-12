@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.37.0
+
+###### 2026/10/12
+
+* `기능` 타입 선언 및 자동 완성: device.getAndroidId가 useSystemId 불리언 매개변수를 지원하며, Android 8.0+에서 Shizuku/Root로 앱이 실행되는 Android 사용자의 시스템 값을 읽음. 권한 또는 읽기 실패 시 예외를 발생시키고 이전 시스템에서는 매개변수를 무시
+
 # v4.36.0
 
 ###### 2026/10/08

@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.37.0": {
+      "released_date": "2026/10/12",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "類型宣告與補全: device.getAndroidId 支援 useSystemId 布林參數, 在 Android 8.0+ 上透過 Shizuku/Root 取得執行應用所屬 Android 使用者的系統值, 權限或讀取失敗時拋出異常, 舊系統忽略此參數"
+        }
+      ]
+    },
     "v4.36.0": {
       "released_date": "2026/10/08",
       "entries": [

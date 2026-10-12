@@ -159,6 +159,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.37.0
+
+###### 2026/10/12
+
+* `新增` 类型声明与补全: device.getAndroidId 支持 useSystemId 布尔参数, 在 Android 8.0+ 上通过 Shizuku/Root 获取运行应用所属 Android 用户的系统值, 权限或读取失败时抛出异常, 旧系统忽略此参数
+
 ### v4.36.0
 
 ###### 2026/10/08
@@ -177,16 +183,6 @@ npm update @sm003/autojs6-dts
 * `新增` 导航栏, 导航抽屉, 标签, 底部弹层, 菜单, 日期和时间选择, 分页, 网格, Chip, Badge, 分段按钮, 浮动按钮, 搜索, Tooltip 和下拉刷新等 25 个节点工厂及 TSX 标签
 * `优化` V2 属性, 默认读取值, 必填插槽, 子项类型及事件参数直接由追加式契约目录生成, 保留冻结 V1 和独立 F2 互操作目录
 * `提示` 新组件需要配套宿主 5322 和契约 V2 渲染插件, TSX 配套 TypeScript Engine 0.6.7 与 Ace Editor 1.29.0; 数值范围, 子项数量和跨属性约束仍由运行时校验
-
-### v4.34.0
-
-###### 2026/10/07
-
-##### Compose UI 对话框
-
-* `新增` compose.dialog 与 DialogOptions / DialogType, 支持独立对话框和底部弹层, 返回原有 ComposeSession
-* `优化` 精确声明 alert / bottomSheet 类型, cancelable 和主题覆盖, 保留同步根输入与已有会话方法
-* `提示` 需要匹配的宿主 5321 和支持 dialog-v1 的 Compose UI; TSX 配套 TypeScript Engine 0.6.6. 非 UI 脚本须预先具有悬浮窗权限, 不自动申请
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

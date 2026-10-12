@@ -159,6 +159,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.37.0
+
+###### 2026/10/12
+
+* `機能` 型定義と補完: device.getAndroidId が useSystemId 真偽値引数に対応し, Android 8.0+ では Shizuku/Root を通じてアプリの Android ユーザーのシステム値を取得. 権限または読み取りの失敗時は例外を送出し, 旧システムでは引数を無視
+
 ### v4.36.0
 
 ###### 2026/10/08
@@ -177,16 +183,6 @@ npm update @sm003/autojs6-dts
 * `機能` ナビゲーションバー, ナビゲーションドロワー, タブ, ボトムシート, メニュー, 日付と時刻の選択, ページ切り替え, グリッド, Chip, Badge, セグメントボタン, フローティングボタン, 検索, Tooltip, プルダウン更新など, 25 個のノードファクトリーと TSX タグ
 * `改善` V2 のプロパティ, 既定の読み取り値, 必須スロット, 子要素の型, イベント引数を追記専用の契約カタログから直接生成し, 凍結済みの V1 と独立した F2 相互運用カタログを維持
 * `ヒント` 新しいコンポーネントには対応するホスト 5322 と契約 V2 のレンダリングプラグインが必要. TSX には TypeScript Engine 0.6.7 と Ace Editor 1.29.0 が必要; 数値範囲, 子要素数, プロパティ間の制約は引き続き実行時に検証
-
-### v4.34.0
-
-###### 2026/10/07
-
-##### Compose UI ダイアログ
-
-* `機能` compose.dialog と DialogOptions / DialogType により独立したダイアログとボトムシートに対応し, 既存の ComposeSession を返す
-* `改善` alert / bottomSheet 型, cancelable, テーマの上書きを厳密に宣言し, 同期的なルート入力と既存のセッションメソッドを維持
-* `ヒント` 対応するホスト 5321 と dialog-v1 に対応した Compose UI が必要; TSX に必要なエンジンは TypeScript Engine 0.6.6. UI 以外のスクリプトには事前にオーバーレイ権限が必要で, 自動では要求しない
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

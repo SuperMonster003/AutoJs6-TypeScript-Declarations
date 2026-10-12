@@ -1927,6 +1927,7 @@ declare namespace org {
 					public static ic_kitchen_black_48dp: number;
 					public static ic_label_black_48dp: number;
 					public static ic_label_outline_black_48dp: number;
+					public static ic_lan_black_48dp: number;
 					public static ic_landscape_black_48dp: number;
 					public static ic_language_black_48dp: number;
 					public static ic_laptop_black_48dp: number;
@@ -2648,6 +2649,7 @@ declare namespace org {
 					public static action_import_java_class: number;
 					public static action_info: number;
 					public static action_input_bar: number;
+					public static action_install_autojs4_runtime: number;
 					public static action_install_from_local_file: number;
 					public static action_install_from_official_library: number;
 					public static action_install_from_third_party_library: number;
@@ -2670,7 +2672,6 @@ declare namespace org {
 					public static action_new_intelligent_color_library: number;
 					public static action_open_by_other_apps: number;
 					public static action_open_file: number;
-					public static action_open_in_terminal: number;
 					public static action_paste: number;
 					public static action_permissions: number;
 					public static action_plugin_install_wizard: number;
@@ -2689,6 +2690,7 @@ declare namespace org {
 					public static action_resize: number;
 					public static action_restore_selected: number;
 					public static action_run_repeatedly: number;
+					public static action_run_with_autojs4: number;
 					public static action_save: number;
 					public static action_save_intelligent_library: number;
 					public static action_search: number;
@@ -4216,6 +4218,7 @@ declare namespace org {
 					public static dialog_button_restore: number;
 					public static dialog_button_retrieve: number;
 					public static dialog_button_retry: number;
+					public static dialog_button_revoke_and_exit: number;
 					public static dialog_button_save: number;
 					public static dialog_button_save_and_continue: number;
 					public static dialog_button_save_and_reload: number;
@@ -4332,6 +4335,10 @@ declare namespace org {
 					public static error_apk_builder_remote_build_not_supported_by_plugin: number;
 					public static error_apk_builder_template_host_version_outside_range: number;
 					public static error_apk_builder_template_untrusted_signing_certificate: number;
+					public static error_apk_native_cxx_runtime_too_old: number;
+					public static error_apk_native_library_conflict: number;
+					public static error_apk_native_opencv_runtime_conflict: number;
+					public static error_apk_paddle_ocr_requires_pp_ocrv3_plugin: number;
 					public static error_app_not_installed: number;
 					public static error_app_not_installed_with_name: number;
 					public static error_archive_extraction_failed: number;
@@ -4342,6 +4349,9 @@ declare namespace org {
 					public static error_arguments_cannot_be_empty: number;
 					public static error_arguments_must_be_empty: number;
 					public static error_at_least_one_abi_needs_to_be_selected: number;
+					public static error_autojs4_project_main_missing: number;
+					public static error_autojs4_runtime_exited_unexpectedly: number;
+					public static error_autojs4_runtime_permission_denied: number;
 					public static error_autojs6_version_must_not_be_lower_than_ver: number;
 					public static error_autojs6_version_number_must_not_be_lower_than_num: number;
 					public static error_both_bitmap_and_mat_are_null: number;
@@ -4516,6 +4526,8 @@ declare namespace org {
 					public static error_plugin_index_source_fetch_failed_with_reason: number;
 					public static error_plugin_is_not_authorized_in_plugin_center: number;
 					public static error_plugin_is_not_enabled_in_plugin_center: number;
+					public static error_plugin_launcher_icon_not_applied: number;
+					public static error_plugin_launcher_icon_permission: number;
 					public static error_plugin_native_page_alignment_unsupported: number;
 					public static error_plugin_not_found_in_installed_apps: number;
 					public static error_plugin_returned_empty_info: number;
@@ -4623,7 +4635,6 @@ declare namespace org {
 					public static hint_archive_password: number;
 					public static hint_find_with_regex: number;
 					public static hint_github_token: number;
-					public static hint_installer_plugin_recommended: number;
 					public static hint_long_click_run_to_debug: number;
 					public static hint_loop_delay: number;
 					public static hint_loop_times: number;
@@ -4851,6 +4862,7 @@ declare namespace org {
 					public static key_night_mode_follow_system: number;
 					public static key_night_mode_null: number;
 					public static key_nodejs_doctor_report: number;
+					public static key_nodejs_inspector_enabled: number;
 					public static key_not_showing_main_activity: number;
 					public static key_pc_server_address_history: number;
 					public static key_plugin_center_auto_check_updates: number;
@@ -5685,6 +5697,7 @@ declare namespace org {
 					public static plugin_item_info_author: number;
 					public static plugin_item_info_collaborators: number;
 					public static plugin_item_info_first_install_time: number;
+					public static plugin_item_info_installed_abis: number;
 					public static plugin_item_info_installed_version: number;
 					public static plugin_item_info_last_install_time: number;
 					public static plugin_item_info_last_uninstall_time: number;
@@ -5816,6 +5829,7 @@ declare namespace org {
 					public static summary_guard_mode: number;
 					public static summary_lan_discovery: number;
 					public static summary_nodejs_doctor_report: number;
+					public static summary_nodejs_inspector_enabled: number;
 					public static summary_not_showing_main_activity: number;
 					public static summary_notify_client_connection_changes: number;
 					public static summary_plugin_auto_check_updates: number;
@@ -5827,6 +5841,8 @@ declare namespace org {
 					public static summary_plugin_ignored_versions_count: number;
 					public static summary_plugin_instruction_view: number;
 					public static summary_plugin_jump_to_launch_page: number;
+					public static summary_plugin_launcher_icon_hidden: number;
+					public static summary_plugin_launcher_icon_shown: number;
 					public static summary_plugin_no_launch_page: number;
 					public static summary_plugin_show_official_plugins: number;
 					public static summary_plugin_show_third_party_plugins: number;
@@ -6265,12 +6281,16 @@ declare namespace org {
 					public static text_codegen_explanation_dynamic_description: number;
 					public static text_codegen_explanation_dynamic_text: number;
 					public static text_codegen_explanation_fixed_path: number;
+					public static text_codegen_explanation_fixed_relation: number;
 					public static text_codegen_explanation_indexed_match: number;
 					public static text_codegen_explanation_indexed_match_from_end: number;
 					public static text_codegen_explanation_large_index: number;
 					public static text_codegen_explanation_long_path: number;
 					public static text_codegen_explanation_order_dependent: number;
 					public static text_codegen_explanation_receiver_ancestor: number;
+					public static text_codegen_explanation_relative_collection: number;
+					public static text_codegen_explanation_relative_first_match: number;
+					public static text_codegen_explanation_relative_unique: number;
 					public static text_codegen_explanation_self_collection: number;
 					public static text_codegen_explanation_self_first_match: number;
 					public static text_codegen_explanation_self_unique: number;
@@ -6285,6 +6305,7 @@ declare namespace org {
 					public static text_codegen_family_container_items: number;
 					public static text_codegen_family_self: number;
 					public static text_codegen_family_self_index: number;
+					public static text_codegen_family_self_relative: number;
 					public static text_codegen_generating: number;
 					public static text_codegen_generation_error: number;
 					public static text_codegen_loading_collections: number;
@@ -6947,6 +6968,7 @@ declare namespace org {
 					public static text_inspector_tri_yes: number;
 					public static text_inspector_view_matches: number;
 					public static text_install: number;
+					public static text_install_autojs4_runtime: number;
 					public static text_install_from_local_file: number;
 					public static text_install_from_official_plugin_library: number;
 					public static text_install_from_third_party_plugin_library: number;
@@ -7032,6 +7054,8 @@ declare namespace org {
 					public static text_loading_completed: number;
 					public static text_loading_with_dots: number;
 					public static text_local_network_permission: number;
+					public static text_local_network_permission_revoke: number;
+					public static text_local_network_permission_revoke_exiting: number;
 					public static text_local_network_permission_settings: number;
 					public static text_locate_current_theme_color: number;
 					public static text_location: number;
@@ -7162,6 +7186,8 @@ declare namespace org {
 					public static text_nodejs_doctor_export_text: number;
 					public static text_nodejs_doctor_generating: number;
 					public static text_nodejs_doctor_generation_failed: number;
+					public static text_nodejs_inspector_enabled: number;
+					public static text_nodejs_runtime_required_for_packaged_app: number;
 					public static text_none: number;
 					public static text_not_enough_color_libraries_to_reorder: number;
 					public static text_not_granted: number;
@@ -7377,10 +7403,12 @@ declare namespace org {
 					public static text_plugin_install_wizard_installing_plugins: number;
 					public static text_plugin_install_wizard_installing_with_progress: number;
 					public static text_plugin_install_wizard_insufficient_space: number;
+					public static text_plugin_install_wizard_launcher_icons_not_applied: number;
 					public static text_plugin_install_wizard_loading_index: number;
 					public static text_plugin_install_wizard_no_plugins_available: number;
 					public static text_plugin_install_wizard_no_selection: number;
 					public static text_plugin_install_wizard_show_installed: number;
+					public static text_plugin_install_wizard_show_launcher_icons: number;
 					public static text_plugin_install_wizard_summary_cancelled: number;
 					public static text_plugin_install_wizard_summary_failed: number;
 					public static text_plugin_install_wizard_summary_installed: number;
@@ -7402,6 +7430,7 @@ declare namespace org {
 					public static text_plugin_native_page_alignment_incompatible: number;
 					public static text_plugin_official: number;
 					public static text_plugin_online_source: number;
+					public static text_plugin_show_launcher_icon: number;
 					public static text_plugin_show_official_plugins: number;
 					public static text_plugin_show_third_party_plugins: number;
 					public static text_plugin_third_party: number;
@@ -7591,6 +7620,7 @@ declare namespace org {
 					public static text_run_repeatedly: number;
 					public static text_run_script: number;
 					public static text_run_simplified: number;
+					public static text_run_with_autojs4: number;
 					public static text_running_task: number;
 					public static text_same_as_current_file: number;
 					public static text_same_as_state: number;
@@ -7848,6 +7878,8 @@ declare namespace org {
 					public static text_type: number;
 					public static text_type_file: number;
 					public static text_type_folder: number;
+					public static text_typescript_compilation_finished: number;
+					public static text_typescript_compiling: number;
 					public static text_typescript_console: number;
 					public static text_typescript_console_hint: number;
 					public static text_typescript_project_rename: number;

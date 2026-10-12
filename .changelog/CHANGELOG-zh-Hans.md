@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.37.0
+
+###### 2026/10/12
+
+* `新增` 类型声明与补全: device.getAndroidId 支持 useSystemId 布尔参数, 在 Android 8.0+ 上通过 Shizuku/Root 获取运行应用所属 Android 用户的系统值, 权限或读取失败时抛出异常, 旧系统忽略此参数
+
 # v4.36.0
 
 ###### 2026/10/08

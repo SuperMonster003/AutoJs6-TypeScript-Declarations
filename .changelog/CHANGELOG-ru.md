@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.37.0
+
+###### 2026/10/12
+
+* `Функция` Объявления типов и автодополнение: device.getAndroidId принимает логический параметр useSystemId для чтения системного значения пользователя Android приложения через Shizuku/Root на Android 8.0+, вызывает исключение при ошибке доступа или чтения и игнорирует параметр на старых системах
+
 # v4.36.0
 
 ###### 2026/10/08
