@@ -31,7 +31,7 @@
       "released_date": "2026/10/08",
       "entries": [
         {
-          "heading": "Compose UI 프래그먼트 재사용"
+          "heading": "3-Block Compose 프래그먼트 재사용"
         },
         {
           "category": "feature",
@@ -47,7 +47,7 @@
       "released_date": "2026/10/08",
       "entries": [
         {
-          "heading": "Compose UI 계약 V2"
+          "heading": "3-Block Compose 계약 V2"
         },
         {
           "category": "feature",
@@ -67,7 +67,7 @@
       "released_date": "2026/10/07",
       "entries": [
         {
-          "heading": "Compose UI 대화상자"
+          "heading": "3-Block Compose 대화상자"
         },
         {
           "category": "feature",
@@ -79,7 +79,7 @@
         },
         {
           "category": "hint",
-          "text": "대응하는 호스트 5321 및 dialog-v1을 지원하는 Compose UI 필요; TSX에 필요한 엔진은 TypeScript Engine 0.6.6. UI 모드가 아닌 스크립트는 오버레이 권한이 미리 있어야 하며 자동으로 요청하지 않음"
+          "text": "대응하는 호스트 5321 및 dialog-v1을 지원하는 3-Block Compose 필요; TSX에 필요한 엔진은 TypeScript Engine 0.6.6. UI 모드가 아닌 스크립트는 오버레이 권한이 미리 있어야 하며 자동으로 요청하지 않음"
         }
       ]
     },
@@ -87,7 +87,7 @@
       "released_date": "2026/10/07",
       "entries": [
         {
-          "heading": "Compose UI 상호 운용"
+          "heading": "3-Block Compose 상호 운용"
         },
         {
           "category": "feature",
@@ -103,7 +103,7 @@
         },
         {
           "category": "hint",
-          "text": "대응하는 호스트 5320 및 상호 운용 확장을 지원하는 Compose UI 필요; TSX에 필요한 엔진은 TypeScript Engine 0.6.5. 네이티브 객체의 동일성과 컨테이너 소속은 런타임에서 검증"
+          "text": "대응하는 호스트 5320 및 상호 운용 확장을 지원하는 3-Block Compose 필요; TSX에 필요한 엔진은 TypeScript Engine 0.6.5. 네이티브 객체의 동일성과 컨테이너 소속은 런타임에서 검증"
         }
       ]
     },
@@ -153,7 +153,7 @@
       "released_date": "2026/10/04",
       "entries": [
         {
-          "heading": "Compose UI TSX"
+          "heading": "3-Block Compose TSX"
         },
         {
           "category": "feature",
@@ -173,7 +173,7 @@
       "released_date": "2026/10/03",
       "entries": [
         {
-          "heading": "Compose UI"
+          "heading": "3-Block Compose"
         },
         {
           "category": "feature",
@@ -189,7 +189,7 @@
         },
         {
           "category": "hint",
-          "text": "compose 모듈이 포함된 대응 AutoJs6 6.8.0 로컬 빌드 및 Compose UI 플러그인 필요; TSX, 혼합 레이아웃 및 compose.dialog는 이후 버전에서 지원 예정"
+          "text": "compose 모듈이 포함된 대응 AutoJs6 6.8.0 로컬 빌드 및 3-Block Compose 플러그인 필요; TSX, 혼합 레이아웃 및 compose.dialog는 이후 버전에서 지원 예정"
         }
       ]
     },

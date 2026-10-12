@@ -23,7 +23,7 @@
 
 ###### 2026/10/08
 
-##### Reutilización de fragmentos de Compose UI
+##### Reutilización de fragmentos de 3-Block Compose
 
 * `Función` compose.memo y ComposeMemoOptions reutilizan fragmentos de nodos en render cuando no cambian los valores de las dependencias ni los valores leídos de state, con coincidencia de elementos de lista por key
 * `Nota` Requiere el host correspondiente 6.8.0 / 5323; la comparación de dependencias, la coincidencia de ranuras, el momento de la llamada y el límite de 256 dependencias se validan en tiempo de ejecución. TSX requiere las versiones correspondientes de TypeScript Engine 0.6.8 y Ace Editor 1.30.0
@@ -32,7 +32,7 @@
 
 ###### 2026/10/08
 
-##### Contrato V2 de Compose UI
+##### Contrato V2 de 3-Block Compose
 
 * `Función` 25 fábricas de nodos y etiquetas TSX para barras y paneles de navegación, pestañas, paneles inferiores, menús, selectores de fecha y hora, paginadores, cuadrículas, Chip, Badge, botones segmentados, botones flotantes, búsqueda, Tooltip y actualización al deslizar hacia abajo
 * `Mejora` Propiedades de V2, valores de lectura predeterminados, ranuras obligatorias, tipos de elementos secundarios y argumentos de eventos generados directamente desde el catálogo de contratos de solo anexado, conservando V1 congelado y el catálogo de interoperabilidad independiente F2
@@ -42,22 +42,22 @@
 
 ###### 2026/10/07
 
-##### Diálogos de Compose UI
+##### Diálogos de 3-Block Compose
 
 * `Función` compose.dialog y DialogOptions / DialogType admiten diálogos independientes y paneles inferiores, y devuelven el ComposeSession existente
 * `Mejora` Declaraciones precisas de los tipos alert / bottomSheet, cancelable y sustituciones de tema, conservando la entrada raíz síncrona y los métodos de sesión existentes
-* `Nota` Requiere el host correspondiente 5321 y Compose UI compatible con dialog-v1; TSX requiere TypeScript Engine 0.6.6. Los scripts que no sean de UI deben tener previamente el permiso de ventanas flotantes; no se solicita automáticamente
+* `Nota` Requiere el host correspondiente 5321 y 3-Block Compose compatible con dialog-v1; TSX requiere TypeScript Engine 0.6.6. Los scripts que no sean de UI deben tener previamente el permiso de ventanas flotantes; no se solicita automáticamente
 
 # v4.33.0
 
 ###### 2026/10/07
 
-##### Interoperabilidad de Compose UI
+##### Interoperabilidad de 3-Block Compose
 
 * `Función` compose.attach y nodos AndroidView, View getter real, fábricas síncronas de View, contenedores `<compose>` de XML y los tipos TSX correspondientes
 * `Mejora` Generación y comprobación independientes del catálogo de interoperabilidad, conservando los 30 componentes / 114 propiedades de V1 congelado y las 29 correspondencias JSX
 * `Corrección` Declaraciones de argumentos View nativos reales y del receptor EventEmitter de XML TSX onClick, junto con los enlaces de clic TSX de ui.inflate
-* `Nota` Requiere el host correspondiente 5320 y Compose UI compatible con la extensión de interoperabilidad; TSX requiere TypeScript Engine 0.6.5. La identidad concreta de los objetos nativos y su pertenencia a contenedores se validan en tiempo de ejecución
+* `Nota` Requiere el host correspondiente 5320 y 3-Block Compose compatible con la extensión de interoperabilidad; TSX requiere TypeScript Engine 0.6.5. La identidad concreta de los objetos nativos y su pertenencia a contenedores se validan en tiempo de ejecución
 
 # v4.32.0
 
@@ -81,7 +81,7 @@
 
 ###### 2026/10/04
 
-##### Compose UI TSX
+##### 3-Block Compose TSX
 
 * `Función` 29 declaraciones de elementos compose:Name TSX generadas a partir del catálogo real de componentes, compatibles con fábricas miembro compose.Name y alias de una misma fábrica
 * `Mejora` Las propiedades TSX, ranuras obligatorias y funciones de retorno de eventos conservan los tipos precisos de los componentes; Fragment mantiene la validación en tiempo de ejecución de raíz única y cantidad de ranuras
@@ -91,12 +91,12 @@
 
 ###### 2026/10/03
 
-##### Compose UI
+##### 3-Block Compose
 
 * `Función` compose / $compose y ComposeError, que incluyen 29 fábricas de nodos, puntos de entrada de montaje invocables, estado y ref, procesamiento por lotes, temas, sesiones y ventanas flotantes
 * `Función` Argumentos de eventos específicos por componente, tipos de lectura y escritura de propiedades de nodos, 20 métodos ordenados de Modifier y comandos de sesión de Snackbar
 * `Mejora` Sincronizadas las declaraciones públicas de Java, recursos y bibliotecas compartidas del host correspondiente; los catálogos de componentes y la documentación se verifican con el mismo manifiesto congelado
-* `Nota` Requiere una compilación local de AutoJs6 6.8.0 que incluya el módulo compose y el plugin Compose UI; TSX, los diseños mixtos y compose.dialog quedan para versiones posteriores
+* `Nota` Requiere una compilación local de AutoJs6 6.8.0 que incluya el módulo compose y el plugin 3-Block Compose; TSX, los diseños mixtos y compose.dialog quedan para versiones posteriores
 
 # v4.29.0
 

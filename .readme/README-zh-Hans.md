@@ -169,7 +169,7 @@ npm update @sm003/autojs6-dts
 
 ###### 2026/10/08
 
-##### Compose UI 片段复用
+##### 3-Block Compose 片段复用
 
 * `新增` compose.memo 与 ComposeMemoOptions, 在 render 中复用依赖值与读取的 state 均未变化的节点片段, 支持按 key 匹配列表条目
 * `提示` 需要配套宿主 6.8.0 / 5323; 依赖比较, 槽位匹配, 调用时机和 256 项依赖上限由运行时校验. TSX 配套 TypeScript Engine 0.6.8 与 Ace Editor 1.30.0
@@ -178,7 +178,7 @@ npm update @sm003/autojs6-dts
 
 ###### 2026/10/08
 
-##### Compose UI 契约 V2
+##### 3-Block Compose 契约 V2
 
 * `新增` 导航栏, 导航抽屉, 标签, 底部弹层, 菜单, 日期和时间选择, 分页, 网格, Chip, Badge, 分段按钮, 浮动按钮, 搜索, Tooltip 和下拉刷新等 25 个节点工厂及 TSX 标签
 * `优化` V2 属性, 默认读取值, 必填插槽, 子项类型及事件参数直接由追加式契约目录生成, 保留冻结 V1 和独立 F2 互操作目录

@@ -169,7 +169,7 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ###### 2026/10/08
 
-##### Réutilisation de fragments Compose UI
+##### Réutilisation de fragments 3-Block Compose
 
 * `Fonctionnalité` compose.memo et ComposeMemoOptions réutilisent dans render les fragments dont les dépendances et les valeurs state lues restent identiques, avec correspondance des éléments par key
 * `Note` Nécessite l'hôte correspondant 6.8.0 / 5323; comparaison des dépendances, correspondance des emplacements, moment d'appel et limite de 256 dépendances sont vérifiés à l'exécution. TSX nécessite TypeScript Engine 0.6.8 et Ace Editor 1.30.0
@@ -178,7 +178,7 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ###### 2026/10/08
 
-##### Contrat Compose UI V2
+##### Contrat 3-Block Compose V2
 
 * `Fonctionnalité` 25 fabriques de noeuds et balises TSX: barres/tiroirs de navigation, onglets, panneaux inférieurs, menus, dates/heures, pagination, grilles, Chip, Badge, boutons segmentés/flottants, recherche, Tooltip et actualisation par glissement
 * `Amélioration` Propriétés V2, valeurs lues par défaut, emplacements requis, types d'enfants et événements générés depuis le catalogue de contrat append-only; conservation de V1 figé et du catalogue d'interopérabilité F2 séparé

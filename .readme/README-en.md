@@ -169,7 +169,7 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ###### 2026/10/08
 
-##### Compose UI fragment reuse
+##### 3-Block Compose fragment reuse
 
 * `Feature` compose.memo and ComposeMemoOptions reuse node fragments in render when dependency values and read state values are unchanged, with key-based list item matching
 * `Hint` Requires matching host 6.8.0 / 5323; dependency comparison, slot matching, call timing and the 256-dependency limit are validated at runtime. TSX requires matching TypeScript Engine 0.6.8 and Ace Editor 1.30.0
@@ -178,7 +178,7 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ###### 2026/10/08
 
-##### Compose UI contract V2
+##### 3-Block Compose contract V2
 
 * `Feature` 25 node factories and TSX tags for navigation bars/drawers, tabs, bottom sheets, menus, date/time pickers, pagers, grids, Chip, Badge, segmented buttons, floating buttons, search, Tooltip and pull-to-refresh
 * `Improvement` V2 properties, default read values, required slots, child types and event arguments generated directly from the append-only contract catalog, preserving frozen V1 and the separate F2 interoperability catalog

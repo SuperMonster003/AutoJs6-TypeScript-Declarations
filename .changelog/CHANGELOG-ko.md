@@ -23,7 +23,7 @@
 
 ###### 2026/10/08
 
-##### Compose UI 프래그먼트 재사용
+##### 3-Block Compose 프래그먼트 재사용
 
 * `기능` compose.memo 및 ComposeMemoOptions은 의존성 값과 읽은 state가 모두 바뀌지 않은 노드 프래그먼트를 render에서 재사용하며, key 기반 목록 항목 매칭 지원
 * `안내` 대응하는 호스트 6.8.0 / 5323 필요; 의존성 비교, 슬롯 매칭, 호출 시점 및 의존성 256개 제한은 런타임에서 검증. TSX에는 대응하는 TypeScript Engine 0.6.8 및 Ace Editor 1.30.0 필요
@@ -32,7 +32,7 @@
 
 ###### 2026/10/08
 
-##### Compose UI 계약 V2
+##### 3-Block Compose 계약 V2
 
 * `기능` 탐색 모음, 탐색 드로어, 탭, 하단 시트, 메뉴, 날짜 및 시간 선택, 페이지 전환, 그리드, Chip, Badge, 분할 버튼, 플로팅 버튼, 검색, Tooltip, 당겨서 새로 고침 등을 위한 노드 팩토리 25개 및 TSX 태그
 * `개선` V2 속성, 기본 읽기 값, 필수 슬롯, 하위 항목 타입 및 이벤트 인수를 추가만 가능한 계약 카탈로그에서 직접 생성하고, 동결된 V1 및 독립적인 F2 상호 운용 카탈로그 유지
@@ -42,22 +42,22 @@
 
 ###### 2026/10/07
 
-##### Compose UI 대화상자
+##### 3-Block Compose 대화상자
 
 * `기능` compose.dialog 및 DialogOptions / DialogType는 독립 대화상자와 하단 시트를 지원하며 기존 ComposeSession 반환
 * `개선` alert / bottomSheet 타입, cancelable 및 테마 재정의를 정확하게 선언하고 동기 루트 입력 및 기존 세션 메서드 유지
-* `안내` 대응하는 호스트 5321 및 dialog-v1을 지원하는 Compose UI 필요; TSX에 필요한 엔진은 TypeScript Engine 0.6.6. UI 모드가 아닌 스크립트는 오버레이 권한이 미리 있어야 하며 자동으로 요청하지 않음
+* `안내` 대응하는 호스트 5321 및 dialog-v1을 지원하는 3-Block Compose 필요; TSX에 필요한 엔진은 TypeScript Engine 0.6.6. UI 모드가 아닌 스크립트는 오버레이 권한이 미리 있어야 하며 자동으로 요청하지 않음
 
 # v4.33.0
 
 ###### 2026/10/07
 
-##### Compose UI 상호 운용
+##### 3-Block Compose 상호 운용
 
 * `기능` compose.attach 및 AndroidView 노드, 실제 View getter, 동기 View 팩토리, XML `<compose>` 컨테이너 및 대응하는 TSX 타입
 * `개선` 상호 운용 카탈로그를 독립적으로 생성하고 검사하며, 동결된 V1의 컴포넌트 30개 / 속성 114개 및 JSX 매핑 29개 유지
 * `수정` XML TSX onClick의 실제 네이티브 View 인수 및 EventEmitter 수신자 타입 선언을 추가하여 ui.inflate의 TSX 클릭 바인딩 지원
-* `안내` 대응하는 호스트 5320 및 상호 운용 확장을 지원하는 Compose UI 필요; TSX에 필요한 엔진은 TypeScript Engine 0.6.5. 네이티브 객체의 동일성과 컨테이너 소속은 런타임에서 검증
+* `안내` 대응하는 호스트 5320 및 상호 운용 확장을 지원하는 3-Block Compose 필요; TSX에 필요한 엔진은 TypeScript Engine 0.6.5. 네이티브 객체의 동일성과 컨테이너 소속은 런타임에서 검증
 
 # v4.32.0
 
@@ -81,7 +81,7 @@
 
 ###### 2026/10/04
 
-##### Compose UI TSX
+##### 3-Block Compose TSX
 
 * `기능` 실제 컴포넌트 카탈로그에서 생성된 compose:Name TSX 요소 타입 선언 29개. compose.Name 멤버 팩토리 및 같은 팩토리의 별칭 지원
 * `개선` TSX 속성, 필수 슬롯 및 이벤트 콜백에 컴포넌트의 정확한 타입을 적용하고, Fragment의 단일 루트 및 슬롯 수 런타임 검증 유지
@@ -91,12 +91,12 @@
 
 ###### 2026/10/03
 
-##### Compose UI
+##### 3-Block Compose
 
 * `기능` compose / $compose 및 ComposeError. 노드 팩토리 29개, 호출 가능한 마운트 진입점, 상태 및 ref, 일괄 처리, 테마, 세션, 오버레이 포함
 * `기능` 컴포넌트별 이벤트 인수, 노드 속성 읽기 및 쓰기 타입, 순서가 있는 Modifier 메서드 20개 및 Snackbar 세션 명령
 * `개선` 대응하는 호스트의 공개 Java / 리소스 / 공유 라이브러리 타입 선언을 동기화하고, 컴포넌트 카탈로그와 문서를 동일한 동결 목록으로 대조
-* `안내` compose 모듈이 포함된 대응 AutoJs6 6.8.0 로컬 빌드 및 Compose UI 플러그인 필요; TSX, 혼합 레이아웃 및 compose.dialog는 이후 버전에서 지원 예정
+* `안내` compose 모듈이 포함된 대응 AutoJs6 6.8.0 로컬 빌드 및 3-Block Compose 플러그인 필요; TSX, 혼합 레이아웃 및 compose.dialog는 이후 버전에서 지원 예정
 
 # v4.29.0
 

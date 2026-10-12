@@ -23,7 +23,7 @@
 
 ###### 2026/10/08
 
-##### Compose UI 片段複用
+##### 3-Block Compose 片段複用
 
 * `新增` compose.memo 與 ComposeMemoOptions, 在 render 中複用依賴值與讀取的 state 均未變化的節點片段, 支援按 key 匹配列表條目
 * `提示` 需要配套宿主 6.8.0 / 5323; 依賴比較, 槽位匹配, 呼叫時機和 256 項依賴上限由執行時校驗. TSX 配套 TypeScript Engine 0.6.8 與 Ace Editor 1.30.0
@@ -32,7 +32,7 @@
 
 ###### 2026/10/08
 
-##### Compose UI 契約 V2
+##### 3-Block Compose 契約 V2
 
 * `新增` 導航欄, 導航抽屜, 標籤, 底部彈層, 選單, 日期和時間選擇, 分頁, 網格, Chip, Badge, 分段按鈕, 浮動按鈕, 搜尋, Tooltip 和下拉重新整理等 25 個節點工廠及 TSX 標籤
 * `最佳化` V2 屬性, 預設讀取值, 必填插槽, 子項型別及事件引數直接由追加式契約目錄生成, 保留凍結 V1 和獨立 F2 互操作目錄
@@ -42,22 +42,22 @@
 
 ###### 2026/10/07
 
-##### Compose UI 對話方塊
+##### 3-Block Compose 對話方塊
 
 * `新增` compose.dialog 與 DialogOptions / DialogType, 支援獨立對話方塊和底部彈層, 返回原有 ComposeSession
 * `最佳化` 精確宣告 alert / bottomSheet 型別, cancelable 和主題覆蓋, 保留同步根輸入與已有會話方法
-* `提示` 需要匹配的宿主 5321 和支援 dialog-v1 的 Compose UI; TSX 配套 TypeScript Engine 0.6.6. 非 UI 指令碼須預先具有懸浮窗許可權, 不自動申請
+* `提示` 需要匹配的宿主 5321 和支援 dialog-v1 的 3-Block Compose; TSX 配套 TypeScript Engine 0.6.6. 非 UI 指令碼須預先具有懸浮窗許可權, 不自動申請
 
 # v4.33.0
 
 ###### 2026/10/07
 
-##### Compose UI 互操作
+##### 3-Block Compose 互操作
 
 * `新增` compose.attach 與 AndroidView 節點, 實際 View getter, 同步 View 工廠, XML `<compose>` 容器及對應 TSX 型別
 * `最佳化` 互操作目錄獨立生成和檢查, 保留凍結 V1 的 30 項元件 / 114 個屬性及 29 項 JSX 對映
 * `修復` XML TSX onClick 的實際原生 View 引數和 EventEmitter 接收者宣告, 配合 ui.inflate 的 TSX 點選繫結
-* `提示` 需要匹配的宿主 5320 和支援互操作擴充套件的 Compose UI; TSX 配套 TypeScript Engine 0.6.5. 原生物件的具體身份和容器歸屬由執行時校驗
+* `提示` 需要匹配的宿主 5320 和支援互操作擴充套件的 3-Block Compose; TSX 配套 TypeScript Engine 0.6.5. 原生物件的具體身份和容器歸屬由執行時校驗
 
 # v4.32.0
 
@@ -81,7 +81,7 @@
 
 ###### 2026/10/04
 
-##### Compose UI TSX
+##### 3-Block Compose TSX
 
 * `新增` 29 個由真實元件目錄生成的 compose:Name TSX 元素宣告, 支援 compose.Name 成員工廠和同一工廠的別名
 * `最佳化` TSX 屬性, 必填插槽與事件回撥沿用元件精確型別, Fragment 保留單根和插槽數量的執行時校驗
@@ -91,12 +91,12 @@
 
 ###### 2026/10/03
 
-##### Compose UI
+##### 3-Block Compose
 
 * `新增` compose / $compose 與 ComposeError, 覆蓋 29 個節點工廠, 可呼叫掛載入口, 狀態與 ref, 批處理, 主題, 會話和懸浮窗
 * `新增` 按元件區分的事件引數, 節點屬性讀取與寫入型別, 20 個有序 Modifier 方法及 Snackbar 會話命令
 * `最佳化` 同步配套宿主的公開 Java / 資源 / 共享庫宣告, 元件目錄與文件透過同一凍結清單核對
-* `提示` 需要包含 compose 模組的配套 AutoJs6 6.8.0 本地構建及 Compose UI 外掛; TSX, 混合佈局和 compose.dialog 仍屬後續版本
+* `提示` 需要包含 compose 模組的配套 AutoJs6 6.8.0 本地構建及 3-Block Compose 外掛; TSX, 混合佈局和 compose.dialog 仍屬後續版本
 
 # v4.29.0
 

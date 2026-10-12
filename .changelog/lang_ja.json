@@ -31,7 +31,7 @@
       "released_date": "2026/10/08",
       "entries": [
         {
-          "heading": "Compose UI フラグメントの再利用"
+          "heading": "3-Block Compose フラグメントの再利用"
         },
         {
           "category": "feature",
@@ -47,7 +47,7 @@
       "released_date": "2026/10/08",
       "entries": [
         {
-          "heading": "Compose UI 契約 V2"
+          "heading": "3-Block Compose 契約 V2"
         },
         {
           "category": "feature",
@@ -67,7 +67,7 @@
       "released_date": "2026/10/07",
       "entries": [
         {
-          "heading": "Compose UI ダイアログ"
+          "heading": "3-Block Compose ダイアログ"
         },
         {
           "category": "feature",
@@ -79,7 +79,7 @@
         },
         {
           "category": "hint",
-          "text": "対応するホスト 5321 と dialog-v1 に対応した Compose UI が必要; TSX に必要なエンジンは TypeScript Engine 0.6.6. UI 以外のスクリプトには事前にオーバーレイ権限が必要で, 自動では要求しない"
+          "text": "対応するホスト 5321 と dialog-v1 に対応した 3-Block Compose が必要; TSX に必要なエンジンは TypeScript Engine 0.6.6. UI 以外のスクリプトには事前にオーバーレイ権限が必要で, 自動では要求しない"
         }
       ]
     },
@@ -87,7 +87,7 @@
       "released_date": "2026/10/07",
       "entries": [
         {
-          "heading": "Compose UI 相互運用"
+          "heading": "3-Block Compose 相互運用"
         },
         {
           "category": "feature",
@@ -103,7 +103,7 @@
         },
         {
           "category": "hint",
-          "text": "対応するホスト 5320 と相互運用拡張に対応した Compose UI が必要; TSX に必要なエンジンは TypeScript Engine 0.6.5. ネイティブオブジェクトの同一性とコンテナーの所属は実行時に検証"
+          "text": "対応するホスト 5320 と相互運用拡張に対応した 3-Block Compose が必要; TSX に必要なエンジンは TypeScript Engine 0.6.5. ネイティブオブジェクトの同一性とコンテナーの所属は実行時に検証"
         }
       ]
     },
@@ -153,7 +153,7 @@
       "released_date": "2026/10/04",
       "entries": [
         {
-          "heading": "Compose UI TSX"
+          "heading": "3-Block Compose TSX"
         },
         {
           "category": "feature",
@@ -173,7 +173,7 @@
       "released_date": "2026/10/03",
       "entries": [
         {
-          "heading": "Compose UI"
+          "heading": "3-Block Compose"
         },
         {
           "category": "feature",
@@ -189,7 +189,7 @@
         },
         {
           "category": "hint",
-          "text": "compose モジュールを含む対応した AutoJs6 6.8.0 ローカルビルドと Compose UI プラグインが必要; TSX, 混在レイアウト, compose.dialog は今後のバージョンで対応予定"
+          "text": "compose モジュールを含む対応した AutoJs6 6.8.0 ローカルビルドと 3-Block Compose プラグインが必要; TSX, 混在レイアウト, compose.dialog は今後のバージョンで対応予定"
         }
       ]
     },

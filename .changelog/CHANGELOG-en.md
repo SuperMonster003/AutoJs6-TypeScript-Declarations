@@ -23,7 +23,7 @@
 
 ###### 2026/10/08
 
-##### Compose UI fragment reuse
+##### 3-Block Compose fragment reuse
 
 * `Feature` compose.memo and ComposeMemoOptions reuse node fragments in render when dependency values and read state values are unchanged, with key-based list item matching
 * `Hint` Requires matching host 6.8.0 / 5323; dependency comparison, slot matching, call timing and the 256-dependency limit are validated at runtime. TSX requires matching TypeScript Engine 0.6.8 and Ace Editor 1.30.0
@@ -32,7 +32,7 @@
 
 ###### 2026/10/08
 
-##### Compose UI contract V2
+##### 3-Block Compose contract V2
 
 * `Feature` 25 node factories and TSX tags for navigation bars/drawers, tabs, bottom sheets, menus, date/time pickers, pagers, grids, Chip, Badge, segmented buttons, floating buttons, search, Tooltip and pull-to-refresh
 * `Improvement` V2 properties, default read values, required slots, child types and event arguments generated directly from the append-only contract catalog, preserving frozen V1 and the separate F2 interoperability catalog
@@ -42,22 +42,22 @@
 
 ###### 2026/10/07
 
-##### Compose UI dialogs
+##### 3-Block Compose dialogs
 
 * `Feature` compose.dialog and DialogOptions / DialogType support standalone dialogs and bottom sheets, returning the existing ComposeSession
 * `Improvement` Precise alert / bottomSheet types, cancelable and theme overrides, preserving synchronous root input and existing session methods
-* `Hint` Requires matching host 5321 and Compose UI supporting dialog-v1; TSX requires matching TypeScript Engine 0.6.6. Non-UI scripts must already have overlay permission; it is not requested automatically
+* `Hint` Requires matching host 5321 and 3-Block Compose supporting dialog-v1; TSX requires matching TypeScript Engine 0.6.6. Non-UI scripts must already have overlay permission; it is not requested automatically
 
 # v4.33.0
 
 ###### 2026/10/07
 
-##### Compose UI interoperability
+##### 3-Block Compose interoperability
 
 * `Feature` compose.attach and AndroidView nodes, actual View getter, synchronous View factories, XML `<compose>` containers and corresponding TSX types
 * `Improvement` Generate and validate the interoperability catalog independently, preserving frozen V1 with 30 components / 114 properties and 29 JSX mappings
 * `Fix` Actual native View arguments and EventEmitter receiver declarations for XML TSX onClick, paired with TSX click bindings from ui.inflate
-* `Hint` Requires matching host 5320 and Compose UI supporting the interoperability extension; TSX requires matching TypeScript Engine 0.6.5. Native object identity and container ownership are validated at runtime
+* `Hint` Requires matching host 5320 and 3-Block Compose supporting the interoperability extension; TSX requires matching TypeScript Engine 0.6.5. Native object identity and container ownership are validated at runtime
 
 # v4.32.0
 
@@ -81,7 +81,7 @@
 
 ###### 2026/10/04
 
-##### Compose UI TSX
+##### 3-Block Compose TSX
 
 * `Feature` 29 compose:Name TSX element declarations generated from the actual component catalog, supporting compose.Name member factories and aliases of the same factory
 * `Improvement` TSX properties, required slots and event callbacks retain exact component types; Fragment retains runtime checks for a single root and slot counts
@@ -91,12 +91,12 @@
 
 ###### 2026/10/03
 
-##### Compose UI
+##### 3-Block Compose
 
 * `Feature` compose / $compose and ComposeError, covering 29 node factories, callable mount entry points, state and ref, batching, themes, sessions and overlays
 * `Feature` Component-specific event arguments, node property read/write types, 20 ordered Modifier methods and Snackbar session commands
 * `Improvement` Synchronize public Java, resources and shared-library declarations with the matching host; component catalogs and documentation are checked against the same frozen manifest
-* `Hint` Requires a matching local AutoJs6 6.8.0 build containing compose and the Compose UI plugin; TSX, mixed layouts and compose.dialog remain for later releases
+* `Hint` Requires a matching local AutoJs6 6.8.0 build containing compose and the 3-Block Compose plugin; TSX, mixed layouts and compose.dialog remain for later releases
 
 # v4.29.0
 

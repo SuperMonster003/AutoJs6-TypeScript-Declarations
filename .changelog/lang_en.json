@@ -31,7 +31,7 @@
       "released_date": "2026/10/08",
       "entries": [
         {
-          "heading": "Compose UI fragment reuse"
+          "heading": "3-Block Compose fragment reuse"
         },
         {
           "category": "feature",
@@ -47,7 +47,7 @@
       "released_date": "2026/10/08",
       "entries": [
         {
-          "heading": "Compose UI contract V2"
+          "heading": "3-Block Compose contract V2"
         },
         {
           "category": "feature",
@@ -67,7 +67,7 @@
       "released_date": "2026/10/07",
       "entries": [
         {
-          "heading": "Compose UI dialogs"
+          "heading": "3-Block Compose dialogs"
         },
         {
           "category": "feature",
@@ -79,7 +79,7 @@
         },
         {
           "category": "hint",
-          "text": "Requires matching host 5321 and Compose UI supporting dialog-v1; TSX requires matching TypeScript Engine 0.6.6. Non-UI scripts must already have overlay permission; it is not requested automatically"
+          "text": "Requires matching host 5321 and 3-Block Compose supporting dialog-v1; TSX requires matching TypeScript Engine 0.6.6. Non-UI scripts must already have overlay permission; it is not requested automatically"
         }
       ]
     },
@@ -87,7 +87,7 @@
       "released_date": "2026/10/07",
       "entries": [
         {
-          "heading": "Compose UI interoperability"
+          "heading": "3-Block Compose interoperability"
         },
         {
           "category": "feature",
@@ -103,7 +103,7 @@
         },
         {
           "category": "hint",
-          "text": "Requires matching host 5320 and Compose UI supporting the interoperability extension; TSX requires matching TypeScript Engine 0.6.5. Native object identity and container ownership are validated at runtime"
+          "text": "Requires matching host 5320 and 3-Block Compose supporting the interoperability extension; TSX requires matching TypeScript Engine 0.6.5. Native object identity and container ownership are validated at runtime"
         }
       ]
     },
@@ -153,7 +153,7 @@
       "released_date": "2026/10/04",
       "entries": [
         {
-          "heading": "Compose UI TSX"
+          "heading": "3-Block Compose TSX"
         },
         {
           "category": "feature",
@@ -173,7 +173,7 @@
       "released_date": "2026/10/03",
       "entries": [
         {
-          "heading": "Compose UI"
+          "heading": "3-Block Compose"
         },
         {
           "category": "feature",
@@ -189,7 +189,7 @@
         },
         {
           "category": "hint",
-          "text": "Requires a matching local AutoJs6 6.8.0 build containing compose and the Compose UI plugin; TSX, mixed layouts and compose.dialog remain for later releases"
+          "text": "Requires a matching local AutoJs6 6.8.0 build containing compose and the 3-Block Compose plugin; TSX, mixed layouts and compose.dialog remain for later releases"
         }
       ]
     },

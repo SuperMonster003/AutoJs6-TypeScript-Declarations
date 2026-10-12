@@ -23,7 +23,7 @@
 
 ###### 2026/10/08
 
-##### Réutilisation de fragments Compose UI
+##### Réutilisation de fragments 3-Block Compose
 
 * `Fonctionnalité` compose.memo et ComposeMemoOptions réutilisent dans render les fragments dont les dépendances et les valeurs state lues restent identiques, avec correspondance des éléments par key
 * `Note` Nécessite l'hôte correspondant 6.8.0 / 5323; comparaison des dépendances, correspondance des emplacements, moment d'appel et limite de 256 dépendances sont vérifiés à l'exécution. TSX nécessite TypeScript Engine 0.6.8 et Ace Editor 1.30.0
@@ -32,7 +32,7 @@
 
 ###### 2026/10/08
 
-##### Contrat Compose UI V2
+##### Contrat 3-Block Compose V2
 
 * `Fonctionnalité` 25 fabriques de noeuds et balises TSX: barres/tiroirs de navigation, onglets, panneaux inférieurs, menus, dates/heures, pagination, grilles, Chip, Badge, boutons segmentés/flottants, recherche, Tooltip et actualisation par glissement
 * `Amélioration` Propriétés V2, valeurs lues par défaut, emplacements requis, types d'enfants et événements générés depuis le catalogue de contrat append-only; conservation de V1 figé et du catalogue d'interopérabilité F2 séparé
@@ -42,22 +42,22 @@
 
 ###### 2026/10/07
 
-##### Boîtes de dialogue Compose UI
+##### Boîtes de dialogue 3-Block Compose
 
 * `Fonctionnalité` compose.dialog et DialogOptions / DialogType prennent en charge les dialogues indépendants et panneaux inférieurs, renvoyant le ComposeSession existant
 * `Amélioration` Types précis alert / bottomSheet, cancelable et remplacements de thème, avec entrée racine synchrone et méthodes de session conservées
-* `Note` Nécessite l'hôte 5321 et Compose UI prenant en charge dialog-v1; TSX nécessite TypeScript Engine 0.6.6. Les scripts hors UI doivent déjà avoir l'autorisation de superposition, sans demande automatique
+* `Note` Nécessite l'hôte 5321 et 3-Block Compose prenant en charge dialog-v1; TSX nécessite TypeScript Engine 0.6.6. Les scripts hors UI doivent déjà avoir l'autorisation de superposition, sans demande automatique
 
 # v4.33.0
 
 ###### 2026/10/07
 
-##### Interopérabilité Compose UI
+##### Interopérabilité 3-Block Compose
 
 * `Fonctionnalité` Noeuds compose.attach et AndroidView, véritables View getter, fabriques View synchrones, conteneurs XML `<compose>` et types TSX correspondants
 * `Amélioration` Catalogue d'interopérabilité généré et vérifié séparément, conservant V1 figé avec 30 composants / 114 propriétés et 29 correspondances JSX
 * `Correction` Arguments natifs View réels et récepteurs EventEmitter de XML TSX onClick, avec liaisons de clic TSX de ui.inflate
-* `Note` Nécessite l'hôte 5320 et Compose UI avec extension d'interopérabilité; TSX nécessite TypeScript Engine 0.6.5. Identité native et appartenance au conteneur sont vérifiées à l'exécution
+* `Note` Nécessite l'hôte 5320 et 3-Block Compose avec extension d'interopérabilité; TSX nécessite TypeScript Engine 0.6.5. Identité native et appartenance au conteneur sont vérifiées à l'exécution
 
 # v4.32.0
 
@@ -81,7 +81,7 @@
 
 ###### 2026/10/04
 
-##### Compose UI TSX
+##### 3-Block Compose TSX
 
 * `Fonctionnalité` 29 déclarations d'éléments compose:Name TSX issues du catalogue réel, avec fabriques membres compose.Name et alias d'une même fabrique
 * `Amélioration` Propriétés TSX, emplacements requis et événements conservent les types précis; Fragment garde les contrôles d'exécution de racine unique et de nombre d'emplacements
@@ -91,12 +91,12 @@
 
 ###### 2026/10/03
 
-##### Compose UI
+##### 3-Block Compose
 
 * `Fonctionnalité` compose / $compose et ComposeError: 29 fabriques de noeuds, montage appelable, état et ref, traitement groupé, thèmes, sessions et superpositions
 * `Fonctionnalité` Événements propres aux composants, types de lecture/écriture des propriétés, 20 méthodes Modifier ordonnées et commandes de session Snackbar
 * `Amélioration` Synchroniser les déclarations publiques Java, ressources et bibliothèques partagées avec l'hôte; catalogue et documentation sont contrôlés par le même manifeste figé
-* `Note` Nécessite une compilation locale AutoJs6 6.8.0 contenant compose et le plugin Compose UI; TSX, les dispositions mixtes et compose.dialog restent prévus pour plus tard
+* `Note` Nécessite une compilation locale AutoJs6 6.8.0 contenant compose et le plugin 3-Block Compose; TSX, les dispositions mixtes et compose.dialog restent prévus pour plus tard
 
 # v4.29.0
 
