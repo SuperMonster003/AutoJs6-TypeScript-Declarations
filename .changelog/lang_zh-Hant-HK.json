@@ -1,0 +1,1622 @@
+{
+  "labels": {
+    "hint": "提示",
+    "feature": "新增",
+    "fix": "修復",
+    "improvement": "優化",
+    "dependency": "依賴",
+    "compatibility": "兼容",
+    "completion": "完善",
+    "error": "異常",
+    "metrics": "指標",
+    "update": "更新",
+    "replacement": "替換",
+    "management": "管理",
+    "precision": "精確",
+    "simplification": "精簡",
+    "constraint": "約束",
+    "adjustment": "調整"
+  },
+  "$data": {
+    "v4.36.0": {
+      "released_date": "2026/10/08",
+      "entries": [
+        {
+          "heading": "Compose UI 片段複用"
+        },
+        {
+          "category": "feature",
+          "text": "compose.memo 與 ComposeMemoOptions, 在 render 中複用依賴值與讀取的 state 均未變化的節點片段, 支持按 key 匹配列表條目"
+        },
+        {
+          "category": "hint",
+          "text": "需要配套宿主 6.8.0 / 5323; 依賴比較, 槽位匹配, 調用時機和 256 項依賴上限由運行時校驗. TSX 配套 TypeScript Engine 0.6.8 與 Ace Editor 1.30.0"
+        }
+      ]
+    },
+    "v4.35.0": {
+      "released_date": "2026/10/08",
+      "entries": [
+        {
+          "heading": "Compose UI 契約 V2"
+        },
+        {
+          "category": "feature",
+          "text": "導航欄, 導航抽屜, 標籤, 底部彈層, 菜單, 日期和時間選擇, 分頁, 網格, Chip, Badge, 分段按鈕, 浮動按鈕, 搜索, Tooltip 和下拉刷新等 25 個節點工廠及 TSX 標籤"
+        },
+        {
+          "category": "improvement",
+          "text": "V2 屬性, 默認讀取值, 必填插槽, 子項類型及事件參數直接由追加式契約目錄生成, 保留凍結 V1 和獨立 F2 互操作目錄"
+        },
+        {
+          "category": "hint",
+          "text": "新組件需要配套宿主 5322 和契約 V2 渲染插件, TSX 配套 TypeScript Engine 0.6.7 與 Ace Editor 1.29.0; 數值範圍, 子項數量和跨屬性約束仍由運行時校驗"
+        }
+      ]
+    },
+    "v4.34.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "Compose UI 對話框"
+        },
+        {
+          "category": "feature",
+          "text": "compose.dialog 與 DialogOptions / DialogType, 支持獨立對話框和底部彈層, 返回原有 ComposeSession"
+        },
+        {
+          "category": "improvement",
+          "text": "精確聲明 alert / bottomSheet 類型, cancelable 和主題覆蓋, 保留同步根輸入與已有會話方法"
+        },
+        {
+          "category": "hint",
+          "text": "需要匹配的宿主 5321 和支持 dialog-v1 的 Compose UI; TSX 配套 TypeScript Engine 0.6.6. 非 UI 腳本須預先具有懸浮窗權限, 不自動申請"
+        }
+      ]
+    },
+    "v4.33.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "Compose UI 互操作"
+        },
+        {
+          "category": "feature",
+          "text": "compose.attach 與 AndroidView 節點, 實際 View getter, 同步 View 工廠, XML `<compose>` 容器及對應 TSX 類型"
+        },
+        {
+          "category": "improvement",
+          "text": "互操作目錄獨立生成和檢查, 保留凍結 V1 的 30 項組件 / 114 個屬性及 29 項 JSX 映射"
+        },
+        {
+          "category": "fix",
+          "text": "XML TSX onClick 的實際原生 View 參數和 EventEmitter 接收者聲明, 配合 ui.inflate 的 TSX 點擊綁定"
+        },
+        {
+          "category": "hint",
+          "text": "需要匹配的宿主 5320 和支持互操作擴展的 Compose UI; TSX 配套 TypeScript Engine 0.6.5. 原生對象的具體身份和容器歸屬由運行時校驗"
+        }
+      ]
+    },
+    "v4.32.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "顏色"
+        },
+        {
+          "category": "feature",
+          "text": "colors.toOklab / oklab / toOklch / oklch, ensureContrast, harmony, tones, derive, nightVariant, simulate 與 extract, DetectionAlgorithm 增加 'oklab'"
+        },
+        {
+          "category": "feature",
+          "text": "colors.theme 主題色控制 (get, set, reset, libraries, activate, deactivate, next, state, current) 及 Colors.Theme, ThemeLibrary, ThemeCurrent 等類型"
+        },
+        {
+          "category": "fix",
+          "text": "colors.contrast 示例中 #777777 與白色對比度的判斷結果"
+        },
+        {
+          "category": "hint",
+          "text": "需要 AutoJs6 6.8.0"
+        },
+        {
+          "heading": "終端"
+        },
+        {
+          "category": "feature",
+          "text": "terminal / $terminal 與 Internal.Terminal 的會話, 打開與執行選項, 環境, 插件狀態和錯誤類型, 對應 3-Shell Terminal 插件"
+        },
+        {
+          "heading": "聲明同步"
+        },
+        {
+          "category": "improvement",
+          "text": "同步宿主的公開 Java 與資源聲明, 包含智能顏色庫相關資源及代碼生成模型目錄資源"
+        },
+        {
+          "category": "improvement",
+          "text": "公開聲明移除 floaty 的內部觀察者 API, 未使用的 Compose 錯誤資源, 以及 libraries 中重複的 AtomicReference 和已棄用的生命週期 API"
+        }
+      ]
+    },
+    "v4.31.0": {
+      "released_date": "2026/10/04",
+      "entries": [
+        {
+          "heading": "Compose UI TSX"
+        },
+        {
+          "category": "feature",
+          "text": "29 個由真實組件目錄生成的 compose:Name TSX 元素聲明, 支持 compose.Name 成員工廠和同一工廠的別名"
+        },
+        {
+          "category": "improvement",
+          "text": "TSX 屬性, 必填插槽與事件回調沿用組件精確類型, Fragment 保留單根和插槽數量的運行時校驗"
+        },
+        {
+          "category": "hint",
+          "text": "需要 AutoJs6 6.8.0 / 5319 本地宿主與配套 TypeScript Engine; 不支持同樹混合 XML/Compose 或自定義 TSX 函數組件"
+        }
+      ]
+    },
+    "v4.30.0": {
+      "released_date": "2026/10/03",
+      "entries": [
+        {
+          "heading": "Compose UI"
+        },
+        {
+          "category": "feature",
+          "text": "compose / $compose 與 ComposeError, 覆蓋 29 個節點工廠, 可調用掛載入口, 狀態與 ref, 批處理, 主題, 會話和懸浮窗"
+        },
+        {
+          "category": "feature",
+          "text": "按組件區分的事件參數, 節點屬性讀取與寫入類型, 20 個有序 Modifier 方法及 Snackbar 會話命令"
+        },
+        {
+          "category": "improvement",
+          "text": "同步配套宿主的公開 Java / 資源 / 共享庫聲明, 組件目錄與文檔通過同一凍結清單核對"
+        },
+        {
+          "category": "hint",
+          "text": "需要包含 compose 模塊的配套 AutoJs6 6.8.0 本地構建及 Compose UI 插件; TSX, 混合佈局和 compose.dialog 仍屬後續版本"
+        }
+      ]
+    },
+    "v4.29.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "選擇器數值區間"
+        },
+        {
+          "category": "feature",
+          "text": "UiSelector 與全局選擇器函數 minDepth / maxDepth / minIndexInParent / maxIndexInParent (含邊界, 需要宿主 6.8.0+), 與 select() 字符串語法的 minDepth=3 等鍵對應"
+        },
+        {
+          "category": "fix",
+          "text": "內置選擇器聲明補充缺失的 childCount / minChildCount / maxChildCount"
+        }
+      ]
+    },
+    "v4.28.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Installer 來源配置"
+        },
+        {
+          "category": "feature",
+          "text": "installer/installReason/packageSource 的 null 重置類型和 sourceDeleteRequested 結果字段, 與宿主 5312+ 的來源配置能力對應"
+        },
+        {
+          "category": "improvement",
+          "text": "説明省略字段繼承, 顯式選項優先, 會話級選項邊界和批量共享來源保留; 其他 null 及腳本配置選擇字段仍拒絕"
+        }
+      ]
+    },
+    "v4.27.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Installer 高級安裝選項"
+        },
+        {
+          "category": "feature",
+          "text": "grantAllRequestedPermissions, requestUpdateOwnership, dexopt, installReason, packageSource 選項及封閉枚舉, 需要宿主 5308+ 和插件對應能力"
+        },
+        {
+          "category": "feature",
+          "text": "optimizing 會話階段, updateOwner 可空讀回結果和 dexopt 六種觀察狀態; accepted 不保證實際執行編譯"
+        },
+        {
+          "category": "improvement",
+          "text": "區分省略與顯式 false/none, 説明平台與授權邊界以及安裝成功後的附加操作不回滾安裝, 不提供本地策略的腳本繞過選項"
+        }
+      ]
+    },
+    "v4.26.1": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Installer 持久默認邊界"
+        },
+        {
+          "category": "improvement",
+          "text": "JSDoc 明確 Dhizuku 持久默認僅限 API 26-33, Root 獨立 system 身份與 user 0, persistent 的 auto 篩選和失敗不回退"
+        },
+        {
+          "category": "improvement",
+          "text": "區分實際默認解析與本地配置回執, 保留布爾腳本結果, 説明部分失敗和進程退出不保證回滾"
+        }
+      ]
+    },
+    "v4.26.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Installer P8 能力"
+        },
+        {
+          "category": "feature",
+          "text": "Dhizuku 授權名稱, notification 安裝交互, setDefault 的 preferred/persistent 模式與 NOTIFICATION_UNAVAILABLE 錯誤類型"
+        },
+        {
+          "category": "improvement",
+          "text": "JSDoc 明確宿主 5306+/插件能力協商, Dhizuku 當前 owner/profile 用户與安裝標誌限制, 通知模式不用於卸載及持久默認項取消語義"
+        }
+      ]
+    },
+    "v4.25.0": {
+      "released_date": "2026/10/01",
+      "entries": [
+        {
+          "heading": "Installer 腳本接口"
+        },
+        {
+          "category": "feature",
+          "text": "installer / $installer 模塊聲明, 包含同步與 Async 安裝, 卸載, 安裝包檢查, 授權方式, 默認安裝器和用户列表"
+        },
+        {
+          "category": "feature",
+          "text": "InstallSession 的事件, 取消, 等待與結果類型, InstallerError 錯誤字段, 單個來源 / 批量 / splits 的精確重載"
+        },
+        {
+          "category": "improvement",
+          "text": "JSDoc 説明默認交互, 來源刪除, 同步線程要求, 等待超時與腳本停止的取消邊界"
+        }
+      ]
+    },
+    "v4.24.1": {
+      "released_date": "2026/09/29",
+      "entries": [
+        {
+          "heading": "3-Stove Agent 按需連接"
+        },
+        {
+          "category": "improvement",
+          "text": "Agent JSDoc 説明插件中心統一啓用, 官方首次安裝自動啓用, 按需連接與首次同步連接的工作線程要求; status 保持只讀, 獲取任務不重放"
+        },
+        {
+          "category": "improvement",
+          "text": "當前插件名稱與最低宿主版本説明, 無類型簽名變化"
+        }
+      ]
+    },
+    "v4.24.0": {
+      "released_date": "2026/09/29",
+      "entries": [
+        {
+          "heading": "Agent 1.3.0 開發配套"
+        },
+        {
+          "category": "feature",
+          "text": "AgentRunOptions 的 plan 選項 (計劃模式, 省略沿用預設), AgentInputEvent 的 plan 類型與 steps 字段"
+        },
+        {
+          "category": "feature",
+          "text": "AgentRun.respond 接受 1 到 8 條字符串組成的數組以回應計劃審閲"
+        }
+      ]
+    },
+    "v4.23.0": {
+      "released_date": "2026/09/26",
+      "entries": [
+        {
+          "heading": "Agent 1.2.0 開發配套"
+        },
+        {
+          "category": "feature",
+          "text": "AgentToolGroup 的 mcp 工具組, 默認關閉, 由插件配置服務器與允許使用的工具"
+        },
+        {
+          "category": "improvement",
+          "text": "編輯器提示説明 MCP 服務器風險設置與宿主兼容要求"
+        }
+      ]
+    },
+    "v4.22.0": {
+      "released_date": "2026/09/26",
+      "entries": [
+        {
+          "heading": "Agent 1.1.0 開發配套"
+        },
+        {
+          "category": "feature",
+          "text": "AgentToolGroup 的 script_dynamic 工具組, 支持在任務與預設選項中限制動態腳本執行"
+        },
+        {
+          "category": "improvement",
+          "text": "編輯器提示説明動態腳本默認關閉且每份源碼單獨確認, 區分模型工具與公開 JavaScript 方法"
+        }
+      ]
+    },
+    "v4.21.1": {
+      "released_date": "2026/09/25",
+      "entries": [
+        {
+          "heading": "Agent 1.0.0 發佈配套"
+        },
+        {
+          "category": "improvement",
+          "text": "Agent 選項的編輯器提示, 説明默認預設與入隊快照, 模型目標選擇, 全局工具權限, 預算默認值和協議上限, 審慎模式及記憶自動注入的範圍"
+        },
+        {
+          "category": "fix",
+          "text": "聲明包依賴自身舊版本, 導致安裝時額外下載重複聲明的問題"
+        },
+        {
+          "category": "improvement",
+          "text": "README 發行歷史與完整更新日誌保持一致"
+        }
+      ]
+    },
+    "v4.21.0": {
+      "released_date": "2026/09/24",
+      "entries": [
+        {
+          "heading": "Agent 任務 API"
+        },
+        {
+          "category": "feature",
+          "text": "ai.agent.run/create/get/list/catalog/presets/status, AgentRun 只讀屬性, 事件, 詢問回應, 確認, 取消, result Promise 與 join, 對應 AutoJs6 6.8.0 / build 5293"
+        },
+        {
+          "category": "feature",
+          "text": "任務選項, 預算, 歷史摘要, 登記腳本元數據與事件類型, 明確 detached 生命週期, 超時及結果與鏈路錯誤的區別"
+        },
+        {
+          "category": "feature",
+          "text": "docs/smoke/ai-agent-task-smoke.ts, 覆蓋任務 API 與非法選項, 事件和回應類型"
+        }
+      ]
+    },
+    "v4.20.0": {
+      "released_date": "2026/09/23",
+      "entries": [
+        {
+          "heading": "Agent 登記腳本執行通道"
+        },
+        {
+          "category": "feature",
+          "text": "`ai.agent.result(value)` 與 `ai.agent.context()` 聲明及 `AgentExecutionContext`, 對應 AutoJs6 6.8.0 / build 5287"
+        },
+        {
+          "category": "feature",
+          "text": "登記腳本結果的 JSON 值類型, 64 KiB 上限與上下文快照説明, `docs/smoke/ai-agent-execution-smoke.ts` 覆蓋有效調用與未開放任務 API 的負例"
+        }
+      ]
+    },
+    "v4.19.0": {
+      "released_date": "2026/09/21",
+      "entries": [
+        {
+          "heading": "電子書模塊聲明"
+        },
+        {
+          "category": "feature",
+          "text": "全局對象 `epub` / `$epub` 聲明 (AutoJs6 6.8.0, 由 Readium EPUB Reader 插件提供): `open` / `openAsync`, 便捷層 `metadata` / `toc` / `readingOrder` / `text` / `cover` / `search` 及其 `Async` 形態, 閲讀器 `read` / `readAsync`, `isAvailable` / `isAvailableAsync` 與 `EpubError`"
+        },
+        {
+          "category": "feature",
+          "text": "`Internal.Epub` 命名空間: `Book` (元數據, 目錄, 閲讀順序, 位置數, 正文提取 `text` / `textAll`, 封面與資源導出, 全文搜索及關閉), `ReaderSession` 事件發射器 (`open` / `progress` / `bookmark` / `error` / `close` 事件, 跳轉, 翻頁, 偏好, 書籤與關閉), `Locator`, `Metadata` / `TocEntry` / `ReadingOrderEntry` / `SearchHit` / `Bookmark`, `ReadOptions` / `Preferences` / `TextOptions` / `ExportOptions` / `SearchOptions` 與 `ErrorCode`"
+        },
+        {
+          "category": "feature",
+          "text": "`docs/smoke/epub-smoke.ts` 編譯樣例, 覆蓋書籍對象, 便捷層, 閲讀器會話事件與控制, 錯誤類及負例"
+        },
+        {
+          "category": "feature",
+          "text": "`epub.annotations` / `annotationsAsync` 與 `Book.annotations` / `annotationsAsync` (Readium EPUB Reader 插件 1.1.0, EPUB 契約版本 2: 閲讀器為一本書保存的高亮與筆記, 按閲讀順序, 最多 2000 條, 插件為 1.0.0 時為 `PLUGIN_INCOMPATIBLE`), `Internal.Epub.Annotation` / `AnnotationStyle` 與 `ReaderSession` 的 `highlight` 事件 (`HighlightEvent`, `action` 為 `added` / `updated` / `removed`); `docs/smoke/epub-smoke.ts` 補充高亮與筆記用例與負例"
+        },
+        {
+          "heading": "郵件模塊聲明"
+        },
+        {
+          "category": "feature",
+          "text": "服務商預設 `Provider` 的 `pop3Xoauth2TwoLine` 字段 (Angus Mail 插件預設目錄版本 3: POP3 的 `AUTH XOAUTH2` 是否只接受兩行形式, Outlook.com 與 Microsoft 365 為 `true`)"
+        },
+        {
+          "category": "feature",
+          "text": "`SavedAccount.oauth` 與 `SavedAccountOAuth` (Angus Mail 插件 1.2.0: 在插件設置頁經瀏覽器以 Google / Microsoft 賬號登錄的賬户在 `mail.accounts.list()` 中帶有 `provider` / `authorizedAt` / `expiresAt` / `needsReauth`, 令牌本身不出現)"
+        },
+        {
+          "category": "feature",
+          "text": "`Internal.Mail.TriggerEvent` 接口: AutoJs6 \"郵件到達時\" 任務啓動的腳本通過 `engines.myEngine().execArgv.mail` 收到的事件 (Angus Mail 插件 1.1.0 後台守望, 郵件契約版本 2: `triggerId`, `alias`, `address`, `folder`, 信封 `message` 與 `receivedAt`)"
+        }
+      ]
+    },
+    "v4.18.0": {
+      "released_date": "2026/09/20",
+      "entries": [
+        {
+          "heading": "郵件模塊聲明"
+        },
+        {
+          "category": "feature",
+          "text": "全局對象 `mail` / `$mail` 聲明 (AutoJs6 6.8.0, 由 Angus Mail 插件提供): `connect` / `connectAsync`, `setDefault`, `default`, `close`, `providers`, `accounts`, `MailError` 及轉發到默認客户端的全部客户端方法"
+        },
+        {
+          "category": "feature",
+          "text": "`Internal.Mail` 命名空間: `Client` 與 `Operations` (收發, 文件夾, 列表, 搜索, 讀取, 附件與原文下載, 標記, 移動, 複製, 刪除, 清除, 追加與監聽的同步及 `Async` 形態), `Watch` 事件發射器, `Message` / `Attachment` / `Address` / `SendMessage`, `AccountOptions` / `Provider` / `SavedAccount`, `SearchQuery` / `SearchResult`, `Folder` / `FolderStatus` / `SendResult` / `SessionTestResult` 與 `ErrorCode`"
+        },
+        {
+          "category": "feature",
+          "text": "`docs/smoke/mail-smoke.ts` 編譯樣例, 覆蓋別名與令牌連接, 搜索回退標記, 附件下載, 標記與移動, 監聽事件及負例"
+        }
+      ]
+    },
+    "v4.17.0": {
+      "released_date": "2026/09/18",
+      "entries": [
+        {
+          "heading": "內置日誌器與三方庫聲明精簡"
+        },
+        {
+          "category": "update",
+          "text": "全局代理 `Level` / `LogConfigurator` / `LogManager` 改為繼承 AutoJs6 內置的 `org.autojs.autojs.core.console.log` 同名類, `console.setGlobalLogConfig` 的示例與源碼摘要同步 (宿主 6.8.0 以內置滾動文件日誌器替換 log4j)"
+        },
+        {
+          "category": "update",
+          "text": "三方庫聲明不再包含宿主已移除的庫: log4j 與 android-logging-log4j, Flexmark, JavaMail, JUnit, github-api 與 Jackson, commons-io 與 commons-lang3, kotlin-reflect, SpongyCastle, media3 與 Guava (`libraries.d.ts` 26,864 -> 25,081 行)"
+        },
+        {
+          "category": "update",
+          "text": "合併 AutoJs6 6.8.0 (5282) 的主應用與資源聲明: 新增 `org.autojs.autojs.core.console.log` 包 (Appender / Level / LogConfigurator / LogEvent / Logger / LoggerRepository / LogManager) 與郵件插件契約類, 資源 ID 隨宿主增刪"
+        }
+      ]
+    },
+    "v4.16.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "圖色與圖像匹配增強"
+        },
+        {
+          "category": "feature",
+          "text": "`images.countPointsByColor` 與 `images.getMeanColor` 聲明, `images.readPixels` 接受 ImageWrapper 或文件路徑"
+        },
+        {
+          "category": "feature",
+          "text": "`colors.distance`, `colors.invert`, `colors.blend`, `colors.contrast` 及 Color 實例對應方法聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`images.matchTemplate` 與 `images.findPointByImage` 的 `scales` 選項, 匹配項的 `width`, `height`, `scale`, `center`, `rect` 屬性, 以及 `MatchingResult` 的 `size`, `isEmpty()`, `isNotEmpty()`, `filter()` 聲明"
+        },
+        {
+          "category": "completion",
+          "text": "`images.matchTemplate` 參數接受圖片路徑並補充 `useTransparentMask` 選項"
+        },
+        {
+          "category": "feature",
+          "text": "`images.matchFeatures` 的 `ransacThreshold`, `minInliers`, `maxFeatures` 選項及圖片參數, `ObjectFrame` 的 `width`, `height`, `angle`, `bounds`, `points`, `matches`, `inliers` 屬性, 以及 `ImageFeatures` 的 `count`, `method`, `oneShot()` 聲明"
+        },
+        {
+          "category": "completion",
+          "text": "`images.detectAndComputeFeatures` 補充 `maxFeatures` 選項及 `scale` 取值説明, 匹配器名稱不區分大小寫"
+        },
+        {
+          "category": "update",
+          "text": "合併 AutoJs6 6.8.0 (5280) 的主應用, 資源與三方庫聲明, 保留 Flow 任務棧及座標點擊聲明"
+        }
+      ]
+    },
+    "v4.15.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "座標點擊與 Flow 任務棧"
+        },
+        {
+          "category": "feature",
+          "text": "smartClickBounds / clickBoundsIfExists / clickBoundsAny 及 Flow 等待, 延時和別名聲明"
+        },
+        {
+          "category": "update",
+          "text": "maxAttempts 默認 0 表示不限嘗試次數, FlowError.flowStack 提供異步任務診斷"
+        },
+        {
+          "category": "update",
+          "text": "同步宿主生成聲明, Ace Editor 內置聲明, LSP 聚合文件和索引"
+        }
+      ]
+    },
+    "v4.14.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "Flow 可選步驟與有界循環"
+        },
+        {
+          "category": "feature",
+          "text": "Flow 鏈式 clickIfExists / clickAny / findAny, whenPresent 和 repeatUntil 聲明"
+        },
+        {
+          "category": "update",
+          "text": "waitForStable 的 snapshot 投影與集合返回類型, stableFor 默認值與運行時保持一致"
+        },
+        {
+          "category": "update",
+          "text": "同步宿主生成聲明與 Ace Editor LSP 聚合文件和索引"
+        }
+      ]
+    },
+    "v4.13.0": {
+      "released_date": "2026/09/14",
+      "entries": [
+        {
+          "heading": "打包應用共享存儲配置"
+        },
+        {
+          "category": "feature",
+          "text": "LaunchConfig.requiresSharedStorage 及對應 getter / setter 聲明"
+        },
+        {
+          "category": "update",
+          "text": "同步 AutoJs6 6.8.0 (5280) 的資源與依賴聲明及 Ace Editor LSP 分組"
+        }
+      ]
+    },
+    "v4.12.0": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "Pangu 文本間距"
+        },
+        {
+          "category": "feature",
+          "text": "全局 `pangu` 聲明, 覆蓋 pangu.js 10.1.0 的 `version`, `spaceText` 與 `hasProperSpacing`, 併為 `require('pangu')` 提供具體返回類型"
+        },
+        {
+          "category": "update",
+          "text": "同步 AutoJs6 主應用聲明與 Ace Editor 內置聲明, 重新生成 LSP 分組與索引"
+        }
+      ]
+    },
+    "v4.11.1": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "Android 本地網絡權限"
+        },
+        {
+          "category": "fix",
+          "text": "`runtime.requestPermissions` 的通用權限名類型, 將參數聲明為 `string[]`, 更正數組示例並説明 `access_local_network` 的系統與 targetSdk 條件"
+        },
+        {
+          "category": "update",
+          "text": "從 AutoJs6 6.8.0 (5280) 重新生成主應用與資源聲明, 同步 Ace Editor 內置聲明和 LSP 分組"
+        }
+      ]
+    },
+    "v4.11.0": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "設備內存頁大小"
+        },
+        {
+          "category": "feature",
+          "text": "`device.pageSize` 與 `$device.pageSize` 只讀數值聲明, 以字節返回當前系統的內存頁大小"
+        },
+        {
+          "category": "update",
+          "text": "從 AutoJs6 6.8.0 (5280) 重新生成主應用與資源聲明, 同步 Ace Editor 內置聲明和 LSP 分組"
+        }
+      ]
+    },
+    "v4.10.0": {
+      "released_date": "2026/09/12",
+      "entries": [
+        {
+          "heading": "OCR 自動選擇模式"
+        },
+        {
+          "category": "feature",
+          "text": "OCR 模式支持 `auto`, 空字符串及 nullish 重置, 讀取類型限定為實際引擎名稱或空字符串, 同步 `tap`, 單次調用選項與 Ace Editor 補全"
+        },
+        {
+          "category": "update",
+          "text": "從 AutoJs6 6.8.0 (5280) 重新生成主應用與資源聲明, 同步 Ace Editor 內置聲明和 LSP 分組"
+        }
+      ]
+    },
+    "v4.9.0": {
+      "released_date": "2026/09/10",
+      "entries": [
+        {
+          "heading": "MediaInfo 多流查詢"
+        },
+        {
+          "category": "feature",
+          "text": "MediaInfo 流序號, 流計數, InfoKind 與能力聲明, 同步 Rhino 查詢選項與 Ace Editor 補全"
+        }
+      ]
+    },
+    "v4.8.1": {
+      "released_date": "2026/09/08",
+      "entries": [
+        {
+          "heading": "控制枱輸入, 顯示選項與 UI 模式控制枱元素聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`console.rawInput` / `console.input` 恢復為可用聲明 (阻塞讀取控制枱輸入欄的一行文本, `input` 作為 JavaScript 表達式求值)"
+        },
+        {
+          "category": "feature",
+          "text": "`console.setTimeVisible` / `setTimeFormat` / `setColorful` / `setAvoidStatusBar` / `setInputVisible` 及 `console.build` 的 `timeVisible` / `timeFormat` / `colorful` / `avoidStatusBar` / `inputVisible` 選項"
+        },
+        {
+          "category": "feature",
+          "text": "JSX 元素 `<console>` / `<globalconsole>` 及其屬性聲明 (`global`, `title`, 標題欄與內容區樣式, `timeVisible`, `timeFormat`, `colorful`, `inputVisible` 等)"
+        },
+        {
+          "category": "dependency",
+          "text": "適配 AutoJs6 6.8.0 (5279) 的控制枱重構"
+        }
+      ]
+    },
+    "v4.8.0": {
+      "released_date": "2026/09/07",
+      "entries": [
+        {
+          "heading": "無障礙自動化聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`aj6-int-flow.d.ts`: `Flow<T>` 鏈式對象與 `Flow` 命名空間 (等待選項, 作用域, 默認值, `FlowError` 與錯誤碼), `flow` / `$flow` 命名空間對象 (`Internal.FlowApi`: 等待 / 工具集 / 事件等待起點, `all` / `race` / `any`, `defaults`, `trace`), 以及 `waitAsync` / `waitThenClick` / `clickWait` / `waitForStable` / `waitForStableThenClick` / `clickWhenStable` / `waitForVisible` / `waitForHidden` / `waitForGone` / `clickWhenStableAfter` 全局函數與 `wait.async`"
+        },
+        {
+          "category": "feature",
+          "text": "`Internal.Automator` 與全局的工具集 (`smartClick` / `clickIfExists` / `clickAny` / `findAny` / `scrollUntil` / `typeInto` / `dismissPopups` / `collectList` / `launchAndWait` / `backUntil` / `backToApp` / `toggle` / `retry`) 與事件驅動等待 (`waitForIdle` / `waitForEvent` / `waitForToast` / `waitForNotification`), 選項與結果類型置於 `Automator` 命名空間"
+        },
+        {
+          "category": "feature",
+          "text": "`Internal.Auto` 的 `wait` / `findWindows` / `findWindowRoots` / `explain` / `dump` / `stats`, `registerEvent` / `registerEvents` 的過濾選項重載, `setWindowFilter` 的匹配對象形式 (`Automator.WindowMatch`), `AutoState.adoptedByEvent`, `Automator.Flags` 新增 `appWindowsFallback` / `eventAssistedPolling`"
+        },
+        {
+          "category": "feature",
+          "text": "字符串選擇器重載 `select(syntax)` (全局與 `Internal.Selector`), `findIterator()` 與 `UiObjectIterator`"
+        },
+        {
+          "category": "dependency",
+          "text": "從 AutoJs6 6.8.0 (5278) 重新生成主應用聲明 (`UiObject` / `UiSelector` / `UiObjectCollection` 的新增方法與 `UiObjectIterator`), 並同步 Ace Editor 內置聲明和 LSP 分組"
+        }
+      ]
+    },
+    "v4.7.0": {
+      "released_date": "2026/09/01",
+      "entries": [
+        {
+          "heading": "Pinyin 自定義讀音與矩陣工具聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`Pinyin.Options.customDictionary` 與 `Pinyin.CustomDictionary`, 聲明按調用生效的漢字讀音覆蓋, 最長匹配優先及 64 KiB/1024 項邊界"
+        },
+        {
+          "category": "completion",
+          "text": "`pinyin.compare` 返回數值排序結果, `pinyin.compact` 返回候選矩陣的笛卡爾積, 並移除原佔位返回類型"
+        },
+        {
+          "category": "dependency",
+          "text": "從 AutoJs6 6.8.0 (5277) 重新生成主應用與共享 Pinyin API 聲明, 並同步 Ace Editor 內置聲明和 LSP 分組"
+        }
+      ]
+    },
+    "v4.6.1": {
+      "released_date": "2026/09/01",
+      "entries": [
+        {
+          "heading": "預覽器命名聲明同步"
+        },
+        {
+          "category": "replacement",
+          "text": "將 `FileUtils.PreviewType` 與 `previewType` 分別統一為 `PreviewerType` 與 `previewerType`, 同步主應用聲明中的預覽器語義命名"
+        },
+        {
+          "category": "dependency",
+          "text": "從 AutoJs6 6.8.0 (5277) 重新生成主應用, 資源與第三方庫聲明, 並同步 Ace Editor 內置聲明和 LSP 分組"
+        }
+      ]
+    },
+    "v4.6.0": {
+      "released_date": "2026/08/31",
+      "entries": [
+        {
+          "heading": "PNG 量化資源預算與取消聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`Images.PngQuantizationOptions.maxPixels` 與 `maxMemoryBytes`, 聲明默認 16000000 像素和 256 MiB 附加工作內存上限"
+        },
+        {
+          "category": "metrics",
+          "text": "字節和文件結果增加 `peakWorkingMemoryBytes`, v4 返回計入預算的峯值內存, 舊插件返回 `-1`"
+        },
+        {
+          "category": "error",
+          "text": "聲明資源上限錯誤的穩定代碼, 原因和預算字段, 並同步顯式取消令牌及腳本退出聯動對應的 Java API"
+        },
+        {
+          "category": "dependency",
+          "text": "從 AutoJs6 6.8.0 (5277) 重新生成資源控制, 取消與結果 Java 聲明, 並同步 Ace Editor 內置聲明和 LSP 分組"
+        }
+      ]
+    },
+    "v4.5.0": {
+      "released_date": "2026/08/31",
+      "entries": [
+        {
+          "heading": "PNG 量化色彩與流式文件輸出聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`images.quantizeToFile` 與 `Images.PngQuantizationFileResult`, 直接寫入 PNG 文件並返回路徑, 大小, 實際質量和量化誤差"
+        },
+        {
+          "category": "completion",
+          "text": "`Images.PngQuantizationOptions.preserveAlpha`, 默認保留透明度, 設為 `false` 時聲明完全不透明輸出語義"
+        },
+        {
+          "category": "dependency",
+          "text": "從 AutoJs6 6.8.0 (5277) 重新生成文件描述符輸出, 色彩選項與結果 Java 聲明, 並同步 Ace Editor 內置聲明和 LSP 分組"
+        }
+      ]
+    },
+    "v4.4.0": {
+      "released_date": "2026/08/30",
+      "entries": [
+        {
+          "heading": "PNG 量化質量結果與回退策略聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`images.quantize` 與 `Images.PngQuantizationResult`, 返回索引 PNG 字節, 輸出大小, 實際質量和標準化量化誤差"
+        },
+        {
+          "category": "completion",
+          "text": "空選項聲明為 `minQuality=0` 的盡力而為策略, 顯式 `quality` 或 `minQuality` 保持嚴格下限語義"
+        },
+        {
+          "category": "error",
+          "text": "主應用聲明同步 `PngQuantBridge.QualityTooLowException` 與穩定錯誤代碼, 可區分質量不足和內部失敗"
+        },
+        {
+          "category": "dependency",
+          "text": "從 AutoJs6 6.8.0 (5276) 重新生成主應用與資源聲明, 並同步 Ace Editor 內置聲明和 LSP 分組"
+        }
+      ]
+    },
+    "v4.3.0": {
+      "released_date": "2026/08/30",
+      "entries": [
+        {
+          "heading": "PNG 量化具名參數聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`Images.PngQuantizationOptions` 及 `images.save`, `saveImage`, `compress`, `compressToBytes` 的對象參數聲明, 覆蓋顏色預算, 速度, 質量區間, 抖動與 posterize"
+        },
+        {
+          "category": "compatibility",
+          "text": "保留數字 `quality` 與省略參數的既有重載語義, 並聲明選項對象僅適用於 Image Quantization 插件提供的 PNG 輸出"
+        },
+        {
+          "category": "dependency",
+          "text": "從 AutoJs6 6.8.0 (5276) 重新生成主應用與資源聲明, 並同步 Ace Editor 內置聲明和 LSP 分組"
+        }
+      ]
+    },
+    "v4.2.0": {
+      "released_date": "2026/08/27",
+      "entries": [
+        {
+          "heading": "R8 Retrace 與校驗產物導出聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`runtime.retraceR8Stack` 聲明, 通過協議 1.1 提供者按 mapping 與 retrace metadata 溯源綁定還原混淆堆棧"
+        },
+        {
+          "category": "feature",
+          "text": "`runtime.loadJarWithR8` 的 3 個導出重載, 原子導出經重新哈希的 mapping, seeds, usage 與 retrace metadata, 且不隱式導出 DEX"
+        },
+        {
+          "category": "constraint",
+          "text": "所有路徑只由宿主解析, 未選擇精確提供者或任一哈希, 元數據, 輸出校驗失敗時均終止且不回退 D8/dx"
+        },
+        {
+          "category": "dependency",
+          "text": "從 AutoJs6 宿主提交 `dafddc732` 重新生成主應用與資源聲明, 並同步 Ace Editor 內置聲明和 LSP 分組"
+        }
+      ]
+    },
+    "v4.1.0": {
+      "released_date": "2026/08/26",
+      "entries": [
+        {
+          "heading": "AI 插件唯一目標接口聲明"
+        },
+        {
+          "category": "replacement",
+          "text": "`ai`, `ask`, `chat`, `stream`, `session` 與 `catalog` 統一使用插件目標輸入, 選項, 響應和流式類型"
+        },
+        {
+          "category": "simplification",
+          "text": "移除未發佈的雙路徑重載, 宿主直連響應形狀及過渡類型, 超時只保留 `timeout` 規範屬性"
+        },
+        {
+          "category": "completion",
+          "text": "省略選擇器時聲明官方 3-Stone AI 默認目標, 並統一消息, usage, finish reason, target, session 和穩定錯誤類型"
+        },
+        {
+          "category": "dependency",
+          "text": "同步 Ace Editor 內置聲明與生成的 LSP 聲明分組"
+        }
+      ]
+    },
+    "v4.0.9": {
+      "released_date": "2026/08/26",
+      "entries": [
+        {
+          "heading": "AI 統一目標目錄與精確路由聲明"
+        },
+        {
+          "category": "replacement",
+          "text": "以 `ai.catalog` 統一聲明本機模型與在線配置目標, 刪除未發佈的舊目錄, 配置探測及兼容別名"
+        },
+        {
+          "category": "feature",
+          "text": "`target` 精確選擇, 官方 3-Stone AI 默認目標, target/profile/backend/plugin 元數據及 reasoning 輸出聲明"
+        },
+        {
+          "category": "completion",
+          "text": "生成, 流式與持久會話的完整 usage, finish reason 及穩定錯誤代碼, 嚴格聲明目標不存在, 未配置, 不可用或能力不匹配時不回退"
+        },
+        {
+          "category": "dependency",
+          "text": "重新生成 AutoJs6 主應用, 資源及三方庫聲明, 並同步 Ace Editor 內置聲明"
+        }
+      ]
+    },
+    "v4.0.8": {
+      "released_date": "2026/08/25",
+      "entries": [
+        {
+          "heading": "R8 顯式編譯入口聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`ScriptRuntime.loadJarWithR8` 的 3 個重載, 覆蓋顯式 keep rules, 有序 classpath 與 consumer-rule ordinal 綁定"
+        },
+        {
+          "category": "constraint",
+          "text": "聲明保留完整參數數組類型, 與默認關閉且無 D8/dx 回退的宿主入口一致"
+        },
+        {
+          "category": "dependency",
+          "text": "同步 AutoJs6 主應用, API 文檔與 Ace Editor 內置聲明"
+        }
+      ]
+    },
+    "v4.0.7": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "AI 本機 backend profile 聲明"
+        },
+        {
+          "category": "feature",
+          "text": "本機插件生成及持久會話的 `backend` 選項, 覆蓋 `cpu`, `gpu` 和 `npu`, 默認 CPU 且不可用 profile 不回退"
+        },
+        {
+          "category": "feature",
+          "text": "統一目標目錄的 `backendProfiles` 判別聯合類型, 精確聲明設備可用性及穩定不可用原因"
+        },
+        {
+          "category": "constraint",
+          "text": "模型枚舉和雲端提供商選項禁止誤用本機 `backend`, 持久會話創建後固定同一 profile"
+        },
+        {
+          "category": "dependency",
+          "text": "同步 AutoJs6 主應用與 Ace Editor 內置聲明"
+        }
+      ]
+    },
+    "v4.0.6": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "AI 本機結構化 JSON 聲明"
+        },
+        {
+          "category": "feature",
+          "text": "本機插件路由及持久會話的 `structuredJson` 和 `responseSchema` 選項"
+        },
+        {
+          "category": "constraint",
+          "text": "`responseSchema` 必須是 JSON 對象並會隱式啓用結構化輸出, 會話創建後為每輪固定同一 schema"
+        },
+        {
+          "category": "precision",
+          "text": "`ai.ask` 及響應 `text` 仍返回完整 JSON 文本, 流式增量仍為可能尚未完整的文本片段"
+        },
+        {
+          "category": "dependency",
+          "text": "重新生成並同步 AutoJs6 主應用, 資源及三方庫聲明"
+        }
+      ]
+    },
+    "v4.0.5": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "AI 持久多輪會話聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`ai.session` 及持久會話選項, 覆蓋官方插件簡寫, system preface 和固定生成參數"
+        },
+        {
+          "category": "feature",
+          "text": "`Ai.Session` 的 `ask`, `chat`, `stream`, `close` 方法及只讀狀態, 提供商和模型屬性"
+        },
+        {
+          "category": "constraint",
+          "text": "會話輪次僅接收當前用户提示字符串, 明確流式取消會關閉整個會話"
+        },
+        {
+          "category": "dependency",
+          "text": "重新生成並同步 AutoJs6 主應用, 資源及三方庫聲明"
+        }
+      ]
+    },
+    "v4.0.4": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "AI 本機插件路由聲明完善"
+        },
+        {
+          "category": "feature",
+          "text": "`ai.chat`, `ai.stream` 和統一目標目錄的插件重載, 覆蓋路由響應, 流式事件及目標發現"
+        },
+        {
+          "category": "completion",
+          "text": "官方插件簡寫, 第三方組件選擇, 多輪純文本消息及本地生成參數聲明"
+        },
+        {
+          "category": "precision",
+          "text": "插件 token 用量, 生成耗時, 可空模型 ID 及穩定路由錯誤類型"
+        },
+        {
+          "category": "dependency",
+          "text": "重新生成並同步 AutoJs6 主應用, 資源及三方庫聲明"
+        }
+      ]
+    },
+    "v4.0.3": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "YOLO 獨立插件目標檢測聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`yolo`/`$yolo` 模塊及 `load`, `detect`, `close` 聲明, 覆蓋會話選項, 檢測結果及穩定錯誤代碼"
+        },
+        {
+          "category": "constraint",
+          "text": "聲明顯式 Provider 組件, CPU 設備及線程, 閾值, 結果數和超時範圍"
+        },
+        {
+          "category": "improvement",
+          "text": "同步 Node 插件運行器的主應用聲明, 移除已淘汰的 NativeNodeEmbedded 和 libuv 診斷橋接聲明"
+        },
+        {
+          "category": "dependency",
+          "text": "重新生成並同步 AutoJs6 主應用, 資源及三方庫聲明"
+        }
+      ]
+    },
+    "v4.0.2": {
+      "released_date": "2026/08/12",
+      "entries": [
+        {
+          "heading": "Python 引擎源碼路由聲明"
+        },
+        {
+          "category": "feature",
+          "text": "`PythonScriptSource`, `PythonFileSource`, `PythonProjectSource` 和 `PersistedScriptLaunchContext` 等主應用聲明, 並補齊 `IntentTask`/`TimedTask` 的 `sourceKind` 與 `projectRoot` 持久化上下文"
+        },
+        {
+          "category": "improvement",
+          "text": "增加 `ScriptSource(sourceName, extension)` 構造簽名, 同步 `engines.execScriptFile` 源碼摘要, 明確 `.py` 路由及禁止回退到 JavaScript 引擎"
+        },
+        {
+          "category": "dependency",
+          "text": "重新生成並同步 AutoJs6 主應用, 資源及三方庫聲明"
+        }
+      ]
+    },
+    "v4.0.1": {
+      "released_date": "2026/08/11",
+      "entries": [
+        {
+          "heading": "AI 本機文本生成插件顯式選擇聲明"
+        },
+        {
+          "category": "feature",
+          "text": "ai/ask 的本機文本生成插件顯式選擇重載及組件, 提供商和模型類型"
+        },
+        {
+          "category": "constraint",
+          "text": "插件選項僅支持單條 user 文本和超時, 並禁止與雲端提供商選項混用"
+        }
+      ]
+    },
+    "v4.0.0": {
+      "released_date": "2026/07/27",
+      "entries": [
+        {
+          "heading": "AutoJs6 6.8.0 Alpha7 聲明同步與生成聲明整合"
+        },
+        {
+          "category": "feature",
+          "text": "ai/tts/powerManager/settings/workManager 模塊聲明及運行時別名"
+        },
+        {
+          "category": "improvement",
+          "text": "適配 AutoJs6 6.8.0 Alpha7 內置模塊 API 聲明"
+        },
+        {
+          "category": "improvement",
+          "text": "同步 tasks/app/images/ocr/plugins/web 等模塊的簽名, 別名, 空值及返回類型"
+        },
+        {
+          "category": "improvement",
+          "text": "補齊運行時掛載, `$` 前綴別名及關鍵全局對象 smoke 樣例"
+        },
+        {
+          "category": "dependency",
+          "text": "重新生成並整合 Android/AutoJs6 主應用, 資源及三方庫聲明"
+        },
+        {
+          "category": "adjustment",
+          "text": "發佈入口統一為 `declarations/autojs6/index.d.ts`, 移除舊入口及生成分片"
+        }
+      ]
+    },
+    "v3.0.0": {
+      "released_date": "2026/06/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "converter/formatter/sysprops/zip/nanoid/mediainfo/pinyin4j/jsox 等內置模塊聲明文件"
+        },
+        {
+          "category": "improvement",
+          "text": "適配 AutoJs6 6.7.1 Alpha4 內置模塊 API 聲明"
+        },
+        {
+          "category": "improvement",
+          "text": "完善 index 入口引用/全局變量聲明及 `$` 前綴模塊別名"
+        },
+        {
+          "category": "improvement",
+          "text": "同步 colors/Color/images/Canvas/pinyin/mime/sqlite/media/recorder/tasks 等既有模塊聲明"
+        },
+        {
+          "category": "improvement",
+          "text": "增加關鍵全局對象 smoke 樣例及 TypeScript 驗證命令記錄"
+        },
+        {
+          "category": "dependency",
+          "text": "刷新 Android/AutoJs6 主應用及三方庫生成聲明文件"
+        }
+      ]
+    },
+    "v2.1.3": {
+      "released_date": "2023/12/02",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "opencc 模塊聲明文件"
+        },
+        {
+          "category": "improvement",
+          "text": "完善 ocr 章節缺失的 detect 及 recognizeText 聲明"
+        },
+        {
+          "category": "improvement",
+          "text": "適配 AutoJs6 6.5.0"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 Android OpenCC 聲明文件版本 1.2.0"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Android dx 聲明版本 1.11 -> 1.14"
+        },
+        {
+          "category": "dependency",
+          "text": "降級 Jackson DataBind 聲明版本 2.14.3 -> 2.13.3"
+        },
+        {
+          "category": "dependency",
+          "text": "降級 Apache Commons IO 聲明文件版本 2.14.0 -> 2.8.0"
+        }
+      ]
+    },
+    "v2.1.2": {
+      "released_date": "2023/10/30",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "shizuku 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "barcode 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "qrcode 模塊聲明文件"
+        },
+        {
+          "category": "improvement",
+          "text": "適配 AutoJs6 6.4.0"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 JavaMail for Android 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 Okio 聲明文件版本 3.2.0"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 Shizuku 聲明文件版本 13.1.5"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 MLKit Barcode Bundled 聲明文件版本 17.2.0"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 MLKit Barcode Common 聲明文件版本 17.0.0"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Kotlin Stdlib 聲明文件版本 1.7.21 -> 1.9.20-RC2"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Joda Time 聲明文件版本 2.12.1 -> 2.12.5"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Zip4j 聲明文件版本 2.11.2 -> 2.11.5"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Gson 聲明文件版本 2.10 -> 2.10.1"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Okhttp3 聲明版本 5.0.0-alpha.9 -> 5.0.0-alpha.11"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 OpenCV 聲明版本 4.5.5 -> 4.8.0"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Apache Commons Lang3 聲明文件版本 3.12.0 -> 3.13.0"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Apache Commons IO 聲明文件版本 2.8.0 -> 2.14.0"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Android Analytics 聲明版本 14.0.0 -> 14.4.0"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Androidx Preference 聲明版本 1.2.0 -> 1.2.1"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Androidx Recyclerview 聲明版本 1.3.0 -> 1.3.2"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Androidx Annotation 聲明版本 1.6.0 -> 1.7.0"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Androidx AppCompat 聲明版本 1.4.2 -> 1.6.1"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Jackson DataBind 聲明版本 2.13.3 -> 2.14.3"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Androidx WebKit 聲明版本 1.6.0 -> 1.8.0"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Androidx Preference 聲明版本 1.2.0 -> 1.2.1"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Glide 聲明版本 4.14.2 -> 4.16.0"
+        },
+        {
+          "category": "dependency",
+          "text": "升級 Android Material 聲明版本 1.7.0 -> 1.10.0"
+        },
+        {
+          "category": "dependency",
+          "text": "移除 Zeugma Solutions LocaleHelper 聲明版本 1.5.1"
+        }
+      ]
+    },
+    "v2.1.1": {
+      "released_date": "2023/07/21",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "適配 AutoJs6 6.3.3"
+        }
+      ]
+    },
+    "v2.1.0": {
+      "released_date": "2023/07/06",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "crypto 模塊聲明文件"
+        },
+        {
+          "category": "improvement",
+          "text": "README.md 增加 VSCode 配置説明"
+        },
+        {
+          "category": "improvement",
+          "text": "jsconfig.json 指定聲明文件根目錄以增加適配性"
+        },
+        {
+          "category": "improvement",
+          "text": "內置模塊支持 \"$\" 前綴"
+        },
+        {
+          "category": "improvement",
+          "text": "base64.encode/decode 支持字節數組"
+        },
+        {
+          "category": "improvement",
+          "text": "適配 AutoJs6 6.3.2"
+        }
+      ]
+    },
+    "v2.0.2": {
+      "released_date": "2023/05/26",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "ViewPrototype 原型聲明"
+        },
+        {
+          "category": "improvement",
+          "text": "適配 AutoJs6 6.3.1"
+        }
+      ]
+    },
+    "v2.0.1": {
+      "released_date": "2023/04/29",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "s13n 模塊聲明文件"
+        },
+        {
+          "category": "improvement",
+          "text": "適配 AutoJs6 6.3.0"
+        }
+      ]
+    },
+    "v2.0.0": {
+      "released_date": "2023/03/24",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "適配 AutoJs6 6.2.1 Alpha2"
+        },
+        {
+          "category": "improvement",
+          "text": "android platform 27 聲明文件升級為 33 版本"
+        },
+        {
+          "category": "improvement",
+          "text": "還原方法簽名中 param0/param1/... 的原始參數名稱"
+        },
+        {
+          "category": "management",
+          "text": "項目已發佈至 NPM (@sm003/autojs6-dts)"
+        }
+      ]
+    },
+    "v1.0.2": {
+      "released_date": "2021/11/05",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Error 實例的 javaException/rhinoException 屬性描述"
+        },
+        {
+          "category": "fix",
+          "text": "auto() 方法描述指向錯誤"
+        },
+        {
+          "category": "improvement",
+          "text": "方法簽名完善 - android.content.pm.PackageManager.getApplicationInfo - android.content.pm.PackageManager.getApplicationLabel"
+        }
+      ]
+    },
+    "v1.0.1": {
+      "released_date": "2021/11/03",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "README.md 增加樣例展示"
+        },
+        {
+          "category": "improvement",
+          "text": "將 selector() 返回類型移入 Internal 命名空間"
+        }
+      ]
+    },
+    "v1.0.0": {
+      "released_date": "2021/11/02",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Auto.js v4.1.1 Alpha2 聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "Auto.js 基於 JSX 的聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "androidx 26 聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "android platform 27 聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "android framework 26 聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "app 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "array-observe 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "automator 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "console 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "continuation 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "device 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "dialogs 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "engines 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "events 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "floaty 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "globals 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "http 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "images 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "init 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "io 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "java-util 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "jvm-npm 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "media 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "object-observe 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "plugins 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "rhino 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "root-automator 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "selector 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "sensors 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "shell 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "storages 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "threads 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "timers 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "ui 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "util 模塊聲明文件"
+        },
+        {
+          "category": "feature",
+          "text": "web 模塊聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 androidx.annotation-annotation-1.2.0 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 com.afollestad.materialdialogs-core-3.3.0 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 com.github.hyb1996-enhancedfloaty-0.31 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 com.github.hyb1996-settingscompat-1.1.5 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 com.google.android.material-material-1.4.0 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 com.google.code.gson-gson-2.8.8 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 com.makeramen-roundedimageview-2.3.0 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 com.squareup.okhttp3-okhttp-4.9.1 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 de.mindpipe.android-android-logging-log4j-1.0.3 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 junit-4.13.2 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 kotlin-stdlib-jdk8 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 log4j-1.2.17 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 okhttp-urlconnection-2.7.5 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 okio-1.6.0 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 opencv-3.4.3 聲明文件"
+        },
+        {
+          "category": "dependency",
+          "text": "附加 rhino-1.7.7.2 聲明文件"
+        }
+      ]
+    }
+  }
+}

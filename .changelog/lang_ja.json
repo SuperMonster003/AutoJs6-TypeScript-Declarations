@@ -1,0 +1,1622 @@
+{
+  "labels": {
+    "hint": "ヒント",
+    "feature": "機能",
+    "fix": "修正",
+    "improvement": "改善",
+    "dependency": "依存関係",
+    "compatibility": "互換性",
+    "completion": "補完",
+    "error": "エラー",
+    "metrics": "指標",
+    "update": "更新",
+    "replacement": "置換",
+    "management": "管理",
+    "precision": "精度",
+    "simplification": "簡素化",
+    "constraint": "制約",
+    "adjustment": "調整"
+  },
+  "$data": {
+    "v4.36.0": {
+      "released_date": "2026/10/08",
+      "entries": [
+        {
+          "heading": "Compose UI フラグメントの再利用"
+        },
+        {
+          "category": "feature",
+          "text": "compose.memo と ComposeMemoOptions により, 依存値と読み取った state がいずれも変化していないノードフラグメントを render 内で再利用し, key によるリスト項目の照合に対応"
+        },
+        {
+          "category": "hint",
+          "text": "対応するホスト 6.8.0 / 5323 が必要; 依存値の比較, スロットの照合, 呼び出しタイミング, 依存項目数の上限 256 は実行時に検証. TSX には対応する TypeScript Engine 0.6.8 と Ace Editor 1.30.0 が必要"
+        }
+      ]
+    },
+    "v4.35.0": {
+      "released_date": "2026/10/08",
+      "entries": [
+        {
+          "heading": "Compose UI 契約 V2"
+        },
+        {
+          "category": "feature",
+          "text": "ナビゲーションバー, ナビゲーションドロワー, タブ, ボトムシート, メニュー, 日付と時刻の選択, ページ切り替え, グリッド, Chip, Badge, セグメントボタン, フローティングボタン, 検索, Tooltip, プルダウン更新など, 25 個のノードファクトリーと TSX タグ"
+        },
+        {
+          "category": "improvement",
+          "text": "V2 のプロパティ, 既定の読み取り値, 必須スロット, 子要素の型, イベント引数を追記専用の契約カタログから直接生成し, 凍結済みの V1 と独立した F2 相互運用カタログを維持"
+        },
+        {
+          "category": "hint",
+          "text": "新しいコンポーネントには対応するホスト 5322 と契約 V2 のレンダリングプラグインが必要. TSX には TypeScript Engine 0.6.7 と Ace Editor 1.29.0 が必要; 数値範囲, 子要素数, プロパティ間の制約は引き続き実行時に検証"
+        }
+      ]
+    },
+    "v4.34.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "Compose UI ダイアログ"
+        },
+        {
+          "category": "feature",
+          "text": "compose.dialog と DialogOptions / DialogType により独立したダイアログとボトムシートに対応し, 既存の ComposeSession を返す"
+        },
+        {
+          "category": "improvement",
+          "text": "alert / bottomSheet 型, cancelable, テーマの上書きを厳密に宣言し, 同期的なルート入力と既存のセッションメソッドを維持"
+        },
+        {
+          "category": "hint",
+          "text": "対応するホスト 5321 と dialog-v1 に対応した Compose UI が必要; TSX に必要なエンジンは TypeScript Engine 0.6.6. UI 以外のスクリプトには事前にオーバーレイ権限が必要で, 自動では要求しない"
+        }
+      ]
+    },
+    "v4.33.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "Compose UI 相互運用"
+        },
+        {
+          "category": "feature",
+          "text": "compose.attach と AndroidView ノード, 実際の View getter, 同期的な View ファクトリー, XML の `<compose>` コンテナーと対応する TSX 型"
+        },
+        {
+          "category": "improvement",
+          "text": "相互運用カタログを独立して生成および検証し, 凍結済み V1 の 30 コンポーネント / 114 プロパティと 29 個の JSX マッピングを維持"
+        },
+        {
+          "category": "fix",
+          "text": "XML TSX onClick の実際のネイティブ View 引数と EventEmitter レシーバーの型宣言を追加し, ui.inflate の TSX クリックバインディングに対応"
+        },
+        {
+          "category": "hint",
+          "text": "対応するホスト 5320 と相互運用拡張に対応した Compose UI が必要; TSX に必要なエンジンは TypeScript Engine 0.6.5. ネイティブオブジェクトの同一性とコンテナーの所属は実行時に検証"
+        }
+      ]
+    },
+    "v4.32.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "色"
+        },
+        {
+          "category": "feature",
+          "text": "colors.toOklab / oklab / toOklch / oklch, ensureContrast, harmony, tones, derive, nightVariant, simulate, extract と, DetectionAlgorithm への 'oklab' の追加"
+        },
+        {
+          "category": "feature",
+          "text": "colors.theme のテーマ色制御 (get, set, reset, libraries, activate, deactivate, next, state, current) と Colors.Theme, ThemeLibrary, ThemeCurrent などの型"
+        },
+        {
+          "category": "fix",
+          "text": "colors.contrast の例で #777777 と白のコントラストの判定結果を修正"
+        },
+        {
+          "category": "hint",
+          "text": "AutoJs6 6.8.0 が必要"
+        },
+        {
+          "heading": "ターミナル"
+        },
+        {
+          "category": "feature",
+          "text": "terminal / $terminal と Internal.Terminal のセッション, 開く際と実行時のオプション, 環境, プラグイン状態, エラー型を追加し, 3-Shell Terminal プラグインに対応"
+        },
+        {
+          "heading": "型宣言の同期"
+        },
+        {
+          "category": "improvement",
+          "text": "ホストの公開 Java とリソースの型宣言を同期し, スマートカラーライブラリ関連のリソースとコード生成モデルカタログのリソースを含める"
+        },
+        {
+          "category": "improvement",
+          "text": "公開型宣言から floaty の内部オブザーバー API, 未使用の Compose エラーリソース, libraries 内の重複した AtomicReference と非推奨のライフサイクル API を削除"
+        }
+      ]
+    },
+    "v4.31.0": {
+      "released_date": "2026/10/04",
+      "entries": [
+        {
+          "heading": "Compose UI TSX"
+        },
+        {
+          "category": "feature",
+          "text": "実際のコンポーネントカタログから生成した 29 個の compose:Name TSX 要素の型宣言. compose.Name メンバーファクトリーと同じファクトリーの別名に対応"
+        },
+        {
+          "category": "improvement",
+          "text": "TSX のプロパティ, 必須スロット, イベントコールバックにコンポーネントの厳密な型を適用し, Fragment の単一ルートとスロット数の実行時検証を維持"
+        },
+        {
+          "category": "hint",
+          "text": "AutoJs6 6.8.0 / 5319 のローカルホストと対応する TypeScript Engine が必要; 同一ツリー内での XML/Compose の混在やカスタム TSX 関数コンポーネントには非対応"
+        }
+      ]
+    },
+    "v4.30.0": {
+      "released_date": "2026/10/03",
+      "entries": [
+        {
+          "heading": "Compose UI"
+        },
+        {
+          "category": "feature",
+          "text": "compose / $compose と ComposeError. 29 個のノードファクトリー, 呼び出し可能なマウントエントリーポイント, 状態と ref, バッチ処理, テーマ, セッション, オーバーレイを網羅"
+        },
+        {
+          "category": "feature",
+          "text": "コンポーネント別のイベント引数, ノードプロパティの読み取りと書き込みの型, 順序付きの 20 個の Modifier メソッドと Snackbar セッションコマンド"
+        },
+        {
+          "category": "improvement",
+          "text": "対応するホストの公開 Java / リソース / 共有ライブラリの型宣言を同期し, コンポーネントカタログとドキュメントを同じ凍結済みマニフェストで照合"
+        },
+        {
+          "category": "hint",
+          "text": "compose モジュールを含む対応した AutoJs6 6.8.0 ローカルビルドと Compose UI プラグインが必要; TSX, 混在レイアウト, compose.dialog は今後のバージョンで対応予定"
+        }
+      ]
+    },
+    "v4.29.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "セレクターの数値範囲"
+        },
+        {
+          "category": "feature",
+          "text": "UiSelector とグローバルセレクター関数 minDepth / maxDepth / minIndexInParent / maxIndexInParent (境界値を含む. ホスト 6.8.0+ が必要). select() の文字列構文の minDepth=3 などのキーに対応"
+        },
+        {
+          "category": "fix",
+          "text": "組み込みセレクターの型宣言に不足していた childCount / minChildCount / maxChildCount を追加"
+        }
+      ]
+    },
+    "v4.28.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Installer のソース設定"
+        },
+        {
+          "category": "feature",
+          "text": "installer/installReason/packageSource の null リセット型と sourceDeleteRequested 結果フィールドを追加し, ホスト 5312+ のソース設定機能に対応"
+        },
+        {
+          "category": "improvement",
+          "text": "省略されたフィールドの継承, 明示的なオプションの優先, セッション単位のオプションの適用範囲, バッチ処理で共有されるソースの保持を説明; その他の null とスクリプト設定選択フィールドは引き続き拒否"
+        }
+      ]
+    },
+    "v4.27.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Installer の詳細インストールオプション"
+        },
+        {
+          "category": "feature",
+          "text": "grantAllRequestedPermissions, requestUpdateOwnership, dexopt, installReason, packageSource オプションと閉じた列挙型. ホスト 5308+ とプラグイン側の対応機能が必要"
+        },
+        {
+          "category": "feature",
+          "text": "optimizing セッション段階, null 許容の updateOwner 読み戻し結果, dexopt の 6 種類の観測状態; accepted は実際にコンパイルが実行されることを保証しない"
+        },
+        {
+          "category": "improvement",
+          "text": "省略と明示的な false/none を区別し, プラットフォームと権限の制約, インストール成功後の追加操作がインストールをロールバックしないことを説明. ローカルポリシーを回避するスクリプトオプションは提供しない"
+        }
+      ]
+    },
+    "v4.26.1": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Installer の永続的な既定値の適用範囲"
+        },
+        {
+          "category": "improvement",
+          "text": "JSDoc で, Dhizuku の永続的な既定値は API 26-33 に限定されること, Root の独立した system ID と user 0, persistent の auto フィルタリングと失敗時にフォールバックしないことを明記"
+        },
+        {
+          "category": "improvement",
+          "text": "実際の既定値の解決とローカル設定の受領結果を区別し, スクリプトの真偽値の結果を維持. 部分的な失敗やプロセス終了時にロールバックが保証されないことを説明"
+        }
+      ]
+    },
+    "v4.26.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Installer P8 の機能"
+        },
+        {
+          "category": "feature",
+          "text": "Dhizuku の認可名称, notification インストール操作, setDefault の preferred/persistent モード, NOTIFICATION_UNAVAILABLE エラー型"
+        },
+        {
+          "category": "improvement",
+          "text": "JSDoc でホスト 5306+/ プラグイン間の機能交渉, Dhizuku の現在の owner/profile ユーザーとインストールフラグの制約, 通知モードはアンインストールに使えないこと, 永続的な既定項目の解除の意味を明記"
+        }
+      ]
+    },
+    "v4.25.0": {
+      "released_date": "2026/10/01",
+      "entries": [
+        {
+          "heading": "Installer のスクリプトインターフェース"
+        },
+        {
+          "category": "feature",
+          "text": "installer / $installer モジュールの型宣言. 同期および Async のインストール, アンインストール, パッケージ検査, 認可方式, 既定のインストーラー, ユーザー一覧を含む"
+        },
+        {
+          "category": "feature",
+          "text": "InstallSession のイベント, キャンセル, 待機, 結果の型, InstallerError のエラーフィールド, 単一ソース / バッチ / splits の厳密なオーバーロード"
+        },
+        {
+          "category": "improvement",
+          "text": "JSDoc で既定の操作方式, ソースの削除, 同期処理のスレッド要件, 待機タイムアウトとスクリプト停止時のキャンセルの適用範囲を説明"
+        }
+      ]
+    },
+    "v4.24.1": {
+      "released_date": "2026/09/29",
+      "entries": [
+        {
+          "heading": "3-Stove Agent のオンデマンド接続"
+        },
+        {
+          "category": "improvement",
+          "text": "Agent JSDoc でプラグインセンターによる一括有効化, 公式プラグインの初回インストール時の自動有効化, オンデマンド接続, 初回の同期接続におけるワーカースレッド要件を説明; status は読み取り専用を維持し, タスクを取得しても再実行しない"
+        },
+        {
+          "category": "improvement",
+          "text": "現在のプラグイン名とホストの最低バージョンを説明. 型シグネチャの変更なし"
+        }
+      ]
+    },
+    "v4.24.0": {
+      "released_date": "2026/09/29",
+      "entries": [
+        {
+          "heading": "Agent 1.3.0 開発対応"
+        },
+        {
+          "category": "feature",
+          "text": "AgentRunOptions の plan オプション (計画モード. 省略時はプリセットを継承), AgentInputEvent の plan 型と steps フィールド"
+        },
+        {
+          "category": "feature",
+          "text": "AgentRun.respond が計画レビューへの回答として 1 から 8 個の文字列の配列を受け付けるように対応"
+        }
+      ]
+    },
+    "v4.23.0": {
+      "released_date": "2026/09/26",
+      "entries": [
+        {
+          "heading": "Agent 1.2.0 開発対応"
+        },
+        {
+          "category": "feature",
+          "text": "AgentToolGroup の mcp ツールグループ. 既定では無効で, サーバーと許可するツールはプラグインで設定"
+        },
+        {
+          "category": "improvement",
+          "text": "エディターのヒントで MCP サーバーのリスク設定とホスト互換性の要件を説明"
+        }
+      ]
+    },
+    "v4.22.0": {
+      "released_date": "2026/09/26",
+      "entries": [
+        {
+          "heading": "Agent 1.1.0 開発対応"
+        },
+        {
+          "category": "feature",
+          "text": "AgentToolGroup の script_dynamic ツールグループ. タスクとプリセットのオプションで動的スクリプトの実行を制限可能"
+        },
+        {
+          "category": "improvement",
+          "text": "エディターのヒントで, 動的スクリプトは既定で無効でソースごとに確認が必要なことを説明し, モデルのツールと公開 JavaScript メソッドを区別"
+        }
+      ]
+    },
+    "v4.21.1": {
+      "released_date": "2026/09/25",
+      "entries": [
+        {
+          "heading": "Agent 1.0.0 リリース対応"
+        },
+        {
+          "category": "improvement",
+          "text": "Agent オプションのエディターヒントで, 既定のプリセットとキュー登録時のスナップショット, モデルターゲットの選択, グローバルなツール権限, 予算の既定値とプロトコルの上限, 慎重モード, メモリ自動挿入の適用範囲を説明"
+        },
+        {
+          "category": "fix",
+          "text": "型宣言パッケージが自身の旧バージョンに依存し, インストール時に型宣言を重複してダウンロードしていた問題を修正"
+        },
+        {
+          "category": "improvement",
+          "text": "README のリリース履歴を完全な変更履歴と一致させる"
+        }
+      ]
+    },
+    "v4.21.0": {
+      "released_date": "2026/09/24",
+      "entries": [
+        {
+          "heading": "Agent タスク API"
+        },
+        {
+          "category": "feature",
+          "text": "ai.agent.run/create/get/list/catalog/presets/status, AgentRun の読み取り専用プロパティ, イベント, 質問への回答, 確認, キャンセル, result Promise, join. AutoJs6 6.8.0 / build 5293 に対応"
+        },
+        {
+          "category": "feature",
+          "text": "タスクオプション, 予算, 履歴要約, 登録済みスクリプトのメタデータ, イベント型を追加し, detached のライフサイクル, タイムアウト, タスク結果と通信エラーの違いを明記"
+        },
+        {
+          "category": "feature",
+          "text": "docs/smoke/ai-agent-task-smoke.ts. タスク API, 不正なオプション, イベント, 回答の型を網羅"
+        }
+      ]
+    },
+    "v4.20.0": {
+      "released_date": "2026/09/23",
+      "entries": [
+        {
+          "heading": "Agent の登録済みスクリプト実行チャネル"
+        },
+        {
+          "category": "feature",
+          "text": "`ai.agent.result(value)` と `ai.agent.context()` の型宣言および `AgentExecutionContext`. AutoJs6 6.8.0 / build 5287 に対応"
+        },
+        {
+          "category": "feature",
+          "text": "登録済みスクリプトの結果の JSON 値型, 64 KiB の上限, コンテキストのスナップショットを説明. `docs/smoke/ai-agent-execution-smoke.ts` で有効な呼び出しと未公開のタスク API の異常系例を網羅"
+        }
+      ]
+    },
+    "v4.19.0": {
+      "released_date": "2026/09/21",
+      "entries": [
+        {
+          "heading": "電子書籍モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "グローバルオブジェクト `epub` / `$epub` の型宣言 (AutoJs6 6.8.0, Readium EPUB Reader プラグインが提供): `open` / `openAsync`, 便利な補助メソッド `metadata` / `toc` / `readingOrder` / `text` / `cover` / `search` とその `Async` 形式, リーダー `read` / `readAsync`, `isAvailable` / `isAvailableAsync`, `EpubError`"
+        },
+        {
+          "category": "feature",
+          "text": "`Internal.Epub` 名前空間: `Book` (メタデータ, 目次, 読書順序, 位置数, 本文抽出 `text` / `textAll`, 表紙とリソースのエクスポート, 全文検索, クローズ), `ReaderSession` イベントエミッター (`open` / `progress` / `bookmark` / `error` / `close` イベント, 移動, ページ送り, 設定, ブックマーク, クローズ), `Locator`, `Metadata` / `TocEntry` / `ReadingOrderEntry` / `SearchHit` / `Bookmark`, `ReadOptions` / `Preferences` / `TextOptions` / `ExportOptions` / `SearchOptions`, `ErrorCode`"
+        },
+        {
+          "category": "feature",
+          "text": "`docs/smoke/epub-smoke.ts` のコンパイル例. 書籍オブジェクト, 補助メソッド, リーダーセッションのイベントと制御, エラークラス, 異常系例を網羅"
+        },
+        {
+          "category": "feature",
+          "text": "`epub.annotations` / `annotationsAsync` と `Book.annotations` / `annotationsAsync` (Readium EPUB Reader プラグイン 1.1.0, EPUB 契約バージョン 2: リーダーが 1 冊の本に保存したハイライトとメモを読書順で最大 2000 件取得. プラグインが 1.0.0 の場合は `PLUGIN_INCOMPATIBLE`), `Internal.Epub.Annotation` / `AnnotationStyle` と `ReaderSession` の `highlight` イベント (`HighlightEvent`, `action` は `added` / `updated` / `removed`); `docs/smoke/epub-smoke.ts` にハイライトとメモの使用例と異常系例を追加"
+        },
+        {
+          "heading": "メールモジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "プロバイダープリセット `Provider` の `pop3Xoauth2TwoLine` フィールド (Angus Mail プラグインのプリセットカタログバージョン 3: POP3 の `AUTH XOAUTH2` が 2 行形式のみを受け付けるかどうか. Outlook.com と Microsoft 365 は `true`)"
+        },
+        {
+          "category": "feature",
+          "text": "`SavedAccount.oauth` と `SavedAccountOAuth` (Angus Mail プラグイン 1.2.0: プラグイン設定ページのブラウザー経由で Google / Microsoft アカウントにログインすると, `mail.accounts.list()` に `provider` / `authorizedAt` / `expiresAt` / `needsReauth` が含まれ, トークン自体は表示されない)"
+        },
+        {
+          "category": "feature",
+          "text": "`Internal.Mail.TriggerEvent` インターフェース: AutoJs6 の \"メール受信時\" タスクで起動したスクリプトが `engines.myEngine().execArgv.mail` を通じて受け取るイベント (Angus Mail プラグイン 1.1.0 のバックグラウンド監視, メール契約バージョン 2: `triggerId`, `alias`, `address`, `folder`, エンベロープ `message`, `receivedAt`)"
+        }
+      ]
+    },
+    "v4.18.0": {
+      "released_date": "2026/09/20",
+      "entries": [
+        {
+          "heading": "メールモジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "グローバルオブジェクト `mail` / `$mail` の型宣言 (AutoJs6 6.8.0, Angus Mail プラグインが提供): `connect` / `connectAsync`, `setDefault`, `default`, `close`, `providers`, `accounts`, `MailError`, および既定のクライアントに転送されるすべてのクライアントメソッド"
+        },
+        {
+          "category": "feature",
+          "text": "`Internal.Mail` 名前空間: `Client` と `Operations` (送受信, フォルダー, 一覧, 検索, 読み取り, 添付ファイルと原文のダウンロード, フラグ, 移動, コピー, 削除, 完全削除, 追加, 監視の同期および `Async` 形式), `Watch` イベントエミッター, `Message` / `Attachment` / `Address` / `SendMessage`, `AccountOptions` / `Provider` / `SavedAccount`, `SearchQuery` / `SearchResult`, `Folder` / `FolderStatus` / `SendResult` / `SessionTestResult`, `ErrorCode`"
+        },
+        {
+          "category": "feature",
+          "text": "`docs/smoke/mail-smoke.ts` のコンパイル例. 別名とトークンによる接続, 検索のフォールバックフラグ, 添付ファイルのダウンロード, フラグと移動, 監視イベント, 異常系例を網羅"
+        }
+      ]
+    },
+    "v4.17.0": {
+      "released_date": "2026/09/18",
+      "entries": [
+        {
+          "heading": "組み込みロガーと外部ライブラリの型宣言の整理"
+        },
+        {
+          "category": "update",
+          "text": "グローバルプロキシ `Level` / `LogConfigurator` / `LogManager` が AutoJs6 組み込みの `org.autojs.autojs.core.console.log` の同名クラスを継承するよう変更し, `console.setGlobalLogConfig` の例とソース要約を同期 (ホスト 6.8.0 が log4j を組み込みのローテーション対応ファイルロガーに置換)"
+        },
+        {
+          "category": "update",
+          "text": "外部ライブラリの型宣言から, ホストで削除済みのライブラリを除外: log4j と android-logging-log4j, Flexmark, JavaMail, JUnit, github-api と Jackson, commons-io と commons-lang3, kotlin-reflect, SpongyCastle, media3 と Guava (`libraries.d.ts` 26,864 -> 25,081 行)"
+        },
+        {
+          "category": "update",
+          "text": "AutoJs6 6.8.0 (5282) のメインアプリとリソースの型宣言を統合: `org.autojs.autojs.core.console.log` パッケージ (Appender / Level / LogConfigurator / LogEvent / Logger / LoggerRepository / LogManager) とメールプラグインの契約クラスを追加し, ID リソースの追加と削除をホストに同期"
+        }
+      ]
+    },
+    "v4.16.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "色検出と画像マッチングの強化"
+        },
+        {
+          "category": "feature",
+          "text": "`images.countPointsByColor` と `images.getMeanColor` の型宣言. `images.readPixels` が ImageWrapper またはファイルパスを受け付けるように対応"
+        },
+        {
+          "category": "feature",
+          "text": "`colors.distance`, `colors.invert`, `colors.blend`, `colors.contrast`, および Color インスタンスの対応するメソッドの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`images.matchTemplate` と `images.findPointByImage` の `scales` オプション, マッチ結果の `width`, `height`, `scale`, `center`, `rect` プロパティ, `MatchingResult` の `size`, `isEmpty()`, `isNotEmpty()`, `filter()` の型宣言"
+        },
+        {
+          "category": "completion",
+          "text": "`images.matchTemplate` の引数が画像パスを受け付けるようにし, `useTransparentMask` オプションを追加"
+        },
+        {
+          "category": "feature",
+          "text": "`images.matchFeatures` の `ransacThreshold`, `minInliers`, `maxFeatures` オプションと画像引数, `ObjectFrame` の `width`, `height`, `angle`, `bounds`, `points`, `matches`, `inliers` プロパティ, `ImageFeatures` の `count`, `method`, `oneShot()` の型宣言"
+        },
+        {
+          "category": "completion",
+          "text": "`images.detectAndComputeFeatures` に `maxFeatures` オプションと `scale` の値の説明を追加. マッチャー名は大文字と小文字を区別しない"
+        },
+        {
+          "category": "update",
+          "text": "AutoJs6 6.8.0 (5280) のメインアプリ, リソース, 外部ライブラリの型宣言を統合し, Flow タスクスタックと座標クリックの型宣言を維持"
+        }
+      ]
+    },
+    "v4.15.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "座標クリックと Flow タスクスタック"
+        },
+        {
+          "category": "feature",
+          "text": "smartClickBounds / clickBoundsIfExists / clickBoundsAny と Flow の待機, 遅延, 別名の型宣言"
+        },
+        {
+          "category": "update",
+          "text": "maxAttempts の既定値 0 は試行回数の制限なしを意味し, FlowError.flowStack は非同期タスクの診断を提供"
+        },
+        {
+          "category": "update",
+          "text": "ホストが生成した型宣言, Ace Editor 組み込みの型宣言, LSP の集約ファイルとインデックスを同期"
+        }
+      ]
+    },
+    "v4.14.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "Flow の省略可能なステップと上限付きループ"
+        },
+        {
+          "category": "feature",
+          "text": "Flow のチェーン可能な clickIfExists / clickAny / findAny, whenPresent, repeatUntil の型宣言"
+        },
+        {
+          "category": "update",
+          "text": "waitForStable の snapshot 射影とコレクションの戻り値の型を整備し, stableFor の既定値を実行時と一致させる"
+        },
+        {
+          "category": "update",
+          "text": "ホストが生成した型宣言と Ace Editor LSP の集約ファイルおよびインデックスを同期"
+        }
+      ]
+    },
+    "v4.13.0": {
+      "released_date": "2026/09/14",
+      "entries": [
+        {
+          "heading": "パッケージ化アプリの共有ストレージ設定"
+        },
+        {
+          "category": "feature",
+          "text": "LaunchConfig.requiresSharedStorage と対応する getter / setter の型宣言"
+        },
+        {
+          "category": "update",
+          "text": "AutoJs6 6.8.0 (5280) のリソースと依存関係の型宣言および Ace Editor LSP グループを同期"
+        }
+      ]
+    },
+    "v4.12.0": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "Pangu のテキスト間隔"
+        },
+        {
+          "category": "feature",
+          "text": "グローバル `pangu` の型宣言. pangu.js 10.1.0 の `version`, `spaceText`, `hasProperSpacing` を網羅し, `require('pangu')` に具体的な戻り値の型を提供"
+        },
+        {
+          "category": "update",
+          "text": "AutoJs6 メインアプリの型宣言と Ace Editor 組み込みの型宣言を同期し, LSP グループとインデックスを再生成"
+        }
+      ]
+    },
+    "v4.11.1": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "Android のローカルネットワーク権限"
+        },
+        {
+          "category": "fix",
+          "text": "`runtime.requestPermissions` の汎用的な権限名の型を整備し, 引数を `string[]` として宣言. 配列の例を修正し, `access_local_network` のシステムと targetSdk の条件を説明"
+        },
+        {
+          "category": "update",
+          "text": "AutoJs6 6.8.0 (5280) からメインアプリとリソースの型宣言を再生成し, Ace Editor 組み込みの型宣言と LSP グループを同期"
+        }
+      ]
+    },
+    "v4.11.0": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "デバイスのメモリページサイズ"
+        },
+        {
+          "category": "feature",
+          "text": "`device.pageSize` と `$device.pageSize` の読み取り専用数値の型宣言. 現在のシステムのメモリページサイズをバイト単位で返す"
+        },
+        {
+          "category": "update",
+          "text": "AutoJs6 6.8.0 (5280) からメインアプリとリソースの型宣言を再生成し, Ace Editor 組み込みの型宣言と LSP グループを同期"
+        }
+      ]
+    },
+    "v4.10.0": {
+      "released_date": "2026/09/12",
+      "entries": [
+        {
+          "heading": "OCR の自動選択モード"
+        },
+        {
+          "category": "feature",
+          "text": "OCR モードが `auto`, 空文字列, nullish によるリセットに対応. 読み取り型を実際のエンジン名または空文字列に限定し, `tap`, 呼び出しごとのオプション, Ace Editor の補完を同期"
+        },
+        {
+          "category": "update",
+          "text": "AutoJs6 6.8.0 (5280) からメインアプリとリソースの型宣言を再生成し, Ace Editor 組み込みの型宣言と LSP グループを同期"
+        }
+      ]
+    },
+    "v4.9.0": {
+      "released_date": "2026/09/10",
+      "entries": [
+        {
+          "heading": "MediaInfo の複数ストリーム照会"
+        },
+        {
+          "category": "feature",
+          "text": "MediaInfo のストリーム番号, ストリーム数, InfoKind, 機能の型宣言を追加し, Rhino の照会オプションと Ace Editor の補完を同期"
+        }
+      ]
+    },
+    "v4.8.1": {
+      "released_date": "2026/09/08",
+      "entries": [
+        {
+          "heading": "コンソール入力, 表示オプション, UI モードのコンソール要素の型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`console.rawInput` / `console.input` の型宣言を利用可能な状態に復元 (コンソール入力欄の 1 行をブロッキング読み取りし, `input` は JavaScript 式として評価)"
+        },
+        {
+          "category": "feature",
+          "text": "`console.setTimeVisible` / `setTimeFormat` / `setColorful` / `setAvoidStatusBar` / `setInputVisible` と, `console.build` の `timeVisible` / `timeFormat` / `colorful` / `avoidStatusBar` / `inputVisible` オプション"
+        },
+        {
+          "category": "feature",
+          "text": "JSX 要素 `<console>` / `<globalconsole>` とそのプロパティの型宣言 (`global`, `title`, タイトルバーとコンテンツ領域のスタイル, `timeVisible`, `timeFormat`, `colorful`, `inputVisible` など)"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 6.8.0 (5279) のコンソール再設計に対応"
+        }
+      ]
+    },
+    "v4.8.0": {
+      "released_date": "2026/09/07",
+      "entries": [
+        {
+          "heading": "アクセシビリティ自動化の型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`aj6-int-flow.d.ts`: チェーン可能な `Flow<T>` オブジェクトと `Flow` 名前空間 (待機オプション, スコープ, 既定値, `FlowError`, エラーコード), `flow` / `$flow` 名前空間オブジェクト (`Internal.FlowApi`: 待機 / ツールセット / イベント待機のエントリーポイント, `all` / `race` / `any`, `defaults`, `trace`), `waitAsync` / `waitThenClick` / `clickWait` / `waitForStable` / `waitForStableThenClick` / `clickWhenStable` / `waitForVisible` / `waitForHidden` / `waitForGone` / `clickWhenStableAfter` グローバル関数と `wait.async`"
+        },
+        {
+          "category": "feature",
+          "text": "`Internal.Automator` とグローバルのツールセット (`smartClick` / `clickIfExists` / `clickAny` / `findAny` / `scrollUntil` / `typeInto` / `dismissPopups` / `collectList` / `launchAndWait` / `backUntil` / `backToApp` / `toggle` / `retry`) およびイベント駆動の待機 (`waitForIdle` / `waitForEvent` / `waitForToast` / `waitForNotification`). オプションと結果の型は `Automator` 名前空間に配置"
+        },
+        {
+          "category": "feature",
+          "text": "`Internal.Auto` の `wait` / `findWindows` / `findWindowRoots` / `explain` / `dump` / `stats`, `registerEvent` / `registerEvents` のフィルターオプションのオーバーロード, `setWindowFilter` のマッチオブジェクト形式 (`Automator.WindowMatch`), `AutoState.adoptedByEvent`, および `Automator.Flags` への `appWindowsFallback` / `eventAssistedPolling` の追加"
+        },
+        {
+          "category": "feature",
+          "text": "文字列セレクターのオーバーロード `select(syntax)` (グローバルおよび `Internal.Selector`), `findIterator()`, `UiObjectIterator`"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 6.8.0 (5278) からメインアプリの型宣言を再生成 (`UiObject` / `UiSelector` / `UiObjectCollection` の新しいメソッドと `UiObjectIterator`) し, Ace Editor 組み込みの型宣言と LSP グループを同期"
+        }
+      ]
+    },
+    "v4.7.0": {
+      "released_date": "2026/09/01",
+      "entries": [
+        {
+          "heading": "Pinyin の読み方のカスタマイズと行列ユーティリティの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`Pinyin.Options.customDictionary` と `Pinyin.CustomDictionary`. 呼び出し単位で有効な漢字の読み方の上書き, 最長一致優先, 64 KiB/1024 項目の制限を宣言"
+        },
+        {
+          "category": "completion",
+          "text": "`pinyin.compare` が数値の並べ替え結果を返し, `pinyin.compact` が候補行列の直積を返すようにし, 従来の仮の戻り値の型を削除"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 6.8.0 (5277) からメインアプリと共有 Pinyin API の型宣言を再生成し, Ace Editor 組み込みの型宣言と LSP グループを同期"
+        }
+      ]
+    },
+    "v4.6.1": {
+      "released_date": "2026/09/01",
+      "entries": [
+        {
+          "heading": "プレビューアーの命名に関する型宣言の同期"
+        },
+        {
+          "category": "replacement",
+          "text": "`FileUtils.PreviewType` と `previewType` をそれぞれ `PreviewerType` と `previewerType` に統一し, メインアプリの型宣言でプレビューアーの意味に沿った命名を同期"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 6.8.0 (5277) からメインアプリ, リソース, 外部ライブラリの型宣言を再生成し, Ace Editor 組み込みの型宣言と LSP グループを同期"
+        }
+      ]
+    },
+    "v4.6.0": {
+      "released_date": "2026/08/31",
+      "entries": [
+        {
+          "heading": "PNG 量子化のリソース予算とキャンセルの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`Images.PngQuantizationOptions.maxPixels` と `maxMemoryBytes`. 既定の 16000000 ピクセルと追加作業メモリ 256 MiB の上限を宣言"
+        },
+        {
+          "category": "metrics",
+          "text": "バイト結果とファイル結果に `peakWorkingMemoryBytes` を追加. v4 は予算に計上されるピークメモリを返し, 旧プラグインは `-1` を返す"
+        },
+        {
+          "category": "error",
+          "text": "リソース上限エラーの安定したコード, 理由, 予算フィールドを宣言し, 明示的なキャンセルトークンとスクリプト終了時の連動に対応する Java API を同期"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 6.8.0 (5277) からリソース制御, キャンセル, 結果の Java 型宣言を再生成し, Ace Editor 組み込みの型宣言と LSP グループを同期"
+        }
+      ]
+    },
+    "v4.5.0": {
+      "released_date": "2026/08/31",
+      "entries": [
+        {
+          "heading": "PNG 量子化の色とストリーミングによるファイル出力の型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`images.quantizeToFile` と `Images.PngQuantizationFileResult`. PNG ファイルに直接書き込み, パス, サイズ, 実際の品質, 量子化誤差を返す"
+        },
+        {
+          "category": "completion",
+          "text": "`Images.PngQuantizationOptions.preserveAlpha`. 既定で透明度を保持し, `false` の場合は完全に不透明な出力になることを宣言"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 6.8.0 (5277) からファイル記述子への出力, 色オプション, 結果の Java 型宣言を再生成し, Ace Editor 組み込みの型宣言と LSP グループを同期"
+        }
+      ]
+    },
+    "v4.4.0": {
+      "released_date": "2026/08/30",
+      "entries": [
+        {
+          "heading": "PNG 量子化の品質結果とフォールバック方針の型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`images.quantize` と `Images.PngQuantizationResult`. インデックスカラー PNG のバイト列, 出力サイズ, 実際の品質, 正規化された量子化誤差を返す"
+        },
+        {
+          "category": "completion",
+          "text": "空のオプションを `minQuality=0` のベストエフォート方針として宣言. 明示的な `quality` または `minQuality` は厳密な下限の意味を維持"
+        },
+        {
+          "category": "error",
+          "text": "メインアプリの型宣言で `PngQuantBridge.QualityTooLowException` と安定したエラーコードを同期し, 品質不足と内部失敗を区別可能にする"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 6.8.0 (5276) からメインアプリとリソースの型宣言を再生成し, Ace Editor 組み込みの型宣言と LSP グループを同期"
+        }
+      ]
+    },
+    "v4.3.0": {
+      "released_date": "2026/08/30",
+      "entries": [
+        {
+          "heading": "PNG 量子化の名前付き引数の型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`Images.PngQuantizationOptions` と `images.save`, `saveImage`, `compress`, `compressToBytes` のオブジェクト引数の型宣言. 色数の予算, 速度, 品質範囲, ディザリング, posterize を網羅"
+        },
+        {
+          "category": "compatibility",
+          "text": "数値の `quality` と引数省略時の既存のオーバーロードの意味を維持し, オプションオブジェクトは Image Quantization プラグインが提供する PNG 出力にのみ適用されることを宣言"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 6.8.0 (5276) からメインアプリとリソースの型宣言を再生成し, Ace Editor 組み込みの型宣言と LSP グループを同期"
+        }
+      ]
+    },
+    "v4.2.0": {
+      "released_date": "2026/08/27",
+      "entries": [
+        {
+          "heading": "R8 Retrace と検証済み生成物のエクスポートの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`runtime.retraceR8Stack` の型宣言. プロトコル 1.1 のプロバイダーを通じて, mapping と retrace metadata の出自を結び付け, 難読化されたスタックを復元"
+        },
+        {
+          "category": "feature",
+          "text": "`runtime.loadJarWithR8` の 3 個のエクスポート用オーバーロード. ハッシュを再計算した mapping, seeds, usage, retrace metadata をアトミックにエクスポートし, DEX は暗黙にエクスポートしない"
+        },
+        {
+          "category": "constraint",
+          "text": "すべてのパスはホストのみが解決. 正確なプロバイダーが選択されていない場合や, ハッシュ, メタデータ, 出力のいずれかの検証に失敗した場合は終了し, D8/dx にはフォールバックしない"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 ホストのコミット `dafddc732` からメインアプリとリソースの型宣言を再生成し, Ace Editor 組み込みの型宣言と LSP グループを同期"
+        }
+      ]
+    },
+    "v4.1.0": {
+      "released_date": "2026/08/26",
+      "entries": [
+        {
+          "heading": "AI のプラグインを唯一のターゲットとするインターフェースの型宣言"
+        },
+        {
+          "category": "replacement",
+          "text": "`ai`, `ask`, `chat`, `stream`, `session`, `catalog` でプラグインターゲットの入力, オプション, 応答, ストリーミングの型を統一"
+        },
+        {
+          "category": "simplification",
+          "text": "未公開の二重経路オーバーロード, ホストへの直接接続の応答形式, 移行用の型を削除. タイムアウトには正規の `timeout` プロパティのみを残す"
+        },
+        {
+          "category": "completion",
+          "text": "セレクター省略時の既定ターゲットを公式 3-Stone AI として宣言し, メッセージ, usage, finish reason, target, session, 安定したエラー型を統一"
+        },
+        {
+          "category": "dependency",
+          "text": "Ace Editor 組み込みの型宣言と生成された LSP 型宣言グループを同期"
+        }
+      ]
+    },
+    "v4.0.9": {
+      "released_date": "2026/08/26",
+      "entries": [
+        {
+          "heading": "AI の統合ターゲットカタログと厳密なルーティングの型宣言"
+        },
+        {
+          "category": "replacement",
+          "text": "`ai.catalog` でローカルモデルとオンライン設定のターゲットを統一して宣言し, 未公開の旧カタログ, 設定検出, 互換別名を削除"
+        },
+        {
+          "category": "feature",
+          "text": "`target` による厳密な選択, 公式 3-Stone AI の既定ターゲット, target/profile/backend/plugin メタデータ, reasoning 出力の型宣言"
+        },
+        {
+          "category": "completion",
+          "text": "生成, ストリーミング, 永続セッションの完全な usage, finish reason, 安定したエラーコード. ターゲットが存在しない, 未設定, 利用不可, 機能不一致の場合にはフォールバックしないことを厳密に宣言"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 のメインアプリ, リソース, 外部ライブラリの型宣言を再生成し, Ace Editor 組み込みの型宣言を同期"
+        }
+      ]
+    },
+    "v4.0.8": {
+      "released_date": "2026/08/25",
+      "entries": [
+        {
+          "heading": "R8 の明示的なコンパイルエントリーポイントの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`ScriptRuntime.loadJarWithR8` の 3 個のオーバーロード. 明示的な keep rules, 順序付き classpath, consumer-rule ordinal の結び付けを網羅"
+        },
+        {
+          "category": "constraint",
+          "text": "型宣言で完全な引数配列の型を維持し, 既定で無効かつ D8/dx へのフォールバックがないホストのエントリーポイントと一致させる"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 メインアプリ, API ドキュメント, Ace Editor 組み込みの型宣言を同期"
+        }
+      ]
+    },
+    "v4.0.7": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "AI のローカル backend profile の型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "ローカルプラグインの生成と永続セッションの `backend` オプション. `cpu`, `gpu`, `npu` を網羅し, 既定値は CPU. profile が利用できない場合はフォールバックしない"
+        },
+        {
+          "category": "feature",
+          "text": "統合ターゲットカタログの `backendProfiles` 判別共用体型. デバイスでの可用性と安定した利用不可理由を厳密に宣言"
+        },
+        {
+          "category": "constraint",
+          "text": "モデル列挙とクラウドプロバイダーのオプションでローカル `backend` の誤用を禁止し, 永続セッションでは作成後も同じ profile に固定"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 メインアプリと Ace Editor 組み込みの型宣言を同期"
+        }
+      ]
+    },
+    "v4.0.6": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "AI のローカル構造化 JSON の型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "ローカルプラグインルーティングと永続セッションの `structuredJson` および `responseSchema` オプション"
+        },
+        {
+          "category": "constraint",
+          "text": "`responseSchema` は JSON オブジェクトである必要があり, 構造化出力を暗黙に有効化. セッション作成後は各ターンで同じ schema に固定"
+        },
+        {
+          "category": "precision",
+          "text": "`ai.ask` と応答の `text` は引き続き完全な JSON テキストを返し, ストリーミングの差分は未完成の可能性があるテキスト断片のまま"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 のメインアプリ, リソース, 外部ライブラリの型宣言を再生成して同期"
+        }
+      ]
+    },
+    "v4.0.5": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "AI の永続的な複数ターンセッションの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`ai.session` と永続セッションのオプション. 公式プラグインの短縮指定, system preface, 固定された生成引数を網羅"
+        },
+        {
+          "category": "feature",
+          "text": "`Ai.Session` の `ask`, `chat`, `stream`, `close` メソッドと, 読み取り専用の状態, プロバイダー, モデルのプロパティ"
+        },
+        {
+          "category": "constraint",
+          "text": "セッションの各ターンは現在のユーザープロンプト文字列のみを受け付け, ストリーミングのキャンセルはセッション全体を閉じることを明記"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 のメインアプリ, リソース, 外部ライブラリの型宣言を再生成して同期"
+        }
+      ]
+    },
+    "v4.0.4": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "AI のローカルプラグインルーティングの型宣言を補完"
+        },
+        {
+          "category": "feature",
+          "text": "`ai.chat`, `ai.stream`, 統合ターゲットカタログのプラグイン用オーバーロード. ルーティング応答, ストリーミングイベント, ターゲット検出を網羅"
+        },
+        {
+          "category": "completion",
+          "text": "公式プラグインの短縮指定, 外部コンポーネントの選択, 複数ターンのプレーンテキストメッセージ, ローカル生成引数の型宣言"
+        },
+        {
+          "category": "precision",
+          "text": "プラグインの token 使用量, 生成所要時間, null 許容のモデル ID, 安定したルーティングエラー型"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 のメインアプリ, リソース, 外部ライブラリの型宣言を再生成して同期"
+        }
+      ]
+    },
+    "v4.0.3": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "YOLO 独立プラグインの物体検出の型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`yolo`/`$yolo` モジュールと `load`, `detect`, `close` の型宣言. セッションオプション, 検出結果, 安定したエラーコードを網羅"
+        },
+        {
+          "category": "constraint",
+          "text": "明示的な Provider コンポーネント, CPU デバイスとスレッド, しきい値, 結果数, タイムアウト範囲を宣言"
+        },
+        {
+          "category": "improvement",
+          "text": "Node プラグインランナーのメインアプリの型宣言を同期し, 廃止済みの NativeNodeEmbedded と libuv 診断ブリッジの型宣言を削除"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 のメインアプリ, リソース, 外部ライブラリの型宣言を再生成して同期"
+        }
+      ]
+    },
+    "v4.0.2": {
+      "released_date": "2026/08/12",
+      "entries": [
+        {
+          "heading": "Python エンジンのソースルーティングの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "`PythonScriptSource`, `PythonFileSource`, `PythonProjectSource`, `PersistedScriptLaunchContext` などのメインアプリの型宣言を追加し, `IntentTask`/`TimedTask` の `sourceKind` と `projectRoot` の永続化コンテキストを補完"
+        },
+        {
+          "category": "improvement",
+          "text": "`ScriptSource(sourceName, extension)` コンストラクターシグネチャを追加し, `engines.execScriptFile` のソース要約を同期. `.py` のルーティングと JavaScript エンジンへのフォールバック禁止を明記"
+        },
+        {
+          "category": "dependency",
+          "text": "AutoJs6 のメインアプリ, リソース, 外部ライブラリの型宣言を再生成して同期"
+        }
+      ]
+    },
+    "v4.0.1": {
+      "released_date": "2026/08/11",
+      "entries": [
+        {
+          "heading": "AI のローカルテキスト生成プラグインの明示的選択の型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "ai/ask のローカルテキスト生成プラグインを明示的に選択するオーバーロードと, コンポーネント, プロバイダー, モデルの型"
+        },
+        {
+          "category": "constraint",
+          "text": "プラグインオプションは単一の user テキストとタイムアウトのみを受け付け, クラウドプロバイダーのオプションとの混在を禁止"
+        }
+      ]
+    },
+    "v4.0.0": {
+      "released_date": "2026/07/27",
+      "entries": [
+        {
+          "heading": "AutoJs6 6.8.0 Alpha7 の型宣言の同期と生成された型宣言の統合"
+        },
+        {
+          "category": "feature",
+          "text": "ai/tts/powerManager/settings/workManager モジュールの型宣言と実行時の別名"
+        },
+        {
+          "category": "improvement",
+          "text": "AutoJs6 6.8.0 Alpha7 組み込みモジュールの API 型宣言に対応"
+        },
+        {
+          "category": "improvement",
+          "text": "tasks/app/images/ocr/plugins/web などのモジュールのシグネチャ, 別名, null 許容性, 戻り値の型を同期"
+        },
+        {
+          "category": "improvement",
+          "text": "実行時のマウント, `$` 接頭辞付きの別名, 主要グローバルオブジェクトの smoke 例を補完"
+        },
+        {
+          "category": "dependency",
+          "text": "Android/AutoJs6 のメインアプリ, リソース, 外部ライブラリの型宣言を再生成して統合"
+        },
+        {
+          "category": "adjustment",
+          "text": "公開エントリーポイントを `declarations/autojs6/index.d.ts` に統一し, 旧エントリーポイントと生成された分割ファイルを削除"
+        }
+      ]
+    },
+    "v3.0.0": {
+      "released_date": "2026/06/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "converter/formatter/sysprops/zip/nanoid/mediainfo/pinyin4j/jsox などの組み込みモジュールの型宣言ファイル"
+        },
+        {
+          "category": "improvement",
+          "text": "AutoJs6 6.7.1 Alpha4 組み込みモジュールの API 型宣言に対応"
+        },
+        {
+          "category": "improvement",
+          "text": "index のエントリー参照とグローバル変数の型宣言, `$` 接頭辞付きのモジュール別名を補完"
+        },
+        {
+          "category": "improvement",
+          "text": "colors/Color/images/Canvas/pinyin/mime/sqlite/media/recorder/tasks などの既存モジュールの型宣言を同期"
+        },
+        {
+          "category": "improvement",
+          "text": "主要グローバルオブジェクトの smoke 例と TypeScript 検証コマンドの記録を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "Android/AutoJs6 のメインアプリと外部ライブラリの生成された型宣言ファイルを更新"
+        }
+      ]
+    },
+    "v2.1.3": {
+      "released_date": "2023/12/02",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "opencc モジュールの型宣言"
+        },
+        {
+          "category": "improvement",
+          "text": "ocr セクションで不足していた detect と recognizeText の型宣言を補完"
+        },
+        {
+          "category": "improvement",
+          "text": "AutoJs6 6.5.0 に対応"
+        },
+        {
+          "category": "dependency",
+          "text": "Android OpenCC の型宣言 1.2.0 を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "Android dx の型宣言を 1.11 -> 1.14 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Jackson DataBind の型宣言を 2.14.3 -> 2.13.3 にダウングレード"
+        },
+        {
+          "category": "dependency",
+          "text": "Apache Commons IO の型宣言を 2.14.0 -> 2.8.0 にダウングレード"
+        }
+      ]
+    },
+    "v2.1.2": {
+      "released_date": "2023/10/30",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "shizuku モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "barcode モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "qrcode モジュールの型宣言"
+        },
+        {
+          "category": "improvement",
+          "text": "AutoJs6 6.4.0 に対応"
+        },
+        {
+          "category": "dependency",
+          "text": "JavaMail for Android の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "Okio の型宣言 3.2.0 を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "Shizuku の型宣言 13.1.5 を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "MLKit Barcode Bundled の型宣言 17.2.0 を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "MLKit Barcode Common の型宣言 17.0.0 を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "Kotlin Stdlib の型宣言を 1.7.21 -> 1.9.20-RC2 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Joda Time の型宣言を 2.12.1 -> 2.12.5 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Zip4j の型宣言を 2.11.2 -> 2.11.5 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Gson の型宣言を 2.10 -> 2.10.1 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Okhttp3 の型宣言を 5.0.0-alpha.9 -> 5.0.0-alpha.11 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "OpenCV の型宣言を 4.5.5 -> 4.8.0 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Apache Commons Lang3 の型宣言を 3.12.0 -> 3.13.0 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Apache Commons IO の型宣言を 2.8.0 -> 2.14.0 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Android Analytics の型宣言を 14.0.0 -> 14.4.0 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Androidx Preference の型宣言を 1.2.0 -> 1.2.1 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Androidx Recyclerview の型宣言を 1.3.0 -> 1.3.2 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Androidx Annotation の型宣言を 1.6.0 -> 1.7.0 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Androidx AppCompat の型宣言を 1.4.2 -> 1.6.1 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Jackson DataBind の型宣言を 2.13.3 -> 2.14.3 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Androidx WebKit の型宣言を 1.6.0 -> 1.8.0 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Androidx Preference の型宣言を 1.2.0 -> 1.2.1 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Glide の型宣言を 4.14.2 -> 4.16.0 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Android Material の型宣言を 1.7.0 -> 1.10.0 に更新"
+        },
+        {
+          "category": "dependency",
+          "text": "Zeugma Solutions LocaleHelper の型宣言 1.5.1 を削除"
+        }
+      ]
+    },
+    "v2.1.1": {
+      "released_date": "2023/07/21",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "AutoJs6 6.3.3 に対応"
+        }
+      ]
+    },
+    "v2.1.0": {
+      "released_date": "2023/07/06",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "crypto モジュールの型宣言"
+        },
+        {
+          "category": "improvement",
+          "text": "README.md に VSCode の設定手順を追加"
+        },
+        {
+          "category": "improvement",
+          "text": "jsconfig.json で型宣言ファイルのルートディレクトリを指定し, 互換性を向上"
+        },
+        {
+          "category": "improvement",
+          "text": "組み込みモジュールが \"$\" 接頭辞に対応"
+        },
+        {
+          "category": "improvement",
+          "text": "base64.encode/decode がバイト配列に対応"
+        },
+        {
+          "category": "improvement",
+          "text": "AutoJs6 6.3.2 に対応"
+        }
+      ]
+    },
+    "v2.0.2": {
+      "released_date": "2023/05/26",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "ViewPrototype のプロトタイプの型宣言"
+        },
+        {
+          "category": "improvement",
+          "text": "AutoJs6 6.3.1 に対応"
+        }
+      ]
+    },
+    "v2.0.1": {
+      "released_date": "2023/04/29",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "s13n モジュールの型宣言"
+        },
+        {
+          "category": "improvement",
+          "text": "AutoJs6 6.3.0 に対応"
+        }
+      ]
+    },
+    "v2.0.0": {
+      "released_date": "2023/03/24",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "AutoJs6 6.2.1 Alpha2 に対応"
+        },
+        {
+          "category": "improvement",
+          "text": "android platform 27 の型宣言ファイルをバージョン 33 に更新"
+        },
+        {
+          "category": "improvement",
+          "text": "メソッドシグネチャの param0/param1/... を元の引数名に復元"
+        },
+        {
+          "category": "management",
+          "text": "プロジェクトを NPM (@sm003/autojs6-dts) に公開"
+        }
+      ]
+    },
+    "v1.0.2": {
+      "released_date": "2021/11/05",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Error インスタンスの javaException/rhinoException プロパティの説明"
+        },
+        {
+          "category": "fix",
+          "text": "auto() メソッドの説明の参照先が誤っていた問題を修正"
+        },
+        {
+          "category": "improvement",
+          "text": "メソッドシグネチャを補完 - android.content.pm.PackageManager.getApplicationInfo - android.content.pm.PackageManager.getApplicationLabel"
+        }
+      ]
+    },
+    "v1.0.1": {
+      "released_date": "2021/11/03",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "README.md に使用例を追加"
+        },
+        {
+          "category": "improvement",
+          "text": "selector() の戻り値の型を Internal 名前空間に移動"
+        }
+      ]
+    },
+    "v1.0.0": {
+      "released_date": "2021/11/02",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Auto.js v4.1.1 Alpha2 の型宣言ファイル"
+        },
+        {
+          "category": "feature",
+          "text": "Auto.js の JSX ベースの型宣言ファイル"
+        },
+        {
+          "category": "feature",
+          "text": "androidx 26 の型宣言ファイル"
+        },
+        {
+          "category": "feature",
+          "text": "android platform 27 の型宣言ファイル"
+        },
+        {
+          "category": "feature",
+          "text": "android framework 26 の型宣言ファイル"
+        },
+        {
+          "category": "feature",
+          "text": "app モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "array-observe モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "automator モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "console モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "continuation モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "device モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "dialogs モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "engines モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "events モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "floaty モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "globals モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "http モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "images モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "init モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "io モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "java-util モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "jvm-npm モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "media モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "object-observe モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "plugins モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "rhino モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "root-automator モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "selector モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "sensors モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "shell モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "storages モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "threads モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "timers モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "ui モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "util モジュールの型宣言"
+        },
+        {
+          "category": "feature",
+          "text": "web モジュールの型宣言"
+        },
+        {
+          "category": "dependency",
+          "text": "androidx.annotation-annotation-1.2.0 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "com.afollestad.materialdialogs-core-3.3.0 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "com.github.hyb1996-enhancedfloaty-0.31 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "com.github.hyb1996-settingscompat-1.1.5 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "com.google.android.material-material-1.4.0 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "com.google.code.gson-gson-2.8.8 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "com.makeramen-roundedimageview-2.3.0 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "com.squareup.okhttp3-okhttp-4.9.1 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "de.mindpipe.android-android-logging-log4j-1.0.3 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "junit-4.13.2 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "kotlin-stdlib-jdk8 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "log4j-1.2.17 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "okhttp-urlconnection-2.7.5 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "okio-1.6.0 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "opencv-3.4.3 の型宣言  を追加"
+        },
+        {
+          "category": "dependency",
+          "text": "rhino-1.7.7.2 の型宣言  を追加"
+        }
+      ]
+    }
+  }
+}

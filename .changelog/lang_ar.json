@@ -1,0 +1,1622 @@
+{
+  "labels": {
+    "hint": "ملاحظة",
+    "feature": "ميزة",
+    "fix": "إصلاح",
+    "improvement": "تحسين",
+    "dependency": "اعتماد",
+    "compatibility": "توافق",
+    "completion": "استكمال",
+    "error": "خطأ",
+    "metrics": "مقاييس",
+    "update": "تحديث",
+    "replacement": "استبدال",
+    "management": "إدارة",
+    "precision": "دقة",
+    "simplification": "تبسيط",
+    "constraint": "قيد",
+    "adjustment": "تعديل"
+  },
+  "$data": {
+    "v4.36.0": {
+      "released_date": "2026/10/08",
+      "entries": [
+        {
+          "heading": "إعادة استخدام المقاطع في Compose UI"
+        },
+        {
+          "category": "feature",
+          "text": "compose.memo وComposeMemoOptions, لإعادة استخدام مقاطع العقد في render عندما لا تتغير قيم الاعتماديات ولا قيم state المقروءة, مع دعم مطابقة عناصر القوائم حسب key"
+        },
+        {
+          "category": "hint",
+          "text": "يتطلب المضيف المتوافق 6.8.0 / 5323; يجري التحقق أثناء التشغيل من مقارنة الاعتماديات ومطابقة الفتحات وتوقيت الاستدعاء والحد الأقصى البالغ 256 اعتمادية. يتطلب TSX الإصدارين المتوافقين TypeScript Engine 0.6.8 وAce Editor 1.30.0"
+        }
+      ]
+    },
+    "v4.35.0": {
+      "released_date": "2026/10/08",
+      "entries": [
+        {
+          "heading": "عقد Compose UI V2"
+        },
+        {
+          "category": "feature",
+          "text": "25 مصنعا للعقد تشمل شريط التنقل ودرج التنقل وعلامات التبويب واللوحات السفلية والقوائم واختيار التاريخ والوقت وترقيم الصفحات والشبكات وChip وBadge والأزرار المقسمة والأزرار العائمة والبحث وTooltip والسحب للتحديث, مع وسوم TSX"
+        },
+        {
+          "category": "improvement",
+          "text": "توليد خصائص V2 وقيم القراءة الافتراضية والفتحات المطلوبة وأنواع العناصر الفرعية ومعاملات الأحداث مباشرة من دليل العقود الذي يقبل الإضافات فقط, مع الاحتفاظ بـ V1 المجمد ودليل التشغيل البيني المستقل F2"
+        },
+        {
+          "category": "hint",
+          "text": "تتطلب المكونات الجديدة المضيف المتوافق 5322 وإضافة العرض بعقد V2, ويتطلب TSX الإصدارين المتوافقين TypeScript Engine 0.6.7 وAce Editor 1.29.0; يظل التحقق من النطاقات العددية وعدد العناصر الفرعية والقيود بين الخصائص أثناء التشغيل"
+        }
+      ]
+    },
+    "v4.34.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "حوارات Compose UI"
+        },
+        {
+          "category": "feature",
+          "text": "compose.dialog وDialogOptions / DialogType, لدعم الحوارات واللوحات السفلية المستقلة, مع إرجاع ComposeSession الأصلي"
+        },
+        {
+          "category": "improvement",
+          "text": "تصريحات دقيقة لأنواع alert / bottomSheet وcancelable وتجاوز إعدادات المظهر, مع الاحتفاظ بإدخال الجذر المتزامن وطرق الجلسة الموجودة"
+        },
+        {
+          "category": "hint",
+          "text": "يتطلب المضيف المتوافق 5321 وCompose UI الذي يدعم dialog-v1; يتطلب TSX الإصدار المتوافق TypeScript Engine 0.6.6. يجب أن تمتلك السكربتات غير UI إذن النوافذ العائمة مسبقا, ولا يطلب الإذن تلقائيا"
+        }
+      ]
+    },
+    "v4.33.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "التشغيل البيني في Compose UI"
+        },
+        {
+          "category": "feature",
+          "text": "العقدتان compose.attach وAndroidView, وView getter الفعلي, ومصانع View المتزامنة, وحاويات XML `<compose>` وأنواع TSX المقابلة"
+        },
+        {
+          "category": "improvement",
+          "text": "توليد دليل التشغيل البيني وفحصه بصورة مستقلة, مع الاحتفاظ بالمكونات الـ 30 والخصائص الـ 114 في V1 المجمد, وبمطابقات JSX البالغ عددها 29"
+        },
+        {
+          "category": "fix",
+          "text": "تصريحات المعاملات الأصلية الفعلية View ومستقبلات EventEmitter لـ XML TSX onClick, بالاقتران مع ربط النقر TSX في ui.inflate"
+        },
+        {
+          "category": "hint",
+          "text": "يتطلب المضيف المتوافق 5320 وCompose UI الذي يدعم امتداد التشغيل البيني; يتطلب TSX الإصدار المتوافق TypeScript Engine 0.6.5. يجري التحقق أثناء التشغيل من الهوية الفعلية للكائنات الأصلية والحاويات التابعة لها"
+        }
+      ]
+    },
+    "v4.32.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "الألوان"
+        },
+        {
+          "category": "feature",
+          "text": "colors.toOklab / oklab / toOklch / oklch, وensureContrast, وharmony, وtones, وderive, وnightVariant, وsimulate, وextract, مع إضافة 'oklab' إلى DetectionAlgorithm"
+        },
+        {
+          "category": "feature",
+          "text": "التحكم بألوان المظهر في colors.theme (get, set, reset, libraries, activate, deactivate, next, state, current) وأنواع مثل Colors.Theme, وThemeLibrary, وThemeCurrent"
+        },
+        {
+          "category": "fix",
+          "text": "نتيجة تقييم تباين #777777 مع الأبيض في مثال colors.contrast"
+        },
+        {
+          "category": "hint",
+          "text": "يتطلب AutoJs6 6.8.0"
+        },
+        {
+          "heading": "الطرفية"
+        },
+        {
+          "category": "feature",
+          "text": "أنواع الجلسات وخيارات الفتح والتنفيذ والبيئة وحالة الإضافة والأخطاء لـ terminal / $terminal وInternal.Terminal, المقابلة للإضافة 3-Shell Terminal"
+        },
+        {
+          "heading": "مزامنة التصريحات"
+        },
+        {
+          "category": "improvement",
+          "text": "مزامنة تصريحات Java العامة والموارد مع المضيف, بما يشمل الموارد المتعلقة بمكتبة الألوان الذكية وموارد دليل نماذج توليد الكود"
+        },
+        {
+          "category": "improvement",
+          "text": "إزالة API المراقبين الداخليين في floaty وموارد أخطاء Compose غير المستخدمة من التصريحات العامة, إضافة إلى AtomicReference المكرر وAPI دورة الحياة المهجورة في libraries"
+        }
+      ]
+    },
+    "v4.31.0": {
+      "released_date": "2026/10/04",
+      "entries": [
+        {
+          "heading": "Compose UI TSX"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات 29 عنصرا من compose:Name TSX, مولدة من دليل المكونات الفعلي, مع دعم مصانع الأعضاء compose.Name والأسماء البديلة للمصنع نفسه"
+        },
+        {
+          "category": "improvement",
+          "text": "تستخدم خصائص TSX والفتحات المطلوبة وردود استدعاء الأحداث الأنواع الدقيقة للمكونات; ويحتفظ Fragment بالتحقق أثناء التشغيل من وجود جذر واحد وعدد الفتحات"
+        },
+        {
+          "category": "hint",
+          "text": "يتطلب مضيفا محليا AutoJs6 6.8.0 / 5319 وTypeScript Engine متوافقا; لا يدعم مزج XML/Compose في الشجرة نفسها أو مكونات الدوال المخصصة TSX"
+        }
+      ]
+    },
+    "v4.30.0": {
+      "released_date": "2026/10/03",
+      "entries": [
+        {
+          "heading": "Compose UI"
+        },
+        {
+          "category": "feature",
+          "text": "compose / $compose وComposeError, تغطي 29 مصنعا للعقد ونقطة دخول قابلة للاستدعاء للتركيب والحالة وref والتجميع والمظهر والجلسات والنوافذ العائمة"
+        },
+        {
+          "category": "feature",
+          "text": "معاملات أحداث خاصة بكل مكون, وأنواع قراءة خصائص العقد وكتابتها, و20 طريقة Modifier مرتبة وأوامر جلسات Snackbar"
+        },
+        {
+          "category": "improvement",
+          "text": "مزامنة تصريحات Java العامة / الموارد / المكتبات المشتركة مع المضيف المتوافق, والتحقق من دليل المكونات والوثائق باستخدام القائمة المجمدة نفسها"
+        },
+        {
+          "category": "hint",
+          "text": "يتطلب بناء محليا متوافقا من AutoJs6 6.8.0 يتضمن وحدة compose, وإضافة Compose UI; أما TSX والتخطيطات المختلطة وcompose.dialog فما تزال مخصصة لإصدارات لاحقة"
+        }
+      ]
+    },
+    "v4.29.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "النطاقات العددية للمحددات"
+        },
+        {
+          "category": "feature",
+          "text": "UiSelector ودوال المحددات العامة minDepth / maxDepth / minIndexInParent / maxIndexInParent (شاملة الحدود, وتتطلب المضيف 6.8.0+), وتقابل مفاتيح مثل minDepth=3 في الصيغة النصية لـ select()"
+        },
+        {
+          "category": "fix",
+          "text": "إضافة تصريحات childCount / minChildCount / maxChildCount المفقودة إلى المحددات المدمجة"
+        }
+      ]
+    },
+    "v4.28.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "إعداد مصادر Installer"
+        },
+        {
+          "category": "feature",
+          "text": "نوع إعادة التعيين null وحقول نتائج sourceDeleteRequested في installer/installReason/packageSource, بما يتوافق مع قدرات إعداد المصادر في المضيف 5312+"
+        },
+        {
+          "category": "improvement",
+          "text": "توضيح توريث الحقول المحذوفة وأولوية الخيارات الصريحة وحدود الخيارات على مستوى الجلسة والاحتفاظ بالمصادر المشتركة في الدفعات; تظل حقول null الأخرى وحقول اختيار إعدادات السكربت مرفوضة"
+        }
+      ]
+    },
+    "v4.27.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "خيارات التثبيت المتقدمة في Installer"
+        },
+        {
+          "category": "feature",
+          "text": "خيارات grantAllRequestedPermissions, وrequestUpdateOwnership, وdexopt, وinstallReason, وpackageSource, والتعدادات المغلقة, وتتطلب المضيف 5308+ والقدرات المقابلة في الإضافة"
+        },
+        {
+          "category": "feature",
+          "text": "مرحلة الجلسة optimizing, ونتيجة القراءة الراجعة updateOwner القابلة للقيمة الفارغة, وحالات المراقبة الست لـ dexopt; لا تضمن accepted تنفيذ الترجمة البرمجية فعليا"
+        },
+        {
+          "category": "improvement",
+          "text": "التمييز بين الإغفال وfalse/none الصريح, وتوضيح حدود المنصة والتفويض وأن العمليات الإضافية بعد نجاح التثبيت لا تتراجع عن التثبيت, دون توفير خيار للسكربتات لتجاوز السياسة المحلية"
+        }
+      ]
+    },
+    "v4.26.1": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "حدود الإعدادات الافتراضية الدائمة في Installer"
+        },
+        {
+          "category": "improvement",
+          "text": "يوضح JSDoc أن الإعدادات الافتراضية الدائمة لـ Dhizuku تقتصر على API 26-33, وأن Root يستخدم هوية system مستقلة وuser 0, مع ترشيح auto في persistent وعدم اللجوء إلى بديل عند الفشل"
+        },
+        {
+          "category": "improvement",
+          "text": "التمييز بين الحل الفعلي للإعداد الافتراضي وإيصال الإعداد المحلي, مع الاحتفاظ بنتائج السكربت المنطقية وتوضيح أن الفشل الجزئي وخروج العملية لا يضمنان التراجع"
+        }
+      ]
+    },
+    "v4.26.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "قدرات Installer P8"
+        },
+        {
+          "category": "feature",
+          "text": "اسم التفويض Dhizuku, وتفاعل التثبيت notification, ووضع preferred/persistent في setDefault, ونوع الخطأ NOTIFICATION_UNAVAILABLE"
+        },
+        {
+          "category": "improvement",
+          "text": "يوضح JSDoc التفاوض على القدرات بين المضيف 5306+/ الإضافة, وقيود مستخدم owner/profile الحالي وأعلام التثبيت في Dhizuku, وعدم استخدام وضع الإشعارات لإلغاء التثبيت, ودلالات إلغاء الإعدادات الافتراضية الدائمة"
+        }
+      ]
+    },
+    "v4.25.0": {
+      "released_date": "2026/10/01",
+      "entries": [
+        {
+          "heading": "واجهة البرمجة النصية في Installer"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات وحدتي installer / $installer, بما يشمل التثبيت المتزامن والتثبيت بصيغة Async, وإلغاء التثبيت وفحص حزم التثبيت وطرق التفويض والمثبت الافتراضي وقائمة المستخدمين"
+        },
+        {
+          "category": "feature",
+          "text": "أنواع الأحداث والإلغاء والانتظار والنتائج في InstallSession, وحقول أخطاء InstallerError, وصيغ الاستدعاء المتعددة الدقيقة للمصدر الواحد / الدفعات / splits"
+        },
+        {
+          "category": "improvement",
+          "text": "يوضح JSDoc التفاعل الافتراضي وحذف المصدر ومتطلبات خيط التنفيذ المتزامن وحدود الإلغاء عند انتهاء مهلة الانتظار أو إيقاف السكربت"
+        }
+      ]
+    },
+    "v4.24.1": {
+      "released_date": "2026/09/29",
+      "entries": [
+        {
+          "heading": "الاتصال عند الطلب في 3-Stove Agent"
+        },
+        {
+          "category": "improvement",
+          "text": "يوضح Agent JSDoc التفعيل الموحد من مركز الإضافات والتفعيل التلقائي عند تثبيت الإضافة الرسمية أول مرة والاتصال عند الطلب ومتطلبات خيط العمل للاتصال المتزامن الأول; يظل status للقراءة فقط, ولا يعيد جلب المهمة تشغيلها"
+        },
+        {
+          "category": "improvement",
+          "text": "توضيح اسم الإضافة الحالي والحد الأدنى لإصدار المضيف, دون تغيير تواقيع الأنواع"
+        }
+      ]
+    },
+    "v4.24.0": {
+      "released_date": "2026/09/29",
+      "entries": [
+        {
+          "heading": "دعم تطوير Agent 1.3.0"
+        },
+        {
+          "category": "feature",
+          "text": "الخيار plan في AgentRunOptions (وضع التخطيط, مع اعتماد الإعداد المسبق عند الإغفال), والنوع plan والحقل steps في AgentInputEvent"
+        },
+        {
+          "category": "feature",
+          "text": "يقبل AgentRun.respond مصفوفة تضم من 1 إلى 8 سلسلة نصية للرد على مراجعة الخطة"
+        }
+      ]
+    },
+    "v4.23.0": {
+      "released_date": "2026/09/26",
+      "entries": [
+        {
+          "heading": "دعم تطوير Agent 1.2.0"
+        },
+        {
+          "category": "feature",
+          "text": "مجموعة الأدوات mcp في AgentToolGroup, معطلة افتراضيا, وتحدد الإضافة خوادمها والأدوات المسموح بها"
+        },
+        {
+          "category": "improvement",
+          "text": "توضح تلميحات المحرر إعدادات مخاطر خوادم MCP ومتطلبات توافق المضيف"
+        }
+      ]
+    },
+    "v4.22.0": {
+      "released_date": "2026/09/26",
+      "entries": [
+        {
+          "heading": "دعم تطوير Agent 1.1.0"
+        },
+        {
+          "category": "feature",
+          "text": "مجموعة الأدوات script_dynamic في AgentToolGroup, وتدعم تقييد التنفيذ الديناميكي للسكربتات ضمن خيارات المهام والإعدادات المسبقة"
+        },
+        {
+          "category": "improvement",
+          "text": "توضح تلميحات المحرر أن السكربتات الديناميكية معطلة افتراضيا وأن كل شفرة مصدر تتطلب تأكيدا منفصلا, مع التمييز بين أدوات النموذج وطرق JavaScript العامة"
+        }
+      ]
+    },
+    "v4.21.1": {
+      "released_date": "2026/09/25",
+      "entries": [
+        {
+          "heading": "دعم إصدار Agent 1.0.0"
+        },
+        {
+          "category": "improvement",
+          "text": "تلميحات المحرر لخيارات Agent, توضح الإعداد المسبق الافتراضي واللقطة عند الإدراج في الطابور واختيار هدف النموذج والأذونات العامة للأدوات والميزانيات الافتراضية وحدود البروتوكول والوضع الحذر ونطاق الحقن التلقائي للذاكرة"
+        },
+        {
+          "category": "fix",
+          "text": "مشكلة اعتماد حزمة التصريحات على إصدار قديم من نفسها, مما يسبب تنزيل تصريحات مكررة إضافية أثناء التثبيت"
+        },
+        {
+          "category": "improvement",
+          "text": "إبقاء سجل إصدارات README متوافقا مع سجل التغييرات الكامل"
+        }
+      ]
+    },
+    "v4.21.0": {
+      "released_date": "2026/09/24",
+      "entries": [
+        {
+          "heading": "مهام Agent API"
+        },
+        {
+          "category": "feature",
+          "text": "ai.agent.run/create/get/list/catalog/presets/status, وخصائص AgentRun للقراءة فقط, والأحداث والردود على الأسئلة والتأكيد والإلغاء وresult Promise وjoin, بما يتوافق مع AutoJs6 6.8.0 / build 5293"
+        },
+        {
+          "category": "feature",
+          "text": "خيارات المهام والميزانيات وملخصات السجل والبيانات الوصفية للسكربتات المسجلة وأنواع الأحداث, مع توضيح دورة حياة detached والمهلات والفرق بين النتائج وأخطاء الاتصال"
+        },
+        {
+          "category": "feature",
+          "text": "docs/smoke/ai-agent-task-smoke.ts, يغطي API للمهام والخيارات غير الصالحة وأنواع الأحداث والردود"
+        }
+      ]
+    },
+    "v4.20.0": {
+      "released_date": "2026/09/23",
+      "entries": [
+        {
+          "heading": "قناة تنفيذ السكربتات المسجلة في Agent"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات `ai.agent.result(value)` و`ai.agent.context()`, و`AgentExecutionContext`, بما يتوافق مع AutoJs6 6.8.0 / build 5287"
+        },
+        {
+          "category": "feature",
+          "text": "نوع قيمة JSON لنتائج السكربتات المسجلة, وتوضيح الحد الأقصى لـ 64 KiB ولقطات السياق; يغطي `docs/smoke/ai-agent-execution-smoke.ts` الاستدعاءات الصالحة والحالات السلبية لـ API غير المتاح للمهام"
+        }
+      ]
+    },
+    "v4.19.0": {
+      "released_date": "2026/09/21",
+      "entries": [
+        {
+          "heading": "تصريحات وحدة الكتب الإلكترونية"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الكائنين العامين `epub` / `$epub` (AutoJs6 6.8.0, توفرهما إضافة Readium EPUB Reader): `open` / `openAsync`, وطبقة التسهيل `metadata` / `toc` / `readingOrder` / `text` / `cover` / `search` وصيغها `Async`, والقارئ `read` / `readAsync`, و`isAvailable` / `isAvailableAsync`, و`EpubError`"
+        },
+        {
+          "category": "feature",
+          "text": "نطاق الأسماء `Internal.Epub`: `Book` (البيانات الوصفية وجدول المحتويات وترتيب القراءة وعدد المواضع واستخراج النص `text` / `textAll` وتصدير الغلاف والموارد والبحث في النص الكامل والإغلاق), وباعث الأحداث `ReaderSession` (أحداث `open` / `progress` / `bookmark` / `error` / `close`, والتنقل وتقليب الصفحات والتفضيلات والعلامات المرجعية والإغلاق), و`Locator`, و`Metadata` / `TocEntry` / `ReadingOrderEntry` / `SearchHit` / `Bookmark`, و`ReadOptions` / `Preferences` / `TextOptions` / `ExportOptions` / `SearchOptions`, و`ErrorCode`"
+        },
+        {
+          "category": "feature",
+          "text": "أمثلة ترجمة برمجية في `docs/smoke/epub-smoke.ts`, تغطي كائنات الكتب وطبقة التسهيل وأحداث جلسة القارئ والتحكم بها وفئات الأخطاء والحالات السلبية"
+        },
+        {
+          "category": "feature",
+          "text": "`epub.annotations` / `annotationsAsync` و`Book.annotations` / `annotationsAsync` (إضافة Readium EPUB Reader بإصدار 1.1.0, وعقد EPUB بإصدار 2: التمييزات والملاحظات التي يحفظها القارئ لكتاب واحد حسب ترتيب القراءة, بحد أقصى 2000 عنصرا, وتكون النتيجة `PLUGIN_INCOMPATIBLE` عند استخدام الإضافة بإصدار 1.0.0), و`Internal.Epub.Annotation` / `AnnotationStyle`, وحدث `highlight` في `ReaderSession` (`HighlightEvent`, حيث تكون `action` هي `added` / `updated` / `removed`); يضيف `docs/smoke/epub-smoke.ts` أمثلة للتمييزات والملاحظات وحالات سلبية"
+        },
+        {
+          "heading": "تصريحات وحدة البريد"
+        },
+        {
+          "category": "feature",
+          "text": "الحقل `pop3Xoauth2TwoLine` في الإعداد المسبق للمزود `Provider` (دليل الإعدادات المسبقة لإضافة Angus Mail, الإصدار 3: POP3, وما إذا كان `AUTH XOAUTH2` يقبل صيغة السطرين فقط; تكون القيمة `true` لدى Outlook.com وMicrosoft 365)"
+        },
+        {
+          "category": "feature",
+          "text": "`SavedAccount.oauth` و`SavedAccountOAuth` (إضافة Angus Mail بإصدار 1.2.0: الحسابات المسجل دخولها عبر المتصفح بحساب Google / Microsoft من صفحة إعدادات الإضافة تتضمن `provider` / `authorizedAt` / `expiresAt` / `needsReauth` في `mail.accounts.list()`, دون إظهار الرمز المميز نفسه)"
+        },
+        {
+          "category": "feature",
+          "text": "الواجهة `Internal.Mail.TriggerEvent`: الحدث الذي يتلقاه عبر `engines.myEngine().execArgv.mail` سكربت بدأته مهمة \"عند وصول بريد\" في AutoJs6 (المراقبة الخلفية في إضافة Angus Mail بإصدار 1.1.0, وعقد البريد بإصدار 2: `triggerId`, و`alias`, و`address`, و`folder`, وغلاف الرسالة `message`, و`receivedAt`)"
+        }
+      ]
+    },
+    "v4.18.0": {
+      "released_date": "2026/09/20",
+      "entries": [
+        {
+          "heading": "تصريحات وحدة البريد"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الكائنين العامين `mail` / `$mail` (AutoJs6 6.8.0, توفرهما إضافة Angus Mail): `connect` / `connectAsync`, و`setDefault`, و`default`, و`close`, و`providers`, و`accounts`, و`MailError`, وجميع طرق العميل التي يجري تحويلها إلى العميل الافتراضي"
+        },
+        {
+          "category": "feature",
+          "text": "نطاق الأسماء `Internal.Mail`: `Client` و`Operations` (الصيغ المتزامنة وصيغ `Async` للإرسال والاستقبال والمجلدات والقوائم والبحث والقراءة وتنزيل المرفقات والمصدر الأصلي والوسم والنقل والنسخ والحذف والمحو والإلحاق والاستماع), وباعث الأحداث `Watch`, و`Message` / `Attachment` / `Address` / `SendMessage`, و`AccountOptions` / `Provider` / `SavedAccount`, و`SearchQuery` / `SearchResult`, و`Folder` / `FolderStatus` / `SendResult` / `SessionTestResult`, و`ErrorCode`"
+        },
+        {
+          "category": "feature",
+          "text": "أمثلة ترجمة برمجية في `docs/smoke/mail-smoke.ts`, تغطي الاتصال بالأسماء البديلة والرموز المميزة وعلامات الرجوع إلى البحث البديل وتنزيل المرفقات والوسم والنقل وأحداث الاستماع والحالات السلبية"
+        }
+      ]
+    },
+    "v4.17.0": {
+      "released_date": "2026/09/18",
+      "entries": [
+        {
+          "heading": "المسجل المدمج وتبسيط تصريحات المكتبات الخارجية"
+        },
+        {
+          "category": "update",
+          "text": "تغيير الوكلاء العامين `Level` / `LogConfigurator` / `LogManager` ليرثوا الفئات ذات الأسماء نفسها في `org.autojs.autojs.core.console.log` المدمج ضمن AutoJs6, مع مزامنة أمثلة `console.setGlobalLogConfig` وملخصات الشفرة (المضيف 6.8.0 يستبدل log4j بمسجل ملفات دوار مدمج)"
+        },
+        {
+          "category": "update",
+          "text": "لم تعد تصريحات المكتبات الخارجية تتضمن المكتبات التي أزالها المضيف: log4j وandroid-logging-log4j, وFlexmark, وJavaMail, وJUnit, وgithub-api وJackson, وcommons-io وcommons-lang3, وkotlin-reflect, وSpongyCastle, وmedia3 وGuava (`libraries.d.ts`: 26,864 -> 25,081 سطرا)"
+        },
+        {
+          "category": "update",
+          "text": "دمج تصريحات التطبيق الرئيسي والموارد لـ AutoJs6 6.8.0 (5282): إضافة حزمة `org.autojs.autojs.core.console.log` (Appender / Level / LogConfigurator / LogEvent / Logger / LoggerRepository / LogManager) وفئات عقد إضافة البريد, مع إضافة موارد ID وحذفها بما يتوافق مع المضيف"
+        }
+      ]
+    },
+    "v4.16.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "تحسينات الصور والألوان ومطابقة الصور"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات `images.countPointsByColor` و`images.getMeanColor`, ويقبل `images.readPixels` قيمة ImageWrapper أو مسار ملف"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات `colors.distance`, و`colors.invert`, و`colors.blend`, و`colors.contrast`, والطرق المقابلة في مثيلات Color"
+        },
+        {
+          "category": "feature",
+          "text": "خيار `scales` في `images.matchTemplate` و`images.findPointByImage`, وخصائص المطابقات `width`, و`height`, و`scale`, و`center`, و`rect`, وتصريحات `size`, و`isEmpty()`, و`isNotEmpty()`, و`filter()` في `MatchingResult`"
+        },
+        {
+          "category": "completion",
+          "text": "المعامل `images.matchTemplate` يقبل مسار صورة, مع إضافة خيار `useTransparentMask`"
+        },
+        {
+          "category": "feature",
+          "text": "خيارات `ransacThreshold`, و`minInliers`, و`maxFeatures` ومعامل الصورة في `images.matchFeatures`, وخصائص `width`, و`height`, و`angle`, و`bounds`, و`points`, و`matches`, و`inliers` في `ObjectFrame`, وتصريحات `count`, و`method`, و`oneShot()` في `ImageFeatures`"
+        },
+        {
+          "category": "completion",
+          "text": "إضافة خيار `maxFeatures` وتوضيح قيم `scale` إلى `images.detectAndComputeFeatures`, مع عدم التمييز بين حالة الأحرف في أسماء أدوات المطابقة"
+        },
+        {
+          "category": "update",
+          "text": "دمج تصريحات التطبيق الرئيسي والموارد والمكتبات الخارجية لـ AutoJs6 6.8.0 (5280), مع الاحتفاظ بتصريحات مكدس مهام Flow والنقر بالإحداثيات"
+        }
+      ]
+    },
+    "v4.15.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "النقر بالإحداثيات ومكدس مهام Flow"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات smartClickBounds / clickBoundsIfExists / clickBoundsAny وعمليات الانتظار والتأخير والأسماء البديلة في Flow"
+        },
+        {
+          "category": "update",
+          "text": "القيمة الافتراضية 0 في maxAttempts تعني عدم تحديد عدد المحاولات, ويوفر FlowError.flowStack تشخيصا للمهام غير المتزامنة"
+        },
+        {
+          "category": "update",
+          "text": "مزامنة تصريحات المضيف المولدة وتصريحات Ace Editor المدمجة وملف تجميع LSP والفهارس"
+        }
+      ]
+    },
+    "v4.14.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "الخطوات الاختيارية والحلقات المحدودة في Flow"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات clickIfExists / clickAny / findAny وwhenPresent وrepeatUntil المتسلسلة في Flow"
+        },
+        {
+          "category": "update",
+          "text": "الإسقاط snapshot وأنواع إرجاع المجموعات في waitForStable, مع إبقاء القيمة الافتراضية لـ stableFor متوافقة مع وقت التشغيل"
+        },
+        {
+          "category": "update",
+          "text": "مزامنة تصريحات المضيف المولدة وملف تجميع Ace Editor LSP والفهارس"
+        }
+      ]
+    },
+    "v4.13.0": {
+      "released_date": "2026/09/14",
+      "entries": [
+        {
+          "heading": "إعداد التخزين المشترك للتطبيقات المحزمة"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات LaunchConfig.requiresSharedStorage وgetter / setter المقابلة"
+        },
+        {
+          "category": "update",
+          "text": "مزامنة تصريحات موارد واعتماديات AutoJs6 6.8.0 (5280), ومجموعات Ace Editor LSP"
+        }
+      ]
+    },
+    "v4.12.0": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "المسافات في النص باستخدام Pangu"
+        },
+        {
+          "category": "feature",
+          "text": "تصريح `pangu` العام, يغطي `version`, و`spaceText`, و`hasProperSpacing` في pangu.js 10.1.0, ويوفر نوع إرجاع محددا لـ `require('pangu')`"
+        },
+        {
+          "category": "update",
+          "text": "مزامنة تصريحات التطبيق الرئيسي AutoJs6 والتصريحات المدمجة Ace Editor, وإعادة توليد مجموعات LSP والفهارس"
+        }
+      ]
+    },
+    "v4.11.1": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "إذن الشبكة المحلية في Android"
+        },
+        {
+          "category": "fix",
+          "text": "نوع اسم الإذن العام في `runtime.requestPermissions`, مع التصريح عن المعامل بأنه `string[]`, وتصحيح مثال المصفوفة وتوضيح شروط النظام وtargetSdk الخاصة بـ `access_local_network`"
+        },
+        {
+          "category": "update",
+          "text": "إعادة توليد تصريحات التطبيق الرئيسي والموارد من AutoJs6 6.8.0 (5280), ومزامنة التصريحات المدمجة Ace Editor ومجموعات LSP"
+        }
+      ]
+    },
+    "v4.11.0": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "حجم صفحة ذاكرة الجهاز"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات عددية للقراءة فقط لـ `device.pageSize` و`$device.pageSize`, تعيد حجم صفحة ذاكرة النظام الحالي بالبايت"
+        },
+        {
+          "category": "update",
+          "text": "إعادة توليد تصريحات التطبيق الرئيسي والموارد من AutoJs6 6.8.0 (5280), ومزامنة التصريحات المدمجة Ace Editor ومجموعات LSP"
+        }
+      ]
+    },
+    "v4.10.0": {
+      "released_date": "2026/09/12",
+      "entries": [
+        {
+          "heading": "وضع الاختيار التلقائي في OCR"
+        },
+        {
+          "category": "feature",
+          "text": "وضع OCR يدعم `auto` والسلسلة الفارغة وإعادة التعيين باستخدام nullish, ويقتصر نوع القراءة على اسم المحرك الفعلي أو سلسلة فارغة, مع مزامنة `tap` وخيارات الاستدعاء الواحد والإكمال لـ Ace Editor"
+        },
+        {
+          "category": "update",
+          "text": "إعادة توليد تصريحات التطبيق الرئيسي والموارد من AutoJs6 6.8.0 (5280), ومزامنة التصريحات المدمجة Ace Editor ومجموعات LSP"
+        }
+      ]
+    },
+    "v4.9.0": {
+      "released_date": "2026/09/10",
+      "entries": [
+        {
+          "heading": "استعلامات التدفقات المتعددة في MediaInfo"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات أرقام التدفقات وعددها وInfoKind والقدرات في MediaInfo, مع مزامنة خيارات استعلام Rhino والإكمال لـ Ace Editor"
+        }
+      ]
+    },
+    "v4.8.1": {
+      "released_date": "2026/09/08",
+      "entries": [
+        {
+          "heading": "إدخال وحدة التحكم وخيارات العرض وتصريحات عناصر وحدة التحكم في وضع UI"
+        },
+        {
+          "category": "feature",
+          "text": "استعادة تصريحات قابلة للاستخدام لـ `console.rawInput` / `console.input` (قراءة حاجبة لسطر نص من حقل إدخال وحدة التحكم, مع تقييم `input` كتعبير JavaScript)"
+        },
+        {
+          "category": "feature",
+          "text": "`console.setTimeVisible` / `setTimeFormat` / `setColorful` / `setAvoidStatusBar` / `setInputVisible`, وخيارات `timeVisible` / `timeFormat` / `colorful` / `avoidStatusBar` / `inputVisible` في `console.build`"
+        },
+        {
+          "category": "feature",
+          "text": "عنصرا `<console>` / `<globalconsole>` في JSX وتصريحات خصائصهما (`global`, و`title`, وأنماط شريط العنوان ومنطقة المحتوى, و`timeVisible`, و`timeFormat`, و`colorful`, و`inputVisible`, وغيرها)"
+        },
+        {
+          "category": "dependency",
+          "text": "التوافق مع إعادة هيكلة وحدة التحكم في AutoJs6 6.8.0 (5279)"
+        }
+      ]
+    },
+    "v4.8.0": {
+      "released_date": "2026/09/07",
+      "entries": [
+        {
+          "heading": "تصريحات الأتمتة عبر إمكانية الوصول"
+        },
+        {
+          "category": "feature",
+          "text": "`aj6-int-flow.d.ts`: الكائن المتسلسل `Flow<T>` ونطاق الأسماء `Flow` (خيارات الانتظار والنطاق والقيم الافتراضية و`FlowError` ورموز الأخطاء), وكائنا نطاق الأسماء `flow` / `$flow` (`Internal.FlowApi`: نقاط بدء الانتظار / مجموعة الأدوات / انتظار الأحداث, و`all` / `race` / `any`, و`defaults`, و`trace`), والدوال العامة `waitAsync` / `waitThenClick` / `clickWait` / `waitForStable` / `waitForStableThenClick` / `clickWhenStable` / `waitForVisible` / `waitForHidden` / `waitForGone` / `clickWhenStableAfter`, و`wait.async`"
+        },
+        {
+          "category": "feature",
+          "text": "مجموعة أدوات `Internal.Automator` والأدوات العامة (`smartClick` / `clickIfExists` / `clickAny` / `findAny` / `scrollUntil` / `typeInto` / `dismissPopups` / `collectList` / `launchAndWait` / `backUntil` / `backToApp` / `toggle` / `retry`), والانتظار المستند إلى الأحداث (`waitForIdle` / `waitForEvent` / `waitForToast` / `waitForNotification`), مع وضع أنواع الخيارات والنتائج في نطاق الأسماء `Automator`"
+        },
+        {
+          "category": "feature",
+          "text": "`wait` / `findWindows` / `findWindowRoots` / `explain` / `dump` / `stats` في `Internal.Auto`, وصيغ خيارات الترشيح المتعددة لـ `registerEvent` / `registerEvents`, وصيغة كائن المطابقة (`Automator.WindowMatch`) في `setWindowFilter`, و`AutoState.adoptedByEvent`, وإضافة `appWindowsFallback` / `eventAssistedPolling` إلى `Automator.Flags`"
+        },
+        {
+          "category": "feature",
+          "text": "صيغة استدعاء المحدد النصي `select(syntax)` (العامة وفي `Internal.Selector`), و`findIterator()`, و`UiObjectIterator`"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد تصريحات التطبيق الرئيسي من AutoJs6 6.8.0 (5278) (الطرق الجديدة في `UiObject` / `UiSelector` / `UiObjectCollection`, و`UiObjectIterator`), ومزامنة التصريحات المدمجة Ace Editor ومجموعات LSP"
+        }
+      ]
+    },
+    "v4.7.0": {
+      "released_date": "2026/09/01",
+      "entries": [
+        {
+          "heading": "تصريحات النطق المخصص في Pinyin وأدوات المصفوفات"
+        },
+        {
+          "category": "feature",
+          "text": "`Pinyin.Options.customDictionary` و`Pinyin.CustomDictionary`, لتصريح تجاوز نطق الحروف الصينية لكل استدعاء, وأولوية أطول تطابق, وحد 64 KiB/1024 عنصرا"
+        },
+        {
+          "category": "completion",
+          "text": "يعيد `pinyin.compare` نتائج مرتبة عدديا, ويعيد `pinyin.compact` حاصل الضرب الديكارتي لمصفوفة الخيارات, مع إزالة أنواع الإرجاع المؤقتة السابقة"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد تصريحات التطبيق الرئيسي وPinyin API المشترك من AutoJs6 6.8.0 (5277), ومزامنة التصريحات المدمجة Ace Editor ومجموعات LSP"
+        }
+      ]
+    },
+    "v4.6.1": {
+      "released_date": "2026/09/01",
+      "entries": [
+        {
+          "heading": "مزامنة تصريحات أسماء أدوات المعاينة"
+        },
+        {
+          "category": "replacement",
+          "text": "توحيد `FileUtils.PreviewType` و`previewType` إلى `PreviewerType` و`previewerType` على الترتيب, مع مزامنة الأسماء الدلالية لأدوات المعاينة في تصريحات التطبيق الرئيسي"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد تصريحات التطبيق الرئيسي والموارد والمكتبات الخارجية من AutoJs6 6.8.0 (5277), ومزامنة التصريحات المدمجة Ace Editor ومجموعات LSP"
+        }
+      ]
+    },
+    "v4.6.0": {
+      "released_date": "2026/08/31",
+      "entries": [
+        {
+          "heading": "تصريحات ميزانية الموارد والإلغاء لتكميم PNG"
+        },
+        {
+          "category": "feature",
+          "text": "`Images.PngQuantizationOptions.maxPixels` و`maxMemoryBytes`, مع التصريح بالحدود الافتراضية البالغة 16000000 بكسل و256 MiB لذاكرة العمل الإضافية"
+        },
+        {
+          "category": "metrics",
+          "text": "إضافة `peakWorkingMemoryBytes` إلى نتائج البايتات والملفات, ويعيد v4 ذروة الذاكرة المحتسبة ضمن الميزانية, بينما تعيد الإضافات القديمة `-1`"
+        },
+        {
+          "category": "error",
+          "text": "تصريح الرموز الثابتة والأسباب وحقول الميزانية لأخطاء حدود الموارد, ومزامنة Java API المقابل لرمز الإلغاء الصريح والربط بخروج السكربت"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد تصريحات التحكم بالموارد والإلغاء وJava للنتائج من AutoJs6 6.8.0 (5277), ومزامنة التصريحات المدمجة Ace Editor ومجموعات LSP"
+        }
+      ]
+    },
+    "v4.5.0": {
+      "released_date": "2026/08/31",
+      "entries": [
+        {
+          "heading": "تصريحات ألوان التكميم وإخراج الملفات كتدفق في PNG"
+        },
+        {
+          "category": "feature",
+          "text": "`images.quantizeToFile` و`Images.PngQuantizationFileResult`, للكتابة مباشرة إلى ملف PNG وإرجاع المسار والحجم والجودة الفعلية وخطأ التكميم"
+        },
+        {
+          "category": "completion",
+          "text": "`Images.PngQuantizationOptions.preserveAlpha`, يحتفظ بالشفافية افتراضيا, ويصرح بإخراج معتم تماما عند ضبطه على `false`"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد تصريحات الإخراج عبر واصف ملف وخيارات الألوان وJava للنتائج من AutoJs6 6.8.0 (5277), ومزامنة التصريحات المدمجة Ace Editor ومجموعات LSP"
+        }
+      ]
+    },
+    "v4.4.0": {
+      "released_date": "2026/08/30",
+      "entries": [
+        {
+          "heading": "تصريحات نتائج جودة التكميم واستراتيجية البديل في PNG"
+        },
+        {
+          "category": "feature",
+          "text": "`images.quantize` و`Images.PngQuantizationResult`, لإرجاع بايتات PNG المفهرسة وحجم الإخراج والجودة الفعلية وخطأ التكميم المطبع"
+        },
+        {
+          "category": "completion",
+          "text": "الخيارات الفارغة تصرح باستراتيجية بذل أفضل جهد باستخدام `minQuality=0`, بينما يحتفظ `quality` أو `minQuality` الصريح بدلالة الحد الأدنى الصارم"
+        },
+        {
+          "category": "error",
+          "text": "مزامنة `PngQuantBridge.QualityTooLowException` ورموز الأخطاء الثابتة في تصريحات التطبيق الرئيسي, للتمييز بين عدم كفاية الجودة والفشل الداخلي"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد تصريحات التطبيق الرئيسي والموارد من AutoJs6 6.8.0 (5276), ومزامنة التصريحات المدمجة Ace Editor ومجموعات LSP"
+        }
+      ]
+    },
+    "v4.3.0": {
+      "released_date": "2026/08/30",
+      "entries": [
+        {
+          "heading": "تصريحات المعاملات المسماة لتكميم PNG"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات `Images.PngQuantizationOptions` ومعاملات الكائنات في `images.save`, و`saveImage`, و`compress`, و`compressToBytes`, تغطي ميزانية الألوان والسرعة ونطاق الجودة والتنقيط وposterize"
+        },
+        {
+          "category": "compatibility",
+          "text": "الاحتفاظ بدلالات صيغ الاستدعاء المتعددة السابقة للعدد `quality` والمعاملات المحذوفة, وتوضيح أن كائن الخيارات ينطبق فقط على إخراج PNG الذي توفره إضافة Image Quantization"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد تصريحات التطبيق الرئيسي والموارد من AutoJs6 6.8.0 (5276), ومزامنة التصريحات المدمجة Ace Editor ومجموعات LSP"
+        }
+      ]
+    },
+    "v4.2.0": {
+      "released_date": "2026/08/27",
+      "entries": [
+        {
+          "heading": "تصريحات R8 Retrace وتصدير المخرجات المتحقق منها"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات `runtime.retraceR8Stack`, لاستعادة المكدسات المموهة عبر مزودي البروتوكول 1.1 وباستخدام روابط تتبع المصدر حسب mapping وretrace metadata"
+        },
+        {
+          "category": "feature",
+          "text": "3 صيغ تصدير لـ `runtime.loadJarWithR8`, تصدر mapping, وseeds, وusage, وretrace metadata كوحدة ذرية بعد إعادة حساب التجزئات, دون تصدير DEX ضمنيا"
+        },
+        {
+          "category": "constraint",
+          "text": "لا يحل المسارات إلا المضيف; يتوقف التنفيذ دون الرجوع إلى D8/dx إذا لم يحدد مزود دقيق أو فشل أي تحقق من التجزئات أو البيانات الوصفية أو الإخراج"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد تصريحات التطبيق الرئيسي والموارد من المضيف AutoJs6 عند الالتزام `dafddc732`, ومزامنة التصريحات المدمجة Ace Editor ومجموعات LSP"
+        }
+      ]
+    },
+    "v4.1.0": {
+      "released_date": "2026/08/26",
+      "entries": [
+        {
+          "heading": "تصريحات واجهة الأهداف الحصرية للإضافات في AI"
+        },
+        {
+          "category": "replacement",
+          "text": "توحيد `ai`, و`ask`, و`chat`, و`stream`, و`session`, و`catalog` لاستخدام أنواع الإدخال والخيارات والاستجابات والتدفق الخاصة بأهداف الإضافات"
+        },
+        {
+          "category": "simplification",
+          "text": "إزالة صيغ الاستدعاء مزدوجة المسار غير المنشورة وبنى استجابات الاتصال المباشر بالمضيف والأنواع الانتقالية, مع الاحتفاظ بالخاصية القياسية `timeout` فقط للمهلة"
+        },
+        {
+          "category": "completion",
+          "text": "تصريح الهدف الرسمي الافتراضي 3-Stone AI عند إغفال المحدد, وتوحيد الرسائل وusage, وfinish reason, وtarget, وsession, وأنواع الأخطاء الثابتة"
+        },
+        {
+          "category": "dependency",
+          "text": "مزامنة التصريحات المدمجة Ace Editor ومجموعات تصريحات LSP المولدة"
+        }
+      ]
+    },
+    "v4.0.9": {
+      "released_date": "2026/08/26",
+      "entries": [
+        {
+          "heading": "تصريحات دليل الأهداف الموحد والتوجيه الدقيق في AI"
+        },
+        {
+          "category": "replacement",
+          "text": "توحيد تصريحات أهداف النماذج المحلية والإعدادات عبر الإنترنت باستخدام `ai.catalog`, مع حذف الدليل القديم غير المنشور واستكشاف الإعدادات والأسماء البديلة للتوافق"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الاختيار الدقيق بـ `target`, والهدف الرسمي الافتراضي 3-Stone AI, والبيانات الوصفية target/profile/backend/plugin, وإخراج reasoning"
+        },
+        {
+          "category": "completion",
+          "text": "تصريحات كاملة لـ usage, وfinish reason, ورموز الأخطاء الثابتة للتوليد والتدفق والجلسات الدائمة, مع النص الصريح على عدم اللجوء إلى بديل عند غياب الهدف أو عدم إعداده أو عدم توفره أو عدم تطابق قدراته"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد تصريحات التطبيق الرئيسي والموارد والمكتبات الخارجية لـ AutoJs6, ومزامنة التصريحات المدمجة Ace Editor"
+        }
+      ]
+    },
+    "v4.0.8": {
+      "released_date": "2026/08/25",
+      "entries": [
+        {
+          "heading": "تصريحات نقطة الدخول الصريحة للترجمة البرمجية في R8"
+        },
+        {
+          "category": "feature",
+          "text": "3 صيغ استدعاء لـ `ScriptRuntime.loadJarWithR8`, تغطي keep rules الصريح وclasspath المرتب وربط consumer-rule ordinal"
+        },
+        {
+          "category": "constraint",
+          "text": "تحتفظ التصريحات بنوع مصفوفة المعاملات كاملا, بما يتوافق مع نقطة دخول المضيف المعطلة افتراضيا ودون بديل D8/dx"
+        },
+        {
+          "category": "dependency",
+          "text": "مزامنة تصريحات التطبيق الرئيسي AutoJs6 ووثائق API والتصريحات المدمجة Ace Editor"
+        }
+      ]
+    },
+    "v4.0.7": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "تصريحات backend profile المحلي في AI"
+        },
+        {
+          "category": "feature",
+          "text": "خيار `backend` للتوليد بالإضافات المحلية والجلسات الدائمة, يغطي `cpu`, و`gpu`, و`npu`, مع CPU افتراضيا ودون اللجوء إلى بديل عند عدم توفر profile"
+        },
+        {
+          "category": "feature",
+          "text": "نوع الاتحاد المميز `backendProfiles` في دليل الأهداف الموحد, يصرح بدقة بتوفر الأجهزة والأسباب الثابتة لعدم التوفر"
+        },
+        {
+          "category": "constraint",
+          "text": "يمنع تعداد النماذج وخيارات المزودين السحابيين الاستخدام الخاطئ لـ `backend` المحلي, وتحتفظ الجلسات الدائمة بـ profile نفسه بعد إنشائها"
+        },
+        {
+          "category": "dependency",
+          "text": "مزامنة تصريحات التطبيق الرئيسي AutoJs6 والتصريحات المدمجة Ace Editor"
+        }
+      ]
+    },
+    "v4.0.6": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "تصريحات JSON المحلي المنظم في AI"
+        },
+        {
+          "category": "feature",
+          "text": "خيارا `structuredJson` و`responseSchema` لتوجيه الإضافات المحلية والجلسات الدائمة"
+        },
+        {
+          "category": "constraint",
+          "text": "يجب أن يكون `responseSchema` كائن JSON, وهو يفعل الإخراج المنظم ضمنيا; وبعد إنشاء الجلسة يظل schema نفسه ثابتا في كل جولة"
+        },
+        {
+          "category": "precision",
+          "text": "يظل `ai.ask` وحقل الاستجابة `text` يعيدان نص JSON كاملا, وتظل زيادات التدفق مقاطع نصية قد لا تكون مكتملة بعد"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد ومزامنة تصريحات التطبيق الرئيسي والموارد والمكتبات الخارجية لـ AutoJs6"
+        }
+      ]
+    },
+    "v4.0.5": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "تصريحات المحادثات الدائمة متعددة الجولات في AI"
+        },
+        {
+          "category": "feature",
+          "text": "`ai.session` وخيارات الجلسات الدائمة, تغطي الصيغة المختصرة للإضافة الرسمية وsystem preface ومعاملات التوليد الثابتة"
+        },
+        {
+          "category": "feature",
+          "text": "طرق `ask`, و`chat`, و`stream`, و`close` في `Ai.Session`, وخصائص الحالة والمزود والنموذج للقراءة فقط"
+        },
+        {
+          "category": "constraint",
+          "text": "تقبل جولة الجلسة سلسلة الطلب الحالي للمستخدم فقط, مع توضيح أن إلغاء التدفق يغلق الجلسة بأكملها"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد ومزامنة تصريحات التطبيق الرئيسي والموارد والمكتبات الخارجية لـ AutoJs6"
+        }
+      ]
+    },
+    "v4.0.4": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "استكمال تصريحات توجيه الإضافات المحلية في AI"
+        },
+        {
+          "category": "feature",
+          "text": "صيغ استدعاء الإضافات لـ `ai.chat`, و`ai.stream`, ودليل الأهداف الموحد, تغطي استجابات التوجيه وأحداث التدفق واكتشاف الأهداف"
+        },
+        {
+          "category": "completion",
+          "text": "تصريحات الصيغة المختصرة للإضافة الرسمية واختيار مكونات الجهات الخارجية والرسائل النصية متعددة الجولات ومعاملات التوليد المحلي"
+        },
+        {
+          "category": "precision",
+          "text": "استهلاك token في الإضافة ومدة التوليد وID النموذج القابل للقيمة الفارغة وأنواع أخطاء التوجيه الثابتة"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد ومزامنة تصريحات التطبيق الرئيسي والموارد والمكتبات الخارجية لـ AutoJs6"
+        }
+      ]
+    },
+    "v4.0.3": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "تصريحات اكتشاف الأهداف عبر إضافة مستقلة في YOLO"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات وحدتي `yolo`/`$yolo`, و`load`, و`detect`, و`close`, تغطي خيارات الجلسة ونتائج الاكتشاف ورموز الأخطاء الثابتة"
+        },
+        {
+          "category": "constraint",
+          "text": "تصريحات مكونات Provider الصريحة وأجهزة CPU, ونطاقات خيوط التنفيذ والعتبة وعدد النتائج والمهلة"
+        },
+        {
+          "category": "improvement",
+          "text": "مزامنة تصريحات التطبيق الرئيسي لمشغل إضافة Node, وإزالة تصريحات جسري التشخيص NativeNodeEmbedded وlibuv اللذين ألغيا"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد ومزامنة تصريحات التطبيق الرئيسي والموارد والمكتبات الخارجية لـ AutoJs6"
+        }
+      ]
+    },
+    "v4.0.2": {
+      "released_date": "2026/08/12",
+      "entries": [
+        {
+          "heading": "تصريحات توجيه شفرة المحرك في Python"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات التطبيق الرئيسي مثل `PythonScriptSource`, و`PythonFileSource`, و`PythonProjectSource`, و`PersistedScriptLaunchContext`, واستكمال سياق `sourceKind` و`projectRoot` الدائم في `IntentTask`/`TimedTask`"
+        },
+        {
+          "category": "improvement",
+          "text": "إضافة توقيع المنشئ `ScriptSource(sourceName, extension)`, ومزامنة ملخص شفرة `engines.execScriptFile`, وتوضيح توجيه `.py` ومنع الرجوع إلى محرك JavaScript"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد ومزامنة تصريحات التطبيق الرئيسي والموارد والمكتبات الخارجية لـ AutoJs6"
+        }
+      ]
+    },
+    "v4.0.1": {
+      "released_date": "2026/08/11",
+      "entries": [
+        {
+          "heading": "تصريحات الاختيار الصريح لإضافة توليد النص المحلي في AI"
+        },
+        {
+          "category": "feature",
+          "text": "صيغ الاختيار الصريح لإضافة توليد النص المحلي في ai/ask, وأنواع المكونات والمزودين والنماذج"
+        },
+        {
+          "category": "constraint",
+          "text": "تدعم خيارات الإضافة نص user واحدا والمهلة فقط, ويمنع خلطها مع خيارات المزودين السحابيين"
+        }
+      ]
+    },
+    "v4.0.0": {
+      "released_date": "2026/07/27",
+      "entries": [
+        {
+          "heading": "مزامنة تصريحات AutoJs6 6.8.0 Alpha7 ودمج التصريحات المولدة"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات وحدة ai/tts/powerManager/settings/workManager والأسماء البديلة أثناء التشغيل"
+        },
+        {
+          "category": "improvement",
+          "text": "التوافق مع تصريحات API للوحدات المدمجة في AutoJs6 6.8.0 Alpha7"
+        },
+        {
+          "category": "improvement",
+          "text": "مزامنة التواقيع والأسماء البديلة والقيم الفارغة وأنواع الإرجاع للوحدات مثل tasks/app/images/ocr/plugins/web"
+        },
+        {
+          "category": "improvement",
+          "text": "استكمال التركيب أثناء التشغيل والأسماء البديلة ذات البادئة `$` وأمثلة smoke للكائنات العامة الرئيسية"
+        },
+        {
+          "category": "dependency",
+          "text": "إعادة توليد ودمج تصريحات التطبيق الرئيسي والموارد والمكتبات الخارجية لـ Android/AutoJs6"
+        },
+        {
+          "category": "adjustment",
+          "text": "توحيد نقطة دخول النشر إلى `declarations/autojs6/index.d.ts`, وإزالة نقاط الدخول القديمة والأجزاء المولدة"
+        }
+      ]
+    },
+    "v3.0.0": {
+      "released_date": "2026/06/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "ملفات تصريحات الوحدات المدمجة مثل converter/formatter/sysprops/zip/nanoid/mediainfo/pinyin4j/jsox"
+        },
+        {
+          "category": "improvement",
+          "text": "التوافق مع تصريحات API للوحدات المدمجة في AutoJs6 6.7.1 Alpha4"
+        },
+        {
+          "category": "improvement",
+          "text": "استكمال مراجع نقطة الدخول وتصريحات المتغيرات العامة في index, والأسماء البديلة للوحدات ذات البادئة `$`"
+        },
+        {
+          "category": "improvement",
+          "text": "مزامنة تصريحات الوحدات الموجودة مثل colors/Color/images/Canvas/pinyin/mime/sqlite/media/recorder/tasks"
+        },
+        {
+          "category": "improvement",
+          "text": "إضافة أمثلة smoke للكائنات العامة الرئيسية وسجل أوامر التحقق TypeScript"
+        },
+        {
+          "category": "dependency",
+          "text": "تحديث ملفات التصريحات المولدة للتطبيق الرئيسي والمكتبات الخارجية في Android/AutoJs6"
+        }
+      ]
+    },
+    "v2.1.3": {
+      "released_date": "2023/12/02",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة opencc"
+        },
+        {
+          "category": "improvement",
+          "text": "استكمال تصريحات detect وrecognizeText المفقودة في قسم ocr"
+        },
+        {
+          "category": "improvement",
+          "text": "دعم AutoJs6 6.5.0"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات Android OpenCC 1.2.0"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Android dx 1.11 -> 1.14"
+        },
+        {
+          "category": "dependency",
+          "text": "خفض إصدار تصريحات Jackson DataBind 2.14.3 -> 2.13.3"
+        },
+        {
+          "category": "dependency",
+          "text": "خفض إصدار تصريحات Apache Commons IO 2.14.0 -> 2.8.0"
+        }
+      ]
+    },
+    "v2.1.2": {
+      "released_date": "2023/10/30",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة shizuku"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة barcode"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة qrcode"
+        },
+        {
+          "category": "improvement",
+          "text": "دعم AutoJs6 6.4.0"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات JavaMail for Android"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات Okio 3.2.0"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات Shizuku 13.1.5"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات MLKit Barcode Bundled 17.2.0"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات MLKit Barcode Common 17.0.0"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Kotlin Stdlib 1.7.21 -> 1.9.20-RC2"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Joda Time 2.12.1 -> 2.12.5"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Zip4j 2.11.2 -> 2.11.5"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Gson 2.10 -> 2.10.1"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Okhttp3 5.0.0-alpha.9 -> 5.0.0-alpha.11"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات OpenCV 4.5.5 -> 4.8.0"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Apache Commons Lang3 3.12.0 -> 3.13.0"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Apache Commons IO 2.8.0 -> 2.14.0"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Android Analytics 14.0.0 -> 14.4.0"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Androidx Preference 1.2.0 -> 1.2.1"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Androidx Recyclerview 1.3.0 -> 1.3.2"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Androidx Annotation 1.6.0 -> 1.7.0"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Androidx AppCompat 1.4.2 -> 1.6.1"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Jackson DataBind 2.13.3 -> 2.14.3"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Androidx WebKit 1.6.0 -> 1.8.0"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Androidx Preference 1.2.0 -> 1.2.1"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Glide 4.14.2 -> 4.16.0"
+        },
+        {
+          "category": "dependency",
+          "text": "ترقية تصريحات Android Material 1.7.0 -> 1.10.0"
+        },
+        {
+          "category": "dependency",
+          "text": "إزالة تصريحات Zeugma Solutions LocaleHelper 1.5.1"
+        }
+      ]
+    },
+    "v2.1.1": {
+      "released_date": "2023/07/21",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "دعم AutoJs6 6.3.3"
+        }
+      ]
+    },
+    "v2.1.0": {
+      "released_date": "2023/07/06",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة crypto"
+        },
+        {
+          "category": "improvement",
+          "text": "إضافة تعليمات إعداد VSCode إلى README.md"
+        },
+        {
+          "category": "improvement",
+          "text": "تحديد جذر ملفات التصريحات في jsconfig.json لتحسين التوافق"
+        },
+        {
+          "category": "improvement",
+          "text": "دعم البادئة \"$\" في الوحدات المدمجة"
+        },
+        {
+          "category": "improvement",
+          "text": "دعم مصفوفات البايتات في base64.encode/decode"
+        },
+        {
+          "category": "improvement",
+          "text": "دعم AutoJs6 6.3.2"
+        }
+      ]
+    },
+    "v2.0.2": {
+      "released_date": "2023/05/26",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "تصريحات النموذج الأولي لـ ViewPrototype"
+        },
+        {
+          "category": "improvement",
+          "text": "دعم AutoJs6 6.3.1"
+        }
+      ]
+    },
+    "v2.0.1": {
+      "released_date": "2023/04/29",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة s13n"
+        },
+        {
+          "category": "improvement",
+          "text": "دعم AutoJs6 6.3.0"
+        }
+      ]
+    },
+    "v2.0.0": {
+      "released_date": "2023/03/24",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "دعم AutoJs6 6.2.1 Alpha2"
+        },
+        {
+          "category": "improvement",
+          "text": "ترقية ملفات تصريحات android platform 27 إلى الإصدار 33"
+        },
+        {
+          "category": "improvement",
+          "text": "استعادة أسماء المعاملات الأصلية في تواقيع الطرق التي كانت تستخدم param0/param1/..."
+        },
+        {
+          "category": "management",
+          "text": "نشر المشروع على NPM (@sm003/autojs6-dts)"
+        }
+      ]
+    },
+    "v1.0.2": {
+      "released_date": "2021/11/05",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "وصف الخاصية javaException/rhinoException في مثيلات Error"
+        },
+        {
+          "category": "fix",
+          "text": "تصحيح المرجع الخاطئ في وصف الطريقة auto()"
+        },
+        {
+          "category": "improvement",
+          "text": "استكمال تواقيع الطرق - android.content.pm.PackageManager.getApplicationInfo - android.content.pm.PackageManager.getApplicationLabel"
+        }
+      ]
+    },
+    "v1.0.1": {
+      "released_date": "2021/11/03",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "إضافة أمثلة توضيحية إلى README.md"
+        },
+        {
+          "category": "improvement",
+          "text": "نقل نوع إرجاع selector() إلى نطاق الأسماء Internal"
+        }
+      ]
+    },
+    "v1.0.0": {
+      "released_date": "2021/11/02",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "ملفات تصريحات Auto.js v4.1.1 Alpha2"
+        },
+        {
+          "category": "feature",
+          "text": "ملفات تصريحات Auto.js المستندة إلى JSX"
+        },
+        {
+          "category": "feature",
+          "text": "ملفات تصريحات androidx 26"
+        },
+        {
+          "category": "feature",
+          "text": "ملفات تصريحات android platform 27"
+        },
+        {
+          "category": "feature",
+          "text": "ملفات تصريحات android framework 26"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة app"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة array-observe"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة automator"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة console"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة continuation"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة device"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة dialogs"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة engines"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة events"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة floaty"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة globals"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة http"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة images"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة init"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة io"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة java-util"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة jvm-npm"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة media"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة object-observe"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة plugins"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة rhino"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة root-automator"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة selector"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة sensors"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة shell"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة storages"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة threads"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة timers"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة ui"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة util"
+        },
+        {
+          "category": "feature",
+          "text": "تصريحات الوحدة web"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات androidx.annotation-annotation-1.2.0"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات com.afollestad.materialdialogs-core-3.3.0"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات com.github.hyb1996-enhancedfloaty-0.31"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات com.github.hyb1996-settingscompat-1.1.5"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات com.google.android.material-material-1.4.0"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات com.google.code.gson-gson-2.8.8"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات com.makeramen-roundedimageview-2.3.0"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات com.squareup.okhttp3-okhttp-4.9.1"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات de.mindpipe.android-android-logging-log4j-1.0.3"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات junit-4.13.2"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات kotlin-stdlib-jdk8"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات log4j-1.2.17"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات okhttp-urlconnection-2.7.5"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات okio-1.6.0"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات opencv-3.4.3"
+        },
+        {
+          "category": "dependency",
+          "text": "إضافة تصريحات rhino-1.7.7.2"
+        }
+      ]
+    }
+  }
+}

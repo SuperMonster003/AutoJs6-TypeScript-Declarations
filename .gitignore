@@ -1,7 +1,6 @@
 **/.idea/
 .bak/
 .git/
-.github/
 .npmignore
 **/node_modules/
 
@@ -14,3 +13,4 @@ package-lock.json
 AGENTS.md
 
 /declarations/.generated/
+__pycache__/

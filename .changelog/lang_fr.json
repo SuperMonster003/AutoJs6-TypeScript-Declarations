@@ -1,0 +1,1622 @@
+{
+  "labels": {
+    "hint": "Note",
+    "feature": "Fonctionnalité",
+    "fix": "Correction",
+    "improvement": "Amélioration",
+    "dependency": "Dépendance",
+    "compatibility": "Compatibilité",
+    "completion": "Complément",
+    "error": "Erreur",
+    "metrics": "Mesures",
+    "update": "Mise à jour",
+    "replacement": "Remplacement",
+    "management": "Gestion",
+    "precision": "Précision",
+    "simplification": "Simplification",
+    "constraint": "Contrainte",
+    "adjustment": "Ajustement"
+  },
+  "$data": {
+    "v4.36.0": {
+      "released_date": "2026/10/08",
+      "entries": [
+        {
+          "heading": "Réutilisation de fragments Compose UI"
+        },
+        {
+          "category": "feature",
+          "text": "compose.memo et ComposeMemoOptions réutilisent dans render les fragments dont les dépendances et les valeurs state lues restent identiques, avec correspondance des éléments par key"
+        },
+        {
+          "category": "hint",
+          "text": "Nécessite l'hôte correspondant 6.8.0 / 5323; comparaison des dépendances, correspondance des emplacements, moment d'appel et limite de 256 dépendances sont vérifiés à l'exécution. TSX nécessite TypeScript Engine 0.6.8 et Ace Editor 1.30.0"
+        }
+      ]
+    },
+    "v4.35.0": {
+      "released_date": "2026/10/08",
+      "entries": [
+        {
+          "heading": "Contrat Compose UI V2"
+        },
+        {
+          "category": "feature",
+          "text": "25 fabriques de noeuds et balises TSX: barres/tiroirs de navigation, onglets, panneaux inférieurs, menus, dates/heures, pagination, grilles, Chip, Badge, boutons segmentés/flottants, recherche, Tooltip et actualisation par glissement"
+        },
+        {
+          "category": "improvement",
+          "text": "Propriétés V2, valeurs lues par défaut, emplacements requis, types d'enfants et événements générés depuis le catalogue de contrat append-only; conservation de V1 figé et du catalogue d'interopérabilité F2 séparé"
+        },
+        {
+          "category": "hint",
+          "text": "Les composants nécessitent l'hôte 5322 et un plugin de rendu de contrat V2; TSX nécessite TypeScript Engine 0.6.7 et Ace Editor 1.29.0. Plages numériques, nombres d'enfants et contraintes croisées restent vérifiés à l'exécution"
+        }
+      ]
+    },
+    "v4.34.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "Boîtes de dialogue Compose UI"
+        },
+        {
+          "category": "feature",
+          "text": "compose.dialog et DialogOptions / DialogType prennent en charge les dialogues indépendants et panneaux inférieurs, renvoyant le ComposeSession existant"
+        },
+        {
+          "category": "improvement",
+          "text": "Types précis alert / bottomSheet, cancelable et remplacements de thème, avec entrée racine synchrone et méthodes de session conservées"
+        },
+        {
+          "category": "hint",
+          "text": "Nécessite l'hôte 5321 et Compose UI prenant en charge dialog-v1; TSX nécessite TypeScript Engine 0.6.6. Les scripts hors UI doivent déjà avoir l'autorisation de superposition, sans demande automatique"
+        }
+      ]
+    },
+    "v4.33.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "Interopérabilité Compose UI"
+        },
+        {
+          "category": "feature",
+          "text": "Noeuds compose.attach et AndroidView, véritables View getter, fabriques View synchrones, conteneurs XML `<compose>` et types TSX correspondants"
+        },
+        {
+          "category": "improvement",
+          "text": "Catalogue d'interopérabilité généré et vérifié séparément, conservant V1 figé avec 30 composants / 114 propriétés et 29 correspondances JSX"
+        },
+        {
+          "category": "fix",
+          "text": "Arguments natifs View réels et récepteurs EventEmitter de XML TSX onClick, avec liaisons de clic TSX de ui.inflate"
+        },
+        {
+          "category": "hint",
+          "text": "Nécessite l'hôte 5320 et Compose UI avec extension d'interopérabilité; TSX nécessite TypeScript Engine 0.6.5. Identité native et appartenance au conteneur sont vérifiées à l'exécution"
+        }
+      ]
+    },
+    "v4.32.0": {
+      "released_date": "2026/10/07",
+      "entries": [
+        {
+          "heading": "Couleurs"
+        },
+        {
+          "category": "feature",
+          "text": "colors.toOklab / oklab / toOklch / oklch, ensureContrast, harmony, tones, derive, nightVariant, simulate et extract; ajout de 'oklab' à DetectionAlgorithm"
+        },
+        {
+          "category": "feature",
+          "text": "Contrôles de couleur du thème colors.theme (get, set, reset, libraries, activate, deactivate, next, state, current) et types Colors.Theme, ThemeLibrary, ThemeCurrent"
+        },
+        {
+          "category": "fix",
+          "text": "Correction du résultat de contraste entre #777777 et le blanc dans l'exemple colors.contrast"
+        },
+        {
+          "category": "hint",
+          "text": "Nécessite AutoJs6 6.8.0"
+        },
+        {
+          "heading": "Terminal"
+        },
+        {
+          "category": "feature",
+          "text": "Sessions, options d'ouverture/exécution, environnement, état du plugin et erreurs de terminal / $terminal et Internal.Terminal, correspondant au plugin 3-Shell Terminal"
+        },
+        {
+          "heading": "Synchronisation des déclarations"
+        },
+        {
+          "category": "improvement",
+          "text": "Synchroniser les déclarations publiques Java et les ressources de l'hôte, y compris les bibliothèques de couleurs intelligentes et le catalogue de modèles de génération de code"
+        },
+        {
+          "category": "improvement",
+          "text": "Retirer des déclarations publiques l'API des observateurs internes de floaty et les ressources d'erreur Compose inutilisées, ainsi que AtomicReference en double et l'API de cycle de vie obsolète dans libraries"
+        }
+      ]
+    },
+    "v4.31.0": {
+      "released_date": "2026/10/04",
+      "entries": [
+        {
+          "heading": "Compose UI TSX"
+        },
+        {
+          "category": "feature",
+          "text": "29 déclarations d'éléments compose:Name TSX issues du catalogue réel, avec fabriques membres compose.Name et alias d'une même fabrique"
+        },
+        {
+          "category": "improvement",
+          "text": "Propriétés TSX, emplacements requis et événements conservent les types précis; Fragment garde les contrôles d'exécution de racine unique et de nombre d'emplacements"
+        },
+        {
+          "category": "hint",
+          "text": "Nécessite l'hôte local AutoJs6 6.8.0 / 5319 et TypeScript Engine; ni mélange XML/Compose dans un arbre ni composants fonctionnels TSX personnalisés"
+        }
+      ]
+    },
+    "v4.30.0": {
+      "released_date": "2026/10/03",
+      "entries": [
+        {
+          "heading": "Compose UI"
+        },
+        {
+          "category": "feature",
+          "text": "compose / $compose et ComposeError: 29 fabriques de noeuds, montage appelable, état et ref, traitement groupé, thèmes, sessions et superpositions"
+        },
+        {
+          "category": "feature",
+          "text": "Événements propres aux composants, types de lecture/écriture des propriétés, 20 méthodes Modifier ordonnées et commandes de session Snackbar"
+        },
+        {
+          "category": "improvement",
+          "text": "Synchroniser les déclarations publiques Java, ressources et bibliothèques partagées avec l'hôte; catalogue et documentation sont contrôlés par le même manifeste figé"
+        },
+        {
+          "category": "hint",
+          "text": "Nécessite une compilation locale AutoJs6 6.8.0 contenant compose et le plugin Compose UI; TSX, les dispositions mixtes et compose.dialog restent prévus pour plus tard"
+        }
+      ]
+    },
+    "v4.29.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Intervalles numériques des sélecteurs"
+        },
+        {
+          "category": "feature",
+          "text": "UiSelector et fonctions globales minDepth / maxDepth / minIndexInParent / maxIndexInParent (bornes incluses, hôte 6.8.0+), associés aux clés comme minDepth=3 dans la syntaxe textuelle select()"
+        },
+        {
+          "category": "fix",
+          "text": "Compléter les déclarations de sélecteurs avec childCount / minChildCount / maxChildCount"
+        }
+      ]
+    },
+    "v4.28.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Configuration des sources Installer"
+        },
+        {
+          "category": "feature",
+          "text": "Réinitialisation null de installer/installReason/packageSource et champ résultat sourceDeleteRequested, correspondant à la configuration des sources de l'hôte 5312+"
+        },
+        {
+          "category": "improvement",
+          "text": "Préciser héritage des champs omis, priorité des options explicites, limites par session et sources partagées des lots; les autres null et sélecteurs de configuration par script restent refusés"
+        }
+      ]
+    },
+    "v4.27.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Options avancées d'installation Installer"
+        },
+        {
+          "category": "feature",
+          "text": "Options grantAllRequestedPermissions, requestUpdateOwnership, dexopt, installReason, packageSource et énumérations fermées, nécessitant l'hôte 5308+ et les capacités correspondantes du plugin"
+        },
+        {
+          "category": "feature",
+          "text": "Phase de session optimizing, résultat nullable updateOwner et six états observés de dexopt; accepted ne garantit pas une compilation effective"
+        },
+        {
+          "category": "improvement",
+          "text": "Distinguer omission et false/none explicite; expliquer limites de plateforme/autorisation et absence de retour arrière d'une installation réussie lors des actions suivantes; aucun contournement scriptable de la politique locale"
+        }
+      ]
+    },
+    "v4.26.1": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Limites des valeurs persistantes par défaut de Installer"
+        },
+        {
+          "category": "improvement",
+          "text": "JSDoc précise les valeurs persistantes Dhizuku limitées à API 26-33, l'identité system et user 0 indépendante de Root, le filtrage auto de persistent et l'absence de repli en cas d'échec"
+        },
+        {
+          "category": "improvement",
+          "text": "Distinguer résolution effective des valeurs par défaut et reçus de configuration locale, conserver les résultats booléens et préciser qu'échec partiel ou fin de processus ne garantit pas de restauration"
+        }
+      ]
+    },
+    "v4.26.0": {
+      "released_date": "2026/10/02",
+      "entries": [
+        {
+          "heading": "Capacités Installer P8"
+        },
+        {
+          "category": "feature",
+          "text": "Noms d'autorisation Dhizuku, interaction d'installation notification, mode preferred/persistent de setDefault et erreurs NOTIFICATION_UNAVAILABLE"
+        },
+        {
+          "category": "improvement",
+          "text": "JSDoc précise la négociation des capacités hôte 5306+/, les limites Dhizuku sur l'utilisateur owner/profile courant et les indicateurs d'installation, l'absence de notification pour désinstaller et l'annulation des valeurs persistantes"
+        }
+      ]
+    },
+    "v4.25.0": {
+      "released_date": "2026/10/01",
+      "entries": [
+        {
+          "heading": "Interface de script Installer"
+        },
+        {
+          "category": "feature",
+          "text": "Modules installer / $installer: installation synchrone et Async, désinstallation, inspection des paquets, autorisations, installateurs par défaut et utilisateurs"
+        },
+        {
+          "category": "feature",
+          "text": "Événements, annulation, attente et résultats de InstallSession, champs d'erreur InstallerError, surcharges précises pour source unique, lots et splits"
+        },
+        {
+          "category": "improvement",
+          "text": "JSDoc documente interaction par défaut, suppression des sources, exigences du thread synchrone, délai d'attente et limites d'annulation à l'arrêt du script"
+        }
+      ]
+    },
+    "v4.24.1": {
+      "released_date": "2026/09/29",
+      "entries": [
+        {
+          "heading": "Connexions à la demande 3-Stove Agent"
+        },
+        {
+          "category": "improvement",
+          "text": "Agent JSDoc documente activation centralisée, activation automatique à la première installation officielle, connexions à la demande et thread de travail pour la première connexion synchrone; status reste en lecture seule et récupérer une tâche ne la rejoue pas"
+        },
+        {
+          "category": "improvement",
+          "text": "Noms actuels des plugins et versions hôtes minimales, sans modification de signature"
+        }
+      ]
+    },
+    "v4.24.0": {
+      "released_date": "2026/09/29",
+      "entries": [
+        {
+          "heading": "Prise en charge du développement Agent 1.3.0"
+        },
+        {
+          "category": "feature",
+          "text": "Option plan de AgentRunOptions (mode planification, préréglage hérité si omise), type plan de AgentInputEvent et champ steps"
+        },
+        {
+          "category": "feature",
+          "text": "AgentRun.respond accepte un tableau de 1 à 8 chaînes pour répondre à la revue du plan"
+        }
+      ]
+    },
+    "v4.23.0": {
+      "released_date": "2026/09/26",
+      "entries": [
+        {
+          "heading": "Prise en charge du développement Agent 1.2.0"
+        },
+        {
+          "category": "feature",
+          "text": "Groupe d'outils mcp de AgentToolGroup, désactivé par défaut; serveurs et outils autorisés configurés dans le plugin"
+        },
+        {
+          "category": "improvement",
+          "text": "Les indications de l'éditeur expliquent les risques des serveurs MCP et la compatibilité hôte"
+        }
+      ]
+    },
+    "v4.22.0": {
+      "released_date": "2026/09/26",
+      "entries": [
+        {
+          "heading": "Prise en charge du développement Agent 1.1.0"
+        },
+        {
+          "category": "feature",
+          "text": "Groupe script_dynamic de AgentToolGroup, avec restriction d'exécution dynamique dans les options des tâches et préréglages"
+        },
+        {
+          "category": "improvement",
+          "text": "Les indications précisent que les scripts dynamiques sont désactivés par défaut et chaque source confirmée séparément; distinction entre outils du modèle et méthodes publiques JavaScript"
+        }
+      ]
+    },
+    "v4.21.1": {
+      "released_date": "2026/09/25",
+      "entries": [
+        {
+          "heading": "Prise en charge de la version Agent 1.0.0"
+        },
+        {
+          "category": "improvement",
+          "text": "Indications des options Agent: préréglages et instantanés à la mise en file, choix du modèle, autorisations globales, budgets par défaut et limites du protocole, mode prudent et portée de l'injection mémoire"
+        },
+        {
+          "category": "fix",
+          "text": "Corriger la dépendance du paquet envers sa propre ancienne version, qui téléchargeait les déclarations en double"
+        },
+        {
+          "category": "improvement",
+          "text": "Aligner l'historique README sur le journal complet"
+        }
+      ]
+    },
+    "v4.21.0": {
+      "released_date": "2026/09/24",
+      "entries": [
+        {
+          "heading": "Tâche Agent API"
+        },
+        {
+          "category": "feature",
+          "text": "ai.agent.run/create/get/list/catalog/presets/status, propriétés en lecture seule AgentRun, événements, réponses aux questions, confirmation, annulation, result Promise et join, correspondant à AutoJs6 6.8.0 / build 5293"
+        },
+        {
+          "category": "feature",
+          "text": "Options de tâches, budgets, résumés, métadonnées de scripts enregistrés et événements; préciser cycle de vie detached, délais et distinction entre résultats et erreurs de transport"
+        },
+        {
+          "category": "feature",
+          "text": "docs/smoke/ai-agent-task-smoke.ts, couvrant tâche API, options invalides, événements et types de réponse"
+        }
+      ]
+    },
+    "v4.20.0": {
+      "released_date": "2026/09/23",
+      "entries": [
+        {
+          "heading": "Canaux d'exécution des scripts enregistrés Agent"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations `ai.agent.result(value)`, `ai.agent.context()` et `AgentExecutionContext`, correspondant à AutoJs6 6.8.0 / build 5287"
+        },
+        {
+          "category": "feature",
+          "text": "Types de valeurs JSON des résultats de scripts enregistrés, limite 64 KiB et instantanés de contexte; `docs/smoke/ai-agent-execution-smoke.ts` couvre appels valides et cas négatifs de la tâche API non ouverte"
+        }
+      ]
+    },
+    "v4.19.0": {
+      "released_date": "2026/09/21",
+      "entries": [
+        {
+          "heading": "Déclarations du module de livres électroniques"
+        },
+        {
+          "category": "feature",
+          "text": "Objets globaux `epub` / `$epub` (AutoJs6 6.8.0, fournis par Readium EPUB Reader): `open` / `openAsync`, raccourcis `metadata` / `toc` / `readingOrder` / `text` / `cover` / `search` et formes `Async`, lecteurs `read` / `readAsync`, `isAvailable` / `isAvailableAsync` et `EpubError`"
+        },
+        {
+          "category": "feature",
+          "text": "Espace `Internal.Epub`: `Book` (métadonnées, sommaire, ordre de lecture, nombre de positions, texte `text` / `textAll`, export couverture/ressources, recherche et fermeture), émetteur `ReaderSession` (événements `open` / `progress` / `bookmark` / `error` / `close`, navigation, pages, préférences, signets et fermeture), `Locator`, `Metadata` / `TocEntry` / `ReadingOrderEntry` / `SearchHit` / `Bookmark`, `ReadOptions` / `Preferences` / `TextOptions` / `ExportOptions` / `SearchOptions` et `ErrorCode`"
+        },
+        {
+          "category": "feature",
+          "text": "Exemples de compilation `docs/smoke/epub-smoke.ts`: livres, raccourcis, événements/contrôle du lecteur, classes d'erreur et cas négatifs"
+        },
+        {
+          "category": "feature",
+          "text": "`epub.annotations` / `annotationsAsync` et `Book.annotations` / `annotationsAsync` (plugin Readium EPUB Reader 1.1.0, contrat EPUB version 2: surlignages et notes d'un livre par ordre de lecture, au plus 2000; `PLUGIN_INCOMPATIBLE` si le plugin est 1.0.0), `Internal.Epub.Annotation` / `AnnotationStyle` et événement `highlight` de `ReaderSession` (`HighlightEvent`, `action` vaut `added` / `updated` / `removed`); exemples et cas négatifs ajoutés à `docs/smoke/epub-smoke.ts`"
+        },
+        {
+          "heading": "Déclarations du module de messagerie"
+        },
+        {
+          "category": "feature",
+          "text": "Champ `pop3Xoauth2TwoLine` du préréglage fournisseur `Provider` (si `AUTH XOAUTH2` du catalogue de préréglages Angus Mail version 3: POP3 exige deux lignes; Outlook.com et Microsoft 365 valent `true`)"
+        },
+        {
+          "category": "feature",
+          "text": "`SavedAccount.oauth` et `SavedAccountOAuth` (plugin Angus Mail 1.2.0: les comptes connectés depuis le navigateur des paramètres avec Google / Microsoft portent `provider` / `authorizedAt` / `expiresAt` / `needsReauth` dans `mail.accounts.list()`, sans exposer le jeton)"
+        },
+        {
+          "category": "feature",
+          "text": "Interface `Internal.Mail.TriggerEvent`: événement reçu via `engines.myEngine().execArgv.mail` par un script lancé par une tâche AutoJs6 \"à réception du courrier\" (surveillance du plugin Angus Mail 1.1.0, contrat mail version 2: `triggerId`, `alias`, `address`, `folder`, enveloppe `message` et `receivedAt`)"
+        }
+      ]
+    },
+    "v4.18.0": {
+      "released_date": "2026/09/20",
+      "entries": [
+        {
+          "heading": "Déclarations du module de messagerie"
+        },
+        {
+          "category": "feature",
+          "text": "Objets globaux `mail` / `$mail` (AutoJs6 6.8.0, fournis par Angus Mail): `connect` / `connectAsync`, `setDefault`, `default`, `close`, `providers`, `accounts`, `MailError` et toutes les méthodes déléguées au client par défaut"
+        },
+        {
+          "category": "feature",
+          "text": "Espace `Internal.Mail`: `Client` et `Operations` (formes synchrones et `Async` pour envoi/réception, dossiers, listes, recherche, lecture, pièces jointes/messages bruts, indicateurs, déplacement, copie, suppression, purge, ajout et surveillance), émetteur `Watch`, `Message` / `Attachment` / `Address` / `SendMessage`, `AccountOptions` / `Provider` / `SavedAccount`, `SearchQuery` / `SearchResult`, `Folder` / `FolderStatus` / `SendResult` / `SessionTestResult` et `ErrorCode`"
+        },
+        {
+          "category": "feature",
+          "text": "Exemples `docs/smoke/mail-smoke.ts`: alias et connexions par jeton, repli de recherche, pièces jointes, indicateurs/déplacement, surveillance et cas négatifs"
+        }
+      ]
+    },
+    "v4.17.0": {
+      "released_date": "2026/09/18",
+      "entries": [
+        {
+          "heading": "Simplification des déclarations du journal intégré et des bibliothèques tierces"
+        },
+        {
+          "category": "update",
+          "text": "Les proxys `Level` / `LogConfigurator` / `LogManager` héritent désormais des classes `org.autojs.autojs.core.console.log` intégrées à AutoJs6; exemples et résumés de `console.setGlobalLogConfig` synchronisés (l'hôte 6.8.0 remplace log4j par son journal de fichiers rotatif)"
+        },
+        {
+          "category": "update",
+          "text": "Retirer les bibliothèques supprimées de l'hôte: log4j et android-logging-log4j, Flexmark, JavaMail, JUnit, github-api et Jackson, commons-io et commons-lang3, kotlin-reflect, SpongyCastle, media3 et Guava (`libraries.d.ts`: 26,864 -> 25,081 lignes)"
+        },
+        {
+          "category": "update",
+          "text": "Fusionner les déclarations application/ressources de AutoJs6 6.8.0 (5282): paquet `org.autojs.autojs.core.console.log` (Appender / Level / LogConfigurator / LogEvent / Logger / LoggerRepository / LogManager) et contrats du plugin mail; ressources ID alignées sur les ajouts/suppressions hôte"
+        }
+      ]
+    },
+    "v4.16.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "Amélioration des couleurs et de la comparaison d'images"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations `images.countPointsByColor` et `images.getMeanColor`; `images.readPixels` accepte ImageWrapper ou un chemin de fichier"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations `colors.distance`, `colors.invert`, `colors.blend`, `colors.contrast` et méthodes correspondantes des instances Color"
+        },
+        {
+          "category": "feature",
+          "text": "Option `scales` de `images.matchTemplate` et `images.findPointByImage`, propriétés de résultat `width`, `height`, `scale`, `center`, `rect`, et `size`, `isEmpty()`, `isNotEmpty()`, `filter()` de `MatchingResult`"
+        },
+        {
+          "category": "completion",
+          "text": "`images.matchTemplate` accepte les chemins d'image et ajoute l'option `useTransparentMask`"
+        },
+        {
+          "category": "feature",
+          "text": "Options `ransacThreshold`, `minInliers`, `maxFeatures` et images de `images.matchFeatures`, propriétés `width`, `height`, `angle`, `bounds`, `points`, `matches`, `inliers` de `ObjectFrame`, et `count`, `method`, `oneShot()` de `ImageFeatures`"
+        },
+        {
+          "category": "completion",
+          "text": "Ajouter `maxFeatures` et préciser les valeurs `scale` pour `images.detectAndComputeFeatures`; noms de correspondance insensibles à la casse"
+        },
+        {
+          "category": "update",
+          "text": "Fusionner les déclarations application, ressources et bibliothèques de AutoJs6 6.8.0 (5280), en conservant piles de tâches Flow et clics par coordonnées"
+        }
+      ]
+    },
+    "v4.15.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "Clics par coordonnées et piles de tâches Flow"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations smartClickBounds / clickBoundsIfExists / clickBoundsAny et attentes, délais et alias Flow"
+        },
+        {
+          "category": "update",
+          "text": "La valeur 0 par défaut de maxAttempts signifie des tentatives illimitées; FlowError.flowStack fournit les diagnostics des tâches asynchrones"
+        },
+        {
+          "category": "update",
+          "text": "Synchroniser déclarations générées de l'hôte, déclarations intégrées Ace Editor, agrégat et index LSP"
+        }
+      ]
+    },
+    "v4.14.0": {
+      "released_date": "2026/09/16",
+      "entries": [
+        {
+          "heading": "Étapes facultatives et boucles bornées Flow"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations chaînées clickIfExists / clickAny / findAny, whenPresent, repeatUntil de Flow"
+        },
+        {
+          "category": "update",
+          "text": "Projections snapshot et types de collections de waitForStable; valeur par défaut stableFor alignée sur l'exécution"
+        },
+        {
+          "category": "update",
+          "text": "Synchroniser déclarations hôte, agrégat et index Ace Editor LSP"
+        }
+      ]
+    },
+    "v4.13.0": {
+      "released_date": "2026/09/14",
+      "entries": [
+        {
+          "heading": "Stockage partagé des applications empaquetées"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations LaunchConfig.requiresSharedStorage et getter / setter correspondantes"
+        },
+        {
+          "category": "update",
+          "text": "Synchroniser ressources, dépendances et groupes Ace Editor LSP de AutoJs6 6.8.0 (5280)"
+        }
+      ]
+    },
+    "v4.12.0": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "Espacement du texte Pangu"
+        },
+        {
+          "category": "feature",
+          "text": "Déclaration globale `pangu`, couvrant `version`, `spaceText`, `hasProperSpacing` de pangu.js 10.1.0, avec types de retour concrets pour `require('pangu')`"
+        },
+        {
+          "category": "update",
+          "text": "Synchroniser application AutoJs6 et déclarations intégrées Ace Editor, puis régénérer groupes et index LSP"
+        }
+      ]
+    },
+    "v4.11.1": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "Autorisation réseau local Android"
+        },
+        {
+          "category": "fix",
+          "text": "Types génériques de noms d'autorisation `runtime.requestPermissions`, paramètres `string[]`, exemples de tableaux corrigés et conditions système/targetSdk de `access_local_network`"
+        },
+        {
+          "category": "update",
+          "text": "Régénérer application/ressources depuis AutoJs6 6.8.0 (5280), synchroniser déclarations intégrées Ace Editor et groupes LSP"
+        }
+      ]
+    },
+    "v4.11.0": {
+      "released_date": "2026/09/13",
+      "entries": [
+        {
+          "heading": "Taille des pages mémoire de l'appareil"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations numériques en lecture seule `device.pageSize` et `$device.pageSize`, renvoyant la taille de page mémoire du système en octets"
+        },
+        {
+          "category": "update",
+          "text": "Régénérer application/ressources depuis AutoJs6 6.8.0 (5280), synchroniser déclarations intégrées Ace Editor et groupes LSP"
+        }
+      ]
+    },
+    "v4.10.0": {
+      "released_date": "2026/09/12",
+      "entries": [
+        {
+          "heading": "Mode de sélection automatique OCR"
+        },
+        {
+          "category": "feature",
+          "text": "Le mode OCR accepte `auto`, chaîne vide et réinitialisation nullish; lecture limitée au nom réel du moteur ou à une chaîne vide, avec `tap`, options par appel et complétion Ace Editor synchronisés"
+        },
+        {
+          "category": "update",
+          "text": "Régénérer application/ressources depuis AutoJs6 6.8.0 (5280), synchroniser déclarations intégrées Ace Editor et groupes LSP"
+        }
+      ]
+    },
+    "v4.9.0": {
+      "released_date": "2026/09/10",
+      "entries": [
+        {
+          "heading": "Requêtes multiflux MediaInfo"
+        },
+        {
+          "category": "feature",
+          "text": "Index et nombre de flux MediaInfo, InfoKind et capacités, options de requête Rhino et complétion Ace Editor synchronisées"
+        }
+      ]
+    },
+    "v4.8.1": {
+      "released_date": "2026/09/08",
+      "entries": [
+        {
+          "heading": "Saisie, affichage et éléments de console en mode UI"
+        },
+        {
+          "category": "feature",
+          "text": "Rétablir `console.rawInput` / `console.input` (lecture bloquante d'une ligne de saisie console, `input` l'évalue comme expression JavaScript)"
+        },
+        {
+          "category": "feature",
+          "text": "`console.setTimeVisible` / `setTimeFormat` / `setColorful` / `setAvoidStatusBar` / `setInputVisible` et options `timeVisible` / `timeFormat` / `colorful` / `avoidStatusBar` / `inputVisible` de `console.build`"
+        },
+        {
+          "category": "feature",
+          "text": "Éléments JSX `<console>` / `<globalconsole>` et propriétés (`global`, `title`, styles du titre/contenu, `timeVisible`, `timeFormat`, `colorful`, `inputVisible`, etc.)"
+        },
+        {
+          "category": "dependency",
+          "text": "Adaptation à la refonte de console de AutoJs6 6.8.0 (5279)"
+        }
+      ]
+    },
+    "v4.8.0": {
+      "released_date": "2026/09/07",
+      "entries": [
+        {
+          "heading": "Déclarations d'automatisation par accessibilité"
+        },
+        {
+          "category": "feature",
+          "text": "`aj6-int-flow.d.ts`: objets chaînés `Flow<T>` et espace `Flow` (attente, portées, valeurs par défaut, `FlowError`, erreurs), objets `flow` / `$flow` (`Internal.FlowApi`: entrées attente/outils/événements, `all` / `race` / `any`, `defaults`, `trace`), fonctions globales `waitAsync` / `waitThenClick` / `clickWait` / `waitForStable` / `waitForStableThenClick` / `clickWhenStable` / `waitForVisible` / `waitForHidden` / `waitForGone` / `clickWhenStableAfter` et `wait.async`"
+        },
+        {
+          "category": "feature",
+          "text": "Outils `Internal.Automator` et globaux (`smartClick` / `clickIfExists` / `clickAny` / `findAny` / `scrollUntil` / `typeInto` / `dismissPopups` / `collectList` / `launchAndWait` / `backUntil` / `backToApp` / `toggle` / `retry`) et attentes événementielles (`waitForIdle` / `waitForEvent` / `waitForToast` / `waitForNotification`); options et résultats dans `Automator`"
+        },
+        {
+          "category": "feature",
+          "text": "`wait` / `findWindows` / `findWindowRoots` / `explain` / `dump` / `stats` de `Internal.Auto`, filtres de `registerEvent` / `registerEvents`, formes objet de `setWindowFilter` (`Automator.WindowMatch`), `AutoState.adoptedByEvent`, et ajout de `appWindowsFallback` / `eventAssistedPolling` à `Automator.Flags`"
+        },
+        {
+          "category": "feature",
+          "text": "Surcharges de sélecteurs textuels `select(syntax)` (globales et `Internal.Selector`), `findIterator()` et `UiObjectIterator`"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénérer l'application depuis AutoJs6 6.8.0 (5278) (nouvelles méthodes `UiObject` / `UiSelector` / `UiObjectCollection` et `UiObjectIterator`), synchroniser déclarations intégrées Ace Editor et groupes LSP"
+        }
+      ]
+    },
+    "v4.7.0": {
+      "released_date": "2026/09/01",
+      "entries": [
+        {
+          "heading": "Prononciations personnalisées Pinyin et outils matriciels"
+        },
+        {
+          "category": "feature",
+          "text": "`Pinyin.Options.customDictionary` et `Pinyin.CustomDictionary`: substitutions de prononciation chinoise par appel, priorité à la correspondance la plus longue et limite de 64 KiB/1024 entrées"
+        },
+        {
+          "category": "completion",
+          "text": "`pinyin.compare` renvoie le tri numérique, `pinyin.compact` le produit cartésien des matrices candidates; retirer les types provisoires"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénérer application et Pinyin API partagé depuis AutoJs6 6.8.0 (5277), synchroniser déclarations intégrées Ace Editor et groupes LSP"
+        }
+      ]
+    },
+    "v4.6.1": {
+      "released_date": "2026/09/01",
+      "entries": [
+        {
+          "heading": "Synchronisation des noms de prévisualiseurs"
+        },
+        {
+          "category": "replacement",
+          "text": "Renommer `FileUtils.PreviewType` et `previewType` en `PreviewerType` et `previewerType`, avec noms sémantiques des prévisualiseurs synchronisés dans l'application"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénérer application, ressources et bibliothèques depuis AutoJs6 6.8.0 (5277), synchroniser déclarations intégrées Ace Editor et groupes LSP"
+        }
+      ]
+    },
+    "v4.6.0": {
+      "released_date": "2026/08/31",
+      "entries": [
+        {
+          "heading": "Budgets de ressources et annulation de quantification PNG"
+        },
+        {
+          "category": "feature",
+          "text": "`Images.PngQuantizationOptions.maxPixels` et `maxMemoryBytes`: limites par défaut de 16000000 pixels et 256 MiB de mémoire de travail supplémentaire"
+        },
+        {
+          "category": "metrics",
+          "text": "Ajouter `peakWorkingMemoryBytes` aux résultats octets/fichiers; v4 renvoie le pic mémoire comptabilisé, les anciens plugins renvoient `-1`"
+        },
+        {
+          "category": "error",
+          "text": "Codes, raisons et budgets stables des erreurs de ressources; synchroniser Java API pour jetons d'annulation explicites et arrêt du script"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénérer contrôle des ressources, annulation et résultats Java depuis AutoJs6 6.8.0 (5277), synchroniser déclarations intégrées Ace Editor et groupes LSP"
+        }
+      ]
+    },
+    "v4.5.0": {
+      "released_date": "2026/08/31",
+      "entries": [
+        {
+          "heading": "Couleurs de quantification et écriture de fichiers en flux PNG"
+        },
+        {
+          "category": "feature",
+          "text": "`images.quantizeToFile` et `Images.PngQuantizationFileResult` écrivent directement les fichiers PNG et renvoient chemin, taille, qualité réelle et erreur de quantification"
+        },
+        {
+          "category": "completion",
+          "text": "`Images.PngQuantizationOptions.preserveAlpha` conserve la transparence par défaut; `false` impose une sortie entièrement opaque"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénération des déclarations de sortie par descripteur de fichier, d'options de couleur et de résultats Java depuis AutoJs6 6.8.0 (5277), et synchronisation des déclarations intégrées Ace Editor et des groupes LSP"
+        }
+      ]
+    },
+    "v4.4.0": {
+      "released_date": "2026/08/30",
+      "entries": [
+        {
+          "heading": "Résultats de qualité et politiques de repli de quantification PNG"
+        },
+        {
+          "category": "feature",
+          "text": "`images.quantize` et `Images.PngQuantizationResult`, renvoyant les octets PNG indexés, la taille de sortie, la qualité effective et l'erreur de quantification normalisée"
+        },
+        {
+          "category": "completion",
+          "text": "Les options vides déclarent une stratégie au mieux avec `minQuality=0`; un `quality` ou `minQuality` explicite conserve une limite inférieure stricte"
+        },
+        {
+          "category": "error",
+          "text": "Synchronisation de `PngQuantBridge.QualityTooLowException` et des codes d'erreur stables dans les déclarations de l'application principale, pour distinguer une qualité insuffisante d'un échec interne"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénération des déclarations de l'application principale et des ressources depuis AutoJs6 6.8.0 (5276), et synchronisation des déclarations intégrées Ace Editor et des groupes LSP"
+        }
+      ]
+    },
+    "v4.3.0": {
+      "released_date": "2026/08/30",
+      "entries": [
+        {
+          "heading": "Paramètres nommés de quantification PNG"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations de `Images.PngQuantizationOptions` et des paramètres objet de `images.save`, `saveImage`, `compress`, `compressToBytes`, couvrant le budget de couleurs, la vitesse, la plage de qualité, le tramage et posterize"
+        },
+        {
+          "category": "compatibility",
+          "text": "Conservation de la sémantique des surcharges existantes pour un `quality` numérique ou un argument omis, et précision que l'objet d'options s'applique uniquement à la sortie PNG fournie par le plugin Image Quantization"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénération des déclarations de l'application principale et des ressources depuis AutoJs6 6.8.0 (5276), et synchronisation des déclarations intégrées Ace Editor et des groupes LSP"
+        }
+      ]
+    },
+    "v4.2.0": {
+      "released_date": "2026/08/27",
+      "entries": [
+        {
+          "heading": "Déclarations de R8 Retrace et d'export d'artefacts vérifiés"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations de `runtime.retraceR8Stack`, restaurant les piles obfusquées via des fournisseurs du protocole 1.1, avec des liens de provenance fondés sur mapping et retrace metadata"
+        },
+        {
+          "category": "feature",
+          "text": "3 surcharges d'exportation de `runtime.loadJarWithR8`, exportant atomiquement mapping, seeds, usage et retrace metadata après recalcul des empreintes, sans exportation implicite de DEX"
+        },
+        {
+          "category": "constraint",
+          "text": "Seul l'hôte résout les chemins; l'absence de sélection d'un fournisseur précis ou tout échec de validation des empreintes, des métadonnées ou de la sortie interrompt le traitement sans repli vers D8/dx"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénération des déclarations de l'application principale et des ressources depuis le commit `dafddc732` de l'hôte AutoJs6, et synchronisation des déclarations intégrées Ace Editor et des groupes LSP"
+        }
+      ]
+    },
+    "v4.1.0": {
+      "released_date": "2026/08/26",
+      "entries": [
+        {
+          "heading": "Interface de cible unique de plugin AI"
+        },
+        {
+          "category": "replacement",
+          "text": "`ai`, `ask`, `chat`, `stream`, `session` et `catalog` utilisent les mêmes types d'entrée, d'options, de réponse et de flux pour les cibles de plugins"
+        },
+        {
+          "category": "simplification",
+          "text": "Suppression des surcharges à deux chemins non publiées, des structures de réponse de connexion directe à l'hôte et des types de transition; seul l'attribut normalisé `timeout` est conservé pour le délai d'expiration"
+        },
+        {
+          "category": "completion",
+          "text": "Déclaration de la cible officielle 3-Stone AI par défaut lorsque le sélecteur est omis, et harmonisation des messages, de usage, finish reason, target, session et des types d'erreur stables"
+        },
+        {
+          "category": "dependency",
+          "text": "Synchronisation des déclarations intégrées Ace Editor et des groupes de déclarations LSP générés"
+        }
+      ]
+    },
+    "v4.0.9": {
+      "released_date": "2026/08/26",
+      "entries": [
+        {
+          "heading": "Catalogue unifié de cibles et routage exact AI"
+        },
+        {
+          "category": "replacement",
+          "text": "Déclaration unifiée des modèles locaux et des cibles de configuration en ligne avec `ai.catalog`, et suppression de l'ancien catalogue, de la détection des configurations et des alias de compatibilité non publiés"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations de la sélection précise par `target`, de la cible officielle 3-Stone AI par défaut, des métadonnées target/profile/backend/plugin et de la sortie reasoning"
+        },
+        {
+          "category": "completion",
+          "text": "Déclarations complètes de usage, finish reason et des codes d'erreur stables pour la génération, les flux et les sessions persistantes; absence stricte de repli lorsque la cible est inexistante, non configurée, indisponible ou incompatible en capacités"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénération des déclarations de l'application principale, des ressources et des bibliothèques tierces AutoJs6, et synchronisation des déclarations intégrées Ace Editor"
+        }
+      ]
+    },
+    "v4.0.8": {
+      "released_date": "2026/08/25",
+      "entries": [
+        {
+          "heading": "Points d'entrée explicites de compilation R8"
+        },
+        {
+          "category": "feature",
+          "text": "3 surcharges de `ScriptRuntime.loadJarWithR8`, couvrant un keep rules explicite, des classpath ordonnés et la liaison consumer-rule ordinal"
+        },
+        {
+          "category": "constraint",
+          "text": "Les déclarations conservent le type complet du tableau d'arguments, conformément au point d'entrée de l'hôte désactivé par défaut et sans repli vers D8/dx"
+        },
+        {
+          "category": "dependency",
+          "text": "Synchronisation des déclarations de l'application principale AutoJs6, de la documentation API et des déclarations intégrées Ace Editor"
+        }
+      ]
+    },
+    "v4.0.7": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "Déclarations AI backend profile locales"
+        },
+        {
+          "category": "feature",
+          "text": "Option `backend` pour la génération par plugin local et les sessions persistantes, couvrant `cpu`, `gpu` et `npu`, avec CPU par défaut et aucun repli si le profile est indisponible"
+        },
+        {
+          "category": "feature",
+          "text": "Union discriminée `backendProfiles` du catalogue unifié des cibles, déclarant précisément la disponibilité des appareils et les motifs stables d'indisponibilité"
+        },
+        {
+          "category": "constraint",
+          "text": "L'énumération des modèles et les options des fournisseurs cloud interdisent l'utilisation inappropriée de `backend` local; les sessions persistantes conservent le même profile après leur création"
+        },
+        {
+          "category": "dependency",
+          "text": "Synchronisation des déclarations de l'application principale AutoJs6 et des déclarations intégrées Ace Editor"
+        }
+      ]
+    },
+    "v4.0.6": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "Déclarations AI JSON structurées locales"
+        },
+        {
+          "category": "feature",
+          "text": "Options `structuredJson` et `responseSchema` pour le routage des plugins locaux et les sessions persistantes"
+        },
+        {
+          "category": "constraint",
+          "text": "`responseSchema` doit être un objet JSON et active implicitement la sortie structurée; après la création de la session, chaque tour conserve le même schema"
+        },
+        {
+          "category": "precision",
+          "text": "`ai.ask` et le champ de réponse `text` renvoient toujours le texte JSON complet; les incréments du flux restent des fragments de texte éventuellement incomplets"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénération et synchronisation des déclarations de l'application principale, des ressources et des bibliothèques tierces AutoJs6"
+        }
+      ]
+    },
+    "v4.0.5": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "Sessions AI persistantes à plusieurs tours"
+        },
+        {
+          "category": "feature",
+          "text": "`ai.session` et options des sessions persistantes, couvrant la forme abrégée du plugin officiel, system preface et les paramètres de génération fixes"
+        },
+        {
+          "category": "feature",
+          "text": "Méthodes `ask`, `chat`, `stream`, `close` de `Ai.Session` et propriétés en lecture seule de l'état, du fournisseur et du modèle"
+        },
+        {
+          "category": "constraint",
+          "text": "Chaque tour de session accepte uniquement la chaîne de l'invite utilisateur actuelle; précision que l'annulation d'un flux ferme toute la session"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénération et synchronisation des déclarations de l'application principale, des ressources et des bibliothèques tierces AutoJs6"
+        }
+      ]
+    },
+    "v4.0.4": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "Compléments au routage des plugins AI locaux"
+        },
+        {
+          "category": "feature",
+          "text": "Surcharges pour plugins de `ai.chat`, `ai.stream` et du catalogue unifié des cibles, couvrant les réponses de routage, les événements de flux et la découverte des cibles"
+        },
+        {
+          "category": "completion",
+          "text": "Déclarations de la forme abrégée du plugin officiel, de la sélection de composants tiers, des messages en texte brut sur plusieurs tours et des paramètres de génération locale"
+        },
+        {
+          "category": "precision",
+          "text": "Consommation token du plugin, durée de génération, ID du modèle pouvant être nul et types d'erreur de routage stables"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénération et synchronisation des déclarations de l'application principale, des ressources et des bibliothèques tierces AutoJs6"
+        }
+      ]
+    },
+    "v4.0.3": {
+      "released_date": "2026/08/21",
+      "entries": [
+        {
+          "heading": "Déclarations du plugin indépendant de détection d'objets YOLO"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations des modules `yolo`/`$yolo` et de `load`, `detect`, `close`, couvrant les options de session, les résultats de détection et les codes d'erreur stables"
+        },
+        {
+          "category": "constraint",
+          "text": "Déclarations des composants Provider explicites, des appareils CPU et des plages de threads, de seuils, de nombre de résultats et de délais d'expiration"
+        },
+        {
+          "category": "improvement",
+          "text": "Synchronisation des déclarations de l'application principale pour l'exécuteur du plugin Node, et suppression des déclarations obsolètes des ponts de diagnostic NativeNodeEmbedded et libuv"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénération et synchronisation des déclarations de l'application principale, des ressources et des bibliothèques tierces AutoJs6"
+        }
+      ]
+    },
+    "v4.0.2": {
+      "released_date": "2026/08/12",
+      "entries": [
+        {
+          "heading": "Routage des sources du moteur Python"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations de l'application principale, dont `PythonScriptSource`, `PythonFileSource`, `PythonProjectSource` et `PersistedScriptLaunchContext`, et ajout du contexte persistant `sourceKind` et `projectRoot` de `IntentTask`/`TimedTask`"
+        },
+        {
+          "category": "improvement",
+          "text": "Ajout de la signature du constructeur `ScriptSource(sourceName, extension)`, synchronisation du résumé de code source de `engines.execScriptFile`, et clarification du routage `.py` avec interdiction de repli vers le moteur JavaScript"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénération et synchronisation des déclarations de l'application principale, des ressources et des bibliothèques tierces AutoJs6"
+        }
+      ]
+    },
+    "v4.0.1": {
+      "released_date": "2026/08/11",
+      "entries": [
+        {
+          "heading": "Sélection explicite du plugin local de génération de texte AI"
+        },
+        {
+          "category": "feature",
+          "text": "Surcharges de sélection explicite du plugin local de génération de texte pour ai/ask, et types de composant, de fournisseur et de modèle"
+        },
+        {
+          "category": "constraint",
+          "text": "Les options du plugin prennent uniquement en charge un seul texte user et un délai d'expiration, et ne peuvent pas être combinées aux options des fournisseurs cloud"
+        }
+      ]
+    },
+    "v4.0.0": {
+      "released_date": "2026/07/27",
+      "entries": [
+        {
+          "heading": "Synchronisation AutoJs6 6.8.0 Alpha7 et intégration des déclarations générées"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module ai/tts/powerManager/settings/workManager et alias d'exécution"
+        },
+        {
+          "category": "improvement",
+          "text": "Adaptation des déclarations API des modules intégrés de AutoJs6 6.8.0 Alpha7"
+        },
+        {
+          "category": "improvement",
+          "text": "Synchronisation des signatures, des alias, des valeurs nulles et des types de retour des modules, dont tasks/app/images/ocr/plugins/web"
+        },
+        {
+          "category": "improvement",
+          "text": "Ajout des éléments manquants de montage à l'exécution, des alias préfixés par `$` et des exemples smoke des principaux objets globaux"
+        },
+        {
+          "category": "dependency",
+          "text": "Régénération et intégration des déclarations de l'application principale, des ressources et des bibliothèques tierces Android/AutoJs6"
+        },
+        {
+          "category": "adjustment",
+          "text": "Unification du point d'entrée publié en `declarations/autojs6/index.d.ts`, et suppression des anciens points d'entrée et fragments générés"
+        }
+      ]
+    },
+    "v3.0.0": {
+      "released_date": "2026/06/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Fichiers de déclaration des modules intégrés, dont converter/formatter/sysprops/zip/nanoid/mediainfo/pinyin4j/jsox"
+        },
+        {
+          "category": "improvement",
+          "text": "Adaptation des déclarations API des modules intégrés de AutoJs6 6.7.1 Alpha4"
+        },
+        {
+          "category": "improvement",
+          "text": "Amélioration des références du point d'entrée et des déclarations de variables globales index, ainsi que des alias de modules préfixés par `$`"
+        },
+        {
+          "category": "improvement",
+          "text": "Synchronisation des déclarations des modules existants, dont colors/Color/images/Canvas/pinyin/mime/sqlite/media/recorder/tasks"
+        },
+        {
+          "category": "improvement",
+          "text": "Ajout d'exemples smoke des principaux objets globaux et de la trace des commandes de validation TypeScript"
+        },
+        {
+          "category": "dependency",
+          "text": "Actualisation des fichiers de déclaration générés pour l'application principale et les bibliothèques tierces Android/AutoJs6"
+        }
+      ]
+    },
+    "v2.1.3": {
+      "released_date": "2023/12/02",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Déclarations du module opencc"
+        },
+        {
+          "category": "improvement",
+          "text": "Ajout des déclarations detect et recognizeText manquantes dans la section ocr"
+        },
+        {
+          "category": "improvement",
+          "text": "Prise en charge d'AutoJs6 6.5.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations Android OpenCC 1.2.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Android dx 1.11 -> 1.14"
+        },
+        {
+          "category": "dependency",
+          "text": "Retour des déclarations Jackson DataBind à 2.14.3 -> 2.13.3"
+        },
+        {
+          "category": "dependency",
+          "text": "Retour des déclarations Apache Commons IO à 2.14.0 -> 2.8.0"
+        }
+      ]
+    },
+    "v2.1.2": {
+      "released_date": "2023/10/30",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Déclarations du module shizuku"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module barcode"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module qrcode"
+        },
+        {
+          "category": "improvement",
+          "text": "Prise en charge d'AutoJs6 6.4.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations JavaMail for Android"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations Okio 3.2.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations Shizuku 13.1.5"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations MLKit Barcode Bundled 17.2.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations MLKit Barcode Common 17.0.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Kotlin Stdlib 1.7.21 -> 1.9.20-RC2"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Joda Time 2.12.1 -> 2.12.5"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Zip4j 2.11.2 -> 2.11.5"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Gson 2.10 -> 2.10.1"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Okhttp3 5.0.0-alpha.9 -> 5.0.0-alpha.11"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations OpenCV 4.5.5 -> 4.8.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Apache Commons Lang3 3.12.0 -> 3.13.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Apache Commons IO 2.8.0 -> 2.14.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Android Analytics 14.0.0 -> 14.4.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Androidx Preference 1.2.0 -> 1.2.1"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Androidx Recyclerview 1.3.0 -> 1.3.2"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Androidx Annotation 1.6.0 -> 1.7.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Androidx AppCompat 1.4.2 -> 1.6.1"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Jackson DataBind 2.13.3 -> 2.14.3"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Androidx WebKit 1.6.0 -> 1.8.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Androidx Preference 1.2.0 -> 1.2.1"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Glide 4.14.2 -> 4.16.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Mise à niveau des déclarations Android Material 1.7.0 -> 1.10.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Suppression des déclarations Zeugma Solutions LocaleHelper 1.5.1"
+        }
+      ]
+    },
+    "v2.1.1": {
+      "released_date": "2023/07/21",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "Prise en charge d'AutoJs6 6.3.3"
+        }
+      ]
+    },
+    "v2.1.0": {
+      "released_date": "2023/07/06",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Déclarations du module crypto"
+        },
+        {
+          "category": "improvement",
+          "text": "Ajout d'explications sur la configuration de VSCode dans README.md"
+        },
+        {
+          "category": "improvement",
+          "text": "jsconfig.json définit le répertoire racine des fichiers de déclaration pour améliorer la compatibilité"
+        },
+        {
+          "category": "improvement",
+          "text": "Les modules intégrés prennent en charge le préfixe \"$\""
+        },
+        {
+          "category": "improvement",
+          "text": "base64.encode/decode prend en charge les tableaux d'octets"
+        },
+        {
+          "category": "improvement",
+          "text": "Prise en charge d'AutoJs6 6.3.2"
+        }
+      ]
+    },
+    "v2.0.2": {
+      "released_date": "2023/05/26",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Déclarations du prototype ViewPrototype"
+        },
+        {
+          "category": "improvement",
+          "text": "Prise en charge d'AutoJs6 6.3.1"
+        }
+      ]
+    },
+    "v2.0.1": {
+      "released_date": "2023/04/29",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Déclarations du module s13n"
+        },
+        {
+          "category": "improvement",
+          "text": "Prise en charge d'AutoJs6 6.3.0"
+        }
+      ]
+    },
+    "v2.0.0": {
+      "released_date": "2023/03/24",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "Prise en charge d'AutoJs6 6.2.1 Alpha2"
+        },
+        {
+          "category": "improvement",
+          "text": "Mise à niveau des fichiers de déclaration android platform 27 vers la version 33"
+        },
+        {
+          "category": "improvement",
+          "text": "Restaurer les noms d'origine des paramètres dans les signatures qui utilisaient param0/param1/..."
+        },
+        {
+          "category": "management",
+          "text": "Le projet est publié sur NPM (@sm003/autojs6-dts)"
+        }
+      ]
+    },
+    "v1.0.2": {
+      "released_date": "2021/11/05",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Description de la propriété javaException/rhinoException des instances de Error"
+        },
+        {
+          "category": "fix",
+          "text": "Correction de la référence erronée dans la description de la méthode auto()"
+        },
+        {
+          "category": "improvement",
+          "text": "Amélioration des signatures de méthodes - android.content.pm.PackageManager.getApplicationInfo - android.content.pm.PackageManager.getApplicationLabel"
+        }
+      ]
+    },
+    "v1.0.1": {
+      "released_date": "2021/11/03",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Ajout d'exemples illustrés à README.md"
+        },
+        {
+          "category": "improvement",
+          "text": "Déplacement du type de retour de selector() dans l'espace de noms Internal"
+        }
+      ]
+    },
+    "v1.0.0": {
+      "released_date": "2021/11/02",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Fichiers de déclaration Auto.js v4.1.1 Alpha2"
+        },
+        {
+          "category": "feature",
+          "text": "Fichiers de déclaration Auto.js basés sur JSX"
+        },
+        {
+          "category": "feature",
+          "text": "Fichiers de déclaration androidx 26"
+        },
+        {
+          "category": "feature",
+          "text": "Fichiers de déclaration android platform 27"
+        },
+        {
+          "category": "feature",
+          "text": "Fichiers de déclaration android framework 26"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module app"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module array-observe"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module automator"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module console"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module continuation"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module device"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module dialogs"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module engines"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module events"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module floaty"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module globals"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module http"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module images"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module init"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module io"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module java-util"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module jvm-npm"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module media"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module object-observe"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module plugins"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module rhino"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module root-automator"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module selector"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module sensors"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module shell"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module storages"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module threads"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module timers"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module ui"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module util"
+        },
+        {
+          "category": "feature",
+          "text": "Déclarations du module web"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations androidx.annotation-annotation-1.2.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations com.afollestad.materialdialogs-core-3.3.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations com.github.hyb1996-enhancedfloaty-0.31"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations com.github.hyb1996-settingscompat-1.1.5"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations com.google.android.material-material-1.4.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations com.google.code.gson-gson-2.8.8"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations com.makeramen-roundedimageview-2.3.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations com.squareup.okhttp3-okhttp-4.9.1"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations de.mindpipe.android-android-logging-log4j-1.0.3"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations junit-4.13.2"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations kotlin-stdlib-jdk8"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations log4j-1.2.17"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations okhttp-urlconnection-2.7.5"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations okio-1.6.0"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations opencv-3.4.3"
+        },
+        {
+          "category": "dependency",
+          "text": "Ajout des déclarations rhino-1.7.7.2"
+        }
+      ]
+    }
+  }
+}

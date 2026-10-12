@@ -1,0 +1,6 @@
+{
+  "versioned": true,
+  "changelog_aliases": {
+    "docs/CHANGELOG.md": "zh-Hans"
+  }
+}

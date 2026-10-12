@@ -15,11 +15,16 @@
     "docs/CHANGELOG.md",
     "jsconfig.json",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    ".readme/README-*.md",
+    ".changelog/CHANGELOG-*.md"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepack": ""
+    "prepack": "",
+    "docs:generate": "python .python/generate_markdown.py",
+    "docs:check": "python .python/generate_markdown.py --check",
+    "docs:test": "python -m unittest discover -s .python/tests"
   },
   "publishConfig": {
     "access": "public",
