@@ -13,6 +13,13 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.40.0
+
+###### 2026/10/15
+
+* `Функция` files.batchRename с типами параметров, плана, результата, отмены и истории и BatchRenameError: предпросмотр плана, исключение отдельных элементов, применение, отмена и история пакетов в плагине Batch Rename
+* `Примечание` Требуется хост 6.8.0 / 5437 и плагин Batch Rename 1.0.0
+
 # v4.39.0
 
 ###### 2026/10/15

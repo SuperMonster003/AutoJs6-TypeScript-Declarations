@@ -172,6 +172,13 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.40.0
+
+###### 2026/10/15
+
+* `Función` files.batchRename con los tipos de opciones, plan, resultado, deshacer e historial y BatchRenameError, para la vista previa del plan, la exclusión por elemento, la aplicación, deshacer y el historial de lotes del plugin Batch Rename
+* `Nota` Requiere el host 6.8.0 / 5437 y el plugin Batch Rename 1.0.0
+
 ### v4.39.0
 
 ###### 2026/10/15
@@ -186,12 +193,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 * `Función` Entradas JSOX opcionales para extensiones Array/Number/Math, con metodos de prototipo, Number.ICU y parseFloat con radix; la entrada predeterminada conserva los tipos estandar
 * `Corrección` Cobertura de Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, alias Color y sincronizacion y salida de RootAutomator; ajuste de conversiones, console, flow.of y modos de coordenadas
 * `Corrección` Referencias corregidas de enumeraciones pinyin, pool y Disposable, eventos de sensores, disenos Floaty y filas SQLite para evitar any; tipos explicitos de API comunes de axios/dayjs/cheerio
-
-### v4.37.0
-
-###### 2026/10/12
-
-* `Función` Declaraciones de tipos y autocompletado: device.getAndroidId acepta el booleano useSystemId para leer el valor del sistema del usuario Android de la aplicación mediante Shizuku/Root en Android 8.0+, lanza una excepción si falla el permiso o la lectura e ignora el parámetro en sistemas anteriores
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

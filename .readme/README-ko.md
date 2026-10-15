@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.40.0
+
+###### 2026/10/15
+
+* `기능` files.batchRename 과 옵션, 계획, 결과, 실행 취소, 기록 형식 및 BatchRenameError. Batch Rename 플러그인의 계획 미리 보기, 항목별 제외, 실행, 실행 취소와 배치 기록을 지원
+* `안내` 대응하는 호스트 6.8.0 / 5437 및 Batch Rename 플러그인 1.0.0 필요
+
 ### v4.39.0
 
 ###### 2026/10/15
@@ -186,12 +193,6 @@ npm update @sm003/autojs6-dts
 * `기능` Array/Number/Math 런타임 확장을 위한 선택적 JSOX 선언 진입점, 프로토타입 메서드, Number.ICU 및 radix parseFloat 포함, 기본 진입점은 표준 내장 타입 유지
 * `수정` Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color 별칭과 RootAutomator 동기화 및 종료 메서드 보완; 색상 변환, console, flow.of 및 좌표 모드 오버로드 정렬
 * `수정` pinyin 열거형, pool 및 Disposable, 센서 이벤트, Floaty 레이아웃, SQLite 행 타입 참조를 수정하여 any 변환 방지; axios/dayjs/cheerio의 일반 스크립트 API에 명시적 타입 제공
-
-### v4.37.0
-
-###### 2026/10/12
-
-* `기능` 타입 선언 및 자동 완성: device.getAndroidId가 useSystemId 불리언 매개변수를 지원하며, Android 8.0+에서 Shizuku/Root로 앱이 실행되는 Android 사용자의 시스템 값을 읽음. 권한 또는 읽기 실패 시 예외를 발생시키고 이전 시스템에서는 매개변수를 무시
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

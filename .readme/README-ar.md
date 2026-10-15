@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.40.0
+
+###### 2026/10/15
+
+* `ميزة` files.batchRename مع أنواع الخيارات والخطة والنتيجة والتراجع والسجل و BatchRenameError, لمعاينة الخطة واستبعاد العناصر فرديا والتنفيذ والتراجع وسجل الدفعات في ملحق Batch Rename
+* `ملاحظة` يتطلب المضيف 6.8.0 / 5437 وملحق Batch Rename 1.0.0
+
 ### v4.39.0
 
 ###### 2026/10/15
@@ -186,12 +193,6 @@ npm update @sm003/autojs6-dts
 * `ميزة` مداخل JSOX اختيارية لامتدادات Array/Number/Math تتضمن طرق النموذج و Number.ICU و parseFloat مع radix, مع الحفاظ على الأنواع القياسية في المدخل الافتراضي
 * `إصلاح` استكمال Arrayx/Numberx/Mathx/util/engines و randomInt/randomFloat/verbose وأسماء Color وطرق مزامنة وإغلاق RootAutomator, ومواءمة تحويل الألوان و console و flow.of وأنماط الإحداثيات
 * `إصلاح` تصحيح مراجع أنواع pinyin و pool و Disposable وأحداث المستشعر وواجهات Floaty وصفوف SQLite لمنع التحول إلى any, مع أنواع واضحة لواجهات axios/dayjs/cheerio الشائعة
-
-### v4.37.0
-
-###### 2026/10/12
-
-* `ميزة` تعريفات الأنواع والإكمال: تقبل device.getAndroidId المعامل المنطقي useSystemId لقراءة قيمة النظام لمستخدم Android الذي يشغل التطبيق عبر Shizuku/Root على Android 8.0+, وتطرح استثناء عند فشل الإذن أو القراءة, وتتجاهل المعامل على الأنظمة الأقدم
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

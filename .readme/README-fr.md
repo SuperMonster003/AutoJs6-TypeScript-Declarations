@@ -172,6 +172,13 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.40.0
+
+###### 2026/10/15
+
+* `Fonctionnalité` files.batchRename avec les types d'options, de plan, de résultat, d'annulation et d'historique et BatchRenameError, pour l'aperçu du plan, l'exclusion par élément, l'application, l'annulation et l'historique des lots du plugin Batch Rename
+* `Note` Nécessite l'hôte 6.8.0 / 5437 et le plugin Batch Rename 1.0.0
+
 ### v4.39.0
 
 ###### 2026/10/15
@@ -186,12 +193,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 * `Fonctionnalité` Entrees JSOX optionnelles pour les extensions Array/Number/Math, avec methodes de prototype, Number.ICU et parseFloat avec radix; l'entree par defaut conserve les types standard
 * `Correction` Couverture de Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, des alias Color et de la synchronisation et sortie RootAutomator; alignement des conversions, de console, flow.of et des modes de coordonnees
 * `Correction` References des enumerations pinyin, de pool et Disposable, des evenements de capteur, des dispositions Floaty et des lignes SQLite corrigees pour eviter any; types explicites des API courantes axios/dayjs/cheerio
-
-### v4.37.0
-
-###### 2026/10/12
-
-* `Fonctionnalité` Déclarations de types et complétion: device.getAndroidId accepte le booléen useSystemId pour lire la valeur système de l'utilisateur Android de l'application via Shizuku/Root sous Android 8.0+, lève une exception en cas d'échec d'autorisation ou de lecture et ignore ce paramètre sur les anciens systèmes
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

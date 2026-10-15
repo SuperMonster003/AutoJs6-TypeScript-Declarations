@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.40.0
+
+###### 2026/10/15
+
+* `新增` files.batchRename 及其选项, 方案, 结果, 撤销与历史类型和 BatchRenameError, 对应 Batch Rename 插件的方案预览, 逐项排除, 执行, 撤销与历史批次
+* `提示` 需要配套宿主 6.8.0 / 5437 与 Batch Rename 插件 1.0.0
+
 # v4.39.0
 
 ###### 2026/10/15

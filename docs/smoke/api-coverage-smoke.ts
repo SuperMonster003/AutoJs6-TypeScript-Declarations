@@ -134,3 +134,17 @@ const editedPath: Promise<string | null> = gallery.editAsync('a.png', { overwrit
 const isGalleryError: boolean = new gallery.GalleryError('x', 'IO') instanceof gallery.GalleryError;
 // @ts-expect-error Unknown size modes are rejected.
 gallery.convert('a.png', { sizeMode: 'fit' });
+
+// files.batchRename of the Batch Rename plugin.
+const renamePlan = files.batchRename.plan(['a.txt', 'docs'], { search: /^(\w+)/g, replace: '$1_${padding=2}', enumerate: true, onConflict: 'number' });
+renamePlan.items.forEach(item => { if (item.status === 'conflict' || item.kind === 'dir') item.excluded = true; });
+const renameResult = files.batchRename.apply(renamePlan, { onProgress: (done, total, item) => item.newPath.length + done + total });
+const renamedCount: number = $files.batchRename('docs', { search: 'txt', replace: 'md', target: 'extension', dateTime: false }).counts.renamed;
+const undoState: 'restored' | 'recoveryRequired' = files.batchRename.undo(renameResult).state;
+const undoneBatch: Promise<string> = files.batchRename.undoAsync(files.batchRename.history(1)[0].batchId).then(undone => undone.batchId);
+const plannedNames: Promise<string[]> = files.batchRename.planAsync('a.txt', { search: '', format: 'lower' }).then(plan => plan.items.map(item => item.newName));
+const isBatchRenameError: boolean = new files.batchRename.BatchRenameError('x', 'PLAN_STALE') instanceof files.batchRename.BatchRenameError;
+// @ts-expect-error Unknown conflict policies are rejected.
+files.batchRename.plan('a.txt', { search: 'a', onConflict: 'replace' });
+// @ts-expect-error A search is required.
+files.batchRename.plan('a.txt', { replace: 'b' });

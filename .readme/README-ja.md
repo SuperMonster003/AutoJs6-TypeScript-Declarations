@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.40.0
+
+###### 2026/10/15
+
+* `機能` files.batchRename とそのオプション, プラン, 結果, 元に戻す操作, 履歴の型と BatchRenameError. Batch Rename プラグインのプランのプレビュー, 項目ごとの除外, 実行, 元に戻す操作とバッチ履歴に対応
+* `ヒント` 対応するホスト 6.8.0 / 5437 と Batch Rename プラグイン 1.0.0 が必要
+
 ### v4.39.0
 
 ###### 2026/10/15
@@ -186,12 +193,6 @@ npm update @sm003/autojs6-dts
 * `機能` Array/Number/Math の実行時拡張用に任意の JSOX 宣言入口を用意, プロトタイプメソッド, Number.ICU, radix 付き parseFloat を含み, 標準入口では組み込み型を維持
 * `修正` Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color の別名と RootAutomator の同期および終了メソッドを補完し, 色変換, console, flow.of, 座標モードのオーバーロードを整合
 * `修正` pinyin 列挙, pool と Disposable, センサーイベント, Floaty レイアウト, SQLite 行の型参照を修正して any への劣化を防止; axios/dayjs/cheerio の一般的なスクリプト API に明示的な型を提供
-
-### v4.37.0
-
-###### 2026/10/12
-
-* `機能` 型定義と補完: device.getAndroidId が useSystemId 真偽値引数に対応し, Android 8.0+ では Shizuku/Root を通じてアプリの Android ユーザーのシステム値を取得. 権限または読み取りの失敗時は例外を送出し, 旧システムでは引数を無視
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

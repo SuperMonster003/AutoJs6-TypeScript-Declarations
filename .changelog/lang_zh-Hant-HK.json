@@ -18,6 +18,19 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.40.0": {
+      "released_date": "2026/10/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "files.batchRename 及其選項, 方案, 結果, 復原與歷史類型和 BatchRenameError, 對應 Batch Rename 插件的方案預覽, 逐項排除, 執行, 復原與歷史批次"
+        },
+        {
+          "category": "hint",
+          "text": "需要配套宿主 6.8.0 / 5437 與 Batch Rename 插件 1.0.0"
+        }
+      ]
+    },
     "v4.39.0": {
       "released_date": "2026/10/15",
       "entries": [

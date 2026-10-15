@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.40.0
+
+###### 2026/10/15
+
+* `新增` files.batchRename 及其選項, 方案, 結果, 復原與歷史類型和 BatchRenameError, 對應 Batch Rename 插件的方案預覽, 逐項排除, 執行, 復原與歷史批次
+* `提示` 需要配套宿主 6.8.0 / 5437 與 Batch Rename 插件 1.0.0
+
 ### v4.39.0
 
 ###### 2026/10/15
@@ -186,12 +193,6 @@ npm update @sm003/autojs6-dts
 * `新增` JSOX 按需擴展聲明入口, 對應 Array/Number/Math 的運行時擴展, 包含原型方法, Number.ICU 及帶 radix 的 parseFloat, 默認入口保持標準內置對象類型
 * `修復` 補齊 Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color 短別名及 RootAutomator 同步和退出方法, 對齊顏色轉換, 控制台, flow.of 與座標模式重載
 * `修復` pinyin 枚舉, 線程池和 Disposable, 傳感器事件, Floaty 佈局及 SQLite 行對象的類型引用, 避免無效類型退化為 any; axios/dayjs/cheerio 常用腳本 API 提供明確類型
-
-### v4.37.0
-
-###### 2026/10/12
-
-* `新增` 類型宣告與補全: device.getAndroidId 支援 useSystemId 布林參數, 在 Android 8.0+ 上透過 Shizuku/Root 取得執行應用所屬 Android 使用者的系統值, 權限或讀取失敗時拋出異常, 舊系統忽略此參數
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-HK.md)
 

@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.40.0
+
+###### 2026/10/15
+
+* `機能` files.batchRename とそのオプション, プラン, 結果, 元に戻す操作, 履歴の型と BatchRenameError. Batch Rename プラグインのプランのプレビュー, 項目ごとの除外, 実行, 元に戻す操作とバッチ履歴に対応
+* `ヒント` 対応するホスト 6.8.0 / 5437 と Batch Rename プラグイン 1.0.0 が必要
+
 # v4.39.0
 
 ###### 2026/10/15

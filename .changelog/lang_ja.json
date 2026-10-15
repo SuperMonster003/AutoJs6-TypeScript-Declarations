@@ -18,6 +18,19 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.40.0": {
+      "released_date": "2026/10/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "files.batchRename とそのオプション, プラン, 結果, 元に戻す操作, 履歴の型と BatchRenameError. Batch Rename プラグインのプランのプレビュー, 項目ごとの除外, 実行, 元に戻す操作とバッチ履歴に対応"
+        },
+        {
+          "category": "hint",
+          "text": "対応するホスト 6.8.0 / 5437 と Batch Rename プラグイン 1.0.0 が必要"
+        }
+      ]
+    },
     "v4.39.0": {
       "released_date": "2026/10/15",
       "entries": [

@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## Журнал изменений
 
+### v4.40.0
+
+###### 2026/10/15
+
+* `Функция` files.batchRename с типами параметров, плана, результата, отмены и истории и BatchRenameError: предпросмотр плана, исключение отдельных элементов, применение, отмена и история пакетов в плагине Batch Rename
+* `Примечание` Требуется хост 6.8.0 / 5437 и плагин Batch Rename 1.0.0
+
 ### v4.39.0
 
 ###### 2026/10/15
@@ -186,12 +193,6 @@ npm update @sm003/autojs6-dts
 * `Функция` Необязательные декларации JSOX для расширений Array/Number/Math, включая методы прототипов, Number.ICU и parseFloat с radix; стандартная точка входа сохраняет встроенные типы
 * `Исправление` Дополнены Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, псевдонимы Color и методы синхронизации и выхода RootAutomator; согласованы преобразования цветов, console, flow.of и режимы координат
 * `Исправление` Исправлены ссылки типов перечислений pinyin, pool и Disposable, событий датчиков, разметки Floaty и строк SQLite для предотвращения any; явные типы основных API axios/dayjs/cheerio
-
-### v4.37.0
-
-###### 2026/10/12
-
-* `Функция` Объявления типов и автодополнение: device.getAndroidId принимает логический параметр useSystemId для чтения системного значения пользователя Android приложения через Shizuku/Root на Android 8.0+, вызывает исключение при ошибке доступа или чтения и игнорирует параметр на старых системах
 
 [Полный журнал изменений](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 

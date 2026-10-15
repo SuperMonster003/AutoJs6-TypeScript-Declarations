@@ -172,6 +172,13 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.40.0
+
+###### 2026/10/15
+
+* `Feature` files.batchRename with its option, plan, result, undo and history types and BatchRenameError, covering plan preview, per-item exclusion, applying, undo and batch history of the Batch Rename plugin
+* `Hint` Requires matching host 6.8.0 / 5437 and the Batch Rename plugin 1.0.0
+
 ### v4.39.0
 
 ###### 2026/10/15
@@ -186,12 +193,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 * `Feature` Optional JSOX declaration entries for runtime Array/Number/Math extensions, including prototype methods, Number.ICU and radix-aware parseFloat, while the default entry preserves standard built-in types
 * `Fix` Complete Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color aliases and RootAutomator synchronization and exit methods; align color conversion, console, flow.of and coordinate-mode overloads
 * `Fix` Correct pinyin enums, pool and Disposable, sensor events, Floaty layouts and SQLite row references to prevent unresolved types becoming any; provide explicit common script APIs for axios/dayjs/cheerio
-
-### v4.37.0
-
-###### 2026/10/12
-
-* `Feature` Type declarations and completion: device.getAndroidId accepts a useSystemId boolean to read the system value for the app's Android user through Shizuku/Root on Android 8.0+, throws on permission or read failure, and ignores the flag on older systems
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

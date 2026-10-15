@@ -10,6 +10,12 @@
 /**
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/files/Files.kt
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/Files.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/files/BatchRename.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/files/BatchRenameJsErrors.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/plugin/batchrename/BatchRenameScriptArguments.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/plugin/batchrename/BatchRenameScriptService.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/plugin/batchrename/BatchRenameScriptErrors.kt
+ * @Source %AutoJs6%/plugin-api/batch-rename-api/src/main/java/org/autojs/plugin/batchrename/api/BatchRenameValues.kt
  */
 
 declare namespace Internal {
@@ -692,6 +698,348 @@ declare namespace Internal {
 
         toFile(path: string): java.io.File;
 
+        /**
+         * Batch renaming of files and folders (also `$files.batchRename`), available since AutoJs6
+         * 6.8.0 through the external Batch Rename plugin: the plugin computes the new names, AutoJs6
+         * enumerates the targets and performs, journals and undoes the renames. Calling it plans and
+         * applies in one step; see {@link FilesBatchRename} for the members.
+         * @since 6.8.0
+         * @see https://docs.autojs6.com/#/files?id=m-batchrename
+         */
+        readonly batchRename: FilesBatchRename;
+
+    }
+
+    /**
+     * `files.batchRename` (also `$files.batchRename`), available since AutoJs6 6.8.0 through the
+     * external Batch Rename plugin. Every member throws (or rejects with) a `BatchRenameError` whose
+     * `code` is `PLUGIN_UNAVAILABLE`, `PLUGIN_DISABLED` or `PLUGIN_INCOMPATIBLE` while the plugin is
+     * missing, disabled or incompatible; {@link isAvailable} probes without throwing.
+     *
+     * A rename has two steps: {@link plan} enumerates the targets and computes every new name without
+     * touching a file, {@link apply} runs the plan. `paths` is a path or an array of paths (relative
+     * paths resolve against the script working directory); each named path is an item of depth 0, and
+     * a named folder adds everything below it while `includeSubfolders` is on (the default). A plan
+     * holds at most 2000 items. The synchronous forms block the script thread (stopping the script
+     * cancels the wait); the `Async` forms deliver progress and the outcome on the script thread.
+     *
+     * @example
+     * let plan = files.batchRename.plan('./photos', { search: 'IMG_', replace: 'Photo_', includeFolders: false });
+     * plan.items.forEach(it => console.log(it.name + ' -> ' + it.newName + ' (' + it.status + ')'));
+     * if (!plan.rejected) console.log(files.batchRename.apply(plan).counts.renamed);
+     *
+     * @example Source code summary (zh-CN: 源代码摘要)
+     * override fun invoke(vararg args: Any?): Any? = guarded {
+     *     ensureArgumentsLength(args, 2) { (paths, options) ->
+     *         val planWork = planWork(paths, options)
+     *         val progress = progressOf(options)
+     *         sync { binder ->
+     *             val plan = planWork()
+     *             val items = plan["items"] as List<Map<String, Any?>>
+     *             service.apply(plan["id"] as String, items.map { it["excluded"] == true }, null, binder.bind(progress))
+     *         }
+     *     }
+     * }
+     *
+     * @see https://docs.autojs6.com/#/files?id=m-batchrename
+     */
+    interface FilesBatchRename {
+
+        /**
+         * Plans and applies in one step, like `apply(plan(paths, options), { onProgress: options.onProgress })`.
+         * A rejected plan throws `PLAN_REJECTED` and renames nothing.
+         * @since 6.8.0
+         * @example
+         * let result = files.batchRename('./docs', { search: 'txt', replace: 'md', target: 'extension', includeFolders: false });
+         * console.log(result.counts.renamed);
+         */
+        (paths: string | string[], options: FilesBatchRename.Options): FilesBatchRename.Result;
+
+        /**
+         * Computes the new name and the status of every item without touching a file. Set `excluded`
+         * of an item to true before {@link apply} to keep its name. A script keeps its last 16 plans;
+         * applying an older one throws `PLAN_STALE`.
+         * @since 6.8.0
+         * @example
+         * let plan = files.batchRename.plan('./camera', {
+         *     search: /^IMG_\d+/,
+         *     replace: '$YYYY-$MM-$DD_${padding=3;start=1}',
+         *     enumerate: true,
+         *     includeFolders: false,
+         * });
+         */
+        plan(paths: string | string[], options: FilesBatchRename.Options): FilesBatchRename.Plan;
+
+        /**
+         * Runs a plan once (a second run throws `PLAN_STALE`): only items with the status `rename`
+         * are renamed. Changed `excluded` flags or another `onConflict` let the plugin plan again with
+         * the same targets and time. Items deleted or modified since the plan become `stale`; the rest
+         * proceeds. A rejected plan throws `PLAN_REJECTED`, renames nothing and stays usable. An error
+         * thrown by `onProgress` never interrupts the batch: it is rethrown once the batch is journaled.
+         * @since 6.8.0
+         * @example
+         * let result = files.batchRename.apply(plan, { onConflict: 'number', onProgress: (done, total) => console.log(done + '/' + total) });
+         */
+        apply(plan: FilesBatchRename.Plan, options?: FilesBatchRename.ApplyOptions): FilesBatchRename.Result;
+
+        /**
+         * Gives the items of a batch that still carry their new names their old names back, shallow
+         * items first; items changed since the rename become `stale`, entries replaced by `'overwrite'`
+         * come back from the AutoJs6 Trash. Batches of the file manager can be undone too. Throws
+         * `UNDO_UNAVAILABLE` for an unknown batch or one with nothing left to undo.
+         * @since 6.8.0
+         * @example
+         * files.batchRename.undo(files.batchRename('./notes', { search: 'draft', replace: 'final' }));
+         */
+        undo(target: FilesBatchRename.Result | string): FilesBatchRename.UndoResult;
+
+        /**
+         * The newest batches of scripts and of the file manager, newest first; at most 20.
+         * @param [limit=20] A non-negative integer, 20 at most.
+         * @since 6.8.0
+         * @example
+         * let latest = files.batchRename.history().find(entry => entry.undoable);
+         * if (latest) files.batchRename.undo(latest.batchId);
+         */
+        history(limit?: number): FilesBatchRename.HistoryEntry[];
+
+        /** Whether an installed, enabled, authorized and compatible Batch Rename plugin answers; never throws for the plugin. @since 6.8.0 */
+        isAvailable(): boolean;
+
+        /** @since 6.8.0 */
+        planAsync(paths: string | string[], options: FilesBatchRename.Options): Promise<FilesBatchRename.Plan>;
+
+        /** `onProgress` runs on the script thread. @since 6.8.0 */
+        applyAsync(plan: FilesBatchRename.Plan, options?: FilesBatchRename.ApplyOptions): Promise<FilesBatchRename.Result>;
+
+        /** @since 6.8.0 */
+        undoAsync(target: FilesBatchRename.Result | string): Promise<FilesBatchRename.UndoResult>;
+
+        /** The error class of `files.batchRename`; `e instanceof files.batchRename.BatchRenameError`. @since 6.8.0 */
+        readonly BatchRenameError: FilesBatchRename.BatchRenameErrorConstructor;
+    }
+
+    namespace FilesBatchRename {
+
+        type ErrorCode =
+            | 'PLUGIN_UNAVAILABLE'
+            | 'PLUGIN_DISABLED'
+            | 'PLUGIN_INCOMPATIBLE'
+            | 'INVALID_OPTIONS'
+            | 'INVALID_PATHS'
+            | 'LIMIT_EXCEEDED'
+            | 'PLAN_REJECTED'
+            | 'PLAN_STALE'
+            | 'IO_FAILED'
+            | 'UNDO_UNAVAILABLE'
+            | 'INTERNAL';
+
+        /** `name` is `'BatchRenameError'`; `toString()` yields `BatchRenameError [CODE]: message`; `message` is not enumerable. */
+        interface BatchRenameError extends Error {
+            readonly name: 'BatchRenameError';
+            readonly code: ErrorCode | string;
+        }
+
+        interface BatchRenameErrorConstructor {
+            new(message: string, code?: ErrorCode | string): BatchRenameError;
+            (message: string, code?: ErrorCode | string): BatchRenameError;
+            readonly prototype: BatchRenameError;
+        }
+
+        type Target = 'all' | 'name' | 'extension';
+
+        type TextFormat = 'none' | 'lower' | 'upper' | 'title' | 'capitalize';
+
+        type ConflictPolicy = 'fail' | 'skip' | 'number' | 'overwrite';
+
+        type ProgressCallback = (done: number, total: number, item: ResultItem) => void;
+
+        /** Options of `files.batchRename(paths, options)` and `plan`; null and undefined values take the default. */
+        interface Options {
+            /**
+             * Plain text, or regular expression source with `regex`. A `RegExp` is always a regular
+             * expression whose `g` / `i` flags replace `matchAll` / `caseSensitive` (`m`, `s`, `u`, `y`
+             * apply as well). An empty string matches every item and replaces nothing.
+             */
+            search: string | RegExp;
+            /**
+             * Replacement with variables: counters `${start=X;increment=X;padding=X}` (with `enumerate`),
+             * date and time `$YYYY` ... `$f` (unless `dateTime` is false), random values
+             * `${rstringalnum=N}`, `${rstringalpha=N}`, `${rstringdigit=N}`, `${ruuidv4}` (with `random`);
+             * `$$` is a literal `$`. Regular expressions also take `$1`, `$<name>` and `$&`. Default `''`.
+             */
+            replace?: string;
+            /** Default false. */
+            regex?: boolean;
+            /** Replace every match instead of the first; default false. */
+            matchAll?: boolean;
+            /** Default false. */
+            caseSensitive?: boolean;
+            /** The part searched and replaced; default `'all'`. Folders and names like `.nomedia` have no extension. */
+            target?: Target;
+            /** Default true. */
+            includeFiles?: boolean;
+            /** Default true; also covers named folders. */
+            includeFolders?: boolean;
+            /** Add everything below the named folders; default true. */
+            includeSubfolders?: boolean;
+            /** Default `'none'`; case mapping follows the current language. */
+            format?: TextFormat;
+            /** Expand `${...}` counters; default false (literal text). */
+            enumerate?: boolean;
+            /** Expand random values; default false (literal text). */
+            random?: boolean;
+            /** Time of the date variables: modification time or the time of `plan`; false (or `'none'`) keeps them literal. Default `'modified'`. */
+            dateTime?: 'modified' | 'now' | 'none' | false;
+            /** Unicode normalization; default false. */
+            normalize?: 'nfc' | 'nfd' | 'none' | false;
+            /** Full-width forms and the ideographic space to half-width; default false. */
+            halfWidth?: boolean;
+            /** Replace characters FAT32 / exFAT reject and suffix reserved Windows names; default false. */
+            sanitize?: boolean;
+            /** Default `'_'`. */
+            sanitizeReplacement?: string;
+            /** Remove leading white space and trailing white space and dots; default false. */
+            trim?: boolean;
+            /** Continue counters after the largest number already present in the folders; default false. */
+            continueNumbering?: boolean;
+            /** Default `'fail'`. */
+            onConflict?: ConflictPolicy;
+            /** Suffix of the `'number'` policy, must contain `{n}`; default `' ({n})'`. */
+            conflictNumberPattern?: string;
+            /** Progress of the one-step call; `plan` ignores it. */
+            onProgress?: ProgressCallback;
+        }
+
+        interface ApplyOptions {
+            /** Overrides the policy of the plan. */
+            onConflict?: ConflictPolicy;
+            /** Called once per handled rename; `total` counts the items to rename. */
+            onProgress?: ProgressCallback;
+        }
+
+        /** The options of a plan with every default filled in; a `RegExp` search appears as its source. */
+        interface NormalizedOptions {
+            search: string;
+            replace: string;
+            regex: boolean;
+            /** Flags among `m`, `s`, `u` and `y`. */
+            regexFlags: string;
+            matchAll: boolean;
+            caseSensitive: boolean;
+            target: Target;
+            includeFiles: boolean;
+            includeFolders: boolean;
+            includeSubfolders: boolean;
+            format: TextFormat;
+            enumerate: boolean;
+            random: boolean;
+            dateTime: 'modified' | 'now' | 'none';
+            normalize: 'nfc' | 'nfd' | 'none';
+            halfWidth: boolean;
+            sanitize: boolean;
+            sanitizeReplacement: string;
+            trim: boolean;
+            continueNumbering: boolean;
+            onConflict: ConflictPolicy;
+            conflictNumberPattern: string;
+        }
+
+        type PlanStatus = 'rename' | 'unchanged' | 'conflict' | 'invalid' | 'excluded';
+
+        type PlanReason =
+            | 'noMatch'
+            | 'sameName'
+            | 'excludedByCaller'
+            | 'notIncluded'
+            | 'duplicateInBatch'
+            | 'existingEntry'
+            | 'numbersExhausted'
+            | 'numbered'
+            | 'overwrite'
+            | 'empty'
+            | 'dotName'
+            | 'separator'
+            | 'tooLong'
+            | 'restrictedCharacter';
+
+        interface Plan {
+            readonly id: string;
+            readonly options: NormalizedOptions;
+            /** In enumeration order: named paths first in their order, each folder depth first, sorted by name. */
+            readonly items: PlanItem[];
+            readonly counts: { readonly [status in PlanStatus]: number };
+            /** True with an `invalid` item, or with a `conflict` item under `'fail'`. */
+            readonly rejected: boolean;
+        }
+
+        interface PlanItem {
+            /** Absolute path. */
+            readonly path: string;
+            readonly name: string;
+            readonly kind: 'file' | 'dir';
+            /** 0 for a named path, one more per folder level below it. */
+            readonly depth: number;
+            /** The current name for items that keep it; the unusable name for `conflict` and `invalid`. */
+            readonly newName: string;
+            readonly status: PlanStatus;
+            readonly reason: PlanReason | null;
+            /** Set to true before `apply` to keep the name (reason `excludedByCaller`). */
+            excluded: boolean;
+            /** The `'overwrite'` policy replaces an existing entry of that name. */
+            readonly overwrites: boolean;
+        }
+
+        type ResultStatus = 'renamed' | 'skipped' | 'failed' | 'stale' | 'excluded';
+
+        interface ResultItem {
+            /** Path before the batch. */
+            readonly path: string;
+            /** Path after the batch, renamed parent folders included. */
+            readonly newPath: string;
+            readonly status: ResultStatus;
+            /** The plan's reason for `skipped` and `excluded`; `missing`, `kindChanged`, `changed`, `occupied`, `trashFailed` or `ioFailed` otherwise. */
+            readonly reason: string | null;
+        }
+
+        interface Result {
+            /** Batch of the undo journal; null when nothing was to be renamed. */
+            readonly batchId: string | null;
+            readonly counts: { readonly [status in ResultStatus]: number };
+            /** One per plan item, in the same order. */
+            readonly items: ResultItem[];
+            readonly undoable: boolean;
+        }
+
+        interface UndoItem {
+            /** Path before the undo. */
+            readonly path: string;
+            /** Path after the undo. */
+            readonly newPath: string;
+            readonly status: 'restored' | 'stale' | 'failed';
+            readonly reason: string | null;
+        }
+
+        interface UndoResult {
+            readonly batchId: string;
+            readonly state: 'restored' | 'recoveryRequired';
+            readonly counts: { readonly restored: number; readonly stale: number; readonly failed: number };
+            readonly items: UndoItem[];
+            /** True while some items can still be undone (failed ones, for instance). */
+            readonly undoable: boolean;
+        }
+
+        interface HistoryEntry {
+            readonly batchId: string;
+            readonly source: 'script' | 'explorer';
+            readonly state: 'committed' | 'partial' | 'rejected' | 'restored' | 'recoveryRequired';
+            /** Milliseconds since the epoch. */
+            readonly createdAt: number;
+            /** Milliseconds since the epoch. */
+            readonly updatedAt: number;
+            readonly counts: { readonly renamed: number; readonly notRenamed: number; readonly restored: number };
+            readonly undoable: boolean;
+        }
     }
 }
 
