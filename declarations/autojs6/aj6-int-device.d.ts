@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 13, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -38,9 +38,9 @@ declare namespace Internal {
          */
         get height(): number;
 
-        get rotation(): number;
+        readonly rotation: number;
 
-        get orientation(): number;
+        readonly orientation: number;
 
         get density(): number;
 

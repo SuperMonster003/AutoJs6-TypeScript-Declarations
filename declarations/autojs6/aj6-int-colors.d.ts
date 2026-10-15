@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.8.4
 //
-// Last modified: Oct 7, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -6009,6 +6009,7 @@ declare namespace Internal {
         hsla(components: (ColorComponent | ColorHueComponent)[]): number;
 
         toRgb(color: OmniColor): number[];
+        toRgb(r: ColorComponent, g: ColorComponent, b: ColorComponent): number[];
 
         toRgba(color: OmniColor, options?: ToComponentOptions): number[];
 
@@ -6353,6 +6354,15 @@ declare namespace Internal {
     }
 
     interface Color {
+
+        /** Short aliases of the corresponding toX conversion methods. */
+        argb(): number[];
+        rgb(): number[];
+        rgba(): number[];
+        hsv(result?: FloatArray): number[];
+        hsva(result?: FloatArray): number[];
+        hsl(result?: FloatArray): number[];
+        hsla(): number[];
 
         new(color?: OmniColor): Color;
         new(r: ColorComponent, g: ColorComponent, b: ColorComponent, a?: ColorComponent): Color;

@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -14,13 +14,11 @@
 
 declare namespace Internal {
 
-    class Files extends org.autojs.autojs.runtime.api.Files {
+    interface Files extends Omit<org.autojs.autojs.runtime.api.Files, 'append' | 'open' | 'read' | 'readAssets' | 'write'> {
 
         /**
          * @Overrides for JSDoc or more specific types
          */
-
-        constructor(runtime: ScriptRuntime);
 
         /**
          * @example
@@ -42,8 +40,6 @@ declare namespace Internal {
          * @see org.autojs.autojs.runtime.api.Files.join
          */
         join(parent: string, ...child: string[]): string;
-
-        static join(parent: string, ...child: string[]): string;
 
         /**
          * @param path

@@ -5,7 +5,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 13, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -19,9 +19,9 @@ declare let isAutoJs6: boolean;
 declare let HEIGHT: number;
 declare let WIDTH: number;
 
-declare let axios: any;
-declare let cheerio: any;
-declare let dayjs: any;
+declare let axios: BundledLibraries.Axios;
+declare let cheerio: BundledLibraries.CheerioStatic;
+declare let dayjs: BundledLibraries.DayjsFactory;
 /** The built-in pangu.js text API. Available since AutoJs6 6.8.0. */
 declare let pangu: Internal.Pangu;
 
@@ -259,19 +259,30 @@ declare function random(min: number, max: number): number;
  */
 declare function random(): number;
 
-declare function cX(num: number, base: number, isRatio?: boolean | 'auto'): number;
-declare function cX(num: number, isRatio?: boolean | 'auto'): number;
+/** Inclusive integer range; nested arrays are flattened. */
+declare function randomInt(...range: Internal.Mathx.NumberInput[]): number;
+
+/** Floating-point range; no arguments uses [0, 1). */
+declare function randomFloat(...range: Internal.Mathx.NumberInput[]): number;
+
+/** Global alias of console.verbose. */
+declare function verbose(data?: unknown, ...args: unknown[]): void;
+
+declare function cX(num: number, base: number | null | undefined, isRatio?: boolean | 'auto' | null): number;
+declare function cX(num: number, isRatio?: boolean | 'auto' | null, unusedMode?: null): number;
 declare function cX(): number;
 
-declare function cY(num: number, base: number, isRatio?: boolean | 'auto'): number;
-declare function cY(num: number, isRatio?: boolean | 'auto'): number;
+declare function cY(num: number, base: number | null | undefined, isRatio?: boolean | 'auto' | null): number;
+declare function cY(num: number, isRatio?: boolean | 'auto' | null, unusedMode?: null): number;
 declare function cY(): number;
 
-declare function cYx(num: number, base: number | string, isRatio?: boolean | 'auto'): number;
-declare function cYx(num: number, isRatio?: boolean | 'auto'): number;
+declare function cYx(num: number, base: number | null | undefined, isRatio?: boolean | 'auto' | null): number;
+declare function cYx(num: number, ratio: string, isRatio?: true | 'auto' | null): number;
+declare function cYx(num: number, isRatio?: boolean | 'auto' | null, unusedMode?: null): number;
 
-declare function cXy(num: number, base: number | string, isRatio?: boolean | 'auto'): number;
-declare function cXy(num: number, isRatio?: boolean | 'auto'): number;
+declare function cXy(num: number, base: number | null | undefined, isRatio?: boolean | 'auto' | null): number;
+declare function cXy(num: number, ratio: string, isRatio?: true | 'auto' | null): number;
+declare function cXy(num: number, isRatio?: boolean | 'auto' | null, unusedMode?: null): number;
 
 /**
  * Wait a period of time until a condition is met

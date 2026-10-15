@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.7.3
 //
-// Last modified: Sep 1, 2026
+// Last modified: Oct 15, 2026
 //
 // noinspection JSUnusedGlobalSymbols
 
@@ -13,15 +13,32 @@
 
 /**
  * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/pinyin/Pinyin.kt
- * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/pinyin/PinyinCore.kt
+ * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/pinyin/PinyinOptions.kt
  * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/pinyin/Dict.kt
  * @Source /src/main/java/org/autojs/autojs/runtime/api/augment/pinyin/Util.kt
  */
 
 declare namespace Internal {
 
-    import PinyinMode = org.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinMode;
-    import PinyinStyle = org.autojs.autojs.runtime.api.augment.pinyin.PinyinCore.PinyinStyle;
+    const pinyinModeBrand: unique symbol;
+    const pinyinStyleBrand: unique symbol;
+
+    /** Script-facing views of PinyinOptions enums, independent of generated JVM declarations. */
+    abstract class PinyinMode {
+        private readonly [pinyinModeBrand]: void;
+        readonly value: Pinyin.ModeValue;
+        getValue(): Pinyin.ModeValue;
+        name(): string;
+        ordinal(): number;
+    }
+
+    abstract class PinyinStyle {
+        private readonly [pinyinStyleBrand]: void;
+        readonly value: Pinyin.StyleValue;
+        getValue(): Pinyin.StyleValue;
+        name(): string;
+        ordinal(): number;
+    }
 
     interface Pinyin {
 
@@ -60,7 +77,7 @@ declare namespace Internal {
 
     }
 
-    declare namespace Pinyin {
+    namespace Pinyin {
 
         interface ConvertOptions {
 

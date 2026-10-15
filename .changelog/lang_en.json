@@ -18,6 +18,23 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.38.0": {
+      "released_date": "2026/10/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Optional JSOX declaration entries for runtime Array/Number/Math extensions, including prototype methods, Number.ICU and radix-aware parseFloat, while the default entry preserves standard built-in types"
+        },
+        {
+          "category": "fix",
+          "text": "Complete Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color aliases and RootAutomator synchronization and exit methods; align color conversion, console, flow.of and coordinate-mode overloads"
+        },
+        {
+          "category": "fix",
+          "text": "Correct pinyin enums, pool and Disposable, sensor events, Floaty layouts and SQLite row references to prevent unresolved types becoming any; provide explicit common script APIs for axios/dayjs/cheerio"
+        }
+      ]
+    },
     "v4.37.0": {
       "released_date": "2026/10/12",
       "entries": [

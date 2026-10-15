@@ -139,6 +139,19 @@ VSCode는 WebStorm처럼 모든 위치의 declarations 폴더를 인식하지 �
 
 VSCode를 다시 시작하면 예시의 `hello/main.js`에서 코드 자동 완성이 활성화되거나 개선됩니다.
 
+#### 선택적 JSOX 확장
+
+스크립트가 런타임에 JSOX를 활성화할 때만 다음 진입점을 참조하세요. index.d.ts는 기본으로 이 선언들을 읽지 않습니다. 편집기가 모든 로컬 선언을 검색하면 aj6-jsox-*-extensions.d.ts를 제외한 후 선택한 진입점을 명시적으로 참조하세요.
+
+```typescript
+/// <reference path="./declarations/autojs6/aj6-jsox-extensions.d.ts" />
+jsox.extendAll();
+const values = [1, 2, 2].distinct();
+const parsed = Number.parseFloat('ff', 16);
+```
+
+한 모듈에는 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 또는 aj6-jsox-math-extensions.d.ts를 선택하고 해당 jsox.extend를 호출하세요. 외부 라이브러리 선언은 포함된 일반 핵심 API를 다룹니다. 선택적 Dayjs 플러그인은 별도 선언이 필요하며 불완전한 Axios 브라우저 어댑터를 완전한 브라우저 API로 표시하지 않습니다.
+
 ******
 
 ### 업데이트 받기
@@ -159,6 +172,14 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.38.0
+
+###### 2026/10/15
+
+* `기능` Array/Number/Math 런타임 확장을 위한 선택적 JSOX 선언 진입점, 프로토타입 메서드, Number.ICU 및 radix parseFloat 포함, 기본 진입점은 표준 내장 타입 유지
+* `수정` Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color 별칭과 RootAutomator 동기화 및 종료 메서드 보완; 색상 변환, console, flow.of 및 좌표 모드 오버로드 정렬
+* `수정` pinyin 열거형, pool 및 Disposable, 센서 이벤트, Floaty 레이아웃, SQLite 행 타입 참조를 수정하여 any 변환 방지; axios/dayjs/cheerio의 일반 스크립트 API에 명시적 타입 제공
+
 ### v4.37.0
 
 ###### 2026/10/12
@@ -173,16 +194,6 @@ npm update @sm003/autojs6-dts
 
 * `기능` compose.memo 및 ComposeMemoOptions은 의존성 값과 읽은 state가 모두 바뀌지 않은 노드 프래그먼트를 render에서 재사용하며, key 기반 목록 항목 매칭 지원
 * `안내` 대응하는 호스트 6.8.0 / 5323 필요; 의존성 비교, 슬롯 매칭, 호출 시점 및 의존성 256개 제한은 런타임에서 검증. TSX에는 대응하는 TypeScript Engine 0.6.8 및 Ace Editor 1.30.0 필요
-
-### v4.35.0
-
-###### 2026/10/08
-
-##### 3-Block Compose 계약 V2
-
-* `기능` 탐색 모음, 탐색 드로어, 탭, 하단 시트, 메뉴, 날짜 및 시간 선택, 페이지 전환, 그리드, Chip, Badge, 분할 버튼, 플로팅 버튼, 검색, Tooltip, 당겨서 새로 고침 등을 위한 노드 팩토리 25개 및 TSX 태그
-* `개선` V2 속성, 기본 읽기 값, 필수 슬롯, 하위 항목 타입 및 이벤트 인수를 추가만 가능한 계약 카탈로그에서 직접 생성하고, 동결된 V1 및 독립적인 F2 상호 운용 카탈로그 유지
-* `안내` 새 컴포넌트에는 대응하는 호스트 5322 및 계약 V2 렌더링 플러그인 필요. TSX에는 TypeScript Engine 0.6.7 및 Ace Editor 1.29.0 필요; 수치 범위, 하위 항목 수 및 속성 간 제약은 계속 런타임에서 검증
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

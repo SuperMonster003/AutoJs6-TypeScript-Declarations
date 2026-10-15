@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.7.4
 //
-// Last modified: Oct 12, 2022
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -13,7 +13,27 @@
 
 declare namespace Internal {
 
+    namespace Mathx {
+        type NumberInput = number | string | readonly NumberInput[];
+    }
+
     interface Mathx {
+
+        /** Inclusive integer range; arguments and nested arrays are flattened. */
+        randomInt(...range: Mathx.NumberInput[]): number;
+
+        /** Floating-point range; no arguments returns a value in [0, 1). */
+        randomFloat(...range: Mathx.NumberInput[]): number;
+
+        /** Alias of randomFloat. */
+        random(...range: Mathx.NumberInput[]): number;
+
+        /** @deprecated Use randomFloat. */
+        randFloat(...range: Mathx.NumberInput[]): number;
+
+        mean(...values: Mathx.NumberInput[]): number;
+
+        mode(...values: Mathx.NumberInput[]): number;
 
         /**
          * Returns an integer number selected from the specified range.

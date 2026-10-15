@@ -38,5 +38,8 @@
   "dts029": "Mises à jour",
   "dts030": "Obtenir directement les mises à jour depuis NPM:",
   "dts031": "Consultez la [page du projet](http://dts-project.autojs6.com), ou ouvrez package.json à sa racine et survolez la version de la dépendance @sm003/autojs6-dts pour voir les mises à jour disponibles. VSCode peut aussi utiliser [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens).",
-  "dts032": "Les déclarations sont généralement mises à jour avec les nouvelles versions de [AutoJs6](http://autojs6.com)."
+  "dts032": "Les déclarations sont généralement mises à jour avec les nouvelles versions de [AutoJs6](http://autojs6.com).",
+  "dts033": "Extensions JSOX optionnelles",
+  "dts034": "Referencez cette entree uniquement si le script active JSOX a l'execution. index.d.ts ne charge pas ces declarations par defaut. Si l'editeur analyse tous les fichiers locaux, excluez aj6-jsox-*-extensions.d.ts puis referencez explicitement l'entree choisie.",
+  "dts035": "Pour un module, choisissez aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts ou aj6-jsox-math-extensions.d.ts et appelez jsox.extend. Les declarations tierces couvrent les API principales courantes. Les plugins Dayjs optionnels demandent leurs propres declarations; les adaptateurs Axios incomplets ne constituent pas une API de navigateur complete."
 }

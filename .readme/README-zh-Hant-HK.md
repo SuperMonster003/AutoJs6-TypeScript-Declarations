@@ -139,6 +139,19 @@ VSCode 可能無法像 WebStorm 一樣識別任意位置的 declarations 文件�
 
 重啓 VSCode 後, 示例中的 `hello/main.js` 可實現或增強代碼智能補全.
 
+#### JSOX 按需擴展
+
+僅在腳本實際啟用 JSOX 擴展時引用以下入口. index.d.ts 默認不載入這些聲明. 若編輯器會掃描全部本地聲明檔案, 默認排除 aj6-jsox-*-extensions.d.ts, 再顯式引用需要的入口.
+
+```typescript
+/// <reference path="./declarations/autojs6/aj6-jsox-extensions.d.ts" />
+jsox.extendAll();
+const values = [1, 2, 2].distinct();
+const parsed = Number.parseFloat('ff', 16);
+```
+
+僅啟用一個模組時, 選擇 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 或 aj6-jsox-math-extensions.d.ts, 並呼叫對應的 jsox.extend. 第三方庫聲明覆蓋打包的常用核心 API; Dayjs 可選插件需要單獨聲明, Axios 瀏覽器適配器未實現的能力不會被聲明為完整瀏覽器 API.
+
 ******
 
 ### 獲取更新
@@ -159,6 +172,14 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.38.0
+
+###### 2026/10/15
+
+* `新增` JSOX 按需擴展聲明入口, 對應 Array/Number/Math 的運行時擴展, 包含原型方法, Number.ICU 及帶 radix 的 parseFloat, 默認入口保持標準內置對象類型
+* `修復` 補齊 Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color 短別名及 RootAutomator 同步和退出方法, 對齊顏色轉換, 控制台, flow.of 與座標模式重載
+* `修復` pinyin 枚舉, 線程池和 Disposable, 傳感器事件, Floaty 佈局及 SQLite 行對象的類型引用, 避免無效類型退化為 any; axios/dayjs/cheerio 常用腳本 API 提供明確類型
+
 ### v4.37.0
 
 ###### 2026/10/12
@@ -173,16 +194,6 @@ npm update @sm003/autojs6-dts
 
 * `新增` compose.memo 與 ComposeMemoOptions, 在 render 中複用依賴值與讀取的 state 均未變化的節點片段, 支持按 key 匹配列表條目
 * `提示` 需要配套宿主 6.8.0 / 5323; 依賴比較, 槽位匹配, 調用時機和 256 項依賴上限由運行時校驗. TSX 配套 TypeScript Engine 0.6.8 與 Ace Editor 1.30.0
-
-### v4.35.0
-
-###### 2026/10/08
-
-##### 3-Block Compose 契約 V2
-
-* `新增` 導航欄, 導航抽屜, 標籤, 底部彈層, 菜單, 日期和時間選擇, 分頁, 網格, Chip, Badge, 分段按鈕, 浮動按鈕, 搜索, Tooltip 和下拉刷新等 25 個節點工廠及 TSX 標籤
-* `優化` V2 屬性, 默認讀取值, 必填插槽, 子項類型及事件參數直接由追加式契約目錄生成, 保留凍結 V1 和獨立 F2 互操作目錄
-* `提示` 新組件需要配套宿主 5322 和契約 V2 渲染插件, TSX 配套 TypeScript Engine 0.6.7 與 Ace Editor 1.29.0; 數值範圍, 子項數量和跨屬性約束仍由運行時校驗
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-HK.md)
 

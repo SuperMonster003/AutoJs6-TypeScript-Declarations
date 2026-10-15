@@ -22,6 +22,7 @@
 /// <reference path="./aj6-int-flow.d.ts" />
 /// <reference path="./aj6-int-formatter.d.ts" />
 /// <reference path="./aj6-int-globals.d.ts" />
+/// <reference path="./aj6-int-third-party.d.ts" />
 /// <reference path="./aj6-int-http.d.ts" />
 /// <reference path="./aj6-int-images.d.ts" />
 /// <reference path="./aj6-int-i18n.d.ts" />

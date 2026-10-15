@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -39,7 +39,7 @@ declare namespace Internal {
         onUpgrade?(database: WrappedDatabase, oldVersion: number, newVersion: number): void;
     }
 
-    interface WrappedDatabase extends org.autojs.autojs.core.database.Database {
+    interface WrappedDatabase extends Omit<org.autojs.autojs.core.database.Database, 'attachedDbs' | 'query' | 'rawQuery'> {
         attachedDbs: Array<[string, string]>;
         maximumSize: number;
         pageSize: number;
@@ -63,13 +63,15 @@ declare namespace Internal {
         version: number;
     }
 
+    type SQLiteRow = Record<string, unknown>;
+
     interface WrappedCursor extends android.database.Cursor {
         get(index: number): any;
         getByColumn(column: string): any;
-        all(close?: boolean): NativeObject[];
-        pick(): NativeObject;
-        next(): NativeObject | null;
-        single(): NativeObject | null;
+        all(close?: boolean): SQLiteRow[];
+        pick(): SQLiteRow;
+        next(): SQLiteRow | null;
+        single(): SQLiteRow | null;
     }
 
 }

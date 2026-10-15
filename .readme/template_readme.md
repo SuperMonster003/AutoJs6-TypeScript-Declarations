@@ -130,6 +130,19 @@ npm i @sm003/autojs6-dts
 
 {{ dts028 }}
 
+#### {{ dts033 }}
+
+{{ dts034 }}
+
+```typescript
+/// <reference path="./declarations/autojs6/aj6-jsox-extensions.d.ts" />
+jsox.extendAll();
+const values = [1, 2, 2].distinct();
+const parsed = Number.parseFloat('ff', 16);
+```
+
+{{ dts035 }}
+
 ******
 
 ### {{ dts029 }}

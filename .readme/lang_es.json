@@ -38,5 +38,8 @@
   "dts029": "Obtener actualizaciones",
   "dts030": "Obtén actualizaciones directamente desde NPM:",
   "dts031": "Para buscar actualizaciones, visita la [página del proyecto](http://dts-project.autojs6.com) o abre el archivo package.json del directorio raíz y sitúa el cursor sobre la versión de la dependencia @sm003/autojs6-dts para ver las actualizaciones disponibles en la ventana emergente. VSCode también puede comprobar actualizaciones mediante la extensión [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens).",
-  "dts032": "Normalmente, el proyecto de archivos de declaración se actualiza junto con las nuevas versiones de [AutoJs6](http://autojs6.com)."
+  "dts032": "Normalmente, el proyecto de archivos de declaración se actualiza junto con las nuevas versiones de [AutoJs6](http://autojs6.com).",
+  "dts033": "Extensiones JSOX opcionales",
+  "dts034": "Referencie esta entrada solo cuando el script active JSOX. index.d.ts no carga estas declaraciones por defecto. Si el editor analiza todos los archivos locales, excluya aj6-jsox-*-extensions.d.ts y referencie explicitamente la entrada elegida.",
+  "dts035": "Para un modulo, elija aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts o aj6-jsox-math-extensions.d.ts y llame a jsox.extend. Los tipos de terceros cubren las API principales comunes. Los plugins opcionales de Dayjs requieren declaraciones propias; los adaptadores incompletos de Axios no se presentan como API completas del navegador."
 }

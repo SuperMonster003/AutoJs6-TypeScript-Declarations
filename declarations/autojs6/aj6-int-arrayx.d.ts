@@ -3,12 +3,12 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.7.4
 //
-// Last modified: Oct 24, 2022
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
 /**
- * @Source %AutoJs6Assets%/modules/__Arrayx__.js
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/jsox/Arrayx.kt
  */
 
 declare namespace Internal {
@@ -18,7 +18,11 @@ declare namespace Internal {
         /**
          * @throws TypeError
          */
-        ensureArray(...o: any[]);
+        ensureArray(...o: unknown[]): void;
+
+        subtract<T>(arr: T[], other: readonly unknown[]): T[];
+
+        differ<T, U>(arr: T[], other: U[]): (T | U)[];
 
         // assureArray<T extends Array<any>>(o: T): T;
         // assureArray<T>(o: { [prop: Exclude<string, 'length'>]: T } & { length: number }): T[];
@@ -38,7 +42,7 @@ declare namespace Internal {
          * // With extending enabled.
          * console.log([1, 2, 3, 3].intersect());
          */
-        intersect<T, U>(arr: T[], ...others: U[][]): (T & U)[];
+        intersect<T, U>(arr: T[], ...others: (U | U[])[]): (T & U)[];
 
         /**
          * Returns a distinct array containing all distinct elements from every arrays.
@@ -54,7 +58,7 @@ declare namespace Internal {
          * // With extending enabled.
          * console.log([1, 2, 3].union());
          */
-        union<T, U>(arr: T[], ...others: U[][]): (T | U)[];
+        union<T, U>(arr: T[], ...others: (U | U[])[]): (T | U)[];
 
         /**
          * Returns a new array containing only distinct elements from the given array.
@@ -76,12 +80,12 @@ declare namespace Internal {
          * // With extending enabled.
          * console.log(["a", "b", "ab", "ba", "abc"].distinctBy(a => a.length));
          */
-        distinctBy<T, U>(arr: T[], selector: (T) => U): T[];
+        distinctBy<T, U>(arr: T[], selector: (value: T) => U): T[];
 
         /**
          * Sorts elements in the array in-place according to natural sort order of the value returned by specified selector function.
          */
-        sortBy<T, U>(arr: T[], selector: (T) => U): T[];
+        sortBy<T, U>(arr: T[], selector: (value: T) => U): T[];
 
         /**
          * Sorts elements in the array in-place descending according to their natural sort order.
@@ -91,7 +95,7 @@ declare namespace Internal {
         /**
          * Sorts elements in the array in-place descending according to natural sort order of the value returned by specified selector function.
          */
-        sortByDescending<T, U>(arr: T[], selector: (T) => U): T[];
+        sortByDescending<T, U>(arr: T[], selector: (value: T) => U): T[];
 
         /**
          * Returns a new array of all elements sorted according to their natural sort order.
@@ -101,7 +105,7 @@ declare namespace Internal {
         /**
          * Returns a new array of all elements sorted according to natural sort order of the value returned by specified selector function.
          */
-        sortedBy<T, U>(arr: T[], selector: (T) => U): T[];
+        sortedBy<T, U>(arr: T[], selector: (value: T) => U): T[];
 
         /**
          * Returns a new array of all elements sorted descending according to their natural sort order.
@@ -111,12 +115,12 @@ declare namespace Internal {
         /**
          * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified selector function.
          */
-        sortedByDescending<T, U>(arr: T[], selector: (T) => U): T[];
+        sortedByDescending<T, U>(arr: T[], selector: (value: T) => U): T[];
 
         /**
          * Randomly shuffles elements in this array in-place.
          */
-        shuffle(arr: any[]);
+        shuffle<T>(arr: T[]): T[];
 
     }
 

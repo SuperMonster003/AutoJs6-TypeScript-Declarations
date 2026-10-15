@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.38.0
+
+###### 2026/10/15
+
+* `Fonctionnalité` Entrees JSOX optionnelles pour les extensions Array/Number/Math, avec methodes de prototype, Number.ICU et parseFloat avec radix; l'entree par defaut conserve les types standard
+* `Correction` Couverture de Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, des alias Color et de la synchronisation et sortie RootAutomator; alignement des conversions, de console, flow.of et des modes de coordonnees
+* `Correction` References des enumerations pinyin, de pool et Disposable, des evenements de capteur, des dispositions Floaty et des lignes SQLite corrigees pour eviter any; types explicites des API courantes axios/dayjs/cheerio
+
 # v4.37.0
 
 ###### 2026/10/12

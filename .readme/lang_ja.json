@@ -38,5 +38,8 @@
   "dts029": "更新の取得",
   "dts030": "NPM から直接更新を取得:",
   "dts031": "更新を確認するには, [プロジェクトのホームページ](http://dts-project.autojs6.com) を開くか, プロジェクトのルートディレクトリにある package.json ファイルで @sm003/autojs6-dts 依存関係のバージョン値にマウスを合わせます. ポップアップで更新の有無を確認できます. また, VSCode では [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens) 拡張機能でも更新を確認できます.",
-  "dts032": "通常, [AutoJs6](http://autojs6.com) の新バージョンが公開されると, 型宣言ファイルのプロジェクトも更新されます."
+  "dts032": "通常, [AutoJs6](http://autojs6.com) の新バージョンが公開されると, 型宣言ファイルのプロジェクトも更新されます.",
+  "dts033": "任意の JSOX 拡張",
+  "dts034": "実行時に JSOX を有効にするスクリプトだけで以下の入口を参照してください. index.d.ts は既定でこれらの宣言を読み込みません. エディターがすべてのローカル宣言を走査する場合は aj6-jsox-*-extensions.d.ts を除外し, 選択した入口を明示的に参照してください.",
+  "dts035": "単一モジュールには aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts または aj6-jsox-math-extensions.d.ts を選び, 対応する jsox.extend を呼びます. 外部ライブラリーの宣言は同梱された一般的なコア API を対象とします. 任意の Dayjs プラグインには個別の宣言が必要で, 未完成の Axios ブラウザーアダプターを完全なブラウザー API として扱いません."
 }

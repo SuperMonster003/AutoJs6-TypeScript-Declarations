@@ -1,6 +1,6 @@
 {
   "name": "@sm003/autojs6-dts",
-  "version": "4.37.0",
+  "version": "4.38.0",
   "types": "declarations/autojs6/index.d.ts",
   "files": [
     "declarations/android.d.ts",
@@ -9,6 +9,7 @@
     "declarations/autojs6/index.d.ts",
     "declarations/autojs6/aj6-declarations.d.ts",
     "declarations/autojs6/aj6-int-*.d.ts",
+    "declarations/autojs6/aj6-jsox-*.d.ts",
     "declarations/autojs6/aj6-jsx-element-extension.d.ts",
     "declarations/autojs6/aj6-main-app.d.ts",
     "declarations/autojs6/aj6-resources.d.ts",
@@ -20,11 +21,12 @@
     ".changelog/CHANGELOG-*.md"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node tools/verify-api-coverage.mjs",
     "prepack": "",
     "docs:generate": "python .python/generate_markdown.py",
     "docs:check": "python .python/generate_markdown.py --check",
-    "docs:test": "python -m unittest discover -s .python/tests"
+    "docs:test": "python -m unittest discover -s .python/tests",
+    "test:api": "node tools/verify-api-coverage.mjs"
   },
   "publishConfig": {
     "access": "public",
@@ -49,5 +51,8 @@
   },
   "bugs": {
     "url": "https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/issues"
+  },
+  "devDependencies": {
+    "typescript": "5.1.3"
   }
 }

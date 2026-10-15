@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -16,6 +16,15 @@
 declare namespace Internal {
 
     class RootAutomator {
+
+        /** Flush pending input events. */
+        sendSync(): void;
+
+        /** Flush a multi-touch event group. */
+        sendMtSync(): void;
+
+        /** Stop the underlying input process and release its resources. */
+        exit(): void;
 
         /**
          * @example

@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jul 27, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -34,7 +34,7 @@ declare namespace Storages {
 
     type StorageKey = string | number | boolean;
 
-    interface Storage extends org.mozilla.javascript.NativeObject {
+    interface Storage {
 
         readonly name: string;
 

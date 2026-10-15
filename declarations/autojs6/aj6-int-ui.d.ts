@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jul 27, 2026
+// Last modified: Oct 15, 2026
 //
 // noinspection JSUnusedGlobalSymbols
 
@@ -294,11 +294,13 @@ declare namespace Internal {
             ignoreVisibility?: boolean;
         }
 
-        type View = JsView & Android.Widget.View &
+        // The historical widget catalog also includes adapters and RemoteViews,
+        // which are not native Views and must not appear on inflated view results.
+        type View = JsView & Extract<Android.Widget.View, android.view.View> &
             androidx.cardview.widget.CardView &
             androidx.drawerlayout.widget.DrawerLayout &
             androidx.appcompat.widget.ContentFrameLayout &
-            org.autojs.autojs.core.graphics.ScriptCanvasView &
+            org.autojs.autojs.core.ui.widget.JsCanvasView &
             com.google.android.material.appbar.AppBarLayout &
             com.google.android.material.floatingactionbutton.FloatingActionButton;
         type JsView = JsButton$ & JsEditText$ & JsFrameLayout$ & JsGridView$ &

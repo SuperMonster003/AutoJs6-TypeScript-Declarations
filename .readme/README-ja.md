@@ -139,6 +139,19 @@ VSCode は WebStorm と異なり, 任意の場所にある declarations フォ�
 
 VSCode を再起動すると, 例の `hello/main.js` でコード補完が有効化または強化されます.
 
+#### 任意の JSOX 拡張
+
+実行時に JSOX を有効にするスクリプトだけで以下の入口を参照してください. index.d.ts は既定でこれらの宣言を読み込みません. エディターがすべてのローカル宣言を走査する場合は aj6-jsox-*-extensions.d.ts を除外し, 選択した入口を明示的に参照してください.
+
+```typescript
+/// <reference path="./declarations/autojs6/aj6-jsox-extensions.d.ts" />
+jsox.extendAll();
+const values = [1, 2, 2].distinct();
+const parsed = Number.parseFloat('ff', 16);
+```
+
+単一モジュールには aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts または aj6-jsox-math-extensions.d.ts を選び, 対応する jsox.extend を呼びます. 外部ライブラリーの宣言は同梱された一般的なコア API を対象とします. 任意の Dayjs プラグインには個別の宣言が必要で, 未完成の Axios ブラウザーアダプターを完全なブラウザー API として扱いません.
+
 ******
 
 ### 更新の取得
@@ -159,6 +172,14 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.38.0
+
+###### 2026/10/15
+
+* `機能` Array/Number/Math の実行時拡張用に任意の JSOX 宣言入口を用意, プロトタイプメソッド, Number.ICU, radix 付き parseFloat を含み, 標準入口では組み込み型を維持
+* `修正` Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color の別名と RootAutomator の同期および終了メソッドを補完し, 色変換, console, flow.of, 座標モードのオーバーロードを整合
+* `修正` pinyin 列挙, pool と Disposable, センサーイベント, Floaty レイアウト, SQLite 行の型参照を修正して any への劣化を防止; axios/dayjs/cheerio の一般的なスクリプト API に明示的な型を提供
+
 ### v4.37.0
 
 ###### 2026/10/12
@@ -173,16 +194,6 @@ npm update @sm003/autojs6-dts
 
 * `機能` compose.memo と ComposeMemoOptions により, 依存値と読み取った state がいずれも変化していないノードフラグメントを render 内で再利用し, key によるリスト項目の照合に対応
 * `ヒント` 対応するホスト 6.8.0 / 5323 が必要; 依存値の比較, スロットの照合, 呼び出しタイミング, 依存項目数の上限 256 は実行時に検証. TSX には対応する TypeScript Engine 0.6.8 と Ace Editor 1.30.0 が必要
-
-### v4.35.0
-
-###### 2026/10/08
-
-##### 3-Block Compose 契約 V2
-
-* `機能` ナビゲーションバー, ナビゲーションドロワー, タブ, ボトムシート, メニュー, 日付と時刻の選択, ページ切り替え, グリッド, Chip, Badge, セグメントボタン, フローティングボタン, 検索, Tooltip, プルダウン更新など, 25 個のノードファクトリーと TSX タグ
-* `改善` V2 のプロパティ, 既定の読み取り値, 必須スロット, 子要素の型, イベント引数を追記専用の契約カタログから直接生成し, 凍結済みの V1 と独立した F2 相互運用カタログを維持
-* `ヒント` 新しいコンポーネントには対応するホスト 5322 と契約 V2 のレンダリングプラグインが必要. TSX には TypeScript Engine 0.6.7 と Ace Editor 1.29.0 が必要; 数値範囲, 子要素数, プロパティ間の制約は引き続き実行時に検証
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

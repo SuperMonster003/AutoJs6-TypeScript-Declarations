@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.7.4
 //
-// Last modified: Jul 27, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -15,6 +15,14 @@
 declare namespace Internal {
 
     interface Util {
+
+        /** Case-insensitive full match after trimming the primitive input. */
+        checkStringArgument(source: string | number | boolean, pattern: string | kotlin.text.Regex): boolean;
+
+        dpToPx(value: number): number;
+        spToPx(value: number): number;
+        pxToDp(value: number): number;
+        pxToSp(value: number): number;
 
         version: Util.Version;
 
@@ -850,6 +858,8 @@ declare namespace Util {
         [prop in VersionCodes.CodeName]: VersionCodes.Info;
     } & {
         toString(isInDetail?: VersionCodes.IsInDetail): string;
+        summary(isInDetail?: VersionCodes.IsInDetail): string;
+        searchAll(value: string | number | Date | null): VersionCodes.Info[];
         /**
          * @example
          * util.versionCodes.search('R');

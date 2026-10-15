@@ -38,5 +38,8 @@
   "dts029": "업데이트 받기",
   "dts030": "NPM에서 직접 업데이트 받기:",
   "dts031": "업데이트를 확인하려면 [프로젝트 홈페이지](http://dts-project.autojs6.com)를 방문하거나, 프로젝트 루트 디렉터리의 package.json 파일에서 @sm003/autojs6-dts 의존성의 버전 값 위에 마우스를 올립니다. 팝업 창에서 업데이트 여부를 확인할 수 있습니다. 또한 VSCode에서는 [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens) 확장 기능으로도 업데이트를 확인할 수 있습니다.",
-  "dts032": "일반적으로 [AutoJs6](http://autojs6.com)의 새 버전이 출시되면 타입 선언 파일 프로젝트도 함께 업데이트됩니다."
+  "dts032": "일반적으로 [AutoJs6](http://autojs6.com)의 새 버전이 출시되면 타입 선언 파일 프로젝트도 함께 업데이트됩니다.",
+  "dts033": "선택적 JSOX 확장",
+  "dts034": "스크립트가 런타임에 JSOX를 활성화할 때만 다음 진입점을 참조하세요. index.d.ts는 기본으로 이 선언들을 읽지 않습니다. 편집기가 모든 로컬 선언을 검색하면 aj6-jsox-*-extensions.d.ts를 제외한 후 선택한 진입점을 명시적으로 참조하세요.",
+  "dts035": "한 모듈에는 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 또는 aj6-jsox-math-extensions.d.ts를 선택하고 해당 jsox.extend를 호출하세요. 외부 라이브러리 선언은 포함된 일반 핵심 API를 다룹니다. 선택적 Dayjs 플러그인은 별도 선언이 필요하며 불완전한 Axios 브라우저 어댑터를 완전한 브라우저 API로 표시하지 않습니다."
 }

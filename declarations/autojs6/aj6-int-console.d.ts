@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 8, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -14,7 +14,7 @@
 
 declare namespace Internal {
 
-    class Console extends org.autojs.autojs.core.console.GlobalConsole {
+    interface Console extends Omit<org.autojs.autojs.core.console.GlobalConsole, 'expand' | 'collapse' | 'setTitleBackgroundTint' | 'setTitleBackgroundAlpha' | 'setTitleIconsTint' | 'setContentBackgroundTint' | 'setContentBackgroundAlpha' | 'setBackgroundTint' | 'setBackgroundAlpha' | 'setContentTextColors'> {
 
         /**
          * @example
@@ -333,6 +333,11 @@ declare namespace Internal {
         }): this;
         // @ts-ignore
         setContentTextColor(verbose: OmniColor, log?: OmniColor, info?: OmniColor, warn?: OmniColor, error?: OmniColor, assert?: OmniColor): this;
+
+        setContentTextColor(colors: OmniColor[]): this;
+
+        /** Alias of setContentTextColor, including map, array and variadic forms. */
+        setContentTextColors: Console['setContentTextColor'];
 
         setContentBackgroundColor(color: OmniColor): this;
 

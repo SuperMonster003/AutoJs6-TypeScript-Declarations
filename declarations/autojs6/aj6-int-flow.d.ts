@@ -5,7 +5,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 16, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -101,6 +101,7 @@ declare namespace Internal {
         run<R>(fn: () => R | Flow<R> | PromiseLike<R>): Flow<R>;
 
         /** A fulfilled chain with `value`. zh-CN: 以 `value` 起链的已 fulfill 的 Flow. */
+        of(): Flow<null>;
         of<V>(value: V): Flow<V>;
 
         /**

@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jul 27, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -25,9 +25,8 @@ declare namespace Internal {
          * );
          * setTimeout(w.close.bind(w), 1.5e3);
          */
-        window(layout: org.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier | Xml): org.autojs.autojs.runtime.api.Floaty.JsResizableWindow;
+        window(layout: string | XML): org.autojs.autojs.runtime.api.Floaty.JsResizableWindow;
 
-        window(layout: android.view.View): org.autojs.autojs.runtime.api.Floaty.JsResizableWindow;
 
         /**
          * @example
@@ -41,9 +40,8 @@ declare namespace Internal {
          * w.setSize(-1, -1);
          * setTimeout(w.close.bind(w), 1.5e3);
          */
-        rawWindow(layout: org.autojs.autojs.core.floaty.RawWindow.RawFloaty | Xml): org.autojs.autojs.runtime.api.Floaty.JsRawWindow;
+        rawWindow(layout: string | XML): org.autojs.autojs.runtime.api.Floaty.JsRawWindow;
 
-        rawWindow(layout: android.view.View): org.autojs.autojs.runtime.api.Floaty.JsRawWindow;
 
         hasPermission(): boolean;
 

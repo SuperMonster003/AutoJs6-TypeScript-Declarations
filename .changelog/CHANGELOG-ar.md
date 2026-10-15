@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.38.0
+
+###### 2026/10/15
+
+* `ميزة` مداخل JSOX اختيارية لامتدادات Array/Number/Math تتضمن طرق النموذج و Number.ICU و parseFloat مع radix, مع الحفاظ على الأنواع القياسية في المدخل الافتراضي
+* `إصلاح` استكمال Arrayx/Numberx/Mathx/util/engines و randomInt/randomFloat/verbose وأسماء Color وطرق مزامنة وإغلاق RootAutomator, ومواءمة تحويل الألوان و console و flow.of وأنماط الإحداثيات
+* `إصلاح` تصحيح مراجع أنواع pinyin و pool و Disposable وأحداث المستشعر وواجهات Floaty وصفوف SQLite لمنع التحول إلى any, مع أنواع واضحة لواجهات axios/dayjs/cheerio الشائعة
+
 # v4.37.0
 
 ###### 2026/10/12

@@ -139,6 +139,19 @@ Si el proyecto ya contiene un archivo jsconfig.json, basta con combinar la sigui
 
 Reinicia VSCode para activar o mejorar el autocompletado inteligente de código en `hello/main.js` del ejemplo.
 
+#### Extensiones JSOX opcionales
+
+Referencie esta entrada solo cuando el script active JSOX. index.d.ts no carga estas declaraciones por defecto. Si el editor analiza todos los archivos locales, excluya aj6-jsox-*-extensions.d.ts y referencie explicitamente la entrada elegida.
+
+```typescript
+/// <reference path="./declarations/autojs6/aj6-jsox-extensions.d.ts" />
+jsox.extendAll();
+const values = [1, 2, 2].distinct();
+const parsed = Number.parseFloat('ff', 16);
+```
+
+Para un modulo, elija aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts o aj6-jsox-math-extensions.d.ts y llame a jsox.extend. Los tipos de terceros cubren las API principales comunes. Los plugins opcionales de Dayjs requieren declaraciones propias; los adaptadores incompletos de Axios no se presentan como API completas del navegador.
+
 ******
 
 ### Obtener actualizaciones
@@ -159,6 +172,14 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.38.0
+
+###### 2026/10/15
+
+* `Función` Entradas JSOX opcionales para extensiones Array/Number/Math, con metodos de prototipo, Number.ICU y parseFloat con radix; la entrada predeterminada conserva los tipos estandar
+* `Corrección` Cobertura de Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, alias Color y sincronizacion y salida de RootAutomator; ajuste de conversiones, console, flow.of y modos de coordenadas
+* `Corrección` Referencias corregidas de enumeraciones pinyin, pool y Disposable, eventos de sensores, disenos Floaty y filas SQLite para evitar any; tipos explicitos de API comunes de axios/dayjs/cheerio
+
 ### v4.37.0
 
 ###### 2026/10/12
@@ -173,16 +194,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 * `Función` compose.memo y ComposeMemoOptions reutilizan fragmentos de nodos en render cuando no cambian los valores de las dependencias ni los valores leídos de state, con coincidencia de elementos de lista por key
 * `Nota` Requiere el host correspondiente 6.8.0 / 5323; la comparación de dependencias, la coincidencia de ranuras, el momento de la llamada y el límite de 256 dependencias se validan en tiempo de ejecución. TSX requiere las versiones correspondientes de TypeScript Engine 0.6.8 y Ace Editor 1.30.0
-
-### v4.35.0
-
-###### 2026/10/08
-
-##### Contrato V2 de 3-Block Compose
-
-* `Función` 25 fábricas de nodos y etiquetas TSX para barras y paneles de navegación, pestañas, paneles inferiores, menús, selectores de fecha y hora, paginadores, cuadrículas, Chip, Badge, botones segmentados, botones flotantes, búsqueda, Tooltip y actualización al deslizar hacia abajo
-* `Mejora` Propiedades de V2, valores de lectura predeterminados, ranuras obligatorias, tipos de elementos secundarios y argumentos de eventos generados directamente desde el catálogo de contratos de solo anexado, conservando V1 congelado y el catálogo de interoperabilidad independiente F2
-* `Nota` Los nuevos componentes requieren el host correspondiente 5322 y un plugin de renderizado del contrato V2; TSX requiere TypeScript Engine 0.6.7 y Ace Editor 1.29.0. Los intervalos numéricos, las cantidades de elementos secundarios y las restricciones entre propiedades siguen validándose en tiempo de ejecución
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

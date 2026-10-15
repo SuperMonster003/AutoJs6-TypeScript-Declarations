@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.3.5
 //
-// Last modified: Aug 12, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -14,6 +14,9 @@
 declare namespace Internal {
 
     class Engines {
+
+        /** Returns the runtime engine set, unlike all() which returns a JavaScript array. */
+        getEngines(): java.util.Set<org.autojs.autojs.engine.ScriptEngine<org.autojs.autojs.script.ScriptSource>>;
 
         public constructor(engineService: org.autojs.autojs.engine.ScriptEngineService, scriptRuntime: ScriptRuntime);
 
@@ -298,7 +301,7 @@ declare namespace Internal {
 
     namespace Engines {
 
-        interface ExecutionConfig extends org.autojs.autojs.execution.ExecutionConfig {
+        interface ExecutionConfig extends Omit<org.autojs.autojs.execution.ExecutionConfig, 'path' | 'delay' | 'interval' | 'loopTimes' | 'arguments'> {
 
             /** @default files.cwd() */
             path?: string | string[];

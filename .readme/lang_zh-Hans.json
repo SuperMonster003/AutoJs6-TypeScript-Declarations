@@ -38,5 +38,8 @@
   "dts029": "获取更新",
   "dts030": "从 NPM 直接获取更新:",
   "dts031": "如需检查更新, 除直接到 [当前项目主页](http://dts-project.autojs6.com) 查看外, 还可定位到项目根目录的 package.json 文件, 鼠标悬停在 @sm003/autojs6-dts 依赖项的版本值处, 在浮动窗口中可查看是否存在版本更新. 另外 VSCode 也可借助 [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens) 插件实现版本更新检查.",
-  "dts032": "通常情况下, [AutoJs6](http://autojs6.com) 发布版本更新后, 声明文件项目也会伴随更新."
+  "dts032": "通常情况下, [AutoJs6](http://autojs6.com) 发布版本更新后, 声明文件项目也会伴随更新.",
+  "dts033": "JSOX 按需扩展",
+  "dts034": "仅在脚本实际启用 JSOX 扩展时引用以下入口. index.d.ts 默认不加载这些声明. 若编辑器会扫描全部本地声明文件, 默认排除 aj6-jsox-*-extensions.d.ts, 再显式引用需要的入口.",
+  "dts035": "仅启用一个模块时, 选择 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 或 aj6-jsox-math-extensions.d.ts, 并调用对应的 jsox.extend. 第三方库声明覆盖打包的常用核心 API; Dayjs 可选插件需要单独声明, Axios 浏览器适配器未实现的能力不会被声明为完整浏览器 API."
 }

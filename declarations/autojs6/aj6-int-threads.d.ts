@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -15,7 +15,7 @@
 
 declare namespace Internal {
 
-    interface Threads extends org.autojs.autojs.runtime.api.Threads {
+    interface Threads extends Omit<org.autojs.autojs.runtime.api.Threads, 'disposable' | 'lock' | 'pool' | 'interrupt'> {
 
         /**
          * @Overrides for JSDoc or more specific types
@@ -176,7 +176,7 @@ declare namespace Internal {
          * }
          * @see org.autojs.autojs.concurrent.VolatileDispose
          */
-        disposable(): Threads.Disposable;
+        disposable<T = unknown>(): Threads.Disposable<T>;
 
         /**
          * @example
@@ -211,6 +211,18 @@ declare namespace Internal {
     }
 
     namespace Threads {
+
+        interface PoolOptions {
+            corePoolSize?: number;
+            maxPoolSize?: number;
+            keepAliveTime?: number;
+        }
+
+        interface Disposable<T = unknown> {
+            blockedGet(timeout?: number | null): T | null;
+            blockedGetOrThrow(exception: java.lang.Class<java.lang.RuntimeException>, timeout?: number | null, defaultValue?: T): T;
+            setAndNotify(value: T): void;
+        }
 
         interface PromiseExtension extends PromiseConstructor {
 
@@ -272,12 +284,6 @@ declare namespace Threads {
         keepAliveTime?: number;
     }
 
-    interface Disposable extends org.autojs.autojs.runtime.api.augment.threads.VolatileDisposeNativeObject {
-        blockedGet(timeout?: number | null): any;
-
-        blockedGetOrThrow<T = any>(exception: java.lang.Class<java.lang.RuntimeException>, timeout?: number | null, defaultValue?: T): T;
-
-        setAndNotify(value: any): void;
-    }
+    interface Disposable<T = unknown> extends Internal.Threads.Disposable<T> {}
 
 }

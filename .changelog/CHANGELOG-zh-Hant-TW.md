@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.38.0
+
+###### 2026/10/15
+
+* `新增` JSOX 按需擴充宣告入口, 對應 Array/Number/Math 的執行階段擴充, 包含原型方法, Number.ICU 及帶 radix 的 parseFloat, 預設入口保持標準內建物件型別
+* `修復` 補齊 Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color 短別名及 RootAutomator 同步和退出方法, 對齊色彩轉換, 主控台, flow.of 與座標模式多載
+* `修復` pinyin 列舉, 執行緒集區和 Disposable, 感測器事件, Floaty 版面及 SQLite 資料列物件的型別參照, 避免無效型別退化為 any; axios/dayjs/cheerio 常用指令碼 API 提供明確型別
+
 # v4.37.0
 
 ###### 2026/10/12

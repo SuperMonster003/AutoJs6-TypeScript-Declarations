@@ -139,6 +139,19 @@ If the project already has jsconfig.json, merge the following configuration into
 
 Restart VSCode to enable or improve code completion for `hello/main.js` in this example.
 
+#### Optional JSOX extensions
+
+Reference the following entry only when the script enables JSOX at runtime. index.d.ts does not load these declarations by default. If an editor scans every local declaration file, exclude aj6-jsox-*-extensions.d.ts by default, then explicitly reference the selected entry.
+
+```typescript
+/// <reference path="./declarations/autojs6/aj6-jsox-extensions.d.ts" />
+jsox.extendAll();
+const values = [1, 2, 2].distinct();
+const parsed = Number.parseFloat('ff', 16);
+```
+
+For one module, choose aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts or aj6-jsox-math-extensions.d.ts and call the matching jsox.extend. Third-party declarations cover common bundled core APIs. Optional Dayjs plugins need their own declarations; incomplete Axios browser adapters are not presented as complete browser APIs.
+
 ******
 
 ### Updates
@@ -159,6 +172,14 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.38.0
+
+###### 2026/10/15
+
+* `Feature` Optional JSOX declaration entries for runtime Array/Number/Math extensions, including prototype methods, Number.ICU and radix-aware parseFloat, while the default entry preserves standard built-in types
+* `Fix` Complete Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color aliases and RootAutomator synchronization and exit methods; align color conversion, console, flow.of and coordinate-mode overloads
+* `Fix` Correct pinyin enums, pool and Disposable, sensor events, Floaty layouts and SQLite row references to prevent unresolved types becoming any; provide explicit common script APIs for axios/dayjs/cheerio
+
 ### v4.37.0
 
 ###### 2026/10/12
@@ -173,16 +194,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 * `Feature` compose.memo and ComposeMemoOptions reuse node fragments in render when dependency values and read state values are unchanged, with key-based list item matching
 * `Hint` Requires matching host 6.8.0 / 5323; dependency comparison, slot matching, call timing and the 256-dependency limit are validated at runtime. TSX requires matching TypeScript Engine 0.6.8 and Ace Editor 1.30.0
-
-### v4.35.0
-
-###### 2026/10/08
-
-##### 3-Block Compose contract V2
-
-* `Feature` 25 node factories and TSX tags for navigation bars/drawers, tabs, bottom sheets, menus, date/time pickers, pagers, grids, Chip, Badge, segmented buttons, floating buttons, search, Tooltip and pull-to-refresh
-* `Improvement` V2 properties, default read values, required slots, child types and event arguments generated directly from the append-only contract catalog, preserving frozen V1 and the separate F2 interoperability catalog
-* `Hint` New components require matching host 5322 and a contract V2 rendering plugin; TSX requires TypeScript Engine 0.6.7 and Ace Editor 1.29.0. Numeric ranges, child counts and cross-property constraints remain runtime-validated
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

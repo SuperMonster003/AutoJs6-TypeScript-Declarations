@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jul 27, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -2179,6 +2179,9 @@ declare class ImageWrapper extends org.autojs.autojs.core.image.ImageWrapper {
      * }
      * @see android.graphics.Bitmap
      */
+    public static ofBitmap(scriptRuntime: org.autojs.autojs.runtime.ScriptRuntime, bitmap: android.graphics.Bitmap): ImageWrapper;
+    public static ofImage(scriptRuntime: org.autojs.autojs.runtime.ScriptRuntime, image: android.media.Image): ImageWrapper;
+    public static ofMat(scriptRuntime: org.autojs.autojs.runtime.ScriptRuntime, mat: org.opencv.core.Mat): ImageWrapper;
     public static ofBitmap(bitmap: android.graphics.Bitmap): ImageWrapper;
     public static ofImage(image: android.media.Image): ImageWrapper;
     public static ofMat(mat: org.autojs.autojs.core.opencv.Mat): ImageWrapper;

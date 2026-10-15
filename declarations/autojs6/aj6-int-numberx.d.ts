@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.8.4
 //
-// Last modified: Jul 27, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -24,7 +24,11 @@ declare namespace Internal {
         /**
          * @throws TypeError
          */
-        ensureNumber(...o: any[]);
+        ensureNumber(...o: unknown[]): void;
+
+        ensureNumberLike(value: number | string, allowNaN?: boolean): number;
+
+        ensureNumbersLike(values: readonly (number | string)[], allowNaN?: boolean, containsNaN?: boolean): number[];
 
         /**
          * Check numbers with or without logic operators.
@@ -41,7 +45,7 @@ declare namespace Internal {
          * console.log(Numberx.check(a, '<', d, '>', b, '<', c, '>', a)); // true
          * console.log(Numberx.check(a, c, d)); // throw Exception.
          */
-        check(...numOrOpr: (number | '<' | '<=' | '>' | '>=' | '=')[]): boolean;
+        check(...numOrOpr: (number | '<' | '<=' | '>' | '>=' | '=' | '==' | '!=' | '<>')[]): boolean;
 
         /**
          * Returns a number clamped to inclusive range of min and max.

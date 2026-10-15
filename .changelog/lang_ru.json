@@ -18,6 +18,23 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.38.0": {
+      "released_date": "2026/10/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Необязательные декларации JSOX для расширений Array/Number/Math, включая методы прототипов, Number.ICU и parseFloat с radix; стандартная точка входа сохраняет встроенные типы"
+        },
+        {
+          "category": "fix",
+          "text": "Дополнены Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, псевдонимы Color и методы синхронизации и выхода RootAutomator; согласованы преобразования цветов, console, flow.of и режимы координат"
+        },
+        {
+          "category": "fix",
+          "text": "Исправлены ссылки типов перечислений pinyin, pool и Disposable, событий датчиков, разметки Floaty и строк SQLite для предотвращения any; явные типы основных API axios/dayjs/cheerio"
+        }
+      ]
+    },
     "v4.37.0": {
       "released_date": "2026/10/12",
       "entries": [

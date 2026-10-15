@@ -139,6 +139,19 @@ Si le projet contient déjà jsconfig.json, fusionnez-y cette configuration:
 
 Redémarrez VSCode pour activer ou améliorer la complétion de `hello/main.js` dans cet exemple.
 
+#### Extensions JSOX optionnelles
+
+Referencez cette entree uniquement si le script active JSOX a l'execution. index.d.ts ne charge pas ces declarations par defaut. Si l'editeur analyse tous les fichiers locaux, excluez aj6-jsox-*-extensions.d.ts puis referencez explicitement l'entree choisie.
+
+```typescript
+/// <reference path="./declarations/autojs6/aj6-jsox-extensions.d.ts" />
+jsox.extendAll();
+const values = [1, 2, 2].distinct();
+const parsed = Number.parseFloat('ff', 16);
+```
+
+Pour un module, choisissez aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts ou aj6-jsox-math-extensions.d.ts et appelez jsox.extend. Les declarations tierces couvrent les API principales courantes. Les plugins Dayjs optionnels demandent leurs propres declarations; les adaptateurs Axios incomplets ne constituent pas une API de navigateur complete.
+
 ******
 
 ### Mises à jour
@@ -159,6 +172,14 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.38.0
+
+###### 2026/10/15
+
+* `Fonctionnalité` Entrees JSOX optionnelles pour les extensions Array/Number/Math, avec methodes de prototype, Number.ICU et parseFloat avec radix; l'entree par defaut conserve les types standard
+* `Correction` Couverture de Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, des alias Color et de la synchronisation et sortie RootAutomator; alignement des conversions, de console, flow.of et des modes de coordonnees
+* `Correction` References des enumerations pinyin, de pool et Disposable, des evenements de capteur, des dispositions Floaty et des lignes SQLite corrigees pour eviter any; types explicites des API courantes axios/dayjs/cheerio
+
 ### v4.37.0
 
 ###### 2026/10/12
@@ -173,16 +194,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 * `Fonctionnalité` compose.memo et ComposeMemoOptions réutilisent dans render les fragments dont les dépendances et les valeurs state lues restent identiques, avec correspondance des éléments par key
 * `Note` Nécessite l'hôte correspondant 6.8.0 / 5323; comparaison des dépendances, correspondance des emplacements, moment d'appel et limite de 256 dépendances sont vérifiés à l'exécution. TSX nécessite TypeScript Engine 0.6.8 et Ace Editor 1.30.0
-
-### v4.35.0
-
-###### 2026/10/08
-
-##### Contrat 3-Block Compose V2
-
-* `Fonctionnalité` 25 fabriques de noeuds et balises TSX: barres/tiroirs de navigation, onglets, panneaux inférieurs, menus, dates/heures, pagination, grilles, Chip, Badge, boutons segmentés/flottants, recherche, Tooltip et actualisation par glissement
-* `Amélioration` Propriétés V2, valeurs lues par défaut, emplacements requis, types d'enfants et événements générés depuis le catalogue de contrat append-only; conservation de V1 figé et du catalogue d'interopérabilité F2 séparé
-* `Note` Les composants nécessitent l'hôte 5322 et un plugin de rendu de contrat V2; TSX nécessite TypeScript Engine 0.6.7 et Ace Editor 1.29.0. Plages numériques, nombres d'enfants et contraintes croisées restent vérifiés à l'exécution
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

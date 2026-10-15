@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 21, 2026
+// Last modified: Oct 15, 2026
 //
 // noinspection JSUnusedGlobalSymbols
 
@@ -370,13 +370,13 @@ declare class R extends org.autojs.autojs6.R {
     /* Empty body. */
 }
 
-declare module org {
+declare namespace org {
 
-    export module autojs {
+    export namespace autojs {
 
-        export module autojs {
+        export namespace autojs {
 
-            export module util {
+            export namespace util {
 
                 // @ts-ignore
                 export class App extends java.lang.Enum<org.autojs.autojs.util.App> {
@@ -1771,8 +1771,22 @@ declare class Manifest extends android.Manifest {
     /* Empty body. */
 }
 
-declare class BuildConfig extends org.autojs.autojs6.BuildConfig {
-    /* Empty body. */
+/** Build constants exposed by the host, independent of generated Java class filtering. */
+declare class BuildConfig {
+    static readonly DEBUG: boolean;
+    static readonly APPLICATION_ID: string;
+    static readonly BUILD_TYPE: string;
+    static readonly FLAVOR: string;
+    static readonly VERSION_CODE: number;
+    static readonly VERSION_NAME: string;
+    static readonly APK_BUILDER_BUILT_IN_TEMPLATE_INCLUDED: boolean;
+    static readonly CHANNEL: string;
+    static readonly COMPOSE_UI_SHARED_FINGERPRINT: string;
+    static readonly FILE_PROVIDER_AUTHORITY: string;
+    static readonly JVM_SOURCE_EXPERIMENTAL_ENABLED: boolean;
+    static readonly VERSION_DATE: string;
+    static readonly VSCODE_EXT_REQUIRED_VERSION: string;
+    static readonly isInrt: boolean;
 }
 
 declare class PackageManager extends android.content.pm.PackageManager {
@@ -1992,10 +2006,6 @@ declare class Imgcodecs extends org.opencv.imgcodecs.Imgcodecs {
 }
 
 declare class CvType extends org.opencv.core.CvType {
-    /* Empty body. */
-}
-
-declare class ScriptModuleIdentifier extends org.autojs.autojs.engine.ScriptEngineService.ScriptModuleIdentifier {
     /* Empty body. */
 }
 

@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -17,7 +17,7 @@ declare namespace Internal {
 
     import AbstractShell = org.autojs.autojs.runtime.api.AbstractShell;
 
-    interface Shizuku extends org.autojs.autojs.runtime.api.WrappedShizuku {
+    interface Shizuku extends Omit<org.autojs.autojs.runtime.api.WrappedShizuku, 'execCommand'> {
 
         readonly state: Shizuku.State;
 

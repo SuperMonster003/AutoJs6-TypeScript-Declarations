@@ -288,6 +288,7 @@ declare namespace org {
 					public isNull(): boolean;
 					public notNull(): boolean;
 					public set(value: T): void;
+					public setAndNotify(value: T): void;
 					public unblock(): void;
 					public unblock(value: T): void;
 				}
@@ -3607,35 +3608,6 @@ declare namespace org {
 	export namespace autojs {
 		export namespace autojs {
 			export namespace core {
-				export namespace floaty {
-					export class RawWindow extends __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyWindow {
-						public readonly closeObserver$app: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
-						public readonly contentView: __javaRoots.androidRoot.view.View;
-						public readonly creationObserver$app: __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Throwable, __javaRoots.kotlinRoot.Unit>;
-						public constructor(context: __javaRoots.androidRoot.content.Context, supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier);
-						public constructor(context: __javaRoots.androidRoot.content.Context, supplier: __javaRoots.orgRoot.autojs.autojs.core.floaty.BaseResizableFloatyWindow.ViewSupplier, configureParameters: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>);
-						public close(): void;
-						public disableWindowFocus(): void;
-						public getCloseObserver$app(): __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
-						public getContentView(): __javaRoots.androidRoot.view.View;
-						public getCreationObserver$app(): __javaRoots.kotlinRoot.jvm.functions.Function1<__javaRoots.javaRoot.lang.Throwable, __javaRoots.kotlinRoot.Unit>;
-						public onCreate(floatyService: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyService, windowManager: __javaRoots.androidRoot.view.WindowManager): void;
-						public requestWindowFocus(): void;
-						public setCloseObserver$app(_set___: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>): void;
-						public setContentView(_set___: __javaRoots.androidRoot.view.View): void;
-						public setCreationObserver$app(_set___: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): void;
-						public setTouchable(touchable: boolean): void;
-						public waitForCreation(): __javaRoots.javaRoot.lang.RuntimeException;
-					}
-				}
-			}
-		}
-	}
-}
-declare namespace org {
-	export namespace autojs {
-		export namespace autojs {
-			export namespace core {
 				export namespace graphics {
 					export class ScriptCanvas {
 						public readonly androidCanvas: __javaRoots.androidRoot.graphics.Canvas;
@@ -3795,11 +3767,13 @@ declare namespace org {
 					}
 					export interface ColorDetector {
 						detectColor(param0: number, param1: number, param2: number): boolean;
+						detectsColor(r: number, g: number, b: number): boolean;
 						distance(param0: number, param1: number, param2: number): number;
 					}
 					export namespace ColorDetector {
 						export abstract class AbstractColorDetector {
 							public constructor(color: number);
+							public detectsColor(r: number, g: number, b: number): boolean;
 						}
 						export interface AbstractColorDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector {}
 						export class DifferenceDetector extends __javaRoots.orgRoot.autojs.autojs.core.image.ColorDetector.ThresholdColorDetector {
@@ -4636,6 +4610,18 @@ declare namespace org {
 			export namespace core {
 				export namespace image {
 					export class Colors {
+						public static readonly BLACK: number;
+						public static readonly BLUE: number;
+						public static readonly CYAN: number;
+						public static readonly DKGRAY: number;
+						public static readonly GRAY: number;
+						public static readonly GREEN: number;
+						public static readonly LTGRAY: number;
+						public static readonly MAGENTA: number;
+						public static readonly RED: number;
+						public static readonly TRANSPARENT: number;
+						public static readonly WHITE: number;
+						public static readonly YELLOW: number;
 						public constructor();
 						public HSVToColor(alpha: number, hsv: number[]): number;
 						public HSVToColor(hsv: number[]): number;
@@ -4670,8 +4656,10 @@ declare namespace org {
 						public readonly mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public readonly plane: __javaRoots.androidRoot.media.Image.Plane;
 						public readonly recycled: boolean;
+						public readonly scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime;
 						public readonly size: __javaRoots.orgRoot.opencv.core.Size;
 						public readonly width: number;
+						public constructor(width: number, height: number);
 						public constructor(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, width: number, height: number);
 						public constructor(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, bitmap: __javaRoots.androidRoot.graphics.Bitmap);
 						public constructor(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, bitmap: __javaRoots.androidRoot.graphics.Bitmap, mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat);
@@ -4679,17 +4667,22 @@ declare namespace org {
 						public constructor(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat);
 						public constructor(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, mat: __javaRoots.orgRoot.opencv.core.Mat);
 						public clone(): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
+						public static currentScriptRuntime(): __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime;
 						public ensureNotRecycled(): void;
 						public getBgrMat(): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public getBitmap(): __javaRoots.androidRoot.graphics.Bitmap;
 						public getHeight(): number;
 						public getMat(): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public getPlane(): __javaRoots.androidRoot.media.Image.Plane;
+						public getScriptRuntime(): __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime;
 						public getSize(): __javaRoots.orgRoot.opencv.core.Size;
 						public getWidth(): number;
 						public isRecycled(): boolean;
+						public static ofBitmap(bitmap: __javaRoots.androidRoot.graphics.Bitmap): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public static ofBitmap(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, bitmap: __javaRoots.androidRoot.graphics.Bitmap): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
+						public static ofImage(image: __javaRoots.androidRoot.media.Image): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public static ofImage(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, image: __javaRoots.androidRoot.media.Image): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
+						public static ofMat(mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public static ofMat(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public static ofMat(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, mat: __javaRoots.orgRoot.opencv.core.Mat): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public pixel(x: number, y: number): number;
@@ -4699,6 +4692,7 @@ declare namespace org {
 						public saveTo(path: string): boolean;
 						public setOneShot(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public shoot(): void;
+						public static toBitmap(image: __javaRoots.androidRoot.media.Image): __javaRoots.androidRoot.graphics.Bitmap;
 						public clone(...args: any[]): any;
 						public setOneShot(...args: any[]): any;
 					}
@@ -4757,6 +4751,8 @@ declare namespace org {
 						public static readonly MATCHING_METHOD_NONE: number;
 						public static readonly MAX_LEVEL_AUTO: number;
 						public constructor();
+						public static fastTemplateMatching(img: __javaRoots.orgRoot.opencv.core.Mat, template: __javaRoots.orgRoot.opencv.core.Mat, matchMethod: number, weakThreshold: number, strictThreshold: number, maxLevel: number): __javaRoots.orgRoot.opencv.core.Point;
+						public static fastTemplateMatching(img: __javaRoots.orgRoot.opencv.core.Mat, template: __javaRoots.orgRoot.opencv.core.Mat, matchMethod: number, weakThreshold: number, strictThreshold: number, maxLevel: number, limit: number): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Match>;
 						public static fastTemplateMatching(img: __javaRoots.orgRoot.opencv.core.Mat, template: __javaRoots.orgRoot.opencv.core.Mat, options: __javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Options): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.image.TemplateMatching.Match>;
 						public static matchTemplate(img: __javaRoots.orgRoot.opencv.core.Mat, template: __javaRoots.orgRoot.opencv.core.Mat, matchingMethod: number): __javaRoots.orgRoot.opencv.core.Mat;
 						public static matchTemplate(img: __javaRoots.orgRoot.opencv.core.Mat, template: __javaRoots.orgRoot.opencv.core.Mat, matchingMethod: number, transparentMask: __javaRoots.orgRoot.opencv.core.Mat): __javaRoots.orgRoot.opencv.core.Mat;
@@ -6370,6 +6366,37 @@ declare namespace org {
 						public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.core.ui.JsViewHelper;
 						public static findViewByStringId(view: __javaRoots.androidRoot.view.View, id: string): __javaRoots.androidRoot.view.View;
 						protected constructor();
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace ui {
+					export class UiContentHost {
+						public constructor(implementation: UiContentHost);
+						public constructor();
+						public static readonly ENGINE_TAG: string;
+						public static attached(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime): __javaRoots.orgRoot.autojs.autojs.core.ui.UiContentHost;
+						public static of(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime): __javaRoots.orgRoot.autojs.autojs.core.ui.UiContentHost;
+					}
+					export interface UiContentHost {
+						readonly contentParent: __javaRoots.androidRoot.view.ViewGroup;
+						readonly contentRoot: __javaRoots.androidRoot.view.ViewGroup;
+						readonly hostWindow: __javaRoots.androidRoot.view.Window;
+						readonly inflaterContext: __javaRoots.androidRoot.content.Context;
+						getContentParent(): __javaRoots.androidRoot.view.ViewGroup;
+						getContentRoot(): __javaRoots.androidRoot.view.ViewGroup;
+						getHostWindow(): __javaRoots.androidRoot.view.Window;
+						getInflaterContext(): __javaRoots.androidRoot.content.Context;
+						onBindingFailed(attrName: string, rawValue: string, error: __javaRoots.javaRoot.lang.Throwable): boolean;
+						onEngineForceStop(): void;
+						onWindowFunctionIgnored(functionName: string): void;
+						showContent(param0: __javaRoots.androidRoot.view.View): void;
 					}
 				}
 			}
@@ -8773,6 +8800,7 @@ declare namespace org {
 					public readonly loopTimes: number;
 					public readonly path: string[];
 					public readonly scriptConfig: __javaRoots.orgRoot.autojs.autojs.project.ScriptConfig;
+					public readonly uiContentHost: __javaRoots.orgRoot.autojs.autojs.core.ui.UiContentHost;
 					public readonly workingDirectory: string;
 					public static readonly default: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig;
 					public constructor();
@@ -8801,6 +8829,7 @@ declare namespace org {
 					public getPath(): string[];
 					public getScriptConfig(): __javaRoots.orgRoot.autojs.autojs.project.ScriptConfig;
 					public static getTag(): string;
+					public getUiContentHost(): __javaRoots.orgRoot.autojs.autojs.core.ui.UiContentHost;
 					public getWorkingDirectory(): string;
 					public hashCode(): number;
 					public setAgentExecutionState$app(_set___: __javaRoots.orgRoot.autojs.autojs.execution.AgentScriptExecutionState): void;
@@ -8812,6 +8841,7 @@ declare namespace org {
 					public setLoopTimes(_set___: number): void;
 					public setPath(path: string[]): void;
 					public setScriptConfig(_set___: __javaRoots.orgRoot.autojs.autojs.project.ScriptConfig): void;
+					public setUiContentHost$app(_set___: __javaRoots.orgRoot.autojs.autojs.core.ui.UiContentHost): void;
 					public setWorkingDirectory(_set___: string): void;
 					public toString(): string;
 					public writeToParcel(parcel: __javaRoots.androidRoot.os.Parcel, flags: number): void;
@@ -8840,23 +8870,35 @@ declare namespace org {
 		export namespace autojs {
 			export namespace execution {
 				export class ScriptExecuteActivity extends __javaRoots.androidxRoot.appcompat.app.AppCompatActivity {
+					public readonly contentParent: __javaRoots.androidRoot.view.ViewGroup;
+					public readonly contentRoot: __javaRoots.androidRoot.view.ViewGroup;
 					public readonly emitter: __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter;
 					public readonly eventEmitter: __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter;
+					public readonly hostWindow: __javaRoots.androidRoot.view.Window;
+					public readonly inflaterContext: __javaRoots.androidRoot.content.Context;
 					public readonly onActivityResultDelegateMediator: __javaRoots.orgRoot.autojs.autojs.app.OnActivityResultDelegate.Mediator;
 					public constructor();
 					public acquireComposeInsets(): __javaRoots.javaRoot.io.Closeable;
 					public emit(event: string, ...args: any[]): void;
 					public finish(): void;
+					public getContentParent(): __javaRoots.androidRoot.view.ViewGroup;
+					public getContentRoot(): __javaRoots.androidRoot.view.ViewGroup;
 					public getEmitter(): __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter;
 					public getEventEmitter(): __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter;
+					public getHostWindow(): __javaRoots.androidRoot.view.Window;
+					public getInflaterContext(): __javaRoots.androidRoot.content.Context;
 					public getOnActivityResultDelegateMediator(): __javaRoots.orgRoot.autojs.autojs.app.OnActivityResultDelegate.Mediator;
+					public onBindingFailed(attrName: string, rawValue: string, error: __javaRoots.javaRoot.lang.Throwable): boolean;
 					public onCreateOptionsMenu(menu: __javaRoots.androidRoot.view.Menu): boolean;
+					public onEngineForceStop(): void;
 					public onGenericMotionEvent(event: __javaRoots.androidRoot.view.MotionEvent): boolean;
 					public onKeyDown(keyCode: number, event: __javaRoots.androidRoot.view.KeyEvent): boolean;
 					public onOptionsItemSelected(item: __javaRoots.androidRoot.view.MenuItem): boolean;
+					public onWindowFunctionIgnored(functionName: string): void;
+					public showContent(view: __javaRoots.androidRoot.view.View): void;
 					public static start(context: __javaRoots.androidRoot.content.Context, execution: __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecuteActivity.ActivityScriptExecution): boolean;
 				}
-				export interface ScriptExecuteActivity extends __javaRoots.orgRoot.autojs.autojs.app.OnActivityResultDelegate.DelegateHost, __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ComposeInsetsHost {}
+				export interface ScriptExecuteActivity extends __javaRoots.orgRoot.autojs.autojs.app.OnActivityResultDelegate.DelegateHost, __javaRoots.orgRoot.autojs.autojs.core.plugin.compose.ComposeInsetsHost, __javaRoots.orgRoot.autojs.autojs.core.ui.UiContentHost {}
 				export namespace ScriptExecuteActivity {
 					export class ActivityScriptExecution extends __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecution.AbstractScriptExecution {
 						public readonly activityStarted: boolean;
@@ -8891,6 +8933,7 @@ declare namespace org {
 					readonly agentRunId: string;
 					readonly config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig;
 					readonly engine: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<__javaRoots.orgRoot.autojs.autojs.script.ScriptSource>;
+					readonly finished: boolean;
 					readonly id: number;
 					readonly listener: __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecutionListener;
 					readonly source: __javaRoots.orgRoot.autojs.autojs.script.ScriptSource;
@@ -8904,12 +8947,14 @@ declare namespace org {
 					getId(): number;
 					getListener(): __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecutionListener;
 					getSource(): __javaRoots.orgRoot.autojs.autojs.script.ScriptSource;
+					isFinished(): boolean;
 					setAgentResult(json: string): boolean;
 				}
 				export namespace ScriptExecution {
 					export abstract class AbstractScriptExecution {
 						public readonly config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig;
 						public readonly engine: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<__javaRoots.orgRoot.autojs.autojs.script.ScriptSource>;
+						public readonly finished: boolean;
 						public readonly id: number;
 						public readonly listener: __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecutionListener;
 						public readonly source: __javaRoots.orgRoot.autojs.autojs.script.ScriptSource;
@@ -8921,6 +8966,8 @@ declare namespace org {
 						public getListener(): __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecutionListener;
 						public getSource(): __javaRoots.orgRoot.autojs.autojs.script.ScriptSource;
 						public hashCode(): number;
+						public isFinished(): boolean;
+						public markFinished(): void;
 					}
 					export interface AbstractScriptExecution extends __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecution {}
 				}
@@ -9156,17 +9203,18 @@ declare namespace org {
 					public static readonly DEFAULT_BUFFER_SIZE: number;
 					public static readonly DEFAULT_ENCODING: string;
 					public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.pio.PFiles;
+					public static readonly sdcardPath: string;
 					public static append(path: string, text: string): void;
 					public static append(path: string, text: string, encoding: string): void;
 					public static appendBytes(path: string, bytes: number[]): void;
 					public static closeSilently(closeable: __javaRoots.javaRoot.io.Closeable): void;
 					public static copy(pathFrom: string, pathTo: string): boolean;
-					public copyAsset(context: __javaRoots.androidRoot.content.Context, assetFile: string, path: string): boolean;
+					public static copyAsset(context: __javaRoots.androidRoot.content.Context, assetFile: string, path: string): boolean;
 					public static copyAssetDir(manager: __javaRoots.androidRoot.content.res.AssetManager, assetsDir: string, toDir: string): void;
 					public static copyAssetDir(manager: __javaRoots.androidRoot.content.res.AssetManager, assetsDir: string, toDir: string, list: string[]): void;
 					public static copyAssetFile(manager: __javaRoots.androidRoot.content.res.AssetManager, assetFile: string, toPath: string): void;
-					public copyAssetToTmpFile(context: __javaRoots.androidRoot.content.Context, path: string): __javaRoots.javaRoot.io.File;
-					public copyRaw(context: __javaRoots.androidRoot.content.Context, rawId: number, path: string): boolean;
+					public static copyAssetToTmpFile(context: __javaRoots.androidRoot.content.Context, path: string): __javaRoots.javaRoot.io.File;
+					public static copyRaw(context: __javaRoots.androidRoot.content.Context, rawId: number, path: string): boolean;
 					public static copyStream(stream: __javaRoots.javaRoot.io.InputStream, path: string): boolean;
 					public static create(path: string): boolean;
 					public static createIfNotExists(path: string): boolean;
@@ -9178,7 +9226,7 @@ declare namespace org {
 					public static ensureDir(path: string): boolean;
 					public static exists(path: string): boolean;
 					public static formatSizeWithUnit(bytes: number): string;
-					public generateNotExistingPath(path: string, extension: string): string;
+					public static generateNotExistingPath(path: string, extension: string): string;
 					public static getElegantPath(path: string): string;
 					public static getElegantPath(path: string, workingDirectory: string, hasPrefix: boolean): string;
 					public static getExtension(fileName: string): string;
@@ -9186,6 +9234,8 @@ declare namespace org {
 					public static getHumanReadableSize(bytes: number, useIecIdentifier: boolean): string;
 					public static getName(filePath: string): string;
 					public static getNameWithoutExtension(filePath: string): string;
+					public static getSdcardPath(): string;
+					public static getSimplifiedPath(path: string): string;
 					public static isCachePrefix(path: string): boolean;
 					public static isDir(path: string): boolean;
 					public static isEmptyDir(path: string): boolean;
@@ -9205,22 +9255,22 @@ declare namespace org {
 					public static read(path: string): string;
 					public static read(path: string, encoding: string): string;
 					public static readAsset(assets: __javaRoots.androidRoot.content.res.AssetManager, path: string): string;
-					public readBytes(stream: __javaRoots.javaRoot.io.InputStream): number[];
+					public static readBytes(stream: __javaRoots.javaRoot.io.InputStream): number[];
 					public static readBytes(path: string): number[];
 					public relativePathWithin$app(path: string, directory: string): string;
 					public static remove(path: string): boolean;
 					public static removeDir(path: string): boolean;
 					public static rename(path: string, newName: string): boolean;
 					public static renameWithoutExtension(path: string, newName: string): boolean;
-					public renameWithoutExtensionAndReturnNewPath(path: string, newName: string): string;
+					public static renameWithoutExtensionAndReturnNewPath(path: string, newName: string): string;
 					public static write(file: __javaRoots.javaRoot.io.File, text: string): void;
 					public static write(stream: __javaRoots.javaRoot.io.InputStream, os: __javaRoots.javaRoot.io.OutputStream): void;
 					public static write(stream: __javaRoots.javaRoot.io.InputStream, os: __javaRoots.javaRoot.io.OutputStream, close: boolean): void;
 					public static write(fileOutputStream: __javaRoots.javaRoot.io.OutputStream, text: string): void;
-					public write(outputStream: __javaRoots.javaRoot.io.OutputStream, text: string, encoding: string): void;
+					public static write(outputStream: __javaRoots.javaRoot.io.OutputStream, text: string, encoding: string): void;
 					public static write(path: string, text: string): void;
 					public static write(path: string, text: string, encoding: string): void;
-					public writeBytes(outputStream: __javaRoots.javaRoot.io.OutputStream, bytes: number[]): void;
+					public static writeBytes(outputStream: __javaRoots.javaRoot.io.OutputStream, bytes: number[]): void;
 					public static writeBytes(path: string, bytes: number[]): void;
 					protected constructor();
 				}
@@ -10024,6 +10074,7 @@ declare namespace org {
 						public static readonly COMMAND_SH: string;
 						public static readonly COMMAND_SU: string;
 						public readonly execWithRoot: boolean;
+						public readonly root: boolean;
 						public constructor();
 						public constructor(context: __javaRoots.androidRoot.content.Context, isExecWithRoot: boolean);
 						public constructor(isExecWithRoot: boolean);
@@ -10059,6 +10110,7 @@ declare namespace org {
 						public exit(): void;
 						public exitAndWaitFor(): void;
 						public isExecWithRoot(): boolean;
+						public isRoot(): boolean;
 						public sleep(i: number): void;
 						public usleep(l: number): void;
 					}
@@ -10212,6 +10264,7 @@ declare namespace org {
 						public static readonly device: string;
 						public static readonly fingerprint: string;
 						public static readonly hardware: string;
+						public static height: number;
 						public static imei: string;
 						public static readonly incremental: string;
 						public static readonly manufacturer: string;
@@ -10223,6 +10276,7 @@ declare namespace org {
 						public static readonly sdkInt: number;
 						public static readonly securityPatch: string;
 						public static serial: string;
+						public static width: number;
 						public readonly IMEI: string;
 						public readonly alarmMaxVolume: number;
 						public readonly alarmVolume: number;
@@ -10785,6 +10839,7 @@ declare namespace org {
 						public compress(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, format: string, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public compressToBytes(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, format: string, quality: number): number[];
 						public compressToBytes(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, format: string, options: __javaRoots.orgRoot.autojs.autojs.runtime.api.PngQuantBridge.Options): number[];
+						public static concat(imgA: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, imgB: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, direction: number): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public static concat(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, imgA: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, imgB: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper, direction: number): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public copy(image: __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public detectAndComputeFeatures(mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat, scale: number, cvtColor: number, method: number): __javaRoots.orgRoot.autojs.autojs.runtime.api.ImageFeatureMatching.FeatureMatchingDescriptor;
@@ -13744,6 +13799,8 @@ declare namespace org {
 						public readonly errorOutput: __javaRoots.javaRoot.lang.StringBuilder;
 						public readonly errorReader: __javaRoots.javaRoot.io.BufferedReader;
 						public readonly process: __javaRoots.javaRoot.lang.Process;
+						public readonly succeedOutput: __javaRoots.javaRoot.lang.StringBuilder;
+						public readonly succeedReader: __javaRoots.javaRoot.io.BufferedReader;
 						public readonly successOutput: __javaRoots.javaRoot.lang.StringBuilder;
 						public readonly successReader: __javaRoots.javaRoot.io.BufferedReader;
 						public static readonly rootProcess: __javaRoots.javaRoot.lang.Process;
@@ -13763,10 +13820,13 @@ declare namespace org {
 						public getProcess(): __javaRoots.javaRoot.lang.Process;
 						public static getRootProcess(): __javaRoots.javaRoot.lang.Process;
 						public static getShellProcess(): __javaRoots.javaRoot.lang.Process;
+						public getSucceedOutput(): __javaRoots.javaRoot.lang.StringBuilder;
+						public getSucceedReader(): __javaRoots.javaRoot.io.BufferedReader;
 						public getSuccessOutput(): __javaRoots.javaRoot.lang.StringBuilder;
 						public getSuccessReader(): __javaRoots.javaRoot.io.BufferedReader;
 						public readAll(): __javaRoots.orgRoot.autojs.autojs.runtime.api.ProcessShell;
 						public readErrorOutput(): __javaRoots.orgRoot.autojs.autojs.runtime.api.ProcessShell;
+						public readSucceedOutput(): __javaRoots.orgRoot.autojs.autojs.runtime.api.ProcessShell;
 						public readSuccessOutput(): __javaRoots.orgRoot.autojs.autojs.runtime.api.ProcessShell;
 						public waitFor(): number;
 					}
@@ -13868,6 +13928,7 @@ declare namespace org {
 						public static readonly screenLandscape: boolean;
 						public static readonly screenPortrait: boolean;
 						public constructor();
+						public constructor(designWidth: number, designHeight: number);
 						public static getDeviceScreenDensity(): number;
 						public static getDeviceScreenHeight(): number;
 						public static getDeviceScreenWidth(): number;
@@ -13876,16 +13937,19 @@ declare namespace org {
 						public static getOrientationAwareScreenWidth(orientation: number): number;
 						public static getRotation(): number;
 						public static init(activity: __javaRoots.androidRoot.app.Activity): void;
+						public static initIfNeeded(activity: __javaRoots.androidRoot.app.Activity): void;
 						public static isScreenLandscape(): boolean;
 						public static isScreenPortrait(): boolean;
 						public rescaleX(x: number): number;
-						public rescaleX(x: number, width: number): number;
+						public static rescaleX(x: number, width: number): number;
 						public rescaleY(y: number): number;
-						public rescaleY(y: number, height: number): number;
+						public static rescaleY(y: number, height: number): number;
 						public scaleX(x: number): number;
-						public scaleX(x: number, width: number): number;
+						public static scaleX(x: number, width: number): number;
 						public scaleY(y: number): number;
-						public scaleY(y: number, height: number): number;
+						public static scaleY(y: number, height: number): number;
+						public setDesignHeight(designHeight: number): void;
+						public setDesignWidth(designWidth: number): void;
 						public setScreenMetrics(width: number, height: number): void;
 					}
 				}
@@ -13979,6 +14043,7 @@ declare namespace org {
 						public constructor();
 						public constructor(context: __javaRoots.androidRoot.content.Context);
 						public constructor(context: __javaRoots.androidRoot.content.Context, root: boolean);
+						public constructor(context: __javaRoots.androidRoot.content.Context, root: boolean, shouldReadOutput: boolean);
 						public constructor(root: boolean);
 						public exec(command: string): void;
 						public execAndWaitFor(command: string): string;
@@ -15374,40 +15439,6 @@ declare namespace org {
 	export namespace autojs {
 		export namespace autojs {
 			export namespace runtime {
-				export namespace api {
-					export namespace augment {
-						export namespace threads {
-							export class VolatileDisposeNativeObject extends __javaRoots.orgRoot.mozilla.javascript.NativeObject {
-								public readonly entries: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
-								public readonly keys: __javaRoots.javaRoot.util.Set<any>;
-								public constructor();
-								public constructor(declarationScope: __javaRoots.orgRoot.mozilla.javascript.VarScope);
-								public static blockedGet(cx: __javaRoots.orgRoot.mozilla.javascript.Context, thisObj: __javaRoots.orgRoot.mozilla.javascript.Scriptable, args: any[], funObj: __javaRoots.orgRoot.mozilla.javascript.Function): any;
-								public static blockedGetOrThrow(cx: __javaRoots.orgRoot.mozilla.javascript.Context, thisObj: __javaRoots.orgRoot.mozilla.javascript.Scriptable, args: any[], funObj: __javaRoots.orgRoot.mozilla.javascript.Function): any;
-								public entrySet(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
-								public getEntries(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.util.Map.Entry<any, any>>;
-								public getKeys(): __javaRoots.javaRoot.util.Set<any>;
-								public getSize(): number;
-								public getValues(): __javaRoots.javaRoot.util.Collection<any>;
-								public keySet(): __javaRoots.javaRoot.util.Set<any>;
-								public static setAndNotify(cx: __javaRoots.orgRoot.mozilla.javascript.Context, thisObj: __javaRoots.orgRoot.mozilla.javascript.Scriptable, args: any[], funObj: __javaRoots.orgRoot.mozilla.javascript.Function): __javaRoots.orgRoot.mozilla.javascript.Undefined;
-								public size(): number;
-								public values(): __javaRoots.javaRoot.util.Collection<any>;
-								public entrySet(...args: any[]): any;
-								public keySet(...args: any[]): any;
-								public values(...args: any[]): any;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
-declare namespace org {
-	export namespace autojs {
-		export namespace autojs {
-			export namespace runtime {
 				export namespace exception {
 					export class NotImplementedError extends __javaRoots.javaRoot.lang.Exception {
 						public constructor();
@@ -16200,8 +16231,12 @@ declare namespace org {
 			export namespace tool {
 				export class UiHandler extends __javaRoots.androidRoot.os.Handler {
 					public readonly applicationContext: __javaRoots.androidRoot.content.Context;
+					public readonly context: __javaRoots.androidRoot.content.Context;
 					public constructor(applicationContext: __javaRoots.androidRoot.content.Context);
 					public getApplicationContext(): __javaRoots.androidRoot.content.Context;
+					public getContext(): __javaRoots.androidRoot.content.Context;
+					public toast(resId: number): void;
+					public toast(message: string): void;
 				}
 			}
 		}
@@ -16220,6 +16255,7 @@ declare namespace org {
 					public getHandleNavigationBarContrastEnforcedAutomatically(): boolean;
 					public getHandleStatusBarThemeColorAutomatically(): boolean;
 					public initThemeColors(): void;
+					public onWindowFocusChanged(hasFocus: boolean): void;
 					public setToolbarAsBack(titleRes: number): void;
 					public setToolbarAsBack(title: string): void;
 				}
@@ -18021,6 +18057,7 @@ declare namespace org {
 					public static isActiveNetworkMetered(): boolean;
 					public static isConnectedOrConnecting(): boolean;
 					public static isWifiAvailable(): boolean;
+					public static isWifiAvailable(context: __javaRoots.androidRoot.content.Context): boolean;
 					public static loadFileAsString(filename: string): string;
 					protected constructor();
 				}
@@ -18223,6 +18260,8 @@ declare namespace org {
 					public static newNativeObject(scope: __javaRoots.orgRoot.mozilla.javascript.VarScope): __javaRoots.orgRoot.mozilla.javascript.NativeObject;
 					public static newObject(scope: __javaRoots.orgRoot.mozilla.javascript.Scriptable): __javaRoots.orgRoot.mozilla.javascript.NativeObject;
 					public static newObject(scope: __javaRoots.orgRoot.mozilla.javascript.VarScope): __javaRoots.orgRoot.mozilla.javascript.NativeObject;
+					public static newWithScope(obj: __javaRoots.orgRoot.mozilla.javascript.Scriptable): __javaRoots.orgRoot.mozilla.javascript.VarScope;
+					public static newWithScope(obj: __javaRoots.orgRoot.mozilla.javascript.Scriptable, parentScope: __javaRoots.orgRoot.mozilla.javascript.VarScope): __javaRoots.orgRoot.mozilla.javascript.VarScope;
 					public now(): number;
 					public static parseFloat(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, str: string): number;
 					public static parseInt(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, str: string): number;
@@ -18403,11 +18442,17 @@ declare namespace org {
 			export namespace util {
 				export class TextUtils {
 					public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.util.TextUtils;
+					public static indexOf(text: string, ch: string, fromIndex: number): number;
+					public static indexOf(source: string, target: string, fromIndex: number): number;
+					public static join(delimiter: string, ...tokens: any[]): string;
 					public static joinSpanned(spannedList: __javaRoots.javaRoot.util.List<__javaRoots.androidRoot.text.Spanned>): __javaRoots.androidRoot.text.Spanned;
 					public static joinSpanned(spannedList: __javaRoots.javaRoot.util.List<__javaRoots.androidRoot.text.Spanned>, delimiter: string): __javaRoots.androidRoot.text.Spanned;
+					public static lastIndexOf(text: string, ch: string, fromIndex: number): number;
+					public static lastIndexOf(source: string, target: string, fromIndex: number): number;
 					public static markdownToHtml(markdown: string): string;
 					public static splitSpanned(spanned: __javaRoots.androidRoot.text.Spanned): __javaRoots.javaRoot.util.List<__javaRoots.androidRoot.text.Spanned>;
 					public static splitSpanned(spanned: __javaRoots.androidRoot.text.Spanned, delimiter: string): __javaRoots.javaRoot.util.List<__javaRoots.androidRoot.text.Spanned>;
+					public static toEmptyIfNull(message: string): string;
 					protected constructor();
 				}
 			}
@@ -18415,60 +18460,6 @@ declare namespace org {
 	}
 }
 // Generics information:
-//com.stardust.autojs.core.activity.ActivityInfoProvider.getLatestPackageByUsageStats..inlined.sortBy.1:1
-//com.stardust.autojs.core.internal.Functions.Func0:1
-//com.stardust.autojs.core.internal.Functions.Func1:2
-//com.stardust.autojs.core.internal.Functions.Func2:3
-//com.stardust.autojs.core.internal.Functions.Func3:4
-//com.stardust.autojs.core.internal.Functions.Func4:5
-//com.stardust.autojs.core.internal.Functions.VoidFunc1:1
-//com.stardust.autojs.core.internal.Functions.VoidFunc2:2
-//com.stardust.autojs.core.internal.Functions.VoidFunc3:3
-//com.stardust.autojs.core.internal.Functions.VoidFunc4:4
-//com.stardust.autojs.core.ui.attribute.ViewAttributes.Getter:1
-//com.stardust.autojs.core.ui.attribute.ViewAttributes.MappingAttributeSetter:1
-//com.stardust.autojs.core.ui.attribute.ViewAttributes.Setter:1
-//com.stardust.autojs.core.ui.attribute.ViewAttributes.ValueConverter:1
-//com.stardust.autojs.core.ui.inflater.ViewCreator:1
-//com.stardust.autojs.core.ui.inflater.ViewInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.AppBarInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.BaseViewInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.FrameLayoutInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.ImageViewInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.JsGridViewInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.JsListViewInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.LinearLayoutInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.ProgressBarInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.RadioGroupInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.TabLayoutInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.TextViewInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.ToolbarInflater:1
-//com.stardust.autojs.core.ui.inflater.inflaters.ViewGroupInflater:1
-//com.stardust.autojs.core.ui.inflater.util.ValueMapper:1
-//com.stardust.autojs.engine.ScriptEngine:1
-//com.stardust.autojs.engine.ScriptEngine.AbstractScriptEngine:1
-//com.stardust.autojs.engine.ScriptEngineProxy:1
-//com.stardust.concurrent.ConcurrentArrayList:1
-//com.stardust.concurrent.Value:1
-//com.stardust.concurrent.VolatileBox:1
-//com.stardust.concurrent.VolatileDispose:1
-//com.stardust.event.EventDispatcher:1
-//com.stardust.event.EventDispatcher.Event:1
-//com.stardust.util.BiMap:2
-//com.stardust.util.BiMaps.BiMapBuilder:2
-//com.stardust.util.BiMaps.BiMapImpl:2
-//com.stardust.util.Callback:1
-//com.stardust.util.Consumer:1
-//com.stardust.util.Func1:2
-//com.stardust.util.LimitedHashMap:2
-//com.stardust.util.MapBuilder:2
-//com.stardust.util.SimpleCache:1
-//com.stardust.util.SimpleCache.Item:1
-//com.stardust.util.SimpleCache.NullSupplier:1
-//com.stardust.util.SimpleCache.Supplier:1
-//com.stardust.util.SparseArrayEntries:1
-//com.stardust.util.StateObserver.SimpleOnStateChangedListener:1
-//com.stardust.util.Supplier:1
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.openTemplate..inlined.compareByDescending.1:1
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.openTemplate..inlined.thenBy.1:1
 //org.autojs.autojs.apkbuilder.template.ApkBuilderTemplatePluginHost.openTemplate..inlined.thenByDescending.1:1
@@ -18627,21 +18618,23 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.bun.BunBoundedBinderCallLane.Call:1
 //org.autojs.autojs.core.plugin.bun.BunBoundedBinderCallLane.CallOutcome:1
 //org.autojs.autojs.core.plugin.bun.BunBoundedBinderCallLane.CallOutcome.Success:1
-//org.autojs.autojs.core.plugin.center.PluginCenterActivity.showFilterDialog.FilterOption:1
-//org.autojs.autojs.core.plugin.center.PluginCenterActivity.showFilterDialog.OptionGroupBinder:1
-//org.autojs.autojs.core.plugin.center.PluginCenterActivity.showProcessLogs.job.1.1.1:1
-//org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.1:1
-//org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.10:1
-//org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.2:1
-//org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.3:1
-//org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.4:1
-//org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.5:1
-//org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.6:1
-//org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.7:1
-//org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.8:1
-//org.autojs.autojs.core.plugin.center.PluginCenterFragment.comparatorForSortField..inlined.compareBy.9:1
+//org.autojs.autojs.core.plugin.center.PluginCenterActionPositionPolicy.apply..inlined.sortedBy.1:1
+//org.autojs.autojs.core.plugin.center.PluginCenterDialogs.showFilterDialog.FilterOption:1
+//org.autojs.autojs.core.plugin.center.PluginCenterDialogs.showFilterDialog.OptionGroupBinder:1
+//org.autojs.autojs.core.plugin.center.PluginCenterDialogs.showProcessLogs.job.1.1.1:1
 //org.autojs.autojs.core.plugin.center.PluginCenterFrameChunkedListSubmitter:1
 //org.autojs.autojs.core.plugin.center.PluginCenterLegacyRefreshState:1
+//org.autojs.autojs.core.plugin.center.PluginCenterSortPolicy.comparatorForSortField..inlined.compareBy.1:1
+//org.autojs.autojs.core.plugin.center.PluginCenterSortPolicy.comparatorForSortField..inlined.compareBy.10:1
+//org.autojs.autojs.core.plugin.center.PluginCenterSortPolicy.comparatorForSortField..inlined.compareBy.11:1
+//org.autojs.autojs.core.plugin.center.PluginCenterSortPolicy.comparatorForSortField..inlined.compareBy.2:1
+//org.autojs.autojs.core.plugin.center.PluginCenterSortPolicy.comparatorForSortField..inlined.compareBy.3:1
+//org.autojs.autojs.core.plugin.center.PluginCenterSortPolicy.comparatorForSortField..inlined.compareBy.4:1
+//org.autojs.autojs.core.plugin.center.PluginCenterSortPolicy.comparatorForSortField..inlined.compareBy.5:1
+//org.autojs.autojs.core.plugin.center.PluginCenterSortPolicy.comparatorForSortField..inlined.compareBy.6:1
+//org.autojs.autojs.core.plugin.center.PluginCenterSortPolicy.comparatorForSortField..inlined.compareBy.7:1
+//org.autojs.autojs.core.plugin.center.PluginCenterSortPolicy.comparatorForSortField..inlined.compareBy.8:1
+//org.autojs.autojs.core.plugin.center.PluginCenterSortPolicy.comparatorForSortField..inlined.compareBy.9:1
 //org.autojs.autojs.core.plugin.center.PluginInfoServiceHost.withInfoService.1:1
 //org.autojs.autojs.core.plugin.center.PluginReleaseTargetPolicy.resolve..inlined.sortedByDescending.1:1
 //org.autojs.autojs.core.plugin.center.PluginSettingsFragment.onCreatePreferences..inlined.sortedByDescending.1:1
@@ -18693,7 +18686,6 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.explorer.session.ExplorerActionReplacementHistoryStore.cleanupLocked..inlined.sortedBy.2:1
 //org.autojs.autojs.core.plugin.explorer.session.ExplorerActionReplacementHistoryStore.makeRoomForLocked..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.explorer.session.ExplorerActionTargetTrashBatchStore.list.lambda.0..inlined.sortedByDescending.1:1
-//org.autojs.autojs.core.plugin.explorer.session.ExplorerActionTargetTrashBatchStore.makeRoomLocked..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState:2
 //org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState.CloseResult:2
 //org.autojs.autojs.core.plugin.jvm.JvmSourceExactBindingLinkState.Link:2
@@ -18965,6 +18957,7 @@ declare namespace org {
 //org.autojs.autojs.ui.edit.theme.ColorThemeGenerator.generate..inlined.thenBy.1:1
 //org.autojs.autojs.ui.edit.theme.ColorThemeGenerator.generate..inlined.thenByDescending.1:1
 //org.autojs.autojs.ui.edit.toolbar.ToolbarFragment:1
+//org.autojs.autojs.ui.explorer.ExplorerSelectionActionLayout.Companion.of..inlined.sortedBy.1:1
 //org.autojs.autojs.ui.floating.LayoutFloatyWindow.switchWindow.lambda.1..inlined.compareBy.1:1
 //org.autojs.autojs.ui.floating.codegen.CodeGenOptionsState.Conversion:1
 //org.autojs.autojs.ui.floating.codegen.CodeGenOptionsState.Ready:1

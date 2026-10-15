@@ -41,7 +41,7 @@ declare let Packages: {
     org: typeof org;
     com: typeof com;
     net: typeof net;
-    de: typeof de;
+    de: org.mozilla.javascript.NativeJavaPackage;
     // @ts-ignore
     okio: typeof okio;
     ezy: typeof ezy;
@@ -84,65 +84,31 @@ declare class Namespace extends org.mozilla.javascript.xml.XMLLib {
 declare class QName extends org.mozilla.javascript.xml.XMLLib {
 }
 
-declare class ArrayBuffer extends org.mozilla.javascript.typedarrays.NativeArrayBuffer {
+/** Standard typed arrays and Error use the ECMAScript library declarations.
+ * Rhino's Java implementation classes remain available under their qualified names.
+ */
+interface ErrorConstructor {
+    captureStackTrace(target: object, constructorOpt?: Function): void;
 }
 
-declare class Int8Array extends org.mozilla.javascript.typedarrays.NativeInt8Array {
-}
-
-declare class Uint8Array extends org.mozilla.javascript.typedarrays.NativeUint8Array {
-}
-
-declare class Uint8ClampedArray extends org.mozilla.javascript.typedarrays.NativeUint8ClampedArray {
-}
-
-declare class Int16Array extends org.mozilla.javascript.typedarrays.NativeInt16Array {
-}
-
-declare class Uint16Array extends org.mozilla.javascript.typedarrays.NativeUint16Array {
-}
-
-declare class Int32Array extends org.mozilla.javascript.typedarrays.NativeInt32Array {
-}
-
-declare class Uint32Array extends org.mozilla.javascript.typedarrays.NativeUint32Array {
-}
-
-declare class Float32Array extends org.mozilla.javascript.typedarrays.NativeFloat32Array {
-}
-
-declare class Float64Array extends org.mozilla.javascript.typedarrays.NativeFloat64Array {
-}
-
-declare class DataView extends org.mozilla.javascript.typedarrays.NativeDataView {
-}
-
-// @ts-ignore
-declare let Error: AutoJsError;
-
-interface AutoJsError extends ErrorConstructor {
-    new(message?: string): EvalError;
-    (message?: string): EvalError;
-    readonly prototype: EvalError;
-
-    captureStackTrace(obj: object, func: Function): void;
-
-    name: 'Error' | 'EvalError' | 'InternalError' | 'JavaException' | 'RangeError' | 'ReferenceError' | 'SyntaxError' | 'TypeError' | 'URIError' | string;
-    fileName: string;
-    lineNumber: number;
-    stack: string;
+interface Error {
+    fileName?: string;
+    lineNumber?: number;
     javaException?: java.lang.Exception;
     rhinoException?: java.lang.Exception;
 }
+
+/** Compatibility name for the augmented standard Error constructor. */
+interface AutoJsError extends ErrorConstructor {}
 
 // Object.xxx
 declare interface ObjectConstructor {
     hasOwn(o: object, v: PropertyKey);
 }
 
-declare module android {
+declare namespace android {
 
-    export module view {
+    export namespace view {
 
         import EventEmitter = org.autojs.autojs.core.eventloop.EventEmitter;
 

@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Oct 15, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -14,142 +14,58 @@
  */
 
 declare namespace Internal {
-
-    class Sensors extends org.autojs.autojs.runtime.api.Sensors {
-
-        /**
-         * @Overrides for JSDoc or more specific types
-         */
-
-        /**
-         * @example Source code summary (zh-CN: 源代码摘要)
-         * sensors.ignoresUnsupportedSensor = true;
-         * sensors.on("unsupported_sensor", function (sensorName) {
-         *     toastLog("unsupported sensor: " + sensorName);
-         * });
-         * log(sensors.register("test") !== null);
-         */
+    interface Sensors extends Omit<org.autojs.autojs.runtime.api.Sensors, 'register' | 'unregister'> {
         ignoresUnsupportedSensor: boolean;
-
-        register(sensorName: string, delay?: number): org.autojs.autojs.runtime.api.Sensors.SensorEventEmitter;
-
-        register(sensorName: 'light', delay?: number): Sensors.Light;
-
-        register(sensorName: 'accelerometer', delay?: number): Sensors.Accelerometer;
-
-        register(sensorName: 'ambient_temperature', delay?: number): Sensors.AmbientTemperature;
-
-        register(sensorName: 'gravity', delay?: number): Sensors.Gravity;
-
-        register(sensorName: 'gyroscope', delay?: number): Sensors.Gyroscope;
-
-        register(sensorName: 'linear_acceleration', delay?: number): Sensors.LinearAcceleration;
-
-        register(sensorName: 'magnetic_field', delay?: number): Sensors.MagneticField;
-
-        register(sensorName: 'orientation', delay?: number): Sensors.Orientation;
-
-        register(sensorName: 'pressure', delay?: number): Sensors.Pressure;
-
-        register(sensorName: 'proximity', delay?: number): Sensors.Proximity;
-
-        register(sensorName: 'relative_humidity', delay?: number): Sensors.RelativeHumidity;
-
+        /** Unsupported sensors return null unless ignoresUnsupportedSensor enables a no-op emitter. */
+        register(sensorName: 'light', delay?: number): Sensors.Light | null;
+        register(sensorName: 'accelerometer', delay?: number): Sensors.Accelerometer | null;
+        register(sensorName: 'ambient_temperature', delay?: number): Sensors.AmbientTemperature | null;
+        register(sensorName: 'gravity', delay?: number): Sensors.Gravity | null;
+        register(sensorName: 'gyroscope', delay?: number): Sensors.Gyroscope | null;
+        register(sensorName: 'linear_acceleration', delay?: number): Sensors.LinearAcceleration | null;
+        register(sensorName: 'magnetic_field', delay?: number): Sensors.MagneticField | null;
+        register(sensorName: 'orientation', delay?: number): Sensors.Orientation | null;
+        register(sensorName: 'pressure', delay?: number): Sensors.Pressure | null;
+        register(sensorName: 'proximity', delay?: number): Sensors.Proximity | null;
+        register(sensorName: 'relative_humidity', delay?: number): Sensors.RelativeHumidity | null;
+        register(sensorName: string, delay?: number): Sensors.EventEmitter | null;
+        unregister(emitter: Sensors.EventEmitter | null): void;
     }
 
     namespace Sensors {
-
         type Event = android.hardware.SensorEvent;
-
-        type EventEmitter = org.autojs.autojs.runtime.api.Sensors.SensorEventEmitter;
-
-        interface Light {
-
-            on(eventName: 'change', listener: (event: Event, light: number) => void): EventEmitter;
-
-            once(eventName: 'change', listener: (event: Event, light: number) => void): EventEmitter;
-
+        interface EventEmitter<Values extends number[] = number[]> {
+            on(eventName: 'change', listener: (event: Event, ...values: Values) => void): this;
+            on(eventName: 'accuracy_change', listener: (accuracy: number) => void): this;
+            on(eventName: string, listener: (...args: unknown[]) => void): this;
+            once(eventName: 'change', listener: (event: Event, ...values: Values) => void): this;
+            once(eventName: 'accuracy_change', listener: (accuracy: number) => void): this;
+            once(eventName: string, listener: (...args: unknown[]) => void): this;
+            addListener: EventEmitter<Values>['on'];
+            prependListener: EventEmitter<Values>['on'];
+            prependOnceListener: EventEmitter<Values>['once'];
+            unregister(): void;
+            emit(eventName: string, ...args: unknown[]): boolean;
+            emitSticky(eventName: string, ...args: unknown[]): boolean;
+            eventNames(): string[];
+            listenerCount(eventName: string): number;
+            getMaxListeners(): number;
+            setMaxListeners(count: number): this;
+            getTimer(): org.autojs.autojs.core.looper.Timer | null;
+            listeners(eventName: string): Function[];
+            removeAllListeners(eventName?: string): this;
+            removeListener(eventName: string, listener: Function): this;
         }
-
-        interface Accelerometer {
-
-            on(eventName: 'change', listener: (event: Event, ax: number, ay: number, az: number) => void): EventEmitter;
-
-            once(eventName: 'change', listener: (event: Event, ax: number, ay: number, az: number) => void): EventEmitter;
-
-        }
-
-        interface Orientation {
-
-            on(eventName: 'change', listener: (event: Event, azimuth: number, pitch: number, roll: number) => void): EventEmitter;
-
-            once(eventName: 'change', listener: (event: Event, azimuth: number, pitch: number, roll: number) => void): EventEmitter;
-
-        }
-
-        interface Gyroscope {
-
-            on(eventName: 'change', listener: (event: Event, wx: number, wy: number, wz: number) => void): EventEmitter;
-
-            once(eventName: 'change', listener: (event: Event, azimuth: number, pitch: number, roll: number) => void): EventEmitter;
-
-        }
-
-        interface MagneticField {
-
-            on(eventName: 'change', listener: (event: Event, bx: number, by: number, bz: number) => void): EventEmitter;
-
-            once(eventName: 'change', listener: (event: Event, azimuth: number, pitch: number, roll: number) => void): EventEmitter;
-
-        }
-
-        interface Gravity {
-
-            on(eventName: 'change', listener: (event: Event, gx: number, gy: number, gz: number) => void): EventEmitter;
-
-            once(eventName: 'change', listener: (event: Event, azimuth: number, pitch: number, roll: number) => void): EventEmitter;
-
-        }
-
-        interface LinearAcceleration {
-
-            on(eventName: 'change', listener: (event: Event, ax: number, ay: number, az: number) => void): EventEmitter;
-
-            once(eventName: 'change', listener: (event: Event, azimuth: number, pitch: number, roll: number) => void): EventEmitter;
-
-        }
-
-        interface AmbientTemperature {
-
-            on(eventName: 'change', listener: (event: Event, t: number) => void): EventEmitter;
-
-            once(eventName: 'change', listener: (event: Event, azimuth: number, pitch: number, roll: number) => void): EventEmitter;
-
-        }
-
-        interface Pressure {
-
-            on(eventName: 'change', listener: (event: Event, p: number) => void): EventEmitter;
-
-            once(eventName: 'change', listener: (event: Event, azimuth: number, pitch: number, roll: number) => void): EventEmitter;
-
-        }
-
-        interface Proximity {
-
-            on(eventName: 'change', listener: (event: Event, distance: number) => void): EventEmitter;
-
-            once(eventName: 'change', listener: (event: Event, azimuth: number, pitch: number, roll: number) => void): EventEmitter;
-
-        }
-
-        interface RelativeHumidity {
-
-            on(eventName: 'change', listener: (event: Event, rh: number) => void): EventEmitter;
-
-            once(eventName: 'change', listener: (event: Event, azimuth: number, pitch: number, roll: number) => void): EventEmitter;
-
-        }
+        type Light = EventEmitter<[light: number]>;
+        type Accelerometer = EventEmitter<[ax: number, ay: number, az: number]>;
+        type AmbientTemperature = EventEmitter<[temperature: number]>;
+        type Gravity = EventEmitter<[gx: number, gy: number, gz: number]>;
+        type Gyroscope = EventEmitter<[wx: number, wy: number, wz: number]>;
+        type LinearAcceleration = EventEmitter<[ax: number, ay: number, az: number]>;
+        type MagneticField = EventEmitter<[bx: number, by: number, bz: number]>;
+        type Orientation = EventEmitter<[azimuth: number, pitch: number, roll: number]>;
+        type Pressure = EventEmitter<[pressure: number]>;
+        type Proximity = EventEmitter<[distance: number]>;
+        type RelativeHumidity = EventEmitter<[humidity: number]>;
     }
-
 }
