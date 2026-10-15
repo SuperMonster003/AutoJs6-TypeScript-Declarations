@@ -18,7 +18,7 @@
 ###### 2026/10/15
 
 * `Función` files.batchRename con los tipos de opciones, plan, resultado, deshacer e historial y BatchRenameError, para la vista previa del plan, la exclusión por elemento, la aplicación, deshacer y el historial de lotes del plugin Batch Rename
-* `Nota` Requiere el host 6.8.0 / 5437 y el plugin Batch Rename 1.0.0
+* `Nota` Requiere el host 6.8.0 / 5438 y el plugin Batch Rename 1.0.0
 
 # v4.39.0
 

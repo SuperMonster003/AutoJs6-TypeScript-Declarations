@@ -18,7 +18,7 @@
 ###### 2026/10/15
 
 * `Feature` files.batchRename with its option, plan, result, undo and history types and BatchRenameError, covering plan preview, per-item exclusion, applying, undo and batch history of the Batch Rename plugin
-* `Hint` Requires matching host 6.8.0 / 5437 and the Batch Rename plugin 1.0.0
+* `Hint` Requires matching host 6.8.0 / 5438 and the Batch Rename plugin 1.0.0
 
 # v4.39.0
 

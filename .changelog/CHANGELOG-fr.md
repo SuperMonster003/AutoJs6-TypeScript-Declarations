@@ -18,7 +18,7 @@
 ###### 2026/10/15
 
 * `Fonctionnalité` files.batchRename avec les types d'options, de plan, de résultat, d'annulation et d'historique et BatchRenameError, pour l'aperçu du plan, l'exclusion par élément, l'application, l'annulation et l'historique des lots du plugin Batch Rename
-* `Note` Nécessite l'hôte 6.8.0 / 5437 et le plugin Batch Rename 1.0.0
+* `Note` Nécessite l'hôte 6.8.0 / 5438 et le plugin Batch Rename 1.0.0
 
 # v4.39.0
 
