@@ -122,3 +122,15 @@ cheerio.load('<p/>')('p').thisMethodDoesNotExist();
 Math.random(1, 2);
 // @ts-expect-error Requires the Number extension declaration and runtime enablement.
 Number.parseFloat('ff', 16);
+
+// The gallery module of the 3-Maple Image plugin.
+const pickedImages: { path: string; dateTaken: number }[] | null = gallery.pick({ multiple: true, maxCount: 3, mimeTypes: ['image/png'] });
+const convertedWidth: number = gallery.convert('a.png', { format: 'jpg', longEdge: 1080, background: '#ffffff' }).width;
+const viewSession = $gallery.view(['a.png', 'b.png'], { index: 1 })
+    .on('page', page => page.index + page.path.length)
+    .on('close', event => event.reason);
+viewSession.close({ finish: false });
+const editedPath: Promise<string | null> = gallery.editAsync('a.png', { overwrite: true, keepExif: true });
+const isGalleryError: boolean = new gallery.GalleryError('x', 'IO') instanceof gallery.GalleryError;
+// @ts-expect-error Unknown size modes are rejected.
+gallery.convert('a.png', { sizeMode: 'fit' });

@@ -18,6 +18,19 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.39.0": {
+      "released_date": "2026/10/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Модуль gallery с GalleryViewSession, GalleryError и типами параметров и результатов: выбор изображений, сеансы просмотрщика, редактирование и преобразование без интерфейса в плагине 3-Maple Image"
+        },
+        {
+          "category": "hint",
+          "text": "Требуется хост 6.8.0 / 5439 и плагин 3-Maple Image 3.4.0"
+        }
+      ]
+    },
     "v4.38.0": {
       "released_date": "2026/10/15",
       "entries": [

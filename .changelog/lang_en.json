@@ -18,6 +18,19 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.39.0": {
+      "released_date": "2026/10/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "The gallery module with GalleryViewSession, GalleryError and the option and result types, covering the picker, viewer sessions, editing and headless conversion of the 3-Maple Image plugin"
+        },
+        {
+          "category": "hint",
+          "text": "Requires matching host 6.8.0 / 5439 and the 3-Maple Image plugin 3.4.0"
+        }
+      ]
+    },
     "v4.38.0": {
       "released_date": "2026/10/15",
       "entries": [

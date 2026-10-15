@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.39.0
+
+###### 2026/10/15
+
+* `新增` gallery 模块与 GalleryViewSession, GalleryError 及选项/结果类型, 对应 3-Maple Image 插件的选图, 查看器会话, 编辑与无界面转换
+* `提示` 需要配套宿主 6.8.0 / 5439 与 3-Maple Image 插件 3.4.0
+
 ### v4.38.0
 
 ###### 2026/10/15
@@ -185,15 +192,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/12
 
 * `新增` 类型声明与补全: device.getAndroidId 支持 useSystemId 布尔参数, 在 Android 8.0+ 上通过 Shizuku/Root 获取运行应用所属 Android 用户的系统值, 权限或读取失败时抛出异常, 旧系统忽略此参数
-
-### v4.36.0
-
-###### 2026/10/08
-
-##### 3-Block Compose 片段复用
-
-* `新增` compose.memo 与 ComposeMemoOptions, 在 render 中复用依赖值与读取的 state 均未变化的节点片段, 支持按 key 匹配列表条目
-* `提示` 需要配套宿主 6.8.0 / 5323; 依赖比较, 槽位匹配, 调用时机和 256 项依赖上限由运行时校验. TSX 配套 TypeScript Engine 0.6.8 与 Ace Editor 1.30.0
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

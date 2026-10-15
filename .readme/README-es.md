@@ -172,6 +172,13 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.39.0
+
+###### 2026/10/15
+
+* `Función` Módulo gallery con GalleryViewSession, GalleryError y los tipos de opciones y resultados, para el selector, las sesiones del visor, la edición y la conversión sin interfaz del plugin 3-Maple Image
+* `Nota` Requiere el host 6.8.0 / 5439 y el plugin 3-Maple Image 3.4.0
+
 ### v4.38.0
 
 ###### 2026/10/15
@@ -185,15 +192,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/12
 
 * `Función` Declaraciones de tipos y autocompletado: device.getAndroidId acepta el booleano useSystemId para leer el valor del sistema del usuario Android de la aplicación mediante Shizuku/Root en Android 8.0+, lanza una excepción si falla el permiso o la lectura e ignora el parámetro en sistemas anteriores
-
-### v4.36.0
-
-###### 2026/10/08
-
-##### Reutilización de fragmentos de 3-Block Compose
-
-* `Función` compose.memo y ComposeMemoOptions reutilizan fragmentos de nodos en render cuando no cambian los valores de las dependencias ni los valores leídos de state, con coincidencia de elementos de lista por key
-* `Nota` Requiere el host correspondiente 6.8.0 / 5323; la comparación de dependencias, la coincidencia de ranuras, el momento de la llamada y el límite de 256 dependencias se validan en tiempo de ejecución. TSX requiere las versiones correspondientes de TypeScript Engine 0.6.8 y Ace Editor 1.30.0
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

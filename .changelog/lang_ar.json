@@ -18,6 +18,19 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.39.0": {
+      "released_date": "2026/10/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "وحدة gallery مع GalleryViewSession و GalleryError وأنواع الخيارات والنتائج, لمحدد الصور وجلسات العارض والتحرير والتحويل دون واجهة في ملحق 3-Maple Image"
+        },
+        {
+          "category": "hint",
+          "text": "يتطلب المضيف 6.8.0 / 5439 وملحق 3-Maple Image 3.4.0"
+        }
+      ]
+    },
     "v4.38.0": {
       "released_date": "2026/10/15",
       "entries": [

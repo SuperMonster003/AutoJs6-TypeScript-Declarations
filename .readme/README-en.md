@@ -172,6 +172,13 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.39.0
+
+###### 2026/10/15
+
+* `Feature` The gallery module with GalleryViewSession, GalleryError and the option and result types, covering the picker, viewer sessions, editing and headless conversion of the 3-Maple Image plugin
+* `Hint` Requires matching host 6.8.0 / 5439 and the 3-Maple Image plugin 3.4.0
+
 ### v4.38.0
 
 ###### 2026/10/15
@@ -185,15 +192,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/12
 
 * `Feature` Type declarations and completion: device.getAndroidId accepts a useSystemId boolean to read the system value for the app's Android user through Shizuku/Root on Android 8.0+, throws on permission or read failure, and ignores the flag on older systems
-
-### v4.36.0
-
-###### 2026/10/08
-
-##### 3-Block Compose fragment reuse
-
-* `Feature` compose.memo and ComposeMemoOptions reuse node fragments in render when dependency values and read state values are unchanged, with key-based list item matching
-* `Hint` Requires matching host 6.8.0 / 5323; dependency comparison, slot matching, call timing and the 256-dependency limit are validated at runtime. TSX requires matching TypeScript Engine 0.6.8 and Ace Editor 1.30.0
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

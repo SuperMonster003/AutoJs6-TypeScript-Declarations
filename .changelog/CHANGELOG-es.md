@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.39.0
+
+###### 2026/10/15
+
+* `Función` Módulo gallery con GalleryViewSession, GalleryError y los tipos de opciones y resultados, para el selector, las sesiones del visor, la edición y la conversión sin interfaz del plugin 3-Maple Image
+* `Nota` Requiere el host 6.8.0 / 5439 y el plugin 3-Maple Image 3.4.0
+
 # v4.38.0
 
 ###### 2026/10/15

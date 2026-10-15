@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.39.0
+
+###### 2026/10/15
+
+* `기능` gallery 모듈과 GalleryViewSession, GalleryError 및 옵션/결과 형식. 3-Maple Image 플러그인의 이미지 선택, 뷰어 세션, 편집, UI 없는 변환을 지원
+* `안내` 대응하는 호스트 6.8.0 / 5439 및 3-Maple Image 플러그인 3.4.0 필요
+
 # v4.38.0
 
 ###### 2026/10/15

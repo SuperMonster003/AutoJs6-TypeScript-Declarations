@@ -18,6 +18,19 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.39.0": {
+      "released_date": "2026/10/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Module gallery avec GalleryViewSession, GalleryError et les types d'options et de résultats, pour le sélecteur, les sessions de visionneuse, l'édition et la conversion sans interface du plugin 3-Maple Image"
+        },
+        {
+          "category": "hint",
+          "text": "Nécessite l'hôte 6.8.0 / 5439 et le plugin 3-Maple Image 3.4.0"
+        }
+      ]
+    },
     "v4.38.0": {
       "released_date": "2026/10/15",
       "entries": [

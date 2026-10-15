@@ -18,6 +18,19 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.39.0": {
+      "released_date": "2026/10/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "gallery モジュールと GalleryViewSession, GalleryError, オプション/結果の型. 3-Maple Image プラグインの画像選択, ビューアセッション, 編集, UI なしの変換に対応"
+        },
+        {
+          "category": "hint",
+          "text": "対応するホスト 6.8.0 / 5439 と 3-Maple Image プラグイン 3.4.0 が必要"
+        }
+      ]
+    },
     "v4.38.0": {
       "released_date": "2026/10/15",
       "entries": [

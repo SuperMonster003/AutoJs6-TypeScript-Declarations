@@ -93,6 +93,10 @@ declare let $mail: Internal.Mail;
 declare let epub: Internal.Epub;
 declare let $epub: Internal.Epub;
 
+/** The gallery API of the external 3-Maple Image plugin (3.4.0 or later). Available since AutoJs6 6.8.0. */
+declare let gallery: Internal.Gallery;
+declare let $gallery: Internal.Gallery;
+
 declare let terminal: Internal.Terminal;
 declare let $terminal: Internal.Terminal;
 

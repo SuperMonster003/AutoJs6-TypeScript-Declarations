@@ -21,6 +21,7 @@
 /// <reference path="./aj6-int-floaty.d.ts" />
 /// <reference path="./aj6-int-flow.d.ts" />
 /// <reference path="./aj6-int-formatter.d.ts" />
+/// <reference path="./aj6-int-gallery.d.ts" />
 /// <reference path="./aj6-int-globals.d.ts" />
 /// <reference path="./aj6-int-third-party.d.ts" />
 /// <reference path="./aj6-int-http.d.ts" />

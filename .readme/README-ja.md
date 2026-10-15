@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.39.0
+
+###### 2026/10/15
+
+* `機能` gallery モジュールと GalleryViewSession, GalleryError, オプション/結果の型. 3-Maple Image プラグインの画像選択, ビューアセッション, 編集, UI なしの変換に対応
+* `ヒント` 対応するホスト 6.8.0 / 5439 と 3-Maple Image プラグイン 3.4.0 が必要
+
 ### v4.38.0
 
 ###### 2026/10/15
@@ -185,15 +192,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/12
 
 * `機能` 型定義と補完: device.getAndroidId が useSystemId 真偽値引数に対応し, Android 8.0+ では Shizuku/Root を通じてアプリの Android ユーザーのシステム値を取得. 権限または読み取りの失敗時は例外を送出し, 旧システムでは引数を無視
-
-### v4.36.0
-
-###### 2026/10/08
-
-##### 3-Block Compose フラグメントの再利用
-
-* `機能` compose.memo と ComposeMemoOptions により, 依存値と読み取った state がいずれも変化していないノードフラグメントを render 内で再利用し, key によるリスト項目の照合に対応
-* `ヒント` 対応するホスト 6.8.0 / 5323 が必要; 依存値の比較, スロットの照合, 呼び出しタイミング, 依存項目数の上限 256 は実行時に検証. TSX には対応する TypeScript Engine 0.6.8 と Ace Editor 1.30.0 が必要
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

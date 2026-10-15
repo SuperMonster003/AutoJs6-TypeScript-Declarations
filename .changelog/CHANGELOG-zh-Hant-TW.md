@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.39.0
+
+###### 2026/10/15
+
+* `新增` gallery 模組與 GalleryViewSession, GalleryError 及選項/結果型別, 對應 3-Maple Image 外掛的選圖, 檢視器工作階段, 編輯與無介面轉換
+* `提示` 需要配套宿主 6.8.0 / 5439 與 3-Maple Image 外掛 3.4.0
+
 # v4.38.0
 
 ###### 2026/10/15

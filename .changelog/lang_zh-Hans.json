@@ -18,6 +18,19 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.39.0": {
+      "released_date": "2026/10/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "gallery 模块与 GalleryViewSession, GalleryError 及选项/结果类型, 对应 3-Maple Image 插件的选图, 查看器会话, 编辑与无界面转换"
+        },
+        {
+          "category": "hint",
+          "text": "需要配套宿主 6.8.0 / 5439 与 3-Maple Image 插件 3.4.0"
+        }
+      ]
+    },
     "v4.38.0": {
       "released_date": "2026/10/15",
       "entries": [

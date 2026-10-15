@@ -13,6 +13,13 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.39.0
+
+###### 2026/10/15
+
+* `Функция` Модуль gallery с GalleryViewSession, GalleryError и типами параметров и результатов: выбор изображений, сеансы просмотрщика, редактирование и преобразование без интерфейса в плагине 3-Maple Image
+* `Примечание` Требуется хост 6.8.0 / 5439 и плагин 3-Maple Image 3.4.0
+
 # v4.38.0
 
 ###### 2026/10/15

@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.39.0
+
+###### 2026/10/15
+
+* `기능` gallery 모듈과 GalleryViewSession, GalleryError 및 옵션/결과 형식. 3-Maple Image 플러그인의 이미지 선택, 뷰어 세션, 편집, UI 없는 변환을 지원
+* `안내` 대응하는 호스트 6.8.0 / 5439 및 3-Maple Image 플러그인 3.4.0 필요
+
 ### v4.38.0
 
 ###### 2026/10/15
@@ -185,15 +192,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/12
 
 * `기능` 타입 선언 및 자동 완성: device.getAndroidId가 useSystemId 불리언 매개변수를 지원하며, Android 8.0+에서 Shizuku/Root로 앱이 실행되는 Android 사용자의 시스템 값을 읽음. 권한 또는 읽기 실패 시 예외를 발생시키고 이전 시스템에서는 매개변수를 무시
-
-### v4.36.0
-
-###### 2026/10/08
-
-##### 3-Block Compose 프래그먼트 재사용
-
-* `기능` compose.memo 및 ComposeMemoOptions은 의존성 값과 읽은 state가 모두 바뀌지 않은 노드 프래그먼트를 render에서 재사용하며, key 기반 목록 항목 매칭 지원
-* `안내` 대응하는 호스트 6.8.0 / 5323 필요; 의존성 비교, 슬롯 매칭, 호출 시점 및 의존성 256개 제한은 런타임에서 검증. TSX에는 대응하는 TypeScript Engine 0.6.8 및 Ace Editor 1.30.0 필요
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

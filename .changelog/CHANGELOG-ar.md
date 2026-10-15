@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.39.0
+
+###### 2026/10/15
+
+* `ميزة` وحدة gallery مع GalleryViewSession و GalleryError وأنواع الخيارات والنتائج, لمحدد الصور وجلسات العارض والتحرير والتحويل دون واجهة في ملحق 3-Maple Image
+* `ملاحظة` يتطلب المضيف 6.8.0 / 5439 وملحق 3-Maple Image 3.4.0
+
 # v4.38.0
 
 ###### 2026/10/15

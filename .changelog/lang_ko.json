@@ -18,6 +18,19 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.39.0": {
+      "released_date": "2026/10/15",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "gallery 모듈과 GalleryViewSession, GalleryError 및 옵션/결과 형식. 3-Maple Image 플러그인의 이미지 선택, 뷰어 세션, 편집, UI 없는 변환을 지원"
+        },
+        {
+          "category": "hint",
+          "text": "대응하는 호스트 6.8.0 / 5439 및 3-Maple Image 플러그인 3.4.0 필요"
+        }
+      ]
+    },
     "v4.38.0": {
       "released_date": "2026/10/15",
       "entries": [
