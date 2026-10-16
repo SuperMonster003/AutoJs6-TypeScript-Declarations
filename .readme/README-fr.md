@@ -172,6 +172,13 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.42.0
+
+###### 2026/10/16
+
+* `Fonctionnalité` preview, presets, importPresets et leurs formes asynchrones, deleteHistory et clearHistory de files.batchRename, les options de pinyin, de métadonnées des photos et de préréglage et metadataMissing des éléments du plan, pour l'essai de noms, les préréglages nommés, les variables de métadonnées, la conversion en pinyin et l'effacement de l'historique du plugin Batch Rename
+* `Note` Nécessite l'hôte 6.8.0 et le plugin Batch Rename 1.1.0
+
 ### v4.41.0
 
 ###### 2026/10/16
@@ -185,13 +192,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 * `Fonctionnalité` files.batchRename avec les types d'options, de plan, de résultat, d'annulation et d'historique et BatchRenameError, pour l'aperçu du plan, l'exclusion par élément, l'application, l'annulation et l'historique des lots du plugin Batch Rename
 * `Note` Nécessite l'hôte 6.8.0 / 5438 et le plugin Batch Rename 1.0.0
-
-### v4.39.0
-
-###### 2026/10/15
-
-* `Fonctionnalité` Module gallery avec GalleryViewSession, GalleryError et les types d'options et de résultats, pour le sélecteur, les sessions de visionneuse, l'édition et la conversion sans interface du plugin 3-Maple Image
-* `Note` Nécessite l'hôte 6.8.0 / 5439 et le plugin 3-Maple Image 3.4.0
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

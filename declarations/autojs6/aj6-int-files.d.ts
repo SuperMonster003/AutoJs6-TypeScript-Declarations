@@ -723,6 +723,10 @@ declare namespace Internal {
      * holds at most 2000 items. The synchronous forms block the script thread (stopping the script
      * cancels the wait); the `Async` forms deliver progress and the outcome on the script thread.
      *
+     * Pinyin (`pinyin*` options and `${pinyin}`), photo metadata (`metadata`) and named presets
+     * (`preset`, {@link presets}, {@link importPresets}) need Batch Rename 1.1.0 or later; older
+     * plugins answer `PLUGIN_INCOMPATIBLE`. {@link preview} computes names without any file.
+     *
      * @example
      * let plan = files.batchRename.plan('./photos', { search: 'IMG_', replace: 'Photo_', includeFolders: false });
      * plan.items.forEach(it => console.log(it.name + ' -> ' + it.newName + ' (' + it.status + ')'));
@@ -771,6 +775,27 @@ declare namespace Internal {
         plan(paths: string | string[], options: FilesBatchRename.Options): FilesBatchRename.Plan;
 
         /**
+         * Computes the new name of one name that need not exist, reading and renaming no file. A
+         * string is a file modified now; an item may give `isDirectory` and `lastModified` (epoch
+         * milliseconds or a `Date`). `metadata: true` and names that are not one file name of 1 to
+         * 1024 characters throw `INVALID_OPTIONS`.
+         * @since 6.8.0
+         * @example
+         * files.batchRename.preview('IMG_0001.JPG', { search: 'IMG_', replace: 'Photo_', format: 'lower' }).newName; // photo_0001.jpg
+         */
+        preview(item: string | FilesBatchRename.PreviewItem, options: FilesBatchRename.Options): FilesBatchRename.PreviewResult;
+
+        /**
+         * Previews up to 2000 names as the only entries of one folder: counters follow the array order
+         * and conflicts come only from the names themselves (`duplicateInBatch`).
+         * @since 6.8.0
+         * @example
+         * files.batchRename.preview(['a.txt', 'b.txt'], { search: /^.+$/, replace: 'note_${start=1}', target: 'name', enumerate: true })
+         *     .map(it => it.newName); // ['note_1.txt', 'note_2.txt']
+         */
+        preview(items: (string | FilesBatchRename.PreviewItem)[], options: FilesBatchRename.Options): FilesBatchRename.PreviewResult[];
+
+        /**
          * Runs a plan once (a second run throws `PLAN_STALE`): only items with the status `rename`
          * are renamed. Changed `excluded` flags or another `onConflict` let the plugin plan again with
          * the same targets and time. Items deleted or modified since the plan become `stale`; the rest
@@ -794,8 +819,10 @@ declare namespace Internal {
         undo(target: FilesBatchRename.Result | string): FilesBatchRename.UndoResult;
 
         /**
-         * The newest batches of scripts and of the file manager, newest first; at most 20.
-         * @param [limit=20] A non-negative integer, 20 at most.
+         * The batches of the undo journal, newest first, from scripts and from the file manager.
+         * Scripts and every plugin keep their newest 20 batches by default (50 or 100 as set on the
+         * "Rename history" page of AutoJs6).
+         * @param [limit] A non-negative integer; every batch when omitted.
          * @since 6.8.0
          * @example
          * let latest = files.batchRename.history().find(entry => entry.undoable);
@@ -803,17 +830,67 @@ declare namespace Internal {
          */
         history(limit?: number): FilesBatchRename.HistoryEntry[];
 
+        /**
+         * Removes one batch of any source from the undo journal; it can no longer be undone, the
+         * renamed files stay. False when the journal does not keep it.
+         * @since 6.8.0
+         * @example
+         * files.batchRename.deleteHistory(result); // true
+         */
+        deleteHistory(target: FilesBatchRename.Result | FilesBatchRename.HistoryEntry | string): boolean;
+
+        /**
+         * Removes every batch, or those of one source, from the undo journal and answers how many.
+         * @since 6.8.0
+         * @example
+         * files.batchRename.clearHistory({ source: 'script' });
+         */
+        clearHistory(options?: FilesBatchRename.ClearHistoryOptions): number;
+
+        /**
+         * The named presets the plugin keeps (at most 100), in its order, with their complete options.
+         * @since 6.8.0
+         */
+        presets(): FilesBatchRename.Preset[];
+
+        /**
+         * Imports the presets of a document exported by the plugin, in order. A taken name is skipped
+         * (`'skip'`, the default), replaced (`'overwrite'`) or stored as `name (n)` (`'rename'`);
+         * invalid entries and entries past the limits are listed under `rejected`. A text that is not
+         * a preset document throws `INVALID_OPTIONS`, one over 131072 characters `LIMIT_EXCEEDED`.
+         * @since 6.8.0
+         * @example
+         * files.batchRename.importPresets({
+         *     format: 'autojs6-batch-rename-presets',
+         *     version: 1,
+         *     presets: [{ name: 'Date prefix', options: { search: '^', regex: true, replace: '$YYYY$MM$DD_' } }],
+         * }).imported; // ['Date prefix']
+         */
+        importPresets(json: string | FilesBatchRename.PresetDocument, options?: FilesBatchRename.ImportPresetsOptions): FilesBatchRename.ImportPresetsResult;
+
         /** Whether an installed, enabled, authorized and compatible Batch Rename plugin answers; never throws for the plugin. @since 6.8.0 */
         isAvailable(): boolean;
 
         /** @since 6.8.0 */
         planAsync(paths: string | string[], options: FilesBatchRename.Options): Promise<FilesBatchRename.Plan>;
 
+        /** @since 6.8.0 */
+        previewAsync(item: string | FilesBatchRename.PreviewItem, options: FilesBatchRename.Options): Promise<FilesBatchRename.PreviewResult>;
+
+        /** @since 6.8.0 */
+        previewAsync(items: (string | FilesBatchRename.PreviewItem)[], options: FilesBatchRename.Options): Promise<FilesBatchRename.PreviewResult[]>;
+
         /** `onProgress` runs on the script thread. @since 6.8.0 */
         applyAsync(plan: FilesBatchRename.Plan, options?: FilesBatchRename.ApplyOptions): Promise<FilesBatchRename.Result>;
 
         /** @since 6.8.0 */
         undoAsync(target: FilesBatchRename.Result | string): Promise<FilesBatchRename.UndoResult>;
+
+        /** @since 6.8.0 */
+        presetsAsync(): Promise<FilesBatchRename.Preset[]>;
+
+        /** @since 6.8.0 */
+        importPresetsAsync(json: string | FilesBatchRename.PresetDocument, options?: FilesBatchRename.ImportPresetsOptions): Promise<FilesBatchRename.ImportPresetsResult>;
 
         /** The error class of `files.batchRename`; `e instanceof files.batchRename.BatchRenameError`. @since 6.8.0 */
         readonly BatchRenameError: FilesBatchRename.BatchRenameErrorConstructor;
@@ -854,19 +931,49 @@ declare namespace Internal {
 
         type ProgressCallback = (done: number, total: number, item: ResultItem) => void;
 
-        /** Options of `files.batchRename(paths, options)` and `plan`; null and undefined values take the default. */
-        interface Options {
+        type PinyinTone = 'none' | 'mark' | 'number';
+
+        type PinyinSeparator = 'none' | 'space' | 'underscore' | 'hyphen';
+
+        type PinyinCase = 'lower' | 'capitalize';
+
+        /**
+         * Options of `files.batchRename(paths, options)`, `plan` and `preview`; null and undefined
+         * values take the default. `search` is required unless `preset` names a preset that gives it.
+         */
+        type Options = SearchOptions | PresetOptions;
+
+        interface SearchOptions extends CommonOptions {
             /**
              * Plain text, or regular expression source with `regex`. A `RegExp` is always a regular
              * expression whose `g` / `i` flags replace `matchAll` / `caseSensitive` (`m`, `s`, `u`, `y`
              * apply as well). An empty string matches every item and replaces nothing.
              */
             search: string | RegExp;
+            /** A preset of the plugin: the defaults, then the preset, then the other options given here. An unknown name throws `INVALID_OPTIONS`. */
+            preset?: string;
+        }
+
+        interface PresetOptions extends CommonOptions {
+            /** Overrides the search of the preset. */
+            search?: string | RegExp;
+            /** A preset of the plugin: the defaults, then the preset, then the other options given here. An unknown name throws `INVALID_OPTIONS`. */
+            preset: string;
+        }
+
+        /** The options besides `search` and `preset`. */
+        interface CommonOptions {
             /**
              * Replacement with variables: counters `${start=X;increment=X;padding=X}` (with `enumerate`),
              * date and time `$YYYY` ... `$f` (unless `dateTime` is false), random values
-             * `${rstringalnum=N}`, `${rstringalpha=N}`, `${rstringdigit=N}`, `${ruuidv4}` (with `random`);
-             * `$$` is a literal `$`. Regular expressions also take `$1`, `$<name>` and `$&`. Default `''`.
+             * `${rstringalnum=N}`, `${rstringalpha=N}`, `${rstringdigit=N}`, `${ruuidv4}` (with `random`),
+             * `${pinyin}` (the pinyin of the original target part, always on) and the photo metadata
+             * variables `$CAMERA_MAKE`, `$CAMERA_MODEL`, `$LENS`, `$ISO`, `$APERTURE`, `$SHUTTER`,
+             * `$FOCAL`, `$FLASH`, `$WIDTH`, `$HEIGHT`, `$AUTHOR`, `$COPYRIGHT`, `$LATITUDE`, `$LONGITUDE`,
+             * `$ALTITUDE`, `$DATE_TAKEN_YYYY`, `$DATE_TAKEN_YY`, `$DATE_TAKEN_MM`, `$DATE_TAKEN_DD`,
+             * `$DATE_TAKEN_HH`, `$DATE_TAKEN_mm`, `$DATE_TAKEN_SS`, `$EXPOSURE_BIAS`, `$ORIENTATION`,
+             * `$COLOR_SPACE` (with `metadata`); `$$` is a literal `$`. Regular expressions also take `$1`,
+             * `$<name>` and `$&`. Default `''`.
              */
             replace?: string;
             /** Default false. */
@@ -907,6 +1014,22 @@ declare namespace Internal {
             onConflict?: ConflictPolicy;
             /** Suffix of the `'number'` policy, must contain `{n}`; default `' ({n})'`. */
             conflictNumberPattern?: string;
+            /** Convert the Chinese characters of the new name to pinyin after the replacement, before `format`; default false. */
+            pinyin?: boolean;
+            /** Tones of `pinyin` and `${pinyin}`: none (`zhang`), marks (`zhāng`) or numbers (`zhang1`); default `'none'`. */
+            pinyinTone?: PinyinTone;
+            /** Separator between adjacent syllables; default `'none'`. */
+            pinyinSeparator?: PinyinSeparator;
+            /** `'lower'` (`zhangsan`) or `'capitalize'` (`ZhangSan`); default `'lower'`. */
+            pinyinCase?: PinyinCase;
+            /** Keep only the first letter of every syllable; default false. */
+            pinyinInitials?: boolean;
+            /**
+             * Expand the photo metadata variables from the EXIF (and XMP) of image files; missing values
+             * expand to nothing and mark `metadataMissing`, `$DATE_TAKEN_*` fall back to the modification
+             * time. Default false; `preview` rejects it.
+             */
+            metadata?: boolean;
             /** Progress of the one-step call; `plan` ignores it. */
             onProgress?: ProgressCallback;
         }
@@ -943,6 +1066,58 @@ declare namespace Internal {
             continueNumbering: boolean;
             onConflict: ConflictPolicy;
             conflictNumberPattern: string;
+            pinyin: boolean;
+            pinyinTone: PinyinTone;
+            pinyinSeparator: PinyinSeparator;
+            pinyinCase: PinyinCase;
+            pinyinInitials: boolean;
+            metadata: boolean;
+        }
+
+        interface PreviewItem {
+            /** One file name of 1 to 1024 characters. */
+            name: string;
+            /** Default false. */
+            isDirectory?: boolean;
+            /** Epoch milliseconds or a `Date`; the time of the call when missing. */
+            lastModified?: number | Date;
+        }
+
+        interface PreviewResult {
+            readonly newName: string;
+            readonly status: PlanStatus;
+            readonly reason: PlanReason | null;
+        }
+
+        interface ClearHistoryOptions {
+            /** Every source when missing. */
+            source?: 'script' | 'explorer';
+        }
+
+        interface Preset {
+            readonly name: string;
+            /** The complete options of the preset. */
+            readonly options: NormalizedOptions;
+        }
+
+        /** The format of the files the plugin exports; missing options take their defaults. */
+        interface PresetDocument {
+            format: 'autojs6-batch-rename-presets';
+            version: 1;
+            presets: { name: string; options: Partial<NormalizedOptions> }[];
+        }
+
+        interface ImportPresetsOptions {
+            /** Default `'skip'`. */
+            onConflict?: 'skip' | 'overwrite' | 'rename';
+        }
+
+        interface ImportPresetsResult {
+            /** The names stored, `'rename'` names included. */
+            readonly imported: string[];
+            readonly skipped: string[];
+            /** `index` is the position in `presets`; `reason` is in English. */
+            readonly rejected: { readonly index: number; readonly name: string | null; readonly reason: string }[];
         }
 
         type PlanStatus = 'rename' | 'unchanged' | 'conflict' | 'invalid' | 'excluded';
@@ -965,6 +1140,7 @@ declare namespace Internal {
 
         interface Plan {
             readonly id: string;
+            /** With `preset`, the options the plugin merged (defaults, preset, given options); `apply` keeps using them. */
             readonly options: NormalizedOptions;
             /** In enumeration order: named paths first in their order, each folder depth first, sorted by name. */
             readonly items: PlanItem[];
@@ -988,6 +1164,8 @@ declare namespace Internal {
             excluded: boolean;
             /** The `'overwrite'` policy replaces an existing entry of that name. */
             readonly overwrites: boolean;
+            /** A photo metadata variable of the new name had no value; false without `metadata`. */
+            readonly metadataMissing: boolean;
         }
 
         type ResultStatus = 'renamed' | 'skipped' | 'failed' | 'stale' | 'excluded';

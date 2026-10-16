@@ -18,6 +18,19 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.42.0": {
+      "released_date": "2026/10/16",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "preview, presets, importPresets and their asynchronous forms, deleteHistory and clearHistory of files.batchRename, the pinyin, photo metadata and preset options and metadataMissing of plan items, covering name previews, named presets, metadata variables, Chinese to pinyin and history cleanup of the Batch Rename plugin"
+        },
+        {
+          "category": "hint",
+          "text": "Requires matching host 6.8.0 and the Batch Rename plugin 1.1.0"
+        }
+      ]
+    },
     "v4.41.0": {
       "released_date": "2026/10/16",
       "entries": [

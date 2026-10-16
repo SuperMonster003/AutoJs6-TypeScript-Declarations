@@ -18,6 +18,19 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.42.0": {
+      "released_date": "2026/10/16",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "preview و presets و importPresets وصيغها غير المتزامنة و deleteHistory و clearHistory في files.batchRename, وخيارات البينيين وبيانات الصور الوصفية والإعدادات المسبقة و metadataMissing لعناصر الخطة, لحساب الأسماء تجريبيا والإعدادات المسبقة المسماة ومتغيرات البيانات الوصفية والتحويل إلى البينيين ومسح السجل في ملحق Batch Rename"
+        },
+        {
+          "category": "hint",
+          "text": "يتطلب المضيف 6.8.0 وملحق Batch Rename 1.1.0"
+        }
+      ]
+    },
     "v4.41.0": {
       "released_date": "2026/10/16",
       "entries": [

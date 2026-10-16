@@ -13,6 +13,13 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.42.0
+
+###### 2026/10/16
+
+* `Функция` preview, presets, importPresets и их асинхронные формы, deleteHistory и clearHistory в files.batchRename, параметры пиньиня, метаданных фотографий и пресетов и metadataMissing элементов плана: пробный расчет имен, именованные пресеты, переменные метаданных, пиньинь для китайских иероглифов и очистка истории в плагине Batch Rename
+* `Примечание` Требуется хост 6.8.0 и плагин Batch Rename 1.1.0
+
 # v4.41.0
 
 ###### 2026/10/16

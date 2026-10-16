@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.42.0
+
+###### 2026/10/16
+
+* `機能` files.batchRename の preview, presets, importPresets とその非同期版, deleteHistory と clearHistory, ピンイン / 写真メタデータ / プリセットのオプションとプラン項目の metadataMissing. Batch Rename プラグインの名前の試算, 名前付きプリセット, メタデータ変数, 漢字のピンイン変換と履歴の消去に対応
+* `ヒント` 対応するホスト 6.8.0 と Batch Rename プラグイン 1.1.0 が必要
+
 ### v4.41.0
 
 ###### 2026/10/16
@@ -185,13 +192,6 @@ npm update @sm003/autojs6-dts
 
 * `機能` files.batchRename とそのオプション, プラン, 結果, 元に戻す操作, 履歴の型と BatchRenameError. Batch Rename プラグインのプランのプレビュー, 項目ごとの除外, 実行, 元に戻す操作とバッチ履歴に対応
 * `ヒント` 対応するホスト 6.8.0 / 5438 と Batch Rename プラグイン 1.0.0 が必要
-
-### v4.39.0
-
-###### 2026/10/15
-
-* `機能` gallery モジュールと GalleryViewSession, GalleryError, オプション/結果の型. 3-Maple Image プラグインの画像選択, ビューアセッション, 編集, UI なしの変換に対応
-* `ヒント` 対応するホスト 6.8.0 / 5439 と 3-Maple Image プラグイン 3.4.0 が必要
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

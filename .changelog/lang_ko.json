@@ -18,6 +18,19 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.42.0": {
+      "released_date": "2026/10/16",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "files.batchRename 의 preview, presets, importPresets 와 비동기 형태, deleteHistory 와 clearHistory, 병음 / 사진 메타데이터 / 프리셋 옵션과 계획 항목의 metadataMissing. Batch Rename 플러그인의 이름 미리 계산, 이름 있는 프리셋, 메타데이터 변수, 한자 병음 변환과 기록 삭제를 지원"
+        },
+        {
+          "category": "hint",
+          "text": "대응하는 호스트 6.8.0 및 Batch Rename 플러그인 1.1.0 필요"
+        }
+      ]
+    },
     "v4.41.0": {
       "released_date": "2026/10/16",
       "entries": [

@@ -148,6 +148,22 @@ const isBatchRenameError: boolean = new files.batchRename.BatchRenameError('x', 
 files.batchRename.plan('a.txt', { search: 'a', onConflict: 'replace' });
 // @ts-expect-error A search is required.
 files.batchRename.plan('a.txt', { replace: 'b' });
+// Batch Rename 1.1.0: presets, preview, pinyin, photo metadata and history cleanup.
+const presetPlan = files.batchRename.plan('a.txt', { preset: 'Date prefix', dateTime: false });
+const metadataMissing: boolean = files.batchRename.plan('photos', { search: /^.+$/, replace: '$DATE_TAKEN_YYYY_$CAMERA_MODEL', metadata: true }).items[0].metadataMissing;
+const previewName: string = files.batchRename.preview('IMG_1.JPG', { search: 'IMG_', replace: 'Photo_', format: 'lower' }).newName;
+const previewNames: string[] = files.batchRename.preview(['a.txt', { name: 'Album', isDirectory: true, lastModified: new Date() }], { search: '', pinyin: true, pinyinTone: 'mark', pinyinSeparator: 'hyphen', pinyinCase: 'capitalize', pinyinInitials: false }).map(it => it.newName);
+const previewAsyncReason: Promise<string | null> = files.batchRename.previewAsync('a.txt', { search: 'a' }).then(it => it.reason);
+const presetNames: string[] = files.batchRename.presets().map(preset => preset.name + preset.options.replace);
+const importedPresets: string[] = files.batchRename.importPresets({ format: 'autojs6-batch-rename-presets', version: 1, presets: [{ name: 'p', options: { search: '^', regex: true } }] }, { onConflict: 'rename' }).imported;
+const rejectedPresetIndex: Promise<number> = files.batchRename.importPresetsAsync('{}').then(result => result.rejected[0].index);
+const presetsLater: Promise<number> = files.batchRename.presetsAsync().then(presets => presets.length);
+const historyDeleted: boolean = files.batchRename.deleteHistory(files.batchRename.history()[0]);
+const historyCleared: number = files.batchRename.clearHistory({ source: 'explorer' }) + files.batchRename.clearHistory();
+// @ts-expect-error Unknown preset conflict policies are rejected.
+files.batchRename.importPresets('{}', { onConflict: 'merge' });
+// @ts-expect-error Unknown history sources are rejected.
+files.batchRename.clearHistory({ source: 'plugin' });
 // plugins.tools: the tools AutoJs6 plugins describe themselves.
 const pluginToolNames: string[] = plugins.tools.list().filter(tool => tool.risk === 'readonly').map(tool => tool.name);
 const pluginToolProvider: string | undefined = plugins.tools.providers().find(provider => provider.status !== 'available')?.detail;

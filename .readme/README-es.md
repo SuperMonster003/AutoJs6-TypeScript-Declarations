@@ -172,6 +172,13 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.42.0
+
+###### 2026/10/16
+
+* `Función` preview, presets, importPresets y sus formas asíncronas, deleteHistory y clearHistory de files.batchRename, las opciones de pinyin, metadatos de fotos y ajustes predefinidos y metadataMissing de los elementos del plan, para el cálculo de nombres, los ajustes predefinidos con nombre, las variables de metadatos, la conversión a pinyin y la limpieza del historial del plugin Batch Rename
+* `Nota` Requiere el host 6.8.0 y el plugin Batch Rename 1.1.0
+
 ### v4.41.0
 
 ###### 2026/10/16
@@ -185,13 +192,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 * `Función` files.batchRename con los tipos de opciones, plan, resultado, deshacer e historial y BatchRenameError, para la vista previa del plan, la exclusión por elemento, la aplicación, deshacer y el historial de lotes del plugin Batch Rename
 * `Nota` Requiere el host 6.8.0 / 5438 y el plugin Batch Rename 1.0.0
-
-### v4.39.0
-
-###### 2026/10/15
-
-* `Función` Módulo gallery con GalleryViewSession, GalleryError y los tipos de opciones y resultados, para el selector, las sesiones del visor, la edición y la conversión sin interfaz del plugin 3-Maple Image
-* `Nota` Requiere el host 6.8.0 / 5439 y el plugin 3-Maple Image 3.4.0
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

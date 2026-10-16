@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.42.0
+
+###### 2026/10/16
+
+* `기능` files.batchRename 의 preview, presets, importPresets 와 비동기 형태, deleteHistory 와 clearHistory, 병음 / 사진 메타데이터 / 프리셋 옵션과 계획 항목의 metadataMissing. Batch Rename 플러그인의 이름 미리 계산, 이름 있는 프리셋, 메타데이터 변수, 한자 병음 변환과 기록 삭제를 지원
+* `안내` 대응하는 호스트 6.8.0 및 Batch Rename 플러그인 1.1.0 필요
+
 # v4.41.0
 
 ###### 2026/10/16

@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.42.0
+
+###### 2026/10/16
+
+* `기능` files.batchRename 의 preview, presets, importPresets 와 비동기 형태, deleteHistory 와 clearHistory, 병음 / 사진 메타데이터 / 프리셋 옵션과 계획 항목의 metadataMissing. Batch Rename 플러그인의 이름 미리 계산, 이름 있는 프리셋, 메타데이터 변수, 한자 병음 변환과 기록 삭제를 지원
+* `안내` 대응하는 호스트 6.8.0 및 Batch Rename 플러그인 1.1.0 필요
+
 ### v4.41.0
 
 ###### 2026/10/16
@@ -185,13 +192,6 @@ npm update @sm003/autojs6-dts
 
 * `기능` files.batchRename 과 옵션, 계획, 결과, 실행 취소, 기록 형식 및 BatchRenameError. Batch Rename 플러그인의 계획 미리 보기, 항목별 제외, 실행, 실행 취소와 배치 기록을 지원
 * `안내` 대응하는 호스트 6.8.0 / 5438 및 Batch Rename 플러그인 1.0.0 필요
-
-### v4.39.0
-
-###### 2026/10/15
-
-* `기능` gallery 모듈과 GalleryViewSession, GalleryError 및 옵션/결과 형식. 3-Maple Image 플러그인의 이미지 선택, 뷰어 세션, 편집, UI 없는 변환을 지원
-* `안내` 대응하는 호스트 6.8.0 / 5439 및 3-Maple Image 플러그인 3.4.0 필요
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

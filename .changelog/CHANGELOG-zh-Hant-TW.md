@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.42.0
+
+###### 2026/10/16
+
+* `新增` files.batchRename 的 preview, presets, importPresets 及其非同步形式, deleteHistory 與 clearHistory, 拼音 / 相片中繼資料 / 命名預設選項及方案條目的 metadataMissing, 對應 Batch Rename 外掛的單名試算, 命名預設, 中繼資料變數, 漢字轉拼音與歷史清理
+* `提示` 需要配套宿主 6.8.0 與 Batch Rename 外掛 1.1.0
+
 # v4.41.0
 
 ###### 2026/10/16

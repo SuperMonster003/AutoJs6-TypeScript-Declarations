@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.42.0
+
+###### 2026/10/16
+
+* `ميزة` preview و presets و importPresets وصيغها غير المتزامنة و deleteHistory و clearHistory في files.batchRename, وخيارات البينيين وبيانات الصور الوصفية والإعدادات المسبقة و metadataMissing لعناصر الخطة, لحساب الأسماء تجريبيا والإعدادات المسبقة المسماة ومتغيرات البيانات الوصفية والتحويل إلى البينيين ومسح السجل في ملحق Batch Rename
+* `ملاحظة` يتطلب المضيف 6.8.0 وملحق Batch Rename 1.1.0
+
 # v4.41.0
 
 ###### 2026/10/16

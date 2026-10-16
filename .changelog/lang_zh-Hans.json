@@ -18,6 +18,19 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.42.0": {
+      "released_date": "2026/10/16",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "files.batchRename 的 preview, presets, importPresets 及其异步形态, deleteHistory 与 clearHistory, 拼音 / 照片元数据 / 命名预设选项及方案条目的 metadataMissing, 对应 Batch Rename 插件的单名试算, 命名预设, 元数据变量, 汉字转拼音与历史清理"
+        },
+        {
+          "category": "hint",
+          "text": "需要配套宿主 6.8.0 与 Batch Rename 插件 1.1.0"
+        }
+      ]
+    },
     "v4.41.0": {
       "released_date": "2026/10/16",
       "entries": [

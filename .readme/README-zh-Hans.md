@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.42.0
+
+###### 2026/10/16
+
+* `新增` files.batchRename 的 preview, presets, importPresets 及其异步形态, deleteHistory 与 clearHistory, 拼音 / 照片元数据 / 命名预设选项及方案条目的 metadataMissing, 对应 Batch Rename 插件的单名试算, 命名预设, 元数据变量, 汉字转拼音与历史清理
+* `提示` 需要配套宿主 6.8.0 与 Batch Rename 插件 1.1.0
+
 ### v4.41.0
 
 ###### 2026/10/16
@@ -185,13 +192,6 @@ npm update @sm003/autojs6-dts
 
 * `新增` files.batchRename 及其选项, 方案, 结果, 撤销与历史类型和 BatchRenameError, 对应 Batch Rename 插件的方案预览, 逐项排除, 执行, 撤销与历史批次
 * `提示` 需要配套宿主 6.8.0 / 5438 与 Batch Rename 插件 1.0.0
-
-### v4.39.0
-
-###### 2026/10/15
-
-* `新增` gallery 模块与 GalleryViewSession, GalleryError 及选项/结果类型, 对应 3-Maple Image 插件的选图, 查看器会话, 编辑与无界面转换
-* `提示` 需要配套宿主 6.8.0 / 5439 与 3-Maple Image 插件 3.4.0
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 
