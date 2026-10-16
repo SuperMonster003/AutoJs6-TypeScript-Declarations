@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.41.0
+
+###### 2026/10/16
+
+* `新增` plugins.tools 及其工具, 提供者, 呼叫選項與結果型別, 對應 AutoJs6 外掛自我描述的工具: 列出, 同步與非同步呼叫, 圖片 / 檔案參數與輸出檔案
+* `提示` 需要配套宿主 6.8.0 及提供工具的外掛
+
 # v4.40.0
 
 ###### 2026/10/15

@@ -18,6 +18,19 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.41.0": {
+      "released_date": "2026/10/16",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "plugins.tools とそのツール, プロバイダー, 呼び出しオプション, 結果の型. AutoJs6 プラグインが自ら記述するツールの一覧, 同期と非同期の呼び出し, 画像 / ファイル引数と出力ファイルに対応"
+        },
+        {
+          "category": "hint",
+          "text": "対応するホスト 6.8.0 とツールを提供するプラグインが必要"
+        }
+      ]
+    },
     "v4.40.0": {
       "released_date": "2026/10/15",
       "entries": [

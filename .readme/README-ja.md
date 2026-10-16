@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.41.0
+
+###### 2026/10/16
+
+* `機能` plugins.tools とそのツール, プロバイダー, 呼び出しオプション, 結果の型. AutoJs6 プラグインが自ら記述するツールの一覧, 同期と非同期の呼び出し, 画像 / ファイル引数と出力ファイルに対応
+* `ヒント` 対応するホスト 6.8.0 とツールを提供するプラグインが必要
+
 ### v4.40.0
 
 ###### 2026/10/15
@@ -185,14 +192,6 @@ npm update @sm003/autojs6-dts
 
 * `機能` gallery モジュールと GalleryViewSession, GalleryError, オプション/結果の型. 3-Maple Image プラグインの画像選択, ビューアセッション, 編集, UI なしの変換に対応
 * `ヒント` 対応するホスト 6.8.0 / 5439 と 3-Maple Image プラグイン 3.4.0 が必要
-
-### v4.38.0
-
-###### 2026/10/15
-
-* `機能` Array/Number/Math の実行時拡張用に任意の JSOX 宣言入口を用意, プロトタイプメソッド, Number.ICU, radix 付き parseFloat を含み, 標準入口では組み込み型を維持
-* `修正` Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color の別名と RootAutomator の同期および終了メソッドを補完し, 色変換, console, flow.of, 座標モードのオーバーロードを整合
-* `修正` pinyin 列挙, pool と Disposable, センサーイベント, Floaty レイアウト, SQLite 行の型参照を修正して any への劣化を防止; axios/dayjs/cheerio の一般的なスクリプト API に明示的な型を提供
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

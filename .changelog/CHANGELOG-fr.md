@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.41.0
+
+###### 2026/10/16
+
+* `Fonctionnalité` plugins.tools avec ses types d'outil, de fournisseur, d'options d'appel et de résultat, pour les outils que les plugins AutoJs6 décrivent eux-mêmes: liste, appels synchrones et asynchrones, arguments image / fichier et fichiers de sortie
+* `Note` Nécessite l'hôte 6.8.0 correspondant et un plugin qui fournit des outils
+
 # v4.40.0
 
 ###### 2026/10/15

@@ -172,6 +172,13 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.41.0
+
+###### 2026/10/16
+
+* `Función` plugins.tools con sus tipos de herramienta, proveedor, opciones de llamada y resultado, para las herramientas que describen los propios plugins de AutoJs6: lista, llamadas síncronas y asíncronas, argumentos de imagen / archivo y archivos de salida
+* `Nota` Requiere el anfitrión 6.8.0 correspondiente y un plugin que proporcione herramientas
+
 ### v4.40.0
 
 ###### 2026/10/15
@@ -185,14 +192,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 * `Función` Módulo gallery con GalleryViewSession, GalleryError y los tipos de opciones y resultados, para el selector, las sesiones del visor, la edición y la conversión sin interfaz del plugin 3-Maple Image
 * `Nota` Requiere el host 6.8.0 / 5439 y el plugin 3-Maple Image 3.4.0
-
-### v4.38.0
-
-###### 2026/10/15
-
-* `Función` Entradas JSOX opcionales para extensiones Array/Number/Math, con metodos de prototipo, Number.ICU y parseFloat con radix; la entrada predeterminada conserva los tipos estandar
-* `Corrección` Cobertura de Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, alias Color y sincronizacion y salida de RootAutomator; ajuste de conversiones, console, flow.of y modos de coordenadas
-* `Corrección` Referencias corregidas de enumeraciones pinyin, pool y Disposable, eventos de sensores, disenos Floaty y filas SQLite para evitar any; tipos explicitos de API comunes de axios/dayjs/cheerio
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

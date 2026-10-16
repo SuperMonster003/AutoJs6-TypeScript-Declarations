@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.41.0
+
+###### 2026/10/16
+
+* `기능` plugins.tools 와 도구, 제공자, 호출 옵션, 결과 타입. AutoJs6 플러그인이 스스로 설명하는 도구의 목록, 동기 및 비동기 호출, 이미지 / 파일 인수와 출력 파일에 대응
+* `안내` 대응하는 호스트 6.8.0 과 도구를 제공하는 플러그인 필요
+
 # v4.40.0
 
 ###### 2026/10/15

@@ -18,6 +18,19 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.41.0": {
+      "released_date": "2026/10/16",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "plugins.tools avec ses types d'outil, de fournisseur, d'options d'appel et de résultat, pour les outils que les plugins AutoJs6 décrivent eux-mêmes: liste, appels synchrones et asynchrones, arguments image / fichier et fichiers de sortie"
+        },
+        {
+          "category": "hint",
+          "text": "Nécessite l'hôte 6.8.0 correspondant et un plugin qui fournit des outils"
+        }
+      ]
+    },
     "v4.40.0": {
       "released_date": "2026/10/15",
       "entries": [

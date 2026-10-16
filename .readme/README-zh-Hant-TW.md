@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.41.0
+
+###### 2026/10/16
+
+* `新增` plugins.tools 及其工具, 提供者, 呼叫選項與結果型別, 對應 AutoJs6 外掛自我描述的工具: 列出, 同步與非同步呼叫, 圖片 / 檔案參數與輸出檔案
+* `提示` 需要配套宿主 6.8.0 及提供工具的外掛
+
 ### v4.40.0
 
 ###### 2026/10/15
@@ -185,14 +192,6 @@ npm update @sm003/autojs6-dts
 
 * `新增` gallery 模組與 GalleryViewSession, GalleryError 及選項/結果型別, 對應 3-Maple Image 外掛的選圖, 檢視器工作階段, 編輯與無介面轉換
 * `提示` 需要配套宿主 6.8.0 / 5439 與 3-Maple Image 外掛 3.4.0
-
-### v4.38.0
-
-###### 2026/10/15
-
-* `新增` JSOX 按需擴充宣告入口, 對應 Array/Number/Math 的執行階段擴充, 包含原型方法, Number.ICU 及帶 radix 的 parseFloat, 預設入口保持標準內建物件型別
-* `修復` 補齊 Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color 短別名及 RootAutomator 同步和退出方法, 對齊色彩轉換, 主控台, flow.of 與座標模式多載
-* `修復` pinyin 列舉, 執行緒集區和 Disposable, 感測器事件, Floaty 版面及 SQLite 資料列物件的型別參照, 避免無效型別退化為 any; axios/dayjs/cheerio 常用指令碼 API 提供明確型別
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-TW.md)
 

@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.41.0
+
+###### 2026/10/16
+
+* `ميزة` plugins.tools مع أنواع الأداة والموفر وخيارات الاستدعاء والنتيجة, للأدوات التي تصفها إضافات AutoJs6 بنفسها: السرد, والاستدعاء المتزامن وغير المتزامن, ووسائط الصور / الملفات وملفات الإخراج
+* `ملاحظة` يتطلب المضيف 6.8.0 المطابق وإضافة توفر أدوات
+
 ### v4.40.0
 
 ###### 2026/10/15
@@ -185,14 +192,6 @@ npm update @sm003/autojs6-dts
 
 * `ميزة` وحدة gallery مع GalleryViewSession و GalleryError وأنواع الخيارات والنتائج, لمحدد الصور وجلسات العارض والتحرير والتحويل دون واجهة في ملحق 3-Maple Image
 * `ملاحظة` يتطلب المضيف 6.8.0 / 5439 وملحق 3-Maple Image 3.4.0
-
-### v4.38.0
-
-###### 2026/10/15
-
-* `ميزة` مداخل JSOX اختيارية لامتدادات Array/Number/Math تتضمن طرق النموذج و Number.ICU و parseFloat مع radix, مع الحفاظ على الأنواع القياسية في المدخل الافتراضي
-* `إصلاح` استكمال Arrayx/Numberx/Mathx/util/engines و randomInt/randomFloat/verbose وأسماء Color وطرق مزامنة وإغلاق RootAutomator, ومواءمة تحويل الألوان و console و flow.of وأنماط الإحداثيات
-* `إصلاح` تصحيح مراجع أنواع pinyin و pool و Disposable وأحداث المستشعر وواجهات Floaty وصفوف SQLite لمنع التحول إلى any, مع أنواع واضحة لواجهات axios/dayjs/cheerio الشائعة
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

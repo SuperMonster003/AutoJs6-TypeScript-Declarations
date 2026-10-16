@@ -172,6 +172,13 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.41.0
+
+###### 2026/10/16
+
+* `Feature` plugins.tools with its tool, provider, call option and result types, covering the tools AutoJs6 plugins describe themselves: listing, synchronous and asynchronous calls, image / file arguments and output files
+* `Hint` Requires matching host 6.8.0 and a plugin that provides tools
+
 ### v4.40.0
 
 ###### 2026/10/15
@@ -185,14 +192,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 * `Feature` The gallery module with GalleryViewSession, GalleryError and the option and result types, covering the picker, viewer sessions, editing and headless conversion of the 3-Maple Image plugin
 * `Hint` Requires matching host 6.8.0 / 5439 and the 3-Maple Image plugin 3.4.0
-
-### v4.38.0
-
-###### 2026/10/15
-
-* `Feature` Optional JSOX declaration entries for runtime Array/Number/Math extensions, including prototype methods, Number.ICU and radix-aware parseFloat, while the default entry preserves standard built-in types
-* `Fix` Complete Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color aliases and RootAutomator synchronization and exit methods; align color conversion, console, flow.of and coordinate-mode overloads
-* `Fix` Correct pinyin enums, pool and Disposable, sensor events, Floaty layouts and SQLite row references to prevent unresolved types becoming any; provide explicit common script APIs for axios/dayjs/cheerio
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

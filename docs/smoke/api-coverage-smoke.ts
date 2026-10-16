@@ -148,3 +148,13 @@ const isBatchRenameError: boolean = new files.batchRename.BatchRenameError('x', 
 files.batchRename.plan('a.txt', { search: 'a', onConflict: 'replace' });
 // @ts-expect-error A search is required.
 files.batchRename.plan('a.txt', { replace: 'b' });
+// plugins.tools: the tools AutoJs6 plugins describe themselves.
+const pluginToolNames: string[] = plugins.tools.list().filter(tool => tool.risk === 'readonly').map(tool => tool.name);
+const pluginToolProvider: string | undefined = plugins.tools.providers().find(provider => provider.status !== 'available')?.detail;
+const pluginToolText: string = plugins.tools.call('opencc_convert', { text: 'abc' }).result.text;
+const pluginToolOutput: number = plugins.tools.call('imagequant_quantize', { image: 'screen' }, { outputs: { image: 'out/a.png' }, overwrite: true }).outputs[0].bytes;
+const pluginToolAsync: Promise<number> = plugins.tools.callAsync('faketool_echo').then(answer => answer.durationMs);
+// @ts-expect-error The tool name is required.
+plugins.tools.call();
+// @ts-expect-error Unknown options are rejected.
+plugins.tools.call('opencc_convert', {}, { output: 'a.png' });

@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.41.0
+
+###### 2026/10/16
+
+* `기능` plugins.tools 와 도구, 제공자, 호출 옵션, 결과 타입. AutoJs6 플러그인이 스스로 설명하는 도구의 목록, 동기 및 비동기 호출, 이미지 / 파일 인수와 출력 파일에 대응
+* `안내` 대응하는 호스트 6.8.0 과 도구를 제공하는 플러그인 필요
+
 ### v4.40.0
 
 ###### 2026/10/15
@@ -185,14 +192,6 @@ npm update @sm003/autojs6-dts
 
 * `기능` gallery 모듈과 GalleryViewSession, GalleryError 및 옵션/결과 형식. 3-Maple Image 플러그인의 이미지 선택, 뷰어 세션, 편집, UI 없는 변환을 지원
 * `안내` 대응하는 호스트 6.8.0 / 5439 및 3-Maple Image 플러그인 3.4.0 필요
-
-### v4.38.0
-
-###### 2026/10/15
-
-* `기능` Array/Number/Math 런타임 확장을 위한 선택적 JSOX 선언 진입점, 프로토타입 메서드, Number.ICU 및 radix parseFloat 포함, 기본 진입점은 표준 내장 타입 유지
-* `수정` Arrayx/Numberx/Mathx/util/engines, randomInt/randomFloat/verbose, Color 별칭과 RootAutomator 동기화 및 종료 메서드 보완; 색상 변환, console, flow.of 및 좌표 모드 오버로드 정렬
-* `수정` pinyin 열거형, pool 및 Disposable, 센서 이벤트, Floaty 레이아웃, SQLite 행 타입 참조를 수정하여 any 변환 방지; axios/dayjs/cheerio의 일반 스크립트 API에 명시적 타입 제공
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 
