@@ -67,6 +67,8 @@ declare namespace Internal {
             outputs: ToolOutput[];
             imageParameters: string[];
             fileParameters: string[];
+            /** Parameters that take a directory path; AutoJs6 hands the plugin the files of that directory. */
+            directoryParameters: string[];
         }
 
         interface ToolProviderInfo {
@@ -103,7 +105,8 @@ declare namespace Internal {
         }
 
         /**
-         * Image arguments take "screen", a path or an ImageWrapper; file arguments take a path.
+         * Image arguments take "screen", a path or an ImageWrapper; file arguments take a path; directory arguments
+         * take a directory path, for example a model directory.
          */
         type ToolArguments = { [name: string]: any };
 

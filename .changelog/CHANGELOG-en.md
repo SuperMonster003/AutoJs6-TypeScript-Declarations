@@ -17,7 +17,7 @@
 
 ###### 2026/10/16
 
-* `Feature` plugins.tools with its tool, provider, call option and result types, covering the tools AutoJs6 plugins describe themselves: listing, synchronous and asynchronous calls, image / file arguments and output files
+* `Feature` plugins.tools with its tool, provider, call option and result types, covering the tools AutoJs6 plugins describe themselves: listing, synchronous and asynchronous calls, image / file / directory arguments and output files
 * `Hint` Requires matching host 6.8.0 and a plugin that provides tools
 
 # v4.40.0

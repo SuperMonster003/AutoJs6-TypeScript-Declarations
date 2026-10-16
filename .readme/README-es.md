@@ -176,7 +176,7 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ###### 2026/10/16
 
-* `Función` plugins.tools con sus tipos de herramienta, proveedor, opciones de llamada y resultado, para las herramientas que describen los propios plugins de AutoJs6: lista, llamadas síncronas y asíncronas, argumentos de imagen / archivo y archivos de salida
+* `Función` plugins.tools con sus tipos de herramienta, proveedor, opciones de llamada y resultado, para las herramientas que describen los propios plugins de AutoJs6: lista, llamadas síncronas y asíncronas, argumentos de imagen / archivo / directorio y archivos de salida
 * `Nota` Requiere el anfitrión 6.8.0 correspondiente y un plugin que proporcione herramientas
 
 ### v4.40.0

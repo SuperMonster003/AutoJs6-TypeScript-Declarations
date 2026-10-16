@@ -23,7 +23,7 @@
       "entries": [
         {
           "category": "feature",
-          "text": "plugins.tools 及其工具, 提供者, 呼叫選項與結果型別, 對應 AutoJs6 外掛自我描述的工具: 列出, 同步與非同步呼叫, 圖片 / 檔案參數與輸出檔案"
+          "text": "plugins.tools 及其工具, 提供者, 呼叫選項與結果型別, 對應 AutoJs6 外掛自我描述的工具: 列出, 同步與非同步呼叫, 圖片 / 檔案 / 目錄參數與輸出檔案"
         },
         {
           "category": "hint",

@@ -23,7 +23,7 @@
       "entries": [
         {
           "category": "feature",
-          "text": "plugins.tools 及其工具, 提供者, 調用選項與結果類型, 對應 AutoJs6 插件自我描述的工具: 列出, 同步與異步調用, 圖片 / 文件參數與輸出文件"
+          "text": "plugins.tools 及其工具, 提供者, 調用選項與結果類型, 對應 AutoJs6 插件自我描述的工具: 列出, 同步與異步調用, 圖片 / 文件 / 目錄參數與輸出文件"
         },
         {
           "category": "hint",

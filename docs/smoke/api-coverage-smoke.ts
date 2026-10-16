@@ -152,6 +152,8 @@ files.batchRename.plan('a.txt', { replace: 'b' });
 const pluginToolNames: string[] = plugins.tools.list().filter(tool => tool.risk === 'readonly').map(tool => tool.name);
 const pluginToolProvider: string | undefined = plugins.tools.providers().find(provider => provider.status !== 'available')?.detail;
 const pluginToolText: string = plugins.tools.call('opencc_convert', { text: 'abc' }).result.text;
+const pluginToolDirectories: string[] = plugins.tools.list()[0].directoryParameters;
+const pluginToolCount: number = plugins.tools.call('yolo_detect', { image: 'screen', model: 'models/yolo11n' }).result.count;
 const pluginToolOutput: number = plugins.tools.call('imagequant_quantize', { image: 'screen' }, { outputs: { image: 'out/a.png' }, overwrite: true }).outputs[0].bytes;
 const pluginToolAsync: Promise<number> = plugins.tools.callAsync('faketool_echo').then(answer => answer.durationMs);
 // @ts-expect-error The tool name is required.

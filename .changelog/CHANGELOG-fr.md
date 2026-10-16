@@ -17,7 +17,7 @@
 
 ###### 2026/10/16
 
-* `Fonctionnalité` plugins.tools avec ses types d'outil, de fournisseur, d'options d'appel et de résultat, pour les outils que les plugins AutoJs6 décrivent eux-mêmes: liste, appels synchrones et asynchrones, arguments image / fichier et fichiers de sortie
+* `Fonctionnalité` plugins.tools avec ses types d'outil, de fournisseur, d'options d'appel et de résultat, pour les outils que les plugins AutoJs6 décrivent eux-mêmes: liste, appels synchrones et asynchrones, arguments image / fichier / répertoire et fichiers de sortie
 * `Note` Nécessite l'hôte 6.8.0 correspondant et un plugin qui fournit des outils
 
 # v4.40.0
