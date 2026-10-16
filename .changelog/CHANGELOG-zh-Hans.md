@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.43.0
+
+###### 2026/10/16
+
+* `新增` plugins.tools 的目录输出: ToolOutput.kind 区分文件与目录, 调用选项 outputs 可为目录输出指定文件夹 (可以已存在, 已有文件默认保留), 调用结果的 outputs 项增加 kind, files, conflicts 与 conflictCount
+* `提示` 需要配套宿主 6.8.0 及提供目录输出工具的插件 (如 3-Stack Archive 3.1.0)
+
 # v4.42.0
 
 ###### 2026/10/16

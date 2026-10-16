@@ -18,6 +18,19 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.43.0": {
+      "released_date": "2026/10/16",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Directory outputs of plugins.tools: ToolOutput.kind tells files from directories, the call option outputs names a folder for a directory output (it may exist; files already there are kept by default), and entries of the call result's outputs gain kind, files, conflicts and conflictCount"
+        },
+        {
+          "category": "hint",
+          "text": "Requires matching host 6.8.0 and a plugin with directory output tools (such as 3-Stack Archive 3.1.0)"
+        }
+      ]
+    },
     "v4.42.0": {
       "released_date": "2026/10/16",
       "entries": [

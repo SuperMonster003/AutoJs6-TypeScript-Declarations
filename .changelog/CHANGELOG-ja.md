@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.43.0
+
+###### 2026/10/16
+
+* `機能` plugins.tools のディレクトリ出力: ToolOutput.kind でファイルとディレクトリを区別し, 呼び出しオプション outputs でディレクトリ出力の書き込み先フォルダーを指定 (既存でもよく, 既存ファイルは既定で保持), 呼び出し結果の outputs 項目に kind, files, conflicts, conflictCount を追加
+* `ヒント` 対応するホスト 6.8.0 とディレクトリ出力のツールを提供するプラグイン (3-Stack Archive 3.1.0 など) が必要
+
 # v4.42.0
 
 ###### 2026/10/16

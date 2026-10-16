@@ -172,6 +172,13 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.43.0
+
+###### 2026/10/16
+
+* `Feature` Directory outputs of plugins.tools: ToolOutput.kind tells files from directories, the call option outputs names a folder for a directory output (it may exist; files already there are kept by default), and entries of the call result's outputs gain kind, files, conflicts and conflictCount
+* `Hint` Requires matching host 6.8.0 and a plugin with directory output tools (such as 3-Stack Archive 3.1.0)
+
 ### v4.42.0
 
 ###### 2026/10/16
@@ -185,13 +192,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 * `Feature` plugins.tools with its tool, provider, call option and result types, covering the tools AutoJs6 plugins describe themselves: listing, synchronous and asynchronous calls, image / file / directory arguments and output files
 * `Hint` Requires matching host 6.8.0 and a plugin that provides tools
-
-### v4.40.0
-
-###### 2026/10/15
-
-* `Feature` files.batchRename with its option, plan, result, undo and history types and BatchRenameError, covering plan preview, per-item exclusion, applying, undo and batch history of the Batch Rename plugin
-* `Hint` Requires matching host 6.8.0 / 5438 and the Batch Rename plugin 1.0.0
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

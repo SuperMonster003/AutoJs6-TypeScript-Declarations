@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.43.0
+
+###### 2026/10/16
+
+* `Fonctionnalité` Sorties de dossier de plugins.tools : ToolOutput.kind distingue fichiers et dossiers, l'option d'appel outputs désigne un dossier pour une sortie de dossier (il peut exister ; les fichiers déjà présents sont conservés par défaut), et les entrées des outputs du résultat gagnent kind, files, conflicts et conflictCount
+* `Note` Nécessite l'hôte 6.8.0 correspondant et un plugin avec des outils à sortie de dossier (comme 3-Stack Archive 3.1.0)
+
 # v4.42.0
 
 ###### 2026/10/16

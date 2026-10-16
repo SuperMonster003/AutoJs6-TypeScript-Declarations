@@ -172,6 +172,13 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.43.0
+
+###### 2026/10/16
+
+* `Fonctionnalité` Sorties de dossier de plugins.tools : ToolOutput.kind distingue fichiers et dossiers, l'option d'appel outputs désigne un dossier pour une sortie de dossier (il peut exister ; les fichiers déjà présents sont conservés par défaut), et les entrées des outputs du résultat gagnent kind, files, conflicts et conflictCount
+* `Note` Nécessite l'hôte 6.8.0 correspondant et un plugin avec des outils à sortie de dossier (comme 3-Stack Archive 3.1.0)
+
 ### v4.42.0
 
 ###### 2026/10/16
@@ -185,13 +192,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 * `Fonctionnalité` plugins.tools avec ses types d'outil, de fournisseur, d'options d'appel et de résultat, pour les outils que les plugins AutoJs6 décrivent eux-mêmes: liste, appels synchrones et asynchrones, arguments image / fichier / répertoire et fichiers de sortie
 * `Note` Nécessite l'hôte 6.8.0 correspondant et un plugin qui fournit des outils
-
-### v4.40.0
-
-###### 2026/10/15
-
-* `Fonctionnalité` files.batchRename avec les types d'options, de plan, de résultat, d'annulation et d'historique et BatchRenameError, pour l'aperçu du plan, l'exclusion par élément, l'application, l'annulation et l'historique des lots du plugin Batch Rename
-* `Note` Nécessite l'hôte 6.8.0 / 5438 et le plugin Batch Rename 1.0.0
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

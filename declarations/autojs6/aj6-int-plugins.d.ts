@@ -45,8 +45,25 @@ declare namespace Internal {
 
         interface ToolOutput {
             name: string;
+            /** A file, or a directory the plugin fills (it may already exist; files in it are kept unless overwrite). */
+            kind: 'file' | 'directory';
+            /** `inode/directory` for a directory output. */
             mimeType: string;
             description?: string;
+        }
+
+        interface ToolCallOutput {
+            name: string;
+            path: string;
+            bytes: number;
+            mimeType: string;
+            /** Present for a directory output. */
+            kind?: 'directory';
+            /** Files a directory output received. */
+            files?: number;
+            /** Up to 20 paths of a directory output that were left as they were. */
+            conflicts?: string[];
+            conflictCount?: number;
         }
 
         interface ToolInfo {
@@ -87,9 +104,9 @@ declare namespace Internal {
         interface ToolCallOptions {
             /** Shortens the tool's time limit, in milliseconds. */
             timeoutMs?: number;
-            /** Output name to the path where the output is written (resolved like files.path). */
+            /** Output name to the path where the output is written (resolved like files.path); a folder for a directory output. */
             outputs?: { [name: string]: string };
-            /** Replaces an existing output file. Default false. */
+            /** Replaces an existing output file, or files of a directory output. Default false. */
             overwrite?: boolean;
         }
 
@@ -99,7 +116,7 @@ declare namespace Internal {
             invocationId: string;
             result: any;
             text?: string;
-            outputs: { name: string, path: string, bytes: number, mimeType: string }[];
+            outputs: ToolCallOutput[];
             missingOutputs?: string[];
             durationMs: number;
         }

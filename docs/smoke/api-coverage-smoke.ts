@@ -169,6 +169,8 @@ const pluginToolNames: string[] = plugins.tools.list().filter(tool => tool.risk 
 const pluginToolProvider: string | undefined = plugins.tools.providers().find(provider => provider.status !== 'available')?.detail;
 const pluginToolText: string = plugins.tools.call('opencc_convert', { text: 'abc' }).result.text;
 const pluginToolDirectories: string[] = plugins.tools.list()[0].directoryParameters;
+const pluginToolKind: 'file' | 'directory' = plugins.tools.list()[0].outputs[0].kind;
+const pluginToolExtracted: number | undefined = plugins.tools.call('archive_extract', { archive: 'a.zip' }, { outputs: { files: 'out/a' } }).outputs[0].files;
 const pluginToolCount: number = plugins.tools.call('yolo_detect', { image: 'screen', model: 'models/yolo11n' }).result.count;
 const pluginToolOutput: number = plugins.tools.call('imagequant_quantize', { image: 'screen' }, { outputs: { image: 'out/a.png' }, overwrite: true }).outputs[0].bytes;
 const pluginToolAsync: Promise<number> = plugins.tools.callAsync('faketool_echo').then(answer => answer.durationMs);

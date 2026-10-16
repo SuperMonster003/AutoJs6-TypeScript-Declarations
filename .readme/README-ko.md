@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.43.0
+
+###### 2026/10/16
+
+* `기능` plugins.tools 의 디렉터리 출력: ToolOutput.kind 로 파일과 디렉터리를 구분하고, 호출 옵션 outputs 로 디렉터리 출력의 폴더를 지정 (이미 있어도 되며 기존 파일은 기본적으로 유지), 호출 결과 outputs 항목에 kind, files, conflicts, conflictCount 추가
+* `안내` 대응하는 호스트 6.8.0 과 디렉터리 출력 도구를 제공하는 플러그인 (예: 3-Stack Archive 3.1.0) 필요
+
 ### v4.42.0
 
 ###### 2026/10/16
@@ -185,13 +192,6 @@ npm update @sm003/autojs6-dts
 
 * `기능` plugins.tools 와 도구, 제공자, 호출 옵션, 결과 타입. AutoJs6 플러그인이 스스로 설명하는 도구의 목록, 동기 및 비동기 호출, 이미지 / 파일 / 디렉터리 인수와 출력 파일에 대응
 * `안내` 대응하는 호스트 6.8.0 과 도구를 제공하는 플러그인 필요
-
-### v4.40.0
-
-###### 2026/10/15
-
-* `기능` files.batchRename 과 옵션, 계획, 결과, 실행 취소, 기록 형식 및 BatchRenameError. Batch Rename 플러그인의 계획 미리 보기, 항목별 제외, 실행, 실행 취소와 배치 기록을 지원
-* `안내` 대응하는 호스트 6.8.0 / 5438 및 Batch Rename 플러그인 1.0.0 필요
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

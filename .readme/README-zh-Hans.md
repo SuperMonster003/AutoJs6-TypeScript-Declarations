@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.43.0
+
+###### 2026/10/16
+
+* `新增` plugins.tools 的目录输出: ToolOutput.kind 区分文件与目录, 调用选项 outputs 可为目录输出指定文件夹 (可以已存在, 已有文件默认保留), 调用结果的 outputs 项增加 kind, files, conflicts 与 conflictCount
+* `提示` 需要配套宿主 6.8.0 及提供目录输出工具的插件 (如 3-Stack Archive 3.1.0)
+
 ### v4.42.0
 
 ###### 2026/10/16
@@ -185,13 +192,6 @@ npm update @sm003/autojs6-dts
 
 * `新增` plugins.tools 及其工具, 提供者, 调用选项与结果类型, 对应 AutoJs6 插件自描述的工具: 列出, 同步与异步调用, 图片 / 文件 / 目录参数与输出文件
 * `提示` 需要配套宿主 6.8.0 及提供工具的插件
-
-### v4.40.0
-
-###### 2026/10/15
-
-* `新增` files.batchRename 及其选项, 方案, 结果, 撤销与历史类型和 BatchRenameError, 对应 Batch Rename 插件的方案预览, 逐项排除, 执行, 撤销与历史批次
-* `提示` 需要配套宿主 6.8.0 / 5438 与 Batch Rename 插件 1.0.0
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

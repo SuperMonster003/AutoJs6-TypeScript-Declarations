@@ -172,6 +172,13 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.43.0
+
+###### 2026/10/16
+
+* `Función` Salidas de carpeta de plugins.tools: ToolOutput.kind distingue archivos y carpetas, la opción de llamada outputs indica una carpeta para una salida de carpeta (puede existir; los archivos que ya contiene se conservan por defecto) y las entradas de outputs del resultado ganan kind, files, conflicts y conflictCount
+* `Nota` Requiere el anfitrión 6.8.0 correspondiente y un plugin con herramientas de salida de carpeta (como 3-Stack Archive 3.1.0)
+
 ### v4.42.0
 
 ###### 2026/10/16
@@ -185,13 +192,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 * `Función` plugins.tools con sus tipos de herramienta, proveedor, opciones de llamada y resultado, para las herramientas que describen los propios plugins de AutoJs6: lista, llamadas síncronas y asíncronas, argumentos de imagen / archivo / directorio y archivos de salida
 * `Nota` Requiere el anfitrión 6.8.0 correspondiente y un plugin que proporcione herramientas
-
-### v4.40.0
-
-###### 2026/10/15
-
-* `Función` files.batchRename con los tipos de opciones, plan, resultado, deshacer e historial y BatchRenameError, para la vista previa del plan, la exclusión por elemento, la aplicación, deshacer y el historial de lotes del plugin Batch Rename
-* `Nota` Requiere el host 6.8.0 / 5438 y el plugin Batch Rename 1.0.0
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

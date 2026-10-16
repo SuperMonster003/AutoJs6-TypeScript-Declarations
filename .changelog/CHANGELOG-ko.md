@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.43.0
+
+###### 2026/10/16
+
+* `기능` plugins.tools 의 디렉터리 출력: ToolOutput.kind 로 파일과 디렉터리를 구분하고, 호출 옵션 outputs 로 디렉터리 출력의 폴더를 지정 (이미 있어도 되며 기존 파일은 기본적으로 유지), 호출 결과 outputs 항목에 kind, files, conflicts, conflictCount 추가
+* `안내` 대응하는 호스트 6.8.0 과 디렉터리 출력 도구를 제공하는 플러그인 (예: 3-Stack Archive 3.1.0) 필요
+
 # v4.42.0
 
 ###### 2026/10/16

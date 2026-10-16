@@ -18,6 +18,19 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.43.0": {
+      "released_date": "2026/10/16",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "plugins.tools 的目錄輸出: ToolOutput.kind 區分檔案與目錄, 調用選項 outputs 可為目錄輸出指定資料夾 (可以已存在, 已有檔案預設保留), 調用結果的 outputs 項增加 kind, files, conflicts 與 conflictCount"
+        },
+        {
+          "category": "hint",
+          "text": "需要配套宿主 6.8.0 及提供目錄輸出工具的插件 (如 3-Stack Archive 3.1.0)"
+        }
+      ]
+    },
     "v4.42.0": {
       "released_date": "2026/10/16",
       "entries": [

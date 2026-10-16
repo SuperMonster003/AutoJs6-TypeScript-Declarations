@@ -172,6 +172,13 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.43.0
+
+###### 2026/10/16
+
+* `機能` plugins.tools のディレクトリ出力: ToolOutput.kind でファイルとディレクトリを区別し, 呼び出しオプション outputs でディレクトリ出力の書き込み先フォルダーを指定 (既存でもよく, 既存ファイルは既定で保持), 呼び出し結果の outputs 項目に kind, files, conflicts, conflictCount を追加
+* `ヒント` 対応するホスト 6.8.0 とディレクトリ出力のツールを提供するプラグイン (3-Stack Archive 3.1.0 など) が必要
+
 ### v4.42.0
 
 ###### 2026/10/16
@@ -185,13 +192,6 @@ npm update @sm003/autojs6-dts
 
 * `機能` plugins.tools とそのツール, プロバイダー, 呼び出しオプション, 結果の型. AutoJs6 プラグインが自ら記述するツールの一覧, 同期と非同期の呼び出し, 画像 / ファイル / ディレクトリ引数と出力ファイルに対応
 * `ヒント` 対応するホスト 6.8.0 とツールを提供するプラグインが必要
-
-### v4.40.0
-
-###### 2026/10/15
-
-* `機能` files.batchRename とそのオプション, プラン, 結果, 元に戻す操作, 履歴の型と BatchRenameError. Batch Rename プラグインのプランのプレビュー, 項目ごとの除外, 実行, 元に戻す操作とバッチ履歴に対応
-* `ヒント` 対応するホスト 6.8.0 / 5438 と Batch Rename プラグイン 1.0.0 が必要
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

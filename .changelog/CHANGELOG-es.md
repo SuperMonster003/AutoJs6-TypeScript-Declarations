@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.43.0
+
+###### 2026/10/16
+
+* `Función` Salidas de carpeta de plugins.tools: ToolOutput.kind distingue archivos y carpetas, la opción de llamada outputs indica una carpeta para una salida de carpeta (puede existir; los archivos que ya contiene se conservan por defecto) y las entradas de outputs del resultado ganan kind, files, conflicts y conflictCount
+* `Nota` Requiere el anfitrión 6.8.0 correspondiente y un plugin con herramientas de salida de carpeta (como 3-Stack Archive 3.1.0)
+
 # v4.42.0
 
 ###### 2026/10/16

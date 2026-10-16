@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.43.0
+
+###### 2026/10/16
+
+* `Feature` Directory outputs of plugins.tools: ToolOutput.kind tells files from directories, the call option outputs names a folder for a directory output (it may exist; files already there are kept by default), and entries of the call result's outputs gain kind, files, conflicts and conflictCount
+* `Hint` Requires matching host 6.8.0 and a plugin with directory output tools (such as 3-Stack Archive 3.1.0)
+
 # v4.42.0
 
 ###### 2026/10/16

@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.43.0
+
+###### 2026/10/16
+
+* `ميزة` مخرجات المجلدات في plugins.tools: يميز ToolOutput.kind بين الملفات والمجلدات, ويحدد خيار الاستدعاء outputs مجلدا لمخرج المجلد (يمكن أن يكون موجودا, وتبقى الملفات الموجودة فيه افتراضيا), وتضاف إلى عناصر outputs في نتيجة الاستدعاء الحقول kind و files و conflicts و conflictCount
+* `ملاحظة` يتطلب المضيف 6.8.0 المطابق وإضافة توفر أدوات بمخرجات مجلدات (مثل 3-Stack Archive 3.1.0)
+
 # v4.42.0
 
 ###### 2026/10/16
