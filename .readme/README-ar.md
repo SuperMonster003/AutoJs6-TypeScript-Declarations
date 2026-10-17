@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.45.0
+
+###### 2026/10/17
+
+* `ميزة` تعريفات وإكمال speech وspeech.models في Rhino, مع الجلسات والأحداث وإدارة النماذج والنتائج ذات الأنواع, بمعزل عن Node.js وBun
+
 ### v4.44.0
 
 ###### 2026/10/17
@@ -190,13 +196,6 @@ npm update @sm003/autojs6-dts
 
 * `ميزة` مخرجات المجلدات في plugins.tools: يميز ToolOutput.kind بين الملفات والمجلدات, ويحدد خيار الاستدعاء outputs مجلدا لمخرج المجلد (يمكن أن يكون موجودا, وتبقى الملفات الموجودة فيه افتراضيا), وتضاف إلى عناصر outputs في نتيجة الاستدعاء الحقول kind و files و conflicts و conflictCount
 * `ملاحظة` يتطلب المضيف 6.8.0 المطابق وإضافة توفر أدوات بمخرجات مجلدات (مثل 3-Stack Archive 3.1.0)
-
-### v4.42.0
-
-###### 2026/10/16
-
-* `ميزة` preview و presets و importPresets وصيغها غير المتزامنة و deleteHistory و clearHistory في files.batchRename, وخيارات البينيين وبيانات الصور الوصفية والإعدادات المسبقة و metadataMissing لعناصر الخطة, لحساب الأسماء تجريبيا والإعدادات المسبقة المسماة ومتغيرات البيانات الوصفية والتحويل إلى البينيين ومسح السجل في ملحق Batch Rename
-* `ملاحظة` يتطلب المضيف 6.8.0 وملحق Batch Rename 1.1.0
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

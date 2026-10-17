@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.45.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Объявления и дополнение speech и speech.models для Rhino: сеансы, события, модели и типизированные результаты отдельно от Node.js и Bun"
+        }
+      ]
+    },
     "v4.44.0": {
       "released_date": "2026/10/17",
       "entries": [

@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.45.0
+
+###### 2026/10/17
+
+* `新增` Rhino speech 與 speech.models 聲明及補全, 涵蓋會話, 事件, 模型管理與類型化結果, 與 Node.js/Bun 保持隔離
+
 ### v4.44.0
 
 ###### 2026/10/17
@@ -190,13 +196,6 @@ npm update @sm003/autojs6-dts
 
 * `新增` plugins.tools 的目錄輸出: ToolOutput.kind 區分檔案與目錄, 調用選項 outputs 可為目錄輸出指定資料夾 (可以已存在, 已有檔案預設保留), 調用結果的 outputs 項增加 kind, files, conflicts 與 conflictCount
 * `提示` 需要配套宿主 6.8.0 及提供目錄輸出工具的插件 (如 3-Stack Archive 3.1.0)
-
-### v4.42.0
-
-###### 2026/10/16
-
-* `新增` files.batchRename 的 preview, presets, importPresets 及其異步形式, deleteHistory 與 clearHistory, 拼音 / 相片中繼資料 / 命名預設選項及方案條目的 metadataMissing, 對應 Batch Rename 插件的單名試算, 命名預設, 中繼資料變數, 漢字轉拼音與歷史清理
-* `提示` 需要配套宿主 6.8.0 與 Batch Rename 插件 1.1.0
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-HK.md)
 

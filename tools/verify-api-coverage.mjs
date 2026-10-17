@@ -29,7 +29,7 @@ for (const compiler of paths) {
     }).join('\n');
     // Separate programs are essential: an opt-in declaration must not affect the default fixture.
     const fixtureReports = [];
-    for (const fixture of ['api-coverage-smoke.ts', 'jsox-extensions-smoke.ts']) {
+    for (const fixture of ['api-coverage-smoke.ts', 'jsox-extensions-smoke.ts', 'speech-smoke.ts']) {
         const program = ts.createProgram([index, resolve(root, 'docs/smoke', fixture)], options);
         const diagnostics = ts.getPreEmitDiagnostics(program);
         assert.equal(diagnostics.length, 0, describe(diagnostics));

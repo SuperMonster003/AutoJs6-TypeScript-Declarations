@@ -57,6 +57,7 @@
 /// <reference path="./aj6-int-shizuku.d.ts" />
 /// <reference path="./aj6-int-settings.d.ts" />
 /// <reference path="./aj6-int-sqlite.d.ts" />
+/// <reference path="./aj6-int-speech.d.ts" />
 /// <reference path="./aj6-int-storages.d.ts" />
 /// <reference path="./aj6-int-sysprops.d.ts" />
 /// <reference path="./aj6-int-tasks.d.ts" />

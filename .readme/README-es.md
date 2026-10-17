@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.45.0
+
+###### 2026/10/17
+
+* `Función` Declaraciones y autocompletado de speech y speech.models para Rhino: sesiones, eventos, modelos y resultados tipados, separados de Node.js y Bun
+
 ### v4.44.0
 
 ###### 2026/10/17
@@ -190,13 +196,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 * `Función` Salidas de carpeta de plugins.tools: ToolOutput.kind distingue archivos y carpetas, la opción de llamada outputs indica una carpeta para una salida de carpeta (puede existir; los archivos que ya contiene se conservan por defecto) y las entradas de outputs del resultado ganan kind, files, conflicts y conflictCount
 * `Nota` Requiere el anfitrión 6.8.0 correspondiente y un plugin con herramientas de salida de carpeta (como 3-Stack Archive 3.1.0)
-
-### v4.42.0
-
-###### 2026/10/16
-
-* `Función` preview, presets, importPresets y sus formas asíncronas, deleteHistory y clearHistory de files.batchRename, las opciones de pinyin, metadatos de fotos y ajustes predefinidos y metadataMissing de los elementos del plan, para el cálculo de nombres, los ajustes predefinidos con nombre, las variables de metadatos, la conversión a pinyin y la limpieza del historial del plugin Batch Rename
-* `Nota` Requiere el host 6.8.0 y el plugin Batch Rename 1.1.0
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

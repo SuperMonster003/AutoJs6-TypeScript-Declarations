@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.45.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Rhino speech 与 speech.models 声明和补全, 覆盖会话, 事件, 模型管理与类型化结果, 与 Node.js/Bun 保持隔离"
+        }
+      ]
+    },
     "v4.44.0": {
       "released_date": "2026/10/17",
       "entries": [

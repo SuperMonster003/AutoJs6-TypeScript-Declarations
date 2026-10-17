@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.45.0
+
+###### 2026/10/17
+
+* `Feature` Rhino speech and speech.models declarations and completion, including sessions, events, model management and typed results; kept separate from Node.js and Bun
+
 ### v4.44.0
 
 ###### 2026/10/17
@@ -190,13 +196,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 * `Feature` Directory outputs of plugins.tools: ToolOutput.kind tells files from directories, the call option outputs names a folder for a directory output (it may exist; files already there are kept by default), and entries of the call result's outputs gain kind, files, conflicts and conflictCount
 * `Hint` Requires matching host 6.8.0 and a plugin with directory output tools (such as 3-Stack Archive 3.1.0)
-
-### v4.42.0
-
-###### 2026/10/16
-
-* `Feature` preview, presets, importPresets and their asynchronous forms, deleteHistory and clearHistory of files.batchRename, the pinyin, photo metadata and preset options and metadataMissing of plan items, covering name previews, named presets, metadata variables, Chinese to pinyin and history cleanup of the Batch Rename plugin
-* `Hint` Requires matching host 6.8.0 and the Batch Rename plugin 1.1.0
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

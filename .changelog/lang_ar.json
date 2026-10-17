@@ -18,6 +18,15 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.45.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "تعريفات وإكمال speech وspeech.models في Rhino, مع الجلسات والأحداث وإدارة النماذج والنتائج ذات الأنواع, بمعزل عن Node.js وBun"
+        }
+      ]
+    },
     "v4.44.0": {
       "released_date": "2026/10/17",
       "entries": [

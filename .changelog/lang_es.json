@@ -18,6 +18,15 @@
     "adjustment": "Ajuste"
   },
   "$data": {
+    "v4.45.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Declaraciones y autocompletado de speech y speech.models para Rhino: sesiones, eventos, modelos y resultados tipados, separados de Node.js y Bun"
+        }
+      ]
+    },
     "v4.44.0": {
       "released_date": "2026/10/17",
       "entries": [

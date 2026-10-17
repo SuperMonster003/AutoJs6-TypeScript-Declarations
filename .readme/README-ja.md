@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.45.0
+
+###### 2026/10/17
+
+* `機能` Rhino の speech と speech.models の型宣言と補完. セッション, イベント, モデル管理と型付き結果に対応し, Node.js/Bun と分離
+
 ### v4.44.0
 
 ###### 2026/10/17
@@ -190,13 +196,6 @@ npm update @sm003/autojs6-dts
 
 * `機能` plugins.tools のディレクトリ出力: ToolOutput.kind でファイルとディレクトリを区別し, 呼び出しオプション outputs でディレクトリ出力の書き込み先フォルダーを指定 (既存でもよく, 既存ファイルは既定で保持), 呼び出し結果の outputs 項目に kind, files, conflicts, conflictCount を追加
 * `ヒント` 対応するホスト 6.8.0 とディレクトリ出力のツールを提供するプラグイン (3-Stack Archive 3.1.0 など) が必要
-
-### v4.42.0
-
-###### 2026/10/16
-
-* `機能` files.batchRename の preview, presets, importPresets とその非同期版, deleteHistory と clearHistory, ピンイン / 写真メタデータ / プリセットのオプションとプラン項目の metadataMissing. Batch Rename プラグインの名前の試算, 名前付きプリセット, メタデータ変数, 漢字のピンイン変換と履歴の消去に対応
-* `ヒント` 対応するホスト 6.8.0 と Batch Rename プラグイン 1.1.0 が必要
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

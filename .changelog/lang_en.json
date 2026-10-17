@@ -18,6 +18,15 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.45.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Rhino speech and speech.models declarations and completion, including sessions, events, model management and typed results; kept separate from Node.js and Bun"
+        }
+      ]
+    },
     "v4.44.0": {
       "released_date": "2026/10/17",
       "entries": [

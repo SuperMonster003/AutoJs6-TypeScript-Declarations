@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.45.0
+
+###### 2026/10/17
+
+* `新增` Rhino speech 与 speech.models 声明和补全, 覆盖会话, 事件, 模型管理与类型化结果, 与 Node.js/Bun 保持隔离
+
 # v4.44.0
 
 ###### 2026/10/17

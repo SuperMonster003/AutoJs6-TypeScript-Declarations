@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.45.0
+
+###### 2026/10/17
+
+* `Функция` Объявления и дополнение speech и speech.models для Rhino: сеансы, события, модели и типизированные результаты отдельно от Node.js и Bun
+
 # v4.44.0
 
 ###### 2026/10/17

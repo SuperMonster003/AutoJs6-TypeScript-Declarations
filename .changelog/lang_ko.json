@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.45.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Rhino speech 및 speech.models 선언과 자동 완성. 세션, 이벤트, 모델 관리 및 형식화된 결과를 지원하고 Node.js/Bun과 분리"
+        }
+      ]
+    },
     "v4.44.0": {
       "released_date": "2026/10/17",
       "entries": [

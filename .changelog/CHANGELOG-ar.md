@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.45.0
+
+###### 2026/10/17
+
+* `ميزة` تعريفات وإكمال speech وspeech.models في Rhino, مع الجلسات والأحداث وإدارة النماذج والنتائج ذات الأنواع, بمعزل عن Node.js وBun
+
 # v4.44.0
 
 ###### 2026/10/17

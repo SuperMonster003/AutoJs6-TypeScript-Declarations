@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.45.0
+
+###### 2026/10/17
+
+* `Función` Declaraciones y autocompletado de speech y speech.models para Rhino: sesiones, eventos, modelos y resultados tipados, separados de Node.js y Bun
+
 # v4.44.0
 
 ###### 2026/10/17
