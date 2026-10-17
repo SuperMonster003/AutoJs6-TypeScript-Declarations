@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.49.0
+
+###### 2026/10/17
+
+* `ميزة` يحفظ Bun screenRecorder ملفات H.264 MP4 مع صوت AAC اختياري من الميكروفون أو التطبيقات أو مزيجهما ولقطات أثناء التسجيل, مع أذونات صوت مستقلة وتنظيف عند الإلغاء (API / TypeScript / Ace)
+
 ### v4.48.0
 
 ###### 2026/10/17
@@ -191,12 +197,6 @@ npm update @sm003/autojs6-dts
 
 * `ميزة` تدعم Workers في Node.js وحدات OpenCC والصور عبر بيئة التشغيل الأم, مع CJS و ESM والتداخل ونقل البيانات الثنائية (API / TypeScript / Ace)
 * `ميزة` يدعم Bun التقاط الشاشة بإذن مستقل وموافقة Android والتنظيف عند الإلغاء أو انتهاء المهلة وإعادة الطلب (API / TypeScript / Ace)
-
-### v4.46.0
-
-###### 2026/10/17
-
-* `ميزة` تعريفات الأنواع والإكمال لواجهات OpenCC والصور في Node.js و Bun, مع نتائج غير متزامنة محددة الأنواع وواجهات منفصلة لكل بيئة
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

@@ -3,7 +3,7 @@
 declare module "autojs6:bun-host" {
     /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
     export const SDK_VERSION: 1;
-    export type HostCapability = "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
+    export type HostCapability = "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
     export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
     export class HostCallError extends Error {
       readonly code: string;
@@ -65,6 +65,7 @@ declare module "autojs6:bun-host" {
       /** Fail without opening a dialog when this execution has no active authorization. */
       readonly requireExistingPermission?: boolean;
     }
+    export type ScreenRecordingAudioSource = "none" | "microphone" | "playback" | "mixed";
     export interface ScreenRecordingOptions {
       /** Specify both even dimensions, 2..8192. Omitted dimensions use the capture size. The encoder must support them. */
       readonly width?: number;
@@ -73,6 +74,8 @@ declare module "autojs6:bun-host" {
       readonly frameRate?: number;
       /** Positive integer bits per second, default 8000000, subject to the Android encoder. */
       readonly bitRate?: number;
+      /** Default none. Audio uses AAC-LC, 48 kHz mono, 128 kbit/s. Requires the separate audio grant(s) and Android RECORD_AUDIO permission. */
+      readonly audio?: ScreenRecordingAudioSource | false;
     }
     export interface ScreenRecordingActive {
       readonly state: "recording" | "failed";
@@ -83,6 +86,8 @@ declare module "autojs6:bun-host" {
       readonly frameRate: number;
       readonly bitRate: number;
       readonly elapsedMs: number;
+      readonly audio: boolean;
+      readonly audioSource: ScreenRecordingAudioSource;
       readonly error: string | null;
     }
     export type ScreenRecordingStatus = { readonly state: "idle" } | ScreenRecordingActive;
@@ -95,15 +100,20 @@ declare module "autojs6:bun-host" {
       readonly height: number;
       readonly mimeType: "video/mp4";
       readonly videoCodec: "h264";
-      readonly audio: false;
+      /** Whether the MP4 has an audio track; Android capture policy or privacy controls can still silence its contents. */
+      readonly audio: boolean;
+      readonly audioSource: ScreenRecordingAudioSource;
+      readonly audioCodec: "aac" | null;
+      readonly audioSampleRate: 48000 | null;
+      readonly audioChannels: 1 | null;
     }
-    /** Silent screen video. Requires screen.capture, screen.record and existing Android capture consent. */
+    /** Requires screen.capture, screen.record and existing Android capture consent. Screenshots remain available during recording. */
     export interface ScreenRecorderApi {
       /** Host path, relative to the script working directory. Existing output files are never replaced. */
       start(path: string, options?: ScreenRecordingOptions): Promise<ScreenRecordingActive>;
       /** Finalize a playable MP4 and return its metadata, or null when idle. */
       stop(): Promise<ScreenRecordingResult | null>;
-      /** Discard an unfinished recording and restore screenshots; false when idle. */
+      /** Discard an unfinished recording, retaining the screenshot session; false when idle. */
       cancel(): Promise<boolean>;
       getStatus(): Promise<ScreenRecordingStatus>;
     }

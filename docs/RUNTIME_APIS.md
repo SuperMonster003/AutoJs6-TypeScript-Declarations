@@ -108,8 +108,16 @@ including the result array's asynchronous compact(). Coordinate bases belong to 
 whole execution. Worker console output remains native; host controls are asynchronous.
 
 Bun host.screenRecorder start/stop/cancel/getStatus requires screen.record and
-screen.capture plus actual Android consent. It encodes silent H.264 MP4 to host paths,
-with fixed dimensions per recording, and restores screenshots after stop/cancel.
+screen.capture plus actual Android consent. It encodes H.264 MP4 to host paths,
+with fixed dimensions per recording, and supports screenshots while recording.
 Only explicit successful stop publishes the file. Existing files are not replaced;
 exit, cancellation and projection revocation discard partial recordings. Results
-include typed size/duration/dimensions and audio:false; idle stop returns null.
+include typed size/duration/dimensions, audio/audioSource and nullable AAC metadata; idle stop returns null.
+
+The optional audio source is none (also false), microphone, playback or mixed.
+Audio is AAC-LC, 48 kHz mono at 128 kbit/s. Microphone and playback have independent
+opt-in grants, and both require Android RECORD_AUDIO. The microphone also needs
+the platform foreground-service prerequisites. Playback capture respects source
+policy. An audio track can contain silence when the platform blocks its source;
+audio:true is not a claim that the input was audible. Parallel screenshots retain
+capture-session dimensions while video resolution stays fixed.

@@ -86,7 +86,12 @@ function verifyRuntimeTypes(program, runtime) {
         assert(stopped.isUnion()&&stopped.types.some(t=>t.flags&ts.TypeFlags.Null),'Idle stop must preserve null');
         const movie=checker.getNonNullableType(stopped);
         for(const field of ['width','height','size','durationMs']) assert(property(movie,field).flags&ts.TypeFlags.Number,field);
-        assert.equal(checker.typeToString(property(movie,'audio')),'false','Silent recording must not advertise audio');
+        assert(property(movie,'audio').flags&ts.TypeFlags.BooleanLike,'Recording must indicate whether an audio track is present');
+        const source=property(movie,'audioSource');
+        assert.deepEqual(source.types.map(t=>t.value).sort(),['microphone','mixed','none','playback'],'Audio source literals drifted');
+        assert.equal(checker.typeToString(property(movie,'audioCodec')),'"aac" | null');
+        assert.equal(checker.typeToString(property(movie,'audioSampleRate')),'48000 | null');
+        assert.equal(checker.typeToString(property(movie,'audioChannels')),'1 | null');
     }
     for (const name of ['()', ...openccNames]) {
         returns(name === '()' ? opencc : property(opencc, name), `opencc.${name}`).forEach(value =>

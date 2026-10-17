@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.49.0
+
+###### 2026/10/17
+
+* `Función` Bun screenRecorder genera MP4 H.264 con audio AAC opcional del micrófono, aplicaciones o mezcla y capturas durante la grabación, con permisos de audio independientes y limpieza al cancelar (API / TypeScript / Ace)
+
 ### v4.48.0
 
 ###### 2026/10/17
@@ -191,12 +197,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 * `Función` Los Workers de Node.js usan OpenCC e imágenes mediante el runtime padre, con CJS, ESM, Workers anidados y transferencia binaria (API / TypeScript / Ace)
 * `Función` Bun ofrece captura de pantalla con permiso independiente, consentimiento de Android, limpieza al cancelar o expirar y nueva solicitud (API / TypeScript / Ace)
-
-### v4.46.0
-
-###### 2026/10/17
-
-* `Función` Declaraciones y autocompletado de OpenCC e imágenes para Node.js y Bun, con resultados asíncronos tipados y API separadas por entorno
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

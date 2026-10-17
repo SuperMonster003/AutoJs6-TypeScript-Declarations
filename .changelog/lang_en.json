@@ -18,6 +18,15 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.49.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun screenRecorder writes H.264 MP4 with optional microphone, app-playback or mixed AAC audio and screenshots during recording, with independent audio grants and cancellation cleanup (API / TypeScript / Ace)"
+        }
+      ]
+    },
     "v4.48.0": {
       "released_date": "2026/10/17",
       "entries": [

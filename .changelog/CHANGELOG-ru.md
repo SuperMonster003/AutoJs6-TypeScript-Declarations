@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.49.0
+
+###### 2026/10/17
+
+* `Функция` Bun screenRecorder сохраняет H.264 MP4 с выбором AAC микрофона, приложений или микширования и снимками во время записи, отдельными разрешениями звука и очисткой при отмене (API / TypeScript / Ace)
+
 # v4.48.0
 
 ###### 2026/10/17

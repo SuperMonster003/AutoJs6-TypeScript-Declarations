@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.49.0
+
+###### 2026/10/17
+
+* `Feature` Bun screenRecorder writes H.264 MP4 with optional microphone, app-playback or mixed AAC audio and screenshots during recording, with independent audio grants and cancellation cleanup (API / TypeScript / Ace)
+
 ### v4.48.0
 
 ###### 2026/10/17
@@ -191,12 +197,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 * `Feature` Node.js Workers support OpenCC and image modules through the parent runtime, including CJS, ESM, nested Workers and binary image data (API / TypeScript / Ace)
 * `Feature` Bun supports screen capture with a separate opt-in grant, Android consent, timeout/cancellation cleanup and repeated authorization (API / TypeScript / Ace)
-
-### v4.46.0
-
-###### 2026/10/17
-
-* `Feature` Node.js and Bun OpenCC and image declarations and completion, with typed asynchronous results and separate runtime API surfaces
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

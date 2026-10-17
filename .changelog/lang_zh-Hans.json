@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.49.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun screenRecorder 支持 H.264 MP4 录屏, 可选麦克风/应用播放/混合 AAC 音轨及录制期间截图, 包含独立音频授权和取消清理 (API / TypeScript / Ace)"
+        }
+      ]
+    },
     "v4.48.0": {
       "released_date": "2026/10/17",
       "entries": [

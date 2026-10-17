@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.49.0
+
+###### 2026/10/17
+
+* `機能` Bun screenRecorder が H.264 MP4 録画, マイク/アプリ再生/ミックスの AAC 音声と録画中の画面取得に対応し, 個別の音声許可とキャンセル時の削除を提供 (API / TypeScript / Ace)
+
 # v4.48.0
 
 ###### 2026/10/17

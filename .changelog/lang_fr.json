@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.49.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun screenRecorder produit des MP4 H.264 avec audio AAC du microphone, des applications ou mixé et captures pendant la vidéo, avec autorisations audio distinctes et nettoyage après annulation (API / TypeScript / Ace)"
+        }
+      ]
+    },
     "v4.48.0": {
       "released_date": "2026/10/17",
       "entries": [

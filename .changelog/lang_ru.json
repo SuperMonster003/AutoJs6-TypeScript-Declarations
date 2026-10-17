@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.49.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun screenRecorder сохраняет H.264 MP4 с выбором AAC микрофона, приложений или микширования и снимками во время записи, отдельными разрешениями звука и очисткой при отмене (API / TypeScript / Ace)"
+        }
+      ]
+    },
     "v4.48.0": {
       "released_date": "2026/10/17",
       "entries": [

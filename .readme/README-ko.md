@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.49.0
+
+###### 2026/10/17
+
+* `기능` Bun screenRecorder에서 H.264 MP4 녹화, 선택적 마이크/앱 재생/혼합 AAC 오디오 및 녹화 중 화면 캡처 지원, 별도 오디오 허용과 취소 정리 포함 (API / TypeScript / Ace)
+
 ### v4.48.0
 
 ###### 2026/10/17
@@ -191,12 +197,6 @@ npm update @sm003/autojs6-dts
 
 * `기능` Node.js Worker에서 부모 런타임을 통한 OpenCC 및 이미지 모듈 지원, CJS, ESM, 중첩 Worker와 이미지 바이너리 전송 포함 (API / TypeScript / Ace)
 * `기능` Bun에서 별도 허용이 필요한 화면 캡처, Android 승인, 시간 초과/취소 정리 및 재요청 지원 (API / TypeScript / Ace)
-
-### v4.46.0
-
-###### 2026/10/17
-
-* `기능` Node.js와 Bun의 OpenCC 및 이미지 형식 선언과 자동 완성, 정확한 비동기 반환 형식 및 런타임별 API 구분
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 
