@@ -67,6 +67,7 @@ declare module "ui" {
     }
 
     export interface UiHandle {
+      readonly closed: boolean;
       readonly subscriptionId?: string;
       readonly id: string;
       on(event: string, callback: (event: UiEvent) => void, options?: UiEventOptions): () => void;
@@ -85,5 +86,9 @@ declare module "ui" {
   }
 
   const ui: ui.UiModule;
+  export = ui;
+}
+declare module "autojs6:ui" {
+  import ui = require("ui");
   export = ui;
 }

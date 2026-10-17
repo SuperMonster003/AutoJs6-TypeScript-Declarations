@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.52.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun UI 및 Compose에서 기본 레이아웃, 데이터 구성 요소, 반응형 상태, 창 이벤트, 개별 권한 및 자동 창 정리 지원"
+        }
+      ]
+    },
     "v4.51.0": {
       "released_date": "2026/10/17",
       "entries": [

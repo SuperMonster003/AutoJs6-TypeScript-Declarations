@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.52.0
+
+###### 2026/10/18
+
+* `機能` Node.js/Bun UI と Compose がネイティブレイアウト, データコンポーネント, リアクティブ状態, ウィンドウイベント, 個別権限と自動クリーンアップに対応
+
 # v4.51.0
 
 ###### 2026/10/17

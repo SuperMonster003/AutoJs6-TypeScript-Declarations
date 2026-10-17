@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.52.0
+
+###### 2026/10/18
+
+* `Feature` Node.js/Bun UI and Compose support native layouts, data components, reactive state and window events, with independent grants and automatic window cleanup
+
 ### v4.51.0
 
 ###### 2026/10/17
@@ -191,12 +197,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/17
 
 * `Feature` Node.js main thread and Workers support H.264 MP4 recording with microphone, playback or mixed AAC audio, concurrent screenshots and cleanup of unsaved Worker recordings (API / TypeScript / Ace)
-
-### v4.49.0
-
-###### 2026/10/17
-
-* `Feature` Bun screenRecorder writes H.264 MP4 with optional microphone, app-playback or mixed AAC audio and screenshots during recording, with independent audio grants and cancellation cleanup (API / TypeScript / Ace)
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

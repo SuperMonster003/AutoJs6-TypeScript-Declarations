@@ -34,6 +34,7 @@
 /// <reference path="./notifications.d.ts" />
 /// <reference path="./sensors.d.ts" />
 /// <reference path="./ui.d.ts" />
+/// <reference path="./compose.d.ts" />
 /// <reference path="./ui_overlay.d.ts" />
 /// <reference path="./fetch.d.ts" />
 /// <reference path="./http.d.ts" />

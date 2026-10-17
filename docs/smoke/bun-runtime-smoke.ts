@@ -41,3 +41,24 @@ async function advancedImages(input: import('autojs6:bun-host').ImageHandle) {
     void [size, bytes];
 }
 void advancedImages;
+
+const composeApi=host.compose, uiApi=host.ui;
+async function portableUiComposeSmoke() {
+  const state = composeApi.state(0);
+  const ref = composeApi.ref();
+  const session = await composeApi.mount(() => composeApi.Column({padding:16},
+    composeApi.Text({text:String(state.value), ref}),
+    composeApi.Button({onClick(event) { state.value++; void event.type; }}, composeApi.Text({text:'Add'}))));
+  await session.flush(); await session.setTheme({dark:true});
+  await session.showSnackbar('Saved', {actionLabel:'Undo', onAction() { state.value=0; }});
+  const floating = await composeApi.floaty(composeApi.Text({text:'Floating'}));
+  await floating.setPosition(10, 20); const x: number = await floating.getX(); void x;
+  await floating.close(); await session.close();
+  const model = uiApi.state({text:'hello'});
+  const window = await uiApi.showLayout({type:'Text', id:'label', text:uiApi.bind(model,'text')});
+  const closed: boolean=window.closed; void closed; await window.close();
+  // @ts-expect-error Native Java View factories are outside the portable contract.
+  composeApi.AndroidView({view:{}});
+  // @ts-expect-error Component property types remain specific.
+  composeApi.Text({fontSize:false});
+}

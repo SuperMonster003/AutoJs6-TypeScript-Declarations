@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.52.0
+
+###### 2026/10/18
+
+* `기능` Node.js/Bun UI 및 Compose에서 기본 레이아웃, 데이터 구성 요소, 반응형 상태, 창 이벤트, 개별 권한 및 자동 창 정리 지원
+
 ### v4.51.0
 
 ###### 2026/10/17
@@ -191,12 +197,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/17
 
 * `기능` Node.js 메인 스레드와 Worker에서 H.264 MP4 화면 녹화, 마이크/재생/혼합 AAC 오디오, 녹화 중 동시 스크린샷 및 Worker의 미저장 녹화 정리 지원 (API / TypeScript / Ace)
-
-### v4.49.0
-
-###### 2026/10/17
-
-* `기능` Bun screenRecorder에서 H.264 MP4 녹화, 선택적 마이크/앱 재생/혼합 AAC 오디오 및 녹화 중 화면 캡처 지원, 별도 오디오 허용과 취소 정리 포함 (API / TypeScript / Ace)
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

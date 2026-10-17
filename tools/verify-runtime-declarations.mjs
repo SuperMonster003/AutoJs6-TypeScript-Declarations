@@ -62,8 +62,9 @@ function verifyRuntimeTypes(program, runtime) {
             return awaited;
         });
     }
-    let opencc, images;
+    let opencc, images, compose, ui;
     if (runtime === 'node') {
+        compose = exportedValue('compose'); ui = exportedValue('ui');
         opencc = exportedValue('opencc');
         images = exportedValue('images');
         for (const name of ['pinyin','pinyin4j','console','screen_metrics','screen_recorder','media_projection','recorder']) {
@@ -89,6 +90,7 @@ function verifyRuntimeTypes(program, runtime) {
         const client = checker.getExportsOfModule(ambient('autojs6:bun-host')).find(symbol => symbol.name === 'HostClient');
         assert(client, 'Bun HostClient is missing');
         const hostClient = checker.getDeclaredTypeOfSymbol(client);
+        compose = property(hostClient, 'compose'); ui = property(hostClient, 'ui');
         opencc = property(hostClient, 'opencc');
         images = property(hostClient, 'images');
         const recorder=property(hostClient,'screenRecorder');
@@ -104,6 +106,16 @@ function verifyRuntimeTypes(program, runtime) {
         assert.equal(checker.typeToString(property(movie,'audioSampleRate')),'48000 | null');
         assert.equal(checker.typeToString(property(movie,'audioChannels')),'1 | null');
     }
+    const composeNames = readFileSync(resolve(root, 'declarations/autojs6-node/compose.d.ts'), 'utf8')
+      .match(/type Compose(?:CatalogNodeName|V2NodeName) = [^;]+/g).flatMap(line => [...line.matchAll(/"([^"\n]+)"/g)].map(match => match[1]));
+    assert.equal(composeNames.length, 54);
+    for (const name of composeNames) returns(property(compose,name),'compose.'+name,false);
+    for (const name of ['mount','dialog','floaty','isAvailable','version']) returns(property(compose,name),'compose.'+name);
+    const session=returns(property(compose,'mount'),'compose.mount')[0];
+    for (const name of ['flush','render','setTheme','close']) returns(property(session,name),'Compose session.'+name);
+    const layout=returns(property(ui,'showLayout'),'ui.showLayout')[0];
+    for (const name of ['update','batchUpdate','close']) returns(property(layout,name),'UI handle.'+name);
+    assert(property(layout,'closed').flags & ts.TypeFlags.BooleanLike,'UI closed is boolean');
     for (const name of ['()', ...openccNames]) {
         returns(name === '()' ? opencc : property(opencc, name), `opencc.${name}`).forEach(value =>
             assert(value.flags & ts.TypeFlags.String, `${runtime}: opencc.${name} must resolve to string`));

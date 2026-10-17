@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.52.0
+
+###### 2026/10/18
+
+* `ميزة` يدعم Node.js/Bun UI و Compose التخطيطات الأصلية ومكونات البيانات والحالة التفاعلية وأحداث النوافذ مع أذونات مستقلة وإغلاق تلقائي للنوافذ
+
 # v4.51.0
 
 ###### 2026/10/17
