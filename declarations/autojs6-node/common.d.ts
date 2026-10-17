@@ -47,6 +47,8 @@ declare namespace AutoJs6Node {
   }
 
   export interface ImageHandleLike {
+    readonly __autojs6MatHandle?: never;
+    readonly __autojs6ImageFeaturesHandle?: never;
     readonly id: string;
     readonly width: number;
     readonly height: number;

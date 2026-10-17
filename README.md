@@ -178,6 +178,14 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.51.0
+
+###### 2026/10/17
+
+* `新增` Node.js/Bun images 支持高级滤镜, 颜色空间转换, 多点找色, 圆检测, 相似度指标及 URL 载入
+* `新增` Node.js/Bun images 支持 SIFT/ORB 特征提取与匹配, 返回场景坐标和 ObjectFrame 几何信息, 并管理执行内的 Mat/特征句柄
+* `新增` Node.js/Bun images 支持 PNG 量化和压缩, 提供质量/内存度量, 二进制结果及文件描述符输出
+
 ### v4.50.0
 
 ###### 2026/10/17
@@ -189,13 +197,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/17
 
 * `新增` Bun screenRecorder 支持 H.264 MP4 录屏, 可选麦克风/应用播放/混合 AAC 音轨及录制期间截图, 包含独立音频授权和取消清理 (API / TypeScript / Ace)
-
-### v4.48.0
-
-###### 2026/10/17
-
-* `新增` Node.js Worker 支持 pinyin, pinyin4j, 控制台窗口和坐标换算, 共享父执行状态并保留原生输出流 (API / TypeScript / Ace)
-* `新增` Bun screenRecorder 支持无声 H.264 MP4 录屏文件, 独立授权, 固定输出尺寸, 显式收尾及取消清理 (API / TypeScript / Ace)
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

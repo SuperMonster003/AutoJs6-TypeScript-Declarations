@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.51.0
+
+###### 2026/10/17
+
+* `新增` Node.js/Bun images 支援進階濾鏡, 色彩空間轉換, 多點找色, 圓形偵測, 相似度指標及 URL 載入
+* `新增` Node.js/Bun images 支援 SIFT/ORB 特徵擷取與比對, 返回場景座標和 ObjectFrame 幾何資訊, 並管理執行內的 Mat/特徵控制代碼
+* `新增` Node.js/Bun images 支援 PNG 量化和壓縮, 提供品質/記憶體度量, 二進位結果及檔案描述元輸出
+
 # v4.50.0
 
 ###### 2026/10/17

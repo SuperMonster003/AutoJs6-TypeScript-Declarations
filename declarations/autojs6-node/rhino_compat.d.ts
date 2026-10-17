@@ -231,7 +231,7 @@ declare module "autojs6:compat" {
     }
 
     export interface RhinoImagesCompatModule extends Omit<image.ImageModule,
-      "captureScreen" | "stopScreenCapture" | "read" | "save" | "saveImage" | "clip" | "resize" | "threshold" | "findImage" | "findColor" | "findPointByColor" | "findColorEquals"> {
+      "captureScreen" | "stopScreenCapture" | "read" | "save" | "saveImage" | "clip" | "resize" | "threshold" | "findImage" | "findColor" | "findPointByColor" | "findColorEquals" | "recycle"> {
       requestScreenCapture(options?: ScreenCaptureRequestOptions): Promise<boolean>;
       requestScreenCaptureAsync(options?: ScreenCaptureRequestOptions): Promise<boolean>;
       captureScreen(options?: image.CaptureScreenOptions): Promise<AutoJs6Node.ImageHandle>;
@@ -263,7 +263,7 @@ declare module "autojs6:compat" {
       findColorEquals(image: image.ImageInput, color: image.ColorInput, options?: Omit<image.FindColorOptions, "threshold">): Promise<AutoJs6Node.Point | null>;
       findColorEquals(image: image.ImageInput, color: image.ColorInput, x: number, y: number, width: number, height: number): Promise<AutoJs6Node.Point | null>;
       findMultiColors(image: AutoJs6Node.ImageHandleLike, color: image.ColorInput, points: readonly image.MultiColorPointInput[], options?: image.FindColorOptions): Promise<AutoJs6Node.Point | null>;
-      getSize(image: AutoJs6Node.ImageHandleLike): image.ImageSize;
+      getSize(image: AutoJs6Node.ImageHandleLike | image.MatHandle): image.ImageSize;
       recycle(image: AutoJs6Node.ImageHandleLike, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
     }
 

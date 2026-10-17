@@ -1,7 +1,6 @@
 declare module "images" {
   import image = require("image");
-  const images: image.ImageModule;
-  export = images;
+  export = image;
 }
 
 declare module "autojs6:images" {

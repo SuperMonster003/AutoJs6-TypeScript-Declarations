@@ -14,6 +14,7 @@ for (const [name, expected] of Object.entries(manifest.files)) {
     assert.equal(createHash('sha256').update(text).digest('hex'), expected, `Stale runtime declaration: ${name}`);
 }
 const result = [];
+const imageMembers = new Map();
 const rhinoOpencc = ts.createSourceFile('aj6-int-opencc.d.ts',
     readFileSync(resolve(root, 'declarations/autojs6/aj6-int-opencc.d.ts'), 'utf8'), ts.ScriptTarget.Latest, true);
 let openccNames = [];
@@ -108,11 +109,14 @@ function verifyRuntimeTypes(program, runtime) {
             assert(value.flags & ts.TypeFlags.String, `${runtime}: opencc.${name} must resolve to string`));
     }
     const handleMethods = new Set(['fromBase64', 'fromBytes', 'readImage', 'copy', 'clip', 'resize', 'scale',
-        'rotate', 'flip', 'grayscale', 'threshold', 'blur', 'gaussianBlur', 'medianBlur', 'invert', 'captureScreen', 'read']);
-    const pointMethods = new Set(['findImage', 'findColor', 'findMultiColors', 'findColorEquals', 'findPointByColor', 'findPointByColors']);
-    const pointArrayMethods = new Set(['matchTemplate', 'findAllPointsForColor', 'findPointsByColor']);
-    const booleanMethods = new Set(['detectsColor', 'detectColor', 'requestScreenCapture', 'stopScreenCapture', 'save', 'isRecycled']);
-    const voidMethods = new Set(['saveImage', 'recycle']);
+        'rotate', 'flip', 'grayscale', 'threshold', 'blur', 'gaussianBlur', 'medianBlur', 'invert', 'captureScreen', 'read',
+        'inRange','interval','adaptiveThreshold','bilateralFilter','cvtColor','concat','matToImage','compress','downsample']);
+    const pointMethods = new Set(['findImage', 'findColor', 'findMultiColors', 'findColorEquals', 'findPointByColor', 'findPointByColors',
+        'findPointByColorExactly','findColorInRegion','findPointByImage','findImageInRegion']);
+    const pointArrayMethods = new Set(['matchTemplate', 'findAllPointsForColor', 'findPointsByColor','findPointsByColors','findCircles']);
+    const booleanMethods = new Set(['detectsColor', 'detectColor', 'requestScreenCapture', 'stopScreenCapture', 'save', 'isRecycled',
+        'requestScreenCaptureAsync','isGrayscale','detectMultiColors','detectsMultiColors','isEqual']);
+    const voidMethods = new Set(['saveImage', 'recycle','initOpenCvIfNeeded']);
     const expectedCommon = ['fromBase64', 'fromBytes', 'readImage', 'saveImage', 'toBase64', 'toBytes', 'pixel', 'readPixels',
         'getSize', 'copy', 'clip', 'resize', 'scale', 'rotate', 'flip', 'grayscale', 'threshold', 'blur', 'gaussianBlur',
         'medianBlur', 'invert', 'findImage', 'matchTemplate', 'findColor', 'findMultiColors', 'detectsColor',
@@ -127,7 +131,7 @@ function verifyRuntimeTypes(program, runtime) {
         const name = symbol.name, member = property(images, name);
         if (!checker.getSignaturesOfType(member, ts.SignatureKind.Call).length) continue;
         imageMethods++;
-        for (const value of returns(member, `images.${name}`, !['getSize', 'getWidth', 'getHeight', 'isRecycled'].includes(name))) {
+        for (const value of returns(member, `images.${name}`, !['getSize', 'getWidth', 'getHeight', 'isRecycled','buildRegion','__buildRegion'].includes(name))) {
             if (handleMethods.has(name)) {
                 assert(property(value, 'id').flags & ts.TypeFlags.String, `${runtime}: ${name} must return a handle id`);
                 numericFields(value, ['width', 'height'], name);
@@ -139,6 +143,7 @@ function verifyRuntimeTypes(program, runtime) {
                 assert(item, `${name} must resolve to an array`);
                 numericFields(item, ['x', 'y'], name);
                 if (name === 'matchTemplate') assert(checker.getNonNullableType(property(item, 'score')).flags & ts.TypeFlags.Number);
+                if (name === 'findCircles') numericFields(item,['radius'],name);
             } else if (booleanMethods.has(name)) {
                 assert(value.flags & ts.TypeFlags.BooleanLike, `${name} must resolve to boolean`);
             } else if (voidMethods.has(name)) {
@@ -149,17 +154,41 @@ function verifyRuntimeTypes(program, runtime) {
                 numericFields(value, ['width', 'height'], name);
                 const pixel = checker.getIndexTypeOfType(property(value, 'data'), ts.IndexKind.Number);
                 assert(pixel && pixel.flags & ts.TypeFlags.Number, `${name}.data must contain ARGB32 numbers`);
-            } else if (['pixel', 'getWidth', 'getHeight'].includes(name)) {
+            } else if (['pixel', 'getWidth', 'getHeight','countPointsByColor','getMeanColor','psnr','ssim','mssim','hist','mse','ncc','getSimilarity'].includes(name)) {
                 assert(value.flags & ts.TypeFlags.Number, `${name} must resolve to an ARGB32 number`);
             } else if (name === 'toBase64') {
                 assert(value.flags & ts.TypeFlags.String, `${name} must resolve to a string`);
-            } else if (name === 'toBytes') {
+            } else if (name === 'toBytes' || name === 'compressToBytes') {
                 assert.equal(value.getSymbol()?.name, 'Uint8Array', 'Without native Node types, image bytes must retain Uint8Array methods');
+            } else if (['buildRegion','__buildRegion'].includes(name)) {
+                numericFields(checker.getNonNullableType(value),['x','y','width','height'],name);
+            } else if (['load','loadAsync','getScreenCaptureOptions'].includes(name)) {
+                assert(value.isUnion()&&value.types.some(t=>t.flags&ts.TypeFlags.Null),`${name} must preserve null`);
+                numericFields(checker.getNonNullableType(value),['width','height'],name);
+            } else if (name==='imread') {
+                numericFields(value,['width','height','channels','depth'],name);
+                assert(property(value,'__autojs6MatHandle').flags&ts.TypeFlags.String);
+            } else if (name==='detectAndComputeFeatures') {
+                numericFields(value,['count','scale'],name);
+                numericFields(property(value,'region'),['x','y','width','height'],name+'.region');
+                assert(property(value,'__autojs6ImageFeaturesHandle').flags&ts.TypeFlags.String);
+            } else if (name==='matchFeatures') {
+                assert(value.isUnion()&&value.types.some(t=>t.flags&ts.TypeFlags.Null),'Feature match must preserve null');
+                const frame=checker.getNonNullableType(value);
+                numericFields(frame,['centerX','centerY','width','height','angle','matches','inliers'],name);
+                returns(property(frame,'summary'),'ObjectFrame.summary',false).forEach(result=>assert(result.flags&ts.TypeFlags.String));
+            } else if (name==='quantize'||name==='quantizeToFile') {
+                numericFields(value,['size','quality','quantizationError','peakWorkingMemoryBytes'],name);
+                if(name==='quantize')assert.equal(property(value,'bytes').getSymbol()?.name,'Uint8Array');
+                else assert(property(value,'path').flags&ts.TypeFlags.String);
             } else {
                 assert.fail(`${runtime}: review the return contract of the new image method ${name}`);
             }
         }
     }
+    const constructors=checker.getSignaturesOfType(property(images,'ObjectFrame'),ts.SignatureKind.Construct);
+    assert.equal(constructors.length,1,'ObjectFrame must have a usable constructor');
+    imageMembers.set(runtime,checker.getPropertiesOfType(images).map(symbol=>symbol.name).sort());
     for (const name of ['requestScreenCapture','captureScreen','stopScreenCapture']) property(images,name);
     return { openccMethods: openccNames.length, callableOpencc: true, imageMethods, anyOrNeverImageResults: 0 };
 }
@@ -183,4 +212,5 @@ for (const runtime of ['node', 'bun']) {
     }
     result.push({ runtime, diagnostics: diagnostics.length, ...verifyRuntimeTypes(program, runtime) });
 }
+assert.deepEqual(imageMembers.get('node'),imageMembers.get('bun'),'Node and Bun image declaration names differ');
 console.log(JSON.stringify({ typescript: ts.version, checkedAssets: Object.keys(manifest.files).length, results: result }, null, 2));

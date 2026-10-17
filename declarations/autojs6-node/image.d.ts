@@ -106,7 +106,112 @@ declare module "image" {
       algorithm?: "diff" | "rgb" | "rgb+" | "hs" | "h" | "equal" | "oklab";
     }
 
+    export interface MatHandle {
+      readonly id: string; readonly __autojs6MatHandle: string;
+      readonly width: number; readonly height: number; readonly channels: number; readonly depth: number;
+    }
+    export interface ImageRegionBounds { readonly x: number; readonly y: number; readonly width: number; readonly height: number }
+    export interface ImageFeaturesHandle {
+      readonly id: string; readonly __autojs6ImageFeaturesHandle: string;
+      readonly count: number; readonly method: "SIFT" | "ORB"; readonly scale: number; readonly region: ImageRegionBounds;
+    }
+    export type ImageResourceHandle = AutoJs6Node.ImageHandleLike | MatHandle | ImageFeaturesHandle;
+    export interface ObjectFrame {
+      readonly topLeft: AutoJs6Node.Point; readonly topRight: AutoJs6Node.Point; readonly bottomLeft: AutoJs6Node.Point; readonly bottomRight: AutoJs6Node.Point;
+      readonly center: AutoJs6Node.Point; readonly centerX: number; readonly centerY: number;
+      readonly width: number; readonly height: number; readonly angle: number;
+      readonly bounds: ImageRegionBounds; readonly matches: number; readonly inliers: number; readonly points: readonly AutoJs6Node.Point[];
+      summary(): string; toString(): string;
+    }
+    export interface FeatureOptions extends AutoJs6Node.BridgeCallOptions {
+      region?: ImageRegion; method?: "SIFT" | "ORB" | "sift" | "orb"; scale?: number; maxFeatures?: number;
+      /** Accepted for compatibility. SIFT and ORB always detect intensity features. */
+      grayscale?: boolean;
+    }
+    export interface FeatureMatchOptions extends FeatureOptions {
+      matcher?: string | number; threshold?: number; ransacThreshold?: number; minInliers?: number;
+      /** Output JPEG path; Bun additionally requires image.files. */
+      drawMatches?: string;
+    }
+    export interface QuantizationOptions extends AutoJs6Node.BridgeCallOptions {
+      quality?: number; maxColors?: number; speed?: number; minQuality?: number; maxQuality?: number;
+      ditheringLevel?: number; posterizeBits?: number; preserveAlpha?: boolean;
+      maxPixels?: number; maxMemoryBytes?: number;
+    }
+    export interface QuantizationResult {
+      readonly bytes: ImageBytes; readonly size: number; readonly quality: number;
+      readonly quantizationError: number; readonly peakWorkingMemoryBytes: number;
+    }
+    export interface QuantizationFileResult extends Omit<QuantizationResult, "bytes"> { readonly path: string }
+    export interface ImageCompressionOptions extends AutoJs6Node.BridgeCallOptions {
+      format?: EncodedImageFormat; quality?: number; quantization?: QuantizationOptions;
+    }
+    export interface AdaptiveThresholdOptions extends AutoJs6Node.BridgeCallOptions {
+      maxValue?: number; adaptiveMethod?: "MEAN_C" | "GAUSSIAN_C" | "mean_c" | "gaussian_c" | number;
+      type?: "BINARY" | "BINARY_INV" | "binary" | "binary_inv" | number; blockSize?: number; C?: number;
+    }
+    export interface BilateralFilterOptions extends AutoJs6Node.BridgeCallOptions { d?: number; sigmaColor?: number; sigmaSpace?: number; borderType?: string | number }
+    export interface FindCirclesOptions extends AutoJs6Node.BridgeCallOptions {
+      region?: ImageRegion; dp?: number; minDst?: number; param1?: number; param2?: number; minRadius?: number; maxRadius?: number;
+    }
+    export interface ImageCircle extends AutoJs6Node.Point { readonly radius: number }
+    export interface ImageSimilarityOptions extends AutoJs6Node.BridgeCallOptions { metric?: "psnr" | "pnsr" | "ssim" | "mssim" | "hist" | "mse" | "ncc"; type?: "psnr" | "pnsr" | "ssim" | "mssim" | "hist" | "mse" | "ncc" }
+
     export interface ImageModule {
+      getSize(mat: MatHandle): ImageSize;
+      getWidth(mat: MatHandle): number;
+      getHeight(mat: MatHandle): number;
+    readonly ObjectFrame: { new(topLeft: AutoJs6Node.Point, topRight: AutoJs6Node.Point, bottomLeft: AutoJs6Node.Point, bottomRight: AutoJs6Node.Point, matches?: number, inliers?: number, points?: readonly AutoJs6Node.Point[]): ObjectFrame };
+      initOpenCvIfNeeded(options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
+      /** HTTP(S) or file URL. Node requires image + network; Bun requires image.files. Invalid image data resolves to null. */
+      load(url: string, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle | null>;
+      loadAsync(url: string, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle | null>;
+      /** Opaque native BGR Mat, released through recycle. matToImage makes an independent RGB image. */
+      imread(path: string, options?: AutoJs6Node.BridgeCallOptions): Promise<MatHandle>;
+      matToImage(mat: MatHandle, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
+      getScreenCaptureOptions(options?: AutoJs6Node.BridgeCallOptions): Promise<{ readonly width: number; readonly height: number; readonly orientation: "auto" | "portrait" | "landscape" } | null>;
+      requestScreenCaptureAsync(options?: CaptureScreenOptions & { width?: number; height?: number }): Promise<boolean>;
+      isGrayscale(image: ImageInput, options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
+      inRange(image: ImageInput, lower: ColorInput, upper: ColorInput, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
+      interval(image: ImageInput, color: ColorInput, threshold: number, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
+      adaptiveThreshold(image: ImageInput, options?: AdaptiveThresholdOptions): Promise<AutoJs6Node.ImageHandle>;
+      adaptiveThreshold(image: ImageInput, maxValue: number, adaptiveMethod: string | number, type: string | number, blockSize: number, C: number, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
+      bilateralFilter(image: ImageInput, options?: BilateralFilterOptions): Promise<AutoJs6Node.ImageHandle>;
+      bilateralFilter(image: ImageInput, d?: number, sigmaColor?: number, sigmaSpace?: number, borderType?: string | number, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
+      cvtColor(image: ImageInput, code: string | number, dstCn?: number, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
+      findCircles(image: ImageInput, options?: FindCirclesOptions): Promise<readonly ImageCircle[]>;
+      concat(image: ImageInput, other: ImageInput, direction?: "left" | "right" | "start" | "end" | "top" | "bottom", options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
+      detectMultiColors(image: ImageInput, color: ColorInput, points: readonly MultiColorPointInput[], x: number, y: number, options?: DetectColorOptions): Promise<boolean>;
+      detectsMultiColors(image: ImageInput, color: ColorInput, points: readonly MultiColorPointInput[], x: number, y: number, options?: DetectColorOptions): Promise<boolean>;
+      findPointsByColors(image: ImageInput, color: ColorInput, points: readonly MultiColorPointInput[], options?: FindColorOptions): Promise<readonly AutoJs6Node.Point[]>;
+      findPointByColorExactly(image: ImageInput, color: ColorInput, options?: Omit<FindColorOptions, "threshold">): Promise<AutoJs6Node.Point | null>;
+      findColorInRegion(image: ImageInput, color: ColorInput, x?: number, y?: number, width?: number, height?: number, threshold?: number): Promise<AutoJs6Node.Point | null>;
+      findPointByImage(image: AutoJs6Node.ImageHandleLike, template: AutoJs6Node.ImageHandleLike, options?: MatchTemplateOptions): Promise<AutoJs6Node.Point | null>;
+      findImageInRegion(image: ImageInput, template: ImageInput, x?: number, y?: number, width?: number, height?: number, threshold?: number): Promise<AutoJs6Node.Point | null>;
+      countPointsByColor(image: ImageInput, color: ColorInput, options?: FindColorOptions): Promise<number>;
+      getMeanColor(image: ImageInput, options?: ReadPixelsOptions): Promise<number>;
+      detectAndComputeFeatures(image: ImageInput, options?: FeatureOptions): Promise<ImageFeaturesHandle>;
+      matchFeatures(scene: ImageInput | ImageFeaturesHandle, object: ImageInput | ImageFeaturesHandle, options?: FeatureMatchOptions): Promise<ObjectFrame | null>;
+      quantize(image: ImageInput, options?: QuantizationOptions): Promise<QuantizationResult>;
+      quantizeToFile(image: ImageInput, path: string, options?: QuantizationOptions): Promise<QuantizationFileResult>;
+      compress(image: ImageInput, options?: ImageCompressionOptions): Promise<AutoJs6Node.ImageHandle>;
+      compress(image: ImageInput, format: EncodedImageFormat, quality?: number | QuantizationOptions): Promise<AutoJs6Node.ImageHandle>;
+      compressToBytes(image: ImageInput, options?: ImageCompressionOptions): Promise<ImageBytes>;
+      compressToBytes(image: ImageInput, format: EncodedImageFormat, quality?: number | QuantizationOptions): Promise<ImageBytes>;
+      downsample(source: ImageInput | ArrayBuffer | ArrayBufferView | readonly number[], width: number, height: number, withAlpha?: boolean, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
+      buildRegion(image: AutoJs6Node.ImageHandleLike | MatHandle, region?: readonly (number | null | undefined)[] | ImageRegionBounds): ImageRegionBounds;
+      __buildRegion(region?: readonly (number | null | undefined)[] | ImageRegionBounds | null, width?: number, height?: number): ImageRegionBounds | null;
+      psnr(a: ImageInput, b: ImageInput, options?: AutoJs6Node.BridgeCallOptions): Promise<number>;
+      ssim(a: ImageInput, b: ImageInput, options?: AutoJs6Node.BridgeCallOptions): Promise<number>;
+      mssim(a: ImageInput, b: ImageInput, options?: AutoJs6Node.BridgeCallOptions): Promise<number>;
+      hist(a: ImageInput, b: ImageInput, options?: AutoJs6Node.BridgeCallOptions): Promise<number>;
+      mse(a: ImageInput, b: ImageInput, options?: AutoJs6Node.BridgeCallOptions): Promise<number>;
+      ncc(a: ImageInput, b: ImageInput, options?: AutoJs6Node.BridgeCallOptions): Promise<number>;
+      isEqual(a: ImageInput, b: ImageInput, options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
+      getSimilarity(a: ImageInput, b: ImageInput, options?: ImageSimilarityOptions): Promise<number>;
+      isRecycled(...images: (ImageResourceHandle | readonly ImageResourceHandle[])[]): boolean;
+      recycle(...images: (ImageResourceHandle | readonly ImageResourceHandle[])[]): Promise<void>;
+
       requestScreenCapture(options?: CaptureScreenOptions & { width?: number; height?: number }): Promise<boolean>;
       stopScreenCapture(options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
       /** Uses the authorized session's orientation and dimensions, including during recording. */
@@ -159,7 +264,7 @@ declare module "image" {
       getHeight(image: AutoJs6Node.ImageHandleLike): number;
       /** Local bookkeeping shared by image/images in this thread. Other threads and raw-bridge recycling are not tracked. */
       isRecycled(image: AutoJs6Node.ImageHandleLike): boolean;
-      recycle(image: AutoJs6Node.ImageHandleLike, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
+      recycle(image: ImageResourceHandle, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
     }
   }
 

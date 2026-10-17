@@ -62,3 +62,25 @@ async function recordingTypes(path: string) {
     void [image, cancelled, status];
 }
 void recordingTypes;
+
+import images = require('autojs6:images');
+async function advancedImageTypes(input: AutoJs6Node.ImageHandle) {
+    const mat: images.MatHandle = await images.imread('fixture.png');
+    const size: images.ImageSize = images.getSize(mat);
+    const converted = await images.matToImage(mat);
+    const features: images.ImageFeaturesHandle = await images.detectAndComputeFeatures(converted, { method: 'ORB', maxFeatures: 700 });
+    const frame: images.ObjectFrame | null = await images.matchFeatures(features, input);
+    if (frame) { const point: AutoJs6Node.Point = frame.center; const summary: string = frame.summary(); void [point, summary]; }
+    const quant: images.QuantizationResult = await images.quantize(input, { maxColors: 16 });
+    const bytes: Uint8Array = quant.bytes;
+    const geometry = new images.ObjectFrame({x:0,y:0},{x:8,y:0},{x:0,y:6},{x:8,y:6});
+    await images.recycle([mat, features, converted]);
+    // @ts-expect-error A Mat must be converted before using image pixel APIs.
+    images.pixel(mat, 0, 0);
+    // @ts-expect-error A feature descriptor is not a bitmap image.
+    images.cvtColor(features, 'RGB2GRAY');
+    // @ts-expect-error A feature detector name must be supported.
+    images.detectAndComputeFeatures(input, { method: 'unknown' });
+    void [size, bytes, geometry];
+}
+void advancedImageTypes;

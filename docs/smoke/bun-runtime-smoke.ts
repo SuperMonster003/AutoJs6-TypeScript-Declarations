@@ -23,3 +23,21 @@ selector();
 $autojs;
 // @ts-expect-error Bun does not activate Rhino's JSOX prototype extensions.
 Math.sum(1, 2);
+
+async function advancedImages(input: import('autojs6:bun-host').ImageHandle) {
+    const mat = await host.images.imread('fixture.png');
+    const size = host.images.getSize(mat);
+    const image = await host.images.matToImage(mat);
+    const features = await host.images.detectAndComputeFeatures(image, { method: 'ORB' });
+    const frame = await host.images.matchFeatures(features, input);
+    if (frame) { const summary: string = frame.summary(); const count: number = frame.inliers; void [summary, count]; }
+    const quant = await host.images.quantize(input, { maxColors: 16 });
+    const bytes: Uint8Array = quant.bytes;
+    await host.images.recycle([mat, features, image]);
+    // @ts-expect-error Mat handles require explicit conversion to image handles.
+    host.images.pixel(mat, 0, 0);
+    // @ts-expect-error Feature descriptors are not pixel sources.
+    host.images.cvtColor(features, 'RGB2GRAY');
+    void [size, bytes];
+}
+void advancedImages;

@@ -28,9 +28,10 @@ export interface ImageHandle {
   readonly width: number;
   readonly height: number;
 }
-export type ImageHandleLike =
+export type ImageHandleLike = (
   | { readonly id: string; readonly __autojs6ImageHandle?: string }
-  | { readonly id?: string; readonly __autojs6ImageHandle: string };
+  | { readonly id?: string; readonly __autojs6ImageHandle: string }
+) & { readonly __autojs6MatHandle?: never; readonly __autojs6ImageFeaturesHandle?: never };
 export type ImageFormat = "png" | "jpg" | "jpeg" | "webp";
 export interface ImageEncodingOptions { readonly format?: ImageFormat; readonly quality?: number }
 export type ImageRegion = readonly [x: number, y: number, width: number, height: number];
@@ -115,7 +116,122 @@ export interface ScreenRecorderApi {
   getStatus(): Promise<ScreenRecordingStatus>;
 }
 /** JSON transport remains limited to 64 KiB requests / 256 KiB results. Large images use host file paths. */
+export type ImageInput = ImageHandleLike | string;
+
+export interface MatHandle {
+  readonly id: string; readonly __autojs6MatHandle: string;
+  readonly width: number; readonly height: number; readonly channels: number; readonly depth: number;
+}
+export interface ImageRegionBounds { readonly x: number; readonly y: number; readonly width: number; readonly height: number }
+export interface ImageFeaturesHandle {
+  readonly id: string; readonly __autojs6ImageFeaturesHandle: string;
+  readonly count: number; readonly method: "SIFT" | "ORB"; readonly scale: number; readonly region: ImageRegionBounds;
+}
+export type ImageResourceHandle = ImageHandleLike | MatHandle | ImageFeaturesHandle;
+export interface ObjectFrame {
+  readonly topLeft: ImagePoint; readonly topRight: ImagePoint; readonly bottomLeft: ImagePoint; readonly bottomRight: ImagePoint;
+  readonly center: ImagePoint; readonly centerX: number; readonly centerY: number;
+  readonly width: number; readonly height: number; readonly angle: number;
+  readonly bounds: ImageRegionBounds; readonly matches: number; readonly inliers: number; readonly points: readonly ImagePoint[];
+  summary(): string; toString(): string;
+}
+export interface FeatureOptions  {
+  region?: ImageRegion; method?: "SIFT" | "ORB" | "sift" | "orb"; scale?: number; maxFeatures?: number;
+  /** Accepted for compatibility. SIFT and ORB always detect intensity features. */
+  grayscale?: boolean;
+}
+export interface FeatureMatchOptions extends FeatureOptions {
+  matcher?: string | number; threshold?: number; ransacThreshold?: number; minInliers?: number;
+  /** Output JPEG path; Bun additionally requires image.files. */
+  drawMatches?: string;
+}
+export interface QuantizationOptions  {
+  quality?: number; maxColors?: number; speed?: number; minQuality?: number; maxQuality?: number;
+  ditheringLevel?: number; posterizeBits?: number; preserveAlpha?: boolean;
+  maxPixels?: number; maxMemoryBytes?: number;
+}
+export interface QuantizationResult {
+  readonly bytes: Uint8Array; readonly size: number; readonly quality: number;
+  readonly quantizationError: number; readonly peakWorkingMemoryBytes: number;
+}
+export interface QuantizationFileResult extends Omit<QuantizationResult, "bytes"> { readonly path: string }
+export interface ImageCompressionOptions  {
+  format?: ImageFormat; quality?: number; quantization?: QuantizationOptions;
+}
+export interface AdaptiveThresholdOptions  {
+  maxValue?: number; adaptiveMethod?: "MEAN_C" | "GAUSSIAN_C" | "mean_c" | "gaussian_c" | number;
+  type?: "BINARY" | "BINARY_INV" | "binary" | "binary_inv" | number; blockSize?: number; C?: number;
+}
+export interface BilateralFilterOptions  { d?: number; sigmaColor?: number; sigmaSpace?: number; borderType?: string | number }
+export interface FindCirclesOptions  {
+  region?: ImageRegion; dp?: number; minDst?: number; param1?: number; param2?: number; minRadius?: number; maxRadius?: number;
+}
+export interface ImageCircle extends ImagePoint { readonly radius: number }
+export interface ImageSimilarityOptions  { metric?: "psnr" | "pnsr" | "ssim" | "mssim" | "hist" | "mse" | "ncc"; type?: "psnr" | "pnsr" | "ssim" | "mssim" | "hist" | "mse" | "ncc" }
+
 export interface ImagesApi {
+  getSize(mat: MatHandle): { width: number; height: number };
+  getWidth(mat: MatHandle): number;
+  getHeight(mat: MatHandle): number;
+
+  readonly ObjectFrame: { new(topLeft: ImagePoint, topRight: ImagePoint, bottomLeft: ImagePoint, bottomRight: ImagePoint, matches?: number, inliers?: number, points?: readonly ImagePoint[]): ObjectFrame };
+  initOpenCvIfNeeded(): Promise<void>;
+  /** HTTP(S) or file URL. Node requires image + network; Bun requires image.files. Invalid image data resolves to null. */
+  load(url: string): Promise<ImageHandle | null>;
+  loadAsync(url: string): Promise<ImageHandle | null>;
+  /** Opaque native BGR Mat, released through recycle. matToImage makes an independent RGB image. */
+  imread(path: string): Promise<MatHandle>;
+  matToImage(mat: MatHandle): Promise<ImageHandle>;
+  getScreenCaptureOptions(): Promise<{ readonly width: number; readonly height: number; readonly orientation: "auto" | "portrait" | "landscape" } | null>;
+  requestScreenCaptureAsync(options?: ScreenCaptureOptions): Promise<boolean>;
+  isGrayscale(image: ImageInput): Promise<boolean>;
+  inRange(image: ImageInput, lower: ImageColor, upper: ImageColor): Promise<ImageHandle>;
+  interval(image: ImageInput, color: ImageColor, threshold: number): Promise<ImageHandle>;
+  adaptiveThreshold(image: ImageInput, options?: AdaptiveThresholdOptions): Promise<ImageHandle>;
+  adaptiveThreshold(image: ImageInput, maxValue: number, adaptiveMethod: string | number, type: string | number, blockSize: number, C: number): Promise<ImageHandle>;
+  bilateralFilter(image: ImageInput, options?: BilateralFilterOptions): Promise<ImageHandle>;
+  bilateralFilter(image: ImageInput, d?: number, sigmaColor?: number, sigmaSpace?: number, borderType?: string | number): Promise<ImageHandle>;
+  cvtColor(image: ImageInput, code: string | number, dstCn?: number): Promise<ImageHandle>;
+  findCircles(image: ImageInput, options?: FindCirclesOptions): Promise<readonly ImageCircle[]>;
+  concat(image: ImageInput, other: ImageInput, direction?: "left" | "right" | "start" | "end" | "top" | "bottom"): Promise<ImageHandle>;
+  detectMultiColors(image: ImageInput, color: ImageColor, points: readonly ImageMultiColorPoint[], x: number, y: number, options?: ImageDetectOptions): Promise<boolean>;
+  detectsMultiColors(image: ImageInput, color: ImageColor, points: readonly ImageMultiColorPoint[], x: number, y: number, options?: ImageDetectOptions): Promise<boolean>;
+  findPointsByColors(image: ImageInput, color: ImageColor, points: readonly ImageMultiColorPoint[], options?: ImageColorOptions): Promise<readonly ImagePoint[]>;
+  findPointByColorExactly(image: ImageInput, color: ImageColor, options?: Omit<ImageColorOptions, "threshold">): Promise<ImagePoint | null>;
+  findColorInRegion(image: ImageInput, color: ImageColor, x?: number, y?: number, width?: number, height?: number, threshold?: number): Promise<ImagePoint | null>;
+  findPointByImage(image: ImageHandleLike, template: ImageHandleLike, options?: ImageMatchOptions): Promise<ImagePoint | null>;
+  findImageInRegion(image: ImageInput, template: ImageInput, x?: number, y?: number, width?: number, height?: number, threshold?: number): Promise<ImagePoint | null>;
+  countPointsByColor(image: ImageInput, color: ImageColor, options?: ImageColorOptions): Promise<number>;
+  getMeanColor(image: ImageInput, options?: ImagePixelOptions): Promise<number>;
+  detectAndComputeFeatures(image: ImageInput, options?: FeatureOptions): Promise<ImageFeaturesHandle>;
+  matchFeatures(scene: ImageInput | ImageFeaturesHandle, object: ImageInput | ImageFeaturesHandle, options?: FeatureMatchOptions): Promise<ObjectFrame | null>;
+  quantize(image: ImageInput, options?: QuantizationOptions): Promise<QuantizationResult>;
+  quantizeToFile(image: ImageInput, path: string, options?: QuantizationOptions): Promise<QuantizationFileResult>;
+  compress(image: ImageInput, options?: ImageCompressionOptions): Promise<ImageHandle>;
+  compress(image: ImageInput, format: ImageFormat, quality?: number | QuantizationOptions): Promise<ImageHandle>;
+  compressToBytes(image: ImageInput, options?: ImageCompressionOptions): Promise<Uint8Array>;
+  compressToBytes(image: ImageInput, format: ImageFormat, quality?: number | QuantizationOptions): Promise<Uint8Array>;
+  downsample(source: ImageInput | ArrayBuffer | ArrayBufferView | readonly number[], width: number, height: number, withAlpha?: boolean): Promise<ImageHandle>;
+  buildRegion(image: ImageHandleLike | MatHandle, region?: readonly (number | null | undefined)[] | ImageRegionBounds): ImageRegionBounds;
+  __buildRegion(region?: readonly (number | null | undefined)[] | ImageRegionBounds | null, width?: number, height?: number): ImageRegionBounds | null;
+  psnr(a: ImageInput, b: ImageInput): Promise<number>;
+  ssim(a: ImageInput, b: ImageInput): Promise<number>;
+  mssim(a: ImageInput, b: ImageInput): Promise<number>;
+  hist(a: ImageInput, b: ImageInput): Promise<number>;
+  mse(a: ImageInput, b: ImageInput): Promise<number>;
+  ncc(a: ImageInput, b: ImageInput): Promise<number>;
+  isEqual(a: ImageInput, b: ImageInput): Promise<boolean>;
+  getSimilarity(a: ImageInput, b: ImageInput, options?: ImageSimilarityOptions): Promise<number>;
+  isRecycled(...images: (ImageResourceHandle | readonly ImageResourceHandle[])[]): boolean;
+  recycle(...images: (ImageResourceHandle | readonly ImageResourceHandle[])[]): Promise<void>;
+  read(path: string): Promise<ImageHandle>;
+  save(image: ImageHandleLike, path: string, formatOrOptions?: ImageFormat | ImageEncodingOptions, quality?: number): Promise<boolean>;
+  getWidth(image: ImageHandle): number;
+  getHeight(image: ImageHandle): number;
+  findPointByColor(image: ImageHandleLike, color: ImageColor, options?: ImageColorOptions): Promise<ImagePoint | null>;
+  findPointByColors(image: ImageHandleLike, color: ImageColor, points: readonly ImageMultiColorPoint[], options?: ImageColorOptions): Promise<ImagePoint | null>;
+  findColorEquals(image: ImageInput, color: ImageColor, options?: Omit<ImageColorOptions, "threshold">): Promise<ImagePoint | null>;
+
   /** Requires the opt-in screen.capture grant and Android consent. Denial rejects the Promise. */
   requestScreenCapture(options?: ScreenCaptureOptions): Promise<boolean>;
   /** Captures the authorized display into an execution-owned image handle. */

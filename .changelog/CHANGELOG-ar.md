@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.51.0
+
+###### 2026/10/17
+
+* `ميزة` يدعم Node.js/Bun images المرشحات المتقدمة وتحويل الألوان والبحث متعدد الألوان والدوائر ومقاييس التشابه وتحميل URL
+* `ميزة` يدعم Node.js/Bun images استخراج ومطابقة SIFT/ORB مع إحداثيات المشهد وهندسة ObjectFrame ومقابض Mat/الميزات الخاصة بكل تنفيذ
+* `ميزة` يدعم Node.js/Bun images تكميم PNG والضغط مع مقاييس الجودة/الذاكرة والنتائج الثنائية والإخراج عبر واصف ملف
+
 # v4.50.0
 
 ###### 2026/10/17

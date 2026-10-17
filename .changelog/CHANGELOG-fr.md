@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.51.0
+
+###### 2026/10/17
+
+* `Fonctionnalité` Node.js/Bun images prend en charge les filtres avancés, la conversion des couleurs, les recherches multicolores, les cercles, les mesures de similarité et les URL
+* `Fonctionnalité` Node.js/Bun images prend en charge SIFT/ORB avec coordonnées de scène, géométrie ObjectFrame et handles Mat/caractéristiques propres à chaque exécution
+* `Fonctionnalité` Node.js/Bun images prend en charge la quantification PNG et la compression avec mesures de qualité/mémoire, résultats binaires et sortie par descripteur de fichier
+
 # v4.50.0
 
 ###### 2026/10/17

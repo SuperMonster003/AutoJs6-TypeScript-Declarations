@@ -18,6 +18,23 @@
     "adjustment": "Ajuste"
   },
   "$data": {
+    "v4.51.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun images admite filtros avanzados, conversión de color, búsquedas multicolor, círculos, métricas de similitud y carga de URL"
+        },
+        {
+          "category": "feature",
+          "text": "Node.js/Bun images admite extracción y coincidencia SIFT/ORB con coordenadas de escena, geometría ObjectFrame y handles Mat/características por ejecución"
+        },
+        {
+          "category": "feature",
+          "text": "Node.js/Bun images admite cuantización PNG y compresión con métricas de calidad/memoria, resultados binarios y salida mediante descriptor de archivo"
+        }
+      ]
+    },
     "v4.50.0": {
       "released_date": "2026/10/17",
       "entries": [

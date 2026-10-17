@@ -178,6 +178,14 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.51.0
+
+###### 2026/10/17
+
+* `Feature` Node.js/Bun images supports advanced filters, color conversion, multi-color searches, circles, similarity metrics and URL loading
+* `Feature` Node.js/Bun images supports SIFT/ORB extraction and matching with scene coordinates, ObjectFrame geometry and execution-owned Mat/feature handles
+* `Feature` Node.js/Bun images supports PNG quantization and compression with quality/memory metrics, binary results and descriptor-backed file output
+
 ### v4.50.0
 
 ###### 2026/10/17
@@ -189,13 +197,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/17
 
 * `Feature` Bun screenRecorder writes H.264 MP4 with optional microphone, app-playback or mixed AAC audio and screenshots during recording, with independent audio grants and cancellation cleanup (API / TypeScript / Ace)
-
-### v4.48.0
-
-###### 2026/10/17
-
-* `Feature` Node.js Workers support pinyin, pinyin4j, console controls and coordinate conversion, sharing the parent execution while retaining native output streams (API / TypeScript / Ace)
-* `Feature` Bun screenRecorder records silent H.264 MP4 files with a separate opt-in grant, fixed output dimensions, explicit finalization and cancellation cleanup (API / TypeScript / Ace)
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

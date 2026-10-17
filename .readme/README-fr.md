@@ -178,6 +178,14 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.51.0
+
+###### 2026/10/17
+
+* `Fonctionnalité` Node.js/Bun images prend en charge les filtres avancés, la conversion des couleurs, les recherches multicolores, les cercles, les mesures de similarité et les URL
+* `Fonctionnalité` Node.js/Bun images prend en charge SIFT/ORB avec coordonnées de scène, géométrie ObjectFrame et handles Mat/caractéristiques propres à chaque exécution
+* `Fonctionnalité` Node.js/Bun images prend en charge la quantification PNG et la compression avec mesures de qualité/mémoire, résultats binaires et sortie par descripteur de fichier
+
 ### v4.50.0
 
 ###### 2026/10/17
@@ -189,13 +197,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/17
 
 * `Fonctionnalité` Bun screenRecorder produit des MP4 H.264 avec audio AAC du microphone, des applications ou mixé et captures pendant la vidéo, avec autorisations audio distinctes et nettoyage après annulation (API / TypeScript / Ace)
-
-### v4.48.0
-
-###### 2026/10/17
-
-* `Fonctionnalité` Les Workers Node.js proposent pinyin, pinyin4j, les commandes de console et les coordonnées, avec état parent partagé et flux natifs conservés (API / TypeScript / Ace)
-* `Fonctionnalité` Bun screenRecorder enregistre des vidéos écran H.264 MP4 sans son avec autorisation distincte, dimensions fixes, finalisation explicite et nettoyage après annulation (API / TypeScript / Ace)
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 
