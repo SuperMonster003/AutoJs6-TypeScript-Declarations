@@ -178,6 +178,13 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.48.0
+
+###### 2026/10/17
+
+* `ميزة` تدعم Workers في Node.js وحدات pinyin و pinyin4j والتحكم في وحدة التحكم وتحويل الإحداثيات مع مشاركة حالة التنفيذ والإبقاء على تدفقات الإخراج الأصلية (API / TypeScript / Ace)
+* `ميزة` يسجل Bun screenRecorder الشاشة في ملفات H.264 MP4 بدون صوت مع إذن مستقل وأبعاد ثابتة وإنهاء صريح وتنظيف عند الإلغاء (API / TypeScript / Ace)
+
 ### v4.47.0
 
 ###### 2026/10/17
@@ -190,12 +197,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/17
 
 * `ميزة` تعريفات الأنواع والإكمال لواجهات OpenCC والصور في Node.js و Bun, مع نتائج غير متزامنة محددة الأنواع وواجهات منفصلة لكل بيئة
-
-### v4.45.0
-
-###### 2026/10/17
-
-* `ميزة` تعريفات وإكمال speech وspeech.models في Rhino, مع الجلسات والأحداث وإدارة النماذج والنتائج ذات الأنواع, بمعزل عن Node.js وBun
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

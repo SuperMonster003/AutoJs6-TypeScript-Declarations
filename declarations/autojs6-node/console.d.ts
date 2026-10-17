@@ -1,3 +1,4 @@
+/** Available in main, CJS/ESM Workers and nested Workers. Android operations share the parent execution. */
 declare namespace AutoJs6NodeConsole {
   export interface WritableLike {
     write(chunk: unknown, ...args: unknown[]): unknown;
@@ -109,4 +110,9 @@ declare module "console" {
 declare module "node:console" {
   import console = require("console");
   export = console;
+}
+
+declare module "autojs6:console" {
+  import api = require("console");
+  export = api;
 }

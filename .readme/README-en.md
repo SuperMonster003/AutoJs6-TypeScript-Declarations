@@ -178,6 +178,13 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.48.0
+
+###### 2026/10/17
+
+* `Feature` Node.js Workers support pinyin, pinyin4j, console controls and coordinate conversion, sharing the parent execution while retaining native output streams (API / TypeScript / Ace)
+* `Feature` Bun screenRecorder records silent H.264 MP4 files with a separate opt-in grant, fixed output dimensions, explicit finalization and cancellation cleanup (API / TypeScript / Ace)
+
 ### v4.47.0
 
 ###### 2026/10/17
@@ -190,12 +197,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/17
 
 * `Feature` Node.js and Bun OpenCC and image declarations and completion, with typed asynchronous results and separate runtime API surfaces
-
-### v4.45.0
-
-###### 2026/10/17
-
-* `Feature` Rhino speech and speech.models declarations and completion, including sessions, events, model management and typed results; kept separate from Node.js and Bun
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

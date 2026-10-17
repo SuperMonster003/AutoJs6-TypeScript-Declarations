@@ -101,3 +101,15 @@ node tools/verify-runtime-declarations.mjs
 `--node` and `--bun` override source checkout locations. `--check` is read-only. Synchronization
 does not publish an npm package or install a plugin. The tests check both declaration bodies,
 public-index reachability, asynchronous types, isolation from Rhino globals and copied hashes.
+
+Workers additionally expose pinyin/pinyin4j, console and screen_metrics with canonical
+autojs6: aliases. Pinyin constants and callable conversion results retain their types,
+including the result array's asynchronous compact(). Coordinate bases belong to the
+whole execution. Worker console output remains native; host controls are asynchronous.
+
+Bun host.screenRecorder start/stop/cancel/getStatus requires screen.record and
+screen.capture plus actual Android consent. It encodes silent H.264 MP4 to host paths,
+with fixed dimensions per recording, and restores screenshots after stop/cancel.
+Only explicit successful stop publishes the file. Existing files are not replaced;
+exit, cancellation and projection revocation discard partial recordings. Results
+include typed size/duration/dimensions and audio:false; idle stop returns null.

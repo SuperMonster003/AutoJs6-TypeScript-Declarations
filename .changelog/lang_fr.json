@@ -18,6 +18,19 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.48.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Les Workers Node.js proposent pinyin, pinyin4j, les commandes de console et les coordonnées, avec état parent partagé et flux natifs conservés (API / TypeScript / Ace)"
+        },
+        {
+          "category": "feature",
+          "text": "Bun screenRecorder enregistre des vidéos écran H.264 MP4 sans son avec autorisation distincte, dimensions fixes, finalisation explicite et nettoyage après annulation (API / TypeScript / Ace)"
+        }
+      ]
+    },
     "v4.47.0": {
       "released_date": "2026/10/17",
       "entries": [

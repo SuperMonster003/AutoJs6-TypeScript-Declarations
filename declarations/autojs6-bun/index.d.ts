@@ -3,7 +3,7 @@
 declare module "autojs6:bun-host" {
     /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
     export const SDK_VERSION: 1;
-    export type HostCapability = "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.metrics" | "console.control";
+    export type HostCapability = "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
     export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
     export class HostCallError extends Error {
       readonly code: string;
@@ -11,7 +11,7 @@ declare module "autojs6:bun-host" {
       readonly status: number;
       constructor(code: string, message: string, capability?: string | null, status?: number);
     }
-    export const HOST_API_METHODS: Readonly<Record<"text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.metrics" | "console.control", readonly string[]>>;
+    export const HOST_API_METHODS: Readonly<Record<"text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
     export const OPENCC_CONVERSION_TYPES: readonly [
       "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
       "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -64,6 +64,48 @@ declare module "autojs6:bun-host" {
       readonly orientation?: "auto" | "portrait" | "landscape";
       /** Fail without opening a dialog when this execution has no active authorization. */
       readonly requireExistingPermission?: boolean;
+    }
+    export interface ScreenRecordingOptions {
+      /** Specify both even dimensions, 2..8192. Omitted dimensions use the capture size. The encoder must support them. */
+      readonly width?: number;
+      readonly height?: number;
+      /** Integer 1..120, default 30, subject to the Android encoder. */
+      readonly frameRate?: number;
+      /** Positive integer bits per second, default 8000000, subject to the Android encoder. */
+      readonly bitRate?: number;
+    }
+    export interface ScreenRecordingActive {
+      readonly state: "recording" | "failed";
+      readonly id: string;
+      readonly path: string;
+      readonly width: number;
+      readonly height: number;
+      readonly frameRate: number;
+      readonly bitRate: number;
+      readonly elapsedMs: number;
+      readonly error: string | null;
+    }
+    export type ScreenRecordingStatus = { readonly state: "idle" } | ScreenRecordingActive;
+    export interface ScreenRecordingResult {
+      readonly id: string;
+      readonly path: string;
+      readonly size: number;
+      readonly durationMs: number;
+      readonly width: number;
+      readonly height: number;
+      readonly mimeType: "video/mp4";
+      readonly videoCodec: "h264";
+      readonly audio: false;
+    }
+    /** Silent screen video. Requires screen.capture, screen.record and existing Android capture consent. */
+    export interface ScreenRecorderApi {
+      /** Host path, relative to the script working directory. Existing output files are never replaced. */
+      start(path: string, options?: ScreenRecordingOptions): Promise<ScreenRecordingActive>;
+      /** Finalize a playable MP4 and return its metadata, or null when idle. */
+      stop(): Promise<ScreenRecordingResult | null>;
+      /** Discard an unfinished recording and restore screenshots; false when idle. */
+      cancel(): Promise<boolean>;
+      getStatus(): Promise<ScreenRecordingStatus>;
     }
     /** JSON transport remains limited to 64 KiB requests / 256 KiB results. Large images use host file paths. */
     export interface ImagesApi {
@@ -251,6 +293,7 @@ declare module "autojs6:bun-host" {
       readonly pinyin4j: Pinyin4jApi;
       readonly opencc: OpenccApi;
       readonly images: ImagesApi;
+      readonly screenRecorder: ScreenRecorderApi;
       readonly coordinates: CoordinateApi;
       readonly console: ConsoleApi;
     }

@@ -178,6 +178,13 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.48.0
+
+###### 2026/10/17
+
+* `Fonctionnalité` Les Workers Node.js proposent pinyin, pinyin4j, les commandes de console et les coordonnées, avec état parent partagé et flux natifs conservés (API / TypeScript / Ace)
+* `Fonctionnalité` Bun screenRecorder enregistre des vidéos écran H.264 MP4 sans son avec autorisation distincte, dimensions fixes, finalisation explicite et nettoyage après annulation (API / TypeScript / Ace)
+
 ### v4.47.0
 
 ###### 2026/10/17
@@ -190,12 +197,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/17
 
 * `Fonctionnalité` Déclarations et complétion OpenCC et images pour Node.js et Bun, avec résultats asynchrones typés et API distinctes par environnement
-
-### v4.45.0
-
-###### 2026/10/17
-
-* `Fonctionnalité` Déclarations et complétion de speech et speech.models pour Rhino: sessions, événements, modèles et résultats typés, séparés de Node.js et Bun
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

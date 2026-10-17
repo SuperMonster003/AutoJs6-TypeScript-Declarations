@@ -18,6 +18,19 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.48.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js Workers support pinyin, pinyin4j, console controls and coordinate conversion, sharing the parent execution while retaining native output streams (API / TypeScript / Ace)"
+        },
+        {
+          "category": "feature",
+          "text": "Bun screenRecorder records silent H.264 MP4 files with a separate opt-in grant, fixed output dimensions, explicit finalization and cancellation cleanup (API / TypeScript / Ace)"
+        }
+      ]
+    },
     "v4.47.0": {
       "released_date": "2026/10/17",
       "entries": [

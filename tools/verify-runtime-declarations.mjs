@@ -65,6 +65,13 @@ function verifyRuntimeTypes(program, runtime) {
     if (runtime === 'node') {
         opencc = exportedValue('opencc');
         images = exportedValue('images');
+        for (const name of ['pinyin','pinyin4j','console','screen_metrics']) {
+            assert.equal(checker.typeToString(exportedValue('autojs6:'+name)),checker.typeToString(exportedValue(name)),`Worker alias ${name} drift`);
+        }
+        const pinyin=exportedValue('autojs6:pinyin');
+        for(const name of ['convert','simple','compact','compare','fromCodePoint','fromPhrase']) returns(property(pinyin,name),'Worker pinyin.'+name);
+        for(const name of ['cX','cY','cXy','cYx']) returns(property(exportedValue('autojs6:screen_metrics'),name),'Worker '+name);
+        for(const name of ['setTitle','show','hide','clear']) returns(property(exportedValue('autojs6:console'),name),'Worker console.'+name);
         returns(exportedValue('autojs6:opencc'), 'autojs6:opencc').forEach(value =>
             assert(value.flags & ts.TypeFlags.String, 'Qualified OpenCC result is not string'));
     } else {
@@ -73,6 +80,13 @@ function verifyRuntimeTypes(program, runtime) {
         const hostClient = checker.getDeclaredTypeOfSymbol(client);
         opencc = property(hostClient, 'opencc');
         images = property(hostClient, 'images');
+        const recorder=property(hostClient,'screenRecorder');
+        for(const name of ['start','stop','cancel','getStatus']) returns(property(recorder,name),'screenRecorder.'+name);
+        const stopped=returns(property(recorder,'stop'),'screenRecorder.stop')[0];
+        assert(stopped.isUnion()&&stopped.types.some(t=>t.flags&ts.TypeFlags.Null),'Idle stop must preserve null');
+        const movie=checker.getNonNullableType(stopped);
+        for(const field of ['width','height','size','durationMs']) assert(property(movie,field).flags&ts.TypeFlags.Number,field);
+        assert.equal(checker.typeToString(property(movie,'audio')),'false','Silent recording must not advertise audio');
     }
     for (const name of ['()', ...openccNames]) {
         returns(name === '()' ? opencc : property(opencc, name), `opencc.${name}`).forEach(value =>

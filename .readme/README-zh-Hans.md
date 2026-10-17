@@ -178,6 +178,13 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.48.0
+
+###### 2026/10/17
+
+* `新增` Node.js Worker 支持 pinyin, pinyin4j, 控制台窗口和坐标换算, 共享父执行状态并保留原生输出流 (API / TypeScript / Ace)
+* `新增` Bun screenRecorder 支持无声 H.264 MP4 录屏文件, 独立授权, 固定输出尺寸, 显式收尾及取消清理 (API / TypeScript / Ace)
+
 ### v4.47.0
 
 ###### 2026/10/17
@@ -190,12 +197,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/17
 
 * `新增` Node.js 和 Bun 的 OpenCC 与图像类型声明和补全, 提供准确的异步返回类型并区分各运行时 API
-
-### v4.45.0
-
-###### 2026/10/17
-
-* `新增` Rhino speech 与 speech.models 声明和补全, 覆盖会话, 事件, 模型管理与类型化结果, 与 Node.js/Bun 保持隔离
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

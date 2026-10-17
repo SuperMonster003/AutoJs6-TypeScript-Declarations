@@ -13,6 +13,13 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.48.0
+
+###### 2026/10/17
+
+* `Функция` Worker Node.js поддерживают pinyin, pinyin4j, управление консолью и координаты с общим состоянием выполнения и собственными потоками вывода (API / TypeScript / Ace)
+* `Функция` Bun screenRecorder записывает экран в H.264 MP4 без звука с отдельным разрешением, фиксированным размером, явным завершением и очисткой при отмене (API / TypeScript / Ace)
+
 # v4.47.0
 
 ###### 2026/10/17

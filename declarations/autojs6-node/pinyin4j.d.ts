@@ -1,3 +1,4 @@
+/** Available in main, CJS/ESM Workers and nested Workers. Android operations share the parent execution. */
 declare module "pinyin4j" {
   namespace pinyin4j {
     export interface Pinyin4jOptions {
@@ -41,4 +42,9 @@ declare module "pinyin4j" {
 
   const pinyin4j: pinyin4j.Pinyin4jModule;
   export = pinyin4j;
+}
+
+declare module "autojs6:pinyin4j" {
+  import api = require("pinyin4j");
+  export = api;
 }

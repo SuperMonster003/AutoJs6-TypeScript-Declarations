@@ -1,3 +1,4 @@
+/** Available in main, CJS/ESM Workers and nested Workers. Android operations share the parent execution. */
 declare module "pinyin" {
   namespace pinyin {
     export type PinyinRow = string[];
@@ -35,4 +36,9 @@ declare module "pinyin" {
 
   const pinyin: pinyin.PinyinModule;
   export = pinyin;
+}
+
+declare module "autojs6:pinyin" {
+  import api = require("pinyin");
+  export = api;
 }

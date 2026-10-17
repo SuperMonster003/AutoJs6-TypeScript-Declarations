@@ -1,3 +1,4 @@
+/** Available in main, CJS/ESM Workers and nested Workers. Android operations share the parent execution. */
 declare module "screen_metrics" {
   namespace screenMetrics {
     export type RatioMode = boolean | "auto";
@@ -35,4 +36,9 @@ declare module "screen_metrics" {
 
   const screenMetrics: screenMetrics.ScreenMetricsModule;
   export = screenMetrics;
+}
+
+declare module "autojs6:screen_metrics" {
+  import api = require("screen_metrics");
+  export = api;
 }
