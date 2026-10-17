@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.44.0
+
+###### 2026/10/17
+
+* `新增` Node.js 和 Bun 獨立宿主 API 聲明, 涵蓋非同步拼音, 控制台與即時螢幕座標換算
+
 # v4.43.0
 
 ###### 2026/10/16

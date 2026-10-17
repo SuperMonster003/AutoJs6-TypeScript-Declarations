@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.44.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Declarations separees des API hote Node.js et Bun, avec pinyin asynchrone, commandes de console et conversion des coordonnees de l'ecran actuel"
+        }
+      ]
+    },
     "v4.43.0": {
       "released_date": "2026/10/16",
       "entries": [

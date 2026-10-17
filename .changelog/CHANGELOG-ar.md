@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.44.0
+
+###### 2026/10/17
+
+* `ميزة` تعريفات مستقلة لواجهات المضيف في Node.js وBun, تشمل بينيين غير المتزامن والتحكم بوحدة التحكم وتحويل إحداثيات الشاشة الحالية
+
 # v4.43.0
 
 ###### 2026/10/16

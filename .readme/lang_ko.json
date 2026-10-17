@@ -28,7 +28,7 @@
   "dts019": "hello / declarations / (권장)",
   "dts020": "단, 프로젝트와 같은 수준이나 상위 디렉터리에는 배치할 수 없습니다.",
   "dts021": "[ 3 ] - 코드 자동 완성 활성화 또는 개선",
-  "dts022": "개발 도구가 모든 타입 선언 파일을 자동으로 인식하고 인덱싱을 시작합니다.",
+  "dts022": "선택한 런타임의 선언 진입점만 색인하도록 개발 도구를 설정하세요. 여러 런타임 선언 폴더를 함께 검색하지 마세요.",
   "dts023": "인덱싱이 끝나면 코드를 작성하면서 자동 완성 제안을 사용할 수 있습니다.",
   "dts024": "참고: 일부 편집기는 다시 시작해야 타입 선언 파일의 인덱싱을 시작합니다.",
   "dts025": "[ 4 ] - VSCode 편집기의 추가 설정",
@@ -41,5 +41,7 @@
   "dts032": "일반적으로 [AutoJs6](http://autojs6.com)의 새 버전이 출시되면 타입 선언 파일 프로젝트도 함께 업데이트됩니다.",
   "dts033": "선택적 JSOX 확장",
   "dts034": "스크립트가 런타임에 JSOX를 활성화할 때만 다음 진입점을 참조하세요. index.d.ts는 기본으로 이 선언들을 읽지 않습니다. 편집기가 모든 로컬 선언을 검색하면 aj6-jsox-*-extensions.d.ts를 제외한 후 선택한 진입점을 명시적으로 참조하세요.",
-  "dts035": "한 모듈에는 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 또는 aj6-jsox-math-extensions.d.ts를 선택하고 해당 jsox.extend를 호출하세요. 외부 라이브러리 선언은 포함된 일반 핵심 API를 다룹니다. 선택적 Dayjs 플러그인은 별도 선언이 필요하며 불완전한 Axios 브라우저 어댑터를 완전한 브라우저 API로 표시하지 않습니다."
+  "dts035": "한 모듈에는 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 또는 aj6-jsox-math-extensions.d.ts를 선택하고 해당 jsox.extend를 호출하세요. 외부 라이브러리 선언은 포함된 일반 핵심 API를 다룹니다. 선택적 Dayjs 플러그인은 별도 선언이 필요하며 불완전한 Axios 브라우저 어댑터를 완전한 브라우저 API로 표시하지 않습니다.",
+  "dts036": "Node.js 및 Bun 런타임 형식",
+  "dts037": "실행 환경에 맞는 `autojs6-node` 또는 `autojs6-bun` 진입점을 선택하고 기본 Rhino 전역과 혼합하지 마세요. 가져오기, 비동기 호출, Bun SDK 로드 및 동기화는 [런타임 선언 안내](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md)를 참조하세요."
 }

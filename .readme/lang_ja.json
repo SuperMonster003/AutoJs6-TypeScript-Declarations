@@ -28,7 +28,7 @@
   "dts019": "hello / declarations / (推奨)",
   "dts020": "ただし, プロジェクトと同じ階層や上位のディレクトリには配置できません.",
   "dts021": "[ 3 ] - コード補完を有効化または強化",
-  "dts022": "開発ツールがすべての型宣言ファイルを自動検出し, インデックスの作成を開始します.",
+  "dts022": "選択した実行環境の型宣言だけを索引化するように開発ツールを設定してください. 複数の実行環境の型宣言を同時に読み込まないでください.",
   "dts023": "インデックスの作成後, コードを書き始めると補完候補が表示されます.",
   "dts024": "注: エディターによっては, 型宣言ファイルのインデックス作成を開始するために再起動が必要です.",
   "dts025": "[ 4 ] - VSCode エディターの追加設定",
@@ -41,5 +41,7 @@
   "dts032": "通常, [AutoJs6](http://autojs6.com) の新バージョンが公開されると, 型宣言ファイルのプロジェクトも更新されます.",
   "dts033": "任意の JSOX 拡張",
   "dts034": "実行時に JSOX を有効にするスクリプトだけで以下の入口を参照してください. index.d.ts は既定でこれらの宣言を読み込みません. エディターがすべてのローカル宣言を走査する場合は aj6-jsox-*-extensions.d.ts を除外し, 選択した入口を明示的に参照してください.",
-  "dts035": "単一モジュールには aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts または aj6-jsox-math-extensions.d.ts を選び, 対応する jsox.extend を呼びます. 外部ライブラリーの宣言は同梱された一般的なコア API を対象とします. 任意の Dayjs プラグインには個別の宣言が必要で, 未完成の Axios ブラウザーアダプターを完全なブラウザー API として扱いません."
+  "dts035": "単一モジュールには aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts または aj6-jsox-math-extensions.d.ts を選び, 対応する jsox.extend を呼びます. 外部ライブラリーの宣言は同梱された一般的なコア API を対象とします. 任意の Dayjs プラグインには個別の宣言が必要で, 未完成の Axios ブラウザーアダプターを完全なブラウザー API として扱いません.",
+  "dts036": "Node.js と Bun の実行環境型",
+  "dts037": "実行環境に合わせて `autojs6-node` または `autojs6-bun` を選択し, 既定の Rhino グローバルと混在させないでください. インポート, 非同期呼び出し, Bun SDK の読み込みと同期は [実行環境型宣言ガイド](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md) を参照してください."
 }

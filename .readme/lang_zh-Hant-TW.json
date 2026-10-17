@@ -28,7 +28,7 @@
   "dts019": "hello / declarations / (推薦)",
   "dts020": "但不能放置在專案的同級或上級目錄中.",
   "dts021": "[ 3 ] - 實現或增強程式碼智慧補全",
-  "dts022": "開發工具會自動識別並開始索引所有宣告檔案.",
+  "dts022": "設定開發工具, 僅索引所選執行階段的宣告入口, 避免同時掃描多個可選執行階段宣告目錄.",
   "dts023": "索引完成後開始編寫程式碼並體驗程式碼智慧提示.",
   "dts024": "注: 部分編輯器可能需要重新啟動才能開始宣告檔案的索引.",
   "dts025": "[ 4 ] - VSCode 編輯器的額外配置",
@@ -41,5 +41,7 @@
   "dts032": "通常情況下, [AutoJs6](http://autojs6.com) 釋出版本更新後, 宣告檔案專案也會伴隨更新.",
   "dts033": "JSOX 按需擴充",
   "dts034": "僅在指令碼實際啟用 JSOX 擴充時參照以下入口. index.d.ts 預設不載入這些宣告. 若編輯器會掃描全部本機宣告檔案, 預設排除 aj6-jsox-*-extensions.d.ts, 再明確參照需要的入口.",
-  "dts035": "僅啟用一個模組時, 選擇 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 或 aj6-jsox-math-extensions.d.ts, 並呼叫對應的 jsox.extend. 第三方函式庫宣告涵蓋隨附的常用核心 API; Dayjs 選用外掛需要獨立宣告, Axios 瀏覽器配接器未實作的能力不會被宣告為完整瀏覽器 API."
+  "dts035": "僅啟用一個模組時, 選擇 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 或 aj6-jsox-math-extensions.d.ts, 並呼叫對應的 jsox.extend. 第三方函式庫宣告涵蓋隨附的常用核心 API; Dayjs 選用外掛需要獨立宣告, Axios 瀏覽器配接器未實作的能力不會被宣告為完整瀏覽器 API.",
+  "dts036": "Node.js 和 Bun 執行階段型別",
+  "dts037": "為實際執行環境選擇獨立的 `autojs6-node` 或 `autojs6-bun` 入口, 不與預設 Rhino 全域混用. 匯入方式, 非同步呼叫, Bun 用戶端載入與同步命令見 [執行階段宣告指南](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md)."
 }

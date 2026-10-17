@@ -109,7 +109,7 @@ npm i @sm003/autojs6-dts
 
 #### [ 3 ] - コード補完を有効化または強化
 
-開発ツールがすべての型宣言ファイルを自動検出し, インデックスの作成を開始します.
+選択した実行環境の型宣言だけを索引化するように開発ツールを設定してください. 複数の実行環境の型宣言を同時に読み込まないでください.
 
 インデックスの作成後, コードを書き始めると補完候補が表示されます.
 
@@ -132,8 +132,10 @@ VSCode は WebStorm と異なり, 任意の場所にある declarations フォ�
     "typeRoots": [
       "./node_modules/@sm003/autojs6-dts/declarations",
       "./declarations"
-    ]
-  }
+    ],
+    "types": ["autojs6"]
+  },
+  "exclude": ["node_modules", "declarations/autojs6-node", "declarations/autojs6-bun"]
 }
 ```
 
@@ -151,6 +153,10 @@ const parsed = Number.parseFloat('ff', 16);
 ```
 
 単一モジュールには aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts または aj6-jsox-math-extensions.d.ts を選び, 対応する jsox.extend を呼びます. 外部ライブラリーの宣言は同梱された一般的なコア API を対象とします. 任意の Dayjs プラグインには個別の宣言が必要で, 未完成の Axios ブラウザーアダプターを完全なブラウザー API として扱いません.
+
+#### Node.js と Bun の実行環境型
+
+実行環境に合わせて `autojs6-node` または `autojs6-bun` を選択し, 既定の Rhino グローバルと混在させないでください. インポート, 非同期呼び出し, Bun SDK の読み込みと同期は [実行環境型宣言ガイド](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md) を参照してください.
 
 ******
 
@@ -172,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.44.0
+
+###### 2026/10/17
+
+* `機能` Node.js と Bun の独立したホスト API 型宣言. 非同期ピンイン, コンソール操作, 現在の画面座標変換に対応
+
 ### v4.43.0
 
 ###### 2026/10/16
@@ -185,13 +197,6 @@ npm update @sm003/autojs6-dts
 
 * `機能` files.batchRename の preview, presets, importPresets とその非同期版, deleteHistory と clearHistory, ピンイン / 写真メタデータ / プリセットのオプションとプラン項目の metadataMissing. Batch Rename プラグインの名前の試算, 名前付きプリセット, メタデータ変数, 漢字のピンイン変換と履歴の消去に対応
 * `ヒント` 対応するホスト 6.8.0 と Batch Rename プラグイン 1.1.0 が必要
-
-### v4.41.0
-
-###### 2026/10/16
-
-* `機能` plugins.tools とそのツール, プロバイダー, 呼び出しオプション, 結果の型. AutoJs6 プラグインが自ら記述するツールの一覧, 同期と非同期の呼び出し, 画像 / ファイル / ディレクトリ引数と出力ファイルに対応
-* `ヒント` 対応するホスト 6.8.0 とツールを提供するプラグインが必要
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

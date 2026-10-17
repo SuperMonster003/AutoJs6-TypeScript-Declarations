@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.44.0
+
+###### 2026/10/17
+
+* `Función` Declaraciones separadas de las API del anfitrion Node.js y Bun, con pinyin asincrono, controles de consola y conversion de coordenadas de la pantalla actual
+
 # v4.43.0
 
 ###### 2026/10/16

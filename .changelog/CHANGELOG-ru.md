@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.44.0
+
+###### 2026/10/17
+
+* `Функция` Отдельные объявления API хоста Node.js и Bun: асинхронный пиньинь, управление консолью и преобразование координат текущего экрана
+
 # v4.43.0
 
 ###### 2026/10/16

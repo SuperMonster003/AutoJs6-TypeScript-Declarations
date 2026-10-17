@@ -1,6 +1,6 @@
 {
   "name": "@sm003/autojs6-dts",
-  "version": "4.43.0",
+  "version": "4.44.0",
   "types": "declarations/autojs6/index.d.ts",
   "files": [
     "declarations/android.d.ts",
@@ -13,7 +13,11 @@
     "declarations/autojs6/aj6-jsx-element-extension.d.ts",
     "declarations/autojs6/aj6-main-app.d.ts",
     "declarations/autojs6/aj6-resources.d.ts",
+    "declarations/autojs6-node",
+    "declarations/autojs6-bun",
+    "declarations/runtime-declarations.json",
     "docs/CHANGELOG.md",
+    "docs/RUNTIME_APIS.md",
     "jsconfig.json",
     "README.md",
     "LICENSE",
@@ -21,12 +25,14 @@
     ".changelog/CHANGELOG-*.md"
   ],
   "scripts": {
-    "test": "node tools/verify-api-coverage.mjs",
+    "test": "node tools/verify-api-coverage.mjs && node tools/verify-runtime-declarations.mjs",
     "prepack": "",
     "docs:generate": "python .python/generate_markdown.py",
     "docs:check": "python .python/generate_markdown.py --check",
     "docs:test": "python -m unittest discover -s .python/tests",
-    "test:api": "node tools/verify-api-coverage.mjs"
+    "test:api": "node tools/verify-api-coverage.mjs",
+    "test:runtimes": "node tools/verify-runtime-declarations.mjs",
+    "sync:runtimes": "node tools/sync-runtime-declarations.mjs"
   },
   "publishConfig": {
     "access": "public",

@@ -109,7 +109,7 @@ Il ne peut pas être placé à côté du projet ni dans un répertoire parent.
 
 #### [ 3 ] - Activer ou améliorer la complétion
 
-L'outil détecte et indexe automatiquement tous les fichiers de déclaration.
+Configurez les outils pour indexer uniquement les déclarations du moteur choisi, sans analyser ensemble les répertoires des autres moteurs.
 
 Après indexation, commencez à coder avec les suggestions de complétion.
 
@@ -132,8 +132,10 @@ Si le projet contient déjà jsconfig.json, fusionnez-y cette configuration:
     "typeRoots": [
       "./node_modules/@sm003/autojs6-dts/declarations",
       "./declarations"
-    ]
-  }
+    ],
+    "types": ["autojs6"]
+  },
+  "exclude": ["node_modules", "declarations/autojs6-node", "declarations/autojs6-bun"]
 }
 ```
 
@@ -151,6 +153,10 @@ const parsed = Number.parseFloat('ff', 16);
 ```
 
 Pour un module, choisissez aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts ou aj6-jsox-math-extensions.d.ts et appelez jsox.extend. Les declarations tierces couvrent les API principales courantes. Les plugins Dayjs optionnels demandent leurs propres declarations; les adaptateurs Axios incomplets ne constituent pas une API de navigateur complete.
+
+#### Types des environnements Node.js et Bun
+
+Choisissez `autojs6-node` ou `autojs6-bun` selon le moteur, sans les mélanger aux globaux Rhino. Consultez le [guide des déclarations](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md) pour les imports, les appels asynchrones, le SDK Bun et la synchronisation.
 
 ******
 
@@ -172,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.44.0
+
+###### 2026/10/17
+
+* `Fonctionnalité` Declarations separees des API hote Node.js et Bun, avec pinyin asynchrone, commandes de console et conversion des coordonnees de l'ecran actuel
+
 ### v4.43.0
 
 ###### 2026/10/16
@@ -185,13 +197,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 * `Fonctionnalité` preview, presets, importPresets et leurs formes asynchrones, deleteHistory et clearHistory de files.batchRename, les options de pinyin, de métadonnées des photos et de préréglage et metadataMissing des éléments du plan, pour l'essai de noms, les préréglages nommés, les variables de métadonnées, la conversion en pinyin et l'effacement de l'historique du plugin Batch Rename
 * `Note` Nécessite l'hôte 6.8.0 et le plugin Batch Rename 1.1.0
-
-### v4.41.0
-
-###### 2026/10/16
-
-* `Fonctionnalité` plugins.tools avec ses types d'outil, de fournisseur, d'options d'appel et de résultat, pour les outils que les plugins AutoJs6 décrivent eux-mêmes: liste, appels synchrones et asynchrones, arguments image / fichier / répertoire et fichiers de sortie
-* `Note` Nécessite l'hôte 6.8.0 correspondant et un plugin qui fournit des outils
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

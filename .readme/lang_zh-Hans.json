@@ -28,7 +28,7 @@
   "dts019": "hello / declarations / (推荐)",
   "dts020": "但不能放置在项目的同级或上级目录中.",
   "dts021": "[ 3 ] - 实现或增强代码智能补全",
-  "dts022": "开发工具会自动识别并开始索引所有声明文件.",
+  "dts022": "配置开发工具, 仅索引所选运行时的声明入口, 避免同时扫描多个可选运行时声明目录.",
   "dts023": "索引完成后开始编写代码并体验代码智能提示.",
   "dts024": "注: 部分编辑器可能需要重新启动才能开始声明文件的索引.",
   "dts025": "[ 4 ] - VSCode 编辑器的额外配置",
@@ -41,5 +41,7 @@
   "dts032": "通常情况下, [AutoJs6](http://autojs6.com) 发布版本更新后, 声明文件项目也会伴随更新.",
   "dts033": "JSOX 按需扩展",
   "dts034": "仅在脚本实际启用 JSOX 扩展时引用以下入口. index.d.ts 默认不加载这些声明. 若编辑器会扫描全部本地声明文件, 默认排除 aj6-jsox-*-extensions.d.ts, 再显式引用需要的入口.",
-  "dts035": "仅启用一个模块时, 选择 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 或 aj6-jsox-math-extensions.d.ts, 并调用对应的 jsox.extend. 第三方库声明覆盖打包的常用核心 API; Dayjs 可选插件需要单独声明, Axios 浏览器适配器未实现的能力不会被声明为完整浏览器 API."
+  "dts035": "仅启用一个模块时, 选择 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 或 aj6-jsox-math-extensions.d.ts, 并调用对应的 jsox.extend. 第三方库声明覆盖打包的常用核心 API; Dayjs 可选插件需要单独声明, Axios 浏览器适配器未实现的能力不会被声明为完整浏览器 API.",
+  "dts036": "Node.js 和 Bun 运行时类型",
+  "dts037": "为实际执行环境选择独立的 `autojs6-node` 或 `autojs6-bun` 入口, 不与默认 Rhino 全局混用. 导入方式, 异步调用, Bun 客户端加载与同步命令见 [运行时声明指南](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md)."
 }

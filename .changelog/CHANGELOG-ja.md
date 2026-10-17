@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.44.0
+
+###### 2026/10/17
+
+* `機能` Node.js と Bun の独立したホスト API 型宣言. 非同期ピンイン, コンソール操作, 現在の画面座標変換に対応
+
 # v4.43.0
 
 ###### 2026/10/16

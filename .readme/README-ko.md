@@ -109,7 +109,7 @@ npm i @sm003/autojs6-dts
 
 #### [ 3 ] - 코드 자동 완성 활성화 또는 개선
 
-개발 도구가 모든 타입 선언 파일을 자동으로 인식하고 인덱싱을 시작합니다.
+선택한 런타임의 선언 진입점만 색인하도록 개발 도구를 설정하세요. 여러 런타임 선언 폴더를 함께 검색하지 마세요.
 
 인덱싱이 끝나면 코드를 작성하면서 자동 완성 제안을 사용할 수 있습니다.
 
@@ -132,8 +132,10 @@ VSCode는 WebStorm처럼 모든 위치의 declarations 폴더를 인식하지 �
     "typeRoots": [
       "./node_modules/@sm003/autojs6-dts/declarations",
       "./declarations"
-    ]
-  }
+    ],
+    "types": ["autojs6"]
+  },
+  "exclude": ["node_modules", "declarations/autojs6-node", "declarations/autojs6-bun"]
 }
 ```
 
@@ -151,6 +153,10 @@ const parsed = Number.parseFloat('ff', 16);
 ```
 
 한 모듈에는 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 또는 aj6-jsox-math-extensions.d.ts를 선택하고 해당 jsox.extend를 호출하세요. 외부 라이브러리 선언은 포함된 일반 핵심 API를 다룹니다. 선택적 Dayjs 플러그인은 별도 선언이 필요하며 불완전한 Axios 브라우저 어댑터를 완전한 브라우저 API로 표시하지 않습니다.
+
+#### Node.js 및 Bun 런타임 형식
+
+실행 환경에 맞는 `autojs6-node` 또는 `autojs6-bun` 진입점을 선택하고 기본 Rhino 전역과 혼합하지 마세요. 가져오기, 비동기 호출, Bun SDK 로드 및 동기화는 [런타임 선언 안내](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md)를 참조하세요.
 
 ******
 
@@ -172,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.44.0
+
+###### 2026/10/17
+
+* `기능` 비동기 병음, 콘솔 제어 및 현재 화면 좌표 변환을 포함하는 Node.js와 Bun의 독립 호스트 API 선언
+
 ### v4.43.0
 
 ###### 2026/10/16
@@ -185,13 +197,6 @@ npm update @sm003/autojs6-dts
 
 * `기능` files.batchRename 의 preview, presets, importPresets 와 비동기 형태, deleteHistory 와 clearHistory, 병음 / 사진 메타데이터 / 프리셋 옵션과 계획 항목의 metadataMissing. Batch Rename 플러그인의 이름 미리 계산, 이름 있는 프리셋, 메타데이터 변수, 한자 병음 변환과 기록 삭제를 지원
 * `안내` 대응하는 호스트 6.8.0 및 Batch Rename 플러그인 1.1.0 필요
-
-### v4.41.0
-
-###### 2026/10/16
-
-* `기능` plugins.tools 와 도구, 제공자, 호출 옵션, 결과 타입. AutoJs6 플러그인이 스스로 설명하는 도구의 목록, 동기 및 비동기 호출, 이미지 / 파일 / 디렉터리 인수와 출력 파일에 대응
-* `안내` 대응하는 호스트 6.8.0 과 도구를 제공하는 플러그인 필요
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

@@ -28,7 +28,7 @@
   "dts019": "hello / declarations / (recommandé)",
   "dts020": "Il ne peut pas être placé à côté du projet ni dans un répertoire parent.",
   "dts021": "[ 3 ] - Activer ou améliorer la complétion",
-  "dts022": "L'outil détecte et indexe automatiquement tous les fichiers de déclaration.",
+  "dts022": "Configurez les outils pour indexer uniquement les déclarations du moteur choisi, sans analyser ensemble les répertoires des autres moteurs.",
   "dts023": "Après indexation, commencez à coder avec les suggestions de complétion.",
   "dts024": "Note: certains éditeurs nécessitent un redémarrage pour commencer l'indexation.",
   "dts025": "[ 4 ] - Configuration supplémentaire de VSCode",
@@ -41,5 +41,7 @@
   "dts032": "Les déclarations sont généralement mises à jour avec les nouvelles versions de [AutoJs6](http://autojs6.com).",
   "dts033": "Extensions JSOX optionnelles",
   "dts034": "Referencez cette entree uniquement si le script active JSOX a l'execution. index.d.ts ne charge pas ces declarations par defaut. Si l'editeur analyse tous les fichiers locaux, excluez aj6-jsox-*-extensions.d.ts puis referencez explicitement l'entree choisie.",
-  "dts035": "Pour un module, choisissez aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts ou aj6-jsox-math-extensions.d.ts et appelez jsox.extend. Les declarations tierces couvrent les API principales courantes. Les plugins Dayjs optionnels demandent leurs propres declarations; les adaptateurs Axios incomplets ne constituent pas une API de navigateur complete."
+  "dts035": "Pour un module, choisissez aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts ou aj6-jsox-math-extensions.d.ts et appelez jsox.extend. Les declarations tierces couvrent les API principales courantes. Les plugins Dayjs optionnels demandent leurs propres declarations; les adaptateurs Axios incomplets ne constituent pas une API de navigateur complete.",
+  "dts036": "Types des environnements Node.js et Bun",
+  "dts037": "Choisissez `autojs6-node` ou `autojs6-bun` selon le moteur, sans les mélanger aux globaux Rhino. Consultez le [guide des déclarations](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md) pour les imports, les appels asynchrones, le SDK Bun et la synchronisation."
 }

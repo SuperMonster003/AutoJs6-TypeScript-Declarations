@@ -123,8 +123,10 @@ npm i @sm003/autojs6-dts
     "typeRoots": [
       "./node_modules/@sm003/autojs6-dts/declarations",
       "./declarations"
-    ]
-  }
+    ],
+    "types": ["autojs6"]
+  },
+  "exclude": ["node_modules", "declarations/autojs6-node", "declarations/autojs6-bun"]
 }
 ```
 
@@ -142,6 +144,10 @@ const parsed = Number.parseFloat('ff', 16);
 ```
 
 {{ dts035 }}
+
+#### {{ dts036 }}
+
+{{ dts037 }}
 
 ******
 

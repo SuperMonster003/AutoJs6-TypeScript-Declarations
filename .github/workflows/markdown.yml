@@ -29,5 +29,16 @@ jobs:
       - name: Check generated documentation
         run: python .python/generate_markdown.py --check
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Install declaration test compiler
+        run: npm install --ignore-scripts --no-audit --no-fund --package-lock=false
+
+      - name: Check runtime declarations and isolated type fixtures
+        run: npm run test:runtimes
+
       - name: Test documentation validation
         run: python -m unittest discover -s .python/tests

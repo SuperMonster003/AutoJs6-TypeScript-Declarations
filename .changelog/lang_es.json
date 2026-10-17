@@ -18,6 +18,15 @@
     "adjustment": "Ajuste"
   },
   "$data": {
+    "v4.44.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Declaraciones separadas de las API del anfitrion Node.js y Bun, con pinyin asincrono, controles de consola y conversion de coordenadas de la pantalla actual"
+        }
+      ]
+    },
     "v4.43.0": {
       "released_date": "2026/10/16",
       "entries": [

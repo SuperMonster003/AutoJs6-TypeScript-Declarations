@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.44.0
+
+###### 2026/10/17
+
+* `기능` 비동기 병음, 콘솔 제어 및 현재 화면 좌표 변환을 포함하는 Node.js와 Bun의 독립 호스트 API 선언
+
 # v4.43.0
 
 ###### 2026/10/16

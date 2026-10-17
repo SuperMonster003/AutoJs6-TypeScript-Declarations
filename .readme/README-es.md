@@ -109,7 +109,7 @@ No se puede colocar al mismo nivel que el proyecto ni en un directorio superior.
 
 #### [ 3 ] - Activar o mejorar el autocompletado inteligente de código
 
-La herramienta de desarrollo detectará e indexará automáticamente todos los archivos de declaración.
+Configure la herramienta para indexar solo las declaraciones del entorno elegido, sin analizar juntas las carpetas de otros entornos.
 
 Cuando termine la indexación, empieza a escribir código con sugerencias inteligentes.
 
@@ -132,8 +132,10 @@ Si el proyecto ya contiene un archivo jsconfig.json, basta con combinar la sigui
     "typeRoots": [
       "./node_modules/@sm003/autojs6-dts/declarations",
       "./declarations"
-    ]
-  }
+    ],
+    "types": ["autojs6"]
+  },
+  "exclude": ["node_modules", "declarations/autojs6-node", "declarations/autojs6-bun"]
 }
 ```
 
@@ -151,6 +153,10 @@ const parsed = Number.parseFloat('ff', 16);
 ```
 
 Para un modulo, elija aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts o aj6-jsox-math-extensions.d.ts y llame a jsox.extend. Los tipos de terceros cubren las API principales comunes. Los plugins opcionales de Dayjs requieren declaraciones propias; los adaptadores incompletos de Axios no se presentan como API completas del navegador.
+
+#### Tipos de los entornos Node.js y Bun
+
+Seleccione `autojs6-node` o `autojs6-bun` según el entorno, sin mezclarlos con los globales de Rhino. Consulte la [guía de declaraciones](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md) para las importaciones, llamadas asíncronas, carga del SDK Bun y sincronización.
 
 ******
 
@@ -172,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.44.0
+
+###### 2026/10/17
+
+* `Función` Declaraciones separadas de las API del anfitrion Node.js y Bun, con pinyin asincrono, controles de consola y conversion de coordenadas de la pantalla actual
+
 ### v4.43.0
 
 ###### 2026/10/16
@@ -185,13 +197,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 * `Función` preview, presets, importPresets y sus formas asíncronas, deleteHistory y clearHistory de files.batchRename, las opciones de pinyin, metadatos de fotos y ajustes predefinidos y metadataMissing de los elementos del plan, para el cálculo de nombres, los ajustes predefinidos con nombre, las variables de metadatos, la conversión a pinyin y la limpieza del historial del plugin Batch Rename
 * `Nota` Requiere el host 6.8.0 y el plugin Batch Rename 1.1.0
-
-### v4.41.0
-
-###### 2026/10/16
-
-* `Función` plugins.tools con sus tipos de herramienta, proveedor, opciones de llamada y resultado, para las herramientas que describen los propios plugins de AutoJs6: lista, llamadas síncronas y asíncronas, argumentos de imagen / archivo / directorio y archivos de salida
-* `Nota` Requiere el anfitrión 6.8.0 correspondiente y un plugin que proporcione herramientas
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

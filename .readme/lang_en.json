@@ -28,7 +28,7 @@
   "dts019": "hello / declarations / (recommended)",
   "dts020": "It cannot be placed alongside the project or in a parent directory.",
   "dts021": "[ 3 ] - Enable or improve code completion",
-  "dts022": "The development tool automatically discovers and indexes all declaration files.",
+  "dts022": "Configure the development tool to index the entry for the selected runtime only. Avoid scanning the optional runtime declaration directories together.",
   "dts023": "After indexing, start coding with completion suggestions.",
   "dts024": "Note: some editors need to restart before indexing declarations.",
   "dts025": "[ 4 ] - Additional configuration for VSCode",
@@ -41,5 +41,7 @@
   "dts032": "The declarations are usually updated alongside new releases of [AutoJs6](http://autojs6.com).",
   "dts033": "Optional JSOX extensions",
   "dts034": "Reference the following entry only when the script enables JSOX at runtime. index.d.ts does not load these declarations by default. If an editor scans every local declaration file, exclude aj6-jsox-*-extensions.d.ts by default, then explicitly reference the selected entry.",
-  "dts035": "For one module, choose aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts or aj6-jsox-math-extensions.d.ts and call the matching jsox.extend. Third-party declarations cover common bundled core APIs. Optional Dayjs plugins need their own declarations; incomplete Axios browser adapters are not presented as complete browser APIs."
+  "dts035": "For one module, choose aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts or aj6-jsox-math-extensions.d.ts and call the matching jsox.extend. Third-party declarations cover common bundled core APIs. Optional Dayjs plugins need their own declarations; incomplete Axios browser adapters are not presented as complete browser APIs.",
+  "dts036": "Node.js and Bun runtime types",
+  "dts037": "Choose the separate `autojs6-node` or `autojs6-bun` entry only for that runtime. Do not mix these entries with the default Rhino globals. See the [runtime declaration guide](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md) for imports, asynchronous calls, Bun SDK loading and synchronization."
 }

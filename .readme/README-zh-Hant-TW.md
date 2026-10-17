@@ -109,7 +109,7 @@ npm i @sm003/autojs6-dts
 
 #### [ 3 ] - 實現或增強程式碼智慧補全
 
-開發工具會自動識別並開始索引所有宣告檔案.
+設定開發工具, 僅索引所選執行階段的宣告入口, 避免同時掃描多個可選執行階段宣告目錄.
 
 索引完成後開始編寫程式碼並體驗程式碼智慧提示.
 
@@ -132,8 +132,10 @@ VSCode 可能無法像 WebStorm 一樣識別任意位置的 declarations 資料�
     "typeRoots": [
       "./node_modules/@sm003/autojs6-dts/declarations",
       "./declarations"
-    ]
-  }
+    ],
+    "types": ["autojs6"]
+  },
+  "exclude": ["node_modules", "declarations/autojs6-node", "declarations/autojs6-bun"]
 }
 ```
 
@@ -151,6 +153,10 @@ const parsed = Number.parseFloat('ff', 16);
 ```
 
 僅啟用一個模組時, 選擇 aj6-jsox-array-extensions.d.ts, aj6-jsox-number-extensions.d.ts 或 aj6-jsox-math-extensions.d.ts, 並呼叫對應的 jsox.extend. 第三方函式庫宣告涵蓋隨附的常用核心 API; Dayjs 選用外掛需要獨立宣告, Axios 瀏覽器配接器未實作的能力不會被宣告為完整瀏覽器 API.
+
+#### Node.js 和 Bun 執行階段型別
+
+為實際執行環境選擇獨立的 `autojs6-node` 或 `autojs6-bun` 入口, 不與預設 Rhino 全域混用. 匯入方式, 非同步呼叫, Bun 用戶端載入與同步命令見 [執行階段宣告指南](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md).
 
 ******
 
@@ -172,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.44.0
+
+###### 2026/10/17
+
+* `新增` Node.js 和 Bun 獨立宿主 API 宣告, 涵蓋非同步拼音, 主控台與即時螢幕座標換算
+
 ### v4.43.0
 
 ###### 2026/10/16
@@ -185,13 +197,6 @@ npm update @sm003/autojs6-dts
 
 * `新增` files.batchRename 的 preview, presets, importPresets 及其非同步形式, deleteHistory 與 clearHistory, 拼音 / 相片中繼資料 / 命名預設選項及方案條目的 metadataMissing, 對應 Batch Rename 外掛的單名試算, 命名預設, 中繼資料變數, 漢字轉拼音與歷史清理
 * `提示` 需要配套宿主 6.8.0 與 Batch Rename 外掛 1.1.0
-
-### v4.41.0
-
-###### 2026/10/16
-
-* `新增` plugins.tools 及其工具, 提供者, 呼叫選項與結果型別, 對應 AutoJs6 外掛自我描述的工具: 列出, 同步與非同步呼叫, 圖片 / 檔案 / 目錄參數與輸出檔案
-* `提示` 需要配套宿主 6.8.0 及提供工具的外掛
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-TW.md)
 

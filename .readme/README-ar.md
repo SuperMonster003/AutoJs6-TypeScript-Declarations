@@ -109,7 +109,7 @@ npm i @sm003/autojs6-dts
 
 #### [ 3 ] - إتاحة الإكمال الذكي للكود أو تحسينه
 
-تتعرف أداة التطوير تلقائيا على جميع ملفات التصريحات وتبدأ فهرستها.
+اضبط أداة التطوير لفهرسة تعريفات بيئة التشغيل المحددة فقط, دون مسح مجلدات البيئات الاختيارية معا.
 
 بعد اكتمال الفهرسة, ابدأ كتابة الكود للاستفادة من الاقتراحات الذكية.
 
@@ -132,8 +132,10 @@ npm i @sm003/autojs6-dts
     "typeRoots": [
       "./node_modules/@sm003/autojs6-dts/declarations",
       "./declarations"
-    ]
-  }
+    ],
+    "types": ["autojs6"]
+  },
+  "exclude": ["node_modules", "declarations/autojs6-node", "declarations/autojs6-bun"]
 }
 ```
 
@@ -151,6 +153,10 @@ const parsed = Number.parseFloat('ff', 16);
 ```
 
 لوحدة واحدة اختر aj6-jsox-array-extensions.d.ts أو aj6-jsox-number-extensions.d.ts أو aj6-jsox-math-extensions.d.ts واستدع jsox.extend المناسب. تشمل تصريحات المكتبات الخارجية الواجهات الأساسية الشائعة. تحتاج إضافات Dayjs الاختيارية إلى تصريحات خاصة, ولا تعرض محولات Axios غير المكتملة كواجهات متصفح كاملة.
+
+#### أنواع بيئات Node.js وBun
+
+اختر `autojs6-node` أو `autojs6-bun` حسب بيئة التشغيل دون خلطها مع متغيرات Rhino العامة. راجع [دليل التعريفات](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/docs/RUNTIME_APIS.md) للاستيراد والاستدعاءات غير المتزامنة وتحميل SDK الخاص بBun والمزامنة.
 
 ******
 
@@ -172,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.44.0
+
+###### 2026/10/17
+
+* `ميزة` تعريفات مستقلة لواجهات المضيف في Node.js وBun, تشمل بينيين غير المتزامن والتحكم بوحدة التحكم وتحويل إحداثيات الشاشة الحالية
+
 ### v4.43.0
 
 ###### 2026/10/16
@@ -185,13 +197,6 @@ npm update @sm003/autojs6-dts
 
 * `ميزة` preview و presets و importPresets وصيغها غير المتزامنة و deleteHistory و clearHistory في files.batchRename, وخيارات البينيين وبيانات الصور الوصفية والإعدادات المسبقة و metadataMissing لعناصر الخطة, لحساب الأسماء تجريبيا والإعدادات المسبقة المسماة ومتغيرات البيانات الوصفية والتحويل إلى البينيين ومسح السجل في ملحق Batch Rename
 * `ملاحظة` يتطلب المضيف 6.8.0 وملحق Batch Rename 1.1.0
-
-### v4.41.0
-
-###### 2026/10/16
-
-* `ميزة` plugins.tools مع أنواع الأداة والموفر وخيارات الاستدعاء والنتيجة, للأدوات التي تصفها إضافات AutoJs6 بنفسها: السرد, والاستدعاء المتزامن وغير المتزامن, ووسائط الصور / الملفات / المجلدات وملفات الإخراج
-* `ملاحظة` يتطلب المضيف 6.8.0 المطابق وإضافة توفر أدوات
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
