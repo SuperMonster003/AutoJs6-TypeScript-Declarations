@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.46.0
+
+###### 2026/10/17
+
+* `新增` Node.js 和 Bun 的 OpenCC 與圖像類型聲明及補全, 提供準確的非同步回傳類型並區分各運行時 API
+
 # v4.45.0
 
 ###### 2026/10/17

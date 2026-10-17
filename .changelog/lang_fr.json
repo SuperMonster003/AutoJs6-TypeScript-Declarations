@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.46.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Déclarations et complétion OpenCC et images pour Node.js et Bun, avec résultats asynchrones typés et API distinctes par environnement"
+        }
+      ]
+    },
     "v4.45.0": {
       "released_date": "2026/10/17",
       "entries": [

@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.46.0
+
+###### 2026/10/17
+
+* `ميزة` تعريفات الأنواع والإكمال لواجهات OpenCC والصور في Node.js و Bun, مع نتائج غير متزامنة محددة الأنواع وواجهات منفصلة لكل بيئة
+
 # v4.45.0
 
 ###### 2026/10/17

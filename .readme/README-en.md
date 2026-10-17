@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.46.0
+
+###### 2026/10/17
+
+* `Feature` Node.js and Bun OpenCC and image declarations and completion, with typed asynchronous results and separate runtime API surfaces
+
 ### v4.45.0
 
 ###### 2026/10/17
@@ -189,13 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/17
 
 * `Feature` Separate Node.js and Bun host API declarations, including asynchronous pinyin, console controls and current-screen coordinate conversion
-
-### v4.43.0
-
-###### 2026/10/16
-
-* `Feature` Directory outputs of plugins.tools: ToolOutput.kind tells files from directories, the call option outputs names a folder for a directory output (it may exist; files already there are kept by default), and entries of the call result's outputs gain kind, files, conflicts and conflictCount
-* `Hint` Requires matching host 6.8.0 and a plugin with directory output tools (such as 3-Stack Archive 3.1.0)
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

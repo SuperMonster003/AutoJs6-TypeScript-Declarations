@@ -66,6 +66,18 @@ the `sdk` variable declaration. Ace recognizes this annotation without injecting
 Pinyin and window controls are asynchronous. Do not treat them as strings or chain them as
 synchronous console objects. Coordinate methods query the current screen on each call; custom
 bases are scoped to the execution. Rhino JSOX global/prototype opt-ins do not apply to Node/Bun.
+
+OpenCC exposes a callable converter, `convert` and all 32 named conversions as
+`Promise<string>` in both runtimes. Use `autojs6:opencc` in Node to avoid an installed
+npm package shadowing the bare module name. Bun uses `host.opencc` and the `text.opencc` grant.
+
+Images use execution-owned handles. `pixel` returns signed ARGB32 and `readPixels`
+returns `{data, width, height}`. Node byte APIs use Buffer/PFD transport, including raw
+RGBA output; Bun uses encoded bytes through Base64 JSON, with 64 KiB request and 256 KiB
+response limits. Bun pixel regions are limited to 16,384 pixels. Both runtimes reject
+color searches exceeding 4,096 results. Bun `image.files` is opt-in and separate from
+`image.process`; it does not expose screen capture. Generated runtime declarations keep
+these differences visible instead of advertising the full Rhino image surface.
 `cX()` and `cY()` have explicit zero-argument overloads. Passing `undefined` as the first
 argument is rejected; numeric strings are accepted as coordinate values. Omitting a later
 base argument with `undefined` remains valid when supplying the explicit ratio mode.

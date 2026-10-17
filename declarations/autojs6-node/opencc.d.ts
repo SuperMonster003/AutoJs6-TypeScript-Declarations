@@ -1,5 +1,7 @@
 declare module "opencc" {
   namespace opencc {
+    export type TextInput = NonNullable<unknown>;
+
     export type ConversionType =
       | "hk2s"
       | "hk2t"
@@ -35,43 +37,48 @@ declare module "opencc" {
       | "jp2twi";
 
     export interface OpenccModule {
-      (value: unknown, type: ConversionType | string): never;
-      convert(value: unknown, type: ConversionType | string): never;
-      hk2s(value: unknown): never;
-      hk2t(value: unknown): never;
-      jp2t(value: unknown): never;
-      s2hk(value: unknown): never;
-      s2t(value: unknown): never;
-      s2tw(value: unknown): never;
-      s2twp(value: unknown): never;
-      t2hk(value: unknown): never;
-      t2s(value: unknown): never;
-      t2tw(value: unknown): never;
-      t2jp(value: unknown): never;
-      tw2s(value: unknown): never;
-      tw2t(value: unknown): never;
-      tw2sp(value: unknown): never;
-      s2twi(value: unknown): never;
-      twi2s(value: unknown): never;
-      s2jp(value: unknown): never;
-      t2twi(value: unknown): never;
-      hk2tw(value: unknown): never;
-      hk2twi(value: unknown): never;
-      hk2jp(value: unknown): never;
-      tw2hk(value: unknown): never;
-      tw2twi(value: unknown): never;
-      tw2jp(value: unknown): never;
-      twi2t(value: unknown): never;
-      twi2hk(value: unknown): never;
-      twi2tw(value: unknown): never;
-      twi2jp(value: unknown): never;
-      jp2s(value: unknown): never;
-      jp2hk(value: unknown): never;
-      jp2tw(value: unknown): never;
-      jp2twi(value: unknown): never;
+      (value: TextInput, type: ConversionType | string): Promise<string>;
+      convert(value: TextInput, type: ConversionType | string): Promise<string>;
+      hk2s(value: TextInput): Promise<string>;
+      hk2t(value: TextInput): Promise<string>;
+      jp2t(value: TextInput): Promise<string>;
+      s2hk(value: TextInput): Promise<string>;
+      s2t(value: TextInput): Promise<string>;
+      s2tw(value: TextInput): Promise<string>;
+      s2twp(value: TextInput): Promise<string>;
+      t2hk(value: TextInput): Promise<string>;
+      t2s(value: TextInput): Promise<string>;
+      t2tw(value: TextInput): Promise<string>;
+      t2jp(value: TextInput): Promise<string>;
+      tw2s(value: TextInput): Promise<string>;
+      tw2t(value: TextInput): Promise<string>;
+      tw2sp(value: TextInput): Promise<string>;
+      s2twi(value: TextInput): Promise<string>;
+      twi2s(value: TextInput): Promise<string>;
+      s2jp(value: TextInput): Promise<string>;
+      t2twi(value: TextInput): Promise<string>;
+      hk2tw(value: TextInput): Promise<string>;
+      hk2twi(value: TextInput): Promise<string>;
+      hk2jp(value: TextInput): Promise<string>;
+      tw2hk(value: TextInput): Promise<string>;
+      tw2twi(value: TextInput): Promise<string>;
+      tw2jp(value: TextInput): Promise<string>;
+      twi2t(value: TextInput): Promise<string>;
+      twi2hk(value: TextInput): Promise<string>;
+      twi2tw(value: TextInput): Promise<string>;
+      twi2jp(value: TextInput): Promise<string>;
+      jp2s(value: TextInput): Promise<string>;
+      jp2hk(value: TextInput): Promise<string>;
+      jp2tw(value: TextInput): Promise<string>;
+      jp2twi(value: TextInput): Promise<string>;
     }
   }
 
   const opencc: opencc.OpenccModule;
+  export = opencc;
+}
+
+declare module "autojs6:opencc" {
+  import opencc = require("opencc");
   export = opencc;
 }

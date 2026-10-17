@@ -230,7 +230,8 @@ declare module "autojs6:compat" {
       scanFile(path: string, options?: mediaStoreModule.ScanOptions): Promise<boolean>;
     }
 
-    export interface RhinoImagesCompatModule {
+    export interface RhinoImagesCompatModule extends Omit<image.ImageModule,
+      "captureScreen" | "stopScreenCapture" | "read" | "save" | "saveImage" | "clip" | "resize" | "threshold" | "findImage" | "findColor" | "findPointByColor" | "findColorEquals"> {
       requestScreenCapture(options?: ScreenCaptureRequestOptions): Promise<boolean>;
       requestScreenCaptureAsync(options?: ScreenCaptureRequestOptions): Promise<boolean>;
       captureScreen(options?: image.CaptureScreenOptions): Promise<AutoJs6Node.ImageHandle>;
@@ -249,14 +250,18 @@ declare module "autojs6:compat" {
       clip(image: AutoJs6Node.ImageHandleLike, x: number, y: number, width: number, height: number, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
       resize(image: AutoJs6Node.ImageHandleLike, size: ImageSizeInput, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
       resize(image: AutoJs6Node.ImageHandleLike, width: number, height: number, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
-      grayscale(image: AutoJs6Node.ImageHandleLike, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
-      threshold(image: AutoJs6Node.ImageHandleLike, options?: image.ThresholdOptions): Promise<AutoJs6Node.ImageHandle>;
-      threshold(image: AutoJs6Node.ImageHandleLike, threshold: number, maxValue: number, type?: ImageThresholdType): Promise<AutoJs6Node.ImageHandle>;
+      grayscale(image: image.ImageInput, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
+      threshold(image: image.ImageInput, options?: image.ThresholdOptions): Promise<AutoJs6Node.ImageHandle>;
+      threshold(image: image.ImageInput, threshold: number, maxValue: number, type?: ImageThresholdType): Promise<AutoJs6Node.ImageHandle>;
       findImage(image: AutoJs6Node.ImageHandleLike, template: AutoJs6Node.ImageHandleLike, options?: image.FindImageOptions): Promise<AutoJs6Node.Point | null>;
       findImage(image: AutoJs6Node.ImageHandleLike, template: AutoJs6Node.ImageHandleLike, x: number, y: number, width: number, height: number, threshold?: number): Promise<AutoJs6Node.Point | null>;
       matchTemplate(image: AutoJs6Node.ImageHandleLike, template: AutoJs6Node.ImageHandleLike, options?: image.MatchTemplateOptions): Promise<readonly image.ImageMatch[]>;
       findColor(image: AutoJs6Node.ImageHandleLike, color: image.ColorInput, options?: image.FindColorOptions): Promise<AutoJs6Node.Point | null>;
       findColor(image: AutoJs6Node.ImageHandleLike, color: image.ColorInput, x: number, y: number, width: number, height: number, threshold?: number): Promise<AutoJs6Node.Point | null>;
+      findPointByColor(image: AutoJs6Node.ImageHandleLike, color: image.ColorInput, options?: image.FindColorOptions): Promise<AutoJs6Node.Point | null>;
+      findPointByColor(image: AutoJs6Node.ImageHandleLike, color: image.ColorInput, x: number, y: number, width: number, height: number, threshold?: number): Promise<AutoJs6Node.Point | null>;
+      findColorEquals(image: image.ImageInput, color: image.ColorInput, options?: Omit<image.FindColorOptions, "threshold">): Promise<AutoJs6Node.Point | null>;
+      findColorEquals(image: image.ImageInput, color: image.ColorInput, x: number, y: number, width: number, height: number): Promise<AutoJs6Node.Point | null>;
       findMultiColors(image: AutoJs6Node.ImageHandleLike, color: image.ColorInput, points: readonly image.MultiColorPointInput[], options?: image.FindColorOptions): Promise<AutoJs6Node.Point | null>;
       getSize(image: AutoJs6Node.ImageHandleLike): image.ImageSize;
       recycle(image: AutoJs6Node.ImageHandleLike, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;

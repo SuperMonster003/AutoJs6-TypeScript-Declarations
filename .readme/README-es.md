@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.46.0
+
+###### 2026/10/17
+
+* `Función` Declaraciones y autocompletado de OpenCC e imágenes para Node.js y Bun, con resultados asíncronos tipados y API separadas por entorno
+
 ### v4.45.0
 
 ###### 2026/10/17
@@ -189,13 +195,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/17
 
 * `Función` Declaraciones separadas de las API del anfitrion Node.js y Bun, con pinyin asincrono, controles de consola y conversion de coordenadas de la pantalla actual
-
-### v4.43.0
-
-###### 2026/10/16
-
-* `Función` Salidas de carpeta de plugins.tools: ToolOutput.kind distingue archivos y carpetas, la opción de llamada outputs indica una carpeta para una salida de carpeta (puede existir; los archivos que ya contiene se conservan por defecto) y las entradas de outputs del resultado ganan kind, files, conflicts y conflictCount
-* `Nota` Requiere el anfitrión 6.8.0 correspondiente y un plugin con herramientas de salida de carpeta (como 3-Stack Archive 3.1.0)
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

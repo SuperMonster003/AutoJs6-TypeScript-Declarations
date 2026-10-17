@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.46.0
+
+###### 2026/10/17
+
+* `Fonctionnalité` Déclarations et complétion OpenCC et images pour Node.js et Bun, avec résultats asynchrones typés et API distinctes par environnement
+
 ### v4.45.0
 
 ###### 2026/10/17
@@ -189,13 +195,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/17
 
 * `Fonctionnalité` Declarations separees des API hote Node.js et Bun, avec pinyin asynchrone, commandes de console et conversion des coordonnees de l'ecran actuel
-
-### v4.43.0
-
-###### 2026/10/16
-
-* `Fonctionnalité` Sorties de dossier de plugins.tools : ToolOutput.kind distingue fichiers et dossiers, l'option d'appel outputs désigne un dossier pour une sortie de dossier (il peut exister ; les fichiers déjà présents sont conservés par défaut), et les entrées des outputs du résultat gagnent kind, files, conflicts et conflictCount
-* `Note` Nécessite l'hôte 6.8.0 correspondant et un plugin avec des outils à sortie de dossier (comme 3-Stack Archive 3.1.0)
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

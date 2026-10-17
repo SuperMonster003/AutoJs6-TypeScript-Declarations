@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.46.0
+
+###### 2026/10/17
+
+* `新增` Node.js 和 Bun 的 OpenCC 與影像型別宣告及補全, 提供準確的非同步回傳型別並區分各執行環境 API
+
 ### v4.45.0
 
 ###### 2026/10/17
@@ -189,13 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/17
 
 * `新增` Node.js 和 Bun 獨立宿主 API 宣告, 涵蓋非同步拼音, 主控台與即時螢幕座標換算
-
-### v4.43.0
-
-###### 2026/10/16
-
-* `新增` plugins.tools 的目錄輸出: ToolOutput.kind 區分檔案與目錄, 呼叫選項 outputs 可為目錄輸出指定資料夾 (可以已存在, 既有檔案預設保留), 呼叫結果的 outputs 項目增加 kind, files, conflicts 與 conflictCount
-* `提示` 需要配套宿主 6.8.0 及提供目錄輸出工具的外掛 (如 3-Stack Archive 3.1.0)
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-TW.md)
 

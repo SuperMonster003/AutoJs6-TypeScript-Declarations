@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.46.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js와 Bun의 OpenCC 및 이미지 형식 선언과 자동 완성, 정확한 비동기 반환 형식 및 런타임별 API 구분"
+        }
+      ]
+    },
     "v4.45.0": {
       "released_date": "2026/10/17",
       "entries": [

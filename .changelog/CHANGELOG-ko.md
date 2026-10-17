@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.46.0
+
+###### 2026/10/17
+
+* `기능` Node.js와 Bun의 OpenCC 및 이미지 형식 선언과 자동 완성, 정확한 비동기 반환 형식 및 런타임별 API 구분
+
 # v4.45.0
 
 ###### 2026/10/17

@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.46.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js 和 Bun 的 OpenCC 與影像型別宣告及補全, 提供準確的非同步回傳型別並區分各執行環境 API"
+        }
+      ]
+    },
     "v4.45.0": {
       "released_date": "2026/10/17",
       "entries": [

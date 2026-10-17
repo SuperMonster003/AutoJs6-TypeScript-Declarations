@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.46.0
+
+###### 2026/10/17
+
+* `기능` Node.js와 Bun의 OpenCC 및 이미지 형식 선언과 자동 완성, 정확한 비동기 반환 형식 및 런타임별 API 구분
+
 ### v4.45.0
 
 ###### 2026/10/17
@@ -189,13 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/17
 
 * `기능` 비동기 병음, 콘솔 제어 및 현재 화면 좌표 변환을 포함하는 Node.js와 Bun의 독립 호스트 API 선언
-
-### v4.43.0
-
-###### 2026/10/16
-
-* `기능` plugins.tools 의 디렉터리 출력: ToolOutput.kind 로 파일과 디렉터리를 구분하고, 호출 옵션 outputs 로 디렉터리 출력의 폴더를 지정 (이미 있어도 되며 기존 파일은 기본적으로 유지), 호출 결과 outputs 항목에 kind, files, conflicts, conflictCount 추가
-* `안내` 대응하는 호스트 6.8.0 과 디렉터리 출력 도구를 제공하는 플러그인 (예: 3-Stack Archive 3.1.0) 필요
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.46.0
+
+###### 2026/10/17
+
+* `Función` Declaraciones y autocompletado de OpenCC e imágenes para Node.js y Bun, con resultados asíncronos tipados y API separadas por entorno
+
 # v4.45.0
 
 ###### 2026/10/17

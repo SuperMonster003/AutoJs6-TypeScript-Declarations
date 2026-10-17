@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.46.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js と Bun の OpenCC と画像 API の型宣言と補完を追加し, 非同期の戻り値型と実行環境ごとの API を明確化"
+        }
+      ]
+    },
     "v4.45.0": {
       "released_date": "2026/10/17",
       "entries": [

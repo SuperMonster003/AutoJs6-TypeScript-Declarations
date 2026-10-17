@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.46.0
+
+###### 2026/10/17
+
+* `機能` Node.js と Bun の OpenCC と画像 API の型宣言と補完を追加し, 非同期の戻り値型と実行環境ごとの API を明確化
+
 ### v4.45.0
 
 ###### 2026/10/17
@@ -189,13 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/17
 
 * `機能` Node.js と Bun の独立したホスト API 型宣言. 非同期ピンイン, コンソール操作, 現在の画面座標変換に対応
-
-### v4.43.0
-
-###### 2026/10/16
-
-* `機能` plugins.tools のディレクトリ出力: ToolOutput.kind でファイルとディレクトリを区別し, 呼び出しオプション outputs でディレクトリ出力の書き込み先フォルダーを指定 (既存でもよく, 既存ファイルは既定で保持), 呼び出し結果の outputs 項目に kind, files, conflicts, conflictCount を追加
-* `ヒント` 対応するホスト 6.8.0 とディレクトリ出力のツールを提供するプラグイン (3-Stack Archive 3.1.0 など) が必要
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

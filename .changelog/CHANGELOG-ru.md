@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.46.0
+
+###### 2026/10/17
+
+* `Функция` Типы и автодополнение OpenCC и изображений для Node.js и Bun, с типизированными асинхронными результатами и разделением API сред выполнения
+
 # v4.45.0
 
 ###### 2026/10/17
