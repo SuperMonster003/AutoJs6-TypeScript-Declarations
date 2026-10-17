@@ -2,6 +2,7 @@ declare module "ui" {
   namespace ui {
     export type LayoutType =
       | "Text" | "Button" | "Input" | "Image" | "ScrollView" | "List" | "Switch" | "Checkbox" | "CheckBox" | "Progress" | "ProgressBar" | "Tabs" | "Tab"
+      | "Frame" | "FrameLayout" | "Compose" | "TextView" | "EditText"
       | "LinearLayout" | "Vertical" | "Horizontal" | "Column" | "Row"
       | "text" | "button" | "input" | "image" | "scrollView" | "list" | "switch" | "checkbox" | "checkBox" | "progress" | "progressBar" | "tabs" | "tab"
       | "linearLayout" | "vertical" | "horizontal" | "column" | "row";
@@ -78,7 +79,46 @@ declare module "ui" {
       close(options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
     }
 
+    /** Serializable identity. Rehydrate a structured-cloned token with ui.view(). */
+    export interface NativeViewToken { readonly __autojs6ViewHandle: string }
+    export interface UiContextToken {
+      readonly __autojs6UiContext: string;
+      readonly density: number; readonly scaledDensity: number;
+      readonly packageName: string; readonly runtimeVersionCode: number; readonly applicationVersionCode: number;
+    }
+    export interface UiContext extends UiContextToken {
+      inflate(layout: string | LayoutDescriptor): Promise<NativeViewHandle>;
+      createView(type: string, props?: LayoutPatch): Promise<NativeViewHandle>;
+    }
+    export interface NativeViewSnapshot {
+      readonly id: string | null; readonly type: string; readonly width: number; readonly height: number;
+      readonly enabled: boolean; readonly visible: boolean; readonly attached: boolean;
+      readonly contentDescription: string | null; readonly text?: string; readonly checked?: boolean;
+    }
+    export interface NativeViewHandle extends NativeViewToken {
+      readonly id: string; readonly type: string; readonly context: UiContext;
+      get(): Promise<NativeViewSnapshot>;
+      get<K extends keyof NativeViewSnapshot>(name: K): Promise<NativeViewSnapshot[K]>;
+      set(patch: LayoutPatch): Promise<NativeViewSnapshot>;
+      findView(id: string): Promise<NativeViewHandle | null>;
+      /** Only the inflated root may be disposed, after all borrowing sessions close. */
+      dispose(): Promise<void>;
+      on(event: string, callback: (this: NativeViewHandle, event: UiEvent) => void): () => void;
+      once(event: string, callback: (this: NativeViewHandle, event: UiEvent) => void): () => void;
+      off(event: string, callback: (this: NativeViewHandle, event: UiEvent) => void): void;
+    }
+    export interface NativeUiHandle extends UiHandle {
+      readonly rootView: NativeViewHandle;
+      findView(id: string): Promise<NativeViewHandle | null>;
+    }
+
     export interface UiModule {
+      context(): Promise<UiContext>;
+      inflate(layout: string | LayoutDescriptor, context?: UiContextToken): Promise<NativeViewHandle>;
+      createView(type: string, props?: LayoutPatch, context?: UiContextToken): Promise<NativeViewHandle>;
+      view(token: NativeViewToken): NativeViewHandle;
+      findView(root: NativeViewToken | string, id: string): Promise<NativeViewHandle | null>;
+      showLayout(layout: string | NativeViewToken, options?: UiShowOptions): Promise<NativeUiHandle>;
       showLayout(layoutJson: LayoutDescriptor, options?: UiShowOptions): Promise<UiHandle>;
       state<T extends Record<string, AutoJs6Node.JsonValue>>(initial: T): UiState<T>;
       bind<T extends Record<string, AutoJs6Node.JsonValue>, K extends keyof T & string>(state: UiState<T>, key: K): Binding<T[K]>;

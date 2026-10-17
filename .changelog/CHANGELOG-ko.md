@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.53.0
+
+###### 2026/10/18
+
+* `기능` Node.js/Bun에서 실행 소유 View 핸들, 비동기 AndroidView 팩터리, XML Compose 컨테이너 연결, Worker 종료 시 정리 및 패키징 앱 지원
+
 # v4.52.0
 
 ###### 2026/10/18

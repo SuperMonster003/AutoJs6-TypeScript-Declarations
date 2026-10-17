@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.53.0
+
+###### 2026/10/18
+
+* `Fonctionnalité` Node.js/Bun prennent en charge les handles View propres à une exécution, les fabriques AndroidView asynchrones, les conteneurs XML Compose, la fermeture des Workers et les applications empaquetées
+
 ### v4.52.0
 
 ###### 2026/10/18
@@ -191,12 +197,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 * `Fonctionnalité` Node.js/Bun images prend en charge les filtres avancés, la conversion des couleurs, les recherches multicolores, les cercles, les mesures de similarité et les URL
 * `Fonctionnalité` Node.js/Bun images prend en charge SIFT/ORB avec coordonnées de scène, géométrie ObjectFrame et handles Mat/caractéristiques propres à chaque exécution
 * `Fonctionnalité` Node.js/Bun images prend en charge la quantification PNG et la compression avec mesures de qualité/mémoire, résultats binaires et sortie par descripteur de fichier
-
-### v4.50.0
-
-###### 2026/10/17
-
-* `Fonctionnalité` Le thread principal Node.js et les Workers prennent en charge la capture H.264 MP4 avec audio AAC du microphone, de lecture ou mixte, les captures simultanees et la suppression des enregistrements Worker non sauvegardes (API / TypeScript / Ace)
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

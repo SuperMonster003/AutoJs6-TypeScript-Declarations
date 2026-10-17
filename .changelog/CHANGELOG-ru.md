@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.53.0
+
+###### 2026/10/18
+
+* `Функция` Node.js/Bun поддерживают дескрипторы View в пределах выполнения, асинхронные фабрики AndroidView, контейнеры XML Compose, очистку Workers и упакованные приложения
+
 # v4.52.0
 
 ###### 2026/10/18

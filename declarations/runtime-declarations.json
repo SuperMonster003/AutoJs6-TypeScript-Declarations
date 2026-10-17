@@ -15,7 +15,7 @@
     "autojs6-node/clipboard.d.ts": "830538b5f00e909c2369481e5aadfbc5dc989f38c915ddcde0d8d2c361d40c1a",
     "autojs6-node/colors.d.ts": "6c0d39a2a350691c1eb1f73b22448307a276ec146b55bce3d51725c46827d1bd",
     "autojs6-node/common.d.ts": "7ffb9660a93ab87aa7783fa02c8d36b60f9a002bce0ca19cfc164ea74f6fcd46",
-    "autojs6-node/compose.d.ts": "cc25ff488d300b4d0a028dedcdcc3968242d15606718b5f78658658e98ef5400",
+    "autojs6-node/compose.d.ts": "cd71e6a21cabcc3ef18025cb469baa7ede4c12556226f941d6fa6e00f7325e5a",
     "autojs6-node/console.d.ts": "53eb1b3f14d368ef73ecb12c43934b32769e990c8c2a44591870f507ee2d43f7",
     "autojs6-node/converter.d.ts": "2c240ad750177f03c8d1162a668b3730617ae880b1dcbffea3964e3eb61e21c0",
     "autojs6-node/database.d.ts": "7f6786a4c918ae08d9501ca9fbc40db6920d763a2121e8c7a6dd4047fd77df02",
@@ -68,12 +68,12 @@
     "autojs6-node/timers.d.ts": "c7f6bea988cff3be5017b2cde95b9900959db3a4e9f1faf67e2191e4b847617f",
     "autojs6-node/tls.d.ts": "a51d00a69eb502ddd830afeeea01a60cff65d7ab562227ec29ef19020f240f2a",
     "autojs6-node/toast.d.ts": "a0c64368226e8f388070f71ab9189bcfd6e659752a2aa6b723a551e2a8f2c1af",
-    "autojs6-node/ui.d.ts": "c25b82d6d21b67be8f08f37a815872d22f0bafa20dcd20d1877ef9af3815b202",
+    "autojs6-node/ui.d.ts": "db569d927b1d1d3b1e256809382e0b62242c1ec539c314f6b550ae2ac2b5f67d",
     "autojs6-node/ui_overlay.d.ts": "dc0e2fb25d9bbab27abdb46de324244877fc3ada4a1f627a7cae60a949c10ed4",
     "autojs6-node/util.d.ts": "4b9abf65c0eac6402e78ed5082bd71da672cd2646927f72870810cc055e5ff9e",
     "autojs6-node/websocket.d.ts": "f9412a8fe65abdab7d1f14f09bf75a4371a84657ba3f91de42e6c96e512a5923",
     "autojs6-node/work_manager.d.ts": "5d77db1003ae945c3ce7f9061b4e8609a29f8fe3b2a830a0c0fae051c67a2e68",
-    "autojs6-bun/host-client.d.mts": "cfc5aa1d8f8632a3c55255059bd4631809f15c04a9cfb6badf7e7b18c678c3c3",
-    "autojs6-bun/index.d.ts": "08f96e035f39274add85567e56023798bd74ff770dce41773d1576277e6da9e7"
+    "autojs6-bun/host-client.d.mts": "076abd966fb0be4124f79c5c12b0f628a469f8f4eea953ec0b29542f249dd5f5",
+    "autojs6-bun/index.d.ts": "0af4e5d7cd983f6645dccc1a37978a3db2d715657569118a8b41cea13d67d6bf"
   }
 }

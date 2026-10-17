@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.53.0
+
+###### 2026/10/18
+
+* `ميزة` يدعم Node.js/Bun مقابض View الخاصة بالتنفيذ ومصانع AndroidView غير المتزامنة وحاويات XML Compose مع تنظيف Worker والتطبيقات المعبأة
+
 ### v4.52.0
 
 ###### 2026/10/18
@@ -191,12 +197,6 @@ npm update @sm003/autojs6-dts
 * `ميزة` يدعم Node.js/Bun images المرشحات المتقدمة وتحويل الألوان والبحث متعدد الألوان والدوائر ومقاييس التشابه وتحميل URL
 * `ميزة` يدعم Node.js/Bun images استخراج ومطابقة SIFT/ORB مع إحداثيات المشهد وهندسة ObjectFrame ومقابض Mat/الميزات الخاصة بكل تنفيذ
 * `ميزة` يدعم Node.js/Bun images تكميم PNG والضغط مع مقاييس الجودة/الذاكرة والنتائج الثنائية والإخراج عبر واصف ملف
-
-### v4.50.0
-
-###### 2026/10/17
-
-* `ميزة` يدعم خيط Node.js الرئيسي وWorkers تسجيل H.264 MP4 مع صوت AAC من الميكروفون او التشغيل او المزج, ولقطات متزامنة وتنظيف تسجيلات Worker غير المحفوظة (API / TypeScript / Ace)
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

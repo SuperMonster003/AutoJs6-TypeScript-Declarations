@@ -121,3 +121,36 @@ the platform foreground-service prerequisites. Playback capture respects source
 policy. An audio track can contain silence when the platform blocks its source;
 audio:true is not a claim that the input was audible. Parallel screenshots retain
 capture-session dimensions while video resolution stays fixed.
+
+## Native View interop and packaged applications (2026-10-18)
+
+Host build 5562, Node 1.8.0 and Bun 0.2.7 add ui.context/inflate/createView/findView/view,
+native handle get/set/findView/dispose/on/once/off, AndroidView and compose.attach.
+XML strings use the supported layout widgets plus a Compose container. Java objects,
+arbitrary Android classes and Rhino E4X syntax are not transported. Context factories
+run in JavaScript and return a native token asynchronously, not a Java Context.
+
+View handles belong to the execution; only roots can be disposed. Children are aliases.
+Compose borrows Views, rejects duplicate/parented/foreign/disposed handles and cycles,
+and releases claims on close. Dispose borrowing sessions before their View roots.
+Closing/disposal of a container closes its composition, even before it is displayed.
+Rotation retains native identity and reconnects lifecycle owners. A successful attach
+replaces the previous composition in that container; close it first to reuse its View.
+Worker structuredClone transports the identity; ui.view restores local methods.
+Only one thread may drain a View event queue. Worker exit closes its sessions but
+delivered View handles remain execution-owned. Undelivered creations are disposed.
+
+XML showLayout owns its inflated root. showLayout(handle) borrows the caller's root.
+AndroidView factories cache by component identity; new component objects create new
+Views, so use an existing handle or memo for stable identity. Factory context exposes
+inflate/createView returning raw tokens, which ui.view may wrap. All effects are Promises.
+
+Packaged apps use installed external runtime/Compose plugins and a matching APK Builder
+Runtime Kit. Application versionCode 1 is independent from runtimeVersionCode 5562.
+Node declares node.permissions:["ui"]. Bun declares bun.hostCapabilities explicitly,
+e.g. ["ui.layout","ui.compose"], in project.json; omitted capabilities are not offered.
+AndroidView factories and XML attachments need both Bun grants. Bundle host-client.mjs
+with the Bun project and import it relatively. The packaged Bun entry uses a separate
+normal-permission service; host-only services retain their signature permission, and
+execution/cancellation keys include the calling UID. Runtime scripts remain trusted
+code under the plugin UID. No native Bun payload or AIDL transaction changed.

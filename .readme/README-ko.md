@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.53.0
+
+###### 2026/10/18
+
+* `기능` Node.js/Bun에서 실행 소유 View 핸들, 비동기 AndroidView 팩터리, XML Compose 컨테이너 연결, Worker 종료 시 정리 및 패키징 앱 지원
+
 ### v4.52.0
 
 ###### 2026/10/18
@@ -191,12 +197,6 @@ npm update @sm003/autojs6-dts
 * `기능` Node.js/Bun images에서 고급 필터, 색 공간 변환, 다중 색상 검색, 원 검출, 유사도 지표 및 URL 로드 지원
 * `기능` Node.js/Bun images에서 SIFT/ORB 특징 추출과 매칭, 장면 좌표와 ObjectFrame 기하 정보 및 실행별 Mat/특징 핸들 관리 지원
 * `기능` Node.js/Bun images에서 PNG 양자화와 압축, 품질/메모리 지표, 바이너리 결과 및 파일 디스크립터 출력 지원
-
-### v4.50.0
-
-###### 2026/10/17
-
-* `기능` Node.js 메인 스레드와 Worker에서 H.264 MP4 화면 녹화, 마이크/재생/혼합 AAC 오디오, 녹화 중 동시 스크린샷 및 Worker의 미저장 녹화 정리 지원 (API / TypeScript / Ace)
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

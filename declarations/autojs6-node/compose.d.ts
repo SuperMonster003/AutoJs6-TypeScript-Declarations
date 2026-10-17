@@ -9,8 +9,16 @@ declare namespace RuntimeCompose {
     interface ComposeTextStyleInput { fontFamily?: string; fontSize?: ComposeSpInput; fontWeight?: number; italic?: boolean; lineHeight?: ComposeSpInput; letterSpacing?: ComposeSpInput }
     type ComposePaddingInput = ComposeDpInput | readonly ComposeDpInput[];
     type ComposeBoxAlignment = 'topStart' | 'topCenter' | 'topEnd' | 'centerStart' | 'center' | 'centerEnd' | 'bottomStart' | 'bottomCenter' | 'bottomEnd';
-    type ComponentName = ComposeCatalogNodeName | ComposeV2NodeName;
-    interface Catalog extends ComposeCatalogProps, ComposeV2CatalogProps {}
+    type NativeViewToken = import("ui").NativeViewToken;
+    interface ViewFactoryContext extends importContext {
+        inflate(layout: string | import("ui").LayoutDescriptor): Promise<NativeViewToken>;
+        createView(type: string, props?: import("ui").LayoutPatch): Promise<NativeViewToken>;
+    }
+    type importContext = import("ui").UiContextToken;
+    type ComponentName = ComposeCatalogNodeName | ComposeV2NodeName | "AndroidView";
+    interface Catalog extends ComposeCatalogProps, ComposeV2CatalogProps {
+        AndroidView: { view: NativeViewToken | ((context: ViewFactoryContext) => NativeViewToken | Promise<NativeViewToken>) };
+    }
     interface Event { readonly type: string; readonly text?: string; readonly value?: number; readonly checked?: boolean; readonly editSeq?: number; readonly message?: string; readonly [key: string]: string | number | boolean | null | undefined }
     type Listener = (this: Node, event: Event) => void;
     type Child = Node | string | null | undefined | false | readonly Child[];
@@ -638,6 +646,7 @@ declare namespace RuntimeCompose {
         memo<T extends Node>(build: () => T, dependencies: readonly unknown[], options?: { key?: string | number }): T;
         post(callback: () => void, delay?: number): unknown;
         mount(root: Node | (() => Node), options?: Options): Promise<Session>;
+        attach(container: NativeViewToken, root: Node | (() => Node), options?: Options): Promise<Session>;
         dialog(root: Node | (() => Node), options?: DialogOptions): Promise<Session>;
         floaty(root: Node | (() => Node), options?: FloatyOptions): Promise<FloatySession>;
         isAvailable(): Promise<boolean>;

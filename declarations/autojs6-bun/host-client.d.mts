@@ -436,6 +436,7 @@ export namespace RuntimeUi {
 
     export type LayoutType =
       | "Text" | "Button" | "Input" | "Image" | "ScrollView" | "List" | "Switch" | "Checkbox" | "CheckBox" | "Progress" | "ProgressBar" | "Tabs" | "Tab"
+      | "Frame" | "FrameLayout" | "Compose" | "TextView" | "EditText"
       | "LinearLayout" | "Vertical" | "Horizontal" | "Column" | "Row"
       | "text" | "button" | "input" | "image" | "scrollView" | "list" | "switch" | "checkbox" | "checkBox" | "progress" | "progressBar" | "tabs" | "tab"
       | "linearLayout" | "vertical" | "horizontal" | "column" | "row";
@@ -507,12 +508,51 @@ export namespace RuntimeUi {
       on(event: string, callback: (event: UiEvent) => void, options?: UiEventOptions): () => void;
       once(event: string, callback: (event: UiEvent) => void, options?: UiEventOptions): () => void;
       off(event: string, callback: (event: UiEvent) => void): void;
-      update(patch: LayoutPatch, options?: { timeoutMs?: number; signal?: AbortSignal }): Promise<void>;
-      batchUpdate(patches: readonly LayoutPatch[], options?: { timeoutMs?: number; signal?: AbortSignal }): Promise<void>;
-      close(options?: { timeoutMs?: number; signal?: AbortSignal }): Promise<void>;
+      update(patch: LayoutPatch, options?: UiBridgeCallOptions): Promise<void>;
+      batchUpdate(patches: readonly LayoutPatch[], options?: UiBridgeCallOptions): Promise<void>;
+      close(options?: UiBridgeCallOptions): Promise<void>;
+    }
+
+    /** Serializable identity. Rehydrate a structured-cloned token with ui.view(). */
+    export interface NativeViewToken { readonly __autojs6ViewHandle: string }
+    export interface UiContextToken {
+      readonly __autojs6UiContext: string;
+      readonly density: number; readonly scaledDensity: number;
+      readonly packageName: string; readonly runtimeVersionCode: number; readonly applicationVersionCode: number;
+    }
+    export interface UiContext extends UiContextToken {
+      inflate(layout: string | LayoutDescriptor): Promise<NativeViewHandle>;
+      createView(type: string, props?: LayoutPatch): Promise<NativeViewHandle>;
+    }
+    export interface NativeViewSnapshot {
+      readonly id: string | null; readonly type: string; readonly width: number; readonly height: number;
+      readonly enabled: boolean; readonly visible: boolean; readonly attached: boolean;
+      readonly contentDescription: string | null; readonly text?: string; readonly checked?: boolean;
+    }
+    export interface NativeViewHandle extends NativeViewToken {
+      readonly id: string; readonly type: string; readonly context: UiContext;
+      get(): Promise<NativeViewSnapshot>;
+      get<K extends keyof NativeViewSnapshot>(name: K): Promise<NativeViewSnapshot[K]>;
+      set(patch: LayoutPatch): Promise<NativeViewSnapshot>;
+      findView(id: string): Promise<NativeViewHandle | null>;
+      /** Only the inflated root may be disposed, after all borrowing sessions close. */
+      dispose(): Promise<void>;
+      on(event: string, callback: (this: NativeViewHandle, event: UiEvent) => void): () => void;
+      once(event: string, callback: (this: NativeViewHandle, event: UiEvent) => void): () => void;
+      off(event: string, callback: (this: NativeViewHandle, event: UiEvent) => void): void;
+    }
+    export interface NativeUiHandle extends UiHandle {
+      readonly rootView: NativeViewHandle;
+      findView(id: string): Promise<NativeViewHandle | null>;
     }
 
     export interface UiModule {
+      context(): Promise<UiContext>;
+      inflate(layout: string | LayoutDescriptor, context?: UiContextToken): Promise<NativeViewHandle>;
+      createView(type: string, props?: LayoutPatch, context?: UiContextToken): Promise<NativeViewHandle>;
+      view(token: NativeViewToken): NativeViewHandle;
+      findView(root: NativeViewToken | string, id: string): Promise<NativeViewHandle | null>;
+      showLayout(layout: string | NativeViewToken, options?: UiShowOptions): Promise<NativeUiHandle>;
       showLayout(layoutJson: LayoutDescriptor, options?: UiShowOptions): Promise<UiHandle>;
       state<T extends Record<string, JsonValue>>(initial: T): UiState<T>;
       bind<T extends Record<string, JsonValue>, K extends keyof T & string>(state: UiState<T>, key: K): Binding<T[K]>;
@@ -529,8 +569,16 @@ export namespace RuntimeCompose {
     interface ComposeTextStyleInput { fontFamily?: string; fontSize?: ComposeSpInput; fontWeight?: number; italic?: boolean; lineHeight?: ComposeSpInput; letterSpacing?: ComposeSpInput }
     type ComposePaddingInput = ComposeDpInput | readonly ComposeDpInput[];
     type ComposeBoxAlignment = 'topStart' | 'topCenter' | 'topEnd' | 'centerStart' | 'center' | 'centerEnd' | 'bottomStart' | 'bottomCenter' | 'bottomEnd';
-    type ComponentName = ComposeCatalogNodeName | ComposeV2NodeName;
-    interface Catalog extends ComposeCatalogProps, ComposeV2CatalogProps {}
+    type NativeViewToken = RuntimeUi.NativeViewToken;
+    interface ViewFactoryContext extends importContext {
+        inflate(layout: string | RuntimeUi.LayoutDescriptor): Promise<NativeViewToken>;
+        createView(type: string, props?: RuntimeUi.LayoutPatch): Promise<NativeViewToken>;
+    }
+    type importContext = RuntimeUi.UiContextToken;
+    type ComponentName = ComposeCatalogNodeName | ComposeV2NodeName | "AndroidView";
+    interface Catalog extends ComposeCatalogProps, ComposeV2CatalogProps {
+        AndroidView: { view: NativeViewToken | ((context: ViewFactoryContext) => NativeViewToken | Promise<NativeViewToken>) };
+    }
     interface Event { readonly type: string; readonly text?: string; readonly value?: number; readonly checked?: boolean; readonly editSeq?: number; readonly message?: string; readonly [key: string]: string | number | boolean | null | undefined }
     type Listener = (this: Node, event: Event) => void;
     type Child = Node | string | null | undefined | false | readonly Child[];
@@ -1158,6 +1206,7 @@ export namespace RuntimeCompose {
         memo<T extends Node>(build: () => T, dependencies: readonly unknown[], options?: { key?: string | number }): T;
         post(callback: () => void, delay?: number): unknown;
         mount(root: Node | (() => Node), options?: Options): Promise<Session>;
+        attach(container: NativeViewToken, root: Node | (() => Node), options?: Options): Promise<Session>;
         dialog(root: Node | (() => Node), options?: DialogOptions): Promise<Session>;
         floaty(root: Node | (() => Node), options?: FloatyOptions): Promise<FloatySession>;
         isAvailable(): Promise<boolean>;

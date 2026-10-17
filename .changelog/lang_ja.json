@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.53.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun が実行に属する View ハンドル, 非同期 AndroidView ファクトリー, XML Compose コンテナへの接続, Worker 終了時の解放とパッケージ化アプリに対応"
+        }
+      ]
+    },
     "v4.52.0": {
       "released_date": "2026/10/18",
       "entries": [

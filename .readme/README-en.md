@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.53.0
+
+###### 2026/10/18
+
+* `Feature` Node.js/Bun support execution-owned View handles, asynchronous AndroidView factories and XML Compose container attachments, with Worker cleanup and packaged application support
+
 ### v4.52.0
 
 ###### 2026/10/18
@@ -191,12 +197,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 * `Feature` Node.js/Bun images supports advanced filters, color conversion, multi-color searches, circles, similarity metrics and URL loading
 * `Feature` Node.js/Bun images supports SIFT/ORB extraction and matching with scene coordinates, ObjectFrame geometry and execution-owned Mat/feature handles
 * `Feature` Node.js/Bun images supports PNG quantization and compression with quality/memory metrics, binary results and descriptor-backed file output
-
-### v4.50.0
-
-###### 2026/10/17
-
-* `Feature` Node.js main thread and Workers support H.264 MP4 recording with microphone, playback or mixed AAC audio, concurrent screenshots and cleanup of unsaved Worker recordings (API / TypeScript / Ace)
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.53.0
+
+###### 2026/10/18
+
+* `機能` Node.js/Bun が実行に属する View ハンドル, 非同期 AndroidView ファクトリー, XML Compose コンテナへの接続, Worker 終了時の解放とパッケージ化アプリに対応
+
 # v4.52.0
 
 ###### 2026/10/18

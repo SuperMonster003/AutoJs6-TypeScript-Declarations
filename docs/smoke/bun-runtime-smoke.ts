@@ -57,8 +57,33 @@ async function portableUiComposeSmoke() {
   const model = uiApi.state({text:'hello'});
   const window = await uiApi.showLayout({type:'Text', id:'label', text:uiApi.bind(model,'text')});
   const closed: boolean=window.closed; void closed; await window.close();
-  // @ts-expect-error Native Java View factories are outside the portable contract.
+  // @ts-expect-error Only execution-owned View tokens may be borrowed.
   composeApi.AndroidView({view:{}});
   // @ts-expect-error Component property types remain specific.
   composeApi.Text({fontSize:false});
+}
+
+async function nativeInteropSmoke() {
+  const context = await uiApi.context();
+  const root = await context.inflate('<vertical><compose id="content"/></vertical>');
+  const native = await context.createView('TextView', {text:'Native'});
+  const window = await uiApi.showLayout(root);
+  const container = await window.findView('content');
+  if (!container) throw Error('Missing container');
+  const session = await composeApi.attach(container, composeApi.AndroidView({view:native}));
+  const token = {__autojs6ViewHandle:native.__autojs6ViewHandle};
+  const alias = uiApi.view(token);
+  const snapshot = await alias.get();
+  const text: string | undefined = await alias.get('text');
+  await alias.set({text:'After'}); alias.on('click', function(event) { void this.context; void event.type; });
+  await session.close();
+  const factory = await composeApi.attach(container, composeApi.AndroidView({view:async context => context.createView('Button', {text:'Factory'})}));
+  await factory.close(); await native.dispose(); await window.close(); await root.dispose();
+  // @ts-expect-error Java Context methods are not exposed by a context token.
+  context.getApplicationContext();
+  // @ts-expect-error Factories must return a View token.
+  composeApi.AndroidView({view:async () => 'text'});
+  // @ts-expect-error Native View attributes are read asynchronously by name.
+  alias.get('getContext');
+  void [snapshot, text];
 }

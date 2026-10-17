@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.53.0
+
+###### 2026/10/18
+
+* `ميزة` يدعم Node.js/Bun مقابض View الخاصة بالتنفيذ ومصانع AndroidView غير المتزامنة وحاويات XML Compose مع تنظيف Worker والتطبيقات المعبأة
+
 # v4.52.0
 
 ###### 2026/10/18
