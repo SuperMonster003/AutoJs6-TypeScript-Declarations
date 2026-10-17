@@ -178,6 +178,13 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.47.0
+
+###### 2026/10/17
+
+* `機能` Node.js Worker が親ランタイム経由の OpenCC と画像モジュールに対応し, CJS, ESM, 入れ子の Worker と画像バイナリ転送を提供 (API / TypeScript / Ace)
+* `機能` Bun が個別許可による画面キャプチャ, Android の同意, タイムアウト/キャンセル時の解放と再申請に対応 (API / TypeScript / Ace)
+
 ### v4.46.0
 
 ###### 2026/10/17
@@ -189,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/17
 
 * `機能` Rhino の speech と speech.models の型宣言と補完. セッション, イベント, モデル管理と型付き結果に対応し, Node.js/Bun と分離
-
-### v4.44.0
-
-###### 2026/10/17
-
-* `機能` Node.js と Bun の独立したホスト API 型宣言. 非同期ピンイン, コンソール操作, 現在の画面座標変換に対応
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

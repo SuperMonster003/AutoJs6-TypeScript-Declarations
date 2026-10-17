@@ -18,6 +18,19 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.47.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Worker Node.js поддерживают OpenCC и изображения через родительскую среду, включая CJS, ESM, вложенные Worker и двоичные данные (API / TypeScript / Ace)"
+        },
+        {
+          "category": "feature",
+          "text": "Bun поддерживает захват экрана с отдельным разрешением, согласием Android, очисткой при отмене/тайм-ауте и повторным запросом (API / TypeScript / Ace)"
+        }
+      ]
+    },
     "v4.46.0": {
       "released_date": "2026/10/17",
       "entries": [

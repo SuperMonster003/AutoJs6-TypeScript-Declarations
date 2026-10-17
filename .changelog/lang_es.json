@@ -18,6 +18,19 @@
     "adjustment": "Ajuste"
   },
   "$data": {
+    "v4.47.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Los Workers de Node.js usan OpenCC e imágenes mediante el runtime padre, con CJS, ESM, Workers anidados y transferencia binaria (API / TypeScript / Ace)"
+        },
+        {
+          "category": "feature",
+          "text": "Bun ofrece captura de pantalla con permiso independiente, consentimiento de Android, limpieza al cancelar o expirar y nueva solicitud (API / TypeScript / Ace)"
+        }
+      ]
+    },
     "v4.46.0": {
       "released_date": "2026/10/17",
       "entries": [

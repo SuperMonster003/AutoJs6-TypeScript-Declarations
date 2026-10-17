@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.47.0
+
+###### 2026/10/17
+
+* `ميزة` تدعم Workers في Node.js وحدات OpenCC والصور عبر بيئة التشغيل الأم, مع CJS و ESM والتداخل ونقل البيانات الثنائية (API / TypeScript / Ace)
+* `ميزة` يدعم Bun التقاط الشاشة بإذن مستقل وموافقة Android والتنظيف عند الإلغاء أو انتهاء المهلة وإعادة الطلب (API / TypeScript / Ace)
+
 # v4.46.0
 
 ###### 2026/10/17

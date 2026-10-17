@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.47.0
+
+###### 2026/10/17
+
+* `기능` Node.js Worker에서 부모 런타임을 통한 OpenCC 및 이미지 모듈 지원, CJS, ESM, 중첩 Worker와 이미지 바이너리 전송 포함 (API / TypeScript / Ace)
+* `기능` Bun에서 별도 허용이 필요한 화면 캡처, Android 승인, 시간 초과/취소 정리 및 재요청 지원 (API / TypeScript / Ace)
+
 # v4.46.0
 
 ###### 2026/10/17

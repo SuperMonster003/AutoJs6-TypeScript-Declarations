@@ -1,3 +1,4 @@
+/** CJS/ESM main-thread and Worker facade; canonical autojs6:opencc bypasses npm shadowing. */
 declare module "opencc" {
   namespace opencc {
     export type TextInput = NonNullable<unknown>;

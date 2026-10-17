@@ -18,6 +18,19 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.47.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js Workers support OpenCC and image modules through the parent runtime, including CJS, ESM, nested Workers and binary image data (API / TypeScript / Ace)"
+        },
+        {
+          "category": "feature",
+          "text": "Bun supports screen capture with a separate opt-in grant, Android consent, timeout/cancellation cleanup and repeated authorization (API / TypeScript / Ace)"
+        }
+      ]
+    },
     "v4.46.0": {
       "released_date": "2026/10/17",
       "entries": [

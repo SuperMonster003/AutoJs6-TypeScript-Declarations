@@ -178,6 +178,13 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.47.0
+
+###### 2026/10/17
+
+* `Feature` Node.js Workers support OpenCC and image modules through the parent runtime, including CJS, ESM, nested Workers and binary image data (API / TypeScript / Ace)
+* `Feature` Bun supports screen capture with a separate opt-in grant, Android consent, timeout/cancellation cleanup and repeated authorization (API / TypeScript / Ace)
+
 ### v4.46.0
 
 ###### 2026/10/17
@@ -189,12 +196,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/17
 
 * `Feature` Rhino speech and speech.models declarations and completion, including sessions, events, model management and typed results; kept separate from Node.js and Bun
-
-### v4.44.0
-
-###### 2026/10/17
-
-* `Feature` Separate Node.js and Bun host API declarations, including asynchronous pinyin, console controls and current-screen coordinate conversion
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

@@ -1,6 +1,6 @@
 /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
 export declare const SDK_VERSION: 1;
-export type HostCapability = "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.metrics" | "console.control";
+export type HostCapability = "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.metrics" | "console.control";
 export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
 export declare class HostCallError extends Error {
   readonly code: string;
@@ -8,7 +8,7 @@ export declare class HostCallError extends Error {
   readonly status: number;
   constructor(code: string, message: string, capability?: string | null, status?: number);
 }
-export declare const HOST_API_METHODS: Readonly<Record<"text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.metrics" | "console.control", readonly string[]>>;
+export declare const HOST_API_METHODS: Readonly<Record<"text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.metrics" | "console.control", readonly string[]>>;
 export declare const OPENCC_CONVERSION_TYPES: readonly [
   "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
   "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -53,8 +53,23 @@ export interface ImageThresholdOptions {
 export type ImageBlurSize = number | readonly [width: number, height: number];
 export type ImageColor = number | string;
 export type ImageMultiColorPoint = readonly [x: number, y: number, color: ImageColor] | (ImagePoint & { readonly color: ImageColor });
+export interface ScreenCaptureOptions {
+  /** Consent wait budget in 1..120000 ms. Default 120000; each transport call still has its normal limit. */
+  readonly timeoutMs?: number;
+  readonly width?: number;
+  readonly height?: number;
+  readonly orientation?: "auto" | "portrait" | "landscape";
+  /** Fail without opening a dialog when this execution has no active authorization. */
+  readonly requireExistingPermission?: boolean;
+}
 /** JSON transport remains limited to 64 KiB requests / 256 KiB results. Large images use host file paths. */
 export interface ImagesApi {
+  /** Requires the opt-in screen.capture grant and Android consent. Denial rejects the Promise. */
+  requestScreenCapture(options?: ScreenCaptureOptions): Promise<boolean>;
+  /** Captures the authorized display into an execution-owned image handle. */
+  captureScreen(): Promise<ImageHandle>;
+  /** Stops capture or cancels pending consent. False means no request/session was owned. */
+  stopScreenCapture(): Promise<boolean>;
   fromBase64(base64: string): Promise<ImageHandle>;
   /** Encoded PNG/JPEG/WebP bytes, sent as base64; no PFD upload or raw RGBA input. */
   fromBytes(bytes: ArrayBuffer | ArrayBufferView | readonly number[]): Promise<ImageHandle>;

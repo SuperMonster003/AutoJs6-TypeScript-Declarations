@@ -13,6 +13,13 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.47.0
+
+###### 2026/10/17
+
+* `Функция` Worker Node.js поддерживают OpenCC и изображения через родительскую среду, включая CJS, ESM, вложенные Worker и двоичные данные (API / TypeScript / Ace)
+* `Функция` Bun поддерживает захват экрана с отдельным разрешением, согласием Android, очисткой при отмене/тайм-ауте и повторным запросом (API / TypeScript / Ace)
+
 # v4.46.0
 
 ###### 2026/10/17

@@ -76,8 +76,16 @@ returns `{data, width, height}`. Node byte APIs use Buffer/PFD transport, includ
 RGBA output; Bun uses encoded bytes through Base64 JSON, with 64 KiB request and 256 KiB
 response limits. Bun pixel regions are limited to 16,384 pixels. Both runtimes reject
 color searches exceeding 4,096 results. Bun `image.files` is opt-in and separate from
-`image.process`; it does not expose screen capture. Generated runtime declarations keep
+`image.process`. Bun screenshot methods require the separate opt-in `screen.capture` grant
+and Android consent. `requestScreenCapture`/`stopScreenCapture` return Promise<boolean>,
+and `captureScreen` returns a Promise<ImageHandle>. Generated runtime declarations keep
 these differences visible instead of advertising the full Rhino image surface.
+
+Node Workers expose OpenCC and image modules with the same declarations as the main
+thread, including canonical `autojs6:image` and `autojs6:images` aliases. Asynchronous
+operations execute through the parent; bytes are copied into Worker-owned Buffers.
+Image handles belong to the execution and may be passed between threads. Recycle
+bookkeeping is local to each thread, so coordinate shared-handle cleanup explicitly.
 `cX()` and `cY()` have explicit zero-argument overloads. Passing `undefined` as the first
 argument is rejected; numeric strings are accepted as coordinate values. Omitting a later
 base argument with `undefined` remains valid when supplying the explicit ratio mode.

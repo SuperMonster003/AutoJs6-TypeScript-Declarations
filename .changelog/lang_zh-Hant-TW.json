@@ -18,6 +18,19 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.47.0": {
+      "released_date": "2026/10/17",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js Worker 支援透過父執行環境呼叫 OpenCC 與影像模組, 包含 CJS, ESM, 巢狀 Worker 和影像二進位傳輸 (API / TypeScript / Ace)"
+        },
+        {
+          "category": "feature",
+          "text": "Bun 支援獨立授權的螢幕擷取, Android 錄製權限申請, 逾時/取消清理和重新申請 (API / TypeScript / Ace)"
+        }
+      ]
+    },
     "v4.46.0": {
       "released_date": "2026/10/17",
       "entries": [

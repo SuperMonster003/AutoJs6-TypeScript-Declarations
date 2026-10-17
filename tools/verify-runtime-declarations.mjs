@@ -131,7 +131,7 @@ function verifyRuntimeTypes(program, runtime) {
             }
         }
     }
-    if (runtime === 'bun') assert(!checker.getPropertyOfType(images, 'captureScreen'), 'Bun must not declare Node capture support');
+    for (const name of ['requestScreenCapture','captureScreen','stopScreenCapture']) property(images,name);
     return { openccMethods: openccNames.length, callableOpencc: true, imageMethods, anyOrNeverImageResults: 0 };
 }
 for (const runtime of ['node', 'bun']) {

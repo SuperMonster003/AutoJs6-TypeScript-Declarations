@@ -1,4 +1,5 @@
 /** @remarks 捕获需 Android 录屏授权; 图像分析复用宿主 OpenCV 插件。参见 docs/HOST-API.md。 */
+/** Main-thread and Worker modules. Workers forward asynchronous calls through their parent. */
 declare module "image" {
   namespace image {
     export type ColorInput = number | string;
@@ -109,7 +110,8 @@ declare module "image" {
       captureScreen(options?: CaptureScreenOptions): Promise<AutoJs6Node.ImageHandle>;
       /** Absolute or working-directory-relative file path; Android file access applies with the updated host. */
       readImage(path: string, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
-      /** Returns a native Buffer mapped from a PFD; it remains valid after the image handle is recycled. */
+      /** Main thread: PFD-backed Buffer. Worker: an independent Buffer copied through structured clone.
+       * Bytes remain valid after the image handle is recycled. */
       toBytes(image: ImageInput, options?: ImageBytesOptions | ImageBytesOptions["format"], qualityOrOptions?: number | AutoJs6Node.BridgeCallOptions): Promise<ImageBytes>;
       /** Encoded images use descriptor uploads; no raw RGBA input is implied. */
       fromBytes(bytes: ImageByteInput, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
@@ -152,7 +154,7 @@ declare module "image" {
       getSize(image: AutoJs6Node.ImageHandleLike): ImageSize;
       getWidth(image: AutoJs6Node.ImageHandleLike): number;
       getHeight(image: AutoJs6Node.ImageHandleLike): number;
-      /** Local bookkeeping shared by image/images; direct raw-bridge recycling is not tracked. */
+      /** Local bookkeeping shared by image/images in this thread. Other threads and raw-bridge recycling are not tracked. */
       isRecycled(image: AutoJs6Node.ImageHandleLike): boolean;
       recycle(image: AutoJs6Node.ImageHandleLike, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
     }

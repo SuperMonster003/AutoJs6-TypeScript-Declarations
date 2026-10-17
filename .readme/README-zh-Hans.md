@@ -178,6 +178,13 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.47.0
+
+###### 2026/10/17
+
+* `新增` Node.js Worker 支持通过父运行时调用 OpenCC 与图像模块, 包含 CJS, ESM, 嵌套 Worker 和图像二进制传输 (API / TypeScript / Ace)
+* `新增` Bun 支持独立授权的屏幕截图, Android 录屏权限申请, 超时/取消清理和重新申请 (API / TypeScript / Ace)
+
 ### v4.46.0
 
 ###### 2026/10/17
@@ -189,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/17
 
 * `新增` Rhino speech 与 speech.models 声明和补全, 覆盖会话, 事件, 模型管理与类型化结果, 与 Node.js/Bun 保持隔离
-
-### v4.44.0
-
-###### 2026/10/17
-
-* `新增` Node.js 和 Bun 独立宿主 API 声明, 覆盖异步拼音, 控制台与实时屏幕坐标换算
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

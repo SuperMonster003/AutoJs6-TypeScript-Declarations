@@ -3,3 +3,13 @@ declare module "images" {
   const images: image.ImageModule;
   export = images;
 }
+
+declare module "autojs6:images" {
+  import images = require("images");
+  export = images;
+}
+
+declare module "autojs6:image" {
+  import image = require("image");
+  export = image;
+}
