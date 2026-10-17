@@ -66,6 +66,9 @@ the `sdk` variable declaration. Ace recognizes this annotation without injecting
 Pinyin and window controls are asynchronous. Do not treat them as strings or chain them as
 synchronous console objects. Coordinate methods query the current screen on each call; custom
 bases are scoped to the execution. Rhino JSOX global/prototype opt-ins do not apply to Node/Bun.
+`cX()` and `cY()` have explicit zero-argument overloads. Passing `undefined` as the first
+argument is rejected; numeric strings are accepted as coordinate values. Omitting a later
+base argument with `undefined` remains valid when supplying the explicit ratio mode.
 
 Update the copies from sibling source checkouts and optionally synchronize Ace:
 

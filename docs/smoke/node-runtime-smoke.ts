@@ -14,6 +14,7 @@ const horizontal: Promise<number> = screen.cX(360, 720);
 const vertical: Promise<number> = screen.cY(0.5, true);
 const crossX: Promise<number> = screen.cXy(360, '16:9', false);
 const crossY: Promise<number> = screen.cYx(0.5, true);
+const stringRatio: Promise<number> = screen.cX('0.5', undefined, true);
 const windowChange: Promise<void> = console.setTitle('Runtime API');
 const windowVisible: Promise<void> = console.show();
 accessibility.swipe;
@@ -28,6 +29,10 @@ const processPermission: AutoJs6Node.ProcessPermissionSnapshot = $autojs.profile
 
 // @ts-expect-error Host conversion is asynchronous.
 const synchronousPinyin: string = pinyin.simple('北京');
+// @ts-expect-error No argument is supported; explicitly passing undefined is not.
+screen.cX(undefined);
+// @ts-expect-error No argument is supported; explicitly passing undefined is not.
+screen.cY(undefined);
 // @ts-expect-error Runtime APIs do not install Rhino globals automatically.
 selector();
 // @ts-expect-error Runtime declarations do not enable Rhino JSOX prototype extensions.

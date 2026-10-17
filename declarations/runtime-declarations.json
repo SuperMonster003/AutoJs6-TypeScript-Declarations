@@ -57,7 +57,7 @@
     "autojs6-node/rhino.d.ts": "88cdb6e302780fccdc27dbd1db368567bb6be1e0f5604eb610d09fe28cd50959",
     "autojs6-node/rhino_compat.d.ts": "6e72311f02d88db6d3223ecb2870dfe2f115ee57d4e4f0aa29b62e0ff0812bd5",
     "autojs6-node/s13n.d.ts": "9fec9f35c59b94cf862f45957584c4780bc2aa9e7ca762b4e05f76d624b63174",
-    "autojs6-node/screen_metrics.d.ts": "b7a452eb86e214393474f56ab12379e53d6570d1deb0ffc86eba4d7dfa8c199a",
+    "autojs6-node/screen_metrics.d.ts": "775151946ab5c3135296ce2059f67edc0b313859765f680258d69b6284fb69e8",
     "autojs6-node/sensors.d.ts": "fcd8420c4084d6be29b6c20afe028b913f4c96eab5419490da5ca83440235481",
     "autojs6-node/shell.d.ts": "c6a5d31386ca1a4bf916f58b507f8cc62dee879a16b4516c26b2d2c12b6ba965",
     "autojs6-node/sqlite.d.ts": "0d54a5cd119be06e13e8819cfee578920f12182686a803f8e8202377adc4b118",
@@ -71,7 +71,7 @@
     "autojs6-node/util.d.ts": "4b9abf65c0eac6402e78ed5082bd71da672cd2646927f72870810cc055e5ff9e",
     "autojs6-node/websocket.d.ts": "f9412a8fe65abdab7d1f14f09bf75a4371a84657ba3f91de42e6c96e512a5923",
     "autojs6-node/work_manager.d.ts": "5d77db1003ae945c3ce7f9061b4e8609a29f8fe3b2a830a0c0fae051c67a2e68",
-    "autojs6-bun/host-client.d.mts": "e8f6fea568dddde68c0a4c432036139a8d56b1646c63059eb34587b17c78972e",
-    "autojs6-bun/index.d.ts": "a48b40186ebcbe5bcc96e81d1436fa636bc73c936aee01c1bfcfcaeb78715dd5"
+    "autojs6-bun/host-client.d.mts": "2eef25f2eb038e2606e33dff65f1e300233d00ca086c58573d9a6b381d9d08f2",
+    "autojs6-bun/index.d.ts": "98d3b7c421913b57df773ef993054dcf75fc26c20c94bfc67380f71a47909382"
   }
 }

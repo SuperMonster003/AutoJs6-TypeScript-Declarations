@@ -55,15 +55,15 @@ export interface ScreenInfo {
 export interface CoordinateApi {
   /** Uses current display dimensions; fraction / pixel / base overloads follow AutoJs6 Scale. */
   cX(): Promise<number>;
-  cX(value: number, base?: number | null, ratio?: boolean | "auto"): Promise<number>;
-  cX(value: number, ratio: boolean | "auto"): Promise<number>;
+  cX(value: number | string, base?: number | null, ratio?: boolean | "auto"): Promise<number>;
+  cX(value: number | string, ratio: boolean | "auto"): Promise<number>;
   cY(): Promise<number>;
-  cY(value: number, base?: number | null, ratio?: boolean | "auto"): Promise<number>;
-  cY(value: number, ratio: boolean | "auto"): Promise<number>;
-  cXy(value: number, baseOrAspectRatio?: number | `${number}:${number}` | null, ratio?: boolean | "auto"): Promise<number>;
-  cXy(value: number, ratio: boolean | "auto"): Promise<number>;
-  cYx(value: number, baseOrAspectRatio?: number | `${number}:${number}` | null, ratio?: boolean | "auto"): Promise<number>;
-  cYx(value: number, ratio: boolean | "auto"): Promise<number>;
+  cY(value: number | string, base?: number | null, ratio?: boolean | "auto"): Promise<number>;
+  cY(value: number | string, ratio: boolean | "auto"): Promise<number>;
+  cXy(value: number | string, baseOrAspectRatio?: number | `${number}:${number}` | null, ratio?: boolean | "auto"): Promise<number>;
+  cXy(value: number | string, ratio: boolean | "auto"): Promise<number>;
+  cYx(value: number | string, baseOrAspectRatio?: number | `${number}:${number}` | null, ratio?: boolean | "auto"): Promise<number>;
+  cYx(value: number | string, ratio: boolean | "auto"): Promise<number>;
   getInfo(): Promise<ScreenInfo>;
   getScaleBaseX(): Promise<number>;
   getScaleBaseY(): Promise<number>;

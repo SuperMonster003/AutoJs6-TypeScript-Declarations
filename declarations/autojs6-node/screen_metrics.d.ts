@@ -24,10 +24,12 @@ declare module "screen_metrics" {
       setScaleBases(baseX: number, baseY: number): Promise<void>;
       setScaleBaseX(base: number): Promise<void>;
       setScaleBaseY(base: number): Promise<void>;
-      cX(value?: number, baseOrMode?: number | RatioMode | null, ratioMode?: RatioMode): Promise<number>;
-      cY(value?: number, baseOrMode?: number | RatioMode | null, ratioMode?: RatioMode): Promise<number>;
-      cXy(value: number, baseOrMode?: number | string | boolean | null, ratioMode?: RatioMode): Promise<number>;
-      cYx(value: number, baseOrMode?: number | string | boolean | null, ratioMode?: RatioMode): Promise<number>;
+      cX(): Promise<number>;
+      cX(value: number | string, baseOrMode?: number | RatioMode | null, ratioMode?: RatioMode): Promise<number>;
+      cY(): Promise<number>;
+      cY(value: number | string, baseOrMode?: number | RatioMode | null, ratioMode?: RatioMode): Promise<number>;
+      cXy(value: number | string, baseOrMode?: number | string | boolean | null, ratioMode?: RatioMode): Promise<number>;
+      cYx(value: number | string, baseOrMode?: number | string | boolean | null, ratioMode?: RatioMode): Promise<number>;
     }
   }
 
