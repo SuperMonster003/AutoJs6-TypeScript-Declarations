@@ -65,9 +65,19 @@ function verifyRuntimeTypes(program, runtime) {
     if (runtime === 'node') {
         opencc = exportedValue('opencc');
         images = exportedValue('images');
-        for (const name of ['pinyin','pinyin4j','console','screen_metrics']) {
+        for (const name of ['pinyin','pinyin4j','console','screen_metrics','screen_recorder','media_projection','recorder']) {
             assert.equal(checker.typeToString(exportedValue('autojs6:'+name)),checker.typeToString(exportedValue(name)),`Worker alias ${name} drift`);
         }
+        const recording=exportedValue('autojs6:screen_recorder');
+        for(const name of ['start','stop','cancel','getStatus']) returns(property(recording,name),'Worker recording.'+name);
+        const stopped=returns(property(recording,'stop'),'Node recording.stop')[0];
+        assert(stopped.isUnion()&&stopped.types.some(t=>t.flags&ts.TypeFlags.Null),'Idle Node recording stop must preserve null');
+        const movie=checker.getNonNullableType(stopped);
+        for(const field of ['width','height','size','durationMs']) assert(property(movie,field).flags&ts.TypeFlags.Number,field);
+        assert.deepEqual(property(movie,'audioSource').types.map(t=>t.value).sort(),['microphone','mixed','none','playback']);
+        const capturer=returns(property(exportedValue('media_projection'),'requestScreenCapture'),'Worker capture')[0];
+        returns(property(capturer,'nextImage'),'Worker capturer.nextImage');returns(property(capturer,'stop'),'Worker capturer.stop');
+        for(const name of ['start','stop','getStatus']) returns(property(exportedValue('recorder'),name),'Worker audio-only recorder.'+name);
         const pinyin=exportedValue('autojs6:pinyin');
         for(const name of ['convert','simple','compact','compare','fromCodePoint','fromPhrase']) returns(property(pinyin,name),'Worker pinyin.'+name);
         for(const name of ['cX','cY','cXy','cYx']) returns(property(exportedValue('autojs6:screen_metrics'),name),'Worker '+name);

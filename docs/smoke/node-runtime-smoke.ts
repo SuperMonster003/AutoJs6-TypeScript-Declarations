@@ -37,3 +37,28 @@ screen.cY(undefined);
 selector();
 // @ts-expect-error Runtime declarations do not enable Rhino JSOX prototype extensions.
 Math.sum(1, 2);
+
+import recording = require('autojs6:screen_recorder');
+import projection = require('autojs6:media_projection');
+import audioRecorder = require('autojs6:recorder');
+async function recordingTypes(path: string) {
+    const capture = await projection.requestScreenCapture();
+    const active: recording.ActiveRecording = await recording.start(path, { audio: 'mixed', width: 720, height: 1280 });
+    const image: AutoJs6Node.ImageHandle = await capture.nextImage();
+    const movie: recording.RecordingResult | null = await recording.stop({ id: active.id });
+    if (movie) {
+        const source: recording.AudioSource = movie.audioSource;
+        const rate: 48000 | null = movie.audioSampleRate;
+        void [source, rate];
+    }
+    const cancelled: boolean = await recording.cancel({ id: active.id });
+    const status: recording.Status = await recording.getStatus();
+    await capture.stop();
+    audioRecorder.start({ path: 'audio.m4a' });
+    // @ts-expect-error The source must be explicit; true is not a supported audio source.
+    recording.start(path, { audio: true });
+    // @ts-expect-error null must not cancel an arbitrary active recording.
+    recording.cancel({ id: null });
+    void [image, cancelled, status];
+}
+void recordingTypes;

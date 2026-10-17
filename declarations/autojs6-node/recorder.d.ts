@@ -50,3 +50,8 @@ declare module "recorder" {
   const recorder: recorder.RecorderModule;
   export = recorder;
 }
+
+declare module "autojs6:recorder" {
+  import api = require("recorder");
+  export = api;
+}

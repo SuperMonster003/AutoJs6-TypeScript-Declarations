@@ -31,7 +31,9 @@ declare module "image" {
     }
 
     export interface CaptureScreenOptions extends AutoJs6Node.BridgeCallOptions {
+      /** Configures requestScreenCapture. captureScreen keeps the existing session's orientation. */
       orientation?: "portrait" | "landscape" | "auto";
+      /** On requestScreenCapture, reject unless consent already exists. captureScreen always requires existing consent. */
       requireExistingPermission?: boolean;
     }
 
@@ -107,6 +109,7 @@ declare module "image" {
     export interface ImageModule {
       requestScreenCapture(options?: CaptureScreenOptions & { width?: number; height?: number }): Promise<boolean>;
       stopScreenCapture(options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
+      /** Uses the authorized session's orientation and dimensions, including during recording. */
       captureScreen(options?: CaptureScreenOptions): Promise<AutoJs6Node.ImageHandle>;
       /** Absolute or working-directory-relative file path; Android file access applies with the updated host. */
       readImage(path: string, options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;

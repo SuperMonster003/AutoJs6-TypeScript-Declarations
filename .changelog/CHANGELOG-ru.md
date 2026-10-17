@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.50.0
+
+###### 2026/10/17
+
+* `Функция` Основной поток Node.js и Workers поддерживают запись H.264 MP4 со звуком AAC микрофона, воспроизведения или их смеси, параллельные снимки экрана и удаление несохраненных записей Worker (API / TypeScript / Ace)
+
 # v4.49.0
 
 ###### 2026/10/17

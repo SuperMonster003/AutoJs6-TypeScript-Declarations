@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.50.0
+
+###### 2026/10/17
+
+* `新增` Node.js 主執行緒與 Worker 支援 H.264 MP4 錄屏, 麥克風/播放/混合 AAC 音訊, 錄製期間並行截圖及 Worker 未儲存錄屏清理 (API / TypeScript / Ace)
+
 # v4.49.0
 
 ###### 2026/10/17

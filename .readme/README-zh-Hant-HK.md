@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.50.0
+
+###### 2026/10/17
+
+* `新增` Node.js 主執行緒與 Worker 支援 H.264 MP4 錄屏, 麥克風/播放/混合 AAC 音訊, 錄製期間並行截圖及 Worker 未儲存錄屏清理 (API / TypeScript / Ace)
+
 ### v4.49.0
 
 ###### 2026/10/17
@@ -190,13 +196,6 @@ npm update @sm003/autojs6-dts
 
 * `新增` Node.js Worker 支援 pinyin, pinyin4j, 控制台視窗和座標換算, 共用父執行狀態並保留原生輸出串流 (API / TypeScript / Ace)
 * `新增` Bun screenRecorder 支援無聲 H.264 MP4 螢幕錄製檔案, 獨立授權, 固定輸出尺寸, 明確完成及取消清理 (API / TypeScript / Ace)
-
-### v4.47.0
-
-###### 2026/10/17
-
-* `新增` Node.js Worker 支援透過父運行時呼叫 OpenCC 與圖像模組, 包含 CJS, ESM, 巢狀 Worker 和圖像二進制傳輸 (API / TypeScript / Ace)
-* `新增` Bun 支援獨立授權的螢幕擷取, Android 錄製權限申請, 逾時/取消清理和重新申請 (API / TypeScript / Ace)
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-HK.md)
 

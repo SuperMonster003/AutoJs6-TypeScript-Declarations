@@ -16,6 +16,7 @@
 /// <reference path="./accessibility.d.ts" />
 /// <reference path="./input_observer.d.ts" />
 /// <reference path="./media_projection.d.ts" />
+/// <reference path="./screen_recorder.d.ts" />
 /// <reference path="./image.d.ts" />
 /// <reference path="./images.d.ts" />
 /// <reference path="./ocr.d.ts" />
