@@ -154,3 +154,33 @@ with the Bun project and import it relatively. The packaged Bun entry uses a sep
 normal-permission service; host-only services retain their signature permission, and
 execution/cancellation keys include the calling UID. Runtime scripts remain trusted
 code under the plugin UID. No native Bun payload or AIDL transaction changed.
+
+## Common XML widgets and native properties (2026-10-18)
+
+Host 5563 and the Node 1.9.0/Bun 0.2.8 clients add 12 native widgets: HorizontalScrollView,
+Space, RelativeLayout, CardView, Spinner, SeekBar, RatingBar, RadioGroup, RadioButton,
+ToggleButton, CheckedTextView and NumberPicker. XML aliases include hscroll/relative/card/
+spinner/seekbar/ratingbar/radiogroup/radio/toggle/checkedtext/numberpicker; img and linear
+also map to the existing renderer. Child width, height, margins and weight are retained.
+Relative rules accept layout_ aliases and refer to unique sibling XML IDs.
+
+Native View handles expose 46 typed property accessors. Reads return Promises; assignments
+queue in order per local wrapper. Await a read or flush() to observe completion and deferred
+errors. A reported error does not poison later writes. Values are copied at assignment.
+dispose() drains writes and still attempts cleanup after an assignment failure. Non-JSON
+values reject synchronously. set(patch) remains explicitly awaitable. Native validation
+rejects unknown/read-only properties and unsupported widget/property combinations.
+
+The six read-only accessors are attached, layoutWidth, layoutHeight, drawableWidth,
+drawableHeight and xmlId. id/type/context remain synchronous identity metadata. Dimensions
+write dp by default or explicit px; geometry/inset/card reads return pixels. textSize reads
+sp. flush() confirms submission, not a completed Android layout/draw. Cross-thread callers
+coordinate shared handles and event consumption. Image src accepts execution-owned image
+handles (copied pixels), host/framework drawable resources or null, without implicit file/URL
+access. Limits and widget-specific fields are documented in runtimeApis and the declarations.
+
+Ace offers the async property signatures and XML tag/attribute completion inside typed
+ui.inflate literal strings. This remains a finite native widget/property contract, not
+arbitrary Java reflection, complete Rhino XML binding, WebView or Drawer/Toolbar/ViewPager.
+The host report docs/dev/runtime-xml-views-2026-10-18.md records actual device and packaged
+application validation, including the matched 6.8.0+5563 Runtime Kit.

@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.54.0
+
+###### 2026/10/18
+
+* `機能` Node.js/Bun が一般的な XML フォームとレイアウト, ネイティブ View の非同期プロパティ操作, 順序付き代入, エラー復旧と Worker 呼び出しに対応
+
 # v4.53.0
 
 ###### 2026/10/18

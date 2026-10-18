@@ -18,6 +18,15 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.54.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "يدعم Node.js/Bun نماذج وتخطيطات XML الشائعة وخصائص View غير المتزامنة مع الإسناد المرتب والتعافي من الأخطاء و Worker"
+        }
+      ]
+    },
     "v4.53.0": {
       "released_date": "2026/10/18",
       "entries": [

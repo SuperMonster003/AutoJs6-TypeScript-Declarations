@@ -131,3 +131,26 @@ async function nativeInteropSmoke() {
   alias.get('getContext');
   void [snapshot, text];
 }
+
+async function nativePropertiesSmoke() {
+  const view=await uiApi.createView('Spinner',{items:['One','Two'],selectedIndex:0});
+  view.items=['Alpha','Beta'];view.selectedIndex=1;await view.flush();
+  const selected:number=await view.selectedIndex;
+  view.text='Queued text';const text:Promise<string>=view.text;
+  view.width='80dp';view.margin=[2,4];view.visibility='gone';
+  view.checkedId=null;view.src='@android:drawable/ic_menu_info_details';
+  const xmlId:string|null=await view.xmlId;
+  await view.set({progress:20,max:100,textStyle:'bold'});
+  // @ts-expect-error A native property getter is asynchronous.
+  const sync:string=view.text;
+  // @ts-expect-error Text assignment expects a string, not a Promise.
+  view.text=Promise.resolve('bad');
+  // @ts-expect-error Native read-only geometry cannot be assigned.
+  view.layoutWidth=3;
+  // @ts-expect-error Visibility accepts the three declared states.
+  view.visibility='hidden';
+  // @ts-expect-error Native patches reject misspelled properties.
+  await view.set({selectedIndxe:1});
+  view.on('change',event=>{const user:boolean|undefined=event.fromUser;const progress:number|undefined=event.progress;void [user,progress];});
+  await view.dispose();void [selected,text,xmlId,sync];
+}

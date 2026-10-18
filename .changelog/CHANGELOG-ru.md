@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.54.0
+
+###### 2026/10/18
+
+* `Функция` Node.js/Bun поддерживают стандартные XML-формы и макеты, асинхронные свойства View, последовательные присваивания, восстановление после ошибок и Workers
+
 # v4.53.0
 
 ###### 2026/10/18
