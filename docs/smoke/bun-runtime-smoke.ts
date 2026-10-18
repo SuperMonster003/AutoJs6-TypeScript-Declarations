@@ -3,6 +3,21 @@ import type { HostClient, HostCapability } from 'autojs6:bun-host';
 declare const host: HostClient;
 const capability: HostCapability = 'screen.metrics';
 host.hasCapability(capability);
+host.hasCapability('accessibility.gesture');
+const selected = { ...host.accessibility.textMatches(/fixture/i), ...host.accessibility.clickable() };
+const nodeSnapshot: Promise<import('autojs6:bun-host').RuntimeAccessibility.UiNodeSnapshot | null> = host.accessibility.findOne(selected);
+const clicked: Promise<boolean> = host.accessibility.click(selected);
+const packageInfo = host.app.getPackageInfo(host.app.packageName);
+const intent = host.app.intent({action:'VIEW',flags:[1,2],extras:{flag:true}});
+const clip: Promise<string> = host.clipboard.getText({timeoutMs:5000,signal:new AbortController().signal});
+// @ts-expect-error Android nodes are asynchronous snapshots.
+const syncNode: import('autojs6:bun-host').RuntimeAccessibility.UiNodeSnapshot = host.accessibility.findOne(selected);
+// @ts-expect-error Explicit selectors require the versioned descriptor.
+host.accessibility.click({text:'fixture'});
+// @ts-expect-error Privileged Intent execution is not part of this interface.
+host.app.startActivity({action:'VIEW',root:true});
+// @ts-expect-error Clipboard writes require text.
+host.clipboard.setText({text:'fixture'});
 const text: Promise<string> = host.pinyin.simple('北京上海');
 const readings: Promise<string[][]> = host.pinyin4j.readings('重庆');
 const horizontal: Promise<number> = host.coordinates.cX(360, 720);

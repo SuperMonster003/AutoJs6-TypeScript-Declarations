@@ -1,6 +1,6 @@
 /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
 export declare const SDK_VERSION: 1;
-export type HostCapability = "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
+export type HostCapability = "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
 export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
 export declare class HostCallError extends Error {
   readonly code: string;
@@ -8,7 +8,7 @@ export declare class HostCallError extends Error {
   readonly status: number;
   constructor(code: string, message: string, capability?: string | null, status?: number);
 }
-export declare const HOST_API_METHODS: Readonly<Record<"text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
+export declare const HOST_API_METHODS: Readonly<Record<"app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
 export declare const OPENCC_CONVERSION_TYPES: readonly [
   "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
   "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -399,7 +399,256 @@ export interface DeviceInfo {
   readonly release: string;
   readonly supportedAbis: readonly string[];
 }
+// BEGIN GENERATED AUTOMATION TYPES
+export interface AutomationCallOptions { readonly timeoutMs?: number; readonly signal?: AbortSignal }
+export interface AutomationBounds { readonly left: number; readonly top: number; readonly right: number; readonly bottom: number }
+export namespace RuntimeApp {
+    export type IntentExtraValue =
+      | null | boolean | number | string
+      | readonly string[]
+      | readonly number[]
+      | readonly boolean[];
+
+    export interface IntentExtras {
+      readonly [key: string]: IntentExtraValue;
+    }
+
+    export interface IntentRequest {
+      action?: string;
+      data?: string;
+      url?: string;
+      type?: string;
+      packageName?: string;
+      package?: string;
+      className?: string;
+      component?: string;
+      category?: string | readonly string[];
+      categories?: string | readonly string[];
+      flags?: number | readonly number[];
+      extras?: IntentExtras;
+      readonly root?: never;
+      readonly shizuku?: never;
+      readonly dual?: never;
+    }
+
+    export interface IntentDescriptor {
+      readonly action?: string;
+      readonly data?: string;
+      readonly type?: string;
+      readonly packageName?: string;
+      readonly className?: string;
+      readonly component?: string;
+      readonly categories?: readonly string[];
+      readonly flags?: number;
+      readonly extras?: IntentExtras;
+    }
+
+    export interface UriDescriptor {
+      readonly schema: "autojs6-node-app-uri-descriptor-v1";
+      readonly value: string;
+      readonly scheme?: string;
+      readonly authority?: string;
+      readonly userInfo?: string;
+      readonly host?: string;
+      readonly port?: number;
+      readonly path?: string;
+      readonly query?: string;
+      readonly fragment?: string;
+    }
+
+    export type StartActivityRequest = IntentRequest | string;
+
+    export type EmailAddressList = string | readonly string[];
+
+    export interface PackageInfo {
+      readonly packageName: string;
+      readonly appName: string;
+      readonly versionName: string;
+      readonly versionCode: number;
+      readonly system: boolean;
+      readonly enabled: boolean;
+      readonly firstInstallTime: number;
+      readonly lastUpdateTime: number;
+    }
+
+    export interface SendEmailRequest {
+      readonly to?: EmailAddressList;
+      readonly email?: EmailAddressList;
+      readonly address?: EmailAddressList;
+      readonly cc?: EmailAddressList;
+      readonly bcc?: EmailAddressList;
+      readonly subject?: string;
+      readonly text?: string;
+      readonly body?: string;
+    }
+
+    export interface AppModule {
+      readonly packageName: string;
+      readonly versionName: string;
+      readonly versionCode: number;
+      intent(request: IntentRequest): IntentDescriptor;
+      parseUri(uri: string | null | undefined): UriDescriptor | null;
+      getUriForFile(path: string): never;
+      intentToShell(request: IntentRequest | IntentDescriptor): string;
+      openUrl(url: string, options?: AutomationCallOptions): Promise<void>;
+      openDualUrl(url: string, options?: AutomationCallOptions): Promise<never>;
+      sendEmail(request: SendEmailRequest | EmailAddressList, options?: AutomationCallOptions & Partial<SendEmailRequest>): Promise<void>;
+      uninstall(packageName: string, options?: AutomationCallOptions): Promise<void>;
+      uninstallDual(packageName: string, options?: AutomationCallOptions): Promise<never>;
+      getPackageName(appName: string, options?: AutomationCallOptions): Promise<string | null>;
+      getAppName(packageName: string, options?: AutomationCallOptions): Promise<string | null>;
+      isInstalled(packageName: string, options?: AutomationCallOptions): Promise<boolean>;
+      isDualInstalled(packageName: string, options?: AutomationCallOptions): Promise<never>;
+      viewFile(path: string, options?: AutomationCallOptions): Promise<boolean>;
+      editFile(path: string, options?: AutomationCallOptions): Promise<boolean>;
+      launch(packageName: string, options?: AutomationCallOptions): Promise<boolean>;
+      launchDual(packageName: string, options?: AutomationCallOptions): Promise<never>;
+      launchPackage(packageName: string, options?: AutomationCallOptions): Promise<boolean>;
+      launchDualPackage(packageName: string, options?: AutomationCallOptions): Promise<never>;
+      launchApp(appName: string, options?: AutomationCallOptions): Promise<boolean>;
+      launchDualApp(appName: string, options?: AutomationCallOptions): Promise<never>;
+      openAppSetting(options?: AutomationCallOptions): Promise<void>;
+      openAppSetting(packageName?: string, options?: AutomationCallOptions): Promise<void>;
+      openAppSettings(options?: AutomationCallOptions): Promise<void>;
+      openAppSettings(packageName?: string, options?: AutomationCallOptions): Promise<void>;
+      openDualAppSetting(options?: AutomationCallOptions): Promise<never>;
+      openDualAppSetting(packageName?: string, options?: AutomationCallOptions): Promise<never>;
+      openDualAppSettings(options?: AutomationCallOptions): Promise<never>;
+      openDualAppSettings(packageName?: string, options?: AutomationCallOptions): Promise<never>;
+      launchSettings(options?: AutomationCallOptions): Promise<void>;
+      launchSettings(packageName?: string, options?: AutomationCallOptions): Promise<void>;
+      launchDualSettings(options?: AutomationCallOptions): Promise<never>;
+      launchDualSettings(packageName?: string, options?: AutomationCallOptions): Promise<never>;
+      launchAppDetailsSettings(options?: AutomationCallOptions): Promise<void>;
+      launchAppDetailsSettings(packageName?: string, options?: AutomationCallOptions): Promise<void>;
+      launchDualAppDetailsSettings(options?: AutomationCallOptions): Promise<never>;
+      launchDualAppDetailsSettings(packageName?: string, options?: AutomationCallOptions): Promise<never>;
+      startActivity(request: IntentRequest, options?: AutomationCallOptions): Promise<void>;
+      startActivity(url: string, options?: AutomationCallOptions): Promise<void>;
+      startDualActivity(request: IntentRequest | string, options?: AutomationCallOptions): Promise<never>;
+      /** Sends through Android as the host app; a string is an action name. */
+      sendBroadcast(request: IntentRequest | string, options?: AutomationCallOptions): Promise<void>;
+      /** Starts a regular Android service, subject to Android background-start restrictions. */
+      startService(request: IntentRequest, options?: AutomationCallOptions): Promise<string | null>;
+      /** Returns packages visible to Android's package manager. */
+      getInstalledApps(filter?: { readonly includeSystem?: boolean }, options?: AutomationCallOptions): Promise<readonly PackageInfo[]>;
+      getPackageInfo(packageName: string, options?: AutomationCallOptions): Promise<PackageInfo | null>;
+      kill(packageName: string, options?: AutomationCallOptions): Promise<never>;
+      killDual(packageName: string, options?: AutomationCallOptions): Promise<never>;
+    }
+  }
+export namespace RuntimeAccessibility {
+    export type SelectorField =
+      | "text"
+      | "desc"
+      | "id"
+      | "className"
+      | "textContains"
+      | "descContains"
+      | "textMatches"
+      | "descMatches"
+      | "idMatches"
+      | "classNameMatches"
+      | "clickable"
+      | "enabled"
+      | "scrollable"
+      | "depth"
+      | "boundsInside"
+      | "boundsContains";
+
+    export type SelectorPatternInput = string | RegExp | SelectorPattern;
+
+    export interface SelectorPattern {
+      readonly pattern: string;
+      readonly flags?: string;
+    }
+
+    export interface SelectorDescriptor {
+      readonly type: "autojs6.accessibility.selector";
+      readonly version: 1;
+      readonly text?: string;
+      readonly desc?: string;
+      readonly id?: string;
+      readonly className?: string;
+      readonly textContains?: string;
+      readonly descContains?: string;
+      readonly textMatches?: SelectorPattern;
+      readonly descMatches?: SelectorPattern;
+      readonly idMatches?: SelectorPattern;
+      readonly classNameMatches?: SelectorPattern;
+      readonly clickable?: boolean;
+      readonly enabled?: boolean;
+      readonly scrollable?: boolean;
+      readonly depth?: number;
+      readonly boundsInside?: AutomationBounds;
+      readonly boundsContains?: AutomationBounds;
+    }
+
+    export interface UiNodeSnapshot {
+      readonly text?: string;
+      readonly desc?: string;
+      readonly id?: string;
+      readonly className?: string;
+      readonly bounds: AutomationBounds;
+      readonly clickable?: boolean;
+      readonly enabled?: boolean;
+    }
+
+    export interface EnsureEnabledOptions extends AutomationCallOptions {
+      prompt?: boolean;
+    }
+
+    export interface AccessibilityModule {
+      isEnabled(options?: AutomationCallOptions): Promise<boolean>;
+      ensureEnabled(options?: EnsureEnabledOptions): Promise<boolean>;
+      click(x: number, y: number, options?: AutomationCallOptions): Promise<boolean>;
+      click(selector: SelectorDescriptor, options?: AutomationCallOptions): Promise<boolean>;
+      swipe(x1: number, y1: number, x2: number, y2: number, durationMs?: number, options?: AutomationCallOptions): Promise<boolean>;
+      gesture(durationMs: number, points: readonly (readonly [number, number])[], options?: AutomationCallOptions): Promise<boolean>;
+      back(options?: AutomationCallOptions): Promise<boolean>;
+      home(options?: AutomationCallOptions): Promise<boolean>;
+      recentApps(options?: AutomationCallOptions): Promise<boolean>;
+      findByText(text: string, options?: AutomationCallOptions): Promise<UiNodeSnapshot | null>;
+      clickText(text: string, options?: AutomationCallOptions): Promise<boolean>;
+      findOne(selector: SelectorDescriptor, options?: AutomationCallOptions): Promise<UiNodeSnapshot | null>;
+      findAll(selector: SelectorDescriptor, options?: AutomationCallOptions): Promise<readonly UiNodeSnapshot[]>;
+      longClick(selector: SelectorDescriptor, options?: AutomationCallOptions): Promise<boolean>;
+      setText(selector: SelectorDescriptor, text: string, options?: AutomationCallOptions): Promise<boolean>;
+      scrollForward(selector: SelectorDescriptor, options?: AutomationCallOptions): Promise<boolean>;
+      scrollBackward(selector: SelectorDescriptor, options?: AutomationCallOptions): Promise<boolean>;
+      text(value: string): SelectorDescriptor;
+      desc(value: string): SelectorDescriptor;
+      id(value: string): SelectorDescriptor;
+      className(value: string): SelectorDescriptor;
+      textContains(value: string): SelectorDescriptor;
+      descContains(value: string): SelectorDescriptor;
+      textMatches(value: SelectorPatternInput): SelectorDescriptor;
+      descMatches(value: SelectorPatternInput): SelectorDescriptor;
+      idMatches(value: SelectorPatternInput): SelectorDescriptor;
+      classNameMatches(value: SelectorPatternInput): SelectorDescriptor;
+      clickable(value?: boolean): SelectorDescriptor;
+      enabled(value?: boolean): SelectorDescriptor;
+      scrollable(value?: boolean): SelectorDescriptor;
+      depth(value: number): SelectorDescriptor;
+      boundsInside(bounds: AutomationBounds): SelectorDescriptor;
+      boundsInside(left: number, top: number, right: number, bottom: number): SelectorDescriptor;
+      boundsContains(bounds: AutomationBounds): SelectorDescriptor;
+      boundsContains(left: number, top: number, right: number, bottom: number): SelectorDescriptor;
+    }
+  }
+export namespace RuntimeClipboard {
+    export interface ClipboardModule {
+      getText(options?: AutomationCallOptions): Promise<string>;
+      setText(text: string, options?: AutomationCallOptions): Promise<void>;
+      hasText(options?: AutomationCallOptions): Promise<boolean>;
+    }
+  }
+// END GENERATED AUTOMATION TYPES
+
 export interface HostClient {
+  readonly app: RuntimeApp.AppModule;
+  readonly accessibility: RuntimeAccessibility.AccessibilityModule;
+  readonly clipboard: RuntimeClipboard.ClipboardModule;
   readonly sdkVersion: 1;
   readonly bridgeVersion: 1;
   readonly capabilities: readonly string[];

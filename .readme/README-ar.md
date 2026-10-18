@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.61.0
+
+###### 2026/10/19
+
+* `ميزة` واجهات Bun لإمكانية الوصول وعمليات التطبيقات والحافظة متوافقة مع Node.js مع أذونات مستقلة ودعم التطبيقات المحزمة
+
 ### v4.60.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `ميزة` بث الصوت والفيديو عبر WebView getUserMedia/MediaRecorder, وانتظار Promise للصفحة, وطلب أذونات الوسائط في Android صراحة, وإدارة دورة حياة Worker
-
-### v4.58.0
-
-###### 2026/10/18
-
-* `ميزة` Node.js/Bun: التقاط فيديو WebView وتسجيل AAC/M4A في الواجهة الأمامية مع خيارات الوسائط ومهلة اختيار قابلة للضبط وتنظيف الملفات المؤقتة
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
