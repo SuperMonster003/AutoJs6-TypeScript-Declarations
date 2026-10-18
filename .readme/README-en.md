@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.59.0
+
+###### 2026/10/18
+
+* `Feature` WebView getUserMedia/MediaRecorder streaming audio and video, awaited page Promises, explicit Android media permission requests and Worker lifecycle support
+
 ### v4.58.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/18
 
 * `Feature` Node.js/Bun: WebView full-size camera capture, save and directory selection, document byte reads, and streamed blob/data downloads with selected output locations
-
-### v4.56.0
-
-###### 2026/10/18
-
-* `Feature` Node.js/Bun: WebView HTTP(S) downloads, system file selection and asynchronous WebViewClient/WebChromeClient callbacks with native navigation and resource rules
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

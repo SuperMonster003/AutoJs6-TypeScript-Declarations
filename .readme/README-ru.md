@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## Журнал изменений
 
+### v4.59.0
+
+###### 2026/10/18
+
+* `Функция` Потоковое аудио и видео WebView getUserMedia/MediaRecorder, ожидание Promise страницы, явные запросы разрешений Android и управление жизненным циклом Worker
+
 ### v4.58.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `Функция` Node.js/Bun: Полноразмерные фото WebView, выбор файлов и каталогов, чтение байтов документов и потоковая загрузка blob/data в выбранное место
-
-### v4.56.0
-
-###### 2026/10/18
-
-* `Функция` Node.js/Bun: Загрузки HTTP(S) в WebView, системный выбор файлов и асинхронные вызовы WebViewClient/WebChromeClient с правилами навигации и ресурсов
 
 [Полный журнал изменений](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 

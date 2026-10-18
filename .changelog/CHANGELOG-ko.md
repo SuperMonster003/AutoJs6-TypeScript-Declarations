@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.59.0
+
+###### 2026/10/18
+
+* `기능` WebView getUserMedia/MediaRecorder 오디오 및 비디오 스트리밍, 페이지 Promise 대기, 명시적 Android 미디어 권한 요청 및 Worker 수명 주기 관리
+
 # v4.58.0
 
 ###### 2026/10/18

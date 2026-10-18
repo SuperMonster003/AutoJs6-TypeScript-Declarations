@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.59.0
+
+###### 2026/10/18
+
+* `新增` WebView getUserMedia/MediaRecorder 串流音訊與影片, 支援等待網頁 Promise, 明確申請 Android 媒體權限及 Worker 生命週期管理
+
 ### v4.58.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `新增` Node.js/Bun: WebView 完整照片拍攝, 儲存和目錄選擇, 文件位元組讀取, blob/data 分塊下載及所選位置輸出
-
-### v4.56.0
-
-###### 2026/10/18
-
-* `新增` Node.js/Bun: WebView HTTP(S) 下載, 系統檔案選擇及非同步 WebViewClient/WebChromeClient 回調, 支援原生導覽和資源規則
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-HK.md)
 

@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.59.0
+
+###### 2026/10/18
+
+* `ميزة` بث الصوت والفيديو عبر WebView getUserMedia/MediaRecorder, وانتظار Promise للصفحة, وطلب أذونات الوسائط في Android صراحة, وإدارة دورة حياة Worker
+
 ### v4.58.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `ميزة` Node.js/Bun: التقاط صور WebView بالحجم الكامل واختيار الملفات والمجلدات وقراءة بايتات المستندات وتنزيل blob/data إلى المواقع المختارة
-
-### v4.56.0
-
-###### 2026/10/18
-
-* `ميزة` Node.js/Bun: تنزيلات HTTP(S) في WebView واختيار ملفات النظام واستدعاءات WebViewClient/WebChromeClient غير المتزامنة مع قواعد التنقل والموارد الأصلية
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.59.0
+
+###### 2026/10/18
+
+* `Fonctionnalité` Flux audio et video WebView getUserMedia/MediaRecorder, attente des Promise de page, demandes explicites de permissions multimedia Android et cycle de vie des Worker
+
 ### v4.58.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/18
 
 * `Fonctionnalité` Node.js/Bun: Capture photo WebView en pleine résolution, sélection de fichiers et dossiers, lecture des octets et téléchargements blob/data vers les emplacements choisis
-
-### v4.56.0
-
-###### 2026/10/18
-
-* `Fonctionnalité` Node.js/Bun: Téléchargements HTTP(S) WebView, sélection de fichiers système et rappels WebViewClient/WebChromeClient asynchrones avec règles natives de navigation et de ressources
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

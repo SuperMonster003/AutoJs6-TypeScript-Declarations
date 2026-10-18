@@ -328,6 +328,12 @@ declare module "ui" {
     }
     export interface WebDialogRequest {url: string | null; title: string | null; message: string; defaultValue: string | null}
     export interface WebPermissionRequest {origin: string; resources: readonly string[]}
+    export interface WebPermissionResponse {
+      /** Explicit subset of this request's resources, selected after checking its origin. */
+      resources: readonly string[];
+      /** Request missing CAMERA/RECORD_AUDIO permissions through Android. Default false. Declare them in the app manifest; Chromium audio also requires the normal MODIFY_AUDIO_SETTINGS permission. */
+      requestAndroidPermissions?: boolean;
+    }
     export interface WebChromeClientOptions {
       /** 100..2147483647 ms. Default 15000, or 120000 for file selection, including its default native picker. */
       callbackTimeoutMs?: number;
@@ -347,8 +353,8 @@ declare module "ui" {
       onJsConfirm?: WebCallback<WebDialogRequest, boolean | null>;
       onJsPrompt?: WebCallback<WebDialogRequest, string | null>;
       onJsBeforeUnload?: WebCallback<WebDialogRequest, boolean | null>;
-      /** Return only requested resources; existing Android camera/microphone permissions are still required. */
-      onPermissionRequest?: WebCallback<WebPermissionRequest, readonly string[] | null>;
+      /** Select requested resources after checking origin. Arrays require existing Android permissions; object replies may explicitly request missing media permissions. */
+      onPermissionRequest?: WebCallback<WebPermissionRequest, readonly string[] | WebPermissionResponse | null>;
       onPermissionRequestCanceled?: WebCallback<WebPermissionRequest>;
       onGeolocationPermissionsShowPrompt?: WebCallback<{origin: string}, boolean | {allow: boolean; retain?: boolean} | null>;
       onGeolocationPermissionsHidePrompt?: WebCallback<Record<string, never>>;
@@ -524,6 +530,8 @@ declare module "ui" {
       loadHtml(html: string, baseUrl?: string | null): Promise<void>;
       /** Requires javaScriptEnabled. Returns decoded JSON. UI operations may continue after submission while a dialog is pending. */
       evaluateJavascript(source: string, options?: WebEvaluationOptions): Promise<AutoJs6Node.JsonValue>;
+      /** Await a page expression/Promise and return its JSON result. DOM objects stay in the page. Default timeout 30000 ms, range 100..2147483647. Rejection, navigation, disposal and Worker exit reject the task. Timeout does not abort arbitrary page code. */
+      evaluateJavascriptAsync(source: string, options?: WebEvaluationOptions): Promise<AutoJs6Node.JsonValue>;
       goBack(): Promise<void>; goForward(): Promise<void>; reload(): Promise<void>; stopLoading(): Promise<void>;
       openDrawer(side?: 'start' | 'end', animate?: boolean): Promise<void>;
       closeDrawer(side?: 'start' | 'end', animate?: boolean): Promise<void>;

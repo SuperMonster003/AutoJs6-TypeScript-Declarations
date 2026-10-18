@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.59.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "WebView getUserMedia/MediaRecorder 오디오 및 비디오 스트리밍, 페이지 Promise 대기, 명시적 Android 미디어 권한 요청 및 Worker 수명 주기 관리"
+        }
+      ]
+    },
     "v4.58.0": {
       "released_date": "2026/10/18",
       "entries": [

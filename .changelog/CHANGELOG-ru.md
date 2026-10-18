@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.59.0
+
+###### 2026/10/18
+
+* `Функция` Потоковое аудио и видео WebView getUserMedia/MediaRecorder, ожидание Promise страницы, явные запросы разрешений Android и управление жизненным циклом Worker
+
 # v4.58.0
 
 ###### 2026/10/18

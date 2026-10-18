@@ -160,6 +160,12 @@ async function webCallbacksSmoke() {
 }
 
 async function webFileTransfers(web: Awaited<ReturnType<HostClient["ui"]["createView"]>>) {
+  await web.evaluateJavascriptAsync('Promise.resolve(42)',{timeoutMs:180000});
+  await web.setWebChromeClient({onPermissionRequest:e=>({resources:e.resources,requestAndroidPermissions:true})});
+  // @ts-expect-error Android permission requests require a boolean.
+  await web.setWebChromeClient({onPermissionRequest:e=>({resources:e.resources,requestAndroidPermissions:'yes'})});
+  // @ts-expect-error Page source is a string, not an arbitrary callback.
+  await web.evaluateJavascriptAsync(()=>42);
   const photo=await web.chooseFiles({captureEnabled:true,acceptTypes:['image/*']});
   await web.chooseFiles({captureEnabled:true,captureKind:'video',acceptTypes:['video/*'],videoQuality:1,durationLimitSeconds:30,sizeLimitBytes:10485760,timeoutMs:180000});
   await web.chooseFiles({captureEnabled:true,captureKind:'audio',acceptTypes:['audio/*'],durationLimitSeconds:15});

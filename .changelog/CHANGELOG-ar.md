@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.59.0
+
+###### 2026/10/18
+
+* `ميزة` بث الصوت والفيديو عبر WebView getUserMedia/MediaRecorder, وانتظار Promise للصفحة, وطلب أذونات الوسائط في Android صراحة, وإدارة دورة حياة Worker
+
 # v4.58.0
 
 ###### 2026/10/18

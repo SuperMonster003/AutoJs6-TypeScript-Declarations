@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.59.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Потоковое аудио и видео WebView getUserMedia/MediaRecorder, ожидание Promise страницы, явные запросы разрешений Android и управление жизненным циклом Worker"
+        }
+      ]
+    },
     "v4.58.0": {
       "released_date": "2026/10/18",
       "entries": [
