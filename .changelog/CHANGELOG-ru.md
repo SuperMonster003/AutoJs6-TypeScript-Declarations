@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.56.0
+
+###### 2026/10/18
+
+* `Функция` Node.js/Bun: Загрузки HTTP(S) в WebView, системный выбор файлов и асинхронные вызовы WebViewClient/WebChromeClient с правилами навигации и ресурсов
+
 # v4.55.0
 
 ###### 2026/10/18

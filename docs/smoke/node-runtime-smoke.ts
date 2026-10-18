@@ -178,3 +178,27 @@ async function complexNativeViewsSmoke() {
   toolbar.menu=[{text:'invalid'}];
   await web.dispose();await toolbar.dispose();await drawer.dispose();await pager.dispose();void [value,title,back,opened,pages];
 }
+
+async function webCallbacksSmoke() {
+  const web=await uiApi.createView('WebView',{javaScriptEnabled:true});
+  await web.setWebViewClient({
+    onPageFinished(event){const url:string|null=event.url;void url;},
+    onReceivedHttpAuthRequest(){return {username:'fixture',password:'fixture'};},
+    onReceivedSslError(){return 'cancel';},
+    shouldInterceptRequest(event){const intercepted:boolean=event.intercepted;void intercepted;}
+  },{navigationRules:[{urlPrefix:'https://example.invalid/blocked',action:'block'}],resourceRules:[{url:'https://example.invalid/local',response:{body:'local',mimeType:'text/plain'}}]});
+  await web.setWebChromeClient({onJsConfirm:async()=>true,onJsPrompt:()=> 'text',
+    onShowFileChooser(event){return this.chooseFiles(event);},onPermissionRequest:()=>null,getVisitedHistory:()=>['https://example.invalid/']});
+  await web.setDownloadListener(event=>web.download({url:event.url,fileName:event.suggestedFileName}));
+  const files:readonly string[]|null=await web.chooseFiles({acceptTypes:['text/plain'],multiple:true});
+  await web.cancelFileChooser();await web.exitFullscreen();
+  const download=await web.download({url:'https://example.invalid/file',includeCookies:false});
+  const state=await web.getDownload(download.id),bytes:Uint8Array=await web.readDownload(download.id,0,1024);await web.cancelDownload(download.id);
+  // @ts-expect-error A navigation callback observes a precomputed decision.
+  await web.setWebViewClient({shouldOverrideUrlLoading:()=>true});
+  // @ts-expect-error Prompt results are strings or cancellation.
+  await web.setWebChromeClient({onJsPrompt:()=>42});
+  // @ts-expect-error Camera permission decisions use resource arrays.
+  await web.setWebChromeClient({onPermissionRequest:()=>true});
+  await web.dispose();void [files,state,bytes];
+}

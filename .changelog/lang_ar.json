@@ -18,6 +18,15 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.56.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun: تنزيلات HTTP(S) في WebView واختيار ملفات النظام واستدعاءات WebViewClient/WebChromeClient غير المتزامنة مع قواعد التنقل والموارد الأصلية"
+        }
+      ]
+    },
     "v4.55.0": {
       "released_date": "2026/10/18",
       "entries": [

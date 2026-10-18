@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.56.0
+
+###### 2026/10/18
+
+* `ميزة` Node.js/Bun: تنزيلات HTTP(S) في WebView واختيار ملفات النظام واستدعاءات WebViewClient/WebChromeClient غير المتزامنة مع قواعد التنقل والموارد الأصلية
+
 ### v4.55.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `ميزة` يدعم Node.js/Bun نماذج وتخطيطات XML الشائعة وخصائص View غير المتزامنة مع الإسناد المرتب والتعافي من الأخطاء و Worker
-
-### v4.53.0
-
-###### 2026/10/18
-
-* `ميزة` يدعم Node.js/Bun مقابض View الخاصة بالتنفيذ ومصانع AndroidView غير المتزامنة وحاويات XML Compose مع تنظيف Worker والتطبيقات المعبأة
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

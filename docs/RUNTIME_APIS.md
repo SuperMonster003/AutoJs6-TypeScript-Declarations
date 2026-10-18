@@ -198,7 +198,7 @@ reload/stopLoading and native page/title/progress/error events. JavaScript and D
 start disabled; set javaScriptEnabled before evaluation. Loading resolves on submission;
 observe pageFinished for completion. Android permissions, network security and WebView
 policies apply. There is no injected Java interface, implicit web permission grant or SSL
-bypass. File chooser/download/custom synchronous WebViewClient callbacks are not exposed.
+bypass. The next section documents the portable WebView client and file APIs.
 Destroying an execution/root releases WebViews, including offscreen ViewPager pages.
 
 Drawer accepts one content child and at most one start/end panel using layout_gravity;
@@ -215,3 +215,70 @@ retain Views and WebView DOM across Activity recreation. Shared handles remain o
 the whole execution after the creating Worker exits; close borrowing sessions/windows
 before disposing a root. Arbitrary Java reflection and Rhino expression binding remain
 outside this contract. See runtimeApis and host docs/dev/runtime-view-components-2026-10-18.md.
+
+## WebView downloads, file selection and clients (2026-10-18)
+
+Host 6.8.0+5565, Node.js Runtime 1.11.0 and Bun Runtime 0.2.10 add the same
+WebView facade in Node main, CJS/ESM/nested Workers and Bun host.ui. This adds
+19 WebViewClient callbacks, 20 WebChromeClient callbacks and onDownloadStart.
+setWebViewClient(client, options), setWebChromeClient(client, options) and
+setDownloadListener(callback) accept null to remove the corresponding handlers.
+Handlers receive typed JSON data; their this value is the local NativeViewHandle.
+The declarations enumerate the supported callbacks and request/reply shapes.
+
+Navigation, resource interception and key decisions must be synchronous in Android.
+Submit navigationRules, resourceRules and blockedKeyCodes before loading a page.
+Rules match url/urlPrefix, optionally method and mainFrame, in order; the first
+match wins. A resource response supplies MIME/encoding/status/headers and body or
+bodyBase64. shouldOverrideUrlLoading, shouldInterceptRequest and shouldOverrideKeyEvent
+are notifications of the applied decision, not JavaScript return-value hooks.
+consumeConsoleMessages is a native option; onConsoleMessage is also a notification.
+The bridge never cancels navigation merely to replay loadUrl from an async callback.
+
+Dialog, file, HTTP-auth, SSL, client-certificate, safe-browsing, permission,
+geolocation, visited-history and popup requests support Promise-returning handlers.
+Unknown, failed, expired and replaced requests cancel or deny by default. Handler
+timeouts default to 15 seconds, or 120 seconds for onShowFileChooser; callbackTimeoutMs
+accepts 100..120000. SSL proceeds only on an explicit 'proceed' reply. Android camera,
+microphone and location permissions are still required for an allowed web request.
+onCreateWindow may return a new, empty, execution-owned WebView or null; close its
+borrowed window before disposing it. Fullscreen uses a private Activity, can be
+disabled with fullscreen:false, and can be closed with exitFullscreen().
+
+Without custom handlers, attached WebViews show native JavaScript dialogs and the
+system document picker. chooseFiles({acceptTypes, multiple, initialUri}) returns
+Promise<string[] | null>; cancelFileChooser() cancels the current selection.
+Only readable content URIs from other providers are accepted. The SDK retains new
+persistable read grants until View disposal and preserves pre-existing user grants.
+Temporary grants from custom handlers keep their Android-defined lifetime.
+Open and multiple selection are supported; camera capture, save/folder modes and
+arbitrary filesystem paths are not implemented by the default picker. captureEnabled
+is reported to a custom handler. It can return readable granted URIs or null.
+
+setDownloadListener receives URL, agent, disposition, MIME, length and Android's
+suggested filename. download(options) explicitly enqueues an HTTP(S) DownloadManager
+job in public Downloads and returns {id,url,fileName}; no listener auto-downloads.
+getDownload(id) returns its state or null. readDownload(id,offset=0,length=32768)
+returns Uint8Array, up to 32768 bytes per read. cancelDownload removes the job/file.
+Jobs survive WebView closure. Packaged projects must retain android.permission.INTERNET
+in their Android permissions array for network pages/downloads; runtime-plugin
+permissions do not replace the packaged app permission. Cookies are included only with includeCookies:true;
+custom headers are optional. blob:/data: downloads need a separate implementation.
+
+evaluateJavascript(source,{timeoutMs}) now submits an asynchronous native task;
+its result does not hold a Bun RPC open while a person answers a dialog. timeoutMs
+defaults to 30000 and accepts 100..120000. Callback handlers can read the View or
+open chooseFiles without blocking behind the pending evaluation. Android's JSON
+result semantics remain unchanged; webpage Promises are not automatically awaited.
+The Node project execution budget is independent: interactive project.json files
+should explicitly set node.timeoutMs, e.g. 120000, alongside node.permissions:["ui"].
+A WebView evaluation/callback timeout does not extend that project-wide budget.
+
+Window/session closure cancels pending native UI requests. View disposal additionally
+releases file grants. Worker exit clears only its own client registrations and tasks;
+it cannot erase a newer client installed by another thread. A shared View still has
+one event-queue reader, so transfer ownership of event consumption explicitly.
+Callbacks returning raw Java objects/Bitmaps/Views, obsolete database/quota hooks and
+arbitrary Java WebViewClient subclassing remain outside this portable contract.
+Ace exposes typed callback names, event fields and Promise results under default
+runtime settings. No JSOX prototype extension is required.

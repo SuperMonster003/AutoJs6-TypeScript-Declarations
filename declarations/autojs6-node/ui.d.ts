@@ -249,6 +249,115 @@ declare module "ui" {
       readonly drawerOpenEnd?: boolean;
       readonly pageCount?: number;
     }
+    export type WebCallback<T, R = void> = (this: NativeViewHandle, event: Readonly<T>) => R | Promise<R>;
+    export interface WebPageEvent { url: string | null; title?: string | null; message?: string | null }
+    export interface WebRequest {
+      url: string; method: string; mainFrame: boolean; hasGesture: boolean; redirect: boolean;
+      headers: Readonly<Record<string, string>>;
+    }
+    export type WebRequestMatch = ({url: string; urlPrefix?: string} | {url?: string; urlPrefix: string}) & {method?: string; mainFrame?: boolean};
+    export type WebNavigationRule = WebRequestMatch & {action: 'allow' | 'block'};
+    export interface WebResourceResponse {
+      mimeType?: string; encoding?: string; statusCode?: number; reasonPhrase?: string;
+      headers?: Readonly<Record<string, string>>;
+      /** Use body or bodyBase64, not both. Rules are published before requests run. */
+      body?: string; bodyBase64?: string;
+    }
+    export type WebResourceRule = WebRequestMatch & {response: WebResourceResponse};
+    /** Native evaluation deadline, 100..120000 ms; default 30000. Result delivery uses short event reads. */
+    export interface WebEvaluationOptions { timeoutMs?: number }
+    export interface WebViewClientOptions {
+      callbackTimeoutMs?: number;
+      navigationRules?: readonly WebNavigationRule[];
+      resourceRules?: readonly WebResourceRule[];
+      blockedKeyCodes?: readonly number[];
+    }
+    export interface WebViewClient {
+      onPageStarted?: WebCallback<WebPageEvent>;
+      onPageFinished?: WebCallback<WebPageEvent>;
+      onPageCommitVisible?: WebCallback<WebPageEvent>;
+      onLoadResource?: WebCallback<WebPageEvent>;
+      doUpdateVisitedHistory?: WebCallback<WebPageEvent & {reload: boolean}>;
+      onScaleChanged?: WebCallback<{oldScale: number; newScale: number}>;
+      onReceivedError?: WebCallback<WebRequest & {errorCode: number; message: string}>;
+      onReceivedHttpError?: WebCallback<WebRequest & {statusCode: number; reasonPhrase: string; mimeType: string; responseHeaders: Readonly<Record<string,string>>}>;
+      onReceivedLoginRequest?: WebCallback<{realm?: string; account?: string; args?: string}>;
+      /** Notification of the decision from navigationRules; returning a decision is rejected. */
+      shouldOverrideUrlLoading?: WebCallback<WebRequest & {blocked: boolean}>;
+      /** Notification of resourceRules; returning a resource from this callback is rejected. */
+      shouldInterceptRequest?: WebCallback<WebRequest & {intercepted: boolean}>;
+      /** Notification of blockedKeyCodes; Android's main thread never waits for a script response. */
+      shouldOverrideKeyEvent?: WebCallback<{keyCode: number; action: number; blocked: boolean}>;
+      onUnhandledKeyEvent?: WebCallback<{keyCode: number; action: number}>;
+      onFormResubmission?: WebCallback<WebPageEvent, boolean | null>;
+      onReceivedHttpAuthRequest?: WebCallback<{host: string; realm: string}, {username: string; password: string} | null>;
+      /** Defaults to cancellation. Only an explicit 'proceed' changes that decision. */
+      onReceivedSslError?: WebCallback<WebPageEvent & {primaryError: number}, 'cancel' | 'proceed' | null>;
+      onReceivedClientCertRequest?: WebCallback<{host: string; port: number; keyTypes: readonly string[]; principals: readonly string[]}, {alias: string} | 'ignore' | 'cancel' | null>;
+      onSafeBrowsingHit?: WebCallback<WebRequest & {threatType: number}, 'backToSafety' | 'proceed' | 'showInterstitial' | null>;
+      /** Notification; the host always releases the exited renderer's WebView. */
+      onRenderProcessGone?: WebCallback<{didCrash: boolean; rendererPriorityAtExit: number}>;
+    }
+    export interface WebFileChooserOptions {
+      acceptTypes?: readonly string[]; multiple?: boolean;
+      /** Android API 26+ document-picker starting location. */
+      initialUri?: string;
+    }
+    export interface WebFileChooserRequest extends WebFileChooserOptions {
+      acceptTypes: readonly string[]; multiple: boolean; mode: number;
+      captureEnabled: boolean; title: string | null; filenameHint: string | null;
+    }
+    export interface WebDialogRequest {url: string | null; title: string | null; message: string; defaultValue: string | null}
+    export interface WebPermissionRequest {origin: string; resources: readonly string[]}
+    export interface WebChromeClientOptions {
+      /** 100..120000 ms. Default 15000, or 120000 for a custom file chooser callback. */
+      callbackTimeoutMs?: number;
+      consumeConsoleMessages?: boolean;
+      fullscreen?: boolean;
+      allowAutomaticWindows?: boolean;
+    }
+    export interface WebChromeClient {
+      onProgressChanged?: WebCallback<{progress: number}>;
+      onReceivedTitle?: WebCallback<{title: string | null}>;
+      /** PNG thumbnail, at most 64x64, not an Android Bitmap reference. */
+      onReceivedIcon?: WebCallback<{width?: number; height?: number; pngBase64?: string}>;
+      onReceivedTouchIconUrl?: WebCallback<WebPageEvent & {precomposed: boolean}>;
+      /** Notification; use consumeConsoleMessages to set Android's synchronous return value. */
+      onConsoleMessage?: WebCallback<{message: string; sourceId: string; lineNumber: number; level: 'tip' | 'log' | 'warning' | 'error' | 'debug'}>;
+      onJsAlert?: WebCallback<WebDialogRequest, boolean | null>;
+      onJsConfirm?: WebCallback<WebDialogRequest, boolean | null>;
+      onJsPrompt?: WebCallback<WebDialogRequest, string | null>;
+      onJsBeforeUnload?: WebCallback<WebDialogRequest, boolean | null>;
+      /** Return only requested resources; existing Android camera/microphone permissions are still required. */
+      onPermissionRequest?: WebCallback<WebPermissionRequest, readonly string[] | null>;
+      onPermissionRequestCanceled?: WebCallback<WebPermissionRequest>;
+      onGeolocationPermissionsShowPrompt?: WebCallback<{origin: string}, boolean | {allow: boolean; retain?: boolean} | null>;
+      onGeolocationPermissionsHidePrompt?: WebCallback<Record<string, never>>;
+      /** Return readable document content URIs or null. this.chooseFiles(event) opens the system picker. */
+      onShowFileChooser?: WebCallback<WebFileChooserRequest, readonly string[] | null>;
+      /** Return a different execution-owned WebView that has not navigated, or null to cancel. */
+      onCreateWindow?: WebCallback<WebPageEvent & {dialog: boolean; userGesture: boolean}, NativeViewToken | null>;
+      onCloseWindow?: WebCallback<Record<string, never>>;
+      onRequestFocus?: WebCallback<Record<string, never>>;
+      onShowCustomView?: WebCallback<Record<string, never>>;
+      onHideCustomView?: WebCallback<Record<string, never>>;
+      getVisitedHistory?: WebCallback<Record<string, never>, readonly string[] | null>;
+    }
+    export interface WebDownloadEvent {
+      url: string; userAgent?: string; contentDisposition?: string; mimeType?: string;
+      contentLength: number; suggestedFileName: string;
+    }
+    export interface WebDownloadOptions {
+      url: string; fileName?: string; title?: string; mimeType?: string; contentDisposition?: string;
+      userAgent?: string; includeCookies?: boolean; headers?: Readonly<Record<string, string>>;
+    }
+    export interface WebDownload {id: number; url: string; fileName: string}
+    export interface WebDownloadState {
+      id: number; url: string; status: 'pending' | 'running' | 'paused' | 'successful' | 'failed';
+      reason: number; bytesDownloaded: number; totalBytes: number;
+      localUri: string | null; contentUri: string | null; mimeType: string | null;
+    }
+
     export interface NativeViewHandle extends NativeViewToken {
       readonly id: string; readonly type: string; readonly context: UiContext;
       // Property reads return Promises. Assignment effects are ordered; await a read or flush().
@@ -382,13 +491,27 @@ declare module "ui" {
       /** Commands and assignments run in call order. Loading resolves when requested; observe pageFinished for completion. */
       loadUrl(url: string): Promise<void>;
       loadHtml(html: string, baseUrl?: string | null): Promise<void>;
-      /** Requires javaScriptEnabled. Returns the decoded WebView JSON value, not a raw JSON string. */
-      evaluateJavascript(source: string): Promise<AutoJs6Node.JsonValue>;
+      /** Requires javaScriptEnabled. Returns decoded JSON. UI operations may continue after submission while a dialog is pending. */
+      evaluateJavascript(source: string, options?: WebEvaluationOptions): Promise<AutoJs6Node.JsonValue>;
       goBack(): Promise<void>; goForward(): Promise<void>; reload(): Promise<void>; stopLoading(): Promise<void>;
       openDrawer(side?: 'start' | 'end', animate?: boolean): Promise<void>;
       closeDrawer(side?: 'start' | 'end', animate?: boolean): Promise<void>;
       setCurrentItem(index: number, smoothScroll?: boolean): Promise<void>;
       showOverflowMenu(): Promise<boolean>; hideOverflowMenu(): Promise<boolean>;
+      /** Installs local callbacks plus precomputed synchronous policies. Null resets that client. */
+      setWebViewClient(client: WebViewClient | null, options?: WebViewClientOptions): Promise<void>;
+      setWebChromeClient(client: WebChromeClient | null, options?: WebChromeClientOptions): Promise<void>;
+      setDownloadListener(listener: ((this: NativeViewHandle, event: Readonly<WebDownloadEvent>) => unknown) | null): Promise<void>;
+      /** Uses Android's open-document picker. Resolves null on cancellation; supports single/multiple selection. */
+      chooseFiles(options?: WebFileChooserOptions): Promise<readonly string[] | null>;
+      cancelFileChooser(): Promise<void>;
+      exitFullscreen(): Promise<boolean>;
+      /** Starts a persistent Android DownloadManager task in public Downloads. */
+      download(options: WebDownloadOptions): Promise<WebDownload>;
+      getDownload(id: number): Promise<WebDownloadState | null>;
+      cancelDownload(id: number): Promise<boolean>;
+      /** Reads a completed download, at most 32768 bytes per call. */
+      readDownload(id: number, offset?: number, length?: number): Promise<Uint8Array>;
       get(): Promise<NativeViewSnapshot>;
       get<K extends keyof NativeViewSnapshot>(name: K): Promise<NativeViewSnapshot[K]>;
       set(patch: NativeViewPatch): Promise<NativeViewSnapshot>;
