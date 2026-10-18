@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.57.0
+
+###### 2026/10/18
+
+* `ميزة` Node.js/Bun: التقاط صور WebView بالحجم الكامل واختيار الملفات والمجلدات وقراءة بايتات المستندات وتنزيل blob/data إلى المواقع المختارة
+
 # v4.56.0
 
 ###### 2026/10/18

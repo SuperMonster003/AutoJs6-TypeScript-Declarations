@@ -300,11 +300,20 @@ declare module "ui" {
     }
     export interface WebFileChooserOptions {
       acceptTypes?: readonly string[]; multiple?: boolean;
+      mode?: 'open' | 'multiple' | 'directory' | 'save' | 0 | 1 | 2 | 3;
+      /** Prefer a full-size system-camera photo for image acceptTypes. Other media use the document picker. */
+      captureEnabled?: boolean;
+      /** Save filename; Android creates a new document instead of overwriting an existing one. */
+      fileName?: string;
+      /** Defaults to true for directory/save. Save always needs write access. */
+      writable?: boolean;
+      /** Android API 37+ native chooser permission mode: 0 read, 1 read/write. */
+      permissionMode?: 0 | 1;
       /** Android API 26+ document-picker starting location. */
       initialUri?: string;
     }
     export interface WebFileChooserRequest extends WebFileChooserOptions {
-      acceptTypes: readonly string[]; multiple: boolean; mode: number;
+      acceptTypes: readonly string[]; multiple: boolean; mode: 0 | 1 | 2 | 3;
       captureEnabled: boolean; title: string | null; filenameHint: string | null;
     }
     export interface WebDialogRequest {url: string | null; title: string | null; message: string; defaultValue: string | null}
@@ -347,15 +356,27 @@ declare module "ui" {
       url: string; userAgent?: string; contentDisposition?: string; mimeType?: string;
       contentLength: number; suggestedFileName: string;
     }
+    export type WebDownloadId = number | `web:${string}`;
     export interface WebDownloadOptions {
+      /** HTTP(S), data:, same-page blob:, or a readable selected content: URI. */
       url: string; fileName?: string; title?: string; mimeType?: string; contentDisposition?: string;
       userAgent?: string; includeCookies?: boolean; headers?: Readonly<Record<string, string>>;
+      /** An empty writable document from chooseFiles({mode:'save'}); mutually exclusive with directoryUri. */
+      destinationUri?: string;
+      /** A writable tree from chooseFiles({mode:'directory'}); creates a child named fileName. */
+      directoryUri?: string;
+      /** Local/page/SAF transfers only. Default 120000; 100..2147483647 ms. */
+      timeoutMs?: number;
     }
-    export interface WebDownload {id: number; url: string; fileName: string}
+    export interface WebDownload {id: WebDownloadId; url: string; fileName: string}
     export interface WebDownloadState {
-      id: number; url: string; status: 'pending' | 'running' | 'paused' | 'successful' | 'failed';
+      id: WebDownloadId; url: string; status: 'pending' | 'running' | 'paused' | 'successful' | 'failed';
       reason: number; bytesDownloaded: number; totalBytes: number;
       localUri: string | null; contentUri: string | null; mimeType: string | null;
+      /** Local transfers report details on failure. */
+      error?: string; fileName?: string;
+      /** False for explicitly chosen SAF outputs: removing a completed job preserves the user's document. */
+      managed?: boolean;
     }
 
     export interface NativeViewHandle extends NativeViewToken {
@@ -502,16 +523,19 @@ declare module "ui" {
       setWebViewClient(client: WebViewClient | null, options?: WebViewClientOptions): Promise<void>;
       setWebChromeClient(client: WebChromeClient | null, options?: WebChromeClientOptions): Promise<void>;
       setDownloadListener(listener: ((this: NativeViewHandle, event: Readonly<WebDownloadEvent>) => unknown) | null): Promise<void>;
-      /** Uses Android's open-document picker. Resolves null on cancellation; supports single/multiple selection. */
+      /** Uses SAF open/multiple/save/tree selection or a full-size camera result. Resolves null on cancellation. */
       chooseFiles(options?: WebFileChooserOptions): Promise<readonly string[] | null>;
       cancelFileChooser(): Promise<void>;
       exitFullscreen(): Promise<boolean>;
-      /** Starts a persistent Android DownloadManager task in public Downloads. */
+      /** Starts an HTTP(S) DownloadManager task or a staged blob/data/content/SAF transfer. */
       download(options: WebDownloadOptions): Promise<WebDownload>;
-      getDownload(id: number): Promise<WebDownloadState | null>;
-      cancelDownload(id: number): Promise<boolean>;
+      getDownload(id: WebDownloadId): Promise<WebDownloadState | null>;
+      /** Cancels/removes a job. Completed explicit SAF output remains the user's document. */
+      cancelDownload(id: WebDownloadId): Promise<boolean>;
       /** Reads a completed download, at most 32768 bytes per call. */
-      readDownload(id: number, offset?: number, length?: number): Promise<Uint8Array>;
+      readDownload(id: WebDownloadId, offset?: number, length?: number): Promise<Uint8Array>;
+      /** Read up to 32768 bytes from a granted document or this View's temporary camera capture. */
+      readDocument(uri: string, offset?: number, length?: number): Promise<Uint8Array>;
       get(): Promise<NativeViewSnapshot>;
       get<K extends keyof NativeViewSnapshot>(name: K): Promise<NativeViewSnapshot[K]>;
       set(patch: NativeViewPatch): Promise<NativeViewSnapshot>;

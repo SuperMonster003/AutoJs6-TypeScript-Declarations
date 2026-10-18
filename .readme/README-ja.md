@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.57.0
+
+###### 2026/10/18
+
+* `機能` Node.js/Bun: WebView のフルサイズ写真撮影, 保存先とディレクトリの選択, 文書バイトの読み取り, blob/data の分割ダウンロードと選択先への出力
+
 ### v4.56.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `機能` Node.js/Bun: WebView のページ読み込みと JavaScript 戻り値, Drawer パネル, Toolbar ナビゲーションとメニュー, ViewPager ページと非同期ネイティブイベント
-
-### v4.54.0
-
-###### 2026/10/18
-
-* `機能` Node.js/Bun が一般的な XML フォームとレイアウト, ネイティブ View の非同期プロパティ操作, 順序付き代入, エラー復旧と Worker 呼び出しに対応
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

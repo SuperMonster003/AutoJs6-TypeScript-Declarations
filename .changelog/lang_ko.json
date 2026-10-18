@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.57.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun: WebView 원본 크기 사진 촬영, 저장 및 디렉터리 선택, 문서 바이트 읽기, blob/data 분할 다운로드와 선택한 위치로 출력"
+        }
+      ]
+    },
     "v4.56.0": {
       "released_date": "2026/10/18",
       "entries": [

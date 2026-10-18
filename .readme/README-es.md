@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.57.0
+
+###### 2026/10/18
+
+* `Función` Node.js/Bun: Captura WebView de fotos completas, selección de archivos y directorios, lectura de bytes y descargas blob/data hacia los destinos elegidos
+
 ### v4.56.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/18
 
 * `Función` Node.js/Bun: Carga WebView y resultados JavaScript, paneles Drawer, navegación y menús Toolbar, páginas ViewPager y eventos nativos asíncronos
-
-### v4.54.0
-
-###### 2026/10/18
-
-* `Función` Node.js/Bun admiten formularios y diseños XML comunes, propiedades View asíncronas, asignaciones ordenadas, recuperación de errores y Workers
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

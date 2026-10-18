@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.57.0
+
+###### 2026/10/18
+
+* `Функция` Node.js/Bun: Полноразмерные фото WebView, выбор файлов и каталогов, чтение байтов документов и потоковая загрузка blob/data в выбранное место
+
 # v4.56.0
 
 ###### 2026/10/18

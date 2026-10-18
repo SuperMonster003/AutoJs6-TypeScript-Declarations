@@ -251,9 +251,8 @@ Promise<string[] | null>; cancelFileChooser() cancels the current selection.
 Only readable content URIs from other providers are accepted. The SDK retains new
 persistable read grants until View disposal and preserves pre-existing user grants.
 Temporary grants from custom handlers keep their Android-defined lifetime.
-Open and multiple selection are supported; camera capture, save/folder modes and
-arbitrary filesystem paths are not implemented by the default picker. captureEnabled
-is reported to a custom handler. It can return readable granted URIs or null.
+Open/multiple selection is available from host 5565; camera/save/directory modes
+are added by the next section. Arbitrary filesystem paths are not accepted.
 
 setDownloadListener receives URL, agent, disposition, MIME, length and Android's
 suggested filename. download(options) explicitly enqueues an HTTP(S) DownloadManager
@@ -263,7 +262,7 @@ returns Uint8Array, up to 32768 bytes per read. cancelDownload removes the job/f
 Jobs survive WebView closure. Packaged projects must retain android.permission.INTERNET
 in their Android permissions array for network pages/downloads; runtime-plugin
 permissions do not replace the packaged app permission. Cookies are included only with includeCookies:true;
-custom headers are optional. blob:/data: downloads need a separate implementation.
+custom headers are optional. blob:/data: transfers are added by the next section.
 
 evaluateJavascript(source,{timeoutMs}) now submits an asynchronous native task;
 its result does not hold a Bun RPC open while a person answers a dialog. timeoutMs
@@ -282,3 +281,60 @@ Callbacks returning raw Java objects/Bitmaps/Views, obsolete database/quota hook
 arbitrary Java WebViewClient subclassing remain outside this portable contract.
 Ace exposes typed callback names, event fields and Promise results under default
 runtime settings. No JSOX prototype extension is required.
+
+## WebView camera, SAF and page downloads (2026-10-18)
+
+Host 6.8.0+5566, Node 1.12.0 and Bun 0.2.11 extend the same main/Worker WebView
+facades. chooseFiles accepts mode open/multiple/directory/save or Android values
+0/1/2/3. Save creates a new document with fileName; directory returns one tree URI.
+writable defaults to true for directory/save and can be disabled for directory.
+initialUri is a provider-dependent location hint. Android's restricted directory
+rules remain in force. A page's native folder/save requests depend on its WebView
+version; explicit chooseFiles uses SAF independently of the page API version.
+
+captureEnabled prefers a full-size system camera image for image acceptTypes.
+Other media preferences use the document picker. The camera receives an output
+content URI for a new temporary JPEG, not a thumbnail request. An app declaring
+CAMERA must grant that permission; an undeclared delegated camera intent follows
+Android's normal rules. Denial/cancellation returns null. The captured file stays
+valid until its selected View and active transfers release it. It is not implicitly
+published to the gallery. Only these registered capture URIs are admitted from the
+app's private provider. Existing user document grants remain intact.
+
+readDocument(uri,offset=0,length=32768) returns Promise<Uint8Array> for a readable
+granted document or retained camera result. Reads return up to the requested count;
+continue by the actual count until an empty result. Save/tree choices request the
+needed read/write grants, which are reference counted with active transfers.
+
+download now also accepts data:, same-page blob: and readable content: URLs.
+HTTP(S) with the default destination continues to use DownloadManager. Other
+sources, or destinationUri/directoryUri targets, use native staged transfers.
+Blob bytes are pulled from the originating JavaScript-enabled WebView in at most
+32 KiB chunks with backpressure and no addJavascriptInterface. data URLs preserve
+percent-encoded binary bytes, literal plus signs and base64. Large inline data URLs
+still obey the runtime request-size limit; use page blob URLs for large data.
+
+destinationUri must be an empty writable document, normally obtained from save
+mode. directoryUri creates a new child with fileName. They are mutually exclusive.
+Existing contents are rejected and remain unchanged. cancelDownload removes a
+running job and incomplete output; a completed explicitly selected SAF document
+is user-owned and preserved. managed:false in the local job state describes this
+behavior. Completed default Downloads output is managed and removed on cancellation.
+SAF reads after View disposal still require a valid Android grant.
+
+Download IDs are opaque: numeric IDs for DownloadManager, web: UUID strings for
+native transfers. Pass the returned ID to getDownload/readDownload/cancelDownload.
+Local failed states include error; reason remains numeric. Local/page/SAF timeoutMs
+defaults to 120000 and accepts 100..2147483647. A source-page navigation/closure
+cancels unfinished blob reads. Completed default downloads survive View disposal.
+Local transfers do not resume after process termination; interrupted records are
+reported as failed. The Node project execution budget is still independent.
+
+Workers use the same APIs and structured-cloned IDs/bytes. Native transfers do not
+depend on the creating JavaScript thread remaining alive, but unfinished blobs
+still require their source page. A Worker-owned window closes on Worker exit.
+Camera/video recording, arbitrary filesystem access and exhaustive cloud-provider
+compatibility are not implied by these additions. See runtimeApis and the host
+report docs/dev/runtime-webview-files-2026-10-18.md for accepted device evidence.
+
+Bun projects can set bun.timeoutMs in project.json (default 60000 ms, clamped to 1..600000 ms). Explicit bun.timeoutMillis execution arguments take precedence. This also applies to packaged applications; a WebView wait or download timeout does not extend the whole execution budget.

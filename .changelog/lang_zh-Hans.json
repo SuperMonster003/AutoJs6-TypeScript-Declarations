@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.57.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun: WebView 完整照片拍摄, 保存和目录选择, 文档字节读取, blob/data 分块下载及所选位置输出"
+        }
+      ]
+    },
     "v4.56.0": {
       "released_date": "2026/10/18",
       "entries": [

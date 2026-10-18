@@ -202,3 +202,14 @@ async function webCallbacksSmoke() {
   await web.setWebChromeClient({onPermissionRequest:()=>true});
   await web.dispose();void [files,state,bytes];
 }
+
+async function webFileTransfers(web: import("ui").NativeViewHandle) {
+  const photo=await web.chooseFiles({captureEnabled:true,acceptTypes:['image/*']});
+  const saved=await web.chooseFiles({mode:'save',fileName:'result.txt',acceptTypes:['text/plain']});
+  const tree=await web.chooseFiles({mode:'directory',writable:true});
+  if(saved){const job=await web.download({url:'data:text/plain,hello',destinationUri:saved[0]});await web.getDownload(job.id);}
+  if(tree)await web.download({url:'blob:https://example.invalid/id',directoryUri:tree[0],fileName:'result.bin',timeoutMs:120000});
+  if(photo){const bytes:Uint8Array=await web.readDocument(photo[0],0,1024);void bytes;}
+  // @ts-expect-error Chooser mode names are explicit.
+  await web.chooseFiles({mode:'folder'});
+}

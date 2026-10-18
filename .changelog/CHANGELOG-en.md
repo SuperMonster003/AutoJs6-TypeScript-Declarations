@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.57.0
+
+###### 2026/10/18
+
+* `Feature` Node.js/Bun: WebView full-size camera capture, save and directory selection, document byte reads, and streamed blob/data downloads with selected output locations
+
 # v4.56.0
 
 ###### 2026/10/18

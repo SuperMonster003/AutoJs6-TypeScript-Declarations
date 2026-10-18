@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.57.0
+
+###### 2026/10/18
+
+* `Fonctionnalité` Node.js/Bun: Capture photo WebView en pleine résolution, sélection de fichiers et dossiers, lecture des octets et téléchargements blob/data vers les emplacements choisis
+
 ### v4.56.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/18
 
 * `Fonctionnalité` Node.js/Bun: Chargement WebView et résultats JavaScript, panneaux Drawer, navigation et menus Toolbar, pages ViewPager et événements natifs asynchrones
-
-### v4.54.0
-
-###### 2026/10/18
-
-* `Fonctionnalité` Node.js/Bun prennent en charge les formulaires et interfaces XML courants, les propriétés View asynchrones, les affectations ordonnées, la reprise après erreur et les Workers
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

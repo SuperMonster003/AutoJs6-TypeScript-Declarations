@@ -18,6 +18,15 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.57.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun: التقاط صور WebView بالحجم الكامل واختيار الملفات والمجلدات وقراءة بايتات المستندات وتنزيل blob/data إلى المواقع المختارة"
+        }
+      ]
+    },
     "v4.56.0": {
       "released_date": "2026/10/18",
       "entries": [

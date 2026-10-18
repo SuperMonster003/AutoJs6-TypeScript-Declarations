@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.57.0
+
+###### 2026/10/18
+
+* `ميزة` Node.js/Bun: التقاط صور WebView بالحجم الكامل واختيار الملفات والمجلدات وقراءة بايتات المستندات وتنزيل blob/data إلى المواقع المختارة
+
 ### v4.56.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `ميزة` Node.js/Bun: تحميل صفحات WebView ونتائج JavaScript ولوحات Drawer والتنقل وقوائم Toolbar وصفحات ViewPager والأحداث الأصلية غير المتزامنة
-
-### v4.54.0
-
-###### 2026/10/18
-
-* `ميزة` يدعم Node.js/Bun نماذج وتخطيطات XML الشائعة وخصائص View غير المتزامنة مع الإسناد المرتب والتعافي من الأخطاء و Worker
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.57.0
+
+###### 2026/10/18
+
+* `新增` Node.js/Bun: WebView 完整照片拍攝, 儲存和目錄選擇, 文件位元組讀取, blob/data 分塊下載及所選位置輸出
+
 # v4.56.0
 
 ###### 2026/10/18

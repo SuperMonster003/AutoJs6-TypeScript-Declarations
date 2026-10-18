@@ -18,6 +18,15 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.57.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun: WebView full-size camera capture, save and directory selection, document byte reads, and streamed blob/data downloads with selected output locations"
+        }
+      ]
+    },
     "v4.56.0": {
       "released_date": "2026/10/18",
       "entries": [

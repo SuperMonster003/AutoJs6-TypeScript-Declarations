@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.57.0
+
+###### 2026/10/18
+
+* `新增` Node.js/Bun: WebView 完整照片拍攝, 儲存和目錄選擇, 文件位元組讀取, blob/data 分塊下載及所選位置輸出
+
 ### v4.56.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `新增` Node.js/Bun: WebView 頁面載入與 JavaScript 回傳值, Drawer 側欄, Toolbar 導覽與選單, ViewPager 頁面及非同步原生事件
-
-### v4.54.0
-
-###### 2026/10/18
-
-* `新增` Node.js/Bun 支援常用 XML 表單與版面配置元件及原生 View 非同步屬性代理, 包含循序賦值, 錯誤復原與 Worker 呼叫
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-TW.md)
 

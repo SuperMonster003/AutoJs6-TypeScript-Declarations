@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.57.0
+
+###### 2026/10/18
+
+* `Feature` Node.js/Bun: WebView full-size camera capture, save and directory selection, document byte reads, and streamed blob/data downloads with selected output locations
+
 ### v4.56.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/18
 
 * `Feature` Node.js/Bun: WebView page loading and JavaScript results, Drawer panels, Toolbar navigation and menus, and ViewPager pages with asynchronous native events
-
-### v4.54.0
-
-###### 2026/10/18
-
-* `Feature` Node.js/Bun support common XML form and layout widgets and asynchronous native View property access, including ordered assignments, error recovery and Worker use
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

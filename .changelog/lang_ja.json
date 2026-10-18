@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.57.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun: WebView のフルサイズ写真撮影, 保存先とディレクトリの選択, 文書バイトの読み取り, blob/data の分割ダウンロードと選択先への出力"
+        }
+      ]
+    },
     "v4.56.0": {
       "released_date": "2026/10/18",
       "entries": [
