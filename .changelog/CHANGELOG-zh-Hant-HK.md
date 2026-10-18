@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.55.0
+
+###### 2026/10/18
+
+* `新增` Node.js/Bun: WebView 頁面載入與 JavaScript 回傳值, Drawer 側欄, Toolbar 導覽與選單, ViewPager 頁面及非同步原生事件
+
 # v4.54.0
 
 ###### 2026/10/18

@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.55.0
+
+###### 2026/10/18
+
+* `Feature` Node.js/Bun: WebView page loading and JavaScript results, Drawer panels, Toolbar navigation and menus, and ViewPager pages with asynchronous native events
+
 # v4.54.0
 
 ###### 2026/10/18

@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.55.0
+
+###### 2026/10/18
+
+* `Fonctionnalité` Node.js/Bun: Chargement WebView et résultats JavaScript, panneaux Drawer, navigation et menus Toolbar, pages ViewPager et événements natifs asynchrones
+
 ### v4.54.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/18
 
 * `Fonctionnalité` Node.js/Bun prennent en charge les handles View propres à une exécution, les fabriques AndroidView asynchrones, les conteneurs XML Compose, la fermeture des Workers et les applications empaquetées
-
-### v4.52.0
-
-###### 2026/10/18
-
-* `Fonctionnalité` Node.js/Bun UI et Compose prennent en charge les interfaces natives, composants de données, états réactifs et événements, avec autorisations distinctes et fermeture automatique
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

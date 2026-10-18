@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.55.0
+
+###### 2026/10/18
+
+* `기능` Node.js/Bun: WebView 페이지 로딩과 JavaScript 반환값, Drawer 패널, Toolbar 탐색과 메뉴, ViewPager 페이지 및 비동기 네이티브 이벤트
+
 # v4.54.0
 
 ###### 2026/10/18

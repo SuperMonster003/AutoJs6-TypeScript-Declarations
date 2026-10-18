@@ -181,6 +181,37 @@ access. Limits and widget-specific fields are documented in runtimeApis and the 
 
 Ace offers the async property signatures and XML tag/attribute completion inside typed
 ui.inflate literal strings. This remains a finite native widget/property contract, not
-arbitrary Java reflection, complete Rhino XML binding, WebView or Drawer/Toolbar/ViewPager.
+arbitrary Java reflection or complete Rhino XML expression binding.
 The host report docs/dev/runtime-xml-views-2026-10-18.md records actual device and packaged
 application validation, including the matched 6.8.0+5563 Runtime Kit.
+
+## WebView, Drawer, Toolbar and ViewPager (2026-10-18)
+
+Host 6.8.0+5564 with Node.js Runtime 1.10.0 / Bun Runtime 0.2.9 adds four native
+components through ui.inflate/createView and XML aliases webview/drawer/toolbar/viewpager.
+The same handle wrappers run in Node main, CJS/ESM/nested Workers and Bun host.ui.
+Native assignments and the 12 component commands share one ordered queue per wrapper.
+The property surface now has 58 writable names and 11 read-only async accessors.
+
+WebView supports loadUrl/loadHtml, evaluateJavascript (decoded JSON), goBack/goForward,
+reload/stopLoading and native page/title/progress/error events. JavaScript and DOM storage
+start disabled; set javaScriptEnabled before evaluation. Loading resolves on submission;
+observe pageFinished for completion. Android permissions, network security and WebView
+policies apply. There is no injected Java interface, implicit web permission grant or SSL
+bypass. File chooser/download/custom synchronous WebViewClient callbacks are not exposed.
+Destroying an execution/root releases WebViews, including offscreen ViewPager pages.
+
+Drawer accepts one content child and at most one start/end panel using layout_gravity;
+openDrawer/closeDrawer accept side (start/end, default start) and animate (default true).
+Toolbar exposes title/subtitle, navigationIcon/navigationContentDescription and a menu
+array of unique id/title entries with optional icon, enabled, visible and showAsAction.
+Navigation/menu clicks return JSON events. showOverflowMenu/hideOverflowMenu return
+Android's boolean result; the Toolbar is not automatically an Activity ActionBar.
+
+ViewPager owns the fixed child page list, exposes currentItem/offscreenPageLimit/pageCount
+and setCurrentItem(index,smoothScroll=true). Indexes are checked. Native selection/scroll
+events and lookup of offscreen descendants are supported. Managed XML/handle windows
+retain Views and WebView DOM across Activity recreation. Shared handles remain owned by
+the whole execution after the creating Worker exits; close borrowing sessions/windows
+before disposing a root. Arbitrary Java reflection and Rhino expression binding remain
+outside this contract. See runtimeApis and host docs/dev/runtime-view-components-2026-10-18.md.

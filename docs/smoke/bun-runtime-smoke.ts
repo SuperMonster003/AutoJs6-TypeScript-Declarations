@@ -110,3 +110,27 @@ async function nativePropertiesSmoke() {
   view.on('change',event=>{const user:boolean|undefined=event.fromUser;const progress:number|undefined=event.progress;void [user,progress];});
   await view.dispose();void [selected,text,xmlId,sync];
 }
+
+async function complexNativeViewsSmoke() {
+  const jsonPager=await uiApi.createView('ViewPager',{children:[{type:'Text',text:'First'}]});
+  await jsonPager.dispose();
+  // @ts-expect-error Child replacement belongs to creation, not scalar property mutation.
+  await jsonPager.set({children:[]});
+  const web=await uiApi.createView('WebView',{javaScriptEnabled:true,html:'<title>Local</title>'});
+  await web.loadHtml('<p>Portable</p>');const value=await web.evaluateJavascript('({answer:42})');
+  const title:string|null=await web.title;const back:boolean=await web.canGoBack;
+  await web.goBack();await web.goForward();await web.reload();await web.stopLoading();
+  const toolbar=await uiApi.createView('Toolbar',{title:'Title',menu:[{id:'save',title:'Save',showAsAction:'always'}]});
+  toolbar.navigationIcon='@android:drawable/ic_menu_more';await toolbar.showOverflowMenu();await toolbar.hideOverflowMenu();
+  const drawer=await uiApi.inflate('<drawer><vertical/><vertical layout_gravity="start"/></drawer>');
+  await drawer.openDrawer('start',false);const opened:boolean=await drawer.drawerOpenStart;await drawer.closeDrawer();
+  const pager=await uiApi.inflate('<viewpager><text/><text/></viewpager>');await pager.setCurrentItem(1,false);pager.currentItem=0;
+  const pages:number=await pager.pageCount;
+  // @ts-expect-error Page count is read-only.
+  pager.pageCount=3;
+  // @ts-expect-error Drawer side is start or end.
+  await drawer.openDrawer('left');
+  // @ts-expect-error Toolbar menu requires an id and title.
+  toolbar.menu=[{text:'invalid'}];
+  await web.dispose();await toolbar.dispose();await drawer.dispose();await pager.dispose();void [value,title,back,opened,pages];
+}

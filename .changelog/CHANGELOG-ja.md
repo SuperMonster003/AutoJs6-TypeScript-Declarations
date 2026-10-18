@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.55.0
+
+###### 2026/10/18
+
+* `機能` Node.js/Bun: WebView のページ読み込みと JavaScript 戻り値, Drawer パネル, Toolbar ナビゲーションとメニュー, ViewPager ページと非同期ネイティブイベント
+
 # v4.54.0
 
 ###### 2026/10/18

@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.55.0
+
+###### 2026/10/18
+
+* `機能` Node.js/Bun: WebView のページ読み込みと JavaScript 戻り値, Drawer パネル, Toolbar ナビゲーションとメニュー, ViewPager ページと非同期ネイティブイベント
+
 ### v4.54.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `機能` Node.js/Bun が実行に属する View ハンドル, 非同期 AndroidView ファクトリー, XML Compose コンテナへの接続, Worker 終了時の解放とパッケージ化アプリに対応
-
-### v4.52.0
-
-###### 2026/10/18
-
-* `機能` Node.js/Bun UI と Compose がネイティブレイアウト, データコンポーネント, リアクティブ状態, ウィンドウイベント, 個別権限と自動クリーンアップに対応
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

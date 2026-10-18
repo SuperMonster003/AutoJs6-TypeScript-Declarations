@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.55.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun: WebView のページ読み込みと JavaScript 戻り値, Drawer パネル, Toolbar ナビゲーションとメニュー, ViewPager ページと非同期ネイティブイベント"
+        }
+      ]
+    },
     "v4.54.0": {
       "released_date": "2026/10/18",
       "entries": [

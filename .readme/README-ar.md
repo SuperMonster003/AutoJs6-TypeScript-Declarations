@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.55.0
+
+###### 2026/10/18
+
+* `ميزة` Node.js/Bun: تحميل صفحات WebView ونتائج JavaScript ولوحات Drawer والتنقل وقوائم Toolbar وصفحات ViewPager والأحداث الأصلية غير المتزامنة
+
 ### v4.54.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `ميزة` يدعم Node.js/Bun مقابض View الخاصة بالتنفيذ ومصانع AndroidView غير المتزامنة وحاويات XML Compose مع تنظيف Worker والتطبيقات المعبأة
-
-### v4.52.0
-
-###### 2026/10/18
-
-* `ميزة` يدعم Node.js/Bun UI و Compose التخطيطات الأصلية ومكونات البيانات والحالة التفاعلية وأحداث النوافذ مع أذونات مستقلة وإغلاق تلقائي للنوافذ
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

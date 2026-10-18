@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.55.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun: Загрузка WebView и результаты JavaScript, панели Drawer, навигация и меню Toolbar, страницы ViewPager и асинхронные события"
+        }
+      ]
+    },
     "v4.54.0": {
       "released_date": "2026/10/18",
       "entries": [

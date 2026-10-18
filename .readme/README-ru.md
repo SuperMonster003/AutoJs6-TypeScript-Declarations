@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## Журнал изменений
 
+### v4.55.0
+
+###### 2026/10/18
+
+* `Функция` Node.js/Bun: Загрузка WebView и результаты JavaScript, панели Drawer, навигация и меню Toolbar, страницы ViewPager и асинхронные события
+
 ### v4.54.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `Функция` Node.js/Bun поддерживают дескрипторы View в пределах выполнения, асинхронные фабрики AndroidView, контейнеры XML Compose, очистку Workers и упакованные приложения
-
-### v4.52.0
-
-###### 2026/10/18
-
-* `Функция` Node.js/Bun UI и Compose поддерживают нативные макеты, компоненты данных, реактивное состояние и события с отдельными разрешениями и автоматическим закрытием окон
 
 [Полный журнал изменений](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 

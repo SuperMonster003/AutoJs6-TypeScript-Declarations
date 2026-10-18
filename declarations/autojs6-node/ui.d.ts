@@ -1,9 +1,10 @@
 declare module "ui" {
   namespace ui {
-    export type XmlTagName = "vertical" | "horizontal" | "frame" | "compose" | "text" | "button" | "input" | "img" | "image" | "scroll" | "list" | "switch" | "checkbox" | "progressbar" | "tabs" | "tab" | "linear" | "hscroll" | "space" | "relative" | "card" | "spinner" | "seekbar" | "ratingbar" | "radiogroup" | "radio" | "toggle" | "checkedtext" | "numberpicker";
-    export type XmlAttributeName = "text" | "hint" | "textSize" | "textColor" | "textStyle" | "singleLine" | "maxLines" | "inputType" | "checked" | "enabled" | "visible" | "visibility" | "alpha" | "contentDescription" | "clickable" | "focusable" | "width" | "height" | "padding" | "margin" | "backgroundColor" | "gravity" | "layoutGravity" | "weight" | "orientation" | "min" | "max" | "progress" | "indeterminate" | "rating" | "numStars" | "stepSize" | "isIndicator" | "items" | "selectedIndex" | "checkedId" | "textOn" | "textOff" | "value" | "wrapSelectorWheel" | "displayedValues" | "cardCornerRadius" | "cardElevation" | "src" | "scaleType" | "adjustViewBounds" | "id" | "w" | "h" | "bg" | "entries" | "checkedButton" | "layout_width" | "layout_height" | "layout_weight" | "layout_gravity" | "layout_margin" | "below" | "above" | "toLeftOf" | "toRightOf" | "toStartOf" | "toEndOf" | "alignTop" | "alignBottom" | "alignStart" | "alignEnd" | "alignParentTop" | "alignParentBottom" | "alignParentStart" | "alignParentEnd" | "centerInParent" | "centerHorizontal" | "centerVertical";
+    export type XmlTagName = "vertical" | "horizontal" | "frame" | "compose" | "text" | "button" | "input" | "img" | "image" | "scroll" | "list" | "switch" | "checkbox" | "progressbar" | "tabs" | "tab" | "linear" | "hscroll" | "space" | "relative" | "card" | "spinner" | "seekbar" | "ratingbar" | "radiogroup" | "radio" | "toggle" | "checkedtext" | "numberpicker" | "webview" | "drawer" | "toolbar" | "viewpager";
+    export type XmlAttributeName = "text" | "hint" | "textSize" | "textColor" | "textStyle" | "singleLine" | "maxLines" | "inputType" | "checked" | "enabled" | "visible" | "visibility" | "alpha" | "contentDescription" | "clickable" | "focusable" | "width" | "height" | "padding" | "margin" | "backgroundColor" | "gravity" | "layoutGravity" | "weight" | "orientation" | "min" | "max" | "progress" | "indeterminate" | "rating" | "numStars" | "stepSize" | "isIndicator" | "items" | "selectedIndex" | "checkedId" | "textOn" | "textOff" | "value" | "wrapSelectorWheel" | "displayedValues" | "cardCornerRadius" | "cardElevation" | "src" | "scaleType" | "adjustViewBounds" | "id" | "w" | "h" | "bg" | "entries" | "checkedButton" | "layout_width" | "layout_height" | "layout_weight" | "layout_gravity" | "layout_margin" | "below" | "above" | "toLeftOf" | "toRightOf" | "toStartOf" | "toEndOf" | "alignTop" | "alignBottom" | "alignStart" | "alignEnd" | "alignParentTop" | "alignParentBottom" | "alignParentStart" | "alignParentEnd" | "centerInParent" | "centerHorizontal" | "centerVertical" | "url" | "html" | "javaScriptEnabled" | "domStorageEnabled" | "title" | "subtitle" | "navigationIcon" | "navigationContentDescription" | "menu" | "drawerLockMode" | "currentItem" | "offscreenPageLimit";
 
     export type LayoutType =
+      | "WebView" | "Drawer" | "DrawerLayout" | "Toolbar" | "ViewPager" | "webview" | "drawer" | "toolbar" | "viewpager"
       | "HorizontalScrollView" | "Space" | "RelativeLayout" | "Card" | "Spinner" | "SeekBar" | "RatingBar" | "RadioGroup" | "RadioButton" | "ToggleButton" | "CheckedTextView" | "NumberPicker" | "vertical" | "horizontal" | "frame" | "compose" | "text" | "button" | "input" | "img" | "image" | "scroll" | "list" | "switch" | "checkbox" | "progressbar" | "tabs" | "tab" | "linear" | "hscroll" | "space" | "relative" | "card" | "spinner" | "seekbar" | "ratingbar" | "radiogroup" | "radio" | "toggle" | "checkedtext" | "numberpicker"
       | "Text" | "Button" | "Input" | "Image" | "ScrollView" | "List" | "Switch" | "Checkbox" | "CheckBox" | "Progress" | "ProgressBar" | "Tabs" | "Tab"
       | "Frame" | "FrameLayout" | "Compose" | "TextView" | "EditText"
@@ -74,6 +75,10 @@ declare module "ui" {
       readonly checkedId?: string | null;
       readonly oldValue?: number;
       readonly message?: string;
+      readonly url?: string; readonly title?: string; readonly mainFrame?: boolean;
+      readonly errorCode?: number; readonly statusCode?: number; readonly didCrash?: boolean;
+      readonly itemId?: string; readonly drawerId?: string | null; readonly side?: 'start' | 'end';
+      readonly position?: number; readonly pageId?: string | null; readonly offset?: number; readonly offsetPixels?: number; readonly state?: number;
       readonly [key: string]: AutoJs6Node.JsonValue | undefined;
     }
 
@@ -98,12 +103,17 @@ declare module "ui" {
     }
     export interface UiContext extends UiContextToken {
       inflate(layout: string | LayoutDescriptor): Promise<NativeViewHandle>;
-      createView(type: LayoutType | (string & {}), props?: NativeViewPatch & {id?: string}): Promise<NativeViewHandle>;
+      createView(type: LayoutType | (string & {}), props?: NativeViewCreateOptions): Promise<NativeViewHandle>;
     }
     /** Layout values default to dp; native geometry and inset snapshots are physical pixels. */
     export type NativeDimension = number | `${number}dp` | `${number}px` | '*' | 'match_parent' | 'wrap_content' | 'auto';
     export type NativeInsets = NativeDimension | readonly [NativeDimension, NativeDimension] | readonly [NativeDimension, NativeDimension, NativeDimension, NativeDimension];
     export type NativeImageSource = {readonly __autojs6ImageHandle: string} | `@drawable/${string}` | `@android:drawable/${string}`;
+    export type NativeDrawable = `@drawable/${string}` | `@android:drawable/${string}`;
+    export interface ToolbarMenuItem {
+      readonly id: string; readonly title: string; readonly icon?: NativeDrawable;
+      readonly showAsAction?: 'never' | 'ifRoom' | 'always'; readonly enabled?: boolean; readonly visible?: boolean;
+    }
     /** Widget-specific attributes reject unsupported widgets at runtime. */
     export interface NativeViewPatch {
       text?: string;
@@ -152,6 +162,26 @@ declare module "ui" {
       src?: NativeImageSource | null;
       scaleType?: 'matrix' | 'fitXY' | 'fitStart' | 'fitCenter' | 'fitEnd' | 'center' | 'centerCrop' | 'centerInside' | 'MATRIX' | 'FIT_XY' | 'FIT_START' | 'FIT_CENTER' | 'FIT_END' | 'CENTER' | 'CENTER_CROP' | 'CENTER_INSIDE';
       adjustViewBounds?: boolean;
+      url?: string;
+      html?: string;
+      javaScriptEnabled?: boolean;
+      domStorageEnabled?: boolean;
+      title?: string;
+      subtitle?: string;
+      navigationIcon?: NativeDrawable | null;
+      navigationContentDescription?: string;
+      menu?: readonly ToolbarMenuItem[];
+      drawerLockMode?: 'unlocked' | 'lockedClosed' | 'lockedOpen';
+      currentItem?: number;
+      offscreenPageLimit?: number;
+    }
+
+    /** Child trees are accepted during creation; set() only changes scalar/component properties. */
+    export interface NativeViewCreateOptions extends NativeViewPatch {
+      id?: string;
+      children?: readonly LayoutDescriptor[];
+      tabs?: readonly LayoutDescriptor[];
+      content?: LayoutDescriptor;
     }
 
     export interface NativeViewSnapshot {
@@ -201,6 +231,23 @@ declare module "ui" {
       readonly layoutHeight?: number;
       readonly drawableWidth?: number;
       readonly drawableHeight?: number;
+      readonly url?: string | null;
+      readonly html?: string | null;
+      readonly javaScriptEnabled?: boolean;
+      readonly domStorageEnabled?: boolean;
+      readonly title?: string | null;
+      readonly subtitle?: string;
+      readonly navigationIcon?: NativeDrawable | null;
+      readonly navigationContentDescription?: string;
+      readonly menu?: readonly ToolbarMenuItem[];
+      readonly drawerLockMode?: 'unlocked' | 'lockedClosed' | 'lockedOpen';
+      readonly currentItem?: number;
+      readonly offscreenPageLimit?: number;
+      readonly canGoBack?: boolean;
+      readonly canGoForward?: boolean;
+      readonly drawerOpenStart?: boolean;
+      readonly drawerOpenEnd?: boolean;
+      readonly pageCount?: number;
     }
     export interface NativeViewHandle extends NativeViewToken {
       readonly id: string; readonly type: string; readonly context: UiContext;
@@ -303,6 +350,45 @@ declare module "ui" {
       readonly drawableWidth: Promise<number>;
       readonly drawableHeight: Promise<number>;
       readonly xmlId: Promise<string | null>;
+      get url(): Promise<string | null>;
+      set url(value: string);
+      get html(): Promise<string | null>;
+      set html(value: string);
+      get javaScriptEnabled(): Promise<boolean>;
+      set javaScriptEnabled(value: boolean);
+      get domStorageEnabled(): Promise<boolean>;
+      set domStorageEnabled(value: boolean);
+      get title(): Promise<string | null>;
+      set title(value: string);
+      get subtitle(): Promise<string>;
+      set subtitle(value: string);
+      get navigationIcon(): Promise<NativeDrawable | null>;
+      set navigationIcon(value: NativeDrawable | null);
+      get navigationContentDescription(): Promise<string>;
+      set navigationContentDescription(value: string);
+      get menu(): Promise<readonly ToolbarMenuItem[]>;
+      set menu(value: readonly ToolbarMenuItem[]);
+      get drawerLockMode(): Promise<'unlocked' | 'lockedClosed' | 'lockedOpen'>;
+      set drawerLockMode(value: 'unlocked' | 'lockedClosed' | 'lockedOpen');
+      get currentItem(): Promise<number>;
+      set currentItem(value: number);
+      get offscreenPageLimit(): Promise<number>;
+      set offscreenPageLimit(value: number);
+      readonly canGoBack: Promise<boolean>;
+      readonly canGoForward: Promise<boolean>;
+      readonly drawerOpenStart: Promise<boolean>;
+      readonly drawerOpenEnd: Promise<boolean>;
+      readonly pageCount: Promise<number>;
+      /** Commands and assignments run in call order. Loading resolves when requested; observe pageFinished for completion. */
+      loadUrl(url: string): Promise<void>;
+      loadHtml(html: string, baseUrl?: string | null): Promise<void>;
+      /** Requires javaScriptEnabled. Returns the decoded WebView JSON value, not a raw JSON string. */
+      evaluateJavascript(source: string): Promise<AutoJs6Node.JsonValue>;
+      goBack(): Promise<void>; goForward(): Promise<void>; reload(): Promise<void>; stopLoading(): Promise<void>;
+      openDrawer(side?: 'start' | 'end', animate?: boolean): Promise<void>;
+      closeDrawer(side?: 'start' | 'end', animate?: boolean): Promise<void>;
+      setCurrentItem(index: number, smoothScroll?: boolean): Promise<void>;
+      showOverflowMenu(): Promise<boolean>; hideOverflowMenu(): Promise<boolean>;
       get(): Promise<NativeViewSnapshot>;
       get<K extends keyof NativeViewSnapshot>(name: K): Promise<NativeViewSnapshot[K]>;
       set(patch: NativeViewPatch): Promise<NativeViewSnapshot>;
@@ -323,7 +409,7 @@ declare module "ui" {
     export interface UiModule {
       context(): Promise<UiContext>;
       inflate(layout: string | LayoutDescriptor, context?: UiContextToken): Promise<NativeViewHandle>;
-      createView(type: LayoutType | (string & {}), props?: NativeViewPatch & {id?: string}, context?: UiContextToken): Promise<NativeViewHandle>;
+      createView(type: LayoutType | (string & {}), props?: NativeViewCreateOptions, context?: UiContextToken): Promise<NativeViewHandle>;
       view(token: NativeViewToken): NativeViewHandle;
       findView(root: NativeViewToken | string, id: string): Promise<NativeViewHandle | null>;
       showLayout(layout: string | NativeViewToken, options?: UiShowOptions): Promise<NativeUiHandle>;

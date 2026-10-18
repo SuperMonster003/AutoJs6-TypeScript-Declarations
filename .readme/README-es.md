@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.55.0
+
+###### 2026/10/18
+
+* `Función` Node.js/Bun: Carga WebView y resultados JavaScript, paneles Drawer, navegación y menús Toolbar, páginas ViewPager y eventos nativos asíncronos
+
 ### v4.54.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/18
 
 * `Función` Node.js/Bun admiten identificadores View de cada ejecución, fábricas AndroidView asíncronas, contenedores XML Compose, limpieza de Workers y aplicaciones empaquetadas
-
-### v4.52.0
-
-###### 2026/10/18
-
-* `Función` Node.js/Bun UI y Compose admiten diseños nativos, componentes de datos, estado reactivo y eventos, con permisos independientes y cierre automático
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

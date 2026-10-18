@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.55.0
+
+###### 2026/10/18
+
+* `新增` Node.js/Bun: WebView 页面加载与 JavaScript 返回值, Drawer 侧栏, Toolbar 导航与菜单, ViewPager 页面及异步原生事件
+
 ### v4.54.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/18
 
 * `新增` Node.js/Bun 支持执行所属 View 句柄, 异步 AndroidView 工厂与 XML Compose 容器挂载, 同步支持 Worker 清理及打包应用
-
-### v4.52.0
-
-###### 2026/10/18
-
-* `新增` Node.js/Bun UI 与 Compose 支持原生布局, 数据组件, 响应式状态及窗口事件, 提供独立授权与窗口自动清理
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

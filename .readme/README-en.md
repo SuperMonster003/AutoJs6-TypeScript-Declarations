@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.55.0
+
+###### 2026/10/18
+
+* `Feature` Node.js/Bun: WebView page loading and JavaScript results, Drawer panels, Toolbar navigation and menus, and ViewPager pages with asynchronous native events
+
 ### v4.54.0
 
 ###### 2026/10/18
@@ -189,12 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/18
 
 * `Feature` Node.js/Bun support execution-owned View handles, asynchronous AndroidView factories and XML Compose container attachments, with Worker cleanup and packaged application support
-
-### v4.52.0
-
-###### 2026/10/18
-
-* `Feature` Node.js/Bun UI and Compose support native layouts, data components, reactive state and window events, with independent grants and automatic window cleanup
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

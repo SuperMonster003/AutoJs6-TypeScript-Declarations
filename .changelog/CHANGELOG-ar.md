@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.55.0
+
+###### 2026/10/18
+
+* `ميزة` Node.js/Bun: تحميل صفحات WebView ونتائج JavaScript ولوحات Drawer والتنقل وقوائم Toolbar وصفحات ViewPager والأحداث الأصلية غير المتزامنة
+
 # v4.54.0
 
 ###### 2026/10/18

@@ -18,6 +18,15 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.55.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun: تحميل صفحات WebView ونتائج JavaScript ولوحات Drawer والتنقل وقوائم Toolbar وصفحات ViewPager والأحداث الأصلية غير المتزامنة"
+        }
+      ]
+    },
     "v4.54.0": {
       "released_date": "2026/10/18",
       "entries": [
