@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.60.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Адаптер демонстрации экрана WebView, запись звука через foreground service и нативная фоновая запись камеры для Node.js/Bun и Node Worker"
+        }
+      ]
+    },
     "v4.59.0": {
       "released_date": "2026/10/18",
       "entries": [

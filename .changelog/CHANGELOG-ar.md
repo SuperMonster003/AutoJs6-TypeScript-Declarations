@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.60.0
+
+###### 2026/10/18
+
+* `ميزة` مهايئ مشاركة شاشة WebView وتسجيل الصوت عبر خدمة أمامية وتسجيل الكاميرا الأصلي في الخلفية في Node.js/Bun مع دعم Node Worker
+
 # v4.59.0
 
 ###### 2026/10/18

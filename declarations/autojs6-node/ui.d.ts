@@ -328,11 +328,42 @@ declare module "ui" {
     }
     export interface WebDialogRequest {url: string | null; title: string | null; message: string; defaultValue: string | null}
     export interface WebPermissionRequest {origin: string; resources: readonly string[]}
+    export interface WebBackgroundRecordingOptions {
+      /** Native Android camera ID takes precedence over facing. Default facing is back. */
+      cameraId?: string; facing?: 'back' | 'front';
+      /** Preferred size/rate; actual supported values are returned. Defaults 1280 x 720, 30 fps. */
+      width?: number; height?: number; frameRate?: number; bitRate?: number;
+      /** Record microphone AAC, default false. */
+      audio?: boolean;
+      durationLimitSeconds?: number; sizeLimitBytes?: number; timeoutMs?: number;
+    }
+    export interface WebBackgroundRecordingActive {
+      id: string; state: 'recording'; cameraId: string; width: number; height: number; frameRate: number; audio: boolean;
+    }
+    export interface WebBackgroundRecordingResult extends Omit<WebBackgroundRecordingActive, 'state'> {
+      state: 'stopped'; reason: 'stopped' | 'limit' | 'notification-stop';
+      /** Temporary content URI owned by this View. Read/copy it before disposal. */
+      uri: string; mimeType: 'video/mp4'; durationMs: number; size: number;
+    }
+    export type WebBackgroundRecordingStatus = WebBackgroundRecordingActive | WebBackgroundRecordingResult | {state: 'idle' | 'starting' | 'cancelled' | 'failed'; id?: string; reason?: string; error?: string};
+    export interface WebDisplayCaptureOptions {
+      /** Exact trusted HTTP(S) origin of the loaded page. Secure context and visible-page user activation are required. */
+      origin: string;
+      /** Maximum encoded dimensions, default 1280 x 720. Aspect ratio is preserved. */
+      maxWidth?: number; maxHeight?: number;
+      /** Maximum frame rate, integer 1..60, default 5. Actual rate depends on device load. */
+      frameRate?: number;
+      /** Android consent timeout, 100..120000 ms; default 120000. */
+      timeoutMs?: number;
+    }
+    export interface WebDisplayCaptureRegistration { readonly id: string; readonly installed: true; readonly source: "android-media-projection"; readonly audio: false }
     export interface WebPermissionResponse {
       /** Explicit subset of this request's resources, selected after checking its origin. */
       resources: readonly string[];
       /** Request missing CAMERA/RECORD_AUDIO permissions through Android. Default false. Declare them in the app manifest; Chromium audio also requires the normal MODIFY_AUDIO_SETTINGS permission. */
       requestAndroidPermissions?: boolean;
+      /** Explicit foreground-service lease started while visible, requiring matching manifest permissions. WebView may still mute hidden camera tracks; use startBackgroundRecording for native camera files. Navigation/window close/stopMediaCapture releases this lease. */
+      backgroundCapture?: boolean;
     }
     export interface WebChromeClientOptions {
       /** 100..2147483647 ms. Default 15000, or 120000 for file selection, including its default native picker. */
@@ -532,6 +563,18 @@ declare module "ui" {
       evaluateJavascript(source: string, options?: WebEvaluationOptions): Promise<AutoJs6Node.JsonValue>;
       /** Await a page expression/Promise and return its JSON result. DOM objects stay in the page. Default timeout 30000 ms, range 100..2147483647. Rejection, navigation, disposal and Worker exit reject the task. Timeout does not abort arbitrary page code. */
       evaluateJavascriptAsync(source: string, options?: WebEvaluationOptions): Promise<AutoJs6Node.JsonValue>;
+      /** Install an opt-in getDisplayMedia adapter in this page when the native method is absent. Produces real canvas MediaStream video backed by MediaProjection. Screen audio is unavailable. */
+      enableDisplayCapture(options: WebDisplayCaptureOptions): Promise<WebDisplayCaptureRegistration>;
+      /** Stop pending/active sharing and remove this page adapter. An optional registration ID prevents clearing a replacement. */
+      disableDisplayCapture(id?: string): Promise<boolean>;
+      /** End page media, foreground leases and display sharing, then navigate to about:blank. Reload before reuse. */
+      stopMediaCapture(): Promise<boolean>;
+      /** Native Camera2/MediaRecorder file capture, independent of WebView camera-track visibility. Start while visible; explicitly requests declared Android camera/microphone permissions and a foreground service. */
+      startBackgroundRecording(options?: WebBackgroundRecordingOptions): Promise<WebBackgroundRecordingActive>;
+      getBackgroundRecording(): Promise<WebBackgroundRecordingStatus>;
+      stopBackgroundRecording(): Promise<WebBackgroundRecordingResult>;
+      cancelBackgroundRecording(id?: string): Promise<boolean>;
+
       goBack(): Promise<void>; goForward(): Promise<void>; reload(): Promise<void>; stopLoading(): Promise<void>;
       openDrawer(side?: 'start' | 'end', animate?: boolean): Promise<void>;
       closeDrawer(side?: 'start' | 'end', animate?: boolean): Promise<void>;

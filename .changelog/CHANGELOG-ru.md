@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.60.0
+
+###### 2026/10/18
+
+* `Функция` Адаптер демонстрации экрана WebView, запись звука через foreground service и нативная фоновая запись камеры для Node.js/Bun и Node Worker
+
 # v4.59.0
 
 ###### 2026/10/18

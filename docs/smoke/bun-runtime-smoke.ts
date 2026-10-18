@@ -160,6 +160,16 @@ async function webCallbacksSmoke() {
 }
 
 async function webFileTransfers(web: Awaited<ReturnType<HostClient["ui"]["createView"]>>) {
+  const sharing=await web.enableDisplayCapture({origin:'https://example.invalid',maxWidth:640,maxHeight:480,frameRate:5});
+  await web.disableDisplayCapture(sharing.id);
+  await web.setWebChromeClient({onPermissionRequest:e=>({resources:e.resources,requestAndroidPermissions:true,backgroundCapture:true})});
+  const camera=await web.startBackgroundRecording({audio:true,facing:'back',width:640,height:480});
+  const movie=await web.stopBackgroundRecording();const bytes:Uint8Array=await web.readDocument(movie.uri);
+  await web.cancelBackgroundRecording(camera.id);await web.stopMediaCapture();
+  // @ts-expect-error An explicit trusted origin is required.
+  await web.enableDisplayCapture({frameRate:5});
+  // @ts-expect-error Native camera facing is explicit.
+  await web.startBackgroundRecording({facing:'screen'});
   await web.evaluateJavascriptAsync('Promise.resolve(42)',{timeoutMs:180000});
   await web.setWebChromeClient({onPermissionRequest:e=>({resources:e.resources,requestAndroidPermissions:true})});
   // @ts-expect-error Android permission requests require a boolean.

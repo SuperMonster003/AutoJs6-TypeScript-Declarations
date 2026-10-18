@@ -18,6 +18,15 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.60.0": {
+      "released_date": "2026/10/18",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "مهايئ مشاركة شاشة WebView وتسجيل الصوت عبر خدمة أمامية وتسجيل الكاميرا الأصلي في الخلفية في Node.js/Bun مع دعم Node Worker"
+        }
+      ]
+    },
     "v4.59.0": {
       "released_date": "2026/10/18",
       "entries": [
