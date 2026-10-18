@@ -239,7 +239,7 @@ Dialog, file, HTTP-auth, SSL, client-certificate, safe-browsing, permission,
 geolocation, visited-history and popup requests support Promise-returning handlers.
 Unknown, failed, expired and replaced requests cancel or deny by default. Handler
 timeouts default to 15 seconds, or 120 seconds for onShowFileChooser; callbackTimeoutMs
-accepts 100..120000. SSL proceeds only on an explicit 'proceed' reply. Android camera,
+accepts 100..2147483647 from host 5567. SSL proceeds only on an explicit 'proceed' reply. Android camera,
 microphone and location permissions are still required for an allowed web request.
 onCreateWindow may return a new, empty, execution-owned WebView or null; close its
 borrowed window before disposing it. Fullscreen uses a private Activity, can be
@@ -293,7 +293,7 @@ rules remain in force. A page's native folder/save requests depend on its WebVie
 version; explicit chooseFiles uses SAF independently of the page API version.
 
 captureEnabled prefers a full-size system camera image for image acceptTypes.
-Other media preferences use the document picker. The camera receives an output
+Host 5567 adds video/audio capture as described below. The image camera receives an output
 content URI for a new temporary JPEG, not a thumbnail request. An app declaring
 CAMERA must grant that permission; an undeclared delegated camera intent follows
 Android's normal rules. Denial/cancellation returns null. The captured file stays
@@ -333,8 +333,39 @@ reported as failed. The Node project execution budget is still independent.
 Workers use the same APIs and structured-cloned IDs/bytes. Native transfers do not
 depend on the creating JavaScript thread remaining alive, but unfinished blobs
 still require their source page. A Worker-owned window closes on Worker exit.
-Camera/video recording, arbitrary filesystem access and exhaustive cloud-provider
-compatibility are not implied by these additions. See runtimeApis and the host
+Video/audio capture is described below. Arbitrary filesystem access and exhaustive
+cloud-provider compatibility are not implied by these additions. See runtimeApis and the host
 report docs/dev/runtime-webview-files-2026-10-18.md for accepted device evidence.
 
 Bun projects can set bun.timeoutMs in project.json (default 60000 ms, clamped to 1..600000 ms). Explicit bun.timeoutMillis execution arguments take precedence. This also applies to packaged applications; a WebView wait or download timeout does not extend the whole execution budget.
+
+## WebView video and audio capture (host 5567)
+
+The paired Node 1.13.0/Bun 0.2.12 declarations extend chooseFiles for main-thread
+and Worker callers. With captureEnabled:true, a single image/video/audio MIME
+family selects its capture flow. captureKind:'image'|'video'|'audio' can select
+one family explicitly for mixed or wildcard acceptTypes. Save/tree modes still
+use SAF. Returned URI arrays/null and readDocument/download remain unchanged.
+
+Video uses Android ACTION_VIDEO_CAPTURE with a private output URI. videoQuality
+is 0 (low) or 1 (high); durationLimitSeconds (1..2147483) and sizeLimitBytes
+(positive safe integer) are camera hints, not a promise that every camera honors
+them. If a camera returns a separate readable content URI, its media is copied
+into the temporary capture; the external application's original is not deleted.
+
+Audio uses an explicit foreground recorder with Start, Stop, Use and Cancel
+controls, and AAC in M4A (audio/mp4, 48 kHz mono). acceptTypes does not select a different audio codec. It does not depend on an installed
+RECORD_SOUND intent handler. RECORD_AUDIO must be declared in a packaged project's
+Android permissions and granted by the user. The microphone opens only after
+Start; leaving the foreground stops recording, while rotation reattaches its UI.
+Duration/size limits stop the audio recorder, allowing the user to confirm the
+result; container/frame overhead can exceed the requested byte limit slightly.
+
+chooseFiles.timeoutMs is 100..2147483647 ms, default 120000. For HTML file inputs,
+WebChromeClientOptions.callbackTimeoutMs controls the chooser callback and default
+picker wait; e.timeoutMs carries that value into this.chooseFiles(e). The callback
+range now also reaches 2147483647. The overall Node/Bun execution deadline still
+applies independently. Nothing records automatically or continues as a hidden
+background audio service. Cancellation, navigation, window/Worker shutdown and
+View disposal close the capture and release owned temporary files. Confirmed
+files remain available while the View or a copying download holds them.

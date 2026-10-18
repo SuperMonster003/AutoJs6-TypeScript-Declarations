@@ -161,6 +161,13 @@ async function webCallbacksSmoke() {
 
 async function webFileTransfers(web: Awaited<ReturnType<HostClient["ui"]["createView"]>>) {
   const photo=await web.chooseFiles({captureEnabled:true,acceptTypes:['image/*']});
+  await web.chooseFiles({captureEnabled:true,captureKind:'video',acceptTypes:['video/*'],videoQuality:1,durationLimitSeconds:30,sizeLimitBytes:10485760,timeoutMs:180000});
+  await web.chooseFiles({captureEnabled:true,captureKind:'audio',acceptTypes:['audio/*'],durationLimitSeconds:15});
+  await web.setWebChromeClient({onShowFileChooser(e){return this.chooseFiles(e);}},{callbackTimeoutMs:180000});
+  // @ts-expect-error Capture kinds are not arbitrary media names.
+  await web.chooseFiles({captureEnabled:true,captureKind:'screen'});
+  // @ts-expect-error Camera quality is a documented Android level.
+  await web.chooseFiles({captureEnabled:true,videoQuality:2});
   const saved=await web.chooseFiles({mode:'save',fileName:'result.txt',acceptTypes:['text/plain']});
   const tree=await web.chooseFiles({mode:'directory',writable:true});
   if(saved){const job=await web.download({url:'data:text/plain,hello',destinationUri:saved[0]});await web.getDownload(job.id);}

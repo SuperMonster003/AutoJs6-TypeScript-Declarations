@@ -433,7 +433,6 @@ export declare function createHostClient(options?: HostClientOptions): Promise<H
 
 export namespace RuntimeUi {
     export interface UiBridgeCallOptions { timeoutMs?: number; signal?: AbortSignal }
-
     export type XmlTagName = "vertical" | "horizontal" | "frame" | "compose" | "text" | "button" | "input" | "img" | "image" | "scroll" | "list" | "switch" | "checkbox" | "progressbar" | "tabs" | "tab" | "linear" | "hscroll" | "space" | "relative" | "card" | "spinner" | "seekbar" | "ratingbar" | "radiogroup" | "radio" | "toggle" | "checkedtext" | "numberpicker" | "webview" | "drawer" | "toolbar" | "viewpager";
     export type XmlAttributeName = "text" | "hint" | "textSize" | "textColor" | "textStyle" | "singleLine" | "maxLines" | "inputType" | "checked" | "enabled" | "visible" | "visibility" | "alpha" | "contentDescription" | "clickable" | "focusable" | "width" | "height" | "padding" | "margin" | "backgroundColor" | "gravity" | "layoutGravity" | "weight" | "orientation" | "min" | "max" | "progress" | "indeterminate" | "rating" | "numStars" | "stepSize" | "isIndicator" | "items" | "selectedIndex" | "checkedId" | "textOn" | "textOff" | "value" | "wrapSelectorWheel" | "displayedValues" | "cardCornerRadius" | "cardElevation" | "src" | "scaleType" | "adjustViewBounds" | "id" | "w" | "h" | "bg" | "entries" | "checkedButton" | "layout_width" | "layout_height" | "layout_weight" | "layout_gravity" | "layout_margin" | "below" | "above" | "toLeftOf" | "toRightOf" | "toStartOf" | "toEndOf" | "alignTop" | "alignBottom" | "alignStart" | "alignEnd" | "alignParentTop" | "alignParentBottom" | "alignParentStart" | "alignParentEnd" | "centerInParent" | "centerHorizontal" | "centerVertical" | "url" | "html" | "javaScriptEnabled" | "domStorageEnabled" | "title" | "subtitle" | "navigationIcon" | "navigationContentDescription" | "menu" | "drawerLockMode" | "currentItem" | "offscreenPageLimit";
 
@@ -735,8 +734,18 @@ export namespace RuntimeUi {
     export interface WebFileChooserOptions {
       acceptTypes?: readonly string[]; multiple?: boolean;
       mode?: 'open' | 'multiple' | 'directory' | 'save' | 0 | 1 | 2 | 3;
-      /** Prefer a full-size system-camera photo for image acceptTypes. Other media use the document picker. */
+      /** Capture image/video with the system camera or audio as a foreground AAC/M4A recording. */
       captureEnabled?: boolean;
+      /** Override an ambiguous acceptTypes family when captureEnabled is true. */
+      captureKind?: 'image' | 'video' | 'audio';
+      /** System-camera hint: 0 low quality, 1 high quality. Only applies to video. */
+      videoQuality?: 0 | 1;
+      /** Positive integer seconds, up to 2147483. Camera hint; enforced by the native audio recorder. */
+      durationLimitSeconds?: number;
+      /** Positive safe-integer byte limit. Camera hint; audio may finish after the final encoded frame. */
+      sizeLimitBytes?: number;
+      /** Chooser wait, 100..2147483647 ms; default 120000. Execution and callback budgets also apply. */
+      timeoutMs?: number;
       /** Save filename; Android creates a new document instead of overwriting an existing one. */
       fileName?: string;
       /** Defaults to true for directory/save. Save always needs write access. */
@@ -753,7 +762,7 @@ export namespace RuntimeUi {
     export interface WebDialogRequest {url: string | null; title: string | null; message: string; defaultValue: string | null}
     export interface WebPermissionRequest {origin: string; resources: readonly string[]}
     export interface WebChromeClientOptions {
-      /** 100..120000 ms. Default 15000, or 120000 for a custom file chooser callback. */
+      /** 100..2147483647 ms. Default 15000, or 120000 for file selection, including its default native picker. */
       callbackTimeoutMs?: number;
       consumeConsoleMessages?: boolean;
       fullscreen?: boolean;
@@ -957,7 +966,7 @@ export namespace RuntimeUi {
       setWebViewClient(client: WebViewClient | null, options?: WebViewClientOptions): Promise<void>;
       setWebChromeClient(client: WebChromeClient | null, options?: WebChromeClientOptions): Promise<void>;
       setDownloadListener(listener: ((this: NativeViewHandle, event: Readonly<WebDownloadEvent>) => unknown) | null): Promise<void>;
-      /** Uses SAF open/multiple/save/tree selection or a full-size camera result. Resolves null on cancellation. */
+      /** Uses SAF open/multiple/save/tree selection, system photo/video capture or foreground audio recording. Resolves null on cancellation. */
       chooseFiles(options?: WebFileChooserOptions): Promise<readonly string[] | null>;
       cancelFileChooser(): Promise<void>;
       exitFullscreen(): Promise<boolean>;
@@ -968,7 +977,7 @@ export namespace RuntimeUi {
       cancelDownload(id: WebDownloadId): Promise<boolean>;
       /** Reads a completed download, at most 32768 bytes per call. */
       readDownload(id: WebDownloadId, offset?: number, length?: number): Promise<Uint8Array>;
-      /** Read up to 32768 bytes from a granted document or this View's temporary camera capture. */
+      /** Read up to 32768 bytes from a granted document or this View's temporary media capture. */
       readDocument(uri: string, offset?: number, length?: number): Promise<Uint8Array>;
       get(): Promise<NativeViewSnapshot>;
       get<K extends keyof NativeViewSnapshot>(name: K): Promise<NativeViewSnapshot[K]>;
@@ -999,7 +1008,7 @@ export namespace RuntimeUi {
       bind<T extends Record<string, JsonValue>, K extends keyof T & string>(state: UiState<T>, key: K): Binding<T[K]>;
     }
 }
-/** Portable Compose data API. Effects return Promises; callbacks stay in the calling JS runtime. */
+
 export namespace RuntimeCompose {
     type ComposeColorInput = string | number;
     type ComposeDpInput = number | `${number}dp`;

@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.58.0
+
+###### 2026/10/18
+
+* `Функция` Node.js/Bun: Съёмка видео WebView и запись AAC/M4A на переднем плане, настройки медиа, время ожидания выбора и очистка временных файлов
+
 # v4.57.0
 
 ###### 2026/10/18
