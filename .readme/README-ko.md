@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.66.0
+
+###### 2026/10/19
+
+* `기능` Bun 및 Node.js Worker의 호스트 이벤트 및 알림 API, 독립 구독과 알림 정리
+
 ### v4.65.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `수정` shell/shizuku 프로세스 타입 선언과 자동 완성 누락, 이벤트 인수 및 파이프 Shell 생성자 포함
-
-### v4.64.0
-
-###### 2026/10/19
-
-* `기능` Bun 및 Node.js Worker 센서 샘플링과 구독 API, 취소 및 리스너 자동 해제
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

@@ -387,3 +387,8 @@ Host 5581, Node Runtime 1.17.0 and Bun Runtime 0.6.0 share sensors.getAvailableS
 ## Host Shell streams and Shizuku (2026-10-19)
 
 Host 5583, Node Runtime 1.18.0 and Bun Runtime 0.7.0 share shell/shizuku facades in main threads and CJS/ESM/nested Workers. Bun adds independent shell.control/shell.root/shell.shizuku grants. Native streams, line readers, stdin, PTY, explicit Shizuku permission requests and cancellation use execution-owned processes. checkAccess remains a synchronous grant report; getAccess queries Android state. Host paths follow Android permissions. Worker exit, abandoned creation and Bun quota exhaustion release owned shells. Bun retains its bounded transport budget. See host docs/dev/runtime-shell-2026-10-19.md for real-device/package evidence and limitations.
+
+
+## Host events and notifications (2026-10-19)
+
+Host 5584, Node Runtime 1.19.0 and Bun Runtime 0.8.0 share event and notification facades across main threads and CJS/ESM/nested Workers. Bun has six independent default-off grants. Observers use immutable snapshots, lifecycle cancellation and bounded queues with overflow reports; notification IDs are scoped to their execution and client. Worker exit and late creation cleanup preserve parent resources. Native Node events remains EventEmitter. Android accessibility, notification-listener access and posting permission are separate prerequisites; Bun retains its existing bounded transport budget. Validation is recorded in host docs/dev/runtime-events-2026-10-19.md.

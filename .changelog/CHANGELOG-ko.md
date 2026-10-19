@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.66.0
+
+###### 2026/10/19
+
+* `기능` Bun 및 Node.js Worker의 호스트 이벤트 및 알림 API, 독립 구독과 알림 정리
+
 # v4.65.0
 
 ###### 2026/10/19

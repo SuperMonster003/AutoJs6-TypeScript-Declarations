@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.66.0
+
+###### 2026/10/19
+
+* `ميزة` أحداث وإشعارات المضيف في Bun وNode.js Workers مع تنظيف مستقل للاشتراكات والإشعارات
+
 # v4.65.0
 
 ###### 2026/10/19

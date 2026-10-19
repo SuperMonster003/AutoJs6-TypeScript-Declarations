@@ -46,3 +46,5 @@ declare module "notifications" {
   const notifications: notifications.NotificationsModule;
   export = notifications;
 }
+
+declare module "autojs6:notifications" { import notifications = require("notifications"); export = notifications; }

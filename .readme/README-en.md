@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.66.0
+
+###### 2026/10/19
+
+* `Feature` Host event observers and notifications for Bun and Node.js Workers, with independent subscription and notification cleanup
+
 ### v4.65.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/19
 
 * `Fix` Missing shell/shizuku process declarations and completions, including event parameters and pipe-based Shell constructors
-
-### v4.64.0
-
-###### 2026/10/19
-
-* `Feature` Sensor sampling and subscriptions for Bun and Node.js Workers with cancellation and automatic listener cleanup
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

@@ -1,6 +1,6 @@
 /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
 export declare const SDK_VERSION: 1;
-export type HostCapability = "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
+export type HostCapability = "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
 export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
 export declare class HostCallError extends Error {
   readonly code: string;
@@ -8,7 +8,7 @@ export declare class HostCallError extends Error {
   readonly status: number;
   constructor(code: string, message: string, capability?: string | null, status?: number);
 }
-export declare const HOST_API_METHODS: Readonly<Record<"database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
+export declare const HOST_API_METHODS: Readonly<Record<"events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
 export declare const OPENCC_CONVERSION_TYPES: readonly [
   "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
   "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -927,7 +927,131 @@ export namespace RuntimeShell {
   }
 // END GENERATED SHELL TYPES
 
+// BEGIN GENERATED EVENT TYPES
+export namespace RuntimeEvents {
+    export interface EventBase { readonly type: string; readonly time: number; readonly source: string; }
+    export interface NotificationEvent extends EventBase {
+      readonly type: "notification";
+      readonly id: number;
+      readonly key: string;
+      readonly packageName: string;
+      readonly tag: string | null;
+      readonly title: string;
+      readonly text: string;
+      readonly postTime: number;
+    }
+    export interface ToastEvent extends EventBase {
+      readonly type: "toast";
+      readonly packageName: string;
+      readonly text: string;
+    }
+    export interface KeyEvent extends EventBase {
+      readonly type: "key";
+      readonly key: string;
+      readonly keyCode: number;
+      readonly action: "up" | "down";
+      readonly repeatCount: number;
+      readonly eventTime: number;
+    }
+    export interface BatteryEvent extends EventBase {
+      readonly type: "battery_changed";
+      readonly level: number;
+      readonly scale: number;
+      readonly percent: number;
+      readonly isCharging: boolean;
+    }
+    export interface ObserveOptions extends AutomationCallOptions {
+      /** Polling interval for Bun/Workers, default 100 ms, in 25..60000. */
+      drainIntervalMs?: number;
+    }
+    export interface OverflowEvent extends EventBase { readonly type: "overflow"; readonly dropped: number; }
+    export interface CloseEvent extends EventBase { readonly type: "close"; readonly reason: string; }
+    export type Event = NotificationEvent | ToastEvent | KeyEvent | BatteryEvent | OverflowEvent | CloseEvent | EventBase;
+    export interface EventMap {
+      notification: NotificationEvent;
+      toast: ToastEvent;
+      key: KeyEvent;
+      battery_changed: BatteryEvent;
+      screen_on: EventBase;
+      screen_off: EventBase;
+      close: CloseEvent;
+      overflow: OverflowEvent;
+      error: Error;
+      event: Event;
+    }
+    export interface Listeners {
+      on<K extends keyof EventMap>(event: K, listener: (event: EventMap[K]) => void): this;
+      once<K extends keyof EventMap>(event: K, listener: (event: EventMap[K]) => void): this;
+      off<K extends keyof EventMap>(event: K, listener: (event: EventMap[K]) => void): this;
+    }
+    export interface Subscription extends Listeners {
+      readonly id: string;
+      readonly source: "notification" | "toast" | "key" | "broadcast";
+      readonly closed: boolean;
+      drainEvents(options?: AutomationCallOptions): Promise<readonly Event[]>;
+      close(options?: AutomationCallOptions): Promise<boolean>;
+    }
+    export interface EventsModule extends Listeners {
+      /** Requires events + events.notification and Android notification-listener access. */
+      observeNotification(options?: ObserveOptions): Promise<Subscription>;
+      /** Requires events + events.toast and accessibility. Observes external apps' Toast messages. */
+      observeToast(options?: ObserveOptions): Promise<Subscription>;
+      /** Requires events + events.key and accessibility. Never intercepts hardware keys. */
+      observeKey(options?: ObserveOptions): Promise<Subscription>;
+      /** Requires events. on/once for screen or battery also starts this subscription. */
+      observeBroadcasts(options?: ObserveOptions): Promise<Subscription>;
+      /** Closes this client's sources and removes module listeners. Script termination also releases sources. */
+      close(options?: AutomationCallOptions): Promise<void>;
+    }
+  }
+export namespace RuntimeNotifications {
+    export type NotificationId = number;
+    export type NotificationPriority = "min" | "low" | "default" | "high" | "max" | -2 | -1 | 0 | 1 | 2;
+
+    export interface NotifyOptions {
+      id?: NotificationId;
+      title?: string;
+      text?: string;
+      channel?: string;
+      channelName?: string;
+      ongoing?: boolean;
+      priority?: NotificationPriority;
+    }
+
+    export interface NotificationSettingsOptions extends AutomationCallOptions {
+      dryRun?: boolean;
+    }
+
+    export interface NotificationPermissionStatus {
+      readonly schema: "autojs6-node-notification-permission-status-v1";
+      readonly sdkInt: number;
+      readonly notificationsEnabled: boolean;
+      readonly postNotificationsPermissionRequired: boolean;
+      readonly postNotificationsPermissionGranted: boolean;
+      readonly canOpenSettings: boolean;
+    }
+
+    export interface NotificationSettingsResult extends NotificationPermissionStatus {
+      readonly opened: boolean;
+      readonly dryRun: boolean;
+      readonly action: string;
+      readonly reason: string;
+    }
+
+    export interface NotificationsModule {
+      notify(options: NotifyOptions, callOptions?: AutomationCallOptions): Promise<NotificationId>;
+      cancel(id: NotificationId, options?: AutomationCallOptions): Promise<void>;
+      cancelAll(options?: AutomationCallOptions): Promise<void>;
+      getPermissionStatus(options?: AutomationCallOptions): Promise<NotificationPermissionStatus>;
+      openSettings(options?: NotificationSettingsOptions): Promise<NotificationSettingsResult>;
+      openNotificationSettings(options?: NotificationSettingsOptions): Promise<NotificationSettingsResult>;
+    }
+  }
+// END GENERATED EVENT TYPES
+
 export interface HostClient {
+  readonly events: RuntimeEvents.EventsModule;
+  readonly notifications: RuntimeNotifications.NotificationsModule;
   readonly shell: RuntimeShell.ShellModule;
   readonly shizuku: RuntimeShell.ShizukuModule;
   readonly sensors: RuntimeSensors.SensorsModule;

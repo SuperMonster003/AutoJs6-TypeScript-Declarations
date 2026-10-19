@@ -255,6 +255,22 @@ async function checkWorkerSensors(){
 import hostShell = require('autojs6:shell');
 declare const hostShellSignal:AutoJs6Node.AbortSignalLike;
 import hostShizuku = require('autojs6:shizuku');
+import hostEvents = require('autojs6:events');
+import hostNotifications = require('autojs6:notifications');
+async function checkHostEvents() {
+  const subscription:hostEvents.Subscription=await hostEvents.observeNotification({drainIntervalMs:250,signal:hostShellSignal});
+  subscription.on('notification',event=>{const packageName:string=event.packageName;const title:string=event.title;});
+  subscription.once('overflow',event=>{const dropped:number=event.dropped;});
+  const events:readonly hostEvents.Event[]=await subscription.drainEvents();
+  const closed:boolean=await subscription.close();
+  const id:number=await hostNotifications.notify({title:'owned',priority:'low'});
+  const enabled:boolean=(await hostNotifications.getPermissionStatus()).notificationsEnabled;
+  await hostNotifications.cancel(id);
+  // @ts-expect-error Notification IDs are numeric.
+  hostNotifications.cancel('id');
+  // @ts-expect-error Event snapshots are readonly.
+  subscription.on('key',event=>{event.keyCode=138;});
+}
 async function checkHostShell() {
   const r:import('shell').ShellResult=await hostShizuku.exec('id -u');
   const live:import('shell').ShellAccessState=await hostShell.getAccess();

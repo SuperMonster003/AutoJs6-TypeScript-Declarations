@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.66.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "События и уведомления хоста для Bun и Node.js Workers с независимой очисткой подписок и уведомлений"
+        }
+      ]
+    },
     "v4.65.0": {
       "released_date": "2026/10/19",
       "entries": [

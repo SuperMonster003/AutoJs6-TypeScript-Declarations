@@ -256,6 +256,17 @@ async function checkBunSensors() {
 }
 
 const shellGrant:HostCapability='shell.control',shizukuGrant:HostCapability='shell.shizuku';
+const eventGrant:HostCapability='events.observe',notificationGrant:HostCapability='notifications.post';
+async function checkBunEvents(){
+  const subscription:import('autojs6:bun-host').RuntimeEvents.Subscription=await host.events.observeBroadcasts({drainIntervalMs:250});
+  subscription.once('battery_changed',event=>{const percent:number=event.percent;});
+  subscription.once('overflow',event=>{const dropped:number=event.dropped;});
+  const closed:boolean=await subscription.close();
+  const id:number=await host.notifications.notify({title:'owned',priority:'low'});await host.notifications.cancel(id);
+  const settings:import('autojs6:bun-host').RuntimeNotifications.NotificationSettingsResult=await host.notifications.openNotificationSettings({dryRun:true});
+  // @ts-expect-error Event APIs do not expose arbitrary broadcast registration.
+  host.events.observeBroadcast('arbitrary.action');
+}
 async function checkBunHostShell(){
   const r:import('autojs6:bun-host').RuntimeShell.ShellResult=await host.shell.exec('echo owned');
   const remote:import('autojs6:bun-host').RuntimeShell.ShellResult=await host.shizuku('id -u');

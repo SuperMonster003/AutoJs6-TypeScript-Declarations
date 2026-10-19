@@ -18,6 +18,15 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.66.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "أحداث وإشعارات المضيف في Bun وNode.js Workers مع تنظيف مستقل للاشتراكات والإشعارات"
+        }
+      ]
+    },
     "v4.65.0": {
       "released_date": "2026/10/19",
       "entries": [

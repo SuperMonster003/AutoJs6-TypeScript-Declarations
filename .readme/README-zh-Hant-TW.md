@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.66.0
+
+###### 2026/10/19
+
+* `新增` Bun 與 Node.js Worker 的宿主事件及通知 API, 支援獨立訂閱與通知清理
+
 ### v4.65.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `修復` shell/shizuku 程序介面的型別宣告與補全遺漏, 包含事件參數及管道 Shell 建構式
-
-### v4.64.0
-
-###### 2026/10/19
-
-* `新增` Bun 與 Node.js Worker 的感測器取樣及訂閱 API, 支援取消和監聽器自動釋放
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-TW.md)
 

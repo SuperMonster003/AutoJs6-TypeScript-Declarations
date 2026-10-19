@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.66.0
+
+###### 2026/10/19
+
+* `Функция` События и уведомления хоста для Bun и Node.js Workers с независимой очисткой подписок и уведомлений
+
 # v4.65.0
 
 ###### 2026/10/19

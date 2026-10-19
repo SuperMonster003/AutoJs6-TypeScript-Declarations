@@ -31,8 +31,13 @@ declare module "autojs6:events" {
       readonly percent: number;
       readonly isCharging: boolean;
     }
+    export interface ObserveOptions extends AutoJs6Node.BridgeCallOptions {
+      /** Polling interval for Bun/Workers, default 100 ms, in 25..60000. */
+      drainIntervalMs?: number;
+    }
+    export interface OverflowEvent extends EventBase { readonly type: "overflow"; readonly dropped: number; }
     export interface CloseEvent extends EventBase { readonly type: "close"; readonly reason: string; }
-    export type Event = NotificationEvent | ToastEvent | KeyEvent | BatteryEvent | CloseEvent | EventBase;
+    export type Event = NotificationEvent | ToastEvent | KeyEvent | BatteryEvent | OverflowEvent | CloseEvent | EventBase;
     export interface EventMap {
       notification: NotificationEvent;
       toast: ToastEvent;
@@ -41,6 +46,7 @@ declare module "autojs6:events" {
       screen_on: EventBase;
       screen_off: EventBase;
       close: CloseEvent;
+      overflow: OverflowEvent;
       error: Error;
       event: Event;
     }
@@ -58,14 +64,14 @@ declare module "autojs6:events" {
     }
     export interface EventsModule extends Listeners {
       /** Requires events + events.notification and Android notification-listener access. */
-      observeNotification(options?: AutoJs6Node.BridgeCallOptions): Promise<Subscription>;
+      observeNotification(options?: ObserveOptions): Promise<Subscription>;
       /** Requires events + events.toast and accessibility. Observes external apps' Toast messages. */
-      observeToast(options?: AutoJs6Node.BridgeCallOptions): Promise<Subscription>;
+      observeToast(options?: ObserveOptions): Promise<Subscription>;
       /** Requires events + events.key and accessibility. Never intercepts hardware keys. */
-      observeKey(options?: AutoJs6Node.BridgeCallOptions): Promise<Subscription>;
+      observeKey(options?: ObserveOptions): Promise<Subscription>;
       /** Requires events. on/once for screen or battery also starts this subscription. */
-      observeBroadcasts(options?: AutoJs6Node.BridgeCallOptions): Promise<Subscription>;
-      /** Closes all sources and removes module listeners. Script termination also releases sources. */
+      observeBroadcasts(options?: ObserveOptions): Promise<Subscription>;
+      /** Closes this client's sources and removes module listeners. Script termination also releases sources. */
       close(options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
     }
   }

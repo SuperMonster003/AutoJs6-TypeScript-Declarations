@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.66.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun 및 Node.js Worker의 호스트 이벤트 및 알림 API, 독립 구독과 알림 정리"
+        }
+      ]
+    },
     "v4.65.0": {
       "released_date": "2026/10/19",
       "entries": [
