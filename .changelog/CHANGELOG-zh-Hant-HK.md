@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.69.0
+
+###### 2026/10/20
+
+* `新增` Node.js/Bun/Worker 的 Java/Android 物件互操作, 支援公開建構函式和成員, 陣列, 精確 long 值, 明確多載及應用程式 Context 控制代碼
+
 # v4.68.1
 
 ###### 2026/10/19

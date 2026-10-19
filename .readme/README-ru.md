@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## Журнал изменений
 
+### v4.69.0
+
+###### 2026/10/20
+
+* `Функция` Взаимодействие Java/Android для Node.js, Bun и Workers: открытые конструкторы и члены, массивы, точные значения long, явные перегрузки и ссылки Context приложения
+
 ### v4.68.1
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 
 * `Функция` Объекты Android для Node.js, Bun и Workers, включая Paint, ColorStateList, цвета темы и URI FileProvider
 * `Функция` Постоянные календарные задачи и IntentTask для Node.js и Bun, включая ежедневные, еженедельные, ежемесячные, ежегодные, разовые, отложенные и широковещательные задачи
-
-### v4.67.0
-
-###### 2026/10/19
-
-* `Функция` Управление устройством и диалоги для Bun и Node.js Workers с яркостью, громкостью и независимой очисткой окон
 
 [Полный журнал изменений](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 

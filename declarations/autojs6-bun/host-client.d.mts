@@ -1,6 +1,6 @@
 /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
 export declare const SDK_VERSION: 1;
-export type HostCapability = "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
+export type HostCapability = "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
 export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
 export declare class HostCallError extends Error {
   readonly code: string;
@@ -8,7 +8,7 @@ export declare class HostCallError extends Error {
   readonly status: number;
   constructor(code: string, message: string, capability?: string | null, status?: number);
 }
-export declare const HOST_API_METHODS: Readonly<Record<"android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
+export declare const HOST_API_METHODS: Readonly<Record<"java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
 export declare const OPENCC_CONVERSION_TYPES: readonly [
   "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
   "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -1435,7 +1435,105 @@ export namespace RuntimeColors {
   }
 // END GENERATED ANDROID TASK TYPES
 
+// BEGIN GENERATED JAVA TYPES
+export namespace RuntimeJava {
+    interface CallOptions extends AutomationCallOptions {
+      /** Exact JVM parameter names, e.g. ["int", "java.lang.String", "byte[]"]. Varargs use an explicit array. */
+      parameterTypes?: readonly string[];
+      /** Use main for Android Views and other APIs requiring the main Looper. */
+      thread?: "default" | "main";
+    }
+    type Argument = null | undefined | string | number | boolean | bigint | HandleSnapshot | TypedValue | readonly Argument[] | ArrayBufferView;
+    interface TypedValue { readonly __autojs6JavaType: string; readonly value: Argument; }
+    interface HandleSnapshot {
+      readonly __autojs6JavaHandle: string;
+      readonly className: string;
+      /** Creation-time field snapshot. Read live values using getField. */
+      readonly value?: Readonly<Record<string, unknown>>;
+    }
+    type Target = string | HandleSnapshot;
+    interface ObjectHandle extends HandleSnapshot {
+      call<T = unknown>(method: string, args?: readonly Argument[], options?: CallOptions): Promise<T>;
+      callInstance<T = unknown>(method: string, args?: readonly Argument[], options?: CallOptions): Promise<T>;
+      getField<T = unknown>(field: string, options?: CallOptions): Promise<T>;
+      setField(field: string, value: Argument, options?: CallOptions): Promise<boolean>;
+      getClassName(options?: CallOptions): Promise<string>;
+      instanceOf(className: string | ClassDescriptor, options?: CallOptions): Promise<boolean>;
+      arrayLength(options?: CallOptions): Promise<number>;
+      getArrayItem<T = unknown>(index: number, options?: CallOptions): Promise<T>;
+      setArrayItem(index: number, value: Argument, options?: CallOptions): Promise<boolean>;
+      toArray<T = unknown>(options?: CallOptions): Promise<readonly T[]>;
+      /** Drops this reference only; call close/recycle explicitly for native resources. */
+      release(options?: CallOptions): Promise<boolean>;
+      dispose(options?: CallOptions): Promise<boolean>;
+      toJSON(): HandleSnapshot;
+    }
+    interface ClassSpec {
+      readonly className: string;
+      readonly explicit: boolean;
+      readonly constructable: boolean;
+      readonly staticMethods: readonly string[];
+      readonly instanceMethods: readonly string[];
+      readonly staticFields: readonly string[];
+      readonly instanceFields: readonly string[];
+      readonly fields: readonly string[];
+      readonly constructors?: readonly string[];
+      readonly methods?: readonly string[];
+    }
+    interface Policy {
+      readonly enabled: boolean;
+      readonly limitsEnforcedBy: "host_provider";
+      readonly published: boolean;
+      /** Current hosts use public members; old hosts can still publish an allowlist. */
+      readonly access?: "public";
+      readonly allowedClasses: readonly string[];
+      readonly deniedClassPrefixes: readonly string[];
+      readonly classes: Readonly<Record<string, ClassSpec>>;
+    }
+    interface ClassDescriptor {
+      readonly className: string;
+      readonly name: string;
+      callStatic<T = unknown>(method: string, args?: readonly Argument[], options?: CallOptions): Promise<T>;
+      "new"(args?: readonly Argument[], options?: CallOptions): Promise<ObjectHandle>;
+      create(args?: readonly Argument[], options?: CallOptions): Promise<ObjectHandle>;
+      getStatic<T = unknown>(field: string, options?: CallOptions): Promise<T>;
+      setStatic(field: string, value: Argument, options?: CallOptions): Promise<boolean>;
+      describe(options?: CallOptions): Promise<ClassSpec>;
+    }
+    interface API {
+      readonly policy: Policy;
+      /** Local descriptor; describe performs class lookup in the host. */
+      type(className: string): ClassDescriptor;
+      findClass(className: string): ClassDescriptor;
+      cast(type: string | ClassDescriptor, value: Argument): TypedValue;
+      callStatic<T = unknown>(type: string | ClassDescriptor, method: string, args?: readonly Argument[], options?: CallOptions): Promise<T>;
+      "new"(type: string | ClassDescriptor, args?: readonly Argument[], options?: CallOptions): Promise<ObjectHandle>;
+      create(type: string | ClassDescriptor, args?: readonly Argument[], options?: CallOptions): Promise<ObjectHandle>;
+      call<T = unknown>(target: Target, method: string, args?: readonly Argument[], options?: CallOptions): Promise<T>;
+      callInstance<T = unknown>(target: Target, method: string, args?: readonly Argument[], options?: CallOptions): Promise<T>;
+      getField<T = unknown>(target: Target, field: string, options?: CallOptions): Promise<T>;
+      setField(target: Target, field: string, value: Argument, options?: CallOptions): Promise<boolean>;
+      getStatic<T = unknown>(type: string | ClassDescriptor, field: string, options?: CallOptions): Promise<T>;
+      setStatic(type: string | ClassDescriptor, field: string, value: Argument, options?: CallOptions): Promise<boolean>;
+      describe(type: string | ClassDescriptor, options?: CallOptions): Promise<ClassSpec>;
+      /** The application Context of the host or generated app, never an Activity. Release after use. */
+      getContext(options?: CallOptions): Promise<ObjectHandle>;
+      newArray(componentType: string | ClassDescriptor, lengthOrValues: number | readonly Argument[] | ArrayBufferView, options?: CallOptions): Promise<ObjectHandle>;
+      arrayLength(target: Target, options?: CallOptions): Promise<number>;
+      getArrayItem<T = unknown>(target: Target, index: number, options?: CallOptions): Promise<T>;
+      setArrayItem(target: Target, index: number, value: Argument, options?: CallOptions): Promise<boolean>;
+      toArray<T = unknown>(target: Target, options?: CallOptions): Promise<readonly T[]>;
+      getClassName(target: Target, options?: CallOptions): Promise<string>;
+      instanceOf(target: Target, type: string | ClassDescriptor, options?: CallOptions): Promise<boolean>;
+      release(target: Target, options?: CallOptions): Promise<boolean>;
+      dispose(target: Target, options?: CallOptions): Promise<boolean>;
+      defineClass(descriptor?: unknown, options?: CallOptions): never;
+    }
+  }
+// END GENERATED JAVA TYPES
+
 export interface HostClient {
+  readonly java: RuntimeJava.API;
   readonly android: RuntimeAndroid.AndroidModule;
   readonly colors: RuntimeColors.ColorsModule;
   readonly tasks: RuntimeTasks.TasksModule;

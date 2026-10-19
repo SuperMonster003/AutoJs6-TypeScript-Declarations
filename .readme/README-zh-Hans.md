@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.69.0
+
+###### 2026/10/20
+
+* `新增` Node.js/Bun/Worker 的 Java/Android 对象互操作, 支持公开构造器和成员, 数组, 精确 long 值, 显式重载及应用 Context 句柄
+
 ### v4.68.1
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 
 * `新增` Node.js/Bun 的 Android 对象辅助接口及 Worker 封装, 支持 Paint, ColorStateList, 主题色和 FileProvider URI
 * `新增` Node.js/Bun 的持久日历与 IntentTask API, 支持每日, 每周, 每月, 每年, 一次性, 倒计时和广播任务
-
-### v4.67.0
-
-###### 2026/10/19
-
-* `新增` Bun 与 Node.js Worker 的设备控制和对话框 API, 支持亮度, 音量和独立窗口清理
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

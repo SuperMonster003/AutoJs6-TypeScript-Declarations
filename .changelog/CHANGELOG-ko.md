@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.69.0
+
+###### 2026/10/20
+
+* `기능` Node.js/Bun/Worker의 Java/Android 상호 운용으로 공개 생성자와 멤버, 배열, 정확한 long 값, 명시적 오버로드 및 앱 Context 핸들 지원
+
 # v4.68.1
 
 ###### 2026/10/19

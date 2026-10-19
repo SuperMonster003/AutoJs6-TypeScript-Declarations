@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.69.0": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun/Worker の Java/Android 相互運用で公開コンストラクターとメンバー, 配列, 正確な long 値, 明示的なオーバーロードとアプリの Context ハンドルに対応"
+        }
+      ]
+    },
     "v4.68.1": {
       "released_date": "2026/10/19",
       "entries": [

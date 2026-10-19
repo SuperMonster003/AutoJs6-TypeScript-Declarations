@@ -18,6 +18,15 @@
     "adjustment": "Ajuste"
   },
   "$data": {
+    "v4.69.0": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Interoperabilidad Java/Android para Node.js, Bun y Workers, con constructores y miembros públicos, matrices, valores long exactos, sobrecargas explícitas y referencias Context"
+        }
+      ]
+    },
     "v4.68.1": {
       "released_date": "2026/10/19",
       "entries": [

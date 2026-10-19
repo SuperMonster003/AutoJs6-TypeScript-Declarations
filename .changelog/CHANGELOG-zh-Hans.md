@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.69.0
+
+###### 2026/10/20
+
+* `新增` Node.js/Bun/Worker 的 Java/Android 对象互操作, 支持公开构造器和成员, 数组, 精确 long 值, 显式重载及应用 Context 句柄
+
 # v4.68.1
 
 ###### 2026/10/19

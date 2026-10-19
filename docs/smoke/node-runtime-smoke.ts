@@ -325,3 +325,20 @@ async function checkAndroidAndCalendarTasks(){
   // @ts-expect-error Calendar weekdays are limited to the documented values.
   calendarTasks.addWeeklyTask({path:'child.cjs',time:'09:00',daysOfWeek:[8]});
 }
+
+import javaInterop = require("autojs6:java");
+async function javaInteropSmoke() {
+  const context: javaInterop.ObjectHandle = await javaInterop.getContext();
+  const ownPackage: string = await context.call<string>("getPackageName");
+  const view = await javaInterop.new("android.widget.TextView", [context], {thread:"main", parameterTypes:["android.content.Context"]});
+  const exact: bigint = await javaInterop.getStatic<bigint>("java.lang.Long","MAX_VALUE");
+  const array = await javaInterop.newArray("long", [exact, javaInterop.cast("long","9223372036854775807")]);
+  const values: readonly bigint[] = await array.toArray<bigint>();
+  await array.setArrayItem(0,exact);await view.setField("id",1);await context.release();
+  // @ts-expect-error Java thread choices are explicit.
+  await javaInterop.getContext({thread:"background"});
+  return {ownPackage,values};
+}
+
+declare const legacyTypedJavaHandle: AutoJs6Node.AutoJsJavaObjectHandle<{left: number}>;
+const preservedJavaFieldType: number | undefined = legacyTypedJavaHandle.value?.left;

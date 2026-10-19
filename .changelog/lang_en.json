@@ -18,6 +18,15 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.69.0": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Java/Android object interop for Node.js, Bun and Workers, including public constructors and members, arrays, exact long values, explicit overloads and application Context handles"
+        }
+      ]
+    },
     "v4.68.1": {
       "released_date": "2026/10/19",
       "entries": [

@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.69.0
+
+###### 2026/10/20
+
+* `ميزة` تكامل Java/Android في Node.js وBun وWorkers مع المنشئات والأعضاء العامة والمصفوفات وقيم long الدقيقة والتحميل الزائد الصريح ومراجع Context للتطبيق
+
 ### v4.68.1
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 
 * `ميزة` مساعدات كائنات Android في Node.js وBun وWorkers مع Paint وColorStateList وألوان السمة وURI FileProvider
 * `ميزة` واجهات التقويم وIntentTask الدائمة في Node.js وBun للمهام اليومية والأسبوعية والشهرية والسنوية والفردية والتنازلية ومهام البث
-
-### v4.67.0
-
-###### 2026/10/19
-
-* `ميزة` التحكم بالجهاز ومربعات الحوار في Bun وNode.js Workers مع السطوع والصوت والتنظيف المستقل للنوافذ
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

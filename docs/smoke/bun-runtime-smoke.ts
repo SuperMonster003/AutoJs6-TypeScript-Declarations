@@ -305,3 +305,14 @@ async function checkBunAndroidAndCalendar(){
   // @ts-expect-error Task IDs are readonly snapshot fields.
   task.id=7;
 }
+
+async function bunJavaInteropSmoke(client: import("autojs6:bun-host").HostClient) {
+  const java = client.java, context = await java.getContext({thread:"main"});
+  const name: string = await context.call<string>("getPackageName");
+  const value = await java.newArray("long", [java.cast("long","9223372036854775807")]);
+  const length: number = await value.arrayLength();
+  await java.setArrayItem(value,0,1n);await java.release(value);await context.release();
+  // @ts-expect-error A raw object is not a Java argument.
+  await java.call(context,"method",[{}]);
+  return {name,length};
+}

@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.69.0": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun/Worker의 Java/Android 상호 운용으로 공개 생성자와 멤버, 배열, 정확한 long 값, 명시적 오버로드 및 앱 Context 핸들 지원"
+        }
+      ]
+    },
     "v4.68.1": {
       "released_date": "2026/10/19",
       "entries": [

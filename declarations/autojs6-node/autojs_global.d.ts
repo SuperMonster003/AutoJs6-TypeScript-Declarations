@@ -874,81 +874,12 @@ declare namespace AutoJs6Node {
     readonly bridgeLimits: Readonly<Record<string, unknown>>;
   }
 
-  export interface AutoJsJavaClassSpec {
-    readonly className: string;
-    readonly explicit: boolean;
-    readonly constructable: boolean;
-    readonly staticMethods: readonly string[];
-    readonly instanceMethods: readonly string[];
-    readonly staticFields: readonly string[];
-    readonly instanceFields: readonly string[];
-    /** Alias of `instanceFields` kept for older readers. */
-    readonly fields: readonly string[];
-  }
-
-  /**
-   * The host Java interop allowlist (M20.2 batch 15). The runtime keeps no class table of its own:
-   * `allowedClasses` / `deniedClassPrefixes` / `classes` are what the host published through the
-   * bridge config, `published` is false when the host did not publish one (every call is still
-   * decided by the host).
-   */
-  export interface AutoJsJavaPolicy {
-    readonly enabled: boolean;
-    readonly limitsEnforcedBy: "host_provider";
-    readonly published: boolean;
-    readonly allowedClasses: readonly string[];
-    readonly deniedClassPrefixes: readonly string[];
-    readonly classes: Readonly<Record<string, AutoJsJavaClassSpec>>;
-  }
-
-  /** JSON primitives, or handles of objects the host already admitted. */
-  export type AutoJsJavaArgument = JsonValue | AutoJsJavaObjectHandle;
-
-  export interface AutoJsJavaObjectHandle<TValue extends Readonly<Record<string, JsonValue>> = Readonly<Record<string, JsonValue>>> {
-    readonly __autojs6JavaHandle: string;
-    readonly className: string;
-    /** Snapshot taken when the handle was created: `string` (toString), `name` for enums, and the admitted instance fields. */
-    readonly value?: TValue;
-    call(methodName: string, args?: readonly AutoJsJavaArgument[], options?: BridgeCallOptions): Promise<unknown>;
-    callInstance(methodName: string, args?: readonly AutoJsJavaArgument[], options?: BridgeCallOptions): Promise<unknown>;
-    getField(fieldName: string, options?: BridgeCallOptions): Promise<unknown>;
-    release(options?: BridgeCallOptions): Promise<boolean>;
-    dispose(options?: BridgeCallOptions): Promise<boolean>;
-  }
-
-  export interface AutoJsJavaClassDescriptor {
-    readonly className: string;
-    readonly name: string;
-    callStatic(methodName: string, args?: readonly AutoJsJavaArgument[], options?: BridgeCallOptions): Promise<unknown>;
-    "new"(args?: readonly AutoJsJavaArgument[], options?: BridgeCallOptions): Promise<AutoJsJavaObjectHandle>;
-    create(args?: readonly AutoJsJavaArgument[], options?: BridgeCallOptions): Promise<AutoJsJavaObjectHandle>;
-    /** Reads a public static field named in the host allowlist; object values come back as handles. */
-    getStatic(fieldName: string, options?: BridgeCallOptions): Promise<unknown>;
-    /** The host's table entry for this class (rejects with the host's denial code otherwise). */
-    describe(options?: BridgeCallOptions): Promise<AutoJsJavaClassSpec>;
-  }
-
-  export interface AutoJsJavaModule {
-    readonly policy: AutoJsJavaPolicy;
-    findClass(className: string): AutoJsJavaClassDescriptor;
-    type(className: string): AutoJsJavaClassDescriptor;
-    callStatic(
-      classOrName: string | AutoJsJavaClassDescriptor,
-      methodName: string,
-      args?: readonly AutoJsJavaArgument[],
-      options?: BridgeCallOptions
-    ): Promise<unknown>;
-    "new"(classOrName: string | AutoJsJavaClassDescriptor, args?: readonly AutoJsJavaArgument[], options?: BridgeCallOptions): Promise<AutoJsJavaObjectHandle>;
-    create(classOrName: string | AutoJsJavaClassDescriptor, args?: readonly AutoJsJavaArgument[], options?: BridgeCallOptions): Promise<AutoJsJavaObjectHandle>;
-    call(target: string | AutoJsJavaObjectHandle, methodName: string, args?: readonly AutoJsJavaArgument[], options?: BridgeCallOptions): Promise<unknown>;
-    callInstance(target: string | AutoJsJavaObjectHandle, methodName: string, args?: readonly AutoJsJavaArgument[], options?: BridgeCallOptions): Promise<unknown>;
-    getField(target: string | AutoJsJavaObjectHandle, fieldName: string, options?: BridgeCallOptions): Promise<unknown>;
-    getStatic(classOrName: string | AutoJsJavaClassDescriptor, fieldName: string, options?: BridgeCallOptions): Promise<unknown>;
-    describe(classOrName: string | AutoJsJavaClassDescriptor, options?: BridgeCallOptions): Promise<AutoJsJavaClassSpec>;
-    release(target: string | AutoJsJavaObjectHandle, options?: BridgeCallOptions): Promise<boolean>;
-    dispose(target: string | AutoJsJavaObjectHandle, options?: BridgeCallOptions): Promise<boolean>;
-    defineClass(descriptor?: unknown, options?: BridgeCallOptions): never;
-  }
+  export type AutoJsJavaClassSpec = import("java").ClassSpec;
+  export type AutoJsJavaPolicy = import("java").Policy;
+  export type AutoJsJavaArgument = import("java").Argument;
+  export type AutoJsJavaObjectHandle<TValue extends Readonly<Record<string, unknown>> = Readonly<Record<string, unknown>>> = Omit<import("java").ObjectHandle, "value"> & { readonly value?: TValue };
+  export type AutoJsJavaClassDescriptor = import("java").ClassDescriptor;
+  export type AutoJsJavaModule = import("java").API;
 
   export interface AutoJsJavaFacade extends AutoJsJavaModule {
     readonly schema: "autojs6-node-autojs-java-v1";
@@ -1002,9 +933,4 @@ declare const $autojs: AutoJs6Node.AutoJsGlobal;
 declare module "autojs6:profile" {
   const profile: AutoJs6Node.AutoJsProfile;
   export = profile;
-}
-
-declare module "java" {
-  const java: AutoJs6Node.AutoJsJavaModule;
-  export = java;
 }

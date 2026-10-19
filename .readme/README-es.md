@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.69.0
+
+###### 2026/10/20
+
+* `Función` Interoperabilidad Java/Android para Node.js, Bun y Workers, con constructores y miembros públicos, matrices, valores long exactos, sobrecargas explícitas y referencias Context
+
 ### v4.68.1
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 * `Función` Objetos Android para Node.js, Bun y Workers, con Paint, ColorStateList, colores del tema y URI FileProvider
 * `Función` API persistentes de calendario e IntentTask para Node.js y Bun, con tareas diarias, semanales, mensuales, anuales, únicas, de cuenta atrás y de difusión
-
-### v4.67.0
-
-###### 2026/10/19
-
-* `Función` Control del dispositivo y diálogos para Bun y Workers de Node.js, con brillo, volumen y limpieza independiente de ventanas
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.69.0
+
+###### 2026/10/20
+
+* `Fonctionnalité` Interopérabilité Java/Android pour Node.js, Bun et Workers, avec constructeurs et membres publics, tableaux, valeurs long exactes, surcharges explicites et handles Context
+
 ### v4.68.1
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 * `Fonctionnalité` Objets Android pour Node.js, Bun et les Workers, avec Paint, ColorStateList, couleurs du thème et URI FileProvider
 * `Fonctionnalité` API persistantes de calendrier et IntentTask pour Node.js et Bun, avec tâches quotidiennes, hebdomadaires, mensuelles, annuelles, ponctuelles, différées et de diffusion
-
-### v4.67.0
-
-###### 2026/10/19
-
-* `Fonctionnalité` Commandes de périphérique et dialogues pour Bun et les Workers Node.js, avec luminosité, volume et nettoyage indépendant des fenêtres
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

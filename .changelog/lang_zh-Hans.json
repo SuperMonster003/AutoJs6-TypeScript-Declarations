@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.69.0": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun/Worker 的 Java/Android 对象互操作, 支持公开构造器和成员, 数组, 精确 long 值, 显式重载及应用 Context 句柄"
+        }
+      ]
+    },
     "v4.68.1": {
       "released_date": "2026/10/19",
       "entries": [

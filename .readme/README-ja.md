@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.69.0
+
+###### 2026/10/20
+
+* `機能` Node.js/Bun/Worker の Java/Android 相互運用で公開コンストラクターとメンバー, 配列, 正確な long 値, 明示的なオーバーロードとアプリの Context ハンドルに対応
+
 ### v4.68.1
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 
 * `機能` Node.js, Bun と Worker の Android オブジェクトヘルパー, Paint, ColorStateList, テーマ色と FileProvider URI
 * `機能` Node.js と Bun の永続的なカレンダーと IntentTask API, 毎日, 毎週, 毎月, 毎年, 単発, カウントダウンとブロードキャストのタスク
-
-### v4.67.0
-
-###### 2026/10/19
-
-* `機能` Bun と Node.js Worker のデバイス制御とダイアログ API, 明るさ, 音量と独立したウィンドウ解放
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.69.0
+
+###### 2026/10/20
+
+* `Feature` Java/Android object interop for Node.js, Bun and Workers, including public constructors and members, arrays, exact long values, explicit overloads and application Context handles
+
 ### v4.68.1
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 * `Feature` Android object helpers for Node.js, Bun and Workers, including Paint, ColorStateList, theme colors and FileProvider URIs
 * `Feature` Persistent calendar and IntentTask APIs for Node.js and Bun, with daily, weekly, monthly, yearly, one-shot, countdown and broadcast tasks
-
-### v4.67.0
-
-###### 2026/10/19
-
-* `Feature` Device controls and dialogs for Bun and Node.js Workers, including brightness, volume and independent window cleanup
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

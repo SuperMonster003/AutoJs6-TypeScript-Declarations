@@ -8,7 +8,7 @@
     "autojs6-node/accessibility.d.ts": "ba969dad271a05878d6385d46e8866e5ae4078659c335c9a564084e46ddcf23e",
     "autojs6-node/android.d.ts": "9a5799be2e802c0fdd24254d91c66dc72ce36cc95bcb6fde4782e2575f4c9036",
     "autojs6-node/app.d.ts": "f2e559fabfdd2c411fa9f61e2a94f8f81388073b78591c98453ef3a4bdadabdb",
-    "autojs6-node/autojs_global.d.ts": "58e76390d51a434c30ad6e8489f1dcd31afd7f24df778e4d502077199e3a5134",
+    "autojs6-node/autojs_global.d.ts": "dbfbe332d2adcdf1adb8f81e54c1c7db69d9f8add98a77ef93c6db52f3818b5d",
     "autojs6-node/axios.d.ts": "7f20df43fdc90a7c71779a3db4c721fd307e34d85f6d80f27f5e358e0c49d794",
     "autojs6-node/barcode.d.ts": "257435f7a2399f1d3648ee9cd2ae847a1444c2bdb187fdb606e91c4b3222a73c",
     "autojs6-node/base64.d.ts": "65ce6d962553264ea2ea4f50f8bd5370de80eb4dd741ca085e5e8b9ecbda1467",
@@ -34,8 +34,9 @@
     "autojs6-node/https.d.ts": "ab177de789de0adef3af9cf1d0ad2e867db0291480987124c4f63ad5b17cb99e",
     "autojs6-node/image.d.ts": "f0cc038f6ef7b3f9f7fb77bd5e85a51209cf0209550de3f7f52ee5b011c4b412",
     "autojs6-node/images.d.ts": "bba57a733bd277b311316c47faca09a2df36658dd79996b2c82c0015bf1ec872",
-    "autojs6-node/index.d.ts": "3bcbe0dd69b664e89697c2c24807ac7b3268893aeb6a6b2b994f4a1ccc3e9a07",
+    "autojs6-node/index.d.ts": "c5267ad5a6235996ef814f53e55edd22a35a1235187de67aa5072c6b9ba7399c",
     "autojs6-node/input_observer.d.ts": "caf71af9d95caf256374f0a034d2e19ebf11ae9ff3e79b655de48b874ab1186f",
+    "autojs6-node/java.d.ts": "793108076795aeb45161238b04b22e804c08fa305ca4fccbbe4a5386cb4c9759",
     "autojs6-node/jsox.d.ts": "f19243342b752c37f6f85a61bbad0f2adad4c833a3d976a42b2786c2a1754f58",
     "autojs6-node/keys.d.ts": "937172d1667042ca31b65af2d72142be093d9d295f676e605bda06feeffb3c76",
     "autojs6-node/lifecycle.d.ts": "f072b54d017182ff5ba3a6d806f487d4c96dd543700da96c2c1faaad6fdf96e5",
@@ -75,7 +76,7 @@
     "autojs6-node/util.d.ts": "4b9abf65c0eac6402e78ed5082bd71da672cd2646927f72870810cc055e5ff9e",
     "autojs6-node/websocket.d.ts": "f9412a8fe65abdab7d1f14f09bf75a4371a84657ba3f91de42e6c96e512a5923",
     "autojs6-node/work_manager.d.ts": "5d77db1003ae945c3ce7f9061b4e8609a29f8fe3b2a830a0c0fae051c67a2e68",
-    "autojs6-bun/host-client.d.mts": "ed28c36b86aff185bba5f7f661172382afa0b4447a8833a485278c76240b3fa4",
-    "autojs6-bun/index.d.ts": "913d6a7605fefea78ff866fc4b6ad8fd44fcdff241e70d5b12f570ee1b7c2a2c"
+    "autojs6-bun/host-client.d.mts": "3b63b4dc08c12e2edd642e27f7532d6d851ead9915c995438578398eebe162ba",
+    "autojs6-bun/index.d.ts": "ccbcf398001c0c1baa5473899498601e6a2a02790628e667931abbfa85138d71"
   }
 }

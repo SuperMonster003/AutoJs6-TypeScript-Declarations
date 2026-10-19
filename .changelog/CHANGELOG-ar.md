@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.69.0
+
+###### 2026/10/20
+
+* `ميزة` تكامل Java/Android في Node.js وBun وWorkers مع المنشئات والأعضاء العامة والمصفوفات وقيم long الدقيقة والتحميل الزائد الصريح ومراجع Context للتطبيق
+
 # v4.68.1
 
 ###### 2026/10/19

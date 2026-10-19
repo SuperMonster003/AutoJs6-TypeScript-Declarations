@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.69.0
+
+###### 2026/10/20
+
+* `Функция` Взаимодействие Java/Android для Node.js, Bun и Workers: открытые конструкторы и члены, массивы, точные значения long, явные перегрузки и ссылки Context приложения
+
 # v4.68.1
 
 ###### 2026/10/19

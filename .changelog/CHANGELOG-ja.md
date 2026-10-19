@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.69.0
+
+###### 2026/10/20
+
+* `機能` Node.js/Bun/Worker の Java/Android 相互運用で公開コンストラクターとメンバー, 配列, 正確な long 値, 明示的なオーバーロードとアプリの Context ハンドルに対応
+
 # v4.68.1
 
 ###### 2026/10/19
