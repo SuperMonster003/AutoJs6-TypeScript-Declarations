@@ -18,6 +18,15 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.62.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun file and persistent storage APIs with separate host-file grants and shared Node.js storage"
+        }
+      ]
+    },
     "v4.61.0": {
       "released_date": "2026/10/19",
       "entries": [

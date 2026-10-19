@@ -1,6 +1,6 @@
 /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
 export declare const SDK_VERSION: 1;
-export type HostCapability = "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
+export type HostCapability = "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
 export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
 export declare class HostCallError extends Error {
   readonly code: string;
@@ -8,7 +8,7 @@ export declare class HostCallError extends Error {
   readonly status: number;
   constructor(code: string, message: string, capability?: string | null, status?: number);
 }
-export declare const HOST_API_METHODS: Readonly<Record<"app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
+export declare const HOST_API_METHODS: Readonly<Record<"files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
 export declare const OPENCC_CONVERSION_TYPES: readonly [
   "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
   "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -645,7 +645,69 @@ export namespace RuntimeClipboard {
   }
 // END GENERATED AUTOMATION TYPES
 
+// BEGIN GENERATED STORAGE TYPES
+export type StorageJsonValue = null | boolean | number | string | StorageJsonValue[] | { [key: string]: StorageJsonValue };
+export namespace RuntimeStorage {
+    export type StorageValue = StorageJsonValue;
+
+    export interface StorageStore {
+      readonly name: string;
+      get<T extends StorageValue = StorageValue>(key: string, defaultValue: T, options?: AutomationCallOptions): Promise<StorageValue | T>;
+      get<T extends StorageValue = StorageValue>(key: string, defaultValue?: T, options?: AutomationCallOptions): Promise<StorageValue | T | undefined>;
+      put(key: string, value: StorageValue, options?: AutomationCallOptions): Promise<void>;
+      putSync(key: string, value: StorageValue, options?: AutomationCallOptions): Promise<void>;
+      remove(key: string, options?: AutomationCallOptions): Promise<void>;
+      removeSync(key: string, options?: AutomationCallOptions): Promise<void>;
+      clear(options?: AutomationCallOptions): Promise<void>;
+      clearSync(options?: AutomationCallOptions): Promise<void>;
+      keys(options?: AutomationCallOptions): Promise<readonly string[]>;
+      contains(key: string, options?: AutomationCallOptions): Promise<boolean>;
+      selfRemove(options?: AutomationCallOptions): Promise<void>;
+      selfRemoveSync(options?: AutomationCallOptions): Promise<void>;
+    }
+
+    export interface StorageModule {
+      create(name: string): StorageStore;
+      open(name: string): StorageStore;
+      remove(name: string, options?: AutomationCallOptions): Promise<void>;
+      removeSync(name: string, options?: AutomationCallOptions): Promise<void>;
+      names(): never;
+      all(): never;
+    }
+  }
+// END GENERATED STORAGE TYPES
+
+// BEGIN GENERATED FILE TYPES
+export namespace RuntimeFiles {
+    export type TextEncoding = string;
+    export type ListDirFilter = (name: string) => boolean | null | undefined;
+
+    export interface FilesModule {
+      path(path?: string | null): Promise<string | null>;
+      join(parent: string, ...children: string[]): string;
+      read(path?: string | null, encoding?: TextEncoding | null): Promise<string>;
+      write(path: string, text: unknown, encoding?: TextEncoding | null): Promise<void>;
+      append(path: string, text: unknown, encoding?: TextEncoding | null): Promise<void>;
+      exists(path?: string | null): Promise<boolean>;
+      listDir(path?: string | null, filter?: ListDirFilter | null): Promise<string[]>;
+      remove(path?: string | null): Promise<boolean>;
+      copy(pathFrom: string, pathTo: string): Promise<boolean>;
+      move(path: string, newPath: string): Promise<boolean>;
+      ensureDir(path: string): Promise<boolean>;
+      isFile(path?: string | null): Promise<boolean>;
+      isDir(path?: string | null): Promise<boolean>;
+      getName(filePath: string): string;
+      getExtension(fileName: string): string;
+      open(path?: string | null, mode?: string | null, encoding?: TextEncoding | null, bufferSize?: number | null): never;
+      toFile(path: string): never;
+    }
+  }
+// END GENERATED FILE TYPES
+
 export interface HostClient {
+  readonly files: RuntimeFiles.FilesModule;
+  readonly storage: RuntimeStorage.StorageModule;
+  readonly storages: RuntimeStorage.StorageModule;
   readonly app: RuntimeApp.AppModule;
   readonly accessibility: RuntimeAccessibility.AccessibilityModule;
   readonly clipboard: RuntimeClipboard.ClipboardModule;

@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.62.0
+
+###### 2026/10/19
+
+* `Функция` API файлов и постоянного хранилища Bun с отдельными разрешениями и общим хранилищем Node.js
+
 # v4.61.0
 
 ###### 2026/10/19

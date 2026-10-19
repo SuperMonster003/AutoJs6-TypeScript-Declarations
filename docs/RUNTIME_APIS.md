@@ -369,3 +369,6 @@ applies independently. Nothing records automatically or continues as a hidden
 background audio service. Cancellation, navigation, window/Worker shutdown and
 View disposal close the capture and release owned temporary files. Confirmed
 files remain available while the View or a copying download holds them.
+
+
+Bun Runtime 0.4.0 / host 5579: host.files exposes the 15 usable Node file functions, with asynchronous host I/O and synchronous POSIX name helpers. files.control and storage.control are separate default-off grants. host.storage/host.storages reproduce the Node facade, including Promise-returning Sync aliases, and share its package/working-directory persistence backend. Host files persist independently of the Bun workspace snapshot. JSON/base64 transport budgets, Android file permissions and existing Node storage-name normalization still apply. Details: docs/host-api.md; validation: host docs/dev/bun-storage-2026-10-19.md.

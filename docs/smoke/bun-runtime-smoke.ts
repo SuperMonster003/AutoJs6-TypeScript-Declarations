@@ -1,6 +1,24 @@
 import type { HostClient, HostCapability } from 'autojs6:bun-host';
 
 declare const host: HostClient;
+const filesGrant: HostCapability = 'files.control';
+const storageGrant: HostCapability = 'storage.control';
+const fileText: Promise<string> = host.files.read('owned.txt', 'utf16le');
+const filePath: Promise<string | null> = host.files.path(null);
+const localName: string = host.files.getName('/owned/file.txt');
+const fileList: Promise<string[]> = host.files.listDir('.', name => name.endsWith('.txt'));
+const store = host.storages.open('owned');
+const storageWrite: Promise<void> = store.putSync('key', { list: [null, false, 0] });
+const storageKeys: Promise<readonly string[]> = store.keys();
+host.storage.removeSync('owned', { signal: new AbortController().signal, timeoutMs: 1000 });
+// @ts-expect-error Host file reads are asynchronous in Bun.
+const synchronousFileText: string = host.files.read('owned.txt');
+// @ts-expect-error Storage does not accept JavaScript functions.
+store.put('callback', () => 1);
+// @ts-expect-error A path is required for writes.
+host.files.write(null, 'owned');
+// @ts-expect-error The filter must synchronously return a boolean or nullish value.
+host.files.listDir('.', () => 1);
 const capability: HostCapability = 'screen.metrics';
 host.hasCapability(capability);
 host.hasCapability('accessibility.gesture');

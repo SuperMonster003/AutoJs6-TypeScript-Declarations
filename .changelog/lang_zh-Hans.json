@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.62.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun 文件与持久化存储 API, 支持独立授权的宿主文件读写及 Node.js 存储互通"
+        }
+      ]
+    },
     "v4.61.0": {
       "released_date": "2026/10/19",
       "entries": [

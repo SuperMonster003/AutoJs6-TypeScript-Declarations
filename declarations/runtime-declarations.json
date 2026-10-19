@@ -73,7 +73,7 @@
     "autojs6-node/util.d.ts": "4b9abf65c0eac6402e78ed5082bd71da672cd2646927f72870810cc055e5ff9e",
     "autojs6-node/websocket.d.ts": "f9412a8fe65abdab7d1f14f09bf75a4371a84657ba3f91de42e6c96e512a5923",
     "autojs6-node/work_manager.d.ts": "5d77db1003ae945c3ce7f9061b4e8609a29f8fe3b2a830a0c0fae051c67a2e68",
-    "autojs6-bun/host-client.d.mts": "4213217f31ee145680be56f9b64a6656bd9484f585a1b26c7094725443301482",
-    "autojs6-bun/index.d.ts": "0846d74bd52a82d651e77e12fa0ccfca0c27144989ccc1e27bd4bad2342eadc9"
+    "autojs6-bun/host-client.d.mts": "3ffb1c5b4c4ca9b8c456609d9424b9e4fab03499ca655332528b0ab46ae475a4",
+    "autojs6-bun/index.d.ts": "c1d2d159caf3a16fd5de57aa7df35aa162ad58293fbbe4d55b40de86bfc72446"
   }
 }
