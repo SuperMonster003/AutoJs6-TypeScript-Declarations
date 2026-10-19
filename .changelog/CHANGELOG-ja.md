@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.69.1
+
+###### 2026/10/20
+
+* `修正` speech の認識結果の型に language プロパティがなく, セッション終了理由に overflow がなく, detectVoice の結果に modelId と warnings が誤って含まれていた
+* `改善` speech と speech.models の型宣言に各メソッド, オプション, イベント, 結果の説明と既定値, 値の範囲を追加し, エラーコードと機能名をリテラルで補完
+
 # v4.69.0
 
 ###### 2026/10/20

@@ -97,7 +97,7 @@ declare let $epub: Internal.Epub;
 declare let gallery: Internal.Gallery;
 declare let $gallery: Internal.Gallery;
 
-/** Offline speech recognition, wake words and synthesis through the 3-Macaw Speech plugin. */
+/** Offline speech recognition, wake words and synthesis of the external 3-Macaw Speech plugin. Available since AutoJs6 6.8.0. */
 declare let speech: Internal.Speech;
 declare let $speech: Internal.Speech;
 

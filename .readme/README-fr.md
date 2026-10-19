@@ -178,6 +178,13 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.69.1
+
+###### 2026/10/20
+
+* `Correction` Résultats de reconnaissance de speech sans la propriété language, raisons de fin de session sans overflow, et résultats de detectVoice listant à tort modelId et warnings
+* `Amélioration` Les déclarations de speech et speech.models documentent chaque méthode, option, événement et résultat avec valeurs par défaut et plages; les codes d'erreur et noms de fonctionnalités se complètent comme littéraux
+
 ### v4.69.0
 
 ###### 2026/10/20
@@ -189,13 +196,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/19
 
 * `Correction` Commentaires de types des fonctions globales de compatibilité telles que Tap, Swipe et KeyCode n'indiquant pas leur exécution via Shizuku après setDefaultOptions({ adb: true })
-
-### v4.68.0
-
-###### 2026/10/19
-
-* `Fonctionnalité` Objets Android pour Node.js, Bun et les Workers, avec Paint, ColorStateList, couleurs du thème et URI FileProvider
-* `Fonctionnalité` API persistantes de calendrier et IntentTask pour Node.js et Bun, avec tâches quotidiennes, hebdomadaires, mensuelles, annuelles, ponctuelles, différées et de diffusion
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

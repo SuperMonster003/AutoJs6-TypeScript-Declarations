@@ -178,6 +178,13 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.69.1
+
+###### 2026/10/20
+
+* `修正` speech の認識結果の型に language プロパティがなく, セッション終了理由に overflow がなく, detectVoice の結果に modelId と warnings が誤って含まれていた
+* `改善` speech と speech.models の型宣言に各メソッド, オプション, イベント, 結果の説明と既定値, 値の範囲を追加し, エラーコードと機能名をリテラルで補完
+
 ### v4.69.0
 
 ###### 2026/10/20
@@ -189,13 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `修正` Tap, Swipe, KeyCode などのグローバル互換関数の型コメントに setDefaultOptions({ adb: true }) 後の Shizuku 経由実行が未記載
-
-### v4.68.0
-
-###### 2026/10/19
-
-* `機能` Node.js, Bun と Worker の Android オブジェクトヘルパー, Paint, ColorStateList, テーマ色と FileProvider URI
-* `機能` Node.js と Bun の永続的なカレンダーと IntentTask API, 毎日, 毎週, 毎月, 毎年, 単発, カウントダウンとブロードキャストのタスク
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

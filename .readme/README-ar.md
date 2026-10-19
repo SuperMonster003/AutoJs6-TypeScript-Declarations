@@ -178,6 +178,13 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.69.1
+
+###### 2026/10/20
+
+* `إصلاح` نتائج التعرف في speech تفتقد الخاصية language, وأسباب انتهاء الجلسة تفتقد overflow, ونتائج detectVoice تذكر modelId وwarnings خطأ
+* `تحسين` تعريفات speech وspeech.models توثق كل دالة وخيار وحدث ونتيجة مع القيم الافتراضية والنطاقات, ويمكن إكمال رموز الأخطاء وأسماء الميزات كقيم حرفية
+
 ### v4.69.0
 
 ###### 2026/10/20
@@ -189,13 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `إصلاح` تعليقات أنواع دوال التوافق العامة مثل Tap و Swipe و KeyCode لم تذكر تنفيذها عبر Shizuku بعد setDefaultOptions({ adb: true })
-
-### v4.68.0
-
-###### 2026/10/19
-
-* `ميزة` مساعدات كائنات Android في Node.js وBun وWorkers مع Paint وColorStateList وألوان السمة وURI FileProvider
-* `ميزة` واجهات التقويم وIntentTask الدائمة في Node.js وBun للمهام اليومية والأسبوعية والشهرية والسنوية والفردية والتنازلية ومهام البث
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

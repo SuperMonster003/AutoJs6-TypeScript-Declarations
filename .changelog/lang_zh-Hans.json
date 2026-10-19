@@ -18,6 +18,19 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.69.1": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "speech 识别结果的类型缺少 language 属性, 会话结束原因缺少 overflow, detectVoice 结果误列 modelId 与 warnings"
+        },
+        {
+          "category": "improvement",
+          "text": "speech 与 speech.models 声明为各方法, 选项, 事件和结果补充说明, 默认值与取值范围, 错误码与功能名提供字面量补全"
+        }
+      ]
+    },
     "v4.69.0": {
       "released_date": "2026/10/20",
       "entries": [

@@ -18,6 +18,19 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.69.1": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "speech の認識結果の型に language プロパティがなく, セッション終了理由に overflow がなく, detectVoice の結果に modelId と warnings が誤って含まれていた"
+        },
+        {
+          "category": "improvement",
+          "text": "speech と speech.models の型宣言に各メソッド, オプション, イベント, 結果の説明と既定値, 値の範囲を追加し, エラーコードと機能名をリテラルで補完"
+        }
+      ]
+    },
     "v4.69.0": {
       "released_date": "2026/10/20",
       "entries": [

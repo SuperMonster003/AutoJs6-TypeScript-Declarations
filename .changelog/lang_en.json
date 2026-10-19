@@ -18,6 +18,19 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.69.1": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "speech recognition results missing the language property, session end reasons missing overflow, and detectVoice results wrongly listing modelId and warnings"
+        },
+        {
+          "category": "improvement",
+          "text": "speech and speech.models declarations document every method, option, event and result with defaults and ranges; error codes and feature names complete as literals"
+        }
+      ]
+    },
     "v4.69.0": {
       "released_date": "2026/10/20",
       "entries": [

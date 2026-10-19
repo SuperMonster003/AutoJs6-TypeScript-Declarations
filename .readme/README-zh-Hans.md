@@ -178,6 +178,13 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.69.1
+
+###### 2026/10/20
+
+* `修复` speech 识别结果的类型缺少 language 属性, 会话结束原因缺少 overflow, detectVoice 结果误列 modelId 与 warnings
+* `优化` speech 与 speech.models 声明为各方法, 选项, 事件和结果补充说明, 默认值与取值范围, 错误码与功能名提供字面量补全
+
 ### v4.69.0
 
 ###### 2026/10/20
@@ -189,13 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `修复` 全局兼容函数 Tap, Swipe, KeyCode 等的类型注释未说明 setDefaultOptions({ adb: true }) 后改经 Shizuku 执行
-
-### v4.68.0
-
-###### 2026/10/19
-
-* `新增` Node.js/Bun 的 Android 对象辅助接口及 Worker 封装, 支持 Paint, ColorStateList, 主题色和 FileProvider URI
-* `新增` Node.js/Bun 的持久日历与 IntentTask API, 支持每日, 每周, 每月, 每年, 一次性, 倒计时和广播任务
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

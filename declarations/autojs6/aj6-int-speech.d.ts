@@ -1,154 +1,612 @@
-// Type definitions for the Rhino speech API of the 3-Macaw Speech plugin.
+// Type definitions for AutoJs6 internal module speech
+//
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
+//
+// Last modified: Oct 20, 2026
+
 /// <reference path="./index.d.ts" />
 
+/**
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/speech/Speech.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/speech/SpeechModels.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/speech/SpeechSession.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/speech/SpeechWakeSession.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/speech/SpeechJsErrors.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/speech/SpeechScriptArguments.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/speech/SpeechScriptValues.kt
+ * @Source %AutoJs6%/plugin-api/speech-api/src/main/java/org/autojs/plugin/speech/api/SpeechContract.kt
+ * @Source %AutoJs6%/plugin-api/speech-api/src/main/java/org/autojs/plugin/speech/api/SpeechErrorCodes.kt
+ * @Source %AutoJs6%/plugin-api/speech-api/src/main/java/org/autojs/plugin/speech/api/SpeechLimits.kt
+ * @Source %AutoJs6%/docs/dev/speech-plugin-protocol-v1.md
+ */
+
 declare namespace Internal {
-    /** Requires a compatible enabled 3-Macaw Speech plugin and the selected model. */
+
+    /**
+     * The global `speech` object (also `$speech`), available since AutoJs6 6.8.0 through the
+     * external 3-Macaw Speech plugin: offline speech recognition of files, PCM and the
+     * microphone, voice activity detection, wake words and neural speech synthesis, with the
+     * models kept in the plugin. AutoJs6 has no recognizer or synthesizer of its own: while the
+     * plugin is missing, disabled or incompatible, every method throws (or rejects with) a
+     * `SpeechError` whose `code` is `PLUGIN_UNAVAILABLE`, `PLUGIN_DISABLED` or
+     * `PLUGIN_INCOMPATIBLE`; {@link isAvailable} probes without throwing.
+     *
+     * Audio files are WAV files named by paths (relative paths resolve against the script working
+     * directory; URIs such as `content://` are refused); PCM is mono PCM16 LE. The plugin records
+     * the microphone itself and needs its own microphone permission
+     * (see {@link Speech.Capabilities.microphoneGranted}).
+     *
+     * Options are checked before anything reaches the plugin: an unknown option key or a value of
+     * the wrong shape or range fails with `INVALID_OPTIONS`, a value beyond a contract ceiling
+     * (session length, hotwords, keywords, text length) with `LIMIT_EXCEEDED`. The synchronous
+     * forms that may wait long ({@link recognize}, {@link detectVoice}, {@link synthesize},
+     * `models.install`, `models.importFile` and `models.refreshCatalog`) refuse the UI thread
+     * with `INVALID_OPTIONS`; use the `Async` forms there.
+     *
+     * @see https://docs.autojs6.com/#/speech
+     */
     interface Speech {
+
+        /**
+         * Whether a compatible, enabled speech plugin answers right now; never throws. `true`
+         * does not mean that a model is installed or that the plugin holds the microphone
+         * permission.
+         * @since 6.8.0
+         */
         isAvailable(): boolean;
+
+        /**
+         * A snapshot of the plugin's capabilities: contract version, features, catalog version,
+         * runtime, system TTS engine package, microphone permission and plugin version.
+         * @since 6.8.0
+         * @example
+         * let caps = speech.capabilities();
+         * if (!caps.microphoneGranted) console.warn('3-Macaw Speech has no microphone permission');
+         */
         capabilities(): Speech.Capabilities;
+
+        /**
+         * Opens a dictation session and returns it once the plugin opened it (state `pending`
+         * until `ready`). The default source `'mic'` records the plugin's microphone; the whole
+         * plugin runs one microphone session (dictation or wake) at a time, so a second one fails
+         * at once with `SESSION_BUSY`, and a missing microphone permission fails with
+         * `PERMISSION_DENIED`. The source `'external'` recognizes 16 kHz PCM given to
+         * {@link Speech.Session.feed}.
+         *
+         * The script keeps running until the session's `end` event; the script's exit cancels the
+         * session silently. Open microphone sessions that should keep recording in the background
+         * while AutoJs6 is visible (or while its accessibility service is bound): a session
+         * opened later reports silenced audio as a `warning` with `PERMISSION_DENIED` and goes on.
+         * @since 6.8.0
+         * @example
+         * let session = speech.listen({ language: 'zh', maxDurationMillis: 10000 });
+         * session.on('final', event => console.log(event.text));
+         * session.on('error', error => console.error(error.code, error.message));
+         * session.on('end', event => console.log(event.reason, session.result()));
+         */
         listen(options?: Speech.ListenOptions | null): Speech.Session;
-        /** Blocking; unavailable on the UI thread. */
+
+        /**
+         * Recognizes a WAV file (at most 200 MiB and 30 minutes) or PCM and waits for the result
+         * (at most 10 minutes). Blocking; refuses the UI thread.
+         * @since 6.8.0
+         * @example
+         * let result = speech.recognize('./voice.wav', { language: 'en' });
+         * console.log(result.text, result.durationMillis);
+         */
         recognize(source: Speech.AudioSource, options?: Speech.RecognizeOptions | null): Speech.Recognition;
+
+        /** {@link recognize} settled on the script thread; usable on the UI thread. @since 6.8.0 */
         recognizeAsync(source: Speech.AudioSource, options?: Speech.RecognizeOptions | null): Promise<Speech.Recognition>;
-        /** Blocking; unavailable on the UI thread. */
+
+        /**
+         * The voice segments of a WAV file or PCM (same limits as {@link recognize}). Blocking;
+         * refuses the UI thread. There is no `Async` form.
+         * @since 6.8.0
+         */
         detectVoice(source: Speech.AudioSource, options?: Speech.VadOptions | null): Speech.VadResult;
+
+        /**
+         * Opens a wake word session for 1 to 50 distinct keywords and returns it once the plugin
+         * opened it. Each hit emits `wake`; with `thenListen` the hit is followed by one dictation
+         * round, the `listen` session of the `wake` event, after which spotting resumes. A wake
+         * session, its rounds included, is the plugin's one microphone session. The script keeps
+         * running until its `end` event.
+         * @since 6.8.0
+         * @example
+         * let wake = speech.wake(['hello macaw'], { thenListen: { silenceEndMillis: 1200 } });
+         * wake.on('wake', event => {
+         *     event.listen?.on('final', result => console.log('command:', result.text));
+         * });
+         */
         wake(keywords: Speech.KeywordInput | readonly Speech.KeywordInput[], options?: Speech.WakeOptions | null): Speech.WakeSession;
-        /** Writes a WAV file. Blocking; unavailable on the UI thread. */
+
+        /**
+         * Synthesizes 1 to 8000 characters into a WAV file (PCM16 at the model's sample rate, at
+         * most 100 MiB). The plugin writes a staged file next to `path` and AutoJs6 moves it over
+         * `path` once complete, so a failed or cancelled synthesis leaves nothing there. The call
+         * fails with `TIMEOUT` after 10 minutes without progress. Blocking; refuses the UI thread.
+         * @since 6.8.0
+         * @example
+         * let written = speech.synthesize('Task completed', './done.wav', { speed: 1.1 });
+         * console.log(written.path, written.durationMillis, written.warnings.length);
+         */
         synthesize(text: string, path: string, options?: Speech.SynthesisOptions | null): Speech.SynthesisResult;
+
+        /** {@link synthesize} settled on the script thread; usable on the UI thread. @since 6.8.0 */
         synthesizeAsync(text: string, path: string, options?: Speech.SynthesisOptions | null): Promise<Speech.SynthesisResult>;
-        /** Uses tts with the plugin engine; does not accept engine, voice, rate or speechRate. */
+
+        /**
+         * Speaks the text through the plugin's system TTS engine: `tts(text, options)` with the
+         * engine fixed to 3-Macaw Speech, the voice chosen by `model` / `speaker` and the rate set
+         * by `speed`, so it returns the Promise of `tts()`. Without `model` the engine speaks with
+         * its default voice for the given language or, without one, for the language of the text;
+         * with `model` but no `speaker` it takes the model's lowest numbered speaker of that
+         * language. While the plugin is not installed the Promise rejects with a `SpeechError`
+         * `PLUGIN_UNAVAILABLE`; other failures are those of `tts`.
+         * @since 6.8.0
+         * @example
+         * speech.speak('Task completed').then(() => console.log('spoken'));
+         */
         speak(text: string, options?: Speech.SpeakOptions | null): Promise<Tts.Result>;
+
+        /** Model catalog and installed models of the plugin. @since 6.8.0 */
         readonly models: Speech.Models;
+
+        /** The error class of the module; `e instanceof speech.SpeechError`. @since 6.8.0 */
         readonly SpeechError: Speech.ErrorConstructor;
     }
 
     namespace Speech {
+
+        type ErrorCode =
+            | 'PLUGIN_UNAVAILABLE'
+            | 'PLUGIN_DISABLED'
+            | 'PLUGIN_INCOMPATIBLE'
+            | 'PERMISSION_DENIED'
+            | 'MODEL_MISSING'
+            | 'MODEL_DOWNLOAD_FAILED'
+            | 'MODEL_CHECKSUM_MISMATCH'
+            | 'MODEL_LICENSE_NOT_ACCEPTED'
+            | 'INVALID_OPTIONS'
+            | 'UNSUPPORTED_FORMAT'
+            | 'LIMIT_EXCEEDED'
+            | 'SESSION_BUSY'
+            | 'SESSION_CLOSED'
+            | 'SESSION_CANCELLED'
+            | 'ENGINE_FAILED'
+            | 'IO_FAILED'
+            | 'TIMEOUT'
+            | 'INTERNAL';
+
+        /** What the plugin implements; a call whose feature is missing fails with `PLUGIN_INCOMPATIBLE`. */
+        type Feature = 'asr' | 'asrStreaming' | 'vad' | 'kws' | 'tts' | 'ttsSystemEngine' | 'models';
+
+        /** Model kinds: recognition, synthesis, keyword spotting (wake words) and voice activity detection. */
         type Kind = 'asr' | 'tts' | 'kws' | 'vad';
+
+        /** `pending` until `ready`, then `active`, then `ended`. */
         type State = 'pending' | 'active' | 'ended';
-        type EndReason = 'stopped' | 'timeout' | 'maxDuration' | 'cancelled' | 'error';
-        /** number[] denotes a Java byte[] (for example files.readBytes), not an ordinary JS array. */
+
+        /**
+         * Why a session ended: `stop()`, `timeoutMillis` or `maxDurationMillis` (audio time),
+         * `cancel()`, an `error` event, or `overflow` when the script did not drain the events
+         * (`error` with `LIMIT_EXCEEDED` first).
+         */
+        type EndReason = 'stopped' | 'timeout' | 'maxDuration' | 'cancelled' | 'error' | 'overflow';
+
+        /** `'mic'` records the plugin's microphone; `'external'` recognizes PCM given to `feed`. */
+        type Source = 'mic' | 'external';
+
+        /**
+         * Mono PCM16 LE: an `ArrayBuffer`, a typed array view such as `Int16Array`, or a Java
+         * `byte[]` (for example from `files.readBytes`, declared as `number[]`). A plain script
+         * array of numbers is refused.
+         */
         type Pcm = ArrayBuffer | ArrayBufferView | number[];
+
+        /** A WAV file path or PCM. */
         type AudioSource = string | Pcm;
-        interface Problem { readonly code: string; readonly message: string; }
-        interface SpeechError extends Error { readonly name: 'SpeechError'; code: string; }
+
+        /** A warning (the call or session went on) as `{ code, message }`. */
+        interface Problem {
+            readonly code: ErrorCode | (string & {});
+            readonly message: string;
+        }
+
+        /**
+         * `name` is `'SpeechError'`; `toString()` yields `SpeechError [CODE]: message`; `message`
+         * is not enumerable. Errors thrown by AutoJs6 carry the underlying Java exception as the
+         * non-enumerable `javaException`.
+         */
+        interface SpeechError extends Error {
+            readonly name: 'SpeechError';
+            code: ErrorCode | (string & {});
+            readonly javaException?: java.lang.Throwable;
+        }
+
+        /** Callable with or without `new`; `message` and `code` become strings, by default `''` and `'INTERNAL'`. */
         interface ErrorConstructor {
-            new(message?: unknown, code?: unknown): SpeechError;
-            (message?: unknown, code?: unknown): SpeechError;
+            new(message?: unknown, code?: ErrorCode | (string & {}) | null): SpeechError;
+            (message?: unknown, code?: ErrorCode | (string & {}) | null): SpeechError;
             readonly prototype: SpeechError;
         }
+
         interface Capabilities {
+            /** Speech contract version, 1. */
             readonly contractVersion: number;
-            readonly features: string[];
+            readonly features: (Feature | (string & {}))[];
+            /** Version of the plugin's model catalog. */
             readonly catalogVersion: number;
+            /** The speech runtime, `'sherpa-onnx'` for 3-Macaw Speech; null when not reported. */
             readonly engineName: string | null;
             readonly engineVersion: string | null;
+            /** Package of the plugin's system TTS engine (feature `ttsSystemEngine`), null without one. */
             readonly ttsEnginePackage: string | null;
+            /** Whether the plugin holds the microphone permission right now; null when not reported. */
             readonly microphoneGranted: boolean | null;
             readonly packageName: string;
             readonly versionName: string | null;
             readonly versionCode: number;
         }
+
         interface RecognizeOptions {
-            model?: string; language?: string; hotwords?: string[];
-            punctuation?: boolean; vad?: boolean;
-            /** PCM input rate, 8000..192000; default 16000. */
+            /** Recognition model id; default the default `asr` model. */
+            model?: string;
+            /** Language hint such as `'zh'`, `'en'`, `'ja'`, `'ko'` or `'yue'`; bilingual models ignore it. */
+            language?: string;
+            /** Hotwords of transducer models, at most 200 of at most 128 characters; other models answer a warning. */
+            hotwords?: string[];
+            /** Keep the punctuation the model emits; default true. */
+            punctuation?: boolean;
+            /** Voice activity segmentation (files and PCM) or gating (microphone); default true. */
+            vad?: boolean;
+            /** PCM only: input sample rate, 8000 to 192000; default 16000. WAV files carry their own rate. */
             sampleRate?: number;
         }
+
         interface ListenOptions extends Omit<RecognizeOptions, 'sampleRate'> {
-            source?: 'mic' | 'external';
+            /** Default `'mic'`. */
+            source?: Source;
+            /** Only 16000: external PCM is 16 kHz mono PCM16 LE. */
             sampleRate?: 16000;
+            /** Silence that ends an utterance, 1 to 60000; default 1200. */
             silenceEndMillis?: number;
+            /** Session length in audio time, at most 1800000 (`LIMIT_EXCEEDED` beyond); default 300000. */
             maxDurationMillis?: number;
+            /** Ends the session when neither speech nor new text comes within it (audio time), 0 to 1800000, 0 never; default 15000. */
             timeoutMillis?: number;
         }
+
+        /** Dictation options of the rounds that follow wake word hits; they always record the microphone. */
+        interface RoundOptions extends Omit<ListenOptions, 'source'> {
+            source?: 'mic';
+        }
+
         interface VadOptions {
-            model?: string; threshold?: number;
-            minSpeechMillis?: number; minSilenceMillis?: number; sampleRate?: number;
+            /** Voice activity model id; default the default `vad` model. */
+            model?: string;
+            /** Speech probability threshold, 0 to 1; default of the model. */
+            threshold?: number;
+            /** 0 to 1800000; default of the model. */
+            minSpeechMillis?: number;
+            /** 0 to 1800000; default of the model. */
+            minSilenceMillis?: number;
+            /** PCM only: input sample rate, 8000 to 192000; default 16000. */
+            sampleRate?: number;
         }
-        interface Keyword { keyword: string; boost?: number; threshold?: number; }
+
+        interface Keyword {
+            /** At most 128 characters. */
+            keyword: string;
+            /** -100 to 100. */
+            boost?: number;
+            /** Trigger threshold, 0 to 1; default of the model. */
+            threshold?: number;
+        }
+
         type KeywordInput = string | Keyword;
+
         interface WakeOptions {
-            model?: string; minIntervalMillis?: number;
-            thenListen?: boolean | (Omit<ListenOptions, 'source'> & { source?: 'mic' });
+            /** Keyword spotting model id; default the default `kws` model. */
+            model?: string;
+            /** Least time between two hits, 0 to 600000; default 1500. */
+            minIntervalMillis?: number;
+            /** `true` or dictation options: each hit is followed by one dictation round, the `listen` of the `wake` event. */
+            thenListen?: boolean | RoundOptions;
         }
+
         interface SynthesisOptions {
-            model?: string; speaker?: string | number; speed?: number; format?: 'wav';
+            /** TTS model id; default the default `tts` model. */
+            model?: string;
+            /**
+             * Speaker id (an integer from 0) or name (such as `'SSB0005'` of AISHELL-3); default the
+             * model's default speaker. A model with a single speaker ignores it and says so in
+             * `warnings` (`INVALID_OPTIONS`).
+             */
+            speaker?: string | number;
+            /** 0.5 to 2.0; default 1.0. */
+            speed?: number;
+            /** Only `'wav'`. */
+            format?: 'wav';
         }
-        type SpeakOptions = Omit<Tts.SpeechOptions, 'engine' | 'voice' | 'rate' | 'speechRate'> & {
-            model?: string; speaker?: string | number; speed?: number;
-        };
+
+        /**
+         * The options of `tts` except `engine`, `voice`, `rate` and `speechRate`, which are
+         * refused. With `model`, `locale` / `language` / `lang` only choose the model's speaker and
+         * do not reach `tts`.
+         */
+        interface SpeakOptions extends Omit<Tts.SpeechOptions, 'engine' | 'voice' | 'rate' | 'speechRate'> {
+            /** TTS model id; without it the engine's voice for the language is used. */
+            model?: string;
+            /** Speaker id or name without `/`; needs `model`. */
+            speaker?: string | number;
+            /** 0.5 to 2.0, the speech rate. */
+            speed?: number;
+        }
+
+        interface Tags {
+            readonly emotion?: string;
+            readonly event?: string;
+        }
+
         interface Segment {
-            readonly startMillis: number; readonly endMillis: number; readonly text: string;
-            readonly language?: string; readonly tags?: { readonly emotion?: string; readonly event?: string };
+            readonly startMillis: number;
+            readonly endMillis: number;
+            /** Empty when the result had to leave the segment texts out (a `LIMIT_EXCEEDED` warning says so). */
+            readonly text: string;
+            readonly language?: string;
+            readonly tags?: Tags;
         }
+
+        /** @see https://docs.autojs6.com/#/speechRecognitionResultType */
         interface Recognition {
-            readonly text: string; readonly segments: Segment[]; readonly durationMillis: number;
-            readonly modelId: string; readonly warnings: Problem[];
+            /** The whole text. */
+            readonly text: string;
+            readonly segments: Segment[];
+            /** Language of the audio when the model reports one. */
+            readonly language?: string;
+            readonly durationMillis: number;
+            readonly modelId: string;
+            readonly warnings: Problem[];
         }
+
+        interface VadSegment {
+            readonly startMillis: number;
+            readonly endMillis: number;
+        }
+
         interface VadResult {
-            readonly segments: { readonly startMillis: number; readonly endMillis: number }[];
-            readonly durationMillis: number; readonly modelId?: string; readonly warnings?: Problem[];
+            readonly segments: VadSegment[];
+            readonly durationMillis: number;
         }
+
         interface SynthesisResult {
-            readonly path: string; readonly sampleRate: number; readonly durationMillis: number;
-            readonly modelId: string; readonly speakerId: number; readonly sizeBytes: number; readonly warnings: Problem[];
+            /** The written file, resolved against the working directory. */
+            readonly path: string;
+            readonly sampleRate: number;
+            readonly durationMillis: number;
+            readonly modelId: string;
+            readonly speakerId: number;
+            readonly sizeBytes: number;
+            /** Empty unless the plugin adjusted the request. */
+            readonly warnings: Problem[];
         }
-        interface ReadyEvent { readonly sessionId: string; readonly modelId: string; }
-        interface TextEvent extends Partial<Segment> { readonly text: string; readonly segmentIndex?: number; }
+
+        interface ReadyEvent {
+            readonly sessionId: string;
+            readonly modelId: string;
+        }
+
+        interface PartialEvent {
+            /** The current utterance so far. */
+            readonly text: string;
+            readonly segmentIndex: number;
+        }
+
+        interface FinalEvent {
+            readonly text: string;
+            readonly segmentIndex: number;
+            readonly startMillis: number;
+            readonly endMillis: number;
+            readonly language?: string;
+            readonly tags?: Tags;
+        }
+
+        interface VadEvent {
+            readonly active: boolean;
+        }
+
+        interface EndEvent {
+            readonly reason: EndReason;
+            /** The text of the whole session. */
+            readonly text: string;
+        }
+
+        /** `endpoint` closes an utterance after its `final`; `warning` leaves the session running; `error` is followed by `end`. */
         interface SessionEvents {
-            ready: ReadyEvent; partial: TextEvent; final: TextEvent; endpoint: undefined;
-            vad: { readonly active: boolean }; warning: Problem; error: SpeechError;
-            end: { readonly reason: EndReason; readonly text: string };
+            ready: ReadyEvent;
+            partial: PartialEvent;
+            final: FinalEvent;
+            endpoint: undefined;
+            vad: VadEvent;
+            warning: Problem;
+            error: SpeechError;
+            end: EndEvent;
         }
+
+        /**
+         * The dictation session of {@link Speech.listen}, or a dictation round of a wake session.
+         * `end` is the terminal event of a `listen` session.
+         * @see https://docs.autojs6.com/#/speechSessionType
+         */
         interface Session extends EventEmitter$ {
-            readonly id: string | null; readonly modelId: string | null; readonly startedAt: number;
-            readonly state: State; readonly reason: EndReason | null; readonly isEnded: boolean;
-            readonly source: 'mic' | 'external'; readonly round: number;
-            isActive(): boolean; result(): string; stop(): this; cancel(): this;
-            /** Only external input: mono PCM16 LE at 16 kHz, at most 1 MiB per call. */
+            /** The plugin's session id from `ready`, null before it. */
+            readonly id: string | null;
+            /** The model serving the session, from `ready`, null before it. */
+            readonly modelId: string | null;
+            /** Epoch milliseconds when the session was requested. */
+            readonly startedAt: number;
+            readonly state: State;
+            /** The `end` reason once ended (`'script-exit'` after a silent cancel at script exit), null before. */
+            readonly reason: EndReason | 'script-exit' | null;
+            readonly isEnded: boolean;
+            readonly source: Source;
+            /** The dictation round of a wake session (from 0), -1 for a session of `listen`. */
+            readonly round: number;
+
+            /** Whether the session is still pending or active. */
+            isActive(): boolean;
+            /** The text so far: the joined `final` texts, the whole session text once ended. */
+            result(): string;
+            /** Flushes the recognizer and ends the session (`end` with `'stopped'`); for a wake round, ends the round only. Idempotent. */
+            stop(): this;
+            /** Ends without a last result (`end` with `'cancelled'`); for a wake round, ends the round only. Idempotent. */
+            cancel(): this;
+            /** Only `source: 'external'`: 16 kHz mono PCM16 LE, at most 1 MiB per call. */
             feed(pcm: Pcm): this;
+            /** `SpeechSession { source: ..., state: ... }` with the round, model and reason when known. */
+            toString(): string;
+
             on<K extends keyof SessionEvents>(name: K, listener: (event: SessionEvents[K]) => void): this;
             on(name: string, listener: (...args: any[]) => void): this;
             once<K extends keyof SessionEvents>(name: K, listener: (event: SessionEvents[K]) => void): this;
             once(name: string, listener: (...args: any[]) => void): this;
         }
+
+        interface WakeEvent {
+            /** The keyword as the script wrote it. */
+            readonly keyword: string;
+            /** The trigger threshold of the keyword with 3-Macaw Speech (the runtime reports no confidence); null when not reported. */
+            readonly score: number | null;
+            /** Epoch milliseconds of the hit. */
+            readonly timestampMillis: number;
+            /** With `thenListen`: the dictation round that follows the hit. */
+            readonly listen?: Session;
+        }
+
+        interface WakeEndEvent {
+            readonly reason: EndReason;
+        }
+
         interface WakeEvents {
             ready: ReadyEvent;
-            wake: { readonly keyword: string; readonly score: number | null; readonly timestampMillis: number; readonly listen?: Session };
-            warning: Problem; error: SpeechError; end: { readonly reason: EndReason };
+            wake: WakeEvent;
+            warning: Problem;
+            error: SpeechError;
+            end: WakeEndEvent;
         }
+
+        /**
+         * The wake word session of {@link Speech.wake}; `end` is its terminal event.
+         * @see https://docs.autojs6.com/#/speechWakeSessionType
+         */
         interface WakeSession extends EventEmitter$ {
-            readonly keywords: string[]; readonly id: string | null; readonly modelId: string | null;
-            readonly startedAt: number; readonly state: State; readonly reason: EndReason | null; readonly isEnded: boolean;
-            stop(): this; isActive(): boolean;
+            /** The keywords as the script wrote them. */
+            readonly keywords: string[];
+            readonly id: string | null;
+            readonly modelId: string | null;
+            /** Epoch milliseconds when the session was requested. */
+            readonly startedAt: number;
+            readonly state: State;
+            readonly reason: EndReason | 'script-exit' | null;
+            readonly isEnded: boolean;
+
+            /** Ends the wake session and a running round (`end` with `'stopped'`). Idempotent. */
+            stop(): this;
+            isActive(): boolean;
+            /** `SpeechWakeSession { keywords: [...], state: ... }` with the reason when known. */
+            toString(): string;
+
             on<K extends keyof WakeEvents>(name: K, listener: (event: WakeEvents[K]) => void): this;
             on(name: string, listener: (...args: any[]) => void): this;
             once<K extends keyof WakeEvents>(name: K, listener: (event: WakeEvents[K]) => void): this;
             once(name: string, listener: (...args: any[]) => void): this;
         }
+
+        interface License {
+            /** SPDX identifier, `'LicenseRef-UserImported'` for an imported model without one. */
+            readonly spdx: string;
+            /** False also when the license does not say; such models need `acceptLicense`. */
+            readonly commercialUse: boolean;
+            readonly noticeUrl?: string;
+        }
+
+        /** @see https://docs.autojs6.com/#/speechModelInfoType */
         interface ModelInfo {
-            readonly id: string; readonly kind: Kind; readonly modelType: string; readonly name: string;
-            readonly languages: string[]; readonly sizeBytes: number; readonly installedBytes?: number;
-            readonly installed: boolean; readonly isDefault: boolean; readonly recommended: boolean;
-            readonly version: number; readonly source: 'catalog' | 'imported';
-            readonly license: { readonly spdx: string; readonly commercialUse: boolean; readonly noticeUrl?: string };
-            readonly speakers?: number; readonly sampleRate?: number;
+            readonly id: string;
+            readonly kind: Kind;
+            readonly modelType: string;
+            readonly name: string;
+            readonly languages: string[];
+            /** Download size in bytes, 0 for an imported model. */
+            readonly sizeBytes: number;
+            /** Bytes on disk, installed models only. */
+            readonly installedBytes?: number;
+            readonly installed: boolean;
+            readonly isDefault: boolean;
+            readonly recommended: boolean;
+            readonly version: number;
+            readonly source: 'catalog' | 'imported';
+            readonly license: License;
+            /** TTS models: number of speakers. */
+            readonly speakers?: number;
+            /** TTS models: output sample rate. */
+            readonly sampleRate?: number;
         }
-        interface ModelFilter { kind?: Kind; language?: string; installed?: boolean; }
-        interface InstallOptions { acceptLicense?: boolean; onProgress?: (done: number, total: number) => void; }
+
+        interface ModelFilter {
+            kind?: Kind;
+            language?: string;
+            installed?: boolean;
+        }
+
+        interface InstallOptions {
+            /** Accept a license that does not allow commercial use (`MODEL_LICENSE_NOT_ACCEPTED` otherwise); default false. */
+            acceptLicense?: boolean;
+            /** Bytes done and total (0 when unknown), called on the script thread. */
+            onProgress?: (done: number, total: number) => void;
+        }
+
         interface ImportOptions extends InstallOptions {
-            id?: string; kind?: Kind; modelType?: string; name?: string; languages?: string[];
+            /** Model id of a model outside the catalog. */
+            id?: string;
+            kind?: Kind;
+            modelType?: string;
+            /** At most 128 characters. */
+            name?: string;
+            languages?: string[];
         }
+
         interface Models {
+            /** Catalog and imported models, at most 512. @since 6.8.0 */
             list(filter?: ModelFilter | null): ModelInfo[];
+            /**
+             * Downloads and installs a catalog model and waits. Blocking; refuses the UI thread.
+             * @since 6.8.0
+             * @example
+             * speech.models.install('kws.zipformer.zh-en.2025-12-20', {
+             *     onProgress: (done, total) => console.log(done, '/', total),
+             * });
+             */
             install(id: string, options?: InstallOptions | null): ModelInfo;
+            /** {@link install} settled on the script thread; usable on the UI thread. @since 6.8.0 */
             installAsync(id: string, options?: InstallOptions | null): Promise<ModelInfo>;
+            /** Imports a local model archive (`tar.bz2` or `zip`) the script can read. Blocking; refuses the UI thread. @since 6.8.0 */
             importFile(path: string, options?: ImportOptions | null): ModelInfo;
+            /** Removes an installed model; `SESSION_BUSY` while a session uses it. @since 6.8.0 */
             remove(id: string): boolean;
+            /** Makes an installed model the default of its kind. @since 6.8.0 */
             setDefault(kind: Kind, id: string): ModelInfo;
+            /** The installed default model of the kind, null when none is installed. @since 6.8.0 */
             getDefault(kind: Kind): ModelInfo | null;
+            /**
+             * Fetches the signed model catalog (at most 2 minutes): `version` is the catalog version
+             * in use afterwards, `updated` whether a newer catalog was installed. Blocking; refuses
+             * the UI thread.
+             * @since 6.8.0
+             */
             refreshCatalog(): { version: number; updated: boolean };
         }
     }

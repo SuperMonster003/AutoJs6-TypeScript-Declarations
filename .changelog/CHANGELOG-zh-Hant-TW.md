@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.69.1
+
+###### 2026/10/20
+
+* `修復` speech 辨識結果的型別缺少 language 屬性, 工作階段結束原因缺少 overflow, detectVoice 結果誤列 modelId 與 warnings
+* `最佳化` speech 與 speech.models 宣告為各方法, 選項, 事件和結果補充說明, 預設值與取值範圍, 錯誤碼與功能名稱提供字面值補全
+
 # v4.69.0
 
 ###### 2026/10/20

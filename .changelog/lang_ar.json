@@ -18,6 +18,19 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.69.1": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "نتائج التعرف في speech تفتقد الخاصية language, وأسباب انتهاء الجلسة تفتقد overflow, ونتائج detectVoice تذكر modelId وwarnings خطأ"
+        },
+        {
+          "category": "improvement",
+          "text": "تعريفات speech وspeech.models توثق كل دالة وخيار وحدث ونتيجة مع القيم الافتراضية والنطاقات, ويمكن إكمال رموز الأخطاء وأسماء الميزات كقيم حرفية"
+        }
+      ]
+    },
     "v4.69.0": {
       "released_date": "2026/10/20",
       "entries": [

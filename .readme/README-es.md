@@ -178,6 +178,13 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.69.1
+
+###### 2026/10/20
+
+* `Corrección` Resultados de reconocimiento de speech sin la propiedad language, motivos de fin de sesión sin overflow y resultados de detectVoice que listaban por error modelId y warnings
+* `Mejora` Las declaraciones de speech y speech.models documentan cada método, opción, evento y resultado con valores predeterminados y rangos; los códigos de error y nombres de funciones se autocompletan como literales
+
 ### v4.69.0
 
 ###### 2026/10/20
@@ -189,13 +196,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/19
 
 * `Corrección` Comentarios de tipos de las funciones globales de compatibilidad como Tap, Swipe y KeyCode que no indicaban su ejecución mediante Shizuku tras setDefaultOptions({ adb: true })
-
-### v4.68.0
-
-###### 2026/10/19
-
-* `Función` Objetos Android para Node.js, Bun y Workers, con Paint, ColorStateList, colores del tema y URI FileProvider
-* `Función` API persistentes de calendario e IntentTask para Node.js y Bun, con tareas diarias, semanales, mensuales, anuales, únicas, de cuenta atrás y de difusión
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

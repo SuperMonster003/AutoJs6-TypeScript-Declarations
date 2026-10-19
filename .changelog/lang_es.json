@@ -18,6 +18,19 @@
     "adjustment": "Ajuste"
   },
   "$data": {
+    "v4.69.1": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Resultados de reconocimiento de speech sin la propiedad language, motivos de fin de sesión sin overflow y resultados de detectVoice que listaban por error modelId y warnings"
+        },
+        {
+          "category": "improvement",
+          "text": "Las declaraciones de speech y speech.models documentan cada método, opción, evento y resultado con valores predeterminados y rangos; los códigos de error y nombres de funciones se autocompletan como literales"
+        }
+      ]
+    },
     "v4.69.0": {
       "released_date": "2026/10/20",
       "entries": [

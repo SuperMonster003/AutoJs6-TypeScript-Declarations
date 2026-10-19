@@ -18,6 +18,19 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.69.1": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "speech 인식 결과 타입에 language 속성 누락, 세션 종료 사유에 overflow 누락, detectVoice 결과에 modelId와 warnings가 잘못 포함됨"
+        },
+        {
+          "category": "improvement",
+          "text": "speech 및 speech.models 선언에 각 메서드, 옵션, 이벤트, 결과의 설명과 기본값, 값 범위를 추가하고 오류 코드와 기능 이름을 리터럴로 자동 완성"
+        }
+      ]
+    },
     "v4.69.0": {
       "released_date": "2026/10/20",
       "entries": [

@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.69.1
+
+###### 2026/10/20
+
+* `إصلاح` نتائج التعرف في speech تفتقد الخاصية language, وأسباب انتهاء الجلسة تفتقد overflow, ونتائج detectVoice تذكر modelId وwarnings خطأ
+* `تحسين` تعريفات speech وspeech.models توثق كل دالة وخيار وحدث ونتيجة مع القيم الافتراضية والنطاقات, ويمكن إكمال رموز الأخطاء وأسماء الميزات كقيم حرفية
+
 # v4.69.0
 
 ###### 2026/10/20
