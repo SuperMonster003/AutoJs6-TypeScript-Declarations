@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.70.0
+
+###### 2026/10/20
+
+* `ميزة` ردود نداء Java وإنشاء الأصناف الفرعية وتحميل JAR/DEX في Node.js وBun وWorkers مع نتائج Promise واستدعاءات الصنف الأب والتنظيف عند انتهاء التنفيذ
+
 ### v4.69.1
 
 ###### 2026/10/20
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/20
 
 * `ميزة` تكامل Java/Android في Node.js وBun وWorkers مع المنشئات والأعضاء العامة والمصفوفات وقيم long الدقيقة والتحميل الزائد الصريح ومراجع Context للتطبيق
-
-### v4.68.1
-
-###### 2026/10/19
-
-* `إصلاح` تعليقات أنواع دوال التوافق العامة مثل Tap و Swipe و KeyCode لم تذكر تنفيذها عبر Shizuku بعد setDefaultOptions({ adb: true })
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

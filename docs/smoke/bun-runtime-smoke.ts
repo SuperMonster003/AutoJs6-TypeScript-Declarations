@@ -316,3 +316,15 @@ async function bunJavaInteropSmoke(client: import("autojs6:bun-host").HostClient
   await java.call(context,"method",[{}]);
   return {name,length};
 }
+
+async function bunJavaCallbacksSmoke(client: import("autojs6:bun-host").HostClient) {
+  const java = client.java;
+  const loader = await java.loadDex("classes.dex");
+  const cls = await java.defineClass({extends: loader.type("owned.Base"), methods: {
+    value: async function () { return await this.callSuper<number>(1); }
+  }});
+  const proxy = await java.wrap(async function () { await this.receiver.getClassName(); });
+  const retained = await proxy.retain();await retained.release();await java.closeCallbacks();await cls.dispose();
+  // @ts-expect-error Class definitions accept callback functions, not constants.
+  await java.defineClass({methods: {run: 1}});
+}

@@ -893,11 +893,8 @@ declare namespace AutoJs6Node {
       threadModeOrOptions?: "default" | BridgeCallOptions,
       options?: BridgeCallOptions
     ): Promise<AutoJsJavaObjectHandle>;
-    loadDex(dexFile: string): never;
-    loadJar(jarFile: string): never;
     setThreadMode(obj: unknown, threadMode: string): never;
     setDefaultThreadMode(clazz: unknown, threadMode: string): never;
-    wrap(callback: (...args: readonly unknown[]) => unknown): never;
   }
 
   export interface AutoJsAndroidContextDescriptor {

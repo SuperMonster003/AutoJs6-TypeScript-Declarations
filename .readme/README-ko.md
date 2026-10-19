@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.70.0
+
+###### 2026/10/20
+
+* `기능` Node.js/Bun/Worker의 Java 콜백, 하위 클래스 생성 및 JAR/DEX 로드로 Promise 반환값, 부모 클래스 호출 및 실행 종료 정리 지원
+
 ### v4.69.1
 
 ###### 2026/10/20
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/20
 
 * `기능` Node.js/Bun/Worker의 Java/Android 상호 운용으로 공개 생성자와 멤버, 배열, 정확한 long 값, 명시적 오버로드 및 앱 Context 핸들 지원
-
-### v4.68.1
-
-###### 2026/10/19
-
-* `수정` Tap, Swipe, KeyCode 등 전역 호환 함수의 타입 주석에 setDefaultOptions({ adb: true }) 이후 Shizuku 경유 실행 설명 누락
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

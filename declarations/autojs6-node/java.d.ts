@@ -17,6 +17,8 @@ declare module "java" {
     }
     type Target = string | HandleSnapshot;
     interface ObjectHandle extends HandleSnapshot {
+      /** Keep a separate reference to a borrowed callback argument beyond its invocation. */
+      retain(options?: CallOptions): Promise<ObjectHandle>;
       call<T = unknown>(method: string, args?: readonly Argument[], options?: CallOptions): Promise<T>;
       callInstance<T = unknown>(method: string, args?: readonly Argument[], options?: CallOptions): Promise<T>;
       getField<T = unknown>(field: string, options?: CallOptions): Promise<T>;
@@ -57,12 +59,44 @@ declare module "java" {
     interface ClassDescriptor {
       readonly className: string;
       readonly name: string;
+      readonly loader?: string;
       callStatic<T = unknown>(method: string, args?: readonly Argument[], options?: CallOptions): Promise<T>;
       "new"(args?: readonly Argument[], options?: CallOptions): Promise<ObjectHandle>;
       create(args?: readonly Argument[], options?: CallOptions): Promise<ObjectHandle>;
       getStatic<T = unknown>(field: string, options?: CallOptions): Promise<T>;
       setStatic(field: string, value: Argument, options?: CallOptions): Promise<boolean>;
       describe(options?: CallOptions): Promise<ClassSpec>;
+    }
+    interface CallbackContext {
+      readonly java: API;
+      /** Borrowed until this callback settles. Use retain to keep it. */
+      readonly receiver: ObjectHandle;
+      readonly method: string;
+      readonly signature: string;
+      /** Call the concrete superclass implementation for the current override. */
+      callSuper<T = unknown>(...args: Argument[]): Promise<T>;
+    }
+    type Callback = (this: CallbackContext, ...args: any[]) => Argument | void | Promise<Argument | void>;
+    type Implementation = Readonly<Record<string, Callback>> & ThisType<CallbackContext>;
+    interface CallbackOptions extends Omit<CallOptions, "thread" | "parameterTypes"> {
+      /** Java waits for this duration; default 5000 ms, range 1..120000. */
+      callbackTimeoutMs?: number;
+      /** Local error notification. Synchronous bridge calls also reject on callback failure. */
+      onError?: (error: unknown, invocation: unknown) => void;
+    }
+    interface ClassDefinition {
+      /** Omit for a unique generated class name. */
+      name?: string;
+      extends?: string | ClassDescriptor;
+      interfaces?: readonly (string | ClassDescriptor)[];
+      /** Method name or exact signature such as compare(java.lang.Object,java.lang.Object). */
+      methods?: Implementation;
+    }
+    interface GeneratedClass extends ClassDescriptor, ObjectHandle {}
+    interface ClassLoaderHandle extends ObjectHandle {
+      readonly paths: readonly string[];
+      type(className: string): ClassDescriptor;
+      findClass(className: string): ClassDescriptor;
     }
     interface API {
       readonly policy: Policy;
@@ -91,7 +125,17 @@ declare module "java" {
       instanceOf(target: Target, type: string | ClassDescriptor, options?: CallOptions): Promise<boolean>;
       release(target: Target, options?: CallOptions): Promise<boolean>;
       dispose(target: Target, options?: CallOptions): Promise<boolean>;
-      defineClass(descriptor?: unknown, options?: CallOptions): never;
+      retain(target: Target, options?: CallOptions): Promise<ObjectHandle>;
+      /** Creates a generated implementation of public interfaces, including inherited default methods. */
+      proxy(interfaces: string | ClassDescriptor | readonly (string | ClassDescriptor)[], implementation: Implementation | Callback, options?: CallbackOptions): Promise<ObjectHandle>;
+      defineClass(definition: ClassDefinition, options?: CallbackOptions): Promise<GeneratedClass>;
+      /** Host paths, relative to the execution directory. Code is copied into private read-only storage. */
+      loadDex(paths: string | readonly string[], options?: CallOptions): Promise<ClassLoaderHandle>;
+      /** Compiles Java class files in JARs with the host's local dexer. Default timeout 120000 ms. */
+      loadJar(paths: string | readonly string[], options?: CallOptions): Promise<ClassLoaderHandle>;
+      wrap(callback: Callback, interfaceName?: string, options?: CallbackOptions): Promise<ObjectHandle>;
+      /** Stops this facade's callback registrations and its event pump. */
+      closeCallbacks(): Promise<void>;
     }
   }
   const java: java.API;

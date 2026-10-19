@@ -342,3 +342,21 @@ async function javaInteropSmoke() {
 
 declare const legacyTypedJavaHandle: AutoJs6Node.AutoJsJavaObjectHandle<{left: number}>;
 const preservedJavaFieldType: number | undefined = legacyTypedJavaHandle.value?.left;
+
+async function javaCallbacksSmoke() {
+  const loader = await javaInterop.loadJar(["first.jar", "second.jar"]);
+  const loaded: javaInterop.ObjectHandle = await loader.type("owned.Base").new();
+  const proxy = await javaInterop.proxy("java.util.concurrent.Callable", async function () {
+    const method: string = this.method;
+    const receiver: javaInterop.ObjectHandle = this.receiver;
+    return method + await receiver.call<string>("toString");
+  }, {callbackTimeoutMs: 3000, onError(error) { console.error(error); }});
+  const cls = await javaInterop.defineClass({extends: "java.lang.Object", methods: {
+    toString: async function () { return "wrapped:" + await this.callSuper<string>(); }
+  }});
+  const instance: javaInterop.ObjectHandle = await cls.new([], {thread:"main"});
+  await javaInterop.retain(instance);await javaInterop.loadDex("classes.dex");await javaInterop.closeCallbacks();
+  await proxy.dispose();await loaded.release();await loader.release();await cls.release();
+  // @ts-expect-error Callback results must be representable Java values.
+  await javaInterop.wrap(() => ({plain: true}));
+}

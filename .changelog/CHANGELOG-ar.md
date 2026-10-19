@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.70.0
+
+###### 2026/10/20
+
+* `ميزة` ردود نداء Java وإنشاء الأصناف الفرعية وتحميل JAR/DEX في Node.js وBun وWorkers مع نتائج Promise واستدعاءات الصنف الأب والتنظيف عند انتهاء التنفيذ
+
 # v4.69.1
 
 ###### 2026/10/20

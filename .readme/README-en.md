@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.70.0
+
+###### 2026/10/20
+
+* `Feature` Java callbacks, generated subclasses and JAR/DEX loading for Node.js, Bun and Workers, with Promise results, superclass calls and execution cleanup
+
 ### v4.69.1
 
 ###### 2026/10/20
@@ -190,12 +196,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/20
 
 * `Feature` Java/Android object interop for Node.js, Bun and Workers, including public constructors and members, arrays, exact long values, explicit overloads and application Context handles
-
-### v4.68.1
-
-###### 2026/10/19
-
-* `Fix` Type comments of global compatibility functions such as Tap, Swipe and KeyCode not mentioning that they run through Shizuku after setDefaultOptions({ adb: true })
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

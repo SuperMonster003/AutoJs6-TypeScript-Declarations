@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.70.0
+
+###### 2026/10/20
+
+* `Функция` Обратные вызовы Java, создание подклассов и загрузка JAR/DEX для Node.js, Bun и Workers с результатами Promise, вызовами суперкласса и очисткой при завершении
+
 # v4.69.1
 
 ###### 2026/10/20

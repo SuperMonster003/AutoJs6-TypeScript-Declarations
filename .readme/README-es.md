@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.70.0
+
+###### 2026/10/20
+
+* `Función` Callbacks Java, subclases generadas y carga de JAR/DEX para Node.js, Bun y Workers, con resultados Promise, llamadas a la superclase y limpieza al terminar
+
 ### v4.69.1
 
 ###### 2026/10/20
@@ -190,12 +196,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/20
 
 * `Función` Interoperabilidad Java/Android para Node.js, Bun y Workers, con constructores y miembros públicos, matrices, valores long exactos, sobrecargas explícitas y referencias Context
-
-### v4.68.1
-
-###### 2026/10/19
-
-* `Corrección` Comentarios de tipos de las funciones globales de compatibilidad como Tap, Swipe y KeyCode que no indicaban su ejecución mediante Shizuku tras setDefaultOptions({ adb: true })
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

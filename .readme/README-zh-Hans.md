@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.70.0
+
+###### 2026/10/20
+
+* `新增` Node.js/Bun/Worker 的 Java 回调代理, 子类生成和 JAR/DEX 加载, 支持 Promise 返回值, 父类调用及执行结束清理
+
 ### v4.69.1
 
 ###### 2026/10/20
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/20
 
 * `新增` Node.js/Bun/Worker 的 Java/Android 对象互操作, 支持公开构造器和成员, 数组, 精确 long 值, 显式重载及应用 Context 句柄
-
-### v4.68.1
-
-###### 2026/10/19
-
-* `修复` 全局兼容函数 Tap, Swipe, KeyCode 等的类型注释未说明 setDefaultOptions({ adb: true }) 后改经 Shizuku 执行
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

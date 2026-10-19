@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## Журнал изменений
 
+### v4.70.0
+
+###### 2026/10/20
+
+* `Функция` Обратные вызовы Java, создание подклассов и загрузка JAR/DEX для Node.js, Bun и Workers с результатами Promise, вызовами суперкласса и очисткой при завершении
+
 ### v4.69.1
 
 ###### 2026/10/20
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/20
 
 * `Функция` Взаимодействие Java/Android для Node.js, Bun и Workers: открытые конструкторы и члены, массивы, точные значения long, явные перегрузки и ссылки Context приложения
-
-### v4.68.1
-
-###### 2026/10/19
-
-* `Исправление` Комментарии типов глобальных функций совместимости Tap, Swipe, KeyCode и других не упоминали выполнение через Shizuku после setDefaultOptions({ adb: true })
 
 [Полный журнал изменений](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 
