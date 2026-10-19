@@ -1,6 +1,6 @@
 /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
 export declare const SDK_VERSION: 1;
-export type HostCapability = "device.control" | "device.power" | "device.audio" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
+export type HostCapability = "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
 export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
 export declare class HostCallError extends Error {
   readonly code: string;
@@ -8,7 +8,7 @@ export declare class HostCallError extends Error {
   readonly status: number;
   constructor(code: string, message: string, capability?: string | null, status?: number);
 }
-export declare const HOST_API_METHODS: Readonly<Record<"device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
+export declare const HOST_API_METHODS: Readonly<Record<"android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
 export declare const OPENCC_CONVERSION_TYPES: readonly [
   "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
   "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -488,7 +488,7 @@ export namespace RuntimeApp {
       readonly versionCode: number;
       intent(request: IntentRequest): IntentDescriptor;
       parseUri(uri: string | null | undefined): UriDescriptor | null;
-      getUriForFile(path: string): never;
+      getUriForFile(path: string, options?: AutomationCallOptions): Promise<RuntimeAndroid.UriSnapshot>;
       intentToShell(request: IntentRequest | IntentDescriptor): string;
       openUrl(url: string, options?: AutomationCallOptions): Promise<void>;
       openDualUrl(url: string, options?: AutomationCallOptions): Promise<never>;
@@ -1227,7 +1227,218 @@ export namespace RuntimeDialogs {
   }
 // END GENERATED DEVICE DIALOG TYPES
 
+// BEGIN GENERATED ANDROID TASK TYPES
+export namespace RuntimeAndroid {
+    export type ColorInput = RuntimeColors.ColorInput;
+    export type StateName = "enabled" | "pressed" | "focused" | "checked" | "selected" | "activated" | "window_focused";
+    export type State = number | StateName | `!${StateName}`;
+    export interface PaintOptions { color?: ColorInput; antiAlias?: boolean; strokeWidth?: number; textSize?: number; style?: "fill" | "stroke" | "fill_and_stroke"; }
+    export interface PaintInfo { readonly id: string; readonly __autojs6AndroidObject: "paint"; readonly color: number; readonly antiAlias: boolean; readonly strokeWidth: number; readonly textSize: number; readonly style: "fill" | "stroke" | "fill_and_stroke"; }
+    export interface PaintHandle extends PaintInfo {
+      toJSON(): PaintInfo;
+      getInfo(options?: AutomationCallOptions): Promise<PaintInfo>;
+      setColor(color: ColorInput, options?: AutomationCallOptions): Promise<void>;
+      measureText(text: string, options?: AutomationCallOptions): Promise<number>;
+      close(options?: AutomationCallOptions): Promise<boolean>;
+    }
+    export interface ColorStateListOptions { readonly states: readonly (readonly State[])[]; readonly colors: readonly ColorInput[]; }
+    /** JSON state/color data can be passed as a native TextView textColor. Methods require a live execution. */
+    export interface ColorStateListSnapshot {
+      readonly id: string;
+      readonly __autojs6AndroidObject: "colorStateList";
+      readonly states: readonly (readonly State[])[];
+      readonly colors: readonly number[];
+      readonly defaultColor: number;
+      readonly stateful: boolean;
+    }
+    export interface ColorStateListHandle extends ColorStateListSnapshot {
+      toJSON(): ColorStateListSnapshot;
+      getColorForState(states?: readonly State[], fallback?: ColorInput, options?: AutomationCallOptions): Promise<number>;
+      close(options?: AutomationCallOptions): Promise<boolean>;
+    }
+    export interface ThemeColor { readonly colorPrimary: number; readonly colorPrimaryDark: number; readonly colorAccent: number; }
+    export interface UriSnapshot {
+      readonly schema: "autojs6-node-app-uri-descriptor-v1";
+      readonly value: string; readonly scheme: string | null; readonly authority: string | null; readonly host: string | null;
+      readonly port: number; readonly path: string | null; readonly query: string | null; readonly fragment: string | null;
+    }
+    export interface AndroidModule {
+      createPaint(options?: PaintOptions, control?: AutomationCallOptions): Promise<PaintHandle>;
+      createColorStateList(descriptor: ColorStateListOptions, options?: AutomationCallOptions): Promise<ColorStateListHandle>;
+      setPaintColor(paint: PaintHandle, color: ColorInput, options?: AutomationCallOptions): Promise<void>;
+      getThemeColor(options?: AutomationCallOptions): Promise<ThemeColor>;
+      getUriForFile(path: string, options?: AutomationCallOptions): Promise<UriSnapshot>;
+      parseUri(uri: string | null | undefined, options?: AutomationCallOptions): Promise<UriSnapshot | null>;
+    }
+  }
+export namespace RuntimeTasks {
+    export type RepeatMode = "disposable" | "once" | "daily" | "weekly" | "monthly" | "yearly" | "countdown" | 0 | 1 | 2 | 3 | 4 | 5;
+    export type DateInput = Date | number | string;
+    export type Weekday = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
+    export interface TimedTaskOptions extends AutomationCallOptions {
+      path?: string; scriptPath?: string; entry?: string;
+      repeatMode?: RepeatMode;
+      date?: DateInput;
+      /** Local HH:mm[:ss[.SSS]], Date or epoch milliseconds. */
+      time?: DateInput;
+      delayMs?: number;
+      daysOfWeek?: readonly Weekday[];
+      dayOfMonth?: number; monthOfYear?: number;
+      endMode?: "forever" | "count" | "until_date" | "date";
+      times?: number; untilDate?: string;
+      delay?: number; interval?: number; loopTimes?: number;
+    }
+    export interface IntentTaskOptions extends AutomationCallOptions {
+      path?: string; scriptPath?: string; entry?: string;
+      action: string; category?: string | null; dataType?: string | null; local?: boolean; isLocal?: boolean;
+    }
+    export interface TimedTask {
+      readonly id: number; readonly kind: "timed"; readonly path: string;
+      readonly repeatMode: Exclude<RepeatMode, number | "once">;
+      readonly millis: number; readonly timeFlag: number; readonly nextTime: number; readonly scheduled: boolean;
+      readonly finishedTimes: number; readonly sourceKind: string | null; readonly projectRoot: string | null;
+      readonly options: Readonly<TimedTaskOptions>;
+    }
+    export interface TriggerIntent {
+      readonly action: string | null; readonly data: string | null; readonly type: string | null;
+      readonly packageName: string | null; readonly flags: number; readonly categories: readonly string[];
+      readonly extras: Readonly<Record<string, JsonValue>>; readonly receivedAt: number;
+    }
+    export interface IntentTask {
+      readonly id: number; readonly kind: "intent"; readonly path: string; readonly action: string;
+      readonly category: string | null; readonly dataType: string | null; readonly local: boolean;
+      readonly options: Readonly<IntentTaskOptions>; readonly lastIntent: TriggerIntent | null;
+    }
+    export type Task = TimedTask | IntentTask;
+    export interface QueryOptions extends AutomationCallOptions { path?: string; scriptPath?: string; repeatMode?: RepeatMode; action?: string; }
+    export interface LocalIntent {
+      action: string; category?: string | null; categories?: readonly string[]; type?: string | null; data?: string | null;
+      extras?: Readonly<Record<string, string | number | boolean | null>>;
+    }
+    export interface TasksModule {
+      addTask(options: TimedTaskOptions | IntentTaskOptions): Promise<Task>;
+      addTimedTask(options: TimedTaskOptions & { repeatMode: RepeatMode }): Promise<TimedTask>;
+      addDailyTask(options: TimedTaskOptions): Promise<TimedTask>;
+      addWeeklyTask(options: TimedTaskOptions & { daysOfWeek: readonly Weekday[] }): Promise<TimedTask>;
+      addMonthlyTask(options: TimedTaskOptions & { dayOfMonth: number }): Promise<TimedTask>;
+      addYearlyTask(options: TimedTaskOptions & { dayOfMonth: number; monthOfYear: number }): Promise<TimedTask>;
+      addDisposableTask(options: TimedTaskOptions): Promise<TimedTask>;
+      addCountdownTask(options: TimedTaskOptions & { delayMs: number }): Promise<TimedTask>;
+      addIntentTask(options: IntentTaskOptions): Promise<IntentTask>;
+      addBroadcastIntentTask(options: IntentTaskOptions): Promise<IntentTask>;
+      queryTasks(options?: QueryOptions): Promise<readonly Task[]>;
+      queryTimedTasks(options?: QueryOptions): Promise<readonly TimedTask[]>;
+      queryIntentTasks(options?: QueryOptions): Promise<readonly IntentTask[]>;
+      getTimedTask(id: number | string | TimedTask, options?: AutomationCallOptions): Promise<TimedTask | null>;
+      getIntentTask(id: number | string | IntentTask, options?: AutomationCallOptions): Promise<IntentTask | null>;
+      removeTask(task: Task | number | string, options?: AutomationCallOptions): Promise<boolean>;
+      removeTimedTask(id: number | string | TimedTask, options?: AutomationCallOptions): Promise<boolean>;
+      removeIntentTask(id: number | string | IntentTask, options?: AutomationCallOptions): Promise<boolean>;
+      updateTask(task: TimedTask, patch?: TimedTaskOptions): Promise<TimedTask | null>;
+      updateTask(task: IntentTask, patch?: Partial<IntentTaskOptions>): Promise<IntentTask | null>;
+      updateTask(task: Task, patch?: TimedTaskOptions | Partial<IntentTaskOptions>): Promise<Task | null>;
+      sendLocalBroadcastSync(action: string | LocalIntent, options?: AutomationCallOptions): Promise<boolean>;
+      daysToTimeFlag(days: readonly (0 | 1 | 2 | 3 | 4 | 5 | 6)[]): number;
+      timeFlagToDays(flag: number): readonly number[];
+    }
+  }
+export namespace RuntimeColors {
+    export type ColorInput =
+      | number
+      | bigint
+      | string
+      | {
+          readonly color?: number;
+          readonly colorPrimary?: number;
+          readonly a?: number;
+          readonly r?: number;
+          readonly g?: number;
+          readonly b?: number;
+        };
+
+    export interface ComponentOptions {
+      readonly max?: 1 | 255;
+    }
+
+    export interface AlphaStringOptions {
+      readonly keepTrailingZeroForFullAlpha?: boolean;
+    }
+
+    export interface ColorsModule {
+      readonly all: Readonly<Record<string, number>>;
+      /** Live asynchronous host theme; getThemeColor() accepts call options. */
+      readonly themeColor: Promise<RuntimeAndroid.ThemeColor>;
+      toInt(color: ColorInput): number;
+      toHex(color: ColorInput, alphaOrLength?: boolean | number | null): string;
+      toFullHex(color: ColorInput): string;
+      toString(color: ColorInput, alphaOrLength?: boolean | number | null): string;
+      alpha(color: ColorInput, options?: ComponentOptions | null): number;
+      getAlpha(color: ColorInput, options?: ComponentOptions | null): number;
+      alphaDouble(color: ColorInput): number;
+      getAlphaDouble(color: ColorInput): number;
+      setAlpha(color: ColorInput, alpha: number): number;
+      setAlphaRelative(color: ColorInput, percentage: number): number;
+      removeAlpha(color: ColorInput): number;
+      red(color: ColorInput, options?: ComponentOptions | null): number;
+      getRed(color: ColorInput, options?: ComponentOptions | null): number;
+      redDouble(color: ColorInput): number;
+      getRedDouble(color: ColorInput): number;
+      setRed(color: ColorInput, red: number): number;
+      setRedRelative(color: ColorInput, percentage: number): number;
+      removeRed(color: ColorInput): number;
+      green(color: ColorInput, options?: ComponentOptions | null): number;
+      getGreen(color: ColorInput, options?: ComponentOptions | null): number;
+      greenDouble(color: ColorInput): number;
+      getGreenDouble(color: ColorInput): number;
+      setGreen(color: ColorInput, green: number): number;
+      setGreenRelative(color: ColorInput, percentage: number): number;
+      removeGreen(color: ColorInput): number;
+      blue(color: ColorInput, options?: ComponentOptions | null): number;
+      getBlue(color: ColorInput, options?: ComponentOptions | null): number;
+      blueDouble(color: ColorInput): number;
+      getBlueDouble(color: ColorInput): number;
+      setBlue(color: ColorInput, blue: number): number;
+      setBlueRelative(color: ColorInput, percentage: number): number;
+      removeBlue(color: ColorInput): number;
+      argb(alpha: number, red: number, green: number, blue: number): number;
+      rgb(red: number, green: number, blue: number): number;
+      rgba(red: number, green: number, blue: number, alpha?: number): number;
+      hsv(hue: number, saturation: number, value: number): number;
+      hsva(hue: number, saturation: number, value: number, alpha?: number): number;
+      hsl(hue: number, saturation: number, lightness: number): number;
+      hsla(hue: number, saturation: number, lightness: number, alpha?: number): number;
+      toRgb(color: ColorInput): readonly [number, number, number];
+      toRgba(color: ColorInput): readonly [number, number, number, number];
+      toArgb(color: ColorInput): readonly [number, number, number, number];
+      toHsv(color: ColorInput): readonly [number, number, number];
+      toHsva(color: ColorInput): readonly [number, number, number, number];
+      toHsl(color: ColorInput): readonly [number, number, number];
+      toHsla(color: ColorInput): readonly [number, number, number, number];
+      toRgbString(color: ColorInput): string;
+      toRgbaString(color: ColorInput, options?: AlphaStringOptions | null): string;
+      toArgbString(color: ColorInput, options?: AlphaStringOptions | null): string;
+      toHsvString(color: ColorInput): string;
+      toHsvaString(color: ColorInput): string;
+      toHslString(color: ColorInput): string;
+      toHslaString(color: ColorInput): string;
+      isEqual(left: ColorInput, right: ColorInput): boolean;
+      isSimilar(left: ColorInput, right: ColorInput, threshold?: number | null): boolean;
+      luminance(color: ColorInput): number;
+      build(alpha?: number, red?: number, green?: number, blue?: number): number;
+      summary(color: ColorInput): string;
+      toColorStateList(color: ColorInput, ...colors: readonly ColorInput[]): Promise<RuntimeAndroid.ColorStateListHandle>;
+      createColorStateList(descriptor: RuntimeAndroid.ColorStateListOptions, options?: AutomationCallOptions): Promise<RuntimeAndroid.ColorStateListHandle>;
+      createPaint(options?: RuntimeAndroid.PaintOptions, control?: AutomationCallOptions): Promise<RuntimeAndroid.PaintHandle>;
+      getThemeColor(options?: AutomationCallOptions): Promise<RuntimeAndroid.ThemeColor>;
+      setPaintColor(paint: RuntimeAndroid.PaintHandle, color: ColorInput, options?: AutomationCallOptions): Promise<void>;
+    }
+  }
+// END GENERATED ANDROID TASK TYPES
+
 export interface HostClient {
+  readonly android: RuntimeAndroid.AndroidModule;
+  readonly colors: RuntimeColors.ColorsModule;
+  readonly tasks: RuntimeTasks.TasksModule;
   readonly events: RuntimeEvents.EventsModule;
   readonly notifications: RuntimeNotifications.NotificationsModule;
   readonly shell: RuntimeShell.ShellModule;
@@ -1395,7 +1606,7 @@ export namespace RuntimeUi {
       text?: string;
       hint?: string;
       textSize?: number | `${number}sp` | `${number}px`;
-      textColor?: string | number;
+      textColor?: string | number | RuntimeAndroid.ColorStateListSnapshot;
       textStyle?: 'normal' | 'bold' | 'italic' | 'bold|italic';
       singleLine?: boolean;
       maxLines?: number;
@@ -1712,7 +1923,7 @@ export namespace RuntimeUi {
       get textSize(): Promise<number>;
       set textSize(value: number | `${number}sp` | `${number}px`);
       get textColor(): Promise<number>;
-      set textColor(value: string | number);
+      set textColor(value: string | number | RuntimeAndroid.ColorStateListSnapshot);
       get textStyle(): Promise<'normal' | 'bold' | 'italic' | 'bold|italic'>;
       set textStyle(value: 'normal' | 'bold' | 'italic' | 'bold|italic');
       get singleLine(): Promise<boolean>;

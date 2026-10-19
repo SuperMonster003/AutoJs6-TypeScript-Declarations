@@ -290,3 +290,18 @@ async function checkBunDeviceDialogs(){
   // @ts-expect-error Dialog choices must be an array.
   host.dialogs.select('Pick','a');
 }
+
+const androidGrant:HostCapability='android.objects',tasksGrant:HostCapability='tasks.control';
+async function checkBunAndroidAndCalendar(){
+  const paint:import('autojs6:bun-host').RuntimeAndroid.PaintHandle=await host.colors.createPaint({color:'#abc'});
+  const measured:number=await paint.measureText('owned');const state=await host.android.createColorStateList({states:[['pressed'],[]],colors:[0xffff0000,0xff0000ff]});
+  const snapshot:import('autojs6:bun-host').RuntimeAndroid.ColorStateListSnapshot=state.toJSON();const view=await host.ui.createView('Text',{textColor:snapshot});
+  const task:import('autojs6:bun-host').RuntimeTasks.TimedTask=await host.tasks.addYearlyTask({path:'child.bun.js',time:'09:00',monthOfYear:2,dayOfMonth:29});
+  const intent=await host.tasks.addBroadcastIntentTask({path:'child.bun.js',action:'owned'});await host.tasks.updateTask(intent,{category:null});
+  const posted:boolean=await host.tasks.sendLocalBroadcastSync({action:'owned',extras:{ok:true},type:null});
+  await host.tasks.removeTask(task);await host.tasks.removeTask(intent);await state.close();await paint.close();await view.dispose();
+  // @ts-expect-error Paint style is a defined Android style.
+  host.android.createPaint({style:'unknown'});
+  // @ts-expect-error Task IDs are readonly snapshot fields.
+  task.id=7;
+}

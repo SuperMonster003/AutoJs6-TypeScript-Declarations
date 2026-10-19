@@ -397,3 +397,8 @@ Host 5584, Node Runtime 1.19.0 and Bun Runtime 0.8.0 share event and notificatio
 ## Device controls and dialogs (2026-10-19)
 
 Host 5585, Node Runtime 1.20.0 and Bun Runtime 0.9.0 share device and dialog facades across main threads and CJS/ESM/nested Workers. Bun has four independent default-off grants: device.control, device.power, device.audio and dialogs.control. Its legacy device.info format is preserved; getInfo returns the full live snapshot. Timed wake locks and Activity dialogs have independent client lifetimes and cancellation cleanup. Native Android settings and background Activity restrictions remain applicable. Progress handles reflect successful updates. Packaging derives the required Android permissions without granting special access. Validation is recorded in host docs/dev/runtime-device-dialogs-2026-10-19.md.
+
+
+## Android objects and persistent tasks (2026-10-19)
+
+Host 5586, Node Runtime 1.21.0 and Bun Runtime 0.10.0 provide native Paint/ColorStateList/theme/URI helpers and persistent calendar/IntentTask facades across main threads and CJS/ESM/nested Workers. Bun adds android.objects and tasks.control as independent default-off grants. Confirmed tasks survive execution exit; native object handles and unconfirmed registrations are cleaned up. Calendar recurrences follow local dates through DST, and receiver registration respects local/category/MIME distinctions. The legacy compat one-shot WorkManager path keeps string IDs; the tasks module uses numeric database IDs. Android exact-alarm access and background restrictions still apply. Full contracts are in Documentation api/runtimeApis.md; validation is recorded in host docs/dev/runtime-android-tasks-2026-10-19.md.
