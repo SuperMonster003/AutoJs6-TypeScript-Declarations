@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jun 14, 2026
+// Last modified: Oct 19, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -32,6 +32,18 @@ declare namespace Internal {
         getCommand(command: Shell.Command, commandArgument: Shell.CommandArguments): string;
         getCommand(command: Shell.Command, commandArgument: Shell.CommandArguments, withRoot: boolean | number): string;
 
+        /** Starts an execution-owned process. Numeric root flags belong to shell(), not spawn(). */
+        spawn(command: Shell.Command, options?: Shell.SpawnOptions | boolean | null): Shell.Process;
+
+        /** Replaces this script's root/adb defaults. Explicit null or undefined clears them. */
+        setDefaultOptions(options: Shell.DefaultOptions | null | undefined): void;
+
+        /** Root may request su authorization; adb checks the existing Shizuku grant. */
+        checkAccess(type: 'root' | 'adb'): boolean;
+
+        /** Reports root availability, without implying that permission has been granted. */
+        isRootAvailable(): boolean;
+
         /**
          * @see app.intentToShell
          */
@@ -55,8 +67,72 @@ declare namespace Shell {
 
     interface CommandArgumentMap {
         root?: boolean;
+        adb?: boolean;
         exit?: boolean;
         [name: string]: string | number | boolean | null | undefined;
+    }
+
+    /** Keeps Context overloads typed when an editor loads core declarations without Android SDK groups. */
+    interface AndroidContext extends android.content.Context {
+        getPackageName(): string;
+    }
+
+    interface DefaultOptions {
+        root?: boolean;
+        adb?: boolean;
+    }
+
+    interface SpawnOptions extends DefaultOptions {
+        /** Connects stdin/stdout/stderr to a pseudo-terminal; stderr merges into stdout. */
+        pty?: boolean;
+        /** Values are converted to strings; nullish values become an empty string. */
+        env?: Record<string, unknown>;
+        /** Relative paths resolve against the script working directory. */
+        cwd?: string;
+    }
+
+    interface Options extends SpawnOptions {
+        /** Only new Shell(options) accepts cmd; spawn receives a separate command. */
+        cmd?: string;
+    }
+
+    interface ProcessEventMap {
+        output: string;
+        errorOutput: string;
+        exit: number;
+    }
+
+    /** Native script object returned by shell.spawn/shizuku.spawn; not a global constructor. */
+    interface Process {
+        readonly pid: number;
+        readonly command: string;
+        readonly mode: 'sh' | 'root' | 'adb' | 'adb+root';
+        readonly exitCode: number | null;
+        isAlive(): boolean;
+        /** Blocks until a stdout line or EOF. Choose either lines, raw streams or events per stream. */
+        readLine(): string | null;
+        readErrorLine(): string | null;
+        write(text: string): this;
+        writeLine(text: string): this;
+        closeInput(): this;
+        waitFor(): number;
+        /** Milliseconds. Returns null if the process is still running at the deadline. */
+        waitFor(timeout: number): number | null;
+        /** Ends this process and its descendants; returns whether it was running. */
+        kill(): boolean;
+        getInputStream(): java.io.InputStream;
+        getErrorStream(): java.io.InputStream;
+        getOutputStream(): java.io.OutputStream;
+        on<E extends keyof ProcessEventMap>(event: E, listener: (value: ProcessEventMap[E]) => void): this;
+        addListener<E extends keyof ProcessEventMap>(event: E, listener: (value: ProcessEventMap[E]) => void): this;
+        once<E extends keyof ProcessEventMap>(event: E, listener: (value: ProcessEventMap[E]) => void): this;
+        prependListener<E extends keyof ProcessEventMap>(event: E, listener: (value: ProcessEventMap[E]) => void): this;
+        prependOnceListener<E extends keyof ProcessEventMap>(event: E, listener: (value: ProcessEventMap[E]) => void): this;
+        off<E extends keyof ProcessEventMap>(event: E, listener: (value: ProcessEventMap[E]) => void): this;
+        removeListener<E extends keyof ProcessEventMap>(event: E, listener: (value: ProcessEventMap[E]) => void): this;
+        removeAllListeners(event?: keyof ProcessEventMap | null): this;
+        listenerCount(event: keyof ProcessEventMap): number;
+        toString(): string;
     }
 
     type CommandArguments = string | CommandArgumentMap;

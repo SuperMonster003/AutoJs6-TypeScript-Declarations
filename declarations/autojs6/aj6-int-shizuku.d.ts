@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Oct 15, 2026
+// Last modified: Oct 19, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -35,6 +35,9 @@ declare namespace Internal {
         getCommand(command: Shell.Command, withRoot: boolean | number): string;
         getCommand(command: Shell.Command, commandArgument: Shell.CommandArguments): string;
         getCommand(command: Shell.Command, commandArgument: Shell.CommandArguments, withRoot: boolean | number): string;
+
+        /** Always uses Shizuku; ignores shell.setDefaultOptions, including an adb:false option. */
+        spawn(command: Shell.Command, options?: Shell.SpawnOptions | boolean | null): Shell.Process;
 
         kill(app: org.autojs.autojs.util.App | string): boolean;
 

@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.64.1
+
+###### 2026/10/19
+
+* `إصلاح` إكمال تعريفات أنواع عمليات shell/shizuku واقتراحاتها بما يشمل معاملات الأحداث ومنشئات Shell ذات الأنابيب
+
 ### v4.64.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `ميزة` واجهات database/sqlite للمضيف في Bun وWorkers من Node.js مع استعلامات بمعاملات ومعاملات ذرية وتخزين دائم
-
-### v4.62.0
-
-###### 2026/10/19
-
-* `ميزة` واجهات Bun للملفات والتخزين الدائم مع أذونات مستقلة وبيانات تخزين مشتركة مع Node.js
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

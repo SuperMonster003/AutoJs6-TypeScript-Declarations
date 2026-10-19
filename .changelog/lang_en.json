@@ -18,6 +18,15 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.64.1": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Missing shell/shizuku process declarations and completions, including event parameters and pipe-based Shell constructors"
+        }
+      ]
+    },
     "v4.64.0": {
       "released_date": "2026/10/19",
       "entries": [

@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.64.1
+
+###### 2026/10/19
+
+* `修复` shell/shizuku 进程接口的类型声明与补全缺漏, 包含事件参数及管道 Shell 构造器
+
 # v4.64.0
 
 ###### 2026/10/19

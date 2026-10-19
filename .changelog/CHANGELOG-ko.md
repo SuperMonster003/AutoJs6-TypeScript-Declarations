@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.64.1
+
+###### 2026/10/19
+
+* `수정` shell/shizuku 프로세스 타입 선언과 자동 완성 누락, 이벤트 인수 및 파이프 Shell 생성자 포함
+
 # v4.64.0
 
 ###### 2026/10/19

@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.64.1
+
+###### 2026/10/19
+
+* `Fix` Missing shell/shizuku process declarations and completions, including event parameters and pipe-based Shell constructors
+
 ### v4.64.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/19
 
 * `Feature` Host database/sqlite APIs for Bun and Node.js Workers with parameterized queries, transactions and persistence
-
-### v4.62.0
-
-###### 2026/10/19
-
-* `Feature` Bun file and persistent storage APIs with separate host-file grants and shared Node.js storage
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

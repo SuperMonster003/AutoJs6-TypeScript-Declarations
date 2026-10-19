@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.64.1
+
+###### 2026/10/19
+
+* `إصلاح` إكمال تعريفات أنواع عمليات shell/shizuku واقتراحاتها بما يشمل معاملات الأحداث ومنشئات Shell ذات الأنابيب
+
 # v4.64.0
 
 ###### 2026/10/19

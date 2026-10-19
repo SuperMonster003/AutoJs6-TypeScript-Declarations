@@ -415,7 +415,25 @@ declare class Image extends ImageWrapper {
 }
 
 declare class Shell extends org.autojs.autojs.runtime.api.Shell {
-    /* Empty body. */
+    constructor();
+    constructor(root: boolean);
+    constructor(context: Shell.AndroidContext);
+    constructor(context: Shell.AndroidContext, root: boolean);
+    constructor(context: Shell.AndroidContext, root: boolean, shouldReadOutput: boolean);
+    /** Creates a pipe-based shell; its process ends with the creating script. */
+    constructor(options: Shell.Options);
+    constructor(cmd: string);
+    isAdb(): boolean;
+    /** Pipe-based shells only. Mixing managed output with raw stream reads throws. */
+    execForResult(command: string): org.autojs.autojs.runtime.api.AbstractShell.Result;
+    getInputStream(): java.io.InputStream;
+    getErrorStream(): java.io.InputStream;
+    getOutputStream(): java.io.OutputStream;
+    waitFor(): number;
+    /** Java Integer wrapper, or null while running; use intValue()/Number() for strict comparison. */
+    exitCode(): java.lang.Integer | null;
+    exitAndReadOutput(): string;
+    raw(): java.lang.Process | jackpal.androidterm.emulatorview.TermSession;
 }
 
 declare class Paint extends android.graphics.Paint {

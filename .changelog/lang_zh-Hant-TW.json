@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.64.1": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "shell/shizuku 程序介面的型別宣告與補全遺漏, 包含事件參數及管道 Shell 建構式"
+        }
+      ]
+    },
     "v4.64.0": {
       "released_date": "2026/10/19",
       "entries": [

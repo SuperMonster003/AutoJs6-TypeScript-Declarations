@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.64.1
+
+###### 2026/10/19
+
+* `Corrección` Declaraciones y autocompletado ausentes de procesos shell/shizuku, incluidos eventos y constructores Shell con tuberías
+
 ### v4.64.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/19
 
 * `Función` API database/sqlite del anfitrión para Bun y Workers de Node.js, con consultas parametrizadas, transacciones y persistencia
-
-### v4.62.0
-
-###### 2026/10/19
-
-* `Función` API de archivos y almacenamiento persistente de Bun, con permisos independientes y almacenamiento compartido con Node.js
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

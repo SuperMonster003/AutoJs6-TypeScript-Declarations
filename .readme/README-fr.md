@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.64.1
+
+###### 2026/10/19
+
+* `Correction` Déclarations et complétions manquantes des processus shell/shizuku, dont les paramètres des événements et les constructeurs Shell avec tubes
+
 ### v4.64.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/19
 
 * `Fonctionnalité` API hôtes database/sqlite pour Bun et les Workers Node.js, avec requêtes paramétrées, transactions et persistance
-
-### v4.62.0
-
-###### 2026/10/19
-
-* `Fonctionnalité` API Bun de fichiers et de stockage persistant, avec autorisations distinctes et stockage partagé avec Node.js
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

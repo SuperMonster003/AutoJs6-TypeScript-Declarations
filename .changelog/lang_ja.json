@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.64.1": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "shell/shizuku プロセスの型宣言と補完の不足, イベント引数とパイプ型 Shell コンストラクターを含む"
+        }
+      ]
+    },
     "v4.64.0": {
       "released_date": "2026/10/19",
       "entries": [

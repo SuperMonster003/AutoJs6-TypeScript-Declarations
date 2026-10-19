@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.64.1
+
+###### 2026/10/19
+
+* `Исправление` Недостающие объявления типов и дополнения процессов shell/shizuku, включая параметры событий и конструкторы Shell с каналами
+
 # v4.64.0
 
 ###### 2026/10/19

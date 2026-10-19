@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.64.1
+
+###### 2026/10/19
+
+* `修正` shell/shizuku プロセスの型宣言と補完の不足, イベント引数とパイプ型 Shell コンストラクターを含む
+
 ### v4.64.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `機能` Node.js Worker と Bun の database/sqlite API. パラメーター付きクエリ, トランザクション, 永続化に対応
-
-### v4.62.0
-
-###### 2026/10/19
-
-* `機能` Bun ファイルと永続ストレージ API. 個別のホストファイル権限と Node.js ストレージの共有に対応
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

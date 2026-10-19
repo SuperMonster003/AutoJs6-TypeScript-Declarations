@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.64.1": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Déclarations et complétions manquantes des processus shell/shizuku, dont les paramètres des événements et les constructeurs Shell avec tubes"
+        }
+      ]
+    },
     "v4.64.0": {
       "released_date": "2026/10/19",
       "entries": [

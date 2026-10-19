@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.64.1
+
+###### 2026/10/19
+
+* `Corrección` Declaraciones y autocompletado ausentes de procesos shell/shizuku, incluidos eventos y constructores Shell con tuberías
+
 # v4.64.0
 
 ###### 2026/10/19

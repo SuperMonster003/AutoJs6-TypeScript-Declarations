@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.64.1": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "shell/shizuku 프로세스 타입 선언과 자동 완성 누락, 이벤트 인수 및 파이프 Shell 생성자 포함"
+        }
+      ]
+    },
     "v4.64.0": {
       "released_date": "2026/10/19",
       "entries": [

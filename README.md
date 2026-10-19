@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.64.1
+
+###### 2026/10/19
+
+* `修复` shell/shizuku 进程接口的类型声明与补全缺漏, 包含事件参数及管道 Shell 构造器
+
 ### v4.64.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `新增` Node.js Worker 与 Bun 的 database/sqlite API, 支持参数化查询, 事务和数据库持久化
-
-### v4.62.0
-
-###### 2026/10/19
-
-* `新增` Bun 文件与持久化存储 API, 支持独立授权的宿主文件读写及 Node.js 存储互通
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 
