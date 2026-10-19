@@ -178,6 +178,13 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.68.0
+
+###### 2026/10/19
+
+* `Feature` Android object helpers for Node.js, Bun and Workers, including Paint, ColorStateList, theme colors and FileProvider URIs
+* `Feature` Persistent calendar and IntentTask APIs for Node.js and Bun, with daily, weekly, monthly, yearly, one-shot, countdown and broadcast tasks
+
 ### v4.67.0
 
 ###### 2026/10/19
@@ -189,12 +196,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/19
 
 * `Feature` Host event observers and notifications for Bun and Node.js Workers, with independent subscription and notification cleanup
-
-### v4.65.0
-
-###### 2026/10/19
-
-* `Feature` Host Shell streaming, Shizuku authorization and process cleanup for Bun, Node.js and Workers
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

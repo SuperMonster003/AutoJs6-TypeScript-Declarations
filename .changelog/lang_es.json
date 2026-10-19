@@ -18,6 +18,19 @@
     "adjustment": "Ajuste"
   },
   "$data": {
+    "v4.68.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Objetos Android para Node.js, Bun y Workers, con Paint, ColorStateList, colores del tema y URI FileProvider"
+        },
+        {
+          "category": "feature",
+          "text": "API persistentes de calendario e IntentTask para Node.js y Bun, con tareas diarias, semanales, mensuales, anuales, únicas, de cuenta atrás y de difusión"
+        }
+      ]
+    },
     "v4.67.0": {
       "released_date": "2026/10/19",
       "entries": [

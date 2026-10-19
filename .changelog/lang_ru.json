@@ -18,6 +18,19 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.68.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Объекты Android для Node.js, Bun и Workers, включая Paint, ColorStateList, цвета темы и URI FileProvider"
+        },
+        {
+          "category": "feature",
+          "text": "Постоянные календарные задачи и IntentTask для Node.js и Bun, включая ежедневные, еженедельные, ежемесячные, ежегодные, разовые, отложенные и широковещательные задачи"
+        }
+      ]
+    },
     "v4.67.0": {
       "released_date": "2026/10/19",
       "entries": [

@@ -178,6 +178,13 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.68.0
+
+###### 2026/10/19
+
+* `機能` Node.js, Bun と Worker の Android オブジェクトヘルパー, Paint, ColorStateList, テーマ色と FileProvider URI
+* `機能` Node.js と Bun の永続的なカレンダーと IntentTask API, 毎日, 毎週, 毎月, 毎年, 単発, カウントダウンとブロードキャストのタスク
+
 ### v4.67.0
 
 ###### 2026/10/19
@@ -189,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `機能` Bun と Node.js Worker のホストイベントと通知 API, 独立した購読と通知の解放
-
-### v4.65.0
-
-###### 2026/10/19
-
-* `機能` Bun, Node.js と Worker のホスト Shell API, ストリーム入出力, Shizuku 許可とプロセス解放
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 
