@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.67.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun 與 Node.js Worker 的裝置控制及對話框 API, 支援亮度, 音量和獨立視窗清理"
+        }
+      ]
+    },
     "v4.66.0": {
       "released_date": "2026/10/19",
       "entries": [

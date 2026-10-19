@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.67.0
+
+###### 2026/10/19
+
+* `Функция` Управление устройством и диалоги для Bun и Node.js Workers с яркостью, громкостью и независимой очисткой окон
+
 # v4.66.0
 
 ###### 2026/10/19

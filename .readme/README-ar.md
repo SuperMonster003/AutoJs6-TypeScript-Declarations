@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.67.0
+
+###### 2026/10/19
+
+* `ميزة` التحكم بالجهاز ومربعات الحوار في Bun وNode.js Workers مع السطوع والصوت والتنظيف المستقل للنوافذ
+
 ### v4.66.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `ميزة` Shell المضيف مع تدفق الإدخال والإخراج وتفويض Shizuku وتنظيف العمليات في Bun وNode.js وWorkers
-
-### v4.64.1
-
-###### 2026/10/19
-
-* `إصلاح` إكمال تعريفات أنواع عمليات shell/shizuku واقتراحاتها بما يشمل معاملات الأحداث ومنشئات Shell ذات الأنابيب
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

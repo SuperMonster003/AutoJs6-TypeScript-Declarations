@@ -1,6 +1,6 @@
 /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
 export declare const SDK_VERSION: 1;
-export type HostCapability = "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
+export type HostCapability = "device.control" | "device.power" | "device.audio" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
 export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
 export declare class HostCallError extends Error {
   readonly code: string;
@@ -8,7 +8,7 @@ export declare class HostCallError extends Error {
   readonly status: number;
   constructor(code: string, message: string, capability?: string | null, status?: number);
 }
-export declare const HOST_API_METHODS: Readonly<Record<"events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
+export declare const HOST_API_METHODS: Readonly<Record<"device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
 export declare const OPENCC_CONVERSION_TYPES: readonly [
   "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
   "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -1049,6 +1049,184 @@ export namespace RuntimeNotifications {
   }
 // END GENERATED EVENT TYPES
 
+// BEGIN GENERATED DEVICE DIALOG TYPES
+export namespace RuntimeDevice {
+    export interface DeviceModule {
+      readonly sdkInt: number;
+      readonly width: number;
+      readonly height: number;
+      readonly density: number;
+      readonly densityDpi: number;
+      readonly release: string;
+      readonly model: string;
+      readonly brand: string;
+      readonly product: string;
+      readonly board: string;
+      readonly bootloader: string;
+      readonly hardware: string;
+      readonly fingerprint: string;
+      readonly buildId: string;
+      /** Live host snapshot. Synchronous properties above describe script startup. */
+      info(options?: AutomationCallOptions): Promise<DeviceInfo>;
+      /** Full live snapshot, also available in Bun without changing its legacy info() format. */
+      getInfo(options?: AutomationCallOptions): Promise<DeviceInfo>;
+      getWidth(options?: AutomationCallOptions): Promise<number>;
+      getHeight(options?: AutomationCallOptions): Promise<number>;
+      getDensity(options?: AutomationCallOptions): Promise<number>;
+      getDensityDpi(options?: AutomationCallOptions): Promise<number>;
+      getBrightness(options?: AutomationCallOptions): Promise<number>;
+      getBrightnessMode(options?: AutomationCallOptions): Promise<number>;
+      getBattery(options?: AutomationCallOptions): Promise<number>;
+      isCharging(options?: AutomationCallOptions): Promise<boolean>;
+      getSdkInt(options?: AutomationCallOptions): Promise<number>;
+      getRelease(options?: AutomationCallOptions): Promise<string>;
+      getModel(options?: AutomationCallOptions): Promise<string>;
+      getBrand(options?: AutomationCallOptions): Promise<string>;
+      getProduct(options?: AutomationCallOptions): Promise<string>;
+      getBoard(options?: AutomationCallOptions): Promise<string>;
+      getBootloader(options?: AutomationCallOptions): Promise<string>;
+      getHardware(options?: AutomationCallOptions): Promise<string>;
+      getFingerprint(options?: AutomationCallOptions): Promise<string>;
+      getBuildId(options?: AutomationCallOptions): Promise<string>;
+      getTotalMem(options?: AutomationCallOptions): Promise<number>;
+      getAvailMem(options?: AutomationCallOptions): Promise<number>;
+      /** Requires device.power and Android's modify-system-settings permission; value 0..255. */
+      setBrightness(value: number, options?: AutomationCallOptions): Promise<void>;
+      setBrightnessMode(mode: 0 | 1, options?: AutomationCallOptions): Promise<void>;
+      /** Requires device.power. Positive timeout; script exit also releases the wake lock. */
+      keepScreenOn(timeoutMs: number, options?: AutomationCallOptions): Promise<void>;
+      cancelKeepingAwake(options?: AutomationCallOptions): Promise<void>;
+      /** Audio helpers delegate to media and require media + media.audio. */
+      getMusicVolume(options?: AutomationCallOptions): Promise<number>;
+      getMusicMaxVolume(options?: AutomationCallOptions): Promise<number>;
+      setMusicVolume(value: number, options?: AutomationCallOptions): Promise<void>;
+      getNotificationVolume(options?: AutomationCallOptions): Promise<number>;
+      getNotificationMaxVolume(options?: AutomationCallOptions): Promise<number>;
+      setNotificationVolume(value: number, options?: AutomationCallOptions): Promise<void>;
+      getAlarmVolume(options?: AutomationCallOptions): Promise<number>;
+      getAlarmMaxVolume(options?: AutomationCallOptions): Promise<number>;
+      setAlarmVolume(value: number, options?: AutomationCallOptions): Promise<void>;
+      isScreenOn(options?: AutomationCallOptions): Promise<boolean>;
+      wakeUp(options?: AutomationCallOptions): Promise<void>;
+      vibrate(durationMs: number, options?: AutomationCallOptions): Promise<void>;
+      isIgnoringBatteryOptimizations(options?: AutomationCallOptions): Promise<boolean>;
+      openBatteryOptimizationSettings(options?: DevicePowerSettingsOptions): Promise<DevicePowerSettingsResult>;
+    }
+
+    export interface DeviceInfo {
+      readonly schema: "autojs6-bridge-device-info-v1";
+      readonly build: {
+        readonly sdkInt: number;
+        readonly release: string;
+        readonly model: string;
+        readonly brand: string;
+        readonly product: string;
+        readonly board: string;
+        readonly bootloader: string;
+        readonly hardware: string;
+        readonly fingerprint: string;
+        readonly buildId: string;
+        readonly [key: string]: unknown;
+      };
+      readonly screen: {
+        readonly width: number;
+        readonly height: number;
+        readonly density: number;
+        readonly densityDpi: number;
+        /** -1 if Android does not expose the setting. */
+        readonly brightness: number;
+        readonly brightnessMode: number;
+        readonly canWriteSettings: boolean;
+        readonly orientation: "portrait" | "landscape";
+        readonly rotation: number;
+        readonly rotationDegrees: number;
+      } | { readonly error: string };
+      readonly battery: {
+        readonly available: boolean;
+        readonly percent?: number;
+        readonly isCharging?: boolean;
+        readonly status?: string;
+        readonly plugged?: string;
+        readonly temperatureCelsius?: number | null;
+      } | { readonly error: string };
+      readonly memory: { readonly totalMem: number; readonly availMem: number } | { readonly error: string };
+      readonly screenOn: boolean;
+      readonly locale: string;
+      readonly timeZone: string;
+      readonly uptimeMs: number;
+      readonly now: number;
+      readonly [key: string]: unknown;
+    }
+
+    export interface DevicePowerSettingsOptions extends AutomationCallOptions {
+      dryRun?: boolean;
+    }
+
+    export interface DevicePowerSettingsResult {
+      readonly schema: "autojs6-node-battery-optimization-settings-v1";
+      readonly sdkInt: number;
+      readonly ignoringBatteryOptimizations: boolean;
+      readonly canOpenSettings: boolean;
+      readonly opened: boolean;
+      readonly dryRun: boolean;
+      readonly action: string;
+      readonly reason: string;
+    }
+  }
+export namespace RuntimeDialogs {
+    export interface DialogOptions extends AutomationCallOptions {
+      positive?: string;
+      negative?: string;
+      /** A neutral button returns the same value as cancellation. */
+      neutral?: string;
+    }
+
+    export type SelectItem = string | number | boolean;
+
+    export interface ProgressOptions {
+      readonly title?: string;
+      readonly message?: string;
+      readonly max?: number;
+      readonly value?: number;
+      readonly indeterminate?: boolean;
+    }
+    export interface ProgressState extends ProgressOptions {
+      readonly id: string;
+      readonly shown: boolean;
+      readonly max: number;
+      readonly value: number;
+      readonly indeterminate: boolean;
+    }
+    export interface ProgressHandle extends ProgressState {
+      update(patch: ProgressOptions, options?: AutomationCallOptions): Promise<ProgressState>;
+      dismiss(options?: AutomationCallOptions): Promise<boolean>;
+    }
+
+    export interface DialogsModule {
+      alert(title: string, message?: string, options?: DialogOptions): Promise<void>;
+      alert(title: string, options?: DialogOptions): Promise<void>;
+      confirm(title: string, message?: string, options?: DialogOptions): Promise<boolean>;
+      confirm(title: string, options?: DialogOptions): Promise<boolean>;
+      input(title: string, prefill?: string, options?: DialogOptions): Promise<string | null>;
+      input(title: string, options?: DialogOptions): Promise<string | null>;
+      prompt(title: string, prefill?: string, options?: DialogOptions): Promise<string | null>;
+      prompt(title: string, options?: DialogOptions): Promise<string | null>;
+      select(title: string, items: readonly SelectItem[], options?: DialogOptions): Promise<number>;
+      /** Returns entered text, with no JavaScript evaluation; cancellation returns null. */
+      rawInput(title: string, prefill?: string, options?: DialogOptions): Promise<string | null>;
+      rawInput(title: string, options?: DialogOptions): Promise<string | null>;
+      singleChoice(title: string, items: readonly SelectItem[], selected?: number, options?: DialogOptions): Promise<number>;
+      multiChoice(title: string, items: readonly SelectItem[], selected?: readonly number[], options?: DialogOptions): Promise<readonly number[]>;
+      /** Activity-backed dialogs; timeout, abort and Worker/execution exit dismiss owned windows. */
+      readonly progress: {
+        show(descriptor?: ProgressOptions, options?: AutomationCallOptions): Promise<ProgressHandle>;
+        update(id: string, patch: ProgressOptions, options?: AutomationCallOptions): Promise<ProgressState>;
+        dismiss(id: string, options?: AutomationCallOptions): Promise<boolean>;
+      };
+    }
+  }
+// END GENERATED DEVICE DIALOG TYPES
+
 export interface HostClient {
   readonly events: RuntimeEvents.EventsModule;
   readonly notifications: RuntimeNotifications.NotificationsModule;
@@ -1074,7 +1252,9 @@ export interface HostClient {
   /** Raw calls still obey the same host grants and method validation. No generic Node bridge is exposed. */
   call(capability: string, payload?: { readonly [key: string]: JsonValue }): Promise<{ [key: string]: JsonValue }>;
   toast(text: string, duration?: "short" | "long"): Promise<{ shown: boolean }>;
-  readonly device: { info(): Promise<DeviceInfo> };
+  /** Async device methods; info() preserves the original small snapshot, getInfo() returns the full live snapshot. */
+  readonly device: Omit<RuntimeDevice.DeviceModule, "info" | "sdkInt" | "width" | "height" | "density" | "densityDpi" | "release" | "model" | "brand" | "product" | "board" | "bootloader" | "hardware" | "fingerprint" | "buildId"> & { info(): Promise<DeviceInfo> };
+  readonly dialogs: RuntimeDialogs.DialogsModule;
   readonly ui: RuntimeUi.UiModule;
   readonly compose: RuntimeCompose.Api;
   readonly pinyin: PinyinApi;

@@ -276,3 +276,17 @@ async function checkBunHostShell(){
   // @ts-expect-error Native booleans are explicit options.
   host.shell.spawn('echo',{shizuku:1});
 }
+
+const deviceGrant:HostCapability='device.control',powerGrant:HostCapability='device.power',audioGrant:HostCapability='device.audio',dialogsGrant:HostCapability='dialogs.control';
+async function checkBunDeviceDialogs(){
+  const old:import('autojs6:bun-host').DeviceInfo=await host.device.info();
+  const full:import('autojs6:bun-host').RuntimeDevice.DeviceInfo=await host.device.getInfo();
+  const width:number=await host.device.getWidth();await host.device.setMusicVolume(0);
+  const text:string|null=await host.dialogs.prompt('Input',{negative:'Cancel'});
+  const selected:readonly number[]=await host.dialogs.multiChoice('Pick',[true,2,'a'],[0]);
+  const progress:import('autojs6:bun-host').RuntimeDialogs.ProgressHandle=await host.dialogs.progress.show({max:10,value:2});await progress.update({value:8});await progress.dismiss();
+  // @ts-expect-error Bun uses live async device getters, not Node startup properties.
+  host.device.width;
+  // @ts-expect-error Dialog choices must be an array.
+  host.dialogs.select('Pick','a');
+}

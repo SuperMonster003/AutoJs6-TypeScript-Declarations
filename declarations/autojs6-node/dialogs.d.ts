@@ -3,6 +3,7 @@ declare module "dialogs" {
     export interface DialogOptions extends AutoJs6Node.BridgeCallOptions {
       positive?: string;
       negative?: string;
+      /** A neutral button returns the same value as cancellation. */
       neutral?: string;
     }
 
@@ -29,14 +30,20 @@ declare module "dialogs" {
 
     export interface DialogsModule {
       alert(title: string, message?: string, options?: DialogOptions): Promise<void>;
+      alert(title: string, options?: DialogOptions): Promise<void>;
       confirm(title: string, message?: string, options?: DialogOptions): Promise<boolean>;
+      confirm(title: string, options?: DialogOptions): Promise<boolean>;
       input(title: string, prefill?: string, options?: DialogOptions): Promise<string | null>;
+      input(title: string, options?: DialogOptions): Promise<string | null>;
       prompt(title: string, prefill?: string, options?: DialogOptions): Promise<string | null>;
+      prompt(title: string, options?: DialogOptions): Promise<string | null>;
       select(title: string, items: readonly SelectItem[], options?: DialogOptions): Promise<number>;
       /** Returns entered text, with no JavaScript evaluation; cancellation returns null. */
       rawInput(title: string, prefill?: string, options?: DialogOptions): Promise<string | null>;
+      rawInput(title: string, options?: DialogOptions): Promise<string | null>;
       singleChoice(title: string, items: readonly SelectItem[], selected?: number, options?: DialogOptions): Promise<number>;
       multiChoice(title: string, items: readonly SelectItem[], selected?: readonly number[], options?: DialogOptions): Promise<readonly number[]>;
+      /** Activity-backed dialogs; timeout, abort and Worker/execution exit dismiss owned windows. */
       readonly progress: {
         show(descriptor?: ProgressOptions, options?: AutoJs6Node.BridgeCallOptions): Promise<ProgressHandle>;
         update(id: string, patch: ProgressOptions, options?: AutoJs6Node.BridgeCallOptions): Promise<ProgressState>;
@@ -48,3 +55,5 @@ declare module "dialogs" {
   const dialogs: dialogs.DialogsModule;
   export = dialogs;
 }
+
+declare module "autojs6:dialogs" { import dialogs = require("dialogs"); export = dialogs; }

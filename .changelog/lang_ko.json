@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.67.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun 및 Node.js Worker의 기기 제어와 대화상자 API, 밝기, 음량 및 독립 창 정리"
+        }
+      ]
+    },
     "v4.66.0": {
       "released_date": "2026/10/19",
       "entries": [

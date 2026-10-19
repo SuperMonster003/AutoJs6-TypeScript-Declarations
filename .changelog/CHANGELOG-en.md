@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.67.0
+
+###### 2026/10/19
+
+* `Feature` Device controls and dialogs for Bun and Node.js Workers, including brightness, volume and independent window cleanup
+
 # v4.66.0
 
 ###### 2026/10/19

@@ -17,6 +17,8 @@ declare module "device" {
       readonly buildId: string;
       /** Live host snapshot. Synchronous properties above describe script startup. */
       info(options?: AutoJs6Node.BridgeCallOptions): Promise<DeviceInfo>;
+      /** Full live snapshot, also available in Bun without changing its legacy info() format. */
+      getInfo(options?: AutoJs6Node.BridgeCallOptions): Promise<DeviceInfo>;
       getWidth(options?: AutoJs6Node.BridgeCallOptions): Promise<number>;
       getHeight(options?: AutoJs6Node.BridgeCallOptions): Promise<number>;
       getDensity(options?: AutoJs6Node.BridgeCallOptions): Promise<number>;
@@ -124,3 +126,5 @@ declare module "device" {
   const device: device.DeviceModule;
   export = device;
 }
+
+declare module "autojs6:device" { import device = require("device"); export = device; }

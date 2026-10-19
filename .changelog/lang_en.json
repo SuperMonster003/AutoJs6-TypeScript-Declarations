@@ -18,6 +18,15 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.67.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Device controls and dialogs for Bun and Node.js Workers, including brightness, volume and independent window cleanup"
+        }
+      ]
+    },
     "v4.66.0": {
       "released_date": "2026/10/19",
       "entries": [

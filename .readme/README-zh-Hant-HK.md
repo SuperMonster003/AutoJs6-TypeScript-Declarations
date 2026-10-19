@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.67.0
+
+###### 2026/10/19
+
+* `新增` Bun 與 Node.js Worker 的裝置控制及對話框 API, 支援亮度, 音量和獨立視窗清理
+
 ### v4.66.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `新增` Bun, Node.js 及 Worker 的宿主 Shell API, 支援串流輸入輸出, Shizuku 授權與進程清理
-
-### v4.64.1
-
-###### 2026/10/19
-
-* `修復` shell/shizuku 進程介面的類型宣告與補全遺漏, 包含事件參數及管道 Shell 建構器
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-HK.md)
 

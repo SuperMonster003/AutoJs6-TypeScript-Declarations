@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.67.0
+
+###### 2026/10/19
+
+* `기능` Bun 및 Node.js Worker의 기기 제어와 대화상자 API, 밝기, 음량 및 독립 창 정리
+
 ### v4.66.0
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `기능` Bun, Node.js 및 Worker의 호스트 Shell API, 스트리밍 입출력, Shizuku 승인 및 프로세스 정리
-
-### v4.64.1
-
-###### 2026/10/19
-
-* `수정` shell/shizuku 프로세스 타입 선언과 자동 완성 누락, 이벤트 인수 및 파이프 Shell 생성자 포함
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

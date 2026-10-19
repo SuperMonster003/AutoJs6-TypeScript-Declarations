@@ -392,3 +392,8 @@ Host 5583, Node Runtime 1.18.0 and Bun Runtime 0.7.0 share shell/shizuku facades
 ## Host events and notifications (2026-10-19)
 
 Host 5584, Node Runtime 1.19.0 and Bun Runtime 0.8.0 share event and notification facades across main threads and CJS/ESM/nested Workers. Bun has six independent default-off grants. Observers use immutable snapshots, lifecycle cancellation and bounded queues with overflow reports; notification IDs are scoped to their execution and client. Worker exit and late creation cleanup preserve parent resources. Native Node events remains EventEmitter. Android accessibility, notification-listener access and posting permission are separate prerequisites; Bun retains its existing bounded transport budget. Validation is recorded in host docs/dev/runtime-events-2026-10-19.md.
+
+
+## Device controls and dialogs (2026-10-19)
+
+Host 5585, Node Runtime 1.20.0 and Bun Runtime 0.9.0 share device and dialog facades across main threads and CJS/ESM/nested Workers. Bun has four independent default-off grants: device.control, device.power, device.audio and dialogs.control. Its legacy device.info format is preserved; getInfo returns the full live snapshot. Timed wake locks and Activity dialogs have independent client lifetimes and cancellation cleanup. Native Android settings and background Activity restrictions remain applicable. Progress handles reflect successful updates. Packaging derives the required Android permissions without granting special access. Validation is recorded in host docs/dev/runtime-device-dialogs-2026-10-19.md.

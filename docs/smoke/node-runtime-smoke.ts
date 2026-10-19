@@ -288,3 +288,18 @@ async function checkHostShell() {
   // @ts-expect-error Host process has no Java stream accessor.
   child.getInputStream();
 }
+
+import hostDevice = require('autojs6:device');
+import hostDialogs = require('autojs6:dialogs');
+async function checkDeviceDialogs(){
+  const full:hostDevice.DeviceInfo=await hostDevice.getInfo();const width:number=await hostDevice.getWidth();
+  await hostDevice.keepScreenOn(1000,{signal:hostShellSignal});await hostDevice.cancelKeepingAwake();
+  const value:string|null=await hostDialogs.input('Input',{positive:'Go',signal:hostShellSignal});
+  const selected:readonly number[]=await hostDialogs.multiChoice('Pick',['a','b'],[0]);
+  const progress:hostDialogs.ProgressHandle=await hostDialogs.progress.show({max:5,value:1});
+  const next:hostDialogs.ProgressState=await progress.update({value:4});const closed:boolean=await progress.dismiss();
+  // @ts-expect-error Progress values are read only.
+  progress.value=3;
+  // @ts-expect-error Brightness modes are Android's 0 and 1.
+  hostDevice.setBrightnessMode(2);
+}
