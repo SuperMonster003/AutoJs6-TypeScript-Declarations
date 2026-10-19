@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.64.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun と Node.js Worker のセンサー取得と購読 API, キャンセルとリスナーの自動解放"
+        }
+      ]
+    },
     "v4.63.0": {
       "released_date": "2026/10/19",
       "entries": [

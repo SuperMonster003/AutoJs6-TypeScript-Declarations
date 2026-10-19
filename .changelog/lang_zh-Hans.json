@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.64.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun 与 Node.js Worker 的传感器采样及订阅 API, 支持取消和监听器自动释放"
+        }
+      ]
+    },
     "v4.63.0": {
       "released_date": "2026/10/19",
       "entries": [

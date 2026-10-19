@@ -242,3 +242,12 @@ const workerDatabaseHandle: Promise<import('database').DatabaseHandle> = workerD
 const workerSqliteHandle: Promise<import('database').DatabaseHandle> = workerSqlite({name:'owned'});
 // @ts-expect-error A database name is required in the object overload.
 workerDatabase.open({timeoutMs:1000});
+
+import workerSensors = require('autojs6:sensors');
+async function checkWorkerSensors(){
+  const sample:import('sensors').SensorEvent=await workerSensors.once('gyroscope',{timeoutMs:5000});
+  const sub:import('sensors').SensorSubscription=workerSensors.subscribe('accelerometer',event=>{const value:number=event.values[0];});
+  await sub.ready;sub.once('accuracy',event=>{});await sub.close();
+  // @ts-expect-error Unsupported sensor type.
+  await workerSensors.once('pressure');
+}

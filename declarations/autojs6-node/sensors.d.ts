@@ -39,6 +39,7 @@ declare module "sensors" {
       readonly id: string;
       readonly type: SensorType;
       readonly closed: boolean;
+      /** Resolves after native registration. AbortSignal remains active until close. */
       readonly ready: Promise<void>;
       close(options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
     }
@@ -56,11 +57,18 @@ declare module "sensors" {
       };
 
       getAvailableSensors(options?: AutoJs6Node.BridgeCallOptions): Promise<readonly SensorInfo[]>;
+      /** Uses a temporary subscription; releases it on sample, timeout or abort. */
       once(type: SensorType, options?: SensorOptions): Promise<SensorEvent>;
       subscribe(type: SensorType, callback?: (event: SensorEvent) => void, options?: SensorOptions): SensorSubscription;
     }
   }
 
   const sensors: sensors.SensorsModule;
+  export = sensors;
+}
+
+/** Available in main threads and CommonJS/ESM/nested Workers. */
+declare module "autojs6:sensors" {
+  import sensors = require("sensors");
   export = sensors;
 }

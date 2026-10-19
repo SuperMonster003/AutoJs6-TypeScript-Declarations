@@ -1,6 +1,6 @@
 /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
 export declare const SDK_VERSION: 1;
-export type HostCapability = "database.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
+export type HostCapability = "database.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
 export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
 export declare class HostCallError extends Error {
   readonly code: string;
@@ -8,7 +8,7 @@ export declare class HostCallError extends Error {
   readonly status: number;
   constructor(code: string, message: string, capability?: string | null, status?: number);
 }
-export declare const HOST_API_METHODS: Readonly<Record<"database.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
+export declare const HOST_API_METHODS: Readonly<Record<"database.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
 export declare const OPENCC_CONVERSION_TYPES: readonly [
   "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
   "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -753,7 +753,74 @@ export namespace RuntimeSqlite {
   }
 // END GENERATED DATABASE TYPES
 
+// BEGIN GENERATED SENSORS TYPES
+export namespace RuntimeSensors {
+    export type SensorType = "accelerometer" | "gyroscope" | "light";
+
+    export interface SensorInfo {
+      readonly type: SensorType;
+      readonly name: string;
+      readonly vendor?: string;
+      readonly version?: number;
+      readonly resolution?: number;
+      readonly power?: number;
+      readonly minDelayUs?: number;
+      readonly maxDelayUs?: number;
+    }
+
+    export interface SensorEvent {
+      readonly type: SensorType;
+      readonly timestamp: number;
+      readonly accuracy: number;
+      readonly values: readonly number[];
+    }
+
+    export interface SensorOptions extends AutomationCallOptions {
+      samplingIntervalMs?: number;
+      intervalMs?: number;
+      maxQueueSize?: number;
+      drainIntervalMs?: number;
+    }
+
+    export interface SensorSubscription {
+      /** Present when the host negotiated pushed events. */
+      readonly subscriptionId?: string;
+      on(event: "event", listener: (event: SensorEvent) => void): this;
+      once(event: "event", listener: (event: SensorEvent) => void): this;
+      off(event: "event", listener: (event: SensorEvent) => void): this;
+      on(event: "close" | "accuracy" | "error", listener: (event: unknown) => void): this;
+      once(event: "close" | "accuracy" | "error", listener: (event: unknown) => void): this;
+      off(event: "close" | "accuracy" | "error", listener: (event: unknown) => void): this;
+      readonly id: string;
+      readonly type: SensorType;
+      readonly closed: boolean;
+      /** Resolves after native registration. AbortSignal remains active until close. */
+      readonly ready: Promise<void>;
+      close(options?: AutomationCallOptions): Promise<void>;
+    }
+
+    export interface SensorsModule {
+      readonly policy: {
+        readonly maxSubscriptions: number;
+        readonly minSamplingIntervalMs: number;
+        readonly defaultSamplingIntervalMs: number;
+        readonly maxSamplingIntervalMs: number;
+        readonly defaultTimeoutMs: number;
+        readonly drainIntervalMs: number;
+        readonly defaultMaxQueueSize: number;
+        readonly hardMaxQueueSize: number;
+      };
+
+      getAvailableSensors(options?: AutomationCallOptions): Promise<readonly SensorInfo[]>;
+      /** Uses a temporary subscription; releases it on sample, timeout or abort. */
+      once(type: SensorType, options?: SensorOptions): Promise<SensorEvent>;
+      subscribe(type: SensorType, callback?: (event: SensorEvent) => void, options?: SensorOptions): SensorSubscription;
+    }
+  }
+// END GENERATED SENSORS TYPES
+
 export interface HostClient {
+  readonly sensors: RuntimeSensors.SensorsModule;
   readonly database: RuntimeDatabase.DatabaseModule;
   readonly sqlite: RuntimeSqlite.SQLiteModule;
   readonly files: RuntimeFiles.FilesModule;

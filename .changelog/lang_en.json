@@ -18,6 +18,15 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.64.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Sensor sampling and subscriptions for Bun and Node.js Workers with cancellation and automatic listener cleanup"
+        }
+      ]
+    },
     "v4.63.0": {
       "released_date": "2026/10/19",
       "entries": [

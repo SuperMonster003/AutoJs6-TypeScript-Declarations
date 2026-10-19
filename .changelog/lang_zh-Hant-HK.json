@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.64.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Bun 與 Node.js Worker 的感應器取樣及訂閱 API, 支援取消和監聽器自動釋放"
+        }
+      ]
+    },
     "v4.63.0": {
       "released_date": "2026/10/19",
       "entries": [

@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.64.0
+
+###### 2026/10/19
+
+* `Функция` Измерения и подписки датчиков для Bun и Workers Node.js с отменой и автоматическим освобождением слушателей
+
 # v4.63.0
 
 ###### 2026/10/19

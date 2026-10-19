@@ -243,3 +243,14 @@ async function webFileTransfers(web: Awaited<ReturnType<HostClient["ui"]["create
   // @ts-expect-error Chooser mode names are explicit.
   await web.chooseFiles({mode:'folder'});
 }
+
+const sensorGrant: HostCapability = 'sensors.control';
+async function checkBunSensors() {
+  const sample: import('autojs6:bun-host').RuntimeSensors.SensorEvent = await host.sensors.once('accelerometer');
+  const sub=host.sensors.subscribe('light',e=>{const values:readonly number[]=e.values;},{signal:new AbortController().signal,samplingIntervalMs:250});
+  await sub.ready;sub.on('error',error=>{}).once('event',e=>{const type:string=e.type;});await sub.close();
+  // @ts-expect-error Only the three supported Android sensor types are available.
+  await host.sensors.once('pressure');
+  // @ts-expect-error Samples are immutable snapshots.
+  sample.values.push(1);
+}

@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.64.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Измерения и подписки датчиков для Bun и Workers Node.js с отменой и автоматическим освобождением слушателей"
+        }
+      ]
+    },
     "v4.63.0": {
       "released_date": "2026/10/19",
       "entries": [

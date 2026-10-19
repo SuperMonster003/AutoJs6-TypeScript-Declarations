@@ -377,3 +377,8 @@ Bun Runtime 0.4.0 / host 5579: host.files exposes the 15 usable Node file functi
 ## Host databases and Worker facades (2026-10-19)
 
 Host 5580, Node Runtime 1.16.0 and Bun Runtime 0.5.0 share the public database/sqlite factory. Bun uses a separate default-off database.control grant; Node main/CJS/ESM/nested Workers use database/sqlite and their autojs6: aliases. Object open options preserve timeoutMs/signal and reject missing names. Typed query parameters preserve NULL/numbers, multirow INSERT reports its actual count, and owner-thread cleanup rolls back unfinished manual transactions. Worker exit and unclaimed cancelled Bun opens release their handles. Host scope/SQL budgets remain separate from native node:sqlite and Bun SQLite. Verification: host docs/dev/bun-database-2026-10-19.md.
+
+
+## Sensors in Bun and Node Workers (2026-10-19)
+
+Host 5581, Node Runtime 1.17.0 and Bun Runtime 0.6.0 share sensors.getAvailableSensors/once/subscribe and subscription lifecycle. Bun uses the default-off sensors.control grant; Node uses sensors, including autojs6:sensors in CommonJS/ESM/nested Workers. Only actual accelerometer/gyroscope/light hardware is exposed. Sampling intervals are hints. once uses a temporary subscription and counts toward the shared four-subscription limit. Abort, timeout, Worker termination and abandoned registration clean up listeners. Main threads preserve pushed events; Workers and Bun poll bounded queues. Bun retains its 1024-call execution budget, so continuous polling is not an unlimited streaming channel. See host docs/dev/bun-sensors-2026-10-19.md for device and packaged verification.
