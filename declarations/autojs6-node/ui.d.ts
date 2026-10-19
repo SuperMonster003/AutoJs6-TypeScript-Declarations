@@ -119,7 +119,7 @@ declare module "ui" {
       text?: string;
       hint?: string;
       textSize?: number | `${number}sp` | `${number}px`;
-      textColor?: string | number;
+      textColor?: string | number | import("autojs6:android").ColorStateListSnapshot;
       textStyle?: 'normal' | 'bold' | 'italic' | 'bold|italic';
       singleLine?: boolean;
       maxLines?: number;
@@ -436,7 +436,7 @@ declare module "ui" {
       get textSize(): Promise<number>;
       set textSize(value: number | `${number}sp` | `${number}px`);
       get textColor(): Promise<number>;
-      set textColor(value: string | number);
+      set textColor(value: string | number | import("autojs6:android").ColorStateListSnapshot);
       get textStyle(): Promise<'normal' | 'bold' | 'italic' | 'bold|italic'>;
       set textStyle(value: 'normal' | 'bold' | 'italic' | 'bold|italic');
       get singleLine(): Promise<boolean>;

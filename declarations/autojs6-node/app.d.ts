@@ -85,7 +85,7 @@ declare module "app" {
       readonly versionCode: number;
       intent(request: IntentRequest): IntentDescriptor;
       parseUri(uri: string | null | undefined): UriDescriptor | null;
-      getUriForFile(path: string): never;
+      getUriForFile(path: string, options?: AutoJs6Node.BridgeCallOptions): Promise<import("autojs6:android").UriSnapshot>;
       intentToShell(request: IntentRequest | IntentDescriptor): string;
       openUrl(url: string, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
       openDualUrl(url: string, options?: AutoJs6Node.BridgeCallOptions): Promise<never>;

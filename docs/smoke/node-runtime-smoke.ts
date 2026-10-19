@@ -303,3 +303,25 @@ async function checkDeviceDialogs(){
   // @ts-expect-error Brightness modes are Android's 0 and 1.
   hostDevice.setBrightnessMode(2);
 }
+
+import androidObjects = require('autojs6:android');
+import calendarTasks = require('autojs6:tasks');
+import androidColors = require('autojs6:colors');
+import androidUi = require('ui');
+async function checkAndroidAndCalendarTasks(){
+  const paint:androidObjects.PaintHandle=await androidObjects.createPaint({color:'#f00',textSize:24,style:'stroke'});
+  const width:number=await paint.measureText('owned');await androidColors.setPaintColor(paint,'#00ff00');
+  const state=await androidColors.createColorStateList({states:[['!enabled'],[]],colors:['red','blue']});
+  const snapshot:androidObjects.ColorStateListSnapshot=state.toJSON();const view=await androidUi.createView('Text',{textColor:snapshot});
+  const theme:androidObjects.ThemeColor=await androidColors.themeColor;const uri:androidObjects.UriSnapshot=await androidObjects.getUriForFile('owned.txt');
+  const daily:calendarTasks.TimedTask=await calendarTasks.addDailyTask({path:'child.cjs',time:'09:00',endMode:'count',times:2});
+  const updated:calendarTasks.TimedTask|null=await calendarTasks.updateTask(daily,{time:'10:00'});
+  const intent:calendarTasks.IntentTask=await calendarTasks.addIntentTask({path:'child.cjs',action:'owned',category:null,dataType:'text/plain'});
+  await calendarTasks.updateTask(intent,{dataType:null});await calendarTasks.sendLocalBroadcastSync({action:'owned',extras:{value:3}});
+  const received:number|undefined=intent.lastIntent?.receivedAt;
+  await calendarTasks.removeTask(intent);await calendarTasks.removeTask(daily);await paint.close();await state.close();await view.dispose();
+  // @ts-expect-error Native Paint snapshots are readonly.
+  paint.color=1;
+  // @ts-expect-error Calendar weekdays are limited to the documented values.
+  calendarTasks.addWeeklyTask({path:'child.cjs',time:'09:00',daysOfWeek:[8]});
+}

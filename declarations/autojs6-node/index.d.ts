@@ -64,3 +64,6 @@
 /// <reference path="./rhino.d.ts" />
 /// <reference path="./rhino_compat.d.ts" />
 /// <reference path="./plugins.d.ts" />
+
+/// <reference path="./android.d.ts" />
+/// <reference path="./tasks.d.ts" />

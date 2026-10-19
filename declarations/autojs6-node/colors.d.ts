@@ -6,6 +6,7 @@ declare module "colors" {
       | string
       | {
           readonly color?: number;
+          readonly colorPrimary?: number;
           readonly a?: number;
           readonly r?: number;
           readonly g?: number;
@@ -22,7 +23,8 @@ declare module "colors" {
 
     export interface ColorsModule {
       readonly all: Readonly<Record<string, number>>;
-      readonly themeColor: never;
+      /** Live asynchronous host theme; getThemeColor() accepts call options. */
+      readonly themeColor: Promise<import("autojs6:android").ThemeColor>;
       toInt(color: ColorInput): number;
       toHex(color: ColorInput, alphaOrLength?: boolean | number | null): string;
       toFullHex(color: ColorInput): string;
@@ -81,11 +83,16 @@ declare module "colors" {
       luminance(color: ColorInput): number;
       build(alpha?: number, red?: number, green?: number, blue?: number): number;
       summary(color: ColorInput): string;
-      toColorStateList(...colors: readonly ColorInput[]): never;
-      setPaintColor(paint: unknown, color: ColorInput): never;
+      toColorStateList(color: ColorInput, ...colors: readonly ColorInput[]): Promise<import("autojs6:android").ColorStateListHandle>;
+      createColorStateList(descriptor: import("autojs6:android").ColorStateListOptions, options?: AutoJs6Node.BridgeCallOptions): Promise<import("autojs6:android").ColorStateListHandle>;
+      createPaint(options?: import("autojs6:android").PaintOptions, control?: AutoJs6Node.BridgeCallOptions): Promise<import("autojs6:android").PaintHandle>;
+      getThemeColor(options?: AutoJs6Node.BridgeCallOptions): Promise<import("autojs6:android").ThemeColor>;
+      setPaintColor(paint: import("autojs6:android").PaintHandle, color: ColorInput, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
     }
   }
 
   const colors: colors.ColorsModule;
   export = colors;
 }
+
+declare module "autojs6:colors" { import colors = require("colors"); export = colors; }
