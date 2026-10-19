@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.68.1
+
+###### 2026/10/19
+
+* `修正` Tap, Swipe, KeyCode などのグローバル互換関数の型コメントに setDefaultOptions({ adb: true }) 後の Shizuku 経由実行が未記載
+
 # v4.68.0
 
 ###### 2026/10/19

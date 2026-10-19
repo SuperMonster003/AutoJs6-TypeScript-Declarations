@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.68.1
+
+###### 2026/10/19
+
+* `Correction` Commentaires de types des fonctions globales de compatibilité telles que Tap, Swipe et KeyCode n'indiquant pas leur exécution via Shizuku après setDefaultOptions({ adb: true })
+
 # v4.68.0
 
 ###### 2026/10/19

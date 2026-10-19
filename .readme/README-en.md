@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.68.1
+
+###### 2026/10/19
+
+* `Fix` Type comments of global compatibility functions such as Tap, Swipe and KeyCode not mentioning that they run through Shizuku after setDefaultOptions({ adb: true })
+
 ### v4.68.0
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/19
 
 * `Feature` Device controls and dialogs for Bun and Node.js Workers, including brightness, volume and independent window cleanup
-
-### v4.66.0
-
-###### 2026/10/19
-
-* `Feature` Host event observers and notifications for Bun and Node.js Workers, with independent subscription and notification cleanup
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

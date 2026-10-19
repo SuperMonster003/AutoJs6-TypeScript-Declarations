@@ -140,46 +140,66 @@ declare namespace Shell {
 }
 
 /**
+ * Sets the coordinate scale base of the shell behind Tap and Swipe. After `$shell.setDefaultOptions({ adb: true })`
+ * that is the Shizuku shell, whose base is kept separately, so call this after setDefaultOptions.
  * @example Source code summary (zh-CN: 源代码摘要)
  * scope.SetScreenMetrics = function (w, h) {
- *     __runtime__.getRootShell().SetScreenMetrics(w, h);
+ *     // adbDefault: $shell.setDefaultOptions({ adb: true }) in this script
+ *     (adbDefault ? shizukuCommandShell : __runtime__.getRootShell()).SetScreenMetrics(w, h);
  * };
  * @see org.autojs.autojs.runtime.api.AbstractShell.SetScreenMetrics
+ * @see Internal.Shell.setDefaultOptions
  */
 declare function SetScreenMetrics(w: number, h: number): void;
 
 /**
+ * Writes `input tap` to the runtime root shell, scaled by SetScreenMetrics. After `$shell.setDefaultOptions({ adb: true })`
+ * it runs through Shizuku instead and throws when Shizuku is unavailable.
  * @example Source code summary (zh-CN: 源代码摘要)
  * scope.Tap = function (x, y) {
- *     __runtime__.getRootShell().Tap(x, y);
+ *     // adbDefault: $shell.setDefaultOptions({ adb: true }) in this script
+ *     (adbDefault ? shizukuCommandShell : __runtime__.getRootShell()).Tap(x, y);
  * };
  * @see org.autojs.autojs.runtime.api.AbstractShell.Tap
+ * @see Internal.Shell.setDefaultOptions
  */
 declare function Tap(x: number, y: number): void;
 
 /**
+ * Writes `input swipe` to the runtime root shell, scaled by SetScreenMetrics. After `$shell.setDefaultOptions({ adb: true })`
+ * it runs through Shizuku instead and throws when Shizuku is unavailable.
  * @example Source code summary (zh-CN: 源代码摘要)
  * scope.Swipe = function (x1, y1, x2, y2, duration) {
- *     if (arguments.length == 5) {
- *         __runtime__.getRootShell().Swipe(x1, y1, x2, y2, duration);
+ *     // adbDefault: $shell.setDefaultOptions({ adb: true }) in this script
+ *     let sh = adbDefault ? shizukuCommandShell : __runtime__.getRootShell();
+ *     if (duration != null) {
+ *         sh.Swipe(x1, y1, x2, y2, duration);
  *     } else {
- *         __runtime__.getRootShell().Swipe(x1, y1, x2, y2);
+ *         sh.Swipe(x1, y1, x2, y2);
  *     }
  * };
  * @see org.autojs.autojs.runtime.api.AbstractShell.Swipe
+ * @see Internal.Shell.setDefaultOptions
  */
 declare function Swipe(x1: number, y1: number, x2: number, y2: number, duration?: number): void;
 
 /**
+ * Writes `screencap -p` to the runtime root shell without waiting for it. After `$shell.setDefaultOptions({ adb: true })`
+ * it runs through Shizuku instead and waits for the command to end.
  * @example Source code summary (zh-CN: 源代码摘要)
  * scope.Screencap = function (path) {
- *     __runtime__.getRootShell().Screencap(path);
+ *     // adbDefault: $shell.setDefaultOptions({ adb: true }) in this script
+ *     (adbDefault ? shizukuCommandShell : __runtime__.getRootShell()).Screencap(path);
  * };
  * @see org.autojs.autojs.runtime.api.AbstractShell.Screencap
+ * @see Internal.Shell.setDefaultOptions
  */
 declare function Screencap(path: string): void;
 
 /**
+ * Sends a key event. The key is a number, a full name (`'KEYCODE_BACK'`), a name without the prefix (`'BACK'`) or a hex string.
+ * Uses Shizuku `input keyevent` while Shizuku is operational, otherwise the runtime root shell. After
+ * `$shell.setDefaultOptions({ adb: true })` it always uses Shizuku and throws when Shizuku is unavailable.
  * @example
  * // 1: KEYCODE_MENU
  * // 2: KEYCODE_SOFT_RIGHT
@@ -269,9 +289,14 @@ declare function Screencap(path: string): void;
  * KeyCode(3); // Home button
  * @example Source code summary (zh-CN: 源代码摘要)
  * scope.KeyCode = function (keyCode) {
- *     __runtime__.getRootShell().KeyCode(keyCode);
+ *     let code = parseKeyCode(keyCode); // throws for an unknown key
+ *     // adbDefault: $shell.setDefaultOptions({ adb: true }) in this script
+ *     if (adbDefault) shizukuCommandShell.KeyCode(code);
+ *     else if (shizuku.isOperational) shizuku('input keyevent ' + code);
+ *     else __runtime__.getRootShell().KeyCode(code);
  * };
  * @see org.autojs.autojs.runtime.api.AbstractShell.KeyCode
+ * @see Internal.Shell.setDefaultOptions
  * @see android.view.KeyEvent
  * @see https://developer.android.com/reference/android/view/KeyEvent
  */
@@ -386,11 +411,15 @@ declare function Menu(): void;
 declare function Camera(): void;
 
 /**
+ * Writes `input text` to the runtime root shell without waiting for it. After `$shell.setDefaultOptions({ adb: true })`
+ * it runs through Shizuku instead and waits for the command to end.
  * @example Source code summary (zh-CN: 源代码摘要)
  * scope.Text = function (text) {
- *     __runtime__.getRootShell().Text(text);
+ *     // adbDefault: $shell.setDefaultOptions({ adb: true }) in this script
+ *     (adbDefault ? shizukuCommandShell : __runtime__.getRootShell()).Text(text);
  * };
  * @see org.autojs.autojs.runtime.api.AbstractShell.Text
+ * @see Internal.Shell.setDefaultOptions
  */
 declare function Text(text: string): void;
 

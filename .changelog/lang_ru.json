@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.68.1": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Комментарии типов глобальных функций совместимости Tap, Swipe, KeyCode и других не упоминали выполнение через Shizuku после setDefaultOptions({ adb: true })"
+        }
+      ]
+    },
     "v4.68.0": {
       "released_date": "2026/10/19",
       "entries": [

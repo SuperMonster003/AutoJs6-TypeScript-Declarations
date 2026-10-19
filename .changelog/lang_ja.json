@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.68.1": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Tap, Swipe, KeyCode などのグローバル互換関数の型コメントに setDefaultOptions({ adb: true }) 後の Shizuku 経由実行が未記載"
+        }
+      ]
+    },
     "v4.68.0": {
       "released_date": "2026/10/19",
       "entries": [

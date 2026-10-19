@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.68.1
+
+###### 2026/10/19
+
+* `修复` 全局兼容函数 Tap, Swipe, KeyCode 等的类型注释未说明 setDefaultOptions({ adb: true }) 后改经 Shizuku 执行
+
 # v4.68.0
 
 ###### 2026/10/19

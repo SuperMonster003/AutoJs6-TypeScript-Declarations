@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.68.1
+
+###### 2026/10/19
+
+* `Исправление` Комментарии типов глобальных функций совместимости Tap, Swipe, KeyCode и других не упоминали выполнение через Shizuku после setDefaultOptions({ adb: true })
+
 # v4.68.0
 
 ###### 2026/10/19

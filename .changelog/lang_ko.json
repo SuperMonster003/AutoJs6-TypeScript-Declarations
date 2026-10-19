@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.68.1": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Tap, Swipe, KeyCode 등 전역 호환 함수의 타입 주석에 setDefaultOptions({ adb: true }) 이후 Shizuku 경유 실행 설명 누락"
+        }
+      ]
+    },
     "v4.68.0": {
       "released_date": "2026/10/19",
       "entries": [

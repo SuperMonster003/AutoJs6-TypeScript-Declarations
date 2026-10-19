@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.68.1
+
+###### 2026/10/19
+
+* `Correction` Commentaires de types des fonctions globales de compatibilité telles que Tap, Swipe et KeyCode n'indiquant pas leur exécution via Shizuku après setDefaultOptions({ adb: true })
+
 ### v4.68.0
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/19
 
 * `Fonctionnalité` Commandes de périphérique et dialogues pour Bun et les Workers Node.js, avec luminosité, volume et nettoyage indépendant des fenêtres
-
-### v4.66.0
-
-###### 2026/10/19
-
-* `Fonctionnalité` Événements et notifications hôtes pour Bun et les Workers Node.js, avec nettoyage indépendant des abonnements et notifications
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

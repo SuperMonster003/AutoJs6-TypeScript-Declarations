@@ -18,6 +18,15 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.68.1": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "تعليقات أنواع دوال التوافق العامة مثل Tap و Swipe و KeyCode لم تذكر تنفيذها عبر Shizuku بعد setDefaultOptions({ adb: true })"
+        }
+      ]
+    },
     "v4.68.0": {
       "released_date": "2026/10/19",
       "entries": [

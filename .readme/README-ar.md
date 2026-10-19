@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.68.1
+
+###### 2026/10/19
+
+* `إصلاح` تعليقات أنواع دوال التوافق العامة مثل Tap و Swipe و KeyCode لم تذكر تنفيذها عبر Shizuku بعد setDefaultOptions({ adb: true })
+
 ### v4.68.0
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `ميزة` التحكم بالجهاز ومربعات الحوار في Bun وNode.js Workers مع السطوع والصوت والتنظيف المستقل للنوافذ
-
-### v4.66.0
-
-###### 2026/10/19
-
-* `ميزة` أحداث وإشعارات المضيف في Bun وNode.js Workers مع تنظيف مستقل للاشتراكات والإشعارات
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

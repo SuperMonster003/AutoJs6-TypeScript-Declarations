@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.68.1
+
+###### 2026/10/19
+
+* `Corrección` Comentarios de tipos de las funciones globales de compatibilidad como Tap, Swipe y KeyCode que no indicaban su ejecución mediante Shizuku tras setDefaultOptions({ adb: true })
+
 ### v4.68.0
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/19
 
 * `Función` Control del dispositivo y diálogos para Bun y Workers de Node.js, con brillo, volumen y limpieza independiente de ventanas
-
-### v4.66.0
-
-###### 2026/10/19
-
-* `Función` Eventos y notificaciones del anfitrión para Bun y Workers de Node.js, con limpieza independiente de suscripciones y notificaciones
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

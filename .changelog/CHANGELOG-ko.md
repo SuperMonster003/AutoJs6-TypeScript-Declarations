@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.68.1
+
+###### 2026/10/19
+
+* `수정` Tap, Swipe, KeyCode 등 전역 호환 함수의 타입 주석에 setDefaultOptions({ adb: true }) 이후 Shizuku 경유 실행 설명 누락
+
 # v4.68.0
 
 ###### 2026/10/19

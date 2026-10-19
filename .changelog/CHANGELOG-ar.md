@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.68.1
+
+###### 2026/10/19
+
+* `إصلاح` تعليقات أنواع دوال التوافق العامة مثل Tap و Swipe و KeyCode لم تذكر تنفيذها عبر Shizuku بعد setDefaultOptions({ adb: true })
+
 # v4.68.0
 
 ###### 2026/10/19

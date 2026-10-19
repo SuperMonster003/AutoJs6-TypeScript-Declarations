@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.68.1": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "全局兼容函数 Tap, Swipe, KeyCode 等的类型注释未说明 setDefaultOptions({ adb: true }) 后改经 Shizuku 执行"
+        }
+      ]
+    },
     "v4.68.0": {
       "released_date": "2026/10/19",
       "entries": [

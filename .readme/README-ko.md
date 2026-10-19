@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.68.1
+
+###### 2026/10/19
+
+* `수정` Tap, Swipe, KeyCode 등 전역 호환 함수의 타입 주석에 setDefaultOptions({ adb: true }) 이후 Shizuku 경유 실행 설명 누락
+
 ### v4.68.0
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `기능` Bun 및 Node.js Worker의 기기 제어와 대화상자 API, 밝기, 음량 및 독립 창 정리
-
-### v4.66.0
-
-###### 2026/10/19
-
-* `기능` Bun 및 Node.js Worker의 호스트 이벤트 및 알림 API, 독립 구독과 알림 정리
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

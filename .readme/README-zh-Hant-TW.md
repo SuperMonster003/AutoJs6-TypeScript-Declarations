@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.68.1
+
+###### 2026/10/19
+
+* `修復` 全域相容函式 Tap, Swipe, KeyCode 等的型別註解未說明 setDefaultOptions({ adb: true }) 後改經 Shizuku 執行
+
 ### v4.68.0
 
 ###### 2026/10/19
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `新增` Bun 與 Node.js Worker 的裝置控制及對話方塊 API, 支援亮度, 音量和獨立視窗清理
-
-### v4.66.0
-
-###### 2026/10/19
-
-* `新增` Bun 與 Node.js Worker 的宿主事件及通知 API, 支援獨立訂閱與通知清理
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-TW.md)
 
