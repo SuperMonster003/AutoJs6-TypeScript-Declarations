@@ -1,6 +1,6 @@
 /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
 export declare const SDK_VERSION: 1;
-export type HostCapability = "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
+export type HostCapability = "database.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
 export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
 export declare class HostCallError extends Error {
   readonly code: string;
@@ -8,7 +8,7 @@ export declare class HostCallError extends Error {
   readonly status: number;
   constructor(code: string, message: string, capability?: string | null, status?: number);
 }
-export declare const HOST_API_METHODS: Readonly<Record<"files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
+export declare const HOST_API_METHODS: Readonly<Record<"database.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
 export declare const OPENCC_CONVERSION_TYPES: readonly [
   "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
   "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -704,7 +704,58 @@ export namespace RuntimeFiles {
   }
 // END GENERATED FILE TYPES
 
+// BEGIN GENERATED DATABASE TYPES
+export namespace RuntimeDatabase {
+    export type SqlParam = string | number | boolean | null;
+
+    export interface OpenOptions extends AutomationCallOptions {
+      readonly name: string;
+    }
+
+    export interface RunResult {
+      readonly rowsAffected: number | null;
+      readonly insertId: number | null;
+    }
+
+    export type Row = Readonly<Record<string, JsonValue>>;
+
+    export interface TransactionOperation {
+      readonly type: "exec" | "run" | "get" | "all";
+      readonly sql: string;
+      readonly params?: readonly SqlParam[];
+    }
+
+    export type TransactionResult = undefined | RunResult | Row | readonly Row[] | null;
+
+    export interface DatabaseHandle {
+      readonly id: string;
+      readonly name: string;
+      exec(sql: string, params?: readonly SqlParam[], options?: AutomationCallOptions): Promise<void>;
+      run(sql: string, params?: readonly SqlParam[], options?: AutomationCallOptions): Promise<RunResult>;
+      get(sql: string, params?: readonly SqlParam[], options?: AutomationCallOptions): Promise<Row | null>;
+      all(sql: string, params?: readonly SqlParam[], options?: AutomationCallOptions): Promise<readonly Row[]>;
+      transaction(operations: readonly TransactionOperation[], options?: AutomationCallOptions): Promise<readonly TransactionResult[]>;
+      close(options?: AutomationCallOptions): Promise<boolean>;
+    }
+
+    export interface DatabaseModule {
+      open(name: string, options?: AutomationCallOptions): Promise<DatabaseHandle>;
+      open(options: OpenOptions): Promise<DatabaseHandle>;
+    }
+  }
+export namespace RuntimeSqlite {
+    export interface SQLiteModule {
+      (name: string, options?: AutomationCallOptions): Promise<RuntimeDatabase.DatabaseHandle>;
+      (options: RuntimeDatabase.OpenOptions): Promise<RuntimeDatabase.DatabaseHandle>;
+      open(name: string, options?: AutomationCallOptions): Promise<RuntimeDatabase.DatabaseHandle>;
+      open(options: RuntimeDatabase.OpenOptions): Promise<RuntimeDatabase.DatabaseHandle>;
+    }
+  }
+// END GENERATED DATABASE TYPES
+
 export interface HostClient {
+  readonly database: RuntimeDatabase.DatabaseModule;
+  readonly sqlite: RuntimeSqlite.SQLiteModule;
   readonly files: RuntimeFiles.FilesModule;
   readonly storage: RuntimeStorage.StorageModule;
   readonly storages: RuntimeStorage.StorageModule;

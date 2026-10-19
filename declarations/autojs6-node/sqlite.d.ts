@@ -15,6 +15,12 @@ declare module "sqlite" {
   export = sqlite;
 }
 
+/** Callable host database facade, also available in CommonJS/ESM/nested Workers. */
+declare module "autojs6:sqlite" {
+  import sqlite = require("sqlite");
+  export = sqlite;
+}
+
 /** Native Node SQLite; file paths follow the execution's filesystem policy. */
 declare module "node:sqlite" {
   export type SQLInputValue = null | number | bigint | string | Uint8Array;

@@ -41,3 +41,9 @@ declare module "database" {
   const database: database.DatabaseModule;
   export = database;
 }
+
+/** Same asynchronous host facade in main threads and CommonJS/ESM/nested Workers. */
+declare module "autojs6:database" {
+  import database = require("database");
+  export = database;
+}

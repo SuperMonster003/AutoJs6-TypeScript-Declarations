@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.63.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js Worker 与 Bun 的 database/sqlite API, 支持参数化查询, 事务和数据库持久化"
+        }
+      ]
+    },
     "v4.62.0": {
       "released_date": "2026/10/19",
       "entries": [

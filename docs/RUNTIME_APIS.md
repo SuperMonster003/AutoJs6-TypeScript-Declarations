@@ -372,3 +372,8 @@ files remain available while the View or a copying download holds them.
 
 
 Bun Runtime 0.4.0 / host 5579: host.files exposes the 15 usable Node file functions, with asynchronous host I/O and synchronous POSIX name helpers. files.control and storage.control are separate default-off grants. host.storage/host.storages reproduce the Node facade, including Promise-returning Sync aliases, and share its package/working-directory persistence backend. Host files persist independently of the Bun workspace snapshot. JSON/base64 transport budgets, Android file permissions and existing Node storage-name normalization still apply. Details: docs/host-api.md; validation: host docs/dev/bun-storage-2026-10-19.md.
+
+
+## Host databases and Worker facades (2026-10-19)
+
+Host 5580, Node Runtime 1.16.0 and Bun Runtime 0.5.0 share the public database/sqlite factory. Bun uses a separate default-off database.control grant; Node main/CJS/ESM/nested Workers use database/sqlite and their autojs6: aliases. Object open options preserve timeoutMs/signal and reject missing names. Typed query parameters preserve NULL/numbers, multirow INSERT reports its actual count, and owner-thread cleanup rolls back unfinished manual transactions. Worker exit and unclaimed cancelled Bun opens release their handles. Host scope/SQL budgets remain separate from native node:sqlite and Bun SQLite. Verification: host docs/dev/bun-database-2026-10-19.md.

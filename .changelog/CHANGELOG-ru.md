@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.63.0
+
+###### 2026/10/19
+
+* `Функция` API database/sqlite хоста для Bun и Workers Node.js с параметризованными запросами, транзакциями и сохранением данных
+
 # v4.62.0
 
 ###### 2026/10/19

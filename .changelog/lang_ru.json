@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.63.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "API database/sqlite хоста для Bun и Workers Node.js с параметризованными запросами, транзакциями и сохранением данных"
+        }
+      ]
+    },
     "v4.62.0": {
       "released_date": "2026/10/19",
       "entries": [

@@ -1,6 +1,24 @@
 import type { HostClient, HostCapability } from 'autojs6:bun-host';
 
 declare const host: HostClient;
+const databaseGrant: HostCapability = 'database.control';
+const openedDatabase: Promise<import('autojs6:bun-host').RuntimeDatabase.DatabaseHandle> = host.database.open({name:'owned',timeoutMs:5000,signal:new AbortController().signal});
+const callableDatabase = host.sqlite({name:'owned'});
+async function checkDatabaseTypes() {
+  const db=await callableDatabase;
+  const row: import('autojs6:bun-host').RuntimeDatabase.Row | null = await db.get('SELECT ? AS value',[null]);
+  const result: import('autojs6:bun-host').RuntimeDatabase.RunResult = await db.run('INSERT INTO owned VALUES(?)',[true]);
+  const transaction: readonly import('autojs6:bun-host').RuntimeDatabase.TransactionResult[] = await db.transaction([{type:'get',sql:'SELECT 1'}]);
+  // @ts-expect-error Host database parameters are JSON primitives, not native SQLite BigInts.
+  db.run('SELECT ?',[1n]);
+  // @ts-expect-error Callback transactions are not part of the host bridge.
+  db.transaction(()=>{});
+  // @ts-expect-error Nullable affected-row counts must be checked.
+  const count: number = result.rowsAffected;
+  // @ts-expect-error The host sqlite facade does not expose native DatabaseSync.
+  new host.sqlite.DatabaseSync(':memory:');
+  await db.close();void row;void transaction;
+}
 const filesGrant: HostCapability = 'files.control';
 const storageGrant: HostCapability = 'storage.control';
 const fileText: Promise<string> = host.files.read('owned.txt', 'utf16le');

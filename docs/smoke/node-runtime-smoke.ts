@@ -236,3 +236,9 @@ async function webFileTransfers(web: import("ui").NativeViewHandle) {
   // @ts-expect-error Chooser mode names are explicit.
   await web.chooseFiles({mode:'folder'});
 }
+import workerDatabase = require('autojs6:database');
+import workerSqlite = require('autojs6:sqlite');
+const workerDatabaseHandle: Promise<import('database').DatabaseHandle> = workerDatabase.open({name:'owned',timeoutMs:5000});
+const workerSqliteHandle: Promise<import('database').DatabaseHandle> = workerSqlite({name:'owned'});
+// @ts-expect-error A database name is required in the object overload.
+workerDatabase.open({timeoutMs:1000});
