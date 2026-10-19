@@ -254,3 +254,14 @@ async function checkBunSensors() {
   // @ts-expect-error Samples are immutable snapshots.
   sample.values.push(1);
 }
+
+const shellGrant:HostCapability='shell.control',shizukuGrant:HostCapability='shell.shizuku';
+async function checkBunHostShell(){
+  const r:import('autojs6:bun-host').RuntimeShell.ShellResult=await host.shell.exec('echo owned');
+  const remote:import('autojs6:bun-host').RuntimeShell.ShellResult=await host.shizuku('id -u');
+  const child=host.shell.open({cmd:'sh',pty:true});await child.ready;await child.writeLine('echo owned');
+  const line:string|null=await child.readLine();const status:number|null=await child.waitFor(10);await child.close();
+  child.stdout.on('data',data=>{const text:string=data.toString('utf8');});
+  // @ts-expect-error Native booleans are explicit options.
+  host.shell.spawn('echo',{shizuku:1});
+}

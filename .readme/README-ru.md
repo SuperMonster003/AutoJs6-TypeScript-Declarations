@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## Журнал изменений
 
+### v4.65.0
+
+###### 2026/10/19
+
+* `Функция` Shell хоста с потоковым вводом и выводом, разрешением Shizuku и очисткой процессов для Bun, Node.js и Workers
+
 ### v4.64.1
 
 ###### 2026/10/19
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/19
 
 * `Функция` Измерения и подписки датчиков для Bun и Workers Node.js с отменой и автоматическим освобождением слушателей
-
-### v4.63.0
-
-###### 2026/10/19
-
-* `Функция` API database/sqlite хоста для Bun и Workers Node.js с параметризованными запросами, транзакциями и сохранением данных
 
 [Полный журнал изменений](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 

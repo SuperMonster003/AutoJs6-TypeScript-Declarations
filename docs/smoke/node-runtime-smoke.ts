@@ -251,3 +251,24 @@ async function checkWorkerSensors(){
   // @ts-expect-error Unsupported sensor type.
   await workerSensors.once('pressure');
 }
+
+import hostShell = require('autojs6:shell');
+declare const hostShellSignal:AutoJs6Node.AbortSignalLike;
+import hostShizuku = require('autojs6:shizuku');
+async function checkHostShell() {
+  const r:import('shell').ShellResult=await hostShizuku.exec('id -u');
+  const live:import('shell').ShellAccessState=await hostShell.getAccess();
+  const granted:boolean=await hostShizuku.requestPermission();
+  const child=hostShell.spawn('cat',{shizuku:true,signal:hostShellSignal});
+  await child.ready;const bytes:AsyncIterable<import('shell').OutputChunk>=child.stdout;
+  child.stdout.setEncoding('utf8').on('data',text=>{const value:string=text;});
+  child.on('output',line=>{const value:string=line;});child.on('exit',code=>{const value:number|null=code;});
+  const line:string|null=await child.readLine();const code:number|null=await child.waitFor(100);
+  await child.write(new Uint8Array([0,255]));await child.closeInput();await child.close();
+  // @ts-expect-error Host environment values must be strings.
+  hostShell.spawn('echo',{env:{COUNT:3}});
+  // @ts-expect-error Status properties are readonly.
+  child.pid=42;
+  // @ts-expect-error Host process has no Java stream accessor.
+  child.getInputStream();
+}

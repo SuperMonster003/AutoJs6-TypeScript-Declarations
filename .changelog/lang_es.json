@@ -18,6 +18,15 @@
     "adjustment": "Ajuste"
   },
   "$data": {
+    "v4.65.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Shell del anfitrión con flujos, autorización Shizuku y limpieza de procesos para Bun, Node.js y Workers"
+        }
+      ]
+    },
     "v4.64.1": {
       "released_date": "2026/10/19",
       "entries": [

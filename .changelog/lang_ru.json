@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.65.0": {
+      "released_date": "2026/10/19",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Shell хоста с потоковым вводом и выводом, разрешением Shizuku и очисткой процессов для Bun, Node.js и Workers"
+        }
+      ]
+    },
     "v4.64.1": {
       "released_date": "2026/10/19",
       "entries": [

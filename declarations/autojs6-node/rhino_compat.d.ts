@@ -166,10 +166,13 @@ declare module "autojs6:compat" {
       (command: string, options?: ShellCompatOptions): Promise<shellModule.ShellResult>;
       exec(command: string, options?: shellModule.ShellExecOptions): Promise<shellModule.ShellResult>;
       execRoot(command: string, options?: Omit<shellModule.ShellExecOptions, "root">): Promise<shellModule.ShellResult>;
-      execShizuku(command: string, options?: Omit<shellModule.ShellExecOptions, "root" | "shizuku">): Promise<never>;
+      execShizuku(command: string, options?: shellModule.ShellExecOptions): Promise<shellModule.ShellResult>;
       execFile(path: string, args?: readonly string[], options?: shellModule.ShellExecOptions): Promise<shellModule.ShellResult>;
       checkAccess(options?: shellModule.ShellAccessOptions): shellModule.ShellAccessReport;
       setDefaultTimeout(ms: number): number;
+      getAccess(options?: AutoJs6Node.BridgeCallOptions): Promise<shellModule.ShellAccessState>;
+      spawn(command: string, options?: shellModule.ShellSpawnOptions): shellModule.ShellProcess;
+      open(options?: shellModule.ShellOpenOptions): shellModule.ShellProcess;
     }
 
     export type ScreenCaptureRequestOptions =
