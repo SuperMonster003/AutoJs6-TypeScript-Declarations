@@ -415,3 +415,10 @@ Host 5592, Node Runtime 1.23.0 and Bun Runtime 0.12.0 share Java interface adapt
 ## Runtime TTS
 
 Host 5603, Node 1.24.0 and Bun 0.13.0 add the explicit tts/autojs6:tts module and host.tts. The shared Android TTS actor supports engine/voice/language queries, speech, silence, atomic file synthesis and observable task events, with isolated Worker clients and execution cleanup. Await task creation, then await task.result; audio events contain Uint8Array. Bun requires the independent default-off tts.control grant and retains its transport budgets. Node projects declare tts. No microphone permission or model installation is implied. See Documentation api/runtimeApis.md and host docs/dev/runtime-tts-2026-10-20.md for the contract and validation.
+## EPUB APIs (2026-10-21)
+
+Node 1.26.0 and Bun 0.15.0 declarations include EPUB books and reader sessions in main threads and Workers. Node imports `epub` / `autojs6:epub`; Bun uses `HostClient.epub` and its independent `epub.control` grant. No Rhino `epub` / `$epub` global is injected.
+
+All 20 registered root names return Promises, including the `Async` aliases. Book metadata properties are ready after `open()`; book methods and reader controls are asynchronous. Cover reads without an output path return Uint8Array rather than Rhino ImageWrapper. Typed reader events retain `totalProgression`, `chapterTitle`, bookmark and highlight payload fields. Calls accept cancellation and optional deadlines.
+
+The canonical runtime files come from the Node/Bun repositories and are copied by `tools/sync-runtime-declarations.mjs`, including the Ace copy. The semantic declaration checker validates both module aliases, Promise result types, book metadata and reader methods.

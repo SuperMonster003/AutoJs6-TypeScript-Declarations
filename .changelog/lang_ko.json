@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.73.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "타입 선언 - Node.js/Bun/Worker: EPUB 도서 읽기, 리소스 내보내기, 검색 및 이벤트를 지원하는 리더 세션"
+        }
+      ]
+    },
     "v4.72.0": {
       "released_date": "2026/10/20",
       "entries": [

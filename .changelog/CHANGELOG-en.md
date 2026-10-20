@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.73.0
+
+###### 2026/10/21
+
+* `Improvement` Type declarations - Node.js/Bun/Worker: EPUB book reading, resource export, search and reader sessions with events
+
 # v4.72.0
 
 ###### 2026/10/20

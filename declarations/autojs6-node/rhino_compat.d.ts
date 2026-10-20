@@ -455,6 +455,7 @@ declare module "autojs6:compat" {
       readonly recorder: recorderModule.RecorderModule;
       readonly ui: RhinoUiCompatModule;
       readonly tasks: RhinoTasksCompatModule;
+      readonly epub: typeof import("epub");
       readonly speech: typeof import("speech");
       readonly tts: typeof import("tts");
       requestScreenCapture(options?: ScreenCaptureRequestOptions): Promise<boolean>;

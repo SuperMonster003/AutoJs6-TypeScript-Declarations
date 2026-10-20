@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.73.0
+
+###### 2026/10/21
+
+* `Улучшение` Объявления типов - Node.js/Bun/Worker: Чтение EPUB, экспорт ресурсов, поиск и сеансы чтения с событиями
+
 # v4.72.0
 
 ###### 2026/10/20

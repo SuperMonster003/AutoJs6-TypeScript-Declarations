@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.73.0
+
+###### 2026/10/21
+
+* `Improvement` Type declarations - Node.js/Bun/Worker: EPUB book reading, resource export, search and reader sessions with events
+
 ### v4.72.0
 
 ###### 2026/10/20
@@ -189,12 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/20
 
 * `Feature` Text-to-speech APIs for Node.js, Bun and Workers, with engine and voice queries, speech, silence, audio file synthesis and task events
-
-### v4.70.0
-
-###### 2026/10/20
-
-* `Feature` Java callbacks, generated subclasses and JAR/DEX loading for Node.js, Bun and Workers, with Promise results, superclass calls and execution cleanup
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

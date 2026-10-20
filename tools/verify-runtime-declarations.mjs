@@ -62,9 +62,11 @@ function verifyRuntimeTypes(program, runtime) {
             return awaited;
         });
     }
-    let opencc, images, compose, ui, speech;
+    let opencc, images, compose, ui, speech, epub;
     if (runtime === 'node') {
         speech = exportedValue('speech');
+        epub = exportedValue('epub');
+        assert.equal(checker.typeToString(epub), checker.typeToString(exportedValue('autojs6:epub')), 'EPUB Worker alias drift');
         assert.equal(checker.typeToString(speech), checker.typeToString(exportedValue('autojs6:speech')), 'Speech Worker alias drift');
         compose = exportedValue('compose'); ui = exportedValue('ui');
         opencc = exportedValue('opencc');
@@ -93,6 +95,7 @@ function verifyRuntimeTypes(program, runtime) {
         assert(client, 'Bun HostClient is missing');
         const hostClient = checker.getDeclaredTypeOfSymbol(client);
         speech = property(hostClient, 'speech');
+        epub = property(hostClient, 'epub');
         compose = property(hostClient, 'compose'); ui = property(hostClient, 'ui');
         opencc = property(hostClient, 'opencc');
         images = property(hostClient, 'images');
@@ -109,6 +112,18 @@ function verifyRuntimeTypes(program, runtime) {
         assert.equal(checker.typeToString(property(movie,'audioSampleRate')),'48000 | null');
         assert.equal(checker.typeToString(property(movie,'audioChannels')),'1 | null');
     }
+    for (const name of ['open','metadata','toc','readingOrder','text','cover','search','annotations','read','isAvailable']) {
+        returns(property(epub,name),'epub.'+name);
+        returns(property(epub,name+'Async'),'epub.'+name+'Async');
+    }
+    const book=returns(property(epub,'open'),'epub.open')[0];
+    for (const name of ['text','textAll','cover','resource','search','annotations','close'])
+        returns(property(book,name),'EPUB book.'+name);
+    assert(property(property(book,'metadata'),'title').flags & ts.TypeFlags.String);
+    const reader=returns(property(epub,'read'),'epub.read')[0];
+    for (const name of ['goTo','next','prev','nextChapter','prevChapter','setPreferences','bookmarks','close'])
+        returns(property(reader,name),'EPUB reader.'+name);
+    assert(property(reader,'isClosed').flags & ts.TypeFlags.BooleanLike);
     for (const name of ['isAvailable','capabilities','recognize','recognizeAsync','detectVoice','listen','wake','synthesize','synthesizeAsync','speak','close'])
         returns(property(speech,name),'speech.'+name);
     const models=property(speech,'models');

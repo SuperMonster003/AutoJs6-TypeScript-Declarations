@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.73.0
+
+###### 2026/10/21
+
+* `優化` 型別宣告 - Node.js/Bun/Worker: EPUB 書籍讀取, 資源匯出, 搜尋及帶事件的閱讀器會話
+
 # v4.72.0
 
 ###### 2026/10/20

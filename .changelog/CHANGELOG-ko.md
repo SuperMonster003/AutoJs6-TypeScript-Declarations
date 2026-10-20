@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.73.0
+
+###### 2026/10/21
+
+* `개선` 타입 선언 - Node.js/Bun/Worker: EPUB 도서 읽기, 리소스 내보내기, 검색 및 이벤트를 지원하는 리더 세션
+
 # v4.72.0
 
 ###### 2026/10/20

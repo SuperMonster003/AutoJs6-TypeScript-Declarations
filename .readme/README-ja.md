@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.73.0
+
+###### 2026/10/21
+
+* `改善` 型宣言 - Node.js/Bun/Worker: EPUB 書籍の読み込み, リソース出力, 検索とイベント付きリーダーセッション
+
 ### v4.72.0
 
 ###### 2026/10/20
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/20
 
 * `機能` Node.js/Bun/Worker の音声合成 API でエンジンと音声の照会, 読み上げ, 無音, 音声ファイル合成とタスクイベントに対応
-
-### v4.70.0
-
-###### 2026/10/20
-
-* `機能` Node.js/Bun/Worker の Java コールバック, サブクラス生成と JAR/DEX 読み込みで Promise の戻り値, 親クラス呼び出しと終了時の解放に対応
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

@@ -22,7 +22,7 @@ declare namespace Internal {
 
     /**
      * The global `epub` object (also `$epub`), available since AutoJs6 6.8.0 through the external
-     * Readium EPUB Reader plugin (AutoJs6-Plugin-Readium-EPUB-Reader). Every method throws (or
+     * 3-Folio EPUB plugin (AutoJs6-Plugin-Three-Folio-EPUB). Every method throws (or
      * rejects with) an `EpubError` whose `code` is `PLUGIN_UNAVAILABLE`, `PLUGIN_DISABLED` or
      * `PLUGIN_INCOMPATIBLE` while the plugin is missing, disabled or incompatible;
      * {@link isAvailable} probes without throwing.
@@ -44,7 +44,7 @@ declare namespace Internal {
 
         /**
          * Opens a book in the plugin process and returns it; it stays open until `close()` or
-         * script exit. At most 8 books per plugin process (`LIMIT_EXCEEDED`); a book idle for
+         * script exit. At most 8 books per service entry (`LIMIT_EXCEEDED`); a book idle for
          * 5 minutes is closed by the plugin (`SESSION_CLOSED` afterwards).
          * @since 6.8.0
          * @example

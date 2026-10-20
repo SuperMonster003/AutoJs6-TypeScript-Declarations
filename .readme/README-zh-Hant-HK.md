@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.73.0
+
+###### 2026/10/21
+
+* `優化` 型別宣告 - Node.js/Bun/Worker: EPUB 書籍讀取, 資源匯出, 搜尋及帶事件的閱讀器會話
+
 ### v4.72.0
 
 ###### 2026/10/20
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/20
 
 * `新增` Node.js/Bun/Worker 的文字轉語音介面, 支援引擎與音色查詢, 朗讀, 靜音任務, 音訊檔案合成和任務事件
-
-### v4.70.0
-
-###### 2026/10/20
-
-* `新增` Node.js/Bun/Worker 的 Java 回調代理, 子類別產生和 JAR/DEX 載入, 支援 Promise 回傳值, 父類別呼叫及執行結束清理
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-HK.md)
 

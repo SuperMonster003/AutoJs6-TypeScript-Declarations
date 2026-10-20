@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.73.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "类型声明 - Node.js/Bun/Worker: EPUB 书籍读取, 资源导出, 搜索及带事件的阅读器会话"
+        }
+      ]
+    },
     "v4.72.0": {
       "released_date": "2026/10/20",
       "entries": [

@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.73.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "Déclarations de types - Node.js/Bun/Worker: Lecture EPUB, export des ressources, recherche et sessions du lecteur avec événements"
+        }
+      ]
+    },
     "v4.72.0": {
       "released_date": "2026/10/20",
       "entries": [

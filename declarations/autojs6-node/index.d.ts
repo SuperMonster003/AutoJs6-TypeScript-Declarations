@@ -72,3 +72,5 @@
 
 /// <reference path="./speech.d.ts" />
 /// <reference path="./tts.d.ts" />
+
+/// <reference path="./epub.d.ts" />

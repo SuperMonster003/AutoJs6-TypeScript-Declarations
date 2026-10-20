@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.73.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "型宣言 - Node.js/Bun/Worker: EPUB 書籍の読み込み, リソース出力, 検索とイベント付きリーダーセッション"
+        }
+      ]
+    },
     "v4.72.0": {
       "released_date": "2026/10/20",
       "entries": [
