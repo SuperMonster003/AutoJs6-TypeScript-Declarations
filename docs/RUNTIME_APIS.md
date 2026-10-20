@@ -410,3 +410,8 @@ Host 5591, Node Runtime 1.22.0 and Bun Runtime 0.11.0 share public Java object f
 ## Java callbacks and class loading (2026-10-20)
 
 Host 5592, Node Runtime 1.23.0 and Bun Runtime 0.12.0 share Java interface adapters, generated subclasses, callSuper, borrowed-reference retention and JAR/DEX loading across main threads and CJS/ESM/nested Workers. Callback functions execute in their owning JS runtime and may return Promises; Java reentry preserves the waiting native thread. Classes and read-only code copies belong to the execution; Worker callback owners close on termination. Bun retains java.interop and its bounded transport, with a dedicated callback-control path. Object snapshots no longer invoke arbitrary toString methods. The native Bun payload and compatibility matrix are unchanged. See Documentation api/runtimeApis.md and host docs/dev/runtime-java-callbacks-2026-10-20.md.
+
+
+## Runtime TTS
+
+Host 5603, Node 1.24.0 and Bun 0.13.0 add the explicit tts/autojs6:tts module and host.tts. The shared Android TTS actor supports engine/voice/language queries, speech, silence, atomic file synthesis and observable task events, with isolated Worker clients and execution cleanup. Await task creation, then await task.result; audio events contain Uint8Array. Bun requires the independent default-off tts.control grant and retains its transport budgets. Node projects declare tts. No microphone permission or model installation is implied. See Documentation api/runtimeApis.md and host docs/dev/runtime-tts-2026-10-20.md for the contract and validation.

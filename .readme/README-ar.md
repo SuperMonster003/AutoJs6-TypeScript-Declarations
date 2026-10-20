@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.71.0
+
+###### 2026/10/20
+
+* `ميزة` واجهات تحويل النص إلى كلام في Node.js وBun وWorkers مع استعلامات المحركات والأصوات والنطق والصمت وملفات الصوت وأحداث المهام
+
 ### v4.70.0
 
 ###### 2026/10/20
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 
 * `إصلاح` نتائج التعرف في speech تفتقد الخاصية language, وأسباب انتهاء الجلسة تفتقد overflow, ونتائج detectVoice تذكر modelId وwarnings خطأ
 * `تحسين` تعريفات speech وspeech.models توثق كل دالة وخيار وحدث ونتيجة مع القيم الافتراضية والنطاقات, ويمكن إكمال رموز الأخطاء وأسماء الميزات كقيم حرفية
-
-### v4.69.0
-
-###### 2026/10/20
-
-* `ميزة` تكامل Java/Android في Node.js وBun وWorkers مع المنشئات والأعضاء العامة والمصفوفات وقيم long الدقيقة والتحميل الزائد الصريح ومراجع Context للتطبيق
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

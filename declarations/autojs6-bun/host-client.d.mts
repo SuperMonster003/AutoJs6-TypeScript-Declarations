@@ -8,7 +8,7 @@ export declare class HostCallError extends Error {
   readonly status: number;
   constructor(code: string, message: string, capability?: string | null, status?: number);
 }
-export declare const HOST_API_METHODS: Readonly<Record<"java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
+export declare const HOST_API_METHODS: Readonly<Record<"tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
 export declare const OPENCC_CONVERSION_TYPES: readonly [
   "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
   "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -1576,7 +1576,274 @@ export namespace RuntimeJava {
   }
 // END GENERATED JAVA TYPES
 
+// BEGIN GENERATED TTS TYPES
+export namespace RuntimeTts {
+    interface API {
+
+        (text: string, options?: SpeechOptions, callOptions?: AutomationCallOptions): Promise<Result>;
+
+        readonly maxInputLength: 3999;
+        readonly maxSynthesisFileSize: 536870912;
+        readonly QUEUE_FLUSH: 'flush';
+        readonly QUEUE_ADD: 'add';
+
+        speak(text: string, options?: SpeechOptions, callOptions?: AutomationCallOptions): Promise<Result>;
+        enqueue(text: string, options?: SpeechOptions, callOptions?: AutomationCallOptions): Promise<Result>;
+
+        utterance(text: string, options?: SpeechOptions, callOptions?: AutomationCallOptions): Promise<Utterance>;
+        speakTask(text: string, options?: SpeechOptions, callOptions?: AutomationCallOptions): Promise<Utterance>;
+        enqueueUtterance(text: string, options?: SpeechOptions, callOptions?: AutomationCallOptions): Promise<Utterance>;
+        enqueueTask(text: string, options?: SpeechOptions, callOptions?: AutomationCallOptions): Promise<Utterance>;
+
+        synthesize(text: string, path: string, options?: SynthesisOptions, callOptions?: AutomationCallOptions): Promise<Result>;
+        synthesizeToFile(text: string, path: string, options?: SynthesisOptions, callOptions?: AutomationCallOptions): Promise<Result>;
+        synthesis(text: string, path: string, options?: SynthesisOptions, callOptions?: AutomationCallOptions): Promise<Utterance>;
+        synthesizeTask(text: string, path: string, options?: SynthesisOptions, callOptions?: AutomationCallOptions): Promise<Utterance>;
+        synthesisTask(text: string, path: string, options?: SynthesisOptions, callOptions?: AutomationCallOptions): Promise<Utterance>;
+
+        silence(duration: number, options?: SpeechOptions, callOptions?: AutomationCallOptions): Promise<Result>;
+        silenceTask(duration: number, options?: SpeechOptions, callOptions?: AutomationCallOptions): Promise<Utterance>;
+
+        ready(engine?: EngineQuery, callOptions?: AutomationCallOptions): Promise<ReadyInfo>;
+        engines(engine?: EngineQuery, callOptions?: AutomationCallOptions): Promise<EngineInfo[]>;
+        voices(filter?: EngineQuery | VoiceFilter, callOptions?: AutomationCallOptions): Promise<VoiceInfo[]>;
+        languages(engine?: EngineQuery, callOptions?: AutomationCallOptions): Promise<string[]>;
+        isLanguageAvailable(locale: string, engine?: EngineQuery, callOptions?: AutomationCallOptions): Promise<boolean>;
+        languageAvailability(locale: string, engine?: EngineQuery, callOptions?: AutomationCallOptions): Promise<LanguageAvailability>;
+
+        stop(callOptions?: AutomationCallOptions): Promise<number>;
+        stopAll(callOptions?: AutomationCallOptions): Promise<number>;
+        reset(callOptions?: AutomationCallOptions): Promise<number>;
+        isSpeaking(callOptions?: AutomationCallOptions): Promise<boolean>;
+        isBusy(callOptions?: AutomationCallOptions): Promise<boolean>;
+        status(callOptions?: AutomationCallOptions): Promise<Status>;
+        defaults(callOptions?: AutomationCallOptions): Promise<Defaults>;
+        config(callOptions?: AutomationCallOptions): Promise<Defaults>;
+        configure(options: SpeechOptions, callOptions?: AutomationCallOptions): Promise<Defaults>;
+        getMaxInputLength(): 3999;
+        openSettings(callOptions?: AutomationCallOptions): Promise<boolean>;
+        installData(engine?: EngineQuery, callOptions?: AutomationCallOptions): Promise<boolean>;
+
+        close(): Promise<boolean>;
+        on<K extends keyof EventMap>(event: K, listener: (event: {id: string; value: EventMap[K]}) => void): this;
+        once<K extends keyof EventMap>(event: K, listener: (event: {id: string; value: EventMap[K]}) => void): this;
+        off<K extends keyof EventMap>(event: K, listener: (event: {id: string; value: EventMap[K]}) => void): this;
+        removeAllListeners(event?: keyof EventMap): this;
+    }
+        type Operation = 'speech' | 'silence' | 'file';
+        type QueueMode = 'flush' | 'replace' | 'add' | 'enqueue' | 'append' | 0 | 1;
+        type Usage = 'media' | 'accessibility' | 'assistant' | 'navigation' | 'alarm'
+            | 'notification' | 'voiceCommunication';
+        type EngineQuery = string | null | { engine?: string | null };
+        type ParameterValue = string | boolean | number;
+
+        interface SpeechOptions {
+            engine?: string | null;
+            locale?: string | null;
+            language?: string | null;
+            lang?: string | null;
+            voice?: string | null;
+            rate?: number;
+            speechRate?: number;
+            pitch?: number;
+            volume?: number;
+            pan?: number;
+            queue?: QueueMode;
+            autoSplit?: boolean;
+            split?: boolean;
+            offlineOnly?: boolean;
+            offline?: boolean;
+            audioEvents?: boolean;
+            emitAudio?: boolean;
+            usage?: Usage | null;
+            audioUsage?: Usage | null;
+            timeout?: number | null | 'auto';
+            timeoutMillis?: number | null | 'auto';
+            timeoutMs?: number | null | 'auto';
+            parameters?: Record<string, ParameterValue> | null;
+            params?: Record<string, ParameterValue> | null;
+        }
+
+        interface SynthesisOptions extends SpeechOptions {
+            overwrite?: boolean;
+            createDirectories?: boolean;
+            mkdirs?: boolean;
+        }
+
+        interface VoiceFilter {
+            engine?: string | null;
+            locale?: string | null;
+            language?: string | null;
+            lang?: string | null;
+            offlineOnly?: boolean | null;
+            offline?: boolean | null;
+            installedOnly?: boolean | null;
+            installed?: boolean | null;
+        }
+
+        interface Defaults {
+            engine: string | null;
+            locale: string | null;
+            voice: string | null;
+            rate: number;
+            pitch: number;
+            volume: number;
+            pan: number;
+            queue: 'flush' | 'add';
+            autoSplit: boolean;
+            offlineOnly: boolean;
+            audioEvents: boolean;
+            usage: Usage;
+            timeout: number | 'auto';
+            parameters: Record<string, ParameterValue>;
+        }
+
+        interface Result {
+            id: string;
+            operation: Operation;
+            status: 'done';
+            engine: string | null;
+            requestedEngine: string | null;
+            voice: string | null;
+            locale: string | null;
+            usage: Usage | null;
+            chunks: number;
+            characters: number;
+            duration: number;
+            path: string | null;
+        }
+
+        interface Status {
+            state: 'idle' | 'initializing' | 'working' | 'ready' | 'failed' | 'closed';
+            engine: string | null;
+            requestedEngine: string | null;
+            activeId: string | null;
+            operation: Operation | null;
+            queued: number;
+            isSpeaking: boolean;
+            isBusy: boolean;
+        }
+
+        interface ReadyInfo {
+            state: 'ready';
+            engine: string | null;
+            requestedEngine: string | null;
+            defaultEngine: string | null;
+            voice: VoiceInfo | null;
+            locale: string | null;
+        }
+
+        interface EngineInfo {
+            name: string;
+            label: string;
+            default: boolean;
+            requested: boolean;
+        }
+
+        interface VoiceInfo {
+            name: string;
+            locale: string;
+            quality: number;
+            latency: number;
+            networkRequired: boolean;
+            offline: boolean;
+            notInstalled: boolean;
+            features: string[];
+        }
+
+        interface LanguageAvailability {
+            locale: string;
+            available: boolean;
+            support: 'language'
+                | 'language_and_country'
+                | 'language_country_and_variant'
+                | 'missing_data'
+                | 'not_supported'
+                | 'unknown';
+            statusCode: number;
+        }
+
+        interface QueuedInfo {
+            id: string;
+            operation: Operation;
+            queue: 'flush' | 'add';
+            chunks: number;
+        }
+
+        interface StartInfo {
+            id: string;
+            operation: Operation;
+            voice: string | null;
+            locale: string | null;
+            chunks: number;
+        }
+
+        interface ChunkInfo {
+            id: string;
+            index: number;
+            count: number;
+            start: number;
+            end: number;
+        }
+
+        interface RangeInfo {
+            id: string;
+            start: number;
+            end: number;
+            frame: number;
+            chunk: number;
+        }
+
+        interface SynthesisInfo {
+            id: string;
+            sampleRate: number;
+            encoding: 'pcm_8_bit' | 'pcm_16_bit' | 'pcm_float' | 'unknown';
+            channels: number;
+            chunk: number;
+        }
+
+        interface AudioInfo {
+            id: string;
+            data: Uint8Array;
+            chunk: number;
+        }
+
+        interface StopInfo {
+            id: string;
+            operation: Operation;
+            status: 'stopped';
+            reason: string;
+        }
+
+        interface Failure extends Error {
+            readonly code: string;
+            readonly errorCode: number | null;
+        }
+
+        interface EventMap {
+            queued: QueuedInfo; start: StartInfo; chunk: ChunkInfo; range: RangeInfo;
+            synthesis: SynthesisInfo; audio: AudioInfo; done: Result;
+            stop: StopInfo; cancelled: StopInfo; error: Failure;
+        }
+        interface Utterance {
+            readonly id: string;
+            readonly operation: Operation;
+            readonly text: string | null;
+            readonly result: Promise<Result>;
+            readonly state: 'created' | 'queued' | 'running' | 'done' | 'stopped' | 'error' | 'cancelled';
+            readonly isDone: boolean;
+            on<K extends keyof EventMap>(event: K, listener: (value: EventMap[K]) => void): this;
+            once<K extends keyof EventMap>(event: K, listener: (value: EventMap[K]) => void): this;
+            off<K extends keyof EventMap>(event: K, listener: (value: EventMap[K]) => void): this;
+            removeAllListeners(event?: keyof EventMap): this;
+            stop(): Promise<this>;
+            cancel(): Promise<this>;
+        }
+  }
+// END GENERATED TTS TYPES
+
 export interface HostClient {
+  readonly tts: RuntimeTts.API;
   readonly java: RuntimeJava.API;
   readonly android: RuntimeAndroid.AndroidModule;
   readonly colors: RuntimeColors.ColorsModule;

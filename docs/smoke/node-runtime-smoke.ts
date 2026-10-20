@@ -360,3 +360,17 @@ async function javaCallbacksSmoke() {
   // @ts-expect-error Callback results must be representable Java values.
   await javaInterop.wrap(() => ({plain: true}));
 }
+
+import tts = require("autojs6:tts");
+async function ttsSmoke() {
+  const ready: tts.ReadyInfo = await tts.ready();
+  const task: tts.Utterance = await tts.synthesis("hello", "out.wav", {audioEvents: true, volume: 0});
+  task.on("audio", event => { const bytes: Uint8Array = event.data; void bytes; });
+  const result: tts.Result = await task.result;
+  await task.stop(); await tts.configure({queue: tts.QUEUE_ADD}); await tts.close();
+  // @ts-expect-error Observable tasks are asynchronous in runtime clients.
+  const immediate: tts.Utterance = tts.utterance("hello");
+  // @ts-expect-error Speech rate is numeric.
+  await tts.speak("hello", {rate: "fast"});
+  return {ready, result};
+}

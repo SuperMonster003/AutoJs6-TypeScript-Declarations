@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.71.0
+
+###### 2026/10/20
+
+* `Feature` Text-to-speech APIs for Node.js, Bun and Workers, with engine and voice queries, speech, silence, audio file synthesis and task events
+
 ### v4.70.0
 
 ###### 2026/10/20
@@ -190,12 +196,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 * `Fix` speech recognition results missing the language property, session end reasons missing overflow, and detectVoice results wrongly listing modelId and warnings
 * `Improvement` speech and speech.models declarations document every method, option, event and result with defaults and ranges; error codes and feature names complete as literals
-
-### v4.69.0
-
-###### 2026/10/20
-
-* `Feature` Java/Android object interop for Node.js, Bun and Workers, including public constructors and members, arrays, exact long values, explicit overloads and application Context handles
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

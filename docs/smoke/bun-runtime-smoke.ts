@@ -328,3 +328,13 @@ async function bunJavaCallbacksSmoke(client: import("autojs6:bun-host").HostClie
   // @ts-expect-error Class definitions accept callback functions, not constants.
   await java.defineClass({methods: {run: 1}});
 }
+
+async function bunTtsSmoke(client: import("autojs6:bun-host").HostClient) {
+  const task: import("autojs6:bun-host").RuntimeTts.Utterance = await client.tts.synthesis("hello", "out.wav", {audioEvents: true});
+  task.on("audio", event => { const bytes: Uint8Array = event.data; void bytes; });
+  const result: import("autojs6:bun-host").RuntimeTts.Result = await task.result;
+  await task.cancel(); await client.tts.close();
+  // @ts-expect-error Observable tasks are asynchronous in Bun.
+  const immediate: import("autojs6:bun-host").RuntimeTts.Utterance = client.tts.utterance("hello");
+  return result;
+}

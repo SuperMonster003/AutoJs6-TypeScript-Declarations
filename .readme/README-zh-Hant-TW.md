@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.71.0
+
+###### 2026/10/20
+
+* `新增` Node.js/Bun/Worker 的文字轉語音介面, 支援引擎與音色查詢, 朗讀, 靜音工作, 音訊檔案合成和工作事件
+
 ### v4.70.0
 
 ###### 2026/10/20
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 
 * `修復` speech 辨識結果的型別缺少 language 屬性, 工作階段結束原因缺少 overflow, detectVoice 結果誤列 modelId 與 warnings
 * `最佳化` speech 與 speech.models 宣告為各方法, 選項, 事件和結果補充說明, 預設值與取值範圍, 錯誤碼與功能名稱提供字面值補全
-
-### v4.69.0
-
-###### 2026/10/20
-
-* `新增` Node.js/Bun/Worker 的 Java/Android 物件互操作, 支援公開建構函式和成員, 陣列, 精確 long 值, 明確多載及應用程式 Context 控制代碼
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-TW.md)
 

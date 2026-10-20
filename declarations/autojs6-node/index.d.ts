@@ -69,3 +69,5 @@
 /// <reference path="./tasks.d.ts" />
 
 /// <reference path="./java.d.ts" />
+
+/// <reference path="./tts.d.ts" />
