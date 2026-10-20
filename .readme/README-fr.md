@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.72.0
+
+###### 2026/10/20
+
+* `Fonctionnalité` API speech de reconnaissance vocale et de gestion des modèles pour Node.js, Bun et Workers avec WAV/PCM, dictée et activation vocale, installation/importation, synthèse et annulation
+
 ### v4.71.0
 
 ###### 2026/10/20
@@ -189,13 +195,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/20
 
 * `Fonctionnalité` Callbacks Java, sous-classes générées et chargement JAR/DEX pour Node.js, Bun et Workers, avec retours Promise, appels de la superclasse et libération en fin de session
-
-### v4.69.1
-
-###### 2026/10/20
-
-* `Correction` Résultats de reconnaissance de speech sans la propriété language, raisons de fin de session sans overflow, et résultats de detectVoice listant à tort modelId et warnings
-* `Amélioration` Les déclarations de speech et speech.models documentent chaque méthode, option, événement et résultat avec valeurs par défaut et plages; les codes d'erreur et noms de fonctionnalités se complètent comme littéraux
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.72.0
+
+###### 2026/10/20
+
+* `新增` Node.js/Bun/Worker 的 speech 语音识别与模型管理接口, 支持 WAV/PCM, 听写与唤醒会话, 模型安装/导入, 语音合成和取消清理
+
 # v4.71.0
 
 ###### 2026/10/20

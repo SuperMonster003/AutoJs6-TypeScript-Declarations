@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.72.0
+
+###### 2026/10/20
+
+* `기능` Node.js/Bun/Worker의 speech 음성 인식 및 모델 관리 API로 WAV/PCM, 받아쓰기와 호출어 세션, 모델 설치와 가져오기, 음성 합성 및 취소 시 정리 지원
+
 ### v4.71.0
 
 ###### 2026/10/20
@@ -189,13 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/20
 
 * `기능` Node.js/Bun/Worker의 Java 콜백, 하위 클래스 생성 및 JAR/DEX 로드로 Promise 반환값, 부모 클래스 호출 및 실행 종료 정리 지원
-
-### v4.69.1
-
-###### 2026/10/20
-
-* `수정` speech 인식 결과 타입에 language 속성 누락, 세션 종료 사유에 overflow 누락, detectVoice 결과에 modelId와 warnings가 잘못 포함됨
-* `개선` speech 및 speech.models 선언에 각 메서드, 옵션, 이벤트, 결과의 설명과 기본값, 값 범위를 추가하고 오류 코드와 기능 이름을 리터럴로 자동 완성
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

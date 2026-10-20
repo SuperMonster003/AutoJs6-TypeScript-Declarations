@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.72.0": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun/Worker 的 speech 语音识别与模型管理接口, 支持 WAV/PCM, 听写与唤醒会话, 模型安装/导入, 语音合成和取消清理"
+        }
+      ]
+    },
     "v4.71.0": {
       "released_date": "2026/10/20",
       "entries": [

@@ -1,6 +1,18 @@
 import type { HostClient, HostCapability } from 'autojs6:bun-host';
 
 declare const host: HostClient;
+async function speechSmoke() {
+  const result: import("autojs6:bun-host").RuntimeSpeech.Recognition = await host.speech.recognize(new Int16Array(16000));
+  const session = await host.speech.listen({source: "external"});
+  session.on("final", event => { const text: string = event.text; void text; });
+  const fed: typeof session = await session.feed(new Uint8Array(32)); await fed.stop();
+  const installed: import("autojs6:bun-host").RuntimeSpeech.ModelInfo = await host.speech.models.install("model", {onProgress: (done, total) => { const n: number = done + total; void n; }});
+  // @ts-expect-error Bun does not accept Java byte[] or ordinary numeric arrays.
+  await host.speech.recognize([1, 2]);
+  // @ts-expect-error Runtime results need await.
+  const immediate: import("autojs6:bun-host").RuntimeSpeech.Recognition = host.speech.recognize("voice.wav");
+  await host.speech.close(); return {result, installed};
+}
 const databaseGrant: HostCapability = 'database.control';
 const openedDatabase: Promise<import('autojs6:bun-host').RuntimeDatabase.DatabaseHandle> = host.database.open({name:'owned',timeoutMs:5000,signal:new AbortController().signal});
 const callableDatabase = host.sqlite({name:'owned'});

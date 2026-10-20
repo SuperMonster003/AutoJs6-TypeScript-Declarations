@@ -362,6 +362,22 @@ async function javaCallbacksSmoke() {
 }
 
 import tts = require("autojs6:tts");
+import speech = require("autojs6:speech");
+async function speechSmoke() {
+  const result: speech.Recognition = await speech.recognize(new Int16Array(16000), {sampleRate: 16000});
+  const session: speech.Session = await speech.listen({source: "external"});
+  session.on("final", event => { const text: string = event.text; const index: number = event.segmentIndex; void text; void index; });
+  await session.feed(new Uint8Array(32)); await session.stop();
+  const model: speech.ModelInfo = await speech.models.install("model", {onProgress: (done, total) => { const value: number = done + total; void value; }});
+  const missing: speech.ModelInfo | null = await speech.models.getDefault("asr");
+  // @ts-expect-error Ordinary numeric arrays are not PCM buffers.
+  await speech.recognize([1, 2]);
+  // @ts-expect-error Runtime listen is asynchronous.
+  const immediate: speech.Session = speech.listen();
+  // @ts-expect-error The progress callback is a function.
+  await speech.models.install("model", {onProgress: true});
+  await speech.close(); return {result, model, missing};
+}
 async function ttsSmoke() {
   const ready: tts.ReadyInfo = await tts.ready();
   const task: tts.Utterance = await tts.synthesis("hello", "out.wav", {audioEvents: true, volume: 0});

@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.72.0
+
+###### 2026/10/20
+
+* `新增` Node.js/Bun/Worker 的 speech 语音识别与模型管理接口, 支持 WAV/PCM, 听写与唤醒会话, 模型安装/导入, 语音合成和取消清理
+
 ### v4.71.0
 
 ###### 2026/10/20
@@ -189,13 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/20
 
 * `新增` Node.js/Bun/Worker 的 Java 回调代理, 子类生成和 JAR/DEX 加载, 支持 Promise 返回值, 父类调用及执行结束清理
-
-### v4.69.1
-
-###### 2026/10/20
-
-* `修复` speech 识别结果的类型缺少 language 属性, 会话结束原因缺少 overflow, detectVoice 结果误列 modelId 与 warnings
-* `优化` speech 与 speech.models 声明为各方法, 选项, 事件和结果补充说明, 默认值与取值范围, 错误码与功能名提供字面量补全
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.72.0": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "API speech для Node.js, Bun и Workers: распознавание WAV/PCM, диктовка и ключевые слова, установка и импорт моделей, синтез и освобождение ресурсов при отмене"
+        }
+      ]
+    },
     "v4.71.0": {
       "released_date": "2026/10/20",
       "entries": [

@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.72.0
+
+###### 2026/10/20
+
+* `기능` Node.js/Bun/Worker의 speech 음성 인식 및 모델 관리 API로 WAV/PCM, 받아쓰기와 호출어 세션, 모델 설치와 가져오기, 음성 합성 및 취소 시 정리 지원
+
 # v4.71.0
 
 ###### 2026/10/20

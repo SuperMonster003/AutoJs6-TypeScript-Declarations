@@ -8,7 +8,7 @@
     "autojs6-node/accessibility.d.ts": "ba969dad271a05878d6385d46e8866e5ae4078659c335c9a564084e46ddcf23e",
     "autojs6-node/android.d.ts": "9a5799be2e802c0fdd24254d91c66dc72ce36cc95bcb6fde4782e2575f4c9036",
     "autojs6-node/app.d.ts": "f2e559fabfdd2c411fa9f61e2a94f8f81388073b78591c98453ef3a4bdadabdb",
-    "autojs6-node/autojs_global.d.ts": "448f72ebaba39eb2662a5ea9f70a30509f6c85cd11076b3f051511573f8eea5a",
+    "autojs6-node/autojs_global.d.ts": "f7b76a808117ae7765ca57f3c5ddcce290241383bb5a0e90fbd4f73d203608b2",
     "autojs6-node/axios.d.ts": "7f20df43fdc90a7c71779a3db4c721fd307e34d85f6d80f27f5e358e0c49d794",
     "autojs6-node/barcode.d.ts": "257435f7a2399f1d3648ee9cd2ae847a1444c2bdb187fdb606e91c4b3222a73c",
     "autojs6-node/base64.d.ts": "65ce6d962553264ea2ea4f50f8bd5370de80eb4dd741ca085e5e8b9ecbda1467",
@@ -34,7 +34,7 @@
     "autojs6-node/https.d.ts": "ab177de789de0adef3af9cf1d0ad2e867db0291480987124c4f63ad5b17cb99e",
     "autojs6-node/image.d.ts": "f0cc038f6ef7b3f9f7fb77bd5e85a51209cf0209550de3f7f52ee5b011c4b412",
     "autojs6-node/images.d.ts": "bba57a733bd277b311316c47faca09a2df36658dd79996b2c82c0015bf1ec872",
-    "autojs6-node/index.d.ts": "51bee55f7eb5371387ebe916fcc08a38b80aa4c7510acb10bf95b0c7db9f1915",
+    "autojs6-node/index.d.ts": "aaf0e3c5c2578a4f2311a2a5d3dbec35fa53440d4e75a812661c2fb23c852add",
     "autojs6-node/input_observer.d.ts": "caf71af9d95caf256374f0a034d2e19ebf11ae9ff3e79b655de48b874ab1186f",
     "autojs6-node/java.d.ts": "f49c50ccf87ef5af1f716c973c95b6c444a9ebcce44a8c394ff93dcb6f527776",
     "autojs6-node/jsox.d.ts": "f19243342b752c37f6f85a61bbad0f2adad4c833a3d976a42b2786c2a1754f58",
@@ -58,12 +58,13 @@
     "autojs6-node/profile_capabilities.d.ts": "5d18fe4fb2d0495463fa9d14817fe552992e2143c0751b5ea6d47aa441619a1b",
     "autojs6-node/recorder.d.ts": "e59814145b810607876a583dd02e97cfec0fc416bba63d6ab13476c431237a55",
     "autojs6-node/rhino.d.ts": "88cdb6e302780fccdc27dbd1db368567bb6be1e0f5604eb610d09fe28cd50959",
-    "autojs6-node/rhino_compat.d.ts": "64d9be6d188e339c885cb9aa3e779c2937e49a21d1b5c1fcc690cf3d29492619",
+    "autojs6-node/rhino_compat.d.ts": "bb4b0e1763ce78386be00d3c760c1cc25f6e93ef229ec7d8f039899507d9250c",
     "autojs6-node/s13n.d.ts": "9fec9f35c59b94cf862f45957584c4780bc2aa9e7ca762b4e05f76d624b63174",
     "autojs6-node/screen_metrics.d.ts": "5c21b73c91013f8cc89af83a72a799f1af9b28f36aa0b91457a47a885dd73b32",
     "autojs6-node/screen_recorder.d.ts": "67bba3a883960d21a0a4dbe5249923bb8f6d6e8fa3036563366e31f09afadb6f",
     "autojs6-node/sensors.d.ts": "4a055a39d17a8ea5ad3f1e01a06a6209eb880a10d7a56a52fb3e01b4109fc893",
     "autojs6-node/shell.d.ts": "650e35abb6fe5b2ac100c27fec5a1a8de9a6239fe41b0b21be9d7719c9152a87",
+    "autojs6-node/speech.d.ts": "b7627d851a54493c83084f68df65d4f1d680160aa4d738671ff513f59bcf9f31",
     "autojs6-node/sqlite.d.ts": "9a6360be847c655227b4da09a8aeded0b19639124f2a1b055b4f2323516565fd",
     "autojs6-node/storage.d.ts": "b718e4ebd1b0bd8e6ce0497a42197457cd5d3a78d9419978a1d8d1cea330d1b5",
     "autojs6-node/storages.d.ts": "3f9409c4f3599ef7a77f3a934c8f13bf0311e3b496696641f4dea64419c46170",
@@ -77,7 +78,7 @@
     "autojs6-node/util.d.ts": "4b9abf65c0eac6402e78ed5082bd71da672cd2646927f72870810cc055e5ff9e",
     "autojs6-node/websocket.d.ts": "f9412a8fe65abdab7d1f14f09bf75a4371a84657ba3f91de42e6c96e512a5923",
     "autojs6-node/work_manager.d.ts": "5d77db1003ae945c3ce7f9061b4e8609a29f8fe3b2a830a0c0fae051c67a2e68",
-    "autojs6-bun/host-client.d.mts": "6cc51b0963c014d54e6dbeea6f99ff40f5dee9ff163c29216bfedb61ad1920d9",
-    "autojs6-bun/index.d.ts": "6f08dfaf2e2b6b08ebf30dbd8eb367ba1c7a464dfc957a85b581c38fa5debc10"
+    "autojs6-bun/host-client.d.mts": "a665b2797978effbd8cab1a7a6d01c7c165feabe3fe4767c567f49fd58d6efe4",
+    "autojs6-bun/index.d.ts": "d2f6135cfea02a8c2ad77951a199e5dbb673b2ede2379d96f4a7014264254926"
   }
 }

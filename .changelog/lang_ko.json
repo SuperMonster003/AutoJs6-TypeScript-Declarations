@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.72.0": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun/Worker의 speech 음성 인식 및 모델 관리 API로 WAV/PCM, 받아쓰기와 호출어 세션, 모델 설치와 가져오기, 음성 합성 및 취소 시 정리 지원"
+        }
+      ]
+    },
     "v4.71.0": {
       "released_date": "2026/10/20",
       "entries": [

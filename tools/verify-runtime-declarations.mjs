@@ -62,8 +62,10 @@ function verifyRuntimeTypes(program, runtime) {
             return awaited;
         });
     }
-    let opencc, images, compose, ui;
+    let opencc, images, compose, ui, speech;
     if (runtime === 'node') {
+        speech = exportedValue('speech');
+        assert.equal(checker.typeToString(speech), checker.typeToString(exportedValue('autojs6:speech')), 'Speech Worker alias drift');
         compose = exportedValue('compose'); ui = exportedValue('ui');
         opencc = exportedValue('opencc');
         images = exportedValue('images');
@@ -90,6 +92,7 @@ function verifyRuntimeTypes(program, runtime) {
         const client = checker.getExportsOfModule(ambient('autojs6:bun-host')).find(symbol => symbol.name === 'HostClient');
         assert(client, 'Bun HostClient is missing');
         const hostClient = checker.getDeclaredTypeOfSymbol(client);
+        speech = property(hostClient, 'speech');
         compose = property(hostClient, 'compose'); ui = property(hostClient, 'ui');
         opencc = property(hostClient, 'opencc');
         images = property(hostClient, 'images');
@@ -106,6 +109,15 @@ function verifyRuntimeTypes(program, runtime) {
         assert.equal(checker.typeToString(property(movie,'audioSampleRate')),'48000 | null');
         assert.equal(checker.typeToString(property(movie,'audioChannels')),'1 | null');
     }
+    for (const name of ['isAvailable','capabilities','recognize','recognizeAsync','detectVoice','listen','wake','synthesize','synthesizeAsync','speak','close'])
+        returns(property(speech,name),'speech.'+name);
+    const models=property(speech,'models');
+    for(const name of ['list','install','installAsync','importFile','remove','setDefault','getDefault','refreshCatalog'])
+        returns(property(models,name),'speech.models.'+name);
+    const speechSession=returns(property(speech,'listen'),'speech.listen')[0];
+    for(const name of ['feed','stop','cancel']) returns(property(speechSession,name),'speech session.'+name);
+    assert(property(returns(property(speech,'recognize'),'speech.recognize')[0],'text').flags & ts.TypeFlags.String);
+    assert(returns(property(speechSession,'result'),'speech session.result',false)[0].flags & ts.TypeFlags.String);
     const composeNames = readFileSync(resolve(root, 'declarations/autojs6-node/compose.d.ts'), 'utf8')
       .match(/type Compose(?:CatalogNodeName|V2NodeName) = [^;]+/g).flatMap(line => [...line.matchAll(/"([^"\n]+)"/g)].map(match => match[1]));
     assert.equal(composeNames.length, 54);

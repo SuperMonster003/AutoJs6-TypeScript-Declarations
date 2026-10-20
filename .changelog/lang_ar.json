@@ -18,6 +18,15 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.72.0": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "واجهات speech للتعرف على الكلام وإدارة النماذج في Node.js وBun وWorkers مع WAV/PCM والإملاء وكلمات التنبيه وتثبيت النماذج واستيرادها والتوليف والتنظيف عند الإلغاء"
+        }
+      ]
+    },
     "v4.71.0": {
       "released_date": "2026/10/20",
       "entries": [

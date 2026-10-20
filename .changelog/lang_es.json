@@ -18,6 +18,15 @@
     "adjustment": "Ajuste"
   },
   "$data": {
+    "v4.72.0": {
+      "released_date": "2026/10/20",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "API speech de reconocimiento y gestión de modelos para Node.js, Bun y Workers con WAV/PCM, dictado y activación por voz, instalación/importación, síntesis y cancelación"
+        }
+      ]
+    },
     "v4.71.0": {
       "released_date": "2026/10/20",
       "entries": [

@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.72.0
+
+###### 2026/10/20
+
+* `Функция` API speech для Node.js, Bun и Workers: распознавание WAV/PCM, диктовка и ключевые слова, установка и импорт моделей, синтез и освобождение ресурсов при отмене
+
 # v4.71.0
 
 ###### 2026/10/20

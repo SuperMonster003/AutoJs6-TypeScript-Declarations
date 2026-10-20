@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.72.0
+
+###### 2026/10/20
+
+* `ميزة` واجهات speech للتعرف على الكلام وإدارة النماذج في Node.js وBun وWorkers مع WAV/PCM والإملاء وكلمات التنبيه وتثبيت النماذج واستيرادها والتوليف والتنظيف عند الإلغاء
+
 # v4.71.0
 
 ###### 2026/10/20
