@@ -178,3 +178,12 @@ const pluginToolAsync: Promise<number> = plugins.tools.callAsync('faketool_echo'
 plugins.tools.call();
 // @ts-expect-error Unknown options are rejected.
 plugins.tools.call('opencc_convert', {}, { output: 'a.png' });
+// memory: memory diagnostics of the AutoJs6 process.
+const memoryHeap: number = memory.collect(3000).javaHeapUsed - $memory.snapshot().javaHeapUsed;
+const memoryExitKind: Memory.ExitKind = memory.retained()[0].exitKind;
+const memoryDump: string = memory.dumpHeap('./heap/');
+const memoryWatched: boolean = memory.watch({ items: [] }, 'cache');
+// @ts-expect-error The timeout is a number of milliseconds.
+memory.collect('500');
+// @ts-expect-error Primitive values cannot be watched.
+memory.watch(1);

@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.77.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "memory 模組的型別宣告, 用於讀取 AutoJs6 處理程序的記憶體診斷資料: 記憶體快照, 強制回收, 已結束未回收的指令碼執行時, hprof 堆積傾印與 LeakCanary 監視 (TypeScript / Ace)"
+        }
+      ]
+    },
     "v4.76.0": {
       "released_date": "2026/10/21",
       "entries": [

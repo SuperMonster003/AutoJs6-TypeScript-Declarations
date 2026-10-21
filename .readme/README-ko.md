@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.77.0
+
+###### 2026/10/21
+
+* `기능` AutoJs6 프로세스의 메모리 진단 데이터를 읽는 memory 모듈의 타입 선언: 메모리 스냅샷, 강제 가비지 컬렉션, 종료 후 회수되지 않은 스크립트 런타임, hprof 힙 덤프와 LeakCanary 감시 (TypeScript / Ace)
+
 ### v4.76.0
 
 ###### 2026/10/21
@@ -189,13 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/21
 
 * `기능` Node.js, Bun, Worker의 flow 비동기 체인 및 조건/안정성 대기, 분기 취소, 단계 재시도, 호스트 화면 스냅샷 지원
-
-### v4.74.0
-
-###### 2026/10/21
-
-* `수정` Bun 기능 이름 타입에서 tts.control, speech.control 및 epub.control이 누락된 문제
-* `개선` 타입 선언: 메일 계정 연결, 메시지 작업, 첨부 파일 및 메일함 감시, 취소와 Worker 종료 시 정리
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

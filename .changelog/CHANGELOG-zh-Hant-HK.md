@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.77.0
+
+###### 2026/10/21
+
+* `新增` memory 模組的類型聲明, 用於讀取 AutoJs6 進程的記憶體診斷數據: 記憶體快照, 強制回收, 已結束未回收的腳本運行時, hprof 堆轉儲與 LeakCanary 監視 (TypeScript / Ace)
+
 # v4.76.0
 
 ###### 2026/10/21

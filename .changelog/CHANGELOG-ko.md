@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.77.0
+
+###### 2026/10/21
+
+* `기능` AutoJs6 프로세스의 메모리 진단 데이터를 읽는 memory 모듈의 타입 선언: 메모리 스냅샷, 강제 가비지 컬렉션, 종료 후 회수되지 않은 스크립트 런타임, hprof 힙 덤프와 LeakCanary 감시 (TypeScript / Ace)
+
 # v4.76.0
 
 ###### 2026/10/21

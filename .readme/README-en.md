@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.77.0
+
+###### 2026/10/21
+
+* `Feature` Declarations of the memory module for reading the memory diagnostics of the AutoJs6 process: memory snapshots, forced garbage collection, finished but unreclaimed script runtimes, hprof heap dumps and LeakCanary watching (TypeScript / Ace)
+
 ### v4.76.0
 
 ###### 2026/10/21
@@ -189,13 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/21
 
 * `Feature` Flow asynchronous chains and condition/stability waits for Node.js, Bun and Workers, with branch cancellation, step retries and host UI snapshots
-
-### v4.74.0
-
-###### 2026/10/21
-
-* `Fix` Missing tts.control, speech.control and epub.control values in the Bun capability type
-* `Improvement` Typed APIs: Mail account connections, message operations, attachments and mailbox watches, with cancellation and Worker cleanup
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

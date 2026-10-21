@@ -211,6 +211,10 @@ declare let $settings: Internal.Settings;
 declare let mediainfo: Internal.Mediainfo;
 declare let $mediainfo: Internal.Mediainfo;
 
+/** Read-only memory diagnostics of the AutoJs6 process. Available since AutoJs6 6.8.0. */
+declare let memory: Internal.Memory;
+declare let $memory: Internal.Memory;
+
 declare let tts: Internal.Tts;
 declare let $tts: Internal.Tts;
 

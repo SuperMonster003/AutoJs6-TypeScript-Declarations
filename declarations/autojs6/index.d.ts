@@ -34,6 +34,7 @@
 /// <reference path="./aj6-int-mail.d.ts" />
 /// <reference path="./aj6-int-media.d.ts" />
 /// <reference path="./aj6-int-mediainfo.d.ts" />
+/// <reference path="./aj6-int-memory.d.ts" />
 /// <reference path="./aj6-int-mime.d.ts" />
 /// <reference path="./aj6-int-nanoid.d.ts" />
 /// <reference path="./aj6-int-notice.d.ts" />

@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.77.0
+
+###### 2026/10/21
+
+* `新增` memory 模块的类型声明, 用于读取 AutoJs6 进程的内存诊断数据: 内存快照, 强制回收, 已结束未回收的脚本运行时, hprof 堆转储与 LeakCanary 监视 (TypeScript / Ace)
+
 ### v4.76.0
 
 ###### 2026/10/21
@@ -189,13 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/21
 
 * `新增` Node.js, Bun 及 Worker 的 flow 异步链与条件/稳定性等待, 支持分支取消, 单步骤重试及宿主界面快照
-
-### v4.74.0
-
-###### 2026/10/21
-
-* `修复` Bun 能力名称类型遗漏 tts.control, speech.control 和 epub.control 的问题
-* `优化` 类型声明: 邮件账户连接, 邮件操作, 附件与邮箱监听, 支持取消及 Worker 退出清理
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

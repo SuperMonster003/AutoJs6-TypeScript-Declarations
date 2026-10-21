@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.77.0
+
+###### 2026/10/21
+
+* `ميزة` تعريفات أنواع وحدة memory لقراءة تشخيص ذاكرة عملية AutoJs6: لقطات الذاكرة, وجمع البيانات المهملة القسري, وبيئات تشغيل البرامج النصية المنتهية غير المحررة, وتفريغات الكومة hprof ومراقبة LeakCanary (TypeScript / Ace)
+
 # v4.76.0
 
 ###### 2026/10/21

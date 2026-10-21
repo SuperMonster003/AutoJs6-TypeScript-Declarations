@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.77.0
+
+###### 2026/10/21
+
+* `機能` AutoJs6 プロセスのメモリ診断データを読み取る memory モジュールの型宣言: メモリスナップショット, 強制ガベージコレクション, 終了後も回収されていないスクリプトのランタイム, hprof ヒープダンプと LeakCanary による監視 (TypeScript / Ace)
+
 ### v4.76.0
 
 ###### 2026/10/21
@@ -189,13 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/21
 
 * `機能` Node.js, Bun, Worker 向けの flow 非同期チェーンと条件/安定性待機, 分岐のキャンセル, ステップの再試行, ホスト画面のスナップショットに対応
-
-### v4.74.0
-
-###### 2026/10/21
-
-* `修正` Bun の機能名の型に tts.control, speech.control と epub.control が欠落する問題
-* `改善` 型宣言: メールアカウント接続, メール操作, 添付ファイルとメールボックス監視, キャンセルと Worker 終了時の解放
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 
