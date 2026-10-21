@@ -91,8 +91,8 @@ declare module "flow" {
       <U = S>(selector: Selector | string | RegExp, options: WaitOptions<S>, onOk?: Success<S, U> | null, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
     }
     interface BooleanWait<S = NodeSnapshot> {
-      (condition: Condition<unknown> | Selector | string | RegExp, options?: WaitOptions): Flow<boolean, S>;
-      (condition: Condition<unknown> | Selector | string | RegExp, timeout?: number, interval?: number): Flow<boolean, S>;
+      (condition: Condition<unknown> | NodeSnapshot | Selector | string | RegExp, options?: WaitOptions): Flow<boolean, S>;
+      (condition: Condition<unknown> | NodeSnapshot | Selector | string | RegExp, timeout?: number, interval?: number): Flow<boolean, S>;
     }
     interface ComponentWait<S = NodeSnapshot> {
       (name: string, options?: WaitOptions<boolean>): Flow<boolean, S>;
@@ -331,8 +331,12 @@ declare module "flow" {
       race<T>(sources: readonly Source<T>[]): Flow<T | NodeSnapshot>; race<T>(...sources: Source<T>[]): Flow<T | NodeSnapshot>;
       any<T>(sources: readonly Source<T>[]): Flow<T | NodeSnapshot>; any<T>(...sources: Source<T>[]): Flow<T | NodeSnapshot>;
       whenPresent<T>(condition: Condition<T>, handler: (value: T) => unknown, options?: OptionalOptions): Flow<undefined>;
+      whenPresent(node: NodeSnapshot, handler: (value: NodeSnapshot) => unknown, options?: OptionalOptions): Flow<undefined>;
+      whenPresent<R extends ResultType>(selector: Selector | string | RegExp, handler: (value: ResultOf<R>) => unknown, options: OptionalOptions & {resultType: R}): Flow<undefined>;
       whenPresent(selector: Selector | string | RegExp, handler: (value: NodeSnapshot) => unknown, options?: OptionalOptions): Flow<undefined>;
       repeatUntil<T>(action: (attempt: number) => unknown, condition: Condition<T>, options?: RepeatOptions): Flow<T>;
+      repeatUntil(action: (attempt: number) => unknown, node: NodeSnapshot, options?: RepeatOptions): Flow<NodeSnapshot>;
+      repeatUntil<R extends ResultType>(action: (attempt: number) => unknown, selector: Selector | string | RegExp, options: RepeatOptions & {resultType: R}): Flow<ResultOf<R>>;
       repeatUntil(action: (attempt: number) => unknown, selector: Selector | string | RegExp, options?: RepeatOptions): Flow<NodeSnapshot>;
       cancelAll(): number; defaults(options?: Partial<Defaults>): Defaults; trace(enabled?: boolean): boolean;
     }
