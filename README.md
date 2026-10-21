@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.76.0
+
+###### 2026/10/21
+
+* `新增` Node.js, Bun 及 Worker 的 Flow 高级点击, 滚动, 输入, 列表采集与真实事件等待, 支持监听就绪, 快照校验和取消 (TypeScript / Ace)
+
 ### v4.75.0
 
 ###### 2026/10/21
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 
 * `修复` Bun 能力名称类型遗漏 tts.control, speech.control 和 epub.control 的问题
 * `优化` 类型声明: 邮件账户连接, 邮件操作, 附件与邮箱监听, 支持取消及 Worker 退出清理
-
-### v4.73.0
-
-###### 2026/10/21
-
-* `优化` 类型声明 - Node.js/Bun/Worker: EPUB 书籍读取, 资源导出, 搜索及带事件的阅读器会话
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

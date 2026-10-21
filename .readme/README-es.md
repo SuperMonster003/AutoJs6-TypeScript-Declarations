@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.76.0
+
+###### 2026/10/21
+
+* `Función` Clics avanzados, desplazamiento, entrada, recopilación de listas y espera de eventos reales de Flow para Node.js, Bun y Workers, con suscripciones listas, validación de instantáneas y cancelación (TypeScript / Ace)
+
 ### v4.75.0
 
 ###### 2026/10/21
@@ -190,12 +196,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 * `Corrección` Valores tts.control, speech.control y epub.control ausentes del tipo de capacidades de Bun
 * `Mejora` Declaraciones de tipos: Conexiones de correo, mensajes, adjuntos y vigilancia de buzones, con cancelación y limpieza de Workers
-
-### v4.73.0
-
-###### 2026/10/21
-
-* `Mejora` Declaraciones de tipos - Node.js/Bun/Worker: Lectura de EPUB, exportación de recursos, búsqueda y sesiones del lector con eventos
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

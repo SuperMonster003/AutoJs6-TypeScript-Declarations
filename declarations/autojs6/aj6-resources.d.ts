@@ -5949,6 +5949,7 @@ declare namespace org {
 					public static summary_bun_events_observe_grant: number;
 					public static summary_bun_events_toast_grant: number;
 					public static summary_bun_files_control_grant: number;
+					public static summary_bun_flow_control_grant: number;
 					public static summary_bun_host_info_grant: number;
 					public static summary_bun_image_files_grant: number;
 					public static summary_bun_image_process_grant: number;
@@ -6375,6 +6376,7 @@ declare namespace org {
 					public static text_bun_events_observe_grant: number;
 					public static text_bun_events_toast_grant: number;
 					public static text_bun_files_control_grant: number;
+					public static text_bun_flow_control_grant: number;
 					public static text_bun_host_capabilities: number;
 					public static text_bun_host_info_grant: number;
 					public static text_bun_image_files_grant: number;

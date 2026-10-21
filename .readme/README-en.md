@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.76.0
+
+###### 2026/10/21
+
+* `Feature` Flow advanced clicks, scrolling, text entry, list collection and real event waits for Node.js, Bun and Workers, with subscription readiness, snapshot validation and cancellation (TypeScript / Ace)
+
 ### v4.75.0
 
 ###### 2026/10/21
@@ -190,12 +196,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 * `Fix` Missing tts.control, speech.control and epub.control values in the Bun capability type
 * `Improvement` Typed APIs: Mail account connections, message operations, attachments and mailbox watches, with cancellation and Worker cleanup
-
-### v4.73.0
-
-###### 2026/10/21
-
-* `Improvement` Type declarations - Node.js/Bun/Worker: EPUB book reading, resource export, search and reader sessions with events
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 
