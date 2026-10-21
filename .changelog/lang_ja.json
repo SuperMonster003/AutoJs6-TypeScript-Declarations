@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.75.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js, Bun, Worker 向けの flow 非同期チェーンと条件/安定性待機, 分岐のキャンセル, ステップの再試行, ホスト画面のスナップショットに対応"
+        }
+      ]
+    },
     "v4.74.0": {
       "released_date": "2026/10/21",
       "entries": [

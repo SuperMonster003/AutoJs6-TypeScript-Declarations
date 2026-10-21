@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.75.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js, Bun 及 Worker 的 flow 非同步鏈與條件/穩定性等待, 支援分支取消, 單一步驟重試及宿主介面快照"
+        }
+      ]
+    },
     "v4.74.0": {
       "released_date": "2026/10/21",
       "entries": [

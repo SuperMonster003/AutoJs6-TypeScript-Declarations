@@ -422,3 +422,8 @@ Node 1.26.0 and Bun 0.15.0 declarations include EPUB books and reader sessions i
 All 20 registered root names return Promises, including the `Async` aliases. Book metadata properties are ready after `open()`; book methods and reader controls are asynchronous. Cover reads without an output path return Uint8Array rather than Rhino ImageWrapper. Typed reader events retain `totalProgression`, `chapterTitle`, bookmark and highlight payload fields. Calls accept cancellation and optional deadlines.
 
 The canonical runtime files come from the Node/Bun repositories and are copied by `tools/sync-runtime-declarations.mjs`, including the Ace copy. The semantic declaration checker validates both module aliases, Promise result types, book metadata and reader methods.
+
+
+## 2026-10-21 Flow core
+
+Node 1.28.0 and Bun 0.17.0 share asynchronous Flow chains, predicate/selector/stability waits, Promise combinators, branch cancellation and single-step retry across main threads and CJS/ESM/nested Workers. Node uses flow/autojs6:flow and explicit $autojs.flow; Bun uses host.flow. Host UI snapshots and foreground waits require accessibility or the existing default-off accessibility.control grant and the calling application's bound Android service. Local callbacks need no host grant. Bun retains its 1024-call budget; native payloads and compatibility are unchanged. Toolkit actions, event waits, within/scope and synchronous Rhino terminals remain separate work. See Documentation api/runtimeApis.md and host docs/dev/runtime-flow-core-2026-10-21.md for semantics and acceptance.

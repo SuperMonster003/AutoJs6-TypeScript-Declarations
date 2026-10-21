@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.75.0
+
+###### 2026/10/21
+
+* `Fonctionnalité` Chaînes asynchrones flow et attentes de condition/stabilité pour Node.js, Bun et Workers, avec annulation des branches, reprise des étapes et instantanés de l'interface hôte
+
 ### v4.74.0
 
 ###### 2026/10/21
@@ -190,12 +196,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/21
 
 * `Amélioration` Déclarations de types - Node.js/Bun/Worker: Lecture EPUB, export des ressources, recherche et sessions du lecteur avec événements
-
-### v4.72.0
-
-###### 2026/10/20
-
-* `Fonctionnalité` API speech de reconnaissance vocale et de gestion des modèles pour Node.js, Bun et Workers avec WAV/PCM, dictée et activation vocale, installation/importation, synthèse et annulation
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

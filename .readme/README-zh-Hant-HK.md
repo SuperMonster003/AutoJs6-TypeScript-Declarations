@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.75.0
+
+###### 2026/10/21
+
+* `新增` Node.js, Bun 及 Worker 的 flow 非同步鏈與條件/穩定性等待, 支援分支取消, 單步驟重試及宿主介面快照
+
 ### v4.74.0
 
 ###### 2026/10/21
@@ -190,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/21
 
 * `優化` 型別宣告 - Node.js/Bun/Worker: EPUB 書籍讀取, 資源匯出, 搜尋及帶事件的閱讀器會話
-
-### v4.72.0
-
-###### 2026/10/20
-
-* `新增` Node.js/Bun/Worker 的 speech 語音識別與模型管理介面, 支援 WAV/PCM, 聽寫與喚醒工作階段, 模型安裝/匯入, 語音合成及取消清理
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-HK.md)
 

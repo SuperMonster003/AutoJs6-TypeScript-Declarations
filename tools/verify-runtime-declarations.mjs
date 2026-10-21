@@ -69,11 +69,13 @@ function verifyRuntimeTypes(program, runtime) {
             return awaited;
         });
     }
-    let opencc, images, compose, ui, speech, epub, mail;
+    let opencc, images, compose, ui, speech, epub, mail, flow;
     if (runtime === 'node') {
         speech = exportedValue('speech');
         epub = exportedValue('epub');
         mail = exportedValue('mail');
+        flow = exportedValue('flow');
+        assert.equal(checker.typeToString(flow),checker.typeToString(exportedValue('autojs6:flow')));
         assert.equal(checker.typeToString(mail), checker.typeToString(exportedValue('autojs6:mail')), 'Mail Worker alias drift');
         assert.equal(checker.typeToString(epub), checker.typeToString(exportedValue('autojs6:epub')), 'EPUB Worker alias drift');
         assert.equal(checker.typeToString(speech), checker.typeToString(exportedValue('autojs6:speech')), 'Speech Worker alias drift');
@@ -106,6 +108,7 @@ function verifyRuntimeTypes(program, runtime) {
         speech = property(hostClient, 'speech');
         epub = property(hostClient, 'epub');
         mail = property(hostClient, 'mail');
+        flow = property(hostClient, 'flow');
         compose = property(hostClient, 'compose'); ui = property(hostClient, 'ui');
         opencc = property(hostClient, 'opencc');
         images = property(hostClient, 'images');
@@ -122,6 +125,11 @@ function verifyRuntimeTypes(program, runtime) {
         assert.equal(checker.typeToString(property(movie,'audioSampleRate')),'48000 | null');
         assert.equal(checker.typeToString(property(movie,'audioChannels')),'1 | null');
     }
+    for (const name of ['wait','waitAsync','waitUntil','waitWhile','waitForStable','waitForVisible','waitForHidden','waitForGone','waitForActivity','waitForPackage','of','run','sleep','delay','all','race','any','whenPresent','repeatUntil'])
+        for(const value of returns(property(flow,name),'flow.'+name,false)) assert.equal(value.getSymbol()?.name,'Flow',name+' must retain chain methods');
+    const chain=returns(property(flow,'sleep'),'flow.sleep',false)[0];
+    for(const name of ['cancel','then','catch','else','finally','map','filter','peek','run','timeout','retry','toPromise','state','step','value','error'])property(chain,name);
+    for(const name of ['sync','await','within','scope','click'])assert(!checker.getPropertyOfType(chain,name),'Unsupported portable Flow method '+name);
     for (const name of ['connect','connectAsync','setDefault','close','dispose','watch'])
         returns(property(mail,name),'mail.'+name);
     const mailClient=returns(property(mail,'connect'),'mail.connect')[0];

@@ -18,6 +18,15 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.75.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Flow asynchronous chains and condition/stability waits for Node.js, Bun and Workers, with branch cancellation, step retries and host UI snapshots"
+        }
+      ]
+    },
     "v4.74.0": {
       "released_date": "2026/10/21",
       "entries": [

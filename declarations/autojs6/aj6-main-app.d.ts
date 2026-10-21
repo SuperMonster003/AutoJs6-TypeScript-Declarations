@@ -4683,6 +4683,8 @@ declare namespace org {
 						public getSize(): __javaRoots.orgRoot.opencv.core.Size;
 						public getWidth(): number;
 						public isRecycled(): boolean;
+						public static liveCount(): number;
+						public static liveCount(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime): number;
 						public static ofBitmap(bitmap: __javaRoots.androidRoot.graphics.Bitmap): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public static ofBitmap(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, bitmap: __javaRoots.androidRoot.graphics.Bitmap): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public static ofImage(image: __javaRoots.androidRoot.media.Image): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
@@ -4690,6 +4692,7 @@ declare namespace org {
 						public static ofMat(mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public static ofMat(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, mat: __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public static ofMat(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, mat: __javaRoots.orgRoot.opencv.core.Mat): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
+						public static openMediaImageCount(): number;
 						public pixel(x: number, y: number): number;
 						public recycle(): void;
 						public static recycleAll(): void;
@@ -4698,6 +4701,7 @@ declare namespace org {
 						public setOneShot(b: boolean): __javaRoots.orgRoot.autojs.autojs.core.image.ImageWrapper;
 						public shoot(): void;
 						public static toBitmap(image: __javaRoots.androidRoot.media.Image): __javaRoots.androidRoot.graphics.Bitmap;
+						public static trackMediaImage(image: __javaRoots.androidRoot.media.Image): __javaRoots.androidRoot.media.Image;
 						public clone(...args: any[]): any;
 						public setOneShot(...args: any[]): any;
 					}
@@ -5907,6 +5911,10 @@ declare namespace org {
 				export namespace opencv {
 					export class Mat extends __javaRoots.orgRoot.opencv.core.Mat {
 						public readonly released: boolean;
+						public static readonly createdCount: number;
+						public static readonly finalizedCount: number;
+						public static readonly liveCount: number;
+						public static readonly releasedCount: number;
 						public constructor();
 						public constructor(rows: number, cols: number, _type_: number);
 						public constructor(rows: number, cols: number, _type_: number, data: __javaRoots.javaRoot.nio.ByteBuffer);
@@ -5928,6 +5936,10 @@ declare namespace org {
 						public convertTo(_type_: number): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public convertTo(_type_: number, isRelease: boolean): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public static from(source: __javaRoots.orgRoot.opencv.core.Mat): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
+						public static getCreatedCount(): number;
+						public static getFinalizedCount(): number;
+						public static getLiveCount(): number;
+						public static getReleasedCount(): number;
 						public isReleased(): boolean;
 						public static ones(size_width: number, size_height: number, _type_: number): __javaRoots.orgRoot.autojs.autojs.core.opencv.Mat;
 						public release(): void;
@@ -6448,7 +6460,10 @@ declare namespace org {
 						public remove(commit: boolean): void;
 						public set(value: T): void;
 						public set(value: T, commit: boolean): void;
+						public setStoredText(text: string): void;
+						public setStoredText(text: string, commit: boolean): void;
 						public storedOrNull(): T;
+						public storedText(): string;
 						public toString(): string;
 						protected constructor();
 					}
@@ -19375,6 +19390,7 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.typescript.TypeScriptProjectArchive.collectPackageMetadata..inlined.sortBy.1:1
 //org.autojs.autojs.core.plugin.typescript.TypeScriptProjectArchive.collectSources..inlined.sortBy.1:1
 //org.autojs.autojs.core.pref.CacheKey:1
+//org.autojs.autojs.core.pref.KeyFamily:2
 //org.autojs.autojs.core.pref.PrefKey:1
 //org.autojs.autojs.core.pref.SettingDefault:1
 //org.autojs.autojs.core.pref.SettingDefault.Computed:1

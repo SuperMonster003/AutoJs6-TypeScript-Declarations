@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.75.0
+
+###### 2026/10/21
+
+* `Функция` Асинхронные цепочки flow и ожидание условий/стабильности для Node.js, Bun и Worker с отменой ветвей, повтором шагов и снимками интерфейса хоста
+
 # v4.74.0
 
 ###### 2026/10/21

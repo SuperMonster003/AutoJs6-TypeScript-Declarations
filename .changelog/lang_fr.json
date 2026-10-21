@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.75.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Chaînes asynchrones flow et attentes de condition/stabilité pour Node.js, Bun et Workers, avec annulation des branches, reprise des étapes et instantanés de l'interface hôte"
+        }
+      ]
+    },
     "v4.74.0": {
       "released_date": "2026/10/21",
       "entries": [

@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.75.0
+
+###### 2026/10/21
+
+* `Feature` Flow asynchronous chains and condition/stability waits for Node.js, Bun and Workers, with branch cancellation, step retries and host UI snapshots
+
 ### v4.74.0
 
 ###### 2026/10/21
@@ -190,12 +196,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/21
 
 * `Improvement` Type declarations - Node.js/Bun/Worker: EPUB book reading, resource export, search and reader sessions with events
-
-### v4.72.0
-
-###### 2026/10/20
-
-* `Feature` Speech recognition and model management APIs for Node.js, Bun and Workers, with WAV/PCM, dictation and wake sessions, model installation/import, synthesis and cancellation cleanup
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.75.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js, Bun, Worker의 flow 비동기 체인 및 조건/안정성 대기, 분기 취소, 단계 재시도, 호스트 화면 스냅샷 지원"
+        }
+      ]
+    },
     "v4.74.0": {
       "released_date": "2026/10/21",
       "entries": [

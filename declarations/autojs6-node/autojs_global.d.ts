@@ -921,6 +921,7 @@ declare namespace AutoJs6Node {
     readonly packageName: string;
     readonly profile: AutoJsProfile;
     readonly androidContext: AutoJsAndroidContextDescriptor;
+    readonly flow: typeof import("flow");
     readonly mail: typeof import("mail");
     readonly epub: typeof import("epub");
     readonly speech: typeof import("speech");
