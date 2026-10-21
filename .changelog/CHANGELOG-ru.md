@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.79.0
+
+###### 2026/10/22
+
+* `Функция` Генерация текста ИИ, потоковые ответы, каталог моделей и постоянные сеансы для Node.js, Bun и Workers, с отменой и разрешением Android для собранных приложений
+
 # v4.78.0
 
 ###### 2026/10/21

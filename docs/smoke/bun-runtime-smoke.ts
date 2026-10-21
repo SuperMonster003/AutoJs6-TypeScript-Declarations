@@ -350,3 +350,14 @@ async function bunTtsSmoke(client: import("autojs6:bun-host").HostClient) {
   const immediate: import("autojs6:bun-host").RuntimeTts.Utterance = client.tts.utterance("hello");
   return result;
 }
+
+async function bunAiCoreSmoke(client: import("autojs6:bun-host").HostClient) {
+  const stream = client.ai.stream("hello");
+  stream.on("delta", (text, chunk) => { const content: string = text + chunk.reasoning; void content; });
+  const result: import("autojs6:bun-host").RuntimeAi.Response = await stream.result;
+  const session = await client.ai.session({backend: "cpu"});
+  await session.close(); await client.ai.close();
+  // @ts-expect-error Agent tasks are outside this runtime facade.
+  client.ai.agent;
+  return result;
+}

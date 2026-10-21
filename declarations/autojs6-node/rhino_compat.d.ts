@@ -456,6 +456,7 @@ declare module "autojs6:compat" {
       readonly ui: RhinoUiCompatModule;
       readonly tasks: RhinoTasksCompatModule;
       readonly flow: typeof import("flow");
+    readonly ai: typeof import("ai");
     readonly mail: typeof import("mail");
       readonly epub: typeof import("epub");
       readonly speech: typeof import("speech");

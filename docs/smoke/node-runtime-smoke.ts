@@ -390,3 +390,20 @@ async function ttsSmoke() {
   await tts.speak("hello", {rate: "fast"});
   return {ready, result};
 }
+
+import ai = require("autojs6:ai");
+async function aiCoreSmoke(signal: AutoJs6Node.AbortSignalLike) {
+  const catalog: ai.TargetCatalog = await ai.catalog();
+  const stream = ai.stream("hello", {maxTokens: 8}, {signal});
+  stream.on("delta", (text, chunk) => { const content: string = text + chunk.reasoning; void content; });
+  const result: ai.Response = await stream.result;
+  const session: ai.Session = await ai.session({system: "brief", backend: "cpu"});
+  const answer: string = await session.ask("hello");
+  const metadataCapability: ai.TargetCapability = "vision";
+  await session.close(); await ai.close();
+  // @ts-expect-error Agent tasks are outside the portable core.
+  ai.agent.run("goal");
+  // @ts-expect-error A session turn is a prompt string.
+  session.chat({messages: []});
+  return {catalog, result, answer, metadataCapability};
+}

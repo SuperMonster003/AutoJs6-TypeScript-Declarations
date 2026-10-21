@@ -373,6 +373,7 @@ declare namespace org {
 						public readonly pulse: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventPulse;
 						public readonly rootInActiveWindow: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
 						public readonly rootInCurrentWindow: __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
+						public readonly scriptOwnerId: string;
 						public readonly service: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityService;
 						public readonly stats: __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats;
 						public readonly tap: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge.Tap;
@@ -388,6 +389,7 @@ declare namespace org {
 						public getPulse(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventPulse;
 						public getRootInActiveWindow(): __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
 						public getRootInCurrentWindow(): __javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo;
+						public getScriptOwnerId(): string;
 						public getService(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityService;
 						public getStats(): __javaRoots.orgRoot.autojs.autojs.core.automator.diagnostics.A11yStats;
 						public getTap(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge.Tap;
@@ -398,11 +400,13 @@ declare namespace org {
 						public setAccessibilityListener(listener: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityServiceCallback): void;
 						public setFlags(value: number): void;
 						public setMode(mode: number): void;
+						public setScriptOwnerId(_set___: string): void;
 						public setTap(_set___: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge.Tap): void;
 						public setWindowFilter(windowFilter: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge.WindowFilter): void;
 						public windowRoots(): __javaRoots.javaRoot.util.List<__javaRoots.androidRoot.view.accessibility.AccessibilityNodeInfo>;
 						public windows(): __javaRoots.javaRoot.util.List<__javaRoots.androidRoot.view.accessibility.AccessibilityWindowInfo>;
 					}
+					export interface AccessibilityBridge extends __javaRoots.orgRoot.autojs.autojs.core.accessibility.ScriptOwned {}
 					export namespace AccessibilityBridge {
 						export class Tap {
 							public constructor(implementation: Tap);
@@ -629,6 +633,24 @@ declare namespace org {
 							public removeListener(listener: __javaRoots.orgRoot.autojs.autojs.core.accessibility.OnKeyListener): boolean;
 						}
 						export interface Observer extends __javaRoots.orgRoot.autojs.autojs.core.accessibility.OnKeyListener {}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace accessibility {
+					export class ScriptOwned {
+						public constructor(implementation: ScriptOwned);
+						public constructor();
+					}
+					export interface ScriptOwned {
+						readonly scriptOwnerId: string;
+						getScriptOwnerId(): string;
 					}
 				}
 			}
@@ -1100,6 +1122,7 @@ declare namespace org {
 							public subscriptionsOf(owner: any): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Subscription<E>>;
 							public unsubscribe(subscription: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus.Subscription<E>): boolean;
 							public unsubscribeAll(owner: any): number;
+							public unsubscribeIf(predicate: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.Boolean>): number;
 						}
 						export namespace A11yEventBus {
 							export class DeferredScheduler {
@@ -1196,6 +1219,7 @@ declare namespace org {
 							public readonly events: number;
 							public readonly idle: __javaRoots.orgRoot.autojs.autojs.core.automator.event.IdleWaiter;
 							public readonly poller: __javaRoots.orgRoot.autojs.autojs.core.automator.query.Poller;
+							public readonly scriptOwnerId: string;
 							public constructor(bus: __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEventBus<__javaRoots.orgRoot.autojs.autojs.core.accessibility.event.A11yEvent>, registry: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry<__javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityService>, clock: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.javaRoot.lang.Long>);
 							public abortingOnServiceLoss<T>(waiter: __javaRoots.orgRoot.autojs.autojs.core.automator.event.EventWaiter<any>, block: __javaRoots.kotlinRoot.jvm.functions.Function0<T>): T;
 							public awaitEvent(millis: number): boolean;
@@ -1206,9 +1230,11 @@ declare namespace org {
 							public getEvents(): number;
 							public getIdle(): __javaRoots.orgRoot.autojs.autojs.core.automator.event.IdleWaiter;
 							public getPoller(): __javaRoots.orgRoot.autojs.autojs.core.automator.query.Poller;
+							public getScriptOwnerId(): string;
+							public setScriptOwnerId(_set___: string): void;
 							public withWaiter<T>(types: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>, block: __javaRoots.kotlinRoot.jvm.functions.Function1<any, T>): T;
 						}
-						export interface A11yEventPulse extends __javaRoots.javaRoot.lang.AutoCloseable {}
+						export interface A11yEventPulse extends __javaRoots.javaRoot.lang.AutoCloseable, __javaRoots.orgRoot.autojs.autojs.core.accessibility.ScriptOwned {}
 					}
 				}
 			}
@@ -1229,24 +1255,6 @@ declare namespace org {
 							readonly eventTypes: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>;
 							getEventTypes(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>;
 							onAccessibilityEvent(param0: __javaRoots.androidRoot.accessibilityservice.AccessibilityService, param1: __javaRoots.androidRoot.view.accessibility.AccessibilityEvent): boolean;
-						}
-					}
-				}
-			}
-		}
-	}
-}
-declare namespace org {
-	export namespace autojs {
-		export namespace autojs {
-			export namespace core {
-				export namespace accessibility {
-					export namespace monitor {
-						export class CloseableManager {
-							public constructor();
-							public add(closeable: __javaRoots.javaRoot.io.Closeable): void;
-							public recycleAll(): void;
-							public remove(closeable: __javaRoots.javaRoot.io.Closeable): void;
 						}
 					}
 				}
@@ -1319,6 +1327,7 @@ declare namespace org {
 							public addListener(owner: any, listener: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.StateListener<S>): void;
 							public await(target: __javaRoots.orgRoot.autojs.autojs.core.accessibility.registry.A11yServiceRegistry.State, timeoutMillis: number): boolean;
 							public awaitUnbound(timeoutMillis: number): boolean;
+							public countListeners(predicate: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.Boolean>): number;
 							public getAdoptedByEvent(): boolean;
 							public getInstance(): S;
 							public getListenerCount(): number;
@@ -1332,6 +1341,7 @@ declare namespace org {
 							public onDisposed(service: S): boolean;
 							public onEvent(service: S): void;
 							public removeListener(owner: any): boolean;
+							public removeListenersIf(predicate: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.javaRoot.lang.Boolean>): number;
 							public resetOperational(): void;
 						}
 						export namespace A11yServiceRegistry {
@@ -2744,6 +2754,7 @@ declare namespace org {
 						public setTouchable(touchable: boolean): void;
 						public show(): void;
 						public show(isReset: boolean): void;
+						public static showingConsoleCount(): number;
 						public snapshotLogEntries(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl.LogEntry>;
 						public submitInput(text: string): boolean;
 						public write(level: number, data: string): void;
@@ -8501,6 +8512,7 @@ declare namespace org {
 						public exitOnClose(isExitOnClose: boolean): void;
 						public getClient(): __javaRoots.okhttp3Root.OkHttpClient;
 						public getUrl(): string;
+						public static instanceCount(): number;
 						public on(eventName: string, listener: __javaRoots.orgRoot.mozilla.javascript.Callable): __javaRoots.orgRoot.autojs.autojs.core.web.WebSocket;
 						public static onExit(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, reason: string): void;
 						public once(eventName: string, listener: __javaRoots.orgRoot.mozilla.javascript.Callable): __javaRoots.orgRoot.autojs.autojs.core.web.WebSocket;
@@ -9271,16 +9283,20 @@ declare namespace org {
 		export namespace autojs {
 			export namespace engine {
 				export class ScriptEngineService {
+					public readonly engineLifecycleCallbackCount: number;
 					public readonly engines: __javaRoots.javaRoot.util.Set<__javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<__javaRoots.orgRoot.autojs.autojs.script.ScriptSource>>;
 					public readonly globalConsole: __javaRoots.orgRoot.autojs.autojs.runtime.api.Console;
+					public readonly globalScriptExecutionListenerCount: number;
 					public readonly languageContext: __javaRoots.androidRoot.content.Context;
 					public readonly scriptExecutions: __javaRoots.javaRoot.util.Collection<__javaRoots.orgRoot.autojs.autojs.execution.ScriptExecution>;
 					public static readonly instance: __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngineService;
 					public execute(task: __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecutionTask): __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecution;
 					public execute(source: __javaRoots.orgRoot.autojs.autojs.script.ScriptSource, config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig): __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecution;
 					public execute(source: __javaRoots.orgRoot.autojs.autojs.script.ScriptSource, listener: __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecutionListener, config: __javaRoots.orgRoot.autojs.autojs.execution.ExecutionConfig): __javaRoots.orgRoot.autojs.autojs.execution.ScriptExecution;
+					public getEngineLifecycleCallbackCount(): number;
 					public getEngines(): __javaRoots.javaRoot.util.Set<__javaRoots.orgRoot.autojs.autojs.engine.ScriptEngine<__javaRoots.orgRoot.autojs.autojs.script.ScriptSource>>;
 					public getGlobalConsole(): __javaRoots.orgRoot.autojs.autojs.runtime.api.Console;
+					public getGlobalScriptExecutionListenerCount(): number;
 					public static getInstance(): __javaRoots.orgRoot.autojs.autojs.engine.ScriptEngineService;
 					public getLanguageContext(): __javaRoots.androidRoot.content.Context;
 					public static getModuleNameFromMode(value: __javaRoots.javaRoot.lang.Integer): string;
@@ -10505,7 +10521,7 @@ declare namespace org {
 					public readonly automator: __javaRoots.orgRoot.autojs.autojs.core.accessibility.SimpleActionAutomator;
 					public readonly barcode: __javaRoots.orgRoot.autojs.autojs.runtime.api.Barcode;
 					public readonly bridges: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptBridges;
-					public readonly closeableManager: __javaRoots.orgRoot.autojs.autojs.core.accessibility.monitor.CloseableManager;
+					public readonly closeableManager: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope;
 					public readonly colors: __javaRoots.orgRoot.autojs.autojs.core.image.Colors;
 					public readonly console: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl;
 					public consoleProxyObject: __javaRoots.orgRoot.autojs.autojs.rhino.ProxyObject;
@@ -10525,6 +10541,7 @@ declare namespace org {
 					public readonly ocrRapid: __javaRoots.orgRoot.autojs.autojs.runtime.api.OcrRapid;
 					public plugins: __javaRoots.orgRoot.autojs.autojs.runtime.api.Plugins;
 					public readonly recorder: __javaRoots.orgRoot.autojs.autojs.runtime.api.Recorder;
+					public readonly resourceScope: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope;
 					public readonly scale: __javaRoots.orgRoot.autojs.autojs.runtime.api.Scale;
 					public sensors: __javaRoots.orgRoot.autojs.autojs.runtime.api.Sensors;
 					public readonly shizuku: __javaRoots.orgRoot.autojs.autojs.runtime.api.WrappedShizuku;
@@ -11114,11 +11131,13 @@ declare namespace org {
 				export namespace api {
 					export class Events extends __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter {
 						public readonly broadcast: __javaRoots.orgRoot.autojs.autojs.core.broadcast.BroadcastEmitter;
+						public readonly scriptOwnerId: string;
 						public readonly touchEventTimeout: number;
 						public constructor(context: __javaRoots.androidRoot.content.Context, accessibilityBridge: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge, runtime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime);
 						public emitter(): __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter;
 						public emitter(thread: __javaRoots.javaRoot.lang.Thread): __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter;
 						public emitter(mainThreadProxy: __javaRoots.orgRoot.autojs.autojs.core.looper.MainThreadProxy): __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter;
+						public getScriptOwnerId(): string;
 						public getTouchEventTimeout(): number;
 						public observeKey(): void;
 						public observeNotification(): void;
@@ -11149,7 +11168,7 @@ declare namespace org {
 						public onToast(...args: any[]): any;
 						public onTouch(...args: any[]): any;
 					}
-					export interface Events extends __javaRoots.orgRoot.autojs.autojs.core.accessibility.OnKeyListener, __javaRoots.orgRoot.autojs.autojs.core.inputevent.TouchObserver.OnTouchEventListener, __javaRoots.orgRoot.autojs.autojs.core.accessibility.NotificationListener, __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityNotificationObserver.ToastListener, __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityService.Companion.GestureListener {}
+					export interface Events extends __javaRoots.orgRoot.autojs.autojs.core.accessibility.OnKeyListener, __javaRoots.orgRoot.autojs.autojs.core.inputevent.TouchObserver.OnTouchEventListener, __javaRoots.orgRoot.autojs.autojs.core.accessibility.NotificationListener, __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityNotificationObserver.ToastListener, __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityService.Companion.GestureListener, __javaRoots.orgRoot.autojs.autojs.core.accessibility.ScriptOwned {}
 				}
 			}
 		}
@@ -14286,7 +14305,7 @@ declare namespace org {
 			export namespace runtime {
 				export namespace api {
 					export class Plugins {
-						public constructor(context: __javaRoots.androidRoot.content.Context, runtime: __javaRoots.orgRoot.autojs.autojs.runtime.api.Plugins.PluginRuntime);
+						public constructor(context: __javaRoots.androidRoot.content.Context, runtime: __javaRoots.orgRoot.autojs.autojs.runtime.api.Plugins.PluginRuntime, resourceScope: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope);
 						public clear(): void;
 						public load(packageName: string): __javaRoots.orgRoot.autojs.autojs.core.plugin.Plugin;
 						public unbindAll(): void;
@@ -14759,6 +14778,8 @@ declare namespace org {
 			export namespace runtime {
 				export namespace api {
 					export class Threads {
+						public static readonly EXIT_AWAIT_MILLIS: number;
+						public static readonly EXIT_DEFERRED_MILLIS: number;
 						public readonly mainThread: __javaRoots.javaRoot.lang.Thread;
 						public readonly threadPools: __javaRoots.javaRoot.util.HashSet<__javaRoots.javaRoot.util.concurrent.ThreadPoolExecutor>;
 						public readonly threads: __javaRoots.javaRoot.util.Set<__javaRoots.orgRoot.autojs.autojs.runtime.api.Threads.Companion.TimerThread>;
@@ -16159,6 +16180,105 @@ declare namespace org {
 declare namespace org {
 	export namespace autojs {
 		export namespace autojs {
+			export namespace runtime {
+				export namespace resource {
+					export class RuntimeResourceScope {
+						public readonly closed: boolean;
+						public readonly survivingThreads: __javaRoots.javaRoot.util.List<__javaRoots.javaRoot.lang.Thread>;
+						public constructor(owner: string);
+						public constructor(owner: string, warn: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.kotlinRoot.Unit>);
+						public add(closeable: __javaRoots.javaRoot.io.Closeable): void;
+						public close(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Failure>;
+						public getSurvivingThreads(): __javaRoots.javaRoot.util.List<__javaRoots.javaRoot.lang.Thread>;
+						public isClosed(): boolean;
+						public own(stage: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage, name: string, action: __javaRoots.javaRoot.lang.Runnable): __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Registration;
+						public ownOnce(stage: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage, name: string, action: __javaRoots.javaRoot.lang.Runnable): __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Registration;
+						public remove(closeable: __javaRoots.javaRoot.io.Closeable): void;
+						public setSurvivingThreads(_set___: __javaRoots.javaRoot.util.List<__javaRoots.javaRoot.lang.Thread>): void;
+						public track(obj: any, name: string): void;
+						public trackedReferences(): __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.TrackedResource>;
+					}
+					export namespace RuntimeResourceScope {
+						export class Failure {
+							public readonly cause: __javaRoots.javaRoot.lang.Throwable;
+							public readonly name: string;
+							public readonly stage: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public constructor(stage: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage, name: string, cause: __javaRoots.javaRoot.lang.Throwable);
+							public getCause(): __javaRoots.javaRoot.lang.Throwable;
+							public getName(): string;
+							public getStage(): __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+						}
+						export class Registration {
+							public readonly done: boolean;
+							public readonly name: string;
+							public readonly stage: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public constructor(this$0: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope, stage: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage, name: string, action: __javaRoots.javaRoot.lang.Runnable);
+							public disown(): boolean;
+							public getName(): string;
+							public getStage(): __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public isDone(): boolean;
+							public release$app(failures: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Failure>): void;
+						}
+						export class Stage extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage> {
+							public static readonly ACCESSIBILITY_EVENTS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly ACCESSIBILITY_LISTENER: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly ACCESSIBILITY_OWNER: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly ACCESSIBILITY_PULSE: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly ACCESSIBILITY_TAP: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly AI: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly CLOSEABLES: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly COMPOSE: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly CONSOLE: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly EPUB: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly EVENTS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly EXIT_EVENT: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly FLOATY: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly GALLERY: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly IMAGES: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly IMAGE_QUANTIZATIONS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly INSTALLER: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly INTERRUPT_STATUS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly LOOPERS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly MAIL: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly MEDIA: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly PLUGINS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly ROOT_MODE: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly SCREEN_CAPTURER: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly SCREEN_CAPTURE_SERVICE: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly SENSORS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly SHELL: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly SPEECH: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly TERMINAL: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly THREADS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly TIMERS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly TTS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly UI: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly WEBSOCKETS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage>;
+							public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage>;
+							public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static values(): __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage[];
+							protected constructor();
+							public static valueOf(...args: any[]): any;
+						}
+						export class TrackedResource {
+							public readonly name: string;
+							public readonly reclaimed: boolean;
+							public readonly reference: __javaRoots.javaRoot.lang.ref.WeakReference<any>;
+							public constructor(name: string, referent: any);
+							public getName(): string;
+							public getReference(): __javaRoots.javaRoot.lang.ref.WeakReference<any>;
+							public isReclaimed(): boolean;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
 			export namespace script {
 				export class AutoFileSource extends __javaRoots.orgRoot.autojs.autojs.script.ScriptSource {
 					public static readonly ENGINE: string;
@@ -17043,6 +17163,7 @@ declare namespace org {
 						public onDestroy(): void;
 						public static removeWindow(window: __javaRoots.orgRoot.autojs.autojs.ui.enhancedfloaty.FloatyWindow): void;
 						public static stopService(): void;
+						public static windowCount(): number;
 					}
 				}
 			}
@@ -19446,6 +19567,11 @@ declare namespace org {
 //org.autojs.autojs.core.pref.SettingType.Json:1
 //org.autojs.autojs.core.pref.SettingsJson.Codec:1
 //org.autojs.autojs.core.pref.StateKey:1
+//org.autojs.autojs.core.pref.archive.SettingsBackupVault.backups..inlined.compareByDescending.1:1
+//org.autojs.autojs.core.pref.archive.SettingsBackupVault.backups..inlined.thenByDescending.1:1
+//org.autojs.autojs.core.pref.archive.SettingsImportPlanner.Owners.familiesByStore.lambda.1..inlined.sortedByDescending.1:1
+//org.autojs.autojs.core.pref.archive.SettingsImportPlanner.plan..inlined.sortedBy.1:1
+//org.autojs.autojs.core.pref.archive.SettingsKeyMigrations.migrate..inlined.sortedBy.1:1
 //org.autojs.autojs.core.ui.BiMap:2
 //org.autojs.autojs.core.ui.BiMaps.BiMapBuilder:2
 //org.autojs.autojs.core.ui.BiMaps.BiMapImpl:2

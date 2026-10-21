@@ -69,11 +69,13 @@ function verifyRuntimeTypes(program, runtime) {
             return awaited;
         });
     }
-    let opencc, images, compose, ui, speech, epub, mail, flow;
+    let opencc, images, compose, ui, speech, epub, mail, flow, ai;
     if (runtime === 'node') {
         speech = exportedValue('speech');
         epub = exportedValue('epub');
         mail = exportedValue('mail');
+        ai = exportedValue('ai');
+        assert.equal(checker.typeToString(ai),checker.typeToString(exportedValue('autojs6:ai')));
         flow = exportedValue('flow');
         assert.equal(checker.typeToString(flow),checker.typeToString(exportedValue('autojs6:flow')));
         assert.equal(checker.typeToString(mail), checker.typeToString(exportedValue('autojs6:mail')), 'Mail Worker alias drift');
@@ -108,6 +110,7 @@ function verifyRuntimeTypes(program, runtime) {
         speech = property(hostClient, 'speech');
         epub = property(hostClient, 'epub');
         mail = property(hostClient, 'mail');
+        ai = property(hostClient, 'ai');
         flow = property(hostClient, 'flow');
         compose = property(hostClient, 'compose'); ui = property(hostClient, 'ui');
         opencc = property(hostClient, 'opencc');
@@ -125,6 +128,14 @@ function verifyRuntimeTypes(program, runtime) {
         assert.equal(checker.typeToString(property(movie,'audioSampleRate')),'48000 | null');
         assert.equal(checker.typeToString(property(movie,'audioChannels')),'1 | null');
     }
+    for(const name of ['ask','chat','session','catalog','hasAccess','requestAccess','close'])returns(property(ai,name),'ai.'+name);
+    assert(!checker.getPropertyOfType(ai,'agent'),'AI Agent is outside the portable core');
+    const aiStream=returns(property(ai,'stream'),'ai.stream',false)[0];
+    for(const name of ['ready','result','on','once','off','cancel','state','isDone'])property(aiStream,name);
+    const aiSession=returns(property(ai,'session'),'ai.session')[0];
+    for(const name of ['ask','chat','close'])returns(property(aiSession,name),'AI session.'+name);
+    const aiResponse=returns(property(ai,'chat'),'ai.chat')[0];
+    for(const name of ['text','reasoning','usage','target','model','route'])property(aiResponse,name);
     for (const name of ['wait','waitAsync','waitUntil','waitWhile','waitForStable','waitForVisible','waitForHidden','waitForGone','waitForActivity','waitForPackage','of','run','sleep','delay','all','race','any','whenPresent','repeatUntil'])
         for(const value of returns(property(flow,name),'flow.'+name,false)) assert.equal(value.getSymbol()?.name,'Flow',name+' must retain chain methods');
     const chain=returns(property(flow,'sleep'),'flow.sleep',false)[0];
