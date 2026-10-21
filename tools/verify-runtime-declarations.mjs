@@ -129,7 +129,8 @@ function verifyRuntimeTypes(program, runtime) {
         for(const value of returns(property(flow,name),'flow.'+name,false)) assert.equal(value.getSymbol()?.name,'Flow',name+' must retain chain methods');
     const chain=returns(property(flow,'sleep'),'flow.sleep',false)[0];
     for(const name of ['cancel','then','catch','else','finally','map','filter','peek','run','timeout','retry','toPromise','state','step','value','error'])property(chain,name);
-    for(const name of ['sync','await','within','scope','press','gesture'])assert(!checker.getPropertyOfType(chain,name),'Unsupported portable Flow method '+name);
+    for(const name of ['sync','await'])assert(!checker.getPropertyOfType(chain,name),'Unsupported portable Flow method '+name);
+    for(const name of ['within','scope','press','swipe','gesture','gestures'])assert(checker.getPropertyOfType(chain,name),'Missing portable Flow method '+name);
     for(const name of ['smartClick','smartClickBounds','findAny','clickAny','typeInto','toggle','collectList','scrollUntil','dismissPopups','waitThenClick','clickWhenStableAfter','launchAndWait','backToApp'])
         for(const value of returns(property(flow,name),'flow.'+name,false))assert.equal(value.getSymbol()?.name,'Flow',name+' preserves Flow');
     for(const name of ['click','performAction','typeInto','toggle','collectList','waitForEvent'])property(chain,name);

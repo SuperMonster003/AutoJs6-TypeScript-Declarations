@@ -4567,6 +4567,7 @@ declare namespace org {
 					public static error_lua_runtime_unavailable: number;
 					public static error_max_listeners_exceeded: number;
 					public static error_may_not_have_root_access_to_run_auto_file: number;
+					public static error_memory_script_heap_dump_not_allowed: number;
 					public static error_method_called_with_null_argument: number;
 					public static error_method_only_accepts_a_number_of_arguments_in_the_range_n_to_m: number;
 					public static error_missing_required_plugin_for_module_label: number;
@@ -4958,6 +4959,7 @@ declare namespace org {
 					public static key_mail_settings: number;
 					public static key_manage_ignored_updates: number;
 					public static key_mcp_server_normally_closed: number;
+					public static key_memory_script_heap_dump: number;
 					public static key_memory_unreclaimed_warning: number;
 					public static key_new_script_module_layer: number;
 					public static key_night_mode: number;
@@ -6011,6 +6013,7 @@ declare namespace org {
 					public static summary_memory_copy_report: number;
 					public static summary_memory_export_heap_dump: number;
 					public static summary_memory_force_gc: number;
+					public static summary_memory_script_heap_dump: number;
 					public static summary_memory_unreclaimed_warning: number;
 					public static summary_new_script_module_layer: number;
 					public static summary_nodejs_doctor_report: number;
@@ -7421,6 +7424,7 @@ declare namespace org {
 					public static text_memory_retained_summary: number;
 					public static text_memory_rhino_contexts: number;
 					public static text_memory_runtime_not_reclaimed: number;
+					public static text_memory_script_heap_dump: number;
 					public static text_memory_snapshot: number;
 					public static text_memory_threads: number;
 					public static text_memory_threads_value: number;

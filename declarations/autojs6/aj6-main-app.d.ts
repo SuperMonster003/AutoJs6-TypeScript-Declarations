@@ -1480,10 +1480,11 @@ declare namespace org {
 						public component2(): string;
 						public copy(packageName: string, activityName: string): __javaRoots.orgRoot.autojs.autojs.core.activity.ActivityWindowIdentity;
 						public equals(other: any): boolean;
+						public foreground(windowPackage: string, ownedActivity: __javaRoots.orgRoot.autojs.autojs.core.activity.ActivityWindowIdentity): __javaRoots.orgRoot.autojs.autojs.core.activity.ActivityWindowIdentity;
 						public getActivityName(): string;
 						public getPackageName(): string;
 						public hashCode(): number;
-						public observe(nextPackage: string, nextClass: string, isActivity: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.javaRoot.lang.Boolean>): __javaRoots.orgRoot.autojs.autojs.core.activity.ActivityWindowIdentity;
+						public observe(nextPackage: string, nextClass: string, isActivity: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.javaRoot.lang.Boolean>, windowKnown: boolean): __javaRoots.orgRoot.autojs.autojs.core.activity.ActivityWindowIdentity;
 						public toString(): string;
 					}
 				}
@@ -6289,9 +6290,12 @@ declare namespace org {
 						public static readonly keyStorePath: string;
 						/** @deprecated */
 						public static readonly largeFileModeThresholdBytes: number;
+						/** @deprecated */
 						public static readonly lastNoNewerUpdatesTimestamp: number;
+						/** @deprecated */
 						public static readonly lastUpdatesAutoCheckedTimestamp: number;
 						public static readonly lastUpdatesCheckedTimeString: string;
+						/** @deprecated */
 						public static readonly lastUpdatesPostponedTimestamp: number;
 						/** @deprecated */
 						public static readonly newScriptModuleLayerEnabled: boolean;
@@ -6316,6 +6320,7 @@ declare namespace org {
 						public static readonly useVolumeControlRecordEnabled: boolean;
 						/** @deprecated */
 						public static readonly useVolumeControlRunningEnabled: boolean;
+						/** @deprecated */
 						public static clearUpdatesCheckedStates(): void;
 						public static containsKey(keyRes: number): boolean;
 						public static containsKey(key: string): boolean;
@@ -6338,9 +6343,12 @@ declare namespace org {
 						public static getKeyStorePath(): string;
 						/** @deprecated */
 						public static getLargeFileModeThresholdBytes(): number;
+						/** @deprecated */
 						public static getLastNoNewerUpdatesTimestamp(): number;
+						/** @deprecated */
 						public static getLastUpdatesAutoCheckedTimestamp(): number;
 						public static getLastUpdatesCheckedTimeString(): string;
+						/** @deprecated */
 						public static getLastUpdatesPostponedTimestamp(): number;
 						public static getLinkedHashSet(keyRes: number): __javaRoots.javaRoot.util.LinkedHashSet<string>;
 						public static getLinkedList(key: string): __javaRoots.javaRoot.util.LinkedList<string>;
@@ -6414,9 +6422,13 @@ declare namespace org {
 						public static putString(key: string, value: string): void;
 						public static putStringSet(keyRes: number, values: __javaRoots.javaRoot.util.Set<string>): void;
 						public static putStringSync(key: string, value: string): void;
+						/** @deprecated */
 						public static refreshLastNoNewerUpdatesTimestamp(): void;
+						/** @deprecated */
 						public static refreshLastUpdatesAutoCheckedTimestamp(): void;
+						/** @deprecated */
 						public static refreshLastUpdatesCheckedTimestamp(): void;
+						/** @deprecated */
 						public static refreshLastUpdatesPostponedTimestamp(): void;
 						public static registerOnSharedPreferenceChangeListener(listener: __javaRoots.androidRoot.content.SharedPreferences.OnSharedPreferenceChangeListener): void;
 						public static remove(key: string): void;
@@ -9137,6 +9149,7 @@ declare namespace org {
 					public static readonly SOURCE_FILE_INIT: string;
 					public static readonly SOURCE_NAME_INIT: string;
 					public readonly context: __javaRoots.orgRoot.mozilla.javascript.Context;
+					public readonly onScriptThread: boolean;
 					public readonly scriptable: __javaRoots.orgRoot.autojs.autojs.rhino.TopLevelScope;
 					public readonly thread: __javaRoots.javaRoot.lang.Thread;
 					public constructor(androidContext: __javaRoots.androidRoot.content.Context);
@@ -9148,6 +9161,7 @@ declare namespace org {
 					public getScriptable(): __javaRoots.orgRoot.autojs.autojs.rhino.TopLevelScope;
 					public getThread(): __javaRoots.javaRoot.lang.Thread;
 					public init(): void;
+					public isOnScriptThread(): boolean;
 					public put(name: string, value: any): void;
 					public setRuntime(runtime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime): void;
 					public setupContext(context: __javaRoots.orgRoot.mozilla.javascript.Context): __javaRoots.orgRoot.mozilla.javascript.Context;
@@ -10461,6 +10475,7 @@ declare namespace org {
 					public constructor();
 					public asArray(listLike: any): __javaRoots.orgRoot.mozilla.javascript.NativeArray;
 					public call(func: __javaRoots.orgRoot.mozilla.javascript.Callable, target: any, args: any[]): any;
+					public callListener(func: __javaRoots.orgRoot.mozilla.javascript.Callable, target: any, args: any[]): any;
 					public getEngine(): __javaRoots.orgRoot.autojs.autojs.engine.RhinoJavaScriptEngine;
 					public isJavaPrimitiveWrap(): boolean;
 					public setJavaPrimitiveWrap(b: boolean): void;
@@ -18792,6 +18807,7 @@ declare namespace org {
 					public static callFunction(func: __javaRoots.orgRoot.mozilla.javascript.Callable, scope: __javaRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): any;
 					public static callFunction(func: __javaRoots.orgRoot.mozilla.javascript.Callable, paramsToFunction: any[]): any;
 					public static callFunction(obj: __javaRoots.orgRoot.mozilla.javascript.Scriptable, name: string, paramsToFunction: any[]): any;
+					public static callFunctionAsCoroutine(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, func: __javaRoots.orgRoot.mozilla.javascript.Callable, scope: __javaRoots.orgRoot.mozilla.javascript.VarScope, thisObj: __javaRoots.orgRoot.mozilla.javascript.Scriptable, args: any[]): any;
 					public static callPrototypeFunction(className: string, funcName: string, thisObj: __javaRoots.orgRoot.mozilla.javascript.Scriptable): any;
 					public static callPrototypeFunction(className: string, funcName: string, thisObj: __javaRoots.orgRoot.mozilla.javascript.Scriptable, scope: __javaRoots.orgRoot.mozilla.javascript.VarScope): any;
 					public static callPrototypeFunction(className: string, funcName: string, thisObj: __javaRoots.orgRoot.mozilla.javascript.Scriptable, scope: __javaRoots.orgRoot.mozilla.javascript.VarScope, args: any[]): any;

@@ -34,10 +34,36 @@ declare module "flow" {
       windowId: number; depth: number; indexInParent: number;
       checkable: boolean; editable: boolean; focused: boolean;
     }
+    type Point = readonly [x: number, y: number];
+    interface PointValue { x: number; y: number; }
+    type Stroke = readonly [duration: number, first: Point, ...points: Point[]] | readonly [start: number, duration: number, first: Point, ...points: Point[]];
+    type WidgetResult = "#" | "w" | "widget";
+    type WidgetsResult = "[]" | "ws" | "widgets" | "{}" | "wc" | "collection" | "list" | "##" | "#[]" | "[#]" | "w[]" | "[w]" | "#{}" | "{#}" | "w{}" | "{w}";
+    type ContentResult = "$" | "txt" | "content";
+    type ContentsResult = "contents" | "$$" | "$[]" | "[$]" | "txt[]" | "[txt]" | "content[]" | "[content]";
+    type PointResult = "." | "pt" | "point";
+    type PointsResult = "points" | "pts" | ".." | ".[]" | "[.]" | "point[]" | "[point]" | "pt[]" | "[pt]";
+    type NumericProjection = "childCount" | "width" | "height" | "centerX" | "centerY" | "left" | "top" | "right" | "bottom";
+    type Projection = NodeProperty | NumericProjection | "parent" | "point" | "content";
+    type ResultType = WidgetResult | WidgetsResult | ContentResult | ContentsResult | PointResult | PointsResult | "?" | "exists" | "@" | "selector" | "sel" | Projection | "" |
+      readonly [] | readonly [Projection | WidgetResult | ContentResult | PointResult] | readonly ["child", number] | readonly ["compass", string];
+    /** Collections are JSON arrays; projections expose documented data and navigation, never Java reflection. */
+    type ResultOf<R> = R extends readonly ["child", number] | readonly ["compass", string] ? NodeSnapshot :
+      R extends readonly [] | readonly [WidgetResult] ? NodeSnapshot[] :
+      R extends readonly ["$" | "txt"] ? string[] : R extends readonly ["." | "pt"] ? PointValue[] :
+      R extends readonly [infer P] ? ResultOf<P> : R extends NodeProperty ? NodeSnapshot[R] :
+      R extends NumericProjection ? number : R extends "parent" | WidgetResult ? NodeSnapshot :
+      R extends WidgetsResult ? NodeSnapshot[] : R extends ContentResult ? string : R extends ContentsResult ? string[] :
+      R extends PointResult ? PointValue : R extends PointsResult ? PointValue[] :
+      R extends "?" | "exists" ? true : R extends "@" | "selector" | "sel" ? Selector : never;
+    interface ScopeOptions {
+      /** A fresh snapshot. Non-null fields override inherited scope; null/undefined keep it. */
+      root?: NodeSnapshot | null; compass?: string | null; resultType?: ResultType | null;
+    }
     type Condition<T> = (() => T | PromiseLike<T>) | PromiseLike<T>;
     interface Humanize { offset?: number | [number, number]; delay?: number | [number, number]; }
     interface Defaults { timeout: number; interval: number; stableFor: number; recoverService: boolean; trace: boolean; strictActions: boolean; humanize: Humanize | false; }
-    interface WaitOptions<T = unknown> {
+    interface WaitOptions<T = unknown> extends ScopeOptions {
       /** Milliseconds, 10000 by default; Infinity is unbounded, 0 performs one probe. */
       timeout?: number;
       /** Milliseconds, 200 by default. */
@@ -53,34 +79,37 @@ declare module "flow" {
       /** Wait quietly through service outages; this does not grant permissions or open Settings. */
       recoverService?: boolean;
     }
-    interface Wait {
-      <T>(condition: Condition<T>, options?: WaitOptions<T>): Flow<T>;
-      <T>(condition: Condition<T>, timeout?: number, interval?: number): Flow<T>;
-      (selector: Selector | string | RegExp, options?: WaitOptions<NodeSnapshot>): Flow<NodeSnapshot>;
-      (selector: Selector | string | RegExp, timeout?: number, interval?: number): Flow<NodeSnapshot>;
-      <T, U = T>(condition: Condition<T>, options: WaitOptions<T>, onOk?: ((value: T) => U | PromiseLike<U>) | null, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U>;
-      <U = NodeSnapshot>(selector: Selector | string | RegExp, options: WaitOptions<NodeSnapshot>, onOk?: ((value: NodeSnapshot) => U | PromiseLike<U>) | null, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U>;
+    interface Wait<S = NodeSnapshot> {
+      (node: NodeSnapshot, options?: WaitOptions<NodeSnapshot>): Flow<NodeSnapshot, S>;
+      <R extends ResultType>(selector: Selector | string | RegExp, options: WaitOptions<ResultOf<R>> & {resultType: R}): Flow<ResultOf<R>, S>;
+      <R extends ResultType, U = ResultOf<R>>(selector: Selector | string | RegExp, options: WaitOptions<ResultOf<R>> & {resultType: R}, onOk: Success<ResultOf<R>, U> | null, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      <T>(condition: Condition<T>, options?: WaitOptions<T>): Flow<T, S>;
+      <T>(condition: Condition<T>, timeout?: number, interval?: number): Flow<T, S>;
+      (selector: Selector | string | RegExp, options?: WaitOptions<S>): Flow<S, S>;
+      (selector: Selector | string | RegExp, timeout?: number, interval?: number): Flow<S, S>;
+      <T, U = T>(condition: Condition<T>, options: WaitOptions<T>, onOk?: Success<T, U> | null, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      <U = S>(selector: Selector | string | RegExp, options: WaitOptions<S>, onOk?: Success<S, U> | null, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
     }
-    interface BooleanWait {
-      (condition: Condition<unknown> | Selector | string | RegExp, options?: WaitOptions): Flow<boolean>;
-      (condition: Condition<unknown> | Selector | string | RegExp, timeout?: number, interval?: number): Flow<boolean>;
+    interface BooleanWait<S = NodeSnapshot> {
+      (condition: Condition<unknown> | Selector | string | RegExp, options?: WaitOptions): Flow<boolean, S>;
+      (condition: Condition<unknown> | Selector | string | RegExp, timeout?: number, interval?: number): Flow<boolean, S>;
     }
-    interface ComponentWait {
-      (name: string, options?: WaitOptions<boolean>): Flow<boolean>;
-      (name: string, timeout?: number, interval?: number): Flow<boolean>;
+    interface ComponentWait<S = NodeSnapshot> {
+      (name: string, options?: WaitOptions<boolean>): Flow<boolean, S>;
+      (name: string, timeout?: number, interval?: number): Flow<boolean, S>;
     }
-    type OptionalOptions = Pick<WaitOptions, "timeout" | "interval" | "times" | "recoverService">;
-    interface RepeatOptions {
+    type OptionalOptions = Pick<WaitOptions, "timeout" | "interval" | "times" | "recoverService" | "root" | "compass" | "resultType">;
+    interface RepeatOptions extends ScopeOptions {
       timeout?: number; interval?: number;
       /** Maximum actions; 0 is unlimited within the finite timeout. */
       maxAttempts?: number;
       retryOn?: (error: unknown, attempt: number) => boolean | PromiseLike<boolean>;
     }
-    interface Waits {
-      readonly wait: Wait; readonly waitUntil: Wait; readonly waitWhile: BooleanWait;
-      readonly waitForStable: Wait; readonly waitForVisible: Wait;
-      readonly waitForHidden: BooleanWait; readonly waitForGone: BooleanWait;
-      readonly waitForActivity: ComponentWait; readonly waitForPackage: ComponentWait;
+    interface Waits<S = NodeSnapshot> {
+      readonly wait: Wait<S>; readonly waitUntil: Wait<S>; readonly waitWhile: BooleanWait<S>;
+      readonly waitForStable: Wait<S>; readonly waitForVisible: Wait<S>;
+      readonly waitForHidden: BooleanWait<S>; readonly waitForGone: BooleanWait<S>;
+      readonly waitForActivity: ComponentWait<S>; readonly waitForPackage: ComponentWait<S>;
     }
     type Target = Selector | string | RegExp | NodeSnapshot | (() => NodeSnapshot | null | PromiseLike<NodeSnapshot | null>);
     type Probe = Target | (() => unknown) | boolean | number;
@@ -121,53 +150,53 @@ declare module "flow" {
     interface ToggleOptions extends ToolOptions { verifyTimeout?: number; verifyInterval?: number; click?: SmartClickOptions; }
     interface ToggleResult { node: NodeSnapshot; changed: boolean; checked: boolean; method: ClickResult["method"] | null; }
     type Success<T, U> = (value: T) => U | PromiseLike<U>;
-    interface ToolCall<A extends unknown[], O, R> {
-      (...args: [...positional: A, options?: O]): Flow<R>;
-      <U = R>(...args: [...positional: A, options: O | undefined, onOk: Success<R, U> | null, onError?: (error: unknown) => U | PromiseLike<U>]): Flow<U>;
-      <U = R>(...args: [...positional: A, onOk: Success<R, U>, onError?: (error: unknown) => U | PromiseLike<U>]): Flow<U>;
+    interface ToolCall<A extends unknown[], O, R, S = NodeSnapshot> {
+      (...args: [...positional: A, options?: O]): Flow<R, S>;
+      <U = R>(...args: [...positional: A, options: O | undefined, onOk: Success<R, U> | null, onError?: (error: unknown) => U | PromiseLike<U>]): Flow<U, S>;
+      <U = R>(...args: [...positional: A, onOk: Success<R, U>, onError?: (error: unknown) => U | PromiseLike<U>]): Flow<U, S>;
     }
-    interface CollectRoot {
-      (container: Target | null, item: Target, options?: Omit<CollectOptions<string>, "resultType"> & {resultType?: "$"}): Flow<string[]>;
-      (container: Target | null, item: Target, options: CollectOptions<NodeSnapshot> & {resultType: "#"}): Flow<NodeSnapshot[]>;
-      <K extends NodeProperty>(container: Target | null, item: Target, options: CollectOptions<NodeSnapshot[K]> & {resultType: K}): Flow<NodeSnapshot[K][]>;
-      <T>(container: Target | null, item: Target, options: CollectOptions<T> & {resultType: (node: NodeSnapshot) => T | PromiseLike<T>}): Flow<T[]>;
+    interface CollectRoot<S = NodeSnapshot> {
+      (container: Target | null, item: Target, options?: Omit<CollectOptions<string>, "resultType"> & {resultType?: "$"}): Flow<string[], S>;
+      (container: Target | null, item: Target, options: CollectOptions<NodeSnapshot> & {resultType: "#"}): Flow<NodeSnapshot[], S>;
+      <K extends NodeProperty>(container: Target | null, item: Target, options: CollectOptions<NodeSnapshot[K]> & {resultType: K}): Flow<NodeSnapshot[K][], S>;
+      <T>(container: Target | null, item: Target, options: CollectOptions<T> & {resultType: (node: NodeSnapshot) => T | PromiseLike<T>}): Flow<T[], S>;
     }
-    interface CollectChain {
-      (item: Target, options?: Omit<CollectOptions<string>, "resultType"> & {resultType?: "$"}): Flow<string[]>;
-      (item: Target, options: CollectOptions<NodeSnapshot> & {resultType: "#"}): Flow<NodeSnapshot[]>;
-      <K extends NodeProperty>(item: Target, options: CollectOptions<NodeSnapshot[K]> & {resultType: K}): Flow<NodeSnapshot[K][]>;
-      <T>(item: Target, options: CollectOptions<T> & {resultType: (node: NodeSnapshot) => T | PromiseLike<T>}): Flow<T[]>;
+    interface CollectChain<S = NodeSnapshot> {
+      (item: Target, options?: Omit<CollectOptions<string>, "resultType"> & {resultType?: "$"}): Flow<string[], S>;
+      (item: Target, options: CollectOptions<NodeSnapshot> & {resultType: "#"}): Flow<NodeSnapshot[], S>;
+      <K extends NodeProperty>(item: Target, options: CollectOptions<NodeSnapshot[K]> & {resultType: K}): Flow<NodeSnapshot[K][], S>;
+      <T>(item: Target, options: CollectOptions<T> & {resultType: (node: NodeSnapshot) => T | PromiseLike<T>}): Flow<T[], S>;
     }
-    interface SharedTools {
-      readonly clickIfExists: ToolCall<[target: Target], SmartClickOptions | number, boolean>;
-      readonly clickBoundsIfExists: ToolCall<[target: Target], BoundsClickOptions | number, boolean>;
-      readonly clickAny: ToolCall<[targets: readonly Target[]], SmartClickOptions | number, Clicked | null>;
-      readonly clickBoundsAny: ToolCall<[targets: readonly Target[]], BoundsClickOptions | number, Clicked | null>;
-      readonly findAny: ToolCall<[targets: readonly Target[]], ToolOptions | number, Found | null>;
+    interface SharedTools<S = NodeSnapshot> {
+      readonly clickIfExists: ToolCall<[target: Target], SmartClickOptions | number, boolean, S>;
+      readonly clickBoundsIfExists: ToolCall<[target: Target], BoundsClickOptions | number, boolean, S>;
+      readonly clickAny: ToolCall<[targets: readonly Target[]], SmartClickOptions | number, Clicked | null, S>;
+      readonly clickBoundsAny: ToolCall<[targets: readonly Target[]], BoundsClickOptions | number, Clicked | null, S>;
+      readonly findAny: ToolCall<[targets: readonly Target[]], ToolOptions | number, Found | null, S>;
       /** On a chain, the incoming value supplies container when options.container is absent. */
-      readonly scrollUntil: ToolCall<[target: Target], ScrollOptions, NodeSnapshot>;
-      readonly launchAndWait: ToolCall<[app: string], LaunchOptions | number, LaunchResult>;
-      readonly backUntil: ToolCall<[condition: Probe], BackOptions | number, unknown>;
-      readonly backToApp: ToolCall<[app: string], BackOptions | number, string>;
+      readonly scrollUntil: ToolCall<[target: Target], ScrollOptions, NodeSnapshot, S>;
+      readonly launchAndWait: ToolCall<[app: string], LaunchOptions | number, LaunchResult, S>;
+      readonly backUntil: ToolCall<[condition: Probe], BackOptions | number, unknown, S>;
+      readonly backToApp: ToolCall<[app: string], BackOptions | number, string, S>;
     }
     interface ClickWaitOptions extends WaitOptions<NodeSnapshot> { strict?: boolean; delay?: number | [number, number]; }
-    interface ClickWait {
-      (target: Selector | string | RegExp | Condition<NodeSnapshot>, options?: ClickWaitOptions): Flow<NodeSnapshot>;
-      (target: Selector | string | RegExp | Condition<NodeSnapshot>, timeout?: number, interval?: number): Flow<NodeSnapshot>;
-      <T = NodeSnapshot>(target: Selector | string | RegExp | Condition<NodeSnapshot>, options: ClickWaitOptions, onOk: Success<NodeSnapshot, T> | null, onError?: (error: unknown) => T | PromiseLike<T>): Flow<T>;
+    interface ClickWait<S = NodeSnapshot> {
+      (target: Selector | string | RegExp | Condition<NodeSnapshot>, options?: ClickWaitOptions): Flow<NodeSnapshot, S>;
+      (target: Selector | string | RegExp | Condition<NodeSnapshot>, timeout?: number, interval?: number): Flow<NodeSnapshot, S>;
+      <T = NodeSnapshot>(target: Selector | string | RegExp | Condition<NodeSnapshot>, options: ClickWaitOptions, onOk: Success<NodeSnapshot, T> | null, onError?: (error: unknown) => T | PromiseLike<T>): Flow<T, S>;
     }
-    interface ClickWaitAfter {
-      (target: Selector | string | RegExp | Condition<NodeSnapshot>, options: ClickWaitOptions & {delay: number | [number, number]}): Flow<NodeSnapshot>;
-      (target: Selector | string | RegExp | Condition<NodeSnapshot>, timeout: number, interval: number, delayMin: number, delayMax?: number): Flow<NodeSnapshot>;
+    interface ClickWaitAfter<S = NodeSnapshot> {
+      (target: Selector | string | RegExp | Condition<NodeSnapshot>, options: ClickWaitOptions & {delay: number | [number, number]}): Flow<NodeSnapshot, S>;
+      (target: Selector | string | RegExp | Condition<NodeSnapshot>, timeout: number, interval: number, delayMin: number, delayMax?: number): Flow<NodeSnapshot, S>;
     }
-    interface ClickWaits {
-      readonly waitThenClick: ClickWait; readonly clickWait: ClickWait;
-      readonly waitThenClickBounds: ClickWait; readonly clickBoundsWait: ClickWait; readonly waitThenLongClick: ClickWait;
-      readonly waitForStableThenClick: ClickWait; readonly clickWhenStable: ClickWait;
-      readonly waitForStableThenClickBounds: ClickWait; readonly clickBoundsWhenStable: ClickWait;
-      readonly clickWhenStableAfter: ClickWaitAfter; readonly clickBoundsWhenStableAfter: ClickWaitAfter;
+    interface ClickWaits<S = NodeSnapshot> {
+      readonly waitThenClick: ClickWait<S>; readonly clickWait: ClickWait<S>;
+      readonly waitThenClickBounds: ClickWait<S>; readonly clickBoundsWait: ClickWait<S>; readonly waitThenLongClick: ClickWait<S>;
+      readonly waitForStableThenClick: ClickWait<S>; readonly clickWhenStable: ClickWait<S>;
+      readonly waitForStableThenClickBounds: ClickWait<S>; readonly clickBoundsWhenStable: ClickWait<S>;
+      readonly clickWhenStableAfter: ClickWaitAfter<S>; readonly clickBoundsWhenStableAfter: ClickWaitAfter<S>;
     }
-    interface EventFlow<T> extends Flow<T> {
+    interface EventFlow<T, S = NodeSnapshot> extends Flow<T, S> {
       /** Resolves after the actual listener is installed. Rejects if installation or the wait fails first. */
       readonly ready: Promise<void>;
     }
@@ -180,58 +209,81 @@ declare module "flow" {
     type EventFilter = {packageName?: Pattern; className?: Pattern; text?: Pattern} | ((event: AccessibilityEventSnapshot) => unknown);
     type ToastFilter = Pattern | {packageName?: Pattern; text?: Pattern} | ((toast: ToastSnapshot) => unknown);
     type NotificationFilter = Pattern | {packageName?: Pattern; title?: Pattern; text?: Pattern} | ((notification: NotificationSnapshot) => unknown);
-    interface EventWaits<TIdle> {
-      waitForIdle(options?: IdleOptions | number): EventFlow<TIdle>;
-      waitForEvent(types?: EventTypes, filter?: EventFilter | null, timeout?: number): EventFlow<AccessibilityEventSnapshot>;
-      waitForEvent(types: EventTypes, timeout: number): EventFlow<AccessibilityEventSnapshot>;
-      waitForToast(filter?: ToastFilter | null, timeout?: number): EventFlow<ToastSnapshot>;
-      waitForToast(timeout: number): EventFlow<ToastSnapshot>;
-      waitForNotification(filter?: NotificationFilter | null, timeout?: number): EventFlow<NotificationSnapshot>;
-      waitForNotification(timeout: number): EventFlow<NotificationSnapshot>;
+    interface EventWaits<T, S = NodeSnapshot> {
+      waitForIdle(options?: IdleOptions | number): EventFlow<T, S>;
+      waitForEvent(types?: EventTypes, filter?: EventFilter | null, timeout?: number): EventFlow<AccessibilityEventSnapshot, S>;
+      waitForEvent(types: EventTypes, timeout: number): EventFlow<AccessibilityEventSnapshot, S>;
+      waitForToast(filter?: ToastFilter | null, timeout?: number): EventFlow<ToastSnapshot, S>;
+      waitForToast(timeout: number): EventFlow<ToastSnapshot, S>;
+      waitForNotification(filter?: NotificationFilter | null, timeout?: number): EventFlow<NotificationSnapshot, S>;
+      waitForNotification(timeout: number): EventFlow<NotificationSnapshot, S>;
     }
-    interface ActionCall<A extends unknown[]> {
-      (...args: A): Flow<NodeSnapshot>;
-      <T = NodeSnapshot>(...args: [...positional: A, onOk: Success<NodeSnapshot, T>, onError?: (error: unknown) => T | PromiseLike<T>]): Flow<T>;
+    interface ActionCall<A extends unknown[], T = NodeSnapshot, S = NodeSnapshot> {
+      (...args: A): Flow<T | false, S>;
+      <U = T | false>(...args: [...positional: A, onOk: Success<T | false, U>, onError?: (error: unknown) => U | PromiseLike<U>]): Flow<U, S>;
     }
-    interface NodeActions {
-      readonly click: ActionCall<[]>; readonly longClick: ActionCall<[]>; readonly clickBounds: ActionCall<[offsetX?: number, offsetY?: number]>;
-      readonly setText: ActionCall<[text: string]>; readonly appendText: ActionCall<[text: string]>;
-      readonly clear: ActionCall<[]>; readonly paste: ActionCall<[]>; readonly copy: ActionCall<[]>; readonly cut: ActionCall<[]>;
-      readonly select: ActionCall<[]>; readonly focus: ActionCall<[]>; readonly clearFocus: ActionCall<[]>;
-      readonly scrollForward: ActionCall<[]>; readonly scrollBackward: ActionCall<[]>; readonly scrollUp: ActionCall<[]>; readonly scrollDown: ActionCall<[]>; readonly scrollLeft: ActionCall<[]>; readonly scrollRight: ActionCall<[]>;
-      readonly expand: ActionCall<[]>; readonly collapse: ActionCall<[]>; readonly dismiss: ActionCall<[]>; readonly show: ActionCall<[]>; readonly contextClick: ActionCall<[]>; readonly imeEnter: ActionCall<[]>;
-      readonly performAction: ActionCall<[action: number, arguments?: Record<string, string | number | boolean>]>;
-      clickAfter(min: number, max?: number): Flow<NodeSnapshot>; clickBoundsAfter(min: number, max?: number): Flow<NodeSnapshot>; longClickAfter(min: number, max?: number): Flow<NodeSnapshot>;
+    interface NodeActions<T = NodeSnapshot, S = NodeSnapshot> {
+      readonly click: ActionCall<[], T, S>; readonly longClick: ActionCall<[], T, S>; readonly clickBounds: ActionCall<[offsetX?: number, offsetY?: number], T, S>;
+      readonly setText: ActionCall<[text: string], T, S>; readonly appendText: ActionCall<[text: string], T, S>;
+      readonly clear: ActionCall<[], T, S>; readonly paste: ActionCall<[], T, S>; readonly copy: ActionCall<[], T, S>; readonly cut: ActionCall<[], T, S>;
+      readonly select: ActionCall<[], T, S>; readonly focus: ActionCall<[], T, S>; readonly clearFocus: ActionCall<[], T, S>;
+      readonly scrollForward: ActionCall<[], T, S>; readonly scrollBackward: ActionCall<[], T, S>; readonly scrollUp: ActionCall<[], T, S>; readonly scrollDown: ActionCall<[], T, S>; readonly scrollLeft: ActionCall<[], T, S>; readonly scrollRight: ActionCall<[], T, S>;
+      readonly expand: ActionCall<[], T, S>; readonly collapse: ActionCall<[], T, S>; readonly dismiss: ActionCall<[], T, S>; readonly show: ActionCall<[], T, S>; readonly contextClick: ActionCall<[], T, S>; readonly imeEnter: ActionCall<[], T, S>;
+      readonly performAction: ActionCall<[action: number, arguments?: Record<string, string | number | boolean>], T, S>;
+      clickAfter(min: number, max?: number): Flow<T | false, S>; clickBoundsAfter(min: number, max?: number): Flow<T | false, S>; longClickAfter(min: number, max?: number): Flow<T | false, S>;
     }
-    interface Flow<T> extends PromiseLike<T>, Waits, SharedTools, ClickWaits, EventWaits<T>, NodeActions {
-      readonly smartClick: ToolCall<[], SmartClickOptions, ClickResult>;
-      readonly smartClickBounds: ToolCall<[], BoundsClickOptions, ClickResult>;
-      readonly typeInto: ToolCall<[text: string], TypeIntoOptions, NodeSnapshot>;
-      readonly collectList: CollectChain;
-      readonly dismissPopups: ToolCall<[targets: readonly Target[]], PopupOptions | number, T>;
-      readonly toggle: ToolCall<[checked: boolean], ToggleOptions, ToggleResult>;
-      back(): Flow<T>; home(): Flow<T>; recents(): Flow<T>; notifications(): Flow<T>; quickSettings(): Flow<T>;
-      powerDialog(): Flow<T>; splitScreen(): Flow<T>; lockScreen(): Flow<T>; takeScreenshot(): Flow<T>; dismissNotificationShade(): Flow<T>;
+    type IntersectCalls<U> = (U extends unknown ? (value: U) => void : never) extends (value: infer I) => void ? I : never;
+    type GestureCall<T, S, A extends unknown[]> = IntersectCalls<A extends unknown[] ? GestureOverload<T, S, A> : never>;
+    interface GestureOverload<T, S, A extends unknown[]> {
+      (...args: A): Flow<T, S>;
+      <U = T>(...args: [...positional: A, onOk: Success<T, U>]): Flow<U, S>;
+      <U = T>(...args: [...positional: A, onOk: Success<T, U>, onError: (error: unknown) => U | PromiseLike<U>]): Flow<U, S>;
+    }
+    interface Flow<T, S = NodeSnapshot> extends PromiseLike<T>, Waits<S>, SharedTools<S>, ClickWaits<S>, EventWaits<T, S>, NodeActions<T, S> {
+      /** Set the root for following waits/tools. A non-node result rejects INVALID_TARGET. */
+      within(condition: Selector | string | RegExp | NodeSnapshot | Condition<NodeSnapshot>, options?: WaitOptions<NodeSnapshot>): Flow<NodeSnapshot, S>;
+      within(condition: Selector | string | RegExp | NodeSnapshot | Condition<NodeSnapshot>, timeout?: number, interval?: number): Flow<NodeSnapshot, S>;
+      within<U = NodeSnapshot>(condition: Selector | string | RegExp | NodeSnapshot | Condition<NodeSnapshot>, options: WaitOptions<NodeSnapshot>, onOk: Success<NodeSnapshot, U> | null, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      within<U = NodeSnapshot>(condition: Selector | string | RegExp | NodeSnapshot | Condition<NodeSnapshot>, onOk: Success<NodeSnapshot, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      within<U = NodeSnapshot>(condition: Selector | string | RegExp | NodeSnapshot | Condition<NodeSnapshot>, timeout: number | undefined, interval: number | undefined, onOk: Success<NodeSnapshot, U> | null, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      scope<R extends ResultType>(options: ScopeOptions & {resultType: R}): Flow<T, ResultOf<R>>;
+      scope(options: Omit<ScopeOptions, "resultType"> & {resultType?: null}): Flow<T, S>;
+      scope(options: ScopeOptions): Flow<T, unknown>;
+      /** Global gestures preserve T. Coordinates are pixels; omitted press duration uses Android's tap timeout. */
+      readonly press: GestureCall<T, S, [point: Point] | [point: Point, duration: number] | [x: number, y: number] | [x: number, y: number, duration: number] | [duration: number, point: Point]>;
+      readonly swipe: GestureCall<T, S, [x1: number, y1: number, x2: number, y2: number, duration: number] | [pointA: Point, pointB: Point, duration: number] | [points: readonly [Point, Point] | readonly [number, number, number, number], duration: number] | [duration: number, pointA: Point, pointB: Point] | [duration: number, points: readonly [Point, Point] | readonly [number, number, number, number]]>;
+      readonly gesture: GestureCall<T, S, [duration: number, first: Point, ...points: Point[]] | [duration: number, points: readonly Point[] | readonly number[]]>;
+      readonly gestures: GestureCall<T, S, [first: Stroke, ...strokes: Stroke[]]>;
+      readonly smartClick: ToolCall<[], SmartClickOptions, ClickResult, S>;
+      readonly smartClickBounds: ToolCall<[], BoundsClickOptions, ClickResult, S>;
+      readonly typeInto: ToolCall<[text: string], TypeIntoOptions, NodeSnapshot, S>;
+      readonly collectList: CollectChain<S>;
+      readonly dismissPopups: ToolCall<[targets: readonly Target[]], PopupOptions | number, T, S>;
+      readonly toggle: ToolCall<[checked: boolean], ToggleOptions, ToggleResult, S>;
+      back(): Flow<T, S>; home(): Flow<T, S>; recents(): Flow<T, S>; notifications(): Flow<T, S>; quickSettings(): Flow<T, S>;
+      powerDialog(): Flow<T, S>; splitScreen(): Flow<T, S>; lockScreen(): Flow<T, S>; takeScreenshot(): Flow<T, S>; dismissNotificationShade(): Flow<T, S>;
       readonly state: "pending" | "fulfilled" | "rejected" | "cancelled";
       readonly step: string; readonly value: T | undefined; readonly error: unknown;
-      then<U = T, V = never>(onOk?: ((value: T) => U | PromiseLike<U>) | null, onError?: ((error: any) => V | PromiseLike<V>) | null): Flow<U | V>;
-      catch<U = never>(onError: (error: any) => U | PromiseLike<U>): Flow<T | U>;
-      else<U = never>(onError: (error: any) => U | PromiseLike<U>): Flow<T | U>;
-      finally(callback: () => unknown): Flow<T>;
-      map<U>(callback: (value: T) => U | PromiseLike<U>): Flow<U>;
-      run<U>(callback: (value: T) => U | PromiseLike<U>): Flow<U>;
-      peek(callback: (value: T) => unknown): Flow<T>;
-      filter(callback: (value: T) => unknown): Flow<T>;
-      sleep(min: number, max?: number): Flow<T>;
-      delay(min: number, max?: number): Flow<T>;
+      then<U = T, V = never>(onOk?: ((value: T) => U | PromiseLike<U>) | null, onError?: ((error: any) => V | PromiseLike<V>) | null): Flow<U | V, S>;
+      catch<U = never>(onError: (error: any) => U | PromiseLike<U>): Flow<T | U, S>;
+      else<U = never>(onError: (error: any) => U | PromiseLike<U>): Flow<T | U, S>;
+      finally(callback: () => unknown): Flow<T, S>;
+      map<U>(callback: (value: T) => U | PromiseLike<U>): Flow<U, S>;
+      run<U>(callback: (value: T) => U | PromiseLike<U>): Flow<U, S>;
+      peek(callback: (value: T) => unknown): Flow<T, S>;
+      filter(callback: (value: T) => unknown): Flow<T, S>;
+      sleep(min: number, max?: number): Flow<T, S>;
+      delay(min: number, max?: number): Flow<T, S>;
       /** Sets a deadline for steps appended after this one, starting when this step runs. */
-      timeout(milliseconds: number): Flow<T>;
+      timeout(milliseconds: number): Flow<T, S>;
       /** Reruns only the preceding failed step; never reruns a cancelled step or adopted Promise. */
-      retry(times?: number, delay?: number): Flow<T>;
-      whenPresent<U>(condition: Condition<U>, handler: (value: U) => unknown, options?: OptionalOptions): Flow<T>;
-      whenPresent(selector: Selector | string | RegExp, handler: (value: NodeSnapshot) => unknown, options?: OptionalOptions): Flow<T>;
-      repeatUntil<U>(action: (attempt: number) => unknown, condition: Condition<U>, options?: RepeatOptions): Flow<U>;
-      repeatUntil(action: (attempt: number) => unknown, selector: Selector | string | RegExp, options?: RepeatOptions): Flow<NodeSnapshot>;
+      retry(times?: number, delay?: number): Flow<T, S>;
+      whenPresent<U>(condition: Condition<U>, handler: (value: U) => unknown, options?: OptionalOptions): Flow<T, S>;
+      whenPresent<R extends ResultType>(selector: Selector | string | RegExp, handler: (value: ResultOf<R>) => unknown, options: OptionalOptions & {resultType: R}): Flow<T, S>;
+      whenPresent(selector: Selector | string | RegExp, handler: (value: S) => unknown, options?: OptionalOptions): Flow<T, S>;
+      repeatUntil<U>(action: (attempt: number) => unknown, condition: Condition<U>, options?: RepeatOptions): Flow<U, S>;
+      repeatUntil<R extends ResultType>(action: (attempt: number) => unknown, selector: Selector | string | RegExp, options: RepeatOptions & {resultType: R}): Flow<ResultOf<R>, S>;
+      repeatUntil(action: (attempt: number) => unknown, selector: Selector | string | RegExp, options?: RepeatOptions): Flow<S, S>;
       cancel(): boolean;
       toPromise(): Promise<T>;
       toString(): string;
