@@ -232,13 +232,6 @@ declare module "flow" {
       readonly performAction: ActionCall<[action: number, arguments?: Record<string, string | number | boolean>], T, S>;
       clickAfter(min: number, max?: number): Flow<T | false, S>; clickBoundsAfter(min: number, max?: number): Flow<T | false, S>; longClickAfter(min: number, max?: number): Flow<T | false, S>;
     }
-    type IntersectCalls<U> = (U extends unknown ? (value: U) => void : never) extends (value: infer I) => void ? I : never;
-    type GestureCall<T, S, A extends unknown[]> = IntersectCalls<A extends unknown[] ? GestureOverload<T, S, A> : never>;
-    interface GestureOverload<T, S, A extends unknown[]> {
-      (...args: A): Flow<T, S>;
-      <U = T>(...args: [...positional: A, onOk: Success<T, U>]): Flow<U, S>;
-      <U = T>(...args: [...positional: A, onOk: Success<T, U>, onError: (error: unknown) => U | PromiseLike<U>]): Flow<U, S>;
-    }
     interface Flow<T, S = NodeSnapshot> extends PromiseLike<T>, Waits<S>, SharedTools<S>, ClickWaits<S>, EventWaits<T, S>, NodeActions<T, S> {
       /** Set the root for following waits/tools. A non-node result rejects INVALID_TARGET. */
       within(condition: Selector | string | RegExp | NodeSnapshot | Condition<NodeSnapshot>, options?: WaitOptions<NodeSnapshot>): Flow<NodeSnapshot, S>;
@@ -250,10 +243,32 @@ declare module "flow" {
       scope(options: Omit<ScopeOptions, "resultType"> & {resultType?: null}): Flow<T, S>;
       scope(options: ScopeOptions): Flow<T, unknown>;
       /** Global gestures preserve T. Coordinates are pixels; omitted press duration uses Android's tap timeout. */
-      readonly press: GestureCall<T, S, [point: Point] | [point: Point, duration: number] | [x: number, y: number] | [x: number, y: number, duration: number] | [duration: number, point: Point]>;
-      readonly swipe: GestureCall<T, S, [x1: number, y1: number, x2: number, y2: number, duration: number] | [pointA: Point, pointB: Point, duration: number] | [points: readonly [Point, Point] | readonly [number, number, number, number], duration: number] | [duration: number, pointA: Point, pointB: Point] | [duration: number, points: readonly [Point, Point] | readonly [number, number, number, number]]>;
-      readonly gesture: GestureCall<T, S, [duration: number, first: Point, ...points: Point[]] | [duration: number, points: readonly Point[] | readonly number[]]>;
-      readonly gestures: GestureCall<T, S, [first: Stroke, ...strokes: Stroke[]]>;
+      press(point: Point, duration?: number): Flow<T, S>;
+      press(x: number, y: number, duration?: number): Flow<T, S>;
+      press(duration: number, point: Point): Flow<T, S>;
+      press<U = T>(point: Point, onOk: Success<T, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      press<U = T>(point: Point, duration: number, onOk: Success<T, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      press<U = T>(x: number, y: number, onOk: Success<T, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      press<U = T>(x: number, y: number, duration: number, onOk: Success<T, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      press<U = T>(duration: number, point: Point, onOk: Success<T, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      swipe(x1: number, y1: number, x2: number, y2: number, duration: number): Flow<T, S>;
+      swipe(pointA: Point, pointB: Point, duration: number): Flow<T, S>;
+      swipe(points: readonly [Point, Point] | readonly [number, number, number, number], duration: number): Flow<T, S>;
+      swipe(duration: number, pointA: Point, pointB: Point): Flow<T, S>;
+      swipe(duration: number, points: readonly [Point, Point] | readonly [number, number, number, number]): Flow<T, S>;
+      swipe<U = T>(x1: number, y1: number, x2: number, y2: number, duration: number, onOk: Success<T, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      swipe<U = T>(pointA: Point, pointB: Point, duration: number, onOk: Success<T, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      swipe<U = T>(points: readonly [Point, Point] | readonly [number, number, number, number], duration: number, onOk: Success<T, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      swipe<U = T>(duration: number, pointA: Point, pointB: Point, onOk: Success<T, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      swipe<U = T>(duration: number, points: readonly [Point, Point] | readonly [number, number, number, number], onOk: Success<T, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      gesture(duration: number, first: Point, ...points: Point[]): Flow<T, S>;
+      gesture(duration: number, points: readonly Point[] | readonly number[]): Flow<T, S>;
+      gesture<U = T>(duration: number, first: Point, ...rest: [...points: Point[], onOk: Success<T, U>]): Flow<U, S>;
+      gesture<U = T>(duration: number, first: Point, ...rest: [...points: Point[], onOk: Success<T, U>, onError: (error: unknown) => U | PromiseLike<U>]): Flow<U, S>;
+      gesture<U = T>(duration: number, points: readonly Point[] | readonly number[], onOk: Success<T, U>, onError?: (error: unknown) => U | PromiseLike<U>): Flow<U, S>;
+      gestures(first: Stroke, ...strokes: Stroke[]): Flow<T, S>;
+      gestures<U = T>(first: Stroke, ...rest: [...strokes: Stroke[], onOk: Success<T, U>]): Flow<U, S>;
+      gestures<U = T>(first: Stroke, ...rest: [...strokes: Stroke[], onOk: Success<T, U>, onError: (error: unknown) => U | PromiseLike<U>]): Flow<U, S>;
       readonly smartClick: ToolCall<[], SmartClickOptions, ClickResult, S>;
       readonly smartClickBounds: ToolCall<[], BoundsClickOptions, ClickResult, S>;
       readonly typeInto: ToolCall<[text: string], TypeIntoOptions, NodeSnapshot, S>;
