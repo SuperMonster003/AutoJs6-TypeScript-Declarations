@@ -1437,6 +1437,7 @@ declare namespace org {
 			export namespace core {
 				export namespace activity {
 					export class ActivityInfoProvider {
+						public readonly accessibilityIdentity$app: __javaRoots.orgRoot.autojs.autojs.core.activity.ActivityWindowIdentity;
 						public readonly eventTypes: __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>;
 						public readonly latestActivity: string;
 						public readonly latestExternalComponent: __javaRoots.androidRoot.content.ComponentName;
@@ -1446,6 +1447,7 @@ declare namespace org {
 						public readonly useShell: boolean;
 						public readonly useUsageStats: boolean;
 						public constructor(context: __javaRoots.androidRoot.content.Context);
+						public getAccessibilityIdentity$app(): __javaRoots.orgRoot.autojs.autojs.core.activity.ActivityWindowIdentity;
 						public getEventTypes(): __javaRoots.javaRoot.util.Set<__javaRoots.javaRoot.lang.Integer>;
 						public getLatestActivity(): string;
 						public getLatestExternalComponent(): __javaRoots.androidRoot.content.ComponentName;
@@ -1459,6 +1461,31 @@ declare namespace org {
 						public setUseUsageStats(_set___: boolean): void;
 					}
 					export interface ActivityInfoProvider extends __javaRoots.orgRoot.autojs.autojs.core.accessibility.event.AccessibilityDelegate {}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace activity {
+					export class ActivityWindowIdentity {
+						public readonly activityName: string;
+						public readonly packageName: string;
+						public constructor();
+						public constructor(packageName: string, activityName: string);
+						public component1(): string;
+						public component2(): string;
+						public copy(packageName: string, activityName: string): __javaRoots.orgRoot.autojs.autojs.core.activity.ActivityWindowIdentity;
+						public equals(other: any): boolean;
+						public getActivityName(): string;
+						public getPackageName(): string;
+						public hashCode(): number;
+						public observe(nextPackage: string, nextClass: string, isActivity: __javaRoots.kotlinRoot.jvm.functions.Function2<any, any, __javaRoots.javaRoot.lang.Boolean>): __javaRoots.orgRoot.autojs.autojs.core.activity.ActivityWindowIdentity;
+						public toString(): string;
+					}
 				}
 			}
 		}
