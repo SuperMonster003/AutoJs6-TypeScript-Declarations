@@ -182,7 +182,7 @@ npm update @sm003/autojs6-dts
 
 ###### 2026/10/22
 
-* `新增` Node.js, Bun 和 Worker 的 AI 文本生成, 流式结果, 模型目录与持久会话, 支持取消及打包应用的 Android 访问授权
+* `新增` Node.js, Bun 和 Worker 的 AI 文本生成, 流式结果, 模型目录与持久会话, 支持取消及 3-Stone AI 对打包应用的逐应用授权
 
 ### v4.78.0
 

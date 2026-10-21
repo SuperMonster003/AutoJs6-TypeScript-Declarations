@@ -6,7 +6,7 @@
   },
   "files": {
     "autojs6-node/accessibility.d.ts": "ba969dad271a05878d6385d46e8866e5ae4078659c335c9a564084e46ddcf23e",
-    "autojs6-node/ai.d.ts": "81373c165d8a40a5535387fcedfe201c1fc4a9cbf8e5fa7e857f338c0ce30a31",
+    "autojs6-node/ai.d.ts": "759da2e7198eb0a065ad7d3da996199b8533d7f277f6708c113965b11e1a5ffe",
     "autojs6-node/android.d.ts": "9a5799be2e802c0fdd24254d91c66dc72ce36cc95bcb6fde4782e2575f4c9036",
     "autojs6-node/app.d.ts": "f2e559fabfdd2c411fa9f61e2a94f8f81388073b78591c98453ef3a4bdadabdb",
     "autojs6-node/autojs_global.d.ts": "a1acd8ddc1761f561c2967ce27efd967c44a58501297cae3a8dd5dbdd4b68a5a",
@@ -82,7 +82,7 @@
     "autojs6-node/util.d.ts": "4b9abf65c0eac6402e78ed5082bd71da672cd2646927f72870810cc055e5ff9e",
     "autojs6-node/websocket.d.ts": "f9412a8fe65abdab7d1f14f09bf75a4371a84657ba3f91de42e6c96e512a5923",
     "autojs6-node/work_manager.d.ts": "5d77db1003ae945c3ce7f9061b4e8609a29f8fe3b2a830a0c0fae051c67a2e68",
-    "autojs6-bun/host-client.d.mts": "2e49f3ea2a9d5b5181fb40be51e0d28d3fc8dc9d5020afc745deb870c8b8fd90",
-    "autojs6-bun/index.d.ts": "5a5e9f0ca5541841641e79b9a5042a95107f60174b84e3dc7dcf5fc4ce6d4cca"
+    "autojs6-bun/host-client.d.mts": "4967f89fad2207ab5dbf3d5df4314144d8b5cf41f75195f4c9093802c27c1ecf",
+    "autojs6-bun/index.d.ts": "1b927eb014fac13038d839dd5ff082ba1a642136a15198073f05819551f7b40b"
   }
 }

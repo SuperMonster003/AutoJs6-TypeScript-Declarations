@@ -182,7 +182,7 @@ npm update @sm003/autojs6-dts
 
 ###### 2026/10/22
 
-* `기능` Node.js, Bun 및 Worker의 AI 텍스트 생성, 스트리밍, 모델 목록 및 영구 세션, 취소와 패키지 앱의 Android 접근 권한 지원
+* `기능` Node.js, Bun 및 Worker의 AI 텍스트 생성, 스트리밍, 모델 목록 및 영구 세션, 취소와 3-Stone AI의 패키지 앱별 접근 승인 지원
 
 ### v4.78.0
 

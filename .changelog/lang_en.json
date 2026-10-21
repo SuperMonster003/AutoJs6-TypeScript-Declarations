@@ -23,7 +23,7 @@
       "entries": [
         {
           "category": "feature",
-          "text": "AI text generation, streaming, model catalog and persistent sessions for Node.js, Bun and Workers, with cancellation and Android authorization for packaged apps"
+          "text": "AI text generation, streaming, model catalog and persistent sessions for Node.js, Bun and Workers, with cancellation and per-app consent in 3-Stone AI for packaged apps"
         }
       ]
     },

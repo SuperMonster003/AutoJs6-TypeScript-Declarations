@@ -23,7 +23,7 @@
       "entries": [
         {
           "category": "feature",
-          "text": "Node.js, Bun と Worker の AI テキスト生成, ストリーミング, モデル一覧と永続セッション, キャンセルとパッケージアプリの Android アクセス許可に対応"
+          "text": "Node.js, Bun と Worker の AI テキスト生成, ストリーミング, モデル一覧と永続セッション, キャンセルと 3-Stone AI によるパッケージアプリごとの許可に対応"
         }
       ]
     },

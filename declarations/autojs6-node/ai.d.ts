@@ -14,9 +14,9 @@ declare module "ai" {
       stream(input: Input, options?: Options | null, callOptions?: CallOptions): Stream;
       session(options?: SessionOptions | null, callOptions?: CallOptions): Promise<Session>;
       catalog(options?: CatalogOptions | null, callOptions?: CallOptions): Promise<TargetCatalog>;
-      /** The host uses its signature entry. Packaged apps need the Android AI runtime permission. */
+      /** The host uses its signature entry. Packaged apps need explicit consent in 3-Stone AI. */
       hasAccess(callOptions?: CallOptions): Promise<boolean>;
-      /** Requests the Android permission for local models and configured online accounts. */
+      /** Opens 3-Stone AI confirmation for local models and configured online accounts. */
       requestAccess(callOptions?: CallOptions): Promise<boolean>;
       /** Cancels this facade's work and closes sessions. Subsequent calls create a fresh client. */
       close(): Promise<boolean>;
