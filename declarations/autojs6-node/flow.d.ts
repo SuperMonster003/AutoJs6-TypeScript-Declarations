@@ -181,13 +181,13 @@ declare module "flow" {
     }
     interface ClickWaitOptions extends WaitOptions<NodeSnapshot> { strict?: boolean; delay?: number | [number, number]; }
     interface ClickWait<S = NodeSnapshot> {
-      (target: Selector | string | RegExp | Condition<NodeSnapshot>, options?: ClickWaitOptions): Flow<NodeSnapshot, S>;
-      (target: Selector | string | RegExp | Condition<NodeSnapshot>, timeout?: number, interval?: number): Flow<NodeSnapshot, S>;
-      <T = NodeSnapshot>(target: Selector | string | RegExp | Condition<NodeSnapshot>, options: ClickWaitOptions, onOk: Success<NodeSnapshot, T> | null, onError?: (error: unknown) => T | PromiseLike<T>): Flow<T, S>;
+      (target: Selector | string | RegExp | NodeSnapshot | Condition<NodeSnapshot>, options?: ClickWaitOptions): Flow<NodeSnapshot, S>;
+      (target: Selector | string | RegExp | NodeSnapshot | Condition<NodeSnapshot>, timeout?: number, interval?: number): Flow<NodeSnapshot, S>;
+      <T = NodeSnapshot>(target: Selector | string | RegExp | NodeSnapshot | Condition<NodeSnapshot>, options: ClickWaitOptions, onOk: Success<NodeSnapshot, T> | null, onError?: (error: unknown) => T | PromiseLike<T>): Flow<T, S>;
     }
     interface ClickWaitAfter<S = NodeSnapshot> {
-      (target: Selector | string | RegExp | Condition<NodeSnapshot>, options: ClickWaitOptions & {delay: number | [number, number]}): Flow<NodeSnapshot, S>;
-      (target: Selector | string | RegExp | Condition<NodeSnapshot>, timeout: number, interval: number, delayMin: number, delayMax?: number): Flow<NodeSnapshot, S>;
+      (target: Selector | string | RegExp | NodeSnapshot | Condition<NodeSnapshot>, options: ClickWaitOptions & {delay: number | [number, number]}): Flow<NodeSnapshot, S>;
+      (target: Selector | string | RegExp | NodeSnapshot | Condition<NodeSnapshot>, timeout: number, interval: number, delayMin: number, delayMax?: number): Flow<NodeSnapshot, S>;
     }
     interface ClickWaits<S = NodeSnapshot> {
       readonly waitThenClick: ClickWait<S>; readonly clickWait: ClickWait<S>;
@@ -294,9 +294,11 @@ declare module "flow" {
       /** Reruns only the preceding failed step; never reruns a cancelled step or adopted Promise. */
       retry(times?: number, delay?: number): Flow<T, S>;
       whenPresent<U>(condition: Condition<U>, handler: (value: U) => unknown, options?: OptionalOptions): Flow<T, S>;
+      whenPresent(node: NodeSnapshot, handler: (value: NodeSnapshot) => unknown, options?: OptionalOptions): Flow<T, S>;
       whenPresent<R extends ResultType>(selector: Selector | string | RegExp, handler: (value: ResultOf<R>) => unknown, options: OptionalOptions & {resultType: R}): Flow<T, S>;
       whenPresent(selector: Selector | string | RegExp, handler: (value: S) => unknown, options?: OptionalOptions): Flow<T, S>;
       repeatUntil<U>(action: (attempt: number) => unknown, condition: Condition<U>, options?: RepeatOptions): Flow<U, S>;
+      repeatUntil(action: (attempt: number) => unknown, node: NodeSnapshot, options?: RepeatOptions): Flow<NodeSnapshot, S>;
       repeatUntil<R extends ResultType>(action: (attempt: number) => unknown, selector: Selector | string | RegExp, options: RepeatOptions & {resultType: R}): Flow<ResultOf<R>, S>;
       repeatUntil(action: (attempt: number) => unknown, selector: Selector | string | RegExp, options?: RepeatOptions): Flow<S, S>;
       cancel(): boolean;
@@ -308,7 +310,7 @@ declare module "flow" {
       new<T>(value: T | PromiseLike<T>): Flow<T>;
       (): Flow<undefined>; new(): Flow<undefined>;
     }
-    type Source<T> = Condition<T> | Selector | string | RegExp;
+    type Source<T> = Condition<T> | NodeSnapshot | Selector | string | RegExp;
     interface API extends Waits, Wait, SharedTools, ClickWaits, EventWaits<IdleResult> {
       readonly smartClick: ToolCall<[target: Target], SmartClickOptions, ClickResult>;
       readonly smartClickBounds: ToolCall<[target: Target], BoundsClickOptions, ClickResult>;
