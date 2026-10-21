@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 21, 2026
+// Last modified: Oct 21, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -13,14 +13,14 @@
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/mail/MailWatch.kt
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/mail/MailScriptOptions.kt
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/mail/MailScriptArguments.kt
- * @Source %AutoJs6-Plugin-Angus-Mail%/mail-core/src/main/resources/providers.json
+ * @Source %AutoJs6-Plugin-Three-Stamp-Mail%/mail-core/src/main/resources/providers.json
  */
 
 declare namespace Internal {
 
     /**
      * The global `mail` object (also `$mail`), available since AutoJs6 6.8.0 through the external
-     * Angus Mail plugin (AutoJs6-Plugin-Angus-Mail). Every method throws (or rejects with) a
+     * 3-Stamp Mail plugin (AutoJs6-Plugin-Three-Stamp-Mail). Every method throws (or rejects with) a
      * `MailError` whose `code` is `PLUGIN_UNAVAILABLE` while the plugin is missing, disabled,
      * unauthorized or incompatible.
      *
@@ -269,13 +269,13 @@ declare namespace Internal {
         interface MailError extends Error {
             readonly name: 'MailError';
             readonly code: ErrorCode | string;
-            readonly details: string | null;
+            readonly details: Record<string, unknown> | unknown[] | string | null;
             /** Worth retrying as is (network hiccup, timeout, closed session). */
             readonly retryable: boolean;
         }
 
         interface MailErrorConstructor {
-            new(message: string, code?: ErrorCode | string, details?: string | null, retryable?: boolean): MailError;
+            new(message: string, code?: ErrorCode | string, details?: Record<string, unknown> | unknown[] | string | null, retryable?: boolean): MailError;
             readonly prototype: MailError;
         }
 

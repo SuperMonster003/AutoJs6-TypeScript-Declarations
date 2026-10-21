@@ -178,6 +178,13 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.74.0
+
+###### 2026/10/21
+
+* `수정` Bun 기능 이름 타입에서 tts.control, speech.control 및 epub.control이 누락된 문제
+* `개선` 타입 선언: 메일 계정 연결, 메시지 작업, 첨부 파일 및 메일함 감시, 취소와 Worker 종료 시 정리
+
 ### v4.73.0
 
 ###### 2026/10/21
@@ -189,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/20
 
 * `기능` Node.js/Bun/Worker의 speech 음성 인식 및 모델 관리 API로 WAV/PCM, 받아쓰기와 호출어 세션, 모델 설치와 가져오기, 음성 합성 및 취소 시 정리 지원
-
-### v4.71.0
-
-###### 2026/10/20
-
-* `기능` Node.js/Bun/Worker의 음성 합성 API로 엔진과 음성 조회, 읽기, 무음, 오디오 파일 합성 및 작업 이벤트 지원
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

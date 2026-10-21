@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.74.0
+
+###### 2026/10/21
+
+* `수정` Bun 기능 이름 타입에서 tts.control, speech.control 및 epub.control이 누락된 문제
+* `개선` 타입 선언: 메일 계정 연결, 메시지 작업, 첨부 파일 및 메일함 감시, 취소와 Worker 종료 시 정리
+
 # v4.73.0
 
 ###### 2026/10/21

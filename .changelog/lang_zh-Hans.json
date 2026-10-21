@@ -18,6 +18,19 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.74.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Bun 能力名称类型遗漏 tts.control, speech.control 和 epub.control 的问题"
+        },
+        {
+          "category": "improvement",
+          "text": "类型声明: 邮件账户连接, 邮件操作, 附件与邮箱监听, 支持取消及 Worker 退出清理"
+        }
+      ]
+    },
     "v4.73.0": {
       "released_date": "2026/10/21",
       "entries": [

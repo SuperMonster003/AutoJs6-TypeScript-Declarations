@@ -13,6 +13,13 @@ for (const [name, expected] of Object.entries(manifest.files)) {
     const text = readFileSync(resolve(root, 'declarations', name), 'utf8').replace(/\r\n?/g, '\n');
     assert.equal(createHash('sha256').update(text).digest('hex'), expected, `Stale runtime declaration: ${name}`);
 }
+const bunTypes = readFileSync(resolve(root, 'declarations/autojs6-bun/host-client.d.mts'), 'utf8');
+const declaredCapabilities = new Set([...bunTypes.match(/export type HostCapability = ([^;]+);/)[1].matchAll(/"([^"]+)"/g)].map(match => match[1]));
+const sdk = readFileSync(resolve(root, '../AutoJs6-Plugin-Bun-Runtime/app/src/main/assets/autojs6/host-client.mjs'), 'utf8');
+const methodsText = sdk.slice(sdk.indexOf('export const HOST_API_METHODS'), sdk.indexOf('});', sdk.indexOf('export const HOST_API_METHODS')));
+for (const [, name] of methodsText.matchAll(/^  "([^"]+)":/gm))
+    assert(declaredCapabilities.has(name), 'Bun capability literal missing: ' + name);
+
 const result = [];
 const imageMembers = new Map();
 const rhinoOpencc = ts.createSourceFile('aj6-int-opencc.d.ts',
@@ -62,10 +69,12 @@ function verifyRuntimeTypes(program, runtime) {
             return awaited;
         });
     }
-    let opencc, images, compose, ui, speech, epub;
+    let opencc, images, compose, ui, speech, epub, mail;
     if (runtime === 'node') {
         speech = exportedValue('speech');
         epub = exportedValue('epub');
+        mail = exportedValue('mail');
+        assert.equal(checker.typeToString(mail), checker.typeToString(exportedValue('autojs6:mail')), 'Mail Worker alias drift');
         assert.equal(checker.typeToString(epub), checker.typeToString(exportedValue('autojs6:epub')), 'EPUB Worker alias drift');
         assert.equal(checker.typeToString(speech), checker.typeToString(exportedValue('autojs6:speech')), 'Speech Worker alias drift');
         compose = exportedValue('compose'); ui = exportedValue('ui');
@@ -96,6 +105,7 @@ function verifyRuntimeTypes(program, runtime) {
         const hostClient = checker.getDeclaredTypeOfSymbol(client);
         speech = property(hostClient, 'speech');
         epub = property(hostClient, 'epub');
+        mail = property(hostClient, 'mail');
         compose = property(hostClient, 'compose'); ui = property(hostClient, 'ui');
         opencc = property(hostClient, 'opencc');
         images = property(hostClient, 'images');
@@ -112,6 +122,26 @@ function verifyRuntimeTypes(program, runtime) {
         assert.equal(checker.typeToString(property(movie,'audioSampleRate')),'48000 | null');
         assert.equal(checker.typeToString(property(movie,'audioChannels')),'1 | null');
     }
+    for (const name of ['connect','connectAsync','setDefault','close','dispose','watch'])
+        returns(property(mail,name),'mail.'+name);
+    const mailClient=returns(property(mail,'connect'),'mail.connect')[0];
+    for(const name of ['test','send','folders','folderStatus','createFolder','deleteFolder','renameFolder',
+        'fetch','search','get','fetchBody','download','raw','setFlags','markRead','markUnread','flag','unflag',
+        'move','copy','delete','expunge','append']) {
+        returns(property(mail,name),'mail.'+name);
+        returns(property(mail,name+'Async'),'mail.'+name+'Async');
+        returns(property(mailClient,name),'mail client.'+name);
+    }
+    for(const name of ['list','get','resolve']) returns(property(property(mail,'providers'),name),'mail.providers.'+name);
+    for(const name of ['list','has']) returns(property(property(mail,'accounts'),name),'mail.accounts.'+name);
+    const folder=returns(property(mailClient,'folder'),'mail client.folder',false)[0];
+    for(const name of ['status','create','delete','rename']) returns(property(folder,name),'mail folder.'+name);
+    const mailMessage=returns(property(mailClient,'get'),'mail client.get')[0];
+    for(const name of ['uid','subject','date','attachments']) property(mailMessage,name);
+    returns(property(mailMessage,'load'),'mail message.load');
+    const mailWatch=returns(property(mailClient,'watch'),'mail client.watch')[0];
+    returns(property(mailWatch,'stop'),'mail watch.stop');
+    for(const name of ['mode','generation','state','on','off']) property(mailWatch,name);
     for (const name of ['open','metadata','toc','readingOrder','text','cover','search','annotations','read','isAvailable']) {
         returns(property(epub,name),'epub.'+name);
         returns(property(epub,name+'Async'),'epub.'+name+'Async');

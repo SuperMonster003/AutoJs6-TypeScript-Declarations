@@ -18,6 +18,19 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.74.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Bun の機能名の型に tts.control, speech.control と epub.control が欠落する問題"
+        },
+        {
+          "category": "improvement",
+          "text": "型宣言: メールアカウント接続, メール操作, 添付ファイルとメールボックス監視, キャンセルと Worker 終了時の解放"
+        }
+      ]
+    },
     "v4.73.0": {
       "released_date": "2026/10/21",
       "entries": [

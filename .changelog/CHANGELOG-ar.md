@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.74.0
+
+###### 2026/10/21
+
+* `إصلاح` غياب القيم tts.control, speech.control و epub.control من نوع قدرات Bun
+* `تحسين` تعريفات الأنواع: اتصالات حسابات البريد وعمليات الرسائل والمرفقات ومراقبة البريد مع الإلغاء والتنظيف عند خروج Worker
+
 # v4.73.0
 
 ###### 2026/10/21

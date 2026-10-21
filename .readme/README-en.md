@@ -178,6 +178,13 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.74.0
+
+###### 2026/10/21
+
+* `Fix` Missing tts.control, speech.control and epub.control values in the Bun capability type
+* `Improvement` Typed APIs: Mail account connections, message operations, attachments and mailbox watches, with cancellation and Worker cleanup
+
 ### v4.73.0
 
 ###### 2026/10/21
@@ -189,12 +196,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/20
 
 * `Feature` Speech recognition and model management APIs for Node.js, Bun and Workers, with WAV/PCM, dictation and wake sessions, model installation/import, synthesis and cancellation cleanup
-
-### v4.71.0
-
-###### 2026/10/20
-
-* `Feature` Text-to-speech APIs for Node.js, Bun and Workers, with engine and voice queries, speech, silence, audio file synthesis and task events
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

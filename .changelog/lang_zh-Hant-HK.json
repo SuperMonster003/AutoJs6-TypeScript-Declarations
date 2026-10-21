@@ -18,6 +18,19 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.74.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Bun 能力名稱類型遺漏 tts.control, speech.control 和 epub.control 的問題"
+        },
+        {
+          "category": "improvement",
+          "text": "類型宣告: 郵件帳戶連線, 郵件操作, 附件與郵箱監聽, 支援取消及 Worker 結束清理"
+        }
+      ]
+    },
     "v4.73.0": {
       "released_date": "2026/10/21",
       "entries": [

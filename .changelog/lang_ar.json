@@ -18,6 +18,19 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.74.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "غياب القيم tts.control, speech.control و epub.control من نوع قدرات Bun"
+        },
+        {
+          "category": "improvement",
+          "text": "تعريفات الأنواع: اتصالات حسابات البريد وعمليات الرسائل والمرفقات ومراقبة البريد مع الإلغاء والتنظيف عند خروج Worker"
+        }
+      ]
+    },
     "v4.73.0": {
       "released_date": "2026/10/21",
       "entries": [

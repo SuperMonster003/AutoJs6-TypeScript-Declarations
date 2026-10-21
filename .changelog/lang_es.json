@@ -18,6 +18,19 @@
     "adjustment": "Ajuste"
   },
   "$data": {
+    "v4.74.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Valores tts.control, speech.control y epub.control ausentes del tipo de capacidades de Bun"
+        },
+        {
+          "category": "improvement",
+          "text": "Declaraciones de tipos: Conexiones de correo, mensajes, adjuntos y vigilancia de buzones, con cancelación y limpieza de Workers"
+        }
+      ]
+    },
     "v4.73.0": {
       "released_date": "2026/10/21",
       "entries": [

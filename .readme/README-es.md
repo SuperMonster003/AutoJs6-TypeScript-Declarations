@@ -178,6 +178,13 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.74.0
+
+###### 2026/10/21
+
+* `Corrección` Valores tts.control, speech.control y epub.control ausentes del tipo de capacidades de Bun
+* `Mejora` Declaraciones de tipos: Conexiones de correo, mensajes, adjuntos y vigilancia de buzones, con cancelación y limpieza de Workers
+
 ### v4.73.0
 
 ###### 2026/10/21
@@ -189,12 +196,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/20
 
 * `Función` API speech de reconocimiento y gestión de modelos para Node.js, Bun y Workers con WAV/PCM, dictado y activación por voz, instalación/importación, síntesis y cancelación
-
-### v4.71.0
-
-###### 2026/10/20
-
-* `Función` API de síntesis de voz para Node.js, Bun y Workers con consultas de motores y voces, lectura, silencio, archivos de audio y eventos de tareas
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

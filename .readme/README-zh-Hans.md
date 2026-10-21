@@ -178,6 +178,13 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.74.0
+
+###### 2026/10/21
+
+* `修复` Bun 能力名称类型遗漏 tts.control, speech.control 和 epub.control 的问题
+* `优化` 类型声明: 邮件账户连接, 邮件操作, 附件与邮箱监听, 支持取消及 Worker 退出清理
+
 ### v4.73.0
 
 ###### 2026/10/21
@@ -189,12 +196,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/20
 
 * `新增` Node.js/Bun/Worker 的 speech 语音识别与模型管理接口, 支持 WAV/PCM, 听写与唤醒会话, 模型安装/导入, 语音合成和取消清理
-
-### v4.71.0
-
-###### 2026/10/20
-
-* `新增` Node.js/Bun/Worker 的文字转语音接口, 支持引擎与音色查询, 朗读, 静音任务, 音频文件合成和任务事件
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

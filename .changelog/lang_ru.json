@@ -18,6 +18,19 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.74.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Отсутствующие значения tts.control, speech.control и epub.control в типе возможностей Bun"
+        },
+        {
+          "category": "improvement",
+          "text": "Объявления типов: Подключение почтовых аккаунтов, операции с письмами, вложения и наблюдение за почтой с отменой и очисткой при выходе Worker"
+        }
+      ]
+    },
     "v4.73.0": {
       "released_date": "2026/10/21",
       "entries": [

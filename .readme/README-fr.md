@@ -178,6 +178,13 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.74.0
+
+###### 2026/10/21
+
+* `Correction` Valeurs tts.control, speech.control et epub.control manquantes dans le type des capacités Bun
+* `Amélioration` Déclarations de types: Connexions aux comptes mail, messages, pièces jointes et surveillance des boîtes, avec annulation et nettoyage des Workers
+
 ### v4.73.0
 
 ###### 2026/10/21
@@ -189,12 +196,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/20
 
 * `Fonctionnalité` API speech de reconnaissance vocale et de gestion des modèles pour Node.js, Bun et Workers avec WAV/PCM, dictée et activation vocale, installation/importation, synthèse et annulation
-
-### v4.71.0
-
-###### 2026/10/20
-
-* `Fonctionnalité` API de synthèse vocale pour Node.js, Bun et Workers avec requêtes des moteurs et voix, lecture, silence, fichiers audio et événements des tâches
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

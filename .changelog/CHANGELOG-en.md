@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.74.0
+
+###### 2026/10/21
+
+* `Fix` Missing tts.control, speech.control and epub.control values in the Bun capability type
+* `Improvement` Typed APIs: Mail account connections, message operations, attachments and mailbox watches, with cancellation and Worker cleanup
+
 # v4.73.0
 
 ###### 2026/10/21

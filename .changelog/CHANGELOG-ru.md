@@ -13,6 +13,13 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.74.0
+
+###### 2026/10/21
+
+* `Исправление` Отсутствующие значения tts.control, speech.control и epub.control в типе возможностей Bun
+* `Улучшение` Объявления типов: Подключение почтовых аккаунтов, операции с письмами, вложения и наблюдение за почтой с отменой и очисткой при выходе Worker
+
 # v4.73.0
 
 ###### 2026/10/21

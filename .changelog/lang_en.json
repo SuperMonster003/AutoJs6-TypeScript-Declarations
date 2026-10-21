@@ -18,6 +18,19 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.74.0": {
+      "released_date": "2026/10/21",
+      "entries": [
+        {
+          "category": "fix",
+          "text": "Missing tts.control, speech.control and epub.control values in the Bun capability type"
+        },
+        {
+          "category": "improvement",
+          "text": "Typed APIs: Mail account connections, message operations, attachments and mailbox watches, with cancellation and Worker cleanup"
+        }
+      ]
+    },
     "v4.73.0": {
       "released_date": "2026/10/21",
       "entries": [
