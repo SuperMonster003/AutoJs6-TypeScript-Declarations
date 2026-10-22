@@ -357,7 +357,14 @@ async function bunAiCoreSmoke(client: import("autojs6:bun-host").HostClient) {
   const result: import("autojs6:bun-host").RuntimeAi.Response = await stream.result;
   const session = await client.ai.session({backend: "cpu"});
   await session.close(); await client.ai.close();
-  // @ts-expect-error Agent tasks are outside this runtime facade.
-  client.ai.agent;
+  const run = await client.ai.agent.run('goal', {tools: [], budget: {maxSteps: 4}});
+  run.on('progress', event => { const message: string = event.message; void message; });
+  const terminal = await run.join(1000);
+  const context = await client.ai.agent.context();
+  const reported: boolean = await client.ai.agent.result({status: terminal.status});
+  await run.cancel(); await client.ai.agent.close();
+  // @ts-expect-error Portable Agent submission returns a Promise.
+  const synchronousId: string = client.ai.agent.run('goal').id;
+  void context; void reported;
   return result;
 }

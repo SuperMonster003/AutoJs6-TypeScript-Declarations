@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.80.0
+
+###### 2026/10/22
+
+* `Функция` Типизированные объявления и дополнения ai.agent для Node.js, Bun и Workers, включая управление задачами, события, каналы зарегистрированных скриптов и асинхронные результаты
+
 # v4.79.1
 
 ###### 2026/10/22

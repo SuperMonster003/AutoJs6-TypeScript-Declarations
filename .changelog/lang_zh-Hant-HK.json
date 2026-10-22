@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.80.0": {
+      "released_date": "2026/10/22",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Node.js/Bun/Worker 的 ai.agent 宣告與補全, 包含任務控制, 事件, 登記指令碼通道和非同步傳回值"
+        }
+      ]
+    },
     "v4.79.1": {
       "released_date": "2026/10/22",
       "entries": [

@@ -401,9 +401,29 @@ async function aiCoreSmoke(signal: AutoJs6Node.AbortSignalLike) {
   const answer: string = await session.ask("hello");
   const metadataCapability: ai.TargetCapability = "vision";
   await session.close(); await ai.close();
-  // @ts-expect-error Agent tasks are outside the portable core.
-  ai.agent.run("goal");
   // @ts-expect-error A session turn is a prompt string.
   session.chat({messages: []});
   return {catalog, result, answer, metadataCapability};
+}
+
+async function aiAgentSmoke(signal: AutoJs6Node.AbortSignalLike) {
+  const assistant = ai.agent.create({tools: ['user'], budget: {maxSteps: 4}, interaction: 'script'});
+  const run: ai.AgentRun = await assistant.run('Ask a name.', {}, {signal});
+  run.on('input', event => { const question: string = event.question; void run.respond(event.requestId, question); });
+  run.once('confirmation', event => { void run.confirm(event.requestId, false); });
+  const result: ai.AgentResult = await run.join(1000);
+  const history: ai.AgentRun | null = await ai.agent.get(run.id);
+  const context: ai.AgentExecutionContext | null = await ai.agent.context();
+  const reported: boolean = await ai.agent.result({ok: true});
+  const granted: boolean = await ai.agent.requestAccess();
+  await run.cancel(); await ai.agent.close();
+  // @ts-expect-error Portable Agent waiting is asynchronous.
+  const immediate: ai.AgentResult = run.join();
+  // @ts-expect-error Plan answers contain strings.
+  run.respond('request', [1, 2]);
+  // @ts-expect-error Tool names are not tool-group names.
+  ai.agent.run('goal', {tools: ['script_run']});
+  // @ts-expect-error Metadata is immutable.
+  run.id = 'changed';
+  return {result, history, context, reported, granted};
 }

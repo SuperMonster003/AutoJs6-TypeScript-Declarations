@@ -19567,6 +19567,8 @@ declare namespace org {
 //org.autojs.autojs.core.pref.SettingType.Json:1
 //org.autojs.autojs.core.pref.SettingsJson.Codec:1
 //org.autojs.autojs.core.pref.StateKey:1
+//org.autojs.autojs.core.pref.archive.SettingsAutoBackup.backups..inlined.compareByDescending.1:1
+//org.autojs.autojs.core.pref.archive.SettingsAutoBackup.backups..inlined.thenByDescending.1:1
 //org.autojs.autojs.core.pref.archive.SettingsBackupVault.backups..inlined.compareByDescending.1:1
 //org.autojs.autojs.core.pref.archive.SettingsBackupVault.backups..inlined.thenByDescending.1:1
 //org.autojs.autojs.core.pref.archive.SettingsImportPlanner.Owners.familiesByStore.lambda.1..inlined.sortedByDescending.1:1
@@ -19674,6 +19676,7 @@ declare namespace org {
 //org.autojs.autojs.engine.NodeRuntimePluginExecutionRegistry.Registration:1
 //org.autojs.autojs.engine.NodeTimedTaskSnapshots.querySnapshots.lambda.0..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.NodeWorkManagerBridgeScheduler.list..inlined.sortedBy.1:1
+//org.autojs.autojs.engine.RuntimeAgentAccessStore.applications..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.RuntimeJavaSubclassGenerator.methods..inlined.sortedBy.1:1
 //org.autojs.autojs.engine.RuntimeSpeechBridge.Client.withAudio.1:1
 //org.autojs.autojs.engine.ScriptEngine:1

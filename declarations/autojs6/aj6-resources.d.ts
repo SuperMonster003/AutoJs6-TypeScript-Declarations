@@ -3900,6 +3900,14 @@ declare namespace org {
 					public static a11y_advanced_protection_on: number;
 					public static a11y_advanced_protection_title: number;
 					public static a11y_advanced_protection_unknown: number;
+					public static agent_runtime_access_title: number;
+					public static agent_runtime_allow: number;
+					public static agent_runtime_deny: number;
+					public static agent_runtime_description: number;
+					public static agent_runtime_empty: number;
+					public static agent_runtime_request_app: number;
+					public static agent_runtime_revoke: number;
+					public static agent_runtime_revoke_message: number;
 					public static android_black: number;
 					public static android_blue: number;
 					public static android_cyan: number;
@@ -3943,6 +3951,8 @@ declare namespace org {
 					public static app_name_qq: number;
 					public static blocking_operations_cannot_be_performed_on_the_ui_thread_for_waitforactivity_with_solution: number;
 					public static blocking_operations_cannot_be_performed_on_the_ui_thread_for_waitforpackage_with_solution: number;
+					public static bun_agent_grant_summary: number;
+					public static bun_agent_grant_title: number;
 					public static changelog_label_dependency: number;
 					public static changelog_label_feature: number;
 					public static changelog_label_fix: number;

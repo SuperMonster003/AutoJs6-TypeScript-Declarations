@@ -129,7 +129,16 @@ function verifyRuntimeTypes(program, runtime) {
         assert.equal(checker.typeToString(property(movie,'audioChannels')),'1 | null');
     }
     for(const name of ['ask','chat','session','catalog','hasAccess','requestAccess','close'])returns(property(ai,name),'ai.'+name);
-    assert(!checker.getPropertyOfType(ai,'agent'),'AI Agent is outside the portable core');
+    const agent=property(ai,'agent');
+    for(const name of ['run','get','list','catalog','presets','status','context','result','hasAccess','requestAccess','close'])
+        returns(property(agent,name),'ai.agent.'+name);
+    const assistant=returns(property(agent,'create'),'ai.agent.create',false)[0];
+    property(assistant,'options');returns(property(assistant,'run'),'AgentAssistant.run');
+    const agentRun=returns(property(agent,'run'),'ai.agent.run')[0];
+    for(const name of ['respond','confirm','cancel','join'])returns(property(agentRun,name),'AgentRun.'+name);
+    for(const name of ['id','state','goal','startedAt','detached','error','result','on','once','off'])property(agentRun,name);
+    const agentResult=returns(property(agentRun,'join'),'AgentRun.join')[0];
+    for(const name of ['id','status','summary','usage','error'])property(agentResult,name);
     const aiStream=returns(property(ai,'stream'),'ai.stream',false)[0];
     for(const name of ['ready','result','on','once','off','cancel','state','isDone'])property(aiStream,name);
     const aiSession=returns(property(ai,'session'),'ai.session')[0];
