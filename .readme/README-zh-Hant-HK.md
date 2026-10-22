@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.79.1
+
+###### 2026/10/22
+
+* `優化` speech 聲明說明 WAV 以外的音訊檔案: 插件聲明 audioDecode 功能時 (3-Macaw Speech 1.2.0 起) recognize, recognizeAsync 與 detectVoice 接受 MP3, AAC, Ogg, FLAC 等裝置能解碼的格式與影片檔案的音軌; Speech.Feature 增加 'audioDecode'
+
 ### v4.79.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/21
 
 * `新增` Node.js, Bun 與 Worker 的 Flow within/scope 範圍繼承, 羅盤導航和結果投影, 以及 press/swipe/gesture/gestures 手勢重載
-
-### v4.77.0
-
-###### 2026/10/21
-
-* `新增` memory 模組的類型聲明, 用於讀取 AutoJs6 進程的記憶體診斷數據: 記憶體快照, 強制回收, 已結束未回收的腳本運行時, hprof 堆轉儲與 LeakCanary 監視 (TypeScript / Ace)
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-HK.md)
 

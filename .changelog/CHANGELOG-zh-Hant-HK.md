@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.79.1
+
+###### 2026/10/22
+
+* `優化` speech 聲明說明 WAV 以外的音訊檔案: 插件聲明 audioDecode 功能時 (3-Macaw Speech 1.2.0 起) recognize, recognizeAsync 與 detectVoice 接受 MP3, AAC, Ogg, FLAC 等裝置能解碼的格式與影片檔案的音軌; Speech.Feature 增加 'audioDecode'
+
 # v4.79.0
 
 ###### 2026/10/22

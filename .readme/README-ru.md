@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## Журнал изменений
 
+### v4.79.1
+
+###### 2026/10/22
+
+* `Улучшение` объявления speech описывают аудиофайлы помимо WAV: если плагин объявляет функцию audioDecode (3-Macaw Speech 1.2.0 или новее), recognize, recognizeAsync и detectVoice принимают MP3, AAC, Ogg, FLAC и другие форматы, которые декодирует устройство, а также звуковую дорожку видеофайлов; в Speech.Feature добавлено 'audioDecode'
+
 ### v4.79.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/21
 
 * `Функция` Flow within/scope для Node.js, Bun и Worker: наследование корня поиска, навигация по компасу, типизированные проекции и перегрузки press/swipe/gesture/gestures
-
-### v4.77.0
-
-###### 2026/10/21
-
-* `Функция` Объявления типов модуля memory для чтения диагностики памяти процесса AutoJs6: снимки памяти, принудительная сборка мусора, завершенные, но не освобожденные среды выполнения скриптов, дампы кучи hprof и наблюдение LeakCanary (TypeScript / Ace)
 
 [Полный журнал изменений](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 

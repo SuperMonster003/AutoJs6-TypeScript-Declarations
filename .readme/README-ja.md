@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.79.1
+
+###### 2026/10/22
+
+* `改善` speech の宣言で WAV 以外の音声ファイルを説明: プラグインが audioDecode 機能を宣言している場合 (3-Macaw Speech 1.2.0 以降), recognize, recognizeAsync, detectVoice は MP3, AAC, Ogg, FLAC などデバイスがデコードできる形式と動画ファイルの音声トラックを受け付ける; Speech.Feature に 'audioDecode' を追加
+
 ### v4.79.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/21
 
 * `機能` Node.js, Bun と Worker の Flow within/scope による検索範囲の継承, コンパス移動と結果の射影, および press/swipe/gesture/gestures のオーバーロード
-
-### v4.77.0
-
-###### 2026/10/21
-
-* `機能` AutoJs6 プロセスのメモリ診断データを読み取る memory モジュールの型宣言: メモリスナップショット, 強制ガベージコレクション, 終了後も回収されていないスクリプトのランタイム, hprof ヒープダンプと LeakCanary による監視 (TypeScript / Ace)
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

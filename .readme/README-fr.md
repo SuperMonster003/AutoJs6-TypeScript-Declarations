@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.79.1
+
+###### 2026/10/22
+
+* `Amélioration` les déclarations de speech décrivent les fichiers audio autres que WAV: avec un plugin qui déclare la fonction audioDecode (3-Macaw Speech 1.2.0 ou ultérieur), recognize, recognizeAsync et detectVoice acceptent MP3, AAC, Ogg, FLAC et les autres formats que l'appareil décode, ainsi que la piste audio des fichiers vidéo; Speech.Feature ajoute 'audioDecode'
+
 ### v4.79.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/21
 
 * `Fonctionnalité` Flow within/scope pour Node.js, Bun et les Workers, avec racines de recherche héritées, navigation par boussole, projections typées et surcharges press/swipe/gesture/gestures
-
-### v4.77.0
-
-###### 2026/10/21
-
-* `Fonctionnalité` Déclarations du module memory pour lire les diagnostics mémoire du processus AutoJs6: instantanés de la mémoire, ramasse-miettes forcé, environnements d'exécution de scripts terminés mais non libérés, vidages du tas hprof et surveillance LeakCanary (TypeScript / Ace)
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

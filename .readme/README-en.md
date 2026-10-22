@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.79.1
+
+###### 2026/10/22
+
+* `Improvement` speech declarations cover audio files beyond WAV: with a plugin that declares the audioDecode feature (3-Macaw Speech 1.2.0 or later), recognize, recognizeAsync and detectVoice take MP3, AAC, Ogg, FLAC and other formats the device decodes, and the audio track of video files; Speech.Feature gains 'audioDecode'
+
 ### v4.79.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/21
 
 * `Feature` Flow within/scope with inherited search roots, compass navigation and typed result projections, plus press/swipe/gesture/gestures overloads for Node.js, Bun and Workers
-
-### v4.77.0
-
-###### 2026/10/21
-
-* `Feature` Declarations of the memory module for reading the memory diagnostics of the AutoJs6 process: memory snapshots, forced garbage collection, finished but unreclaimed script runtimes, hprof heap dumps and LeakCanary watching (TypeScript / Ace)
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

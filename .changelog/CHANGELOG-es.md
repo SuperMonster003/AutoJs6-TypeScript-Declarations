@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.79.1
+
+###### 2026/10/22
+
+* `Mejora` las declaraciones de speech describen archivos de audio además de WAV: con un complemento que declara la función audioDecode (3-Macaw Speech 1.2.0 o posterior), recognize, recognizeAsync y detectVoice aceptan MP3, AAC, Ogg, FLAC y otros formatos que el dispositivo decodifica, y la pista de audio de archivos de vídeo; Speech.Feature añade 'audioDecode'
+
 # v4.79.0
 
 ###### 2026/10/22

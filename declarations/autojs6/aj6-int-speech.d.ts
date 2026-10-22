@@ -32,10 +32,12 @@ declare namespace Internal {
      * `SpeechError` whose `code` is `PLUGIN_UNAVAILABLE`, `PLUGIN_DISABLED` or
      * `PLUGIN_INCOMPATIBLE`; {@link isAvailable} probes without throwing.
      *
-     * Audio files are WAV files named by paths (relative paths resolve against the script working
-     * directory; URIs such as `content://` are refused); PCM is mono PCM16 LE. The plugin records
-     * the microphone itself and needs its own microphone permission
-     * (see {@link Speech.Capabilities.microphoneGranted}).
+     * Audio files are named by paths (relative paths resolve against the script working directory;
+     * URIs such as `content://` are refused): WAV with every plugin, and with a plugin that declares
+     * the `audioDecode` feature (3-Macaw Speech 1.2.0 or later) any format the device decodes, such as
+     * MP3, AAC (M4A), Ogg (Vorbis, Opus), FLAC, AMR or the first audio track of a video file; PCM is
+     * mono PCM16 LE. The plugin records the microphone itself and needs its own microphone
+     * permission (see {@link Speech.Capabilities.microphoneGranted}).
      *
      * Options are checked before anything reaches the plugin: an unknown option key or a value of
      * the wrong shape or range fails with `INVALID_OPTIONS`, a value beyond a contract ceiling
@@ -88,8 +90,10 @@ declare namespace Internal {
         listen(options?: Speech.ListenOptions | null): Speech.Session;
 
         /**
-         * Recognizes a WAV file (at most 200 MiB and 30 minutes) or PCM and waits for the result
-         * (at most 10 minutes). Blocking; refuses the UI thread.
+         * Recognizes an audio file (at most 200 MiB and 30 minutes; formats other than WAV need the
+         * `audioDecode` feature, else `UNSUPPORTED_FORMAT`, which also reports a file without an audio
+         * track, without a decoder on the device or damaged) or PCM and waits for the result (at most
+         * 10 minutes). Blocking; refuses the UI thread.
          * @since 6.8.0
          * @example
          * let result = speech.recognize('./voice.wav', { language: 'en' });
@@ -101,7 +105,7 @@ declare namespace Internal {
         recognizeAsync(source: Speech.AudioSource, options?: Speech.RecognizeOptions | null): Promise<Speech.Recognition>;
 
         /**
-         * The voice segments of a WAV file or PCM (same limits as {@link recognize}). Blocking;
+         * The voice segments of an audio file or PCM (same sources and limits as {@link recognize}). Blocking;
          * refuses the UI thread. There is no `Async` form.
          * @since 6.8.0
          */
@@ -181,7 +185,7 @@ declare namespace Internal {
             | 'INTERNAL';
 
         /** What the plugin implements; a call whose feature is missing fails with `PLUGIN_INCOMPATIBLE`. */
-        type Feature = 'asr' | 'asrStreaming' | 'vad' | 'kws' | 'tts' | 'ttsSystemEngine' | 'models';
+        type Feature = 'asr' | 'asrStreaming' | 'vad' | 'kws' | 'tts' | 'ttsSystemEngine' | 'models' | 'audioDecode';
 
         /** Model kinds: recognition, synthesis, keyword spotting (wake words) and voice activity detection. */
         type Kind = 'asr' | 'tts' | 'kws' | 'vad';
@@ -206,7 +210,7 @@ declare namespace Internal {
          */
         type Pcm = ArrayBuffer | ArrayBufferView | number[];
 
-        /** A WAV file path or PCM. */
+        /** An audio file path (WAV, or any format the device decodes with the `audioDecode` feature) or PCM. */
         type AudioSource = string | Pcm;
 
         /** A warning (the call or session went on) as `{ code, message }`. */
@@ -262,7 +266,7 @@ declare namespace Internal {
             punctuation?: boolean;
             /** Voice activity segmentation (files and PCM) or gating (microphone); default true. */
             vad?: boolean;
-            /** PCM only: input sample rate, 8000 to 192000; default 16000. WAV files carry their own rate. */
+            /** PCM only: input sample rate, 8000 to 192000; default 16000. Audio files carry their own rate. */
             sampleRate?: number;
         }
 

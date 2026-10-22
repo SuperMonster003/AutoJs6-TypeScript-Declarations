@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.79.1": {
+      "released_date": "2026/10/22",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "объявления speech описывают аудиофайлы помимо WAV: если плагин объявляет функцию audioDecode (3-Macaw Speech 1.2.0 или новее), recognize, recognizeAsync и detectVoice принимают MP3, AAC, Ogg, FLAC и другие форматы, которые декодирует устройство, а также звуковую дорожку видеофайлов; в Speech.Feature добавлено 'audioDecode'"
+        }
+      ]
+    },
     "v4.79.0": {
       "released_date": "2026/10/22",
       "entries": [

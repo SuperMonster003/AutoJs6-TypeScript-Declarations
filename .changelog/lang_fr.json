@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.79.1": {
+      "released_date": "2026/10/22",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "les déclarations de speech décrivent les fichiers audio autres que WAV: avec un plugin qui déclare la fonction audioDecode (3-Macaw Speech 1.2.0 ou ultérieur), recognize, recognizeAsync et detectVoice acceptent MP3, AAC, Ogg, FLAC et les autres formats que l'appareil décode, ainsi que la piste audio des fichiers vidéo; Speech.Feature ajoute 'audioDecode'"
+        }
+      ]
+    },
     "v4.79.0": {
       "released_date": "2026/10/22",
       "entries": [

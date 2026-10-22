@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.79.1": {
+      "released_date": "2026/10/22",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "speech 선언에서 WAV 이외의 오디오 파일을 설명: 플러그인이 audioDecode 기능을 선언하면 (3-Macaw Speech 1.2.0 이상) recognize, recognizeAsync, detectVoice가 MP3, AAC, Ogg, FLAC 등 기기가 디코딩할 수 있는 형식과 동영상 파일의 오디오 트랙을 받음; Speech.Feature에 'audioDecode' 추가"
+        }
+      ]
+    },
     "v4.79.0": {
       "released_date": "2026/10/22",
       "entries": [

@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.79.1
+
+###### 2026/10/22
+
+* `Mejora` las declaraciones de speech describen archivos de audio además de WAV: con un complemento que declara la función audioDecode (3-Macaw Speech 1.2.0 o posterior), recognize, recognizeAsync y detectVoice aceptan MP3, AAC, Ogg, FLAC y otros formatos que el dispositivo decodifica, y la pista de audio de archivos de vídeo; Speech.Feature añade 'audioDecode'
+
 ### v4.79.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/21
 
 * `Función` Flow within/scope para Node.js, Bun y Workers, con raíces de búsqueda heredadas, navegación por brújula, proyecciones tipadas y sobrecargas press/swipe/gesture/gestures
-
-### v4.77.0
-
-###### 2026/10/21
-
-* `Función` Declaraciones del módulo memory para leer el diagnóstico de memoria del proceso AutoJs6: instantáneas de memoria, recolección de basura forzada, entornos de ejecución de scripts finalizados pero no liberados, volcados del heap hprof y vigilancia con LeakCanary (TypeScript / Ace)
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

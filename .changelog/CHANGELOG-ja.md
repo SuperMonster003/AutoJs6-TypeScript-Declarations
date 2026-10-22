@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.79.1
+
+###### 2026/10/22
+
+* `改善` speech の宣言で WAV 以外の音声ファイルを説明: プラグインが audioDecode 機能を宣言している場合 (3-Macaw Speech 1.2.0 以降), recognize, recognizeAsync, detectVoice は MP3, AAC, Ogg, FLAC などデバイスがデコードできる形式と動画ファイルの音声トラックを受け付ける; Speech.Feature に 'audioDecode' を追加
+
 # v4.79.0
 
 ###### 2026/10/22

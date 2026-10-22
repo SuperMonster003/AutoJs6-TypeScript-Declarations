@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.79.1
+
+###### 2026/10/22
+
+* `Улучшение` объявления speech описывают аудиофайлы помимо WAV: если плагин объявляет функцию audioDecode (3-Macaw Speech 1.2.0 или новее), recognize, recognizeAsync и detectVoice принимают MP3, AAC, Ogg, FLAC и другие форматы, которые декодирует устройство, а также звуковую дорожку видеофайлов; в Speech.Feature добавлено 'audioDecode'
+
 # v4.79.0
 
 ###### 2026/10/22

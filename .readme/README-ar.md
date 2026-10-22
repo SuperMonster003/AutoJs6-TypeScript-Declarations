@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.79.1
+
+###### 2026/10/22
+
+* `تحسين` تشرح تعريفات speech الملفات الصوتية غير WAV: مع إضافة تعلن الميزة audioDecode (⁨3-Macaw Speech⁩ 1.2.0 أو أحدث) تقبل recognize و recognizeAsync و detectVoice صيغ MP3 و AAC و Ogg و FLAC وغيرها مما يفك الجهاز ترميزه, ومسار الصوت في ملفات الفيديو; وتضيف Speech.Feature القيمة 'audioDecode'
+
 ### v4.79.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/21
 
 * `ميزة` Flow within/scope في Node.js وBun وWorker مع وراثة جذور البحث والتنقل بالبوصلة وإسقاط النتائج ودعم صيغ press/swipe/gesture/gestures
-
-### v4.77.0
-
-###### 2026/10/21
-
-* `ميزة` تعريفات أنواع وحدة memory لقراءة تشخيص ذاكرة عملية AutoJs6: لقطات الذاكرة, وجمع البيانات المهملة القسري, وبيئات تشغيل البرامج النصية المنتهية غير المحررة, وتفريغات الكومة hprof ومراقبة LeakCanary (TypeScript / Ace)
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
