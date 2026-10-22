@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.81.0": {
+      "released_date": "2026/10/22",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Déclarations de settings.export et settings.categories: exporter les paramètres d'AutoJs6 par catégorie dans une archive de paramètres (sans les identifiants) et lister les catégories avec leur nombre d'entrées, avec les types Settings.CategoryId, Settings.ExportResult et Settings.Category"
+        }
+      ]
+    },
     "v4.80.0": {
       "released_date": "2026/10/22",
       "entries": [

@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.81.0
+
+###### 2026/10/22
+
+* `新增` settings.export 與 settings.categories 宣告: 將 AutoJs6 設定按分類匯出為設定封存檔 (不含憑證) 並列出分類與項目數, 含 Settings.CategoryId, Settings.ExportResult 與 Settings.Category 類型
+
 ### v4.80.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `優化` speech 聲明說明 WAV 以外的音訊檔案: 插件聲明 audioDecode 功能時 (3-Macaw Speech 1.2.0 起) recognize, recognizeAsync 與 detectVoice 接受 MP3, AAC, Ogg, FLAC 等裝置能解碼的格式與影片檔案的音軌; Speech.Feature 增加 'audioDecode'
-
-### v4.79.0
-
-###### 2026/10/22
-
-* `新增` Node.js, Bun 與 Worker 的 AI 文字生成, 串流結果, 模型目錄及持續工作階段, 支援取消與 3-Stone AI 對打包應用程式的個別授權
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-HK.md)
 

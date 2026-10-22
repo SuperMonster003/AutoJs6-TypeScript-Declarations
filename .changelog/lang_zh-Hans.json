@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.81.0": {
+      "released_date": "2026/10/22",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "settings.export 与 settings.categories 声明: 将 AutoJs6 设置按分类导出为设置归档 (不含凭据) 并列出分类与条目数, 含 Settings.CategoryId, Settings.ExportResult 与 Settings.Category 类型"
+        }
+      ]
+    },
     "v4.80.0": {
       "released_date": "2026/10/22",
       "entries": [

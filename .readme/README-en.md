@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.81.0
+
+###### 2026/10/22
+
+* `Feature` settings.export and settings.categories declarations: export AutoJs6 settings by category to a settings archive (without credentials) and list the categories with their entry counts, with the Settings.CategoryId, Settings.ExportResult and Settings.Category types
+
 ### v4.80.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/22
 
 * `Improvement` speech declarations cover audio files beyond WAV: with a plugin that declares the audioDecode feature (3-Macaw Speech 1.2.0 or later), recognize, recognizeAsync and detectVoice take MP3, AAC, Ogg, FLAC and other formats the device decodes, and the audio track of video files; Speech.Feature gains 'audioDecode'
-
-### v4.79.0
-
-###### 2026/10/22
-
-* `Feature` AI text generation, streaming, model catalog and persistent sessions for Node.js, Bun and Workers, with cancellation and per-app consent in 3-Stone AI for packaged apps
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

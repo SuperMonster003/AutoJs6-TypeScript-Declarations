@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## Журнал изменений
 
+### v4.81.0
+
+###### 2026/10/22
+
+* `Функция` Объявления settings.export и settings.categories: экспорт настроек AutoJs6 по категориям в архив настроек (без учётных данных) и список категорий с числом записей, с типами Settings.CategoryId, Settings.ExportResult и Settings.Category
+
 ### v4.80.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `Улучшение` объявления speech описывают аудиофайлы помимо WAV: если плагин объявляет функцию audioDecode (3-Macaw Speech 1.2.0 или новее), recognize, recognizeAsync и detectVoice принимают MP3, AAC, Ogg, FLAC и другие форматы, которые декодирует устройство, а также звуковую дорожку видеофайлов; в Speech.Feature добавлено 'audioDecode'
-
-### v4.79.0
-
-###### 2026/10/22
-
-* `Функция` Генерация текста ИИ, потоковые ответы, каталог моделей и постоянные сеансы для Node.js, Bun и Workers, с отменой и отдельным разрешением для приложений в 3-Stone AI
 
 [Полный журнал изменений](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 

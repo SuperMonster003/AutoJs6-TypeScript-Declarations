@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.81.0": {
+      "released_date": "2026/10/22",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Объявления settings.export и settings.categories: экспорт настроек AutoJs6 по категориям в архив настроек (без учётных данных) и список категорий с числом записей, с типами Settings.CategoryId, Settings.ExportResult и Settings.Category"
+        }
+      ]
+    },
     "v4.80.0": {
       "released_date": "2026/10/22",
       "entries": [

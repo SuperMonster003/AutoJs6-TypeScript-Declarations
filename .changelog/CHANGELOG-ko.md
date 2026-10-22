@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.81.0
+
+###### 2026/10/22
+
+* `기능` settings.export 및 settings.categories 선언: AutoJs6 설정을 분류별로 설정 아카이브로 내보내고 (자격 증명 제외), 분류와 항목 수를 나열; Settings.CategoryId, Settings.ExportResult, Settings.Category 타입 추가
+
 # v4.80.0
 
 ###### 2026/10/22

@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.81.0
+
+###### 2026/10/22
+
+* `Feature` settings.export and settings.categories declarations: export AutoJs6 settings by category to a settings archive (without credentials) and list the categories with their entry counts, with the Settings.CategoryId, Settings.ExportResult and Settings.Category types
+
 # v4.80.0
 
 ###### 2026/10/22

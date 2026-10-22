@@ -187,3 +187,13 @@ const memoryWatched: boolean = memory.watch({ items: [] }, 'cache');
 memory.collect('500');
 // @ts-expect-error Primitive values cannot be watched.
 memory.watch(1);
+// settings: script export of the settings archive.
+const settingsExport: Internal.Settings.ExportResult = settings.export();
+const settingsExportPath: string = $settings.export('./exports/', [ 'appearance', 'general', 'credentials' ]).path;
+const settingsSkipped: Internal.Settings.SkipReason = settings.export(null, 'appearance').skipped[0].reason;
+const settingsCategory: Internal.Settings.CategoryKind = settings.categories()[0].kind;
+const settingsDefaults: Internal.Settings.CategoryId[] = settings.categories().filter(c => c.defaultSelected).map(c => c.id);
+// @ts-expect-error categories are ids, not numbers.
+settings.export(null, 1);
+// @ts-expect-error categories() takes no argument.
+settings.categories('appearance');

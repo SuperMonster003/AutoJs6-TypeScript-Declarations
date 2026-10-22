@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.81.0
+
+###### 2026/10/22
+
+* `Функция` Объявления settings.export и settings.categories: экспорт настроек AutoJs6 по категориям в архив настроек (без учётных данных) и список категорий с числом записей, с типами Settings.CategoryId, Settings.ExportResult и Settings.Category
+
 # v4.80.0
 
 ###### 2026/10/22

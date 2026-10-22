@@ -18,6 +18,15 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.81.0": {
+      "released_date": "2026/10/22",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "settings.export and settings.categories declarations: export AutoJs6 settings by category to a settings archive (without credentials) and list the categories with their entry counts, with the Settings.CategoryId, Settings.ExportResult and Settings.Category types"
+        }
+      ]
+    },
     "v4.80.0": {
       "released_date": "2026/10/22",
       "entries": [

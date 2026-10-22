@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.81.0
+
+###### 2026/10/22
+
+* `Función` Declaraciones de settings.export y settings.categories: exportar la configuración de AutoJs6 por categorías a un archivo de configuración (sin credenciales) y listar las categorías con su número de entradas, con los tipos Settings.CategoryId, Settings.ExportResult y Settings.Category
+
 ### v4.80.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/22
 
 * `Mejora` las declaraciones de speech describen archivos de audio además de WAV: con un complemento que declara la función audioDecode (3-Macaw Speech 1.2.0 o posterior), recognize, recognizeAsync y detectVoice aceptan MP3, AAC, Ogg, FLAC y otros formatos que el dispositivo decodifica, y la pista de audio de archivos de vídeo; Speech.Feature añade 'audioDecode'
-
-### v4.79.0
-
-###### 2026/10/22
-
-* `Función` Generación de texto con IA, transmisión, catálogo de modelos y sesiones persistentes para Node.js, Bun y Workers, con cancelación y consentimiento por aplicación en 3-Stone AI
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

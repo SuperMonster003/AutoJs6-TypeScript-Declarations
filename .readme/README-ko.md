@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.81.0
+
+###### 2026/10/22
+
+* `기능` settings.export 및 settings.categories 선언: AutoJs6 설정을 분류별로 설정 아카이브로 내보내고 (자격 증명 제외), 분류와 항목 수를 나열; Settings.CategoryId, Settings.ExportResult, Settings.Category 타입 추가
+
 ### v4.80.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `개선` speech 선언에서 WAV 이외의 오디오 파일을 설명: 플러그인이 audioDecode 기능을 선언하면 (3-Macaw Speech 1.2.0 이상) recognize, recognizeAsync, detectVoice가 MP3, AAC, Ogg, FLAC 등 기기가 디코딩할 수 있는 형식과 동영상 파일의 오디오 트랙을 받음; Speech.Feature에 'audioDecode' 추가
-
-### v4.79.0
-
-###### 2026/10/22
-
-* `기능` Node.js, Bun 및 Worker의 AI 텍스트 생성, 스트리밍, 모델 목록 및 영구 세션, 취소와 3-Stone AI의 패키지 앱별 접근 승인 지원
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

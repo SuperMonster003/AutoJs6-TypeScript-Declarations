@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.81.0
+
+###### 2026/10/22
+
+* `新增` settings.export 與 settings.categories 宣告: 將 AutoJs6 設定依分類匯出為設定封存檔 (不含憑證) 並列出分類與項目數, 含 Settings.CategoryId, Settings.ExportResult 與 Settings.Category 型別
+
 # v4.80.0
 
 ###### 2026/10/22

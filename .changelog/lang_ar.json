@@ -18,6 +18,15 @@
     "adjustment": "تعديل"
   },
   "$data": {
+    "v4.81.0": {
+      "released_date": "2026/10/22",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "تعريفات settings.export و settings.categories: تصدير إعدادات AutoJs6 حسب الفئة إلى أرشيف إعدادات (دون بيانات الاعتماد) وسرد الفئات مع عدد عناصرها, مع الأنواع Settings.CategoryId و Settings.ExportResult و Settings.Category"
+        }
+      ]
+    },
     "v4.80.0": {
       "released_date": "2026/10/22",
       "entries": [
