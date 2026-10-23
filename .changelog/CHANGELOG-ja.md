@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.82.0
+
+###### 2026/10/23
+
+* `機能` memory の宣言にブリッジセッションを追加: Snapshot.bridgeSessions はプラグインエンジン (Node.js, Bun, QuickJS, Lua, Python) ごとに終了後も回収されていないブリッジセッション数を示し, RetainedRuntime.engine で rhino と node を区別; Memory.BridgeSessions, Memory.RetainedEngine 型を追加
+
 # v4.81.1
 
 ###### 2026/10/23

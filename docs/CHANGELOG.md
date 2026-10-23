@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.82.0
+
+###### 2026/10/23
+
+* `新增` memory 声明补全桥接会话: Snapshot.bridgeSessions 给出 Node.js, Bun, QuickJS, Lua 与 Python 各插件引擎已结束但未回收的桥接会话数, RetainedRuntime.engine 区分 rhino 与 node, 含 Memory.BridgeSessions 与 Memory.RetainedEngine 类型
+
 # v4.81.1
 
 ###### 2026/10/23

@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.82.0
+
+###### 2026/10/23
+
+* `ميزة` تعريفات memory لجلسات الجسر: يعطي Snapshot.bridgeSessions عدد جلسات الجسر المنتهية التي لم تُستعَد بعد لكل محرك إضافات (Node.js و Bun و QuickJS و Lua و Python), ويميز RetainedRuntime.engine بين rhino و node, مع النوعين Memory.BridgeSessions و Memory.RetainedEngine
+
 # v4.81.1
 
 ###### 2026/10/23

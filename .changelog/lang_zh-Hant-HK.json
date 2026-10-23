@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.82.0": {
+      "released_date": "2026/10/23",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "memory 宣告補全橋接會話: Snapshot.bridgeSessions 給出 Node.js, Bun, QuickJS, Lua 與 Python 各插件引擎已結束但未回收的橋接會話數, RetainedRuntime.engine 區分 rhino 與 node, 含 Memory.BridgeSessions 與 Memory.RetainedEngine 類型"
+        }
+      ]
+    },
     "v4.81.1": {
       "released_date": "2026/10/23",
       "entries": [

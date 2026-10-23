@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.82.0
+
+###### 2026/10/23
+
+* `ميزة` تعريفات memory لجلسات الجسر: يعطي Snapshot.bridgeSessions عدد جلسات الجسر المنتهية التي لم تُستعَد بعد لكل محرك إضافات (Node.js و Bun و QuickJS و Lua و Python), ويميز RetainedRuntime.engine بين rhino و node, مع النوعين Memory.BridgeSessions و Memory.RetainedEngine
+
 ### v4.81.1
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `ميزة` تعريفات settings.export و settings.categories: تصدير إعدادات AutoJs6 حسب الفئة إلى أرشيف إعدادات (دون بيانات الاعتماد) وسرد الفئات مع عدد عناصرها, مع الأنواع Settings.CategoryId و Settings.ExportResult و Settings.Category
-
-### v4.80.0
-
-###### 2026/10/22
-
-* `ميزة` تعريفات وإكمال ai.agent ذات الأنواع في Node.js وBun وWorker, بما يشمل التحكم في المهام والأحداث وقنوات النصوص المسجلة والنتائج غير المتزامنة
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

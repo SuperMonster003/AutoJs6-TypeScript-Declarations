@@ -13,6 +13,12 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.82.0
+
+###### 2026/10/23
+
+* `Функция` Объявления memory для сеансов моста: Snapshot.bridgeSessions даёт число завершённых, но ещё не освобождённых сеансов моста каждого движка плагинов (Node.js, Bun, QuickJS, Lua и Python), а RetainedRuntime.engine отличает rhino от node, с типами Memory.BridgeSessions и Memory.RetainedEngine
+
 # v4.81.1
 
 ###### 2026/10/23

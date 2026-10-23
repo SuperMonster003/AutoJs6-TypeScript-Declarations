@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.82.0
+
+###### 2026/10/23
+
+* `Feature` memory declarations for bridge sessions: Snapshot.bridgeSessions gives the finished but unreclaimed bridge sessions of each plugin engine (Node.js, Bun, QuickJS, Lua and Python), and RetainedRuntime.engine tells rhino from node, with the Memory.BridgeSessions and Memory.RetainedEngine types
+
 # v4.81.1
 
 ###### 2026/10/23

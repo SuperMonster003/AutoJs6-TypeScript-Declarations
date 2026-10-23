@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.82.0": {
+      "released_date": "2026/10/23",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "memory 선언에 브리지 세션 추가: Snapshot.bridgeSessions 는 플러그인 엔진 (Node.js, Bun, QuickJS, Lua, Python) 별로 종료 후 회수되지 않은 브리지 세션 수를 제공하고, RetainedRuntime.engine 으로 rhino 와 node 를 구분; Memory.BridgeSessions, Memory.RetainedEngine 타입 추가"
+        }
+      ]
+    },
     "v4.81.1": {
       "released_date": "2026/10/23",
       "entries": [

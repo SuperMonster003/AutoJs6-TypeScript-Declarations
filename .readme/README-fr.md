@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.82.0
+
+###### 2026/10/23
+
+* `Fonctionnalité` Déclarations de memory pour les sessions de pont: Snapshot.bridgeSessions donne les sessions de pont terminées mais pas encore récupérées de chaque moteur de plugins (Node.js, Bun, QuickJS, Lua et Python), et RetainedRuntime.engine distingue rhino de node, avec les types Memory.BridgeSessions et Memory.RetainedEngine
+
 ### v4.81.1
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/22
 
 * `Fonctionnalité` Déclarations de settings.export et settings.categories: exporter les paramètres d'AutoJs6 par catégorie dans une archive de paramètres (sans les identifiants) et lister les catégories avec leur nombre d'entrées, avec les types Settings.CategoryId, Settings.ExportResult et Settings.Category
-
-### v4.80.0
-
-###### 2026/10/22
-
-* `Fonctionnalité` Déclarations typées et complétion ai.agent pour Node.js, Bun et Workers, avec contrôle des tâches, événements, canaux des scripts enregistrés et résultats asynchrones
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

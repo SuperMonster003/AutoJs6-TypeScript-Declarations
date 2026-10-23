@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Oct 21, 2026
+// Last modified: Oct 23, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -38,9 +38,11 @@ declare namespace Internal {
 
         /**
          * Forces garbage collection (3 rounds with finalization, then one more every 500 ms) and
-         * waits up to `timeout` milliseconds for every finished script runtime to be reclaimed,
-         * then returns a new snapshot. It returns as soon as none is left; a `retainedRuntimes`
-         * above 0 afterwards means something still holds a finished script (see {@link retained}).
+         * waits up to `timeout` milliseconds for every finished script runtime and bridge session
+         * to be reclaimed, then returns a new snapshot. It returns as soon as none is left; a
+         * `retainedRuntimes` above 0 afterwards means something still holds a finished script (see
+         * {@link retained}), and a count above 0 in `bridgeSessions` means something still holds
+         * the session objects of a finished execution of that plugin engine.
          * Blocks the calling thread (do not call it on the UI thread) and stops at once when the
          * script is stopped. Throws when `timeout` is not a number from 0 to 60000.
          * @param timeout milliseconds to wait, 10000 by default
@@ -52,9 +54,11 @@ declare namespace Internal {
         collect(timeout?: number): Memory.Snapshot;
 
         /**
-         * Finished script runtimes (Rhino scripts only) that are still reachable, earliest first.
-         * A script that has just ended stays listed until the next garbage collection; the ones
-         * left after {@link collect} are held by something, which usually means a leak.
+         * Finished script runtimes (Rhino and Node.js scripts only) that are still reachable,
+         * earliest first. A script that has just ended stays listed until the next garbage
+         * collection; the ones left after {@link collect} are held by something, which usually
+         * means a leak. Unreclaimed sessions of Bun, QuickJS, Lua and Python scripts are only
+         * counted in `bridgeSessions` of {@link snapshot}.
          * @since 6.8.0
          * @example
          * memory.collect();
@@ -117,6 +121,12 @@ declare namespace Memory {
         engines: number;
         /** Finished script runtimes not reclaimed yet, the length of `memory.retained()`. */
         retainedRuntimes: number;
+        /**
+         * Finished executions of each plugin engine whose session objects (the host capability
+         * broker, output callbacks) are not reclaimed yet. A finished execution is counted until
+         * the next garbage collection, as with `retainedRuntimes`.
+         */
+        bridgeSessions: BridgeSessions;
         /** Script images neither recycled nor collected. */
         images: number;
         /** Threads created for scripts, told by their names (script, threads.start / pool, timer, screen capture and looper threads). */
@@ -127,6 +137,20 @@ declare namespace Memory {
         contexts: number;
         /** Time of the reading, in milliseconds since the epoch. */
         timestamp: number;
+    }
+
+    /** Unreclaimed bridge sessions per plugin engine (`Snapshot.bridgeSessions`). */
+    interface BridgeSessions {
+        /** Node.js scripts. */
+        node: number;
+        /** Bun scripts. */
+        bun: number;
+        /** QuickJS scripts. */
+        quickjs: number;
+        /** Lua scripts. */
+        lua: number;
+        /** Python scripts. */
+        python: number;
     }
 
     /** A finished script runtime that is still reachable (`memory.retained()`). */
@@ -143,8 +167,12 @@ declare namespace Memory {
         elapsedMs: number;
         /** How the script ended: on its own, with an uncaught error, or stopped (task list, `engines.stopAll`, or its own `exit()`). */
         exitKind: ExitKind;
+        /** The script engine: `rhino` for JavaScript (Rhino) scripts, `node` for Node.js scripts. */
+        engine: RetainedEngine;
     }
 
     type ExitKind = 'normal' | 'error' | 'stopped';
+
+    type RetainedEngine = 'rhino' | 'node';
 
 }

@@ -18,6 +18,15 @@
     "adjustment": "Корректировка"
   },
   "$data": {
+    "v4.82.0": {
+      "released_date": "2026/10/23",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Объявления memory для сеансов моста: Snapshot.bridgeSessions даёт число завершённых, но ещё не освобождённых сеансов моста каждого движка плагинов (Node.js, Bun, QuickJS, Lua и Python), а RetainedRuntime.engine отличает rhino от node, с типами Memory.BridgeSessions и Memory.RetainedEngine"
+        }
+      ]
+    },
     "v4.81.1": {
       "released_date": "2026/10/23",
       "entries": [

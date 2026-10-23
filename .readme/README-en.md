@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.82.0
+
+###### 2026/10/23
+
+* `Feature` memory declarations for bridge sessions: Snapshot.bridgeSessions gives the finished but unreclaimed bridge sessions of each plugin engine (Node.js, Bun, QuickJS, Lua and Python), and RetainedRuntime.engine tells rhino from node, with the Memory.BridgeSessions and Memory.RetainedEngine types
+
 ### v4.81.1
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/22
 
 * `Feature` settings.export and settings.categories declarations: export AutoJs6 settings by category to a settings archive (without credentials) and list the categories with their entry counts, with the Settings.CategoryId, Settings.ExportResult and Settings.Category types
-
-### v4.80.0
-
-###### 2026/10/22
-
-* `Feature` Typed ai.agent declarations and completion for Node.js, Bun and Workers, including task controls, events, registered-script channels and asynchronous results
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

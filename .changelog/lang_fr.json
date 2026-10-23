@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.82.0": {
+      "released_date": "2026/10/23",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Déclarations de memory pour les sessions de pont: Snapshot.bridgeSessions donne les sessions de pont terminées mais pas encore récupérées de chaque moteur de plugins (Node.js, Bun, QuickJS, Lua et Python), et RetainedRuntime.engine distingue rhino de node, avec les types Memory.BridgeSessions et Memory.RetainedEngine"
+        }
+      ]
+    },
     "v4.81.1": {
       "released_date": "2026/10/23",
       "entries": [

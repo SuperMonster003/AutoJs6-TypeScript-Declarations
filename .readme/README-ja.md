@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.82.0
+
+###### 2026/10/23
+
+* `機能` memory の宣言にブリッジセッションを追加: Snapshot.bridgeSessions はプラグインエンジン (Node.js, Bun, QuickJS, Lua, Python) ごとに終了後も回収されていないブリッジセッション数を示し, RetainedRuntime.engine で rhino と node を区別; Memory.BridgeSessions, Memory.RetainedEngine 型を追加
+
 ### v4.81.1
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `機能` settings.export と settings.categories の宣言: AutoJs6 の設定をカテゴリ別に設定アーカイブへエクスポートし (認証情報を除く), カテゴリと項目数を一覧表示; Settings.CategoryId, Settings.ExportResult, Settings.Category 型を追加
-
-### v4.80.0
-
-###### 2026/10/22
-
-* `機能` Node.js/Bun/Worker の ai.agent 型宣言と補完, タスク制御, イベント, 登録済みスクリプトのチャネルと非同期結果
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

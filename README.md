@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.82.0
+
+###### 2026/10/23
+
+* `新增` memory 声明补全桥接会话: Snapshot.bridgeSessions 给出 Node.js, Bun, QuickJS, Lua 与 Python 各插件引擎已结束但未回收的桥接会话数, RetainedRuntime.engine 区分 rhino 与 node, 含 Memory.BridgeSessions 与 Memory.RetainedEngine 类型
+
 ### v4.81.1
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `新增` settings.export 与 settings.categories 声明: 将 AutoJs6 设置按分类导出为设置归档 (不含凭据) 并列出分类与条目数, 含 Settings.CategoryId, Settings.ExportResult 与 Settings.Category 类型
-
-### v4.80.0
-
-###### 2026/10/22
-
-* `新增` Node.js/Bun/Worker 的 ai.agent 声明与补全, 包含任务控制, 事件, 注册脚本通道和异步返回值
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

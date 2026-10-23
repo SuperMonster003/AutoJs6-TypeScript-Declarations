@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## Журнал изменений
 
+### v4.82.0
+
+###### 2026/10/23
+
+* `Функция` Объявления memory для сеансов моста: Snapshot.bridgeSessions даёт число завершённых, но ещё не освобождённых сеансов моста каждого движка плагинов (Node.js, Bun, QuickJS, Lua и Python), а RetainedRuntime.engine отличает rhino от node, с типами Memory.BridgeSessions и Memory.RetainedEngine
+
 ### v4.81.1
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `Функция` Объявления settings.export и settings.categories: экспорт настроек AutoJs6 по категориям в архив настроек (без учётных данных) и список категорий с числом записей, с типами Settings.CategoryId, Settings.ExportResult и Settings.Category
-
-### v4.80.0
-
-###### 2026/10/22
-
-* `Функция` Типизированные объявления и дополнения ai.agent для Node.js, Bun и Workers, включая управление задачами, события, каналы зарегистрированных скриптов и асинхронные результаты
 
 [Полный журнал изменений](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 

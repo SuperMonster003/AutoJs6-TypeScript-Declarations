@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.82.0
+
+###### 2026/10/23
+
+* `기능` memory 선언에 브리지 세션 추가: Snapshot.bridgeSessions 는 플러그인 엔진 (Node.js, Bun, QuickJS, Lua, Python) 별로 종료 후 회수되지 않은 브리지 세션 수를 제공하고, RetainedRuntime.engine 으로 rhino 와 node 를 구분; Memory.BridgeSessions, Memory.RetainedEngine 타입 추가
+
 ### v4.81.1
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `기능` settings.export 및 settings.categories 선언: AutoJs6 설정을 분류별로 설정 아카이브로 내보내고 (자격 증명 제외), 분류와 항목 수를 나열; Settings.CategoryId, Settings.ExportResult, Settings.Category 타입 추가
-
-### v4.80.0
-
-###### 2026/10/22
-
-* `기능` 작업 제어, 이벤트, 등록된 스크립트 채널과 비동기 결과를 포함하는 Node.js/Bun/Worker ai.agent 타입 선언 및 완성
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

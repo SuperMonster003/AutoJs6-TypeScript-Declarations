@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.82.0": {
+      "released_date": "2026/10/23",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "memory の宣言にブリッジセッションを追加: Snapshot.bridgeSessions はプラグインエンジン (Node.js, Bun, QuickJS, Lua, Python) ごとに終了後も回収されていないブリッジセッション数を示し, RetainedRuntime.engine で rhino と node を区別; Memory.BridgeSessions, Memory.RetainedEngine 型を追加"
+        }
+      ]
+    },
     "v4.81.1": {
       "released_date": "2026/10/23",
       "entries": [
