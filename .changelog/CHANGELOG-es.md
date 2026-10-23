@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.81.1
+
+###### 2026/10/23
+
+* `Mejora` las declaraciones de speech completan la opción punctuation: se conserva la puntuación propia del modelo (SenseVoice), los resultados de los modelos en streaming reciben puntuación de un modelo de puntuación instalado (3-Macaw Speech 1.2.0 o posterior, chino e inglés) y false elimina toda la puntuación
+
 # v4.81.0
 
 ###### 2026/10/22

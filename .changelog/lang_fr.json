@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.81.1": {
+      "released_date": "2026/10/23",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "les déclarations de speech complètent l'option punctuation: la ponctuation propre au modèle (SenseVoice) est conservée, les résultats des modèles en continu sont ponctués par un modèle de ponctuation installé (3-Macaw Speech 1.2.0 ou ultérieur, chinois et anglais) et false supprime toute la ponctuation"
+        }
+      ]
+    },
     "v4.81.0": {
       "released_date": "2026/10/22",
       "entries": [

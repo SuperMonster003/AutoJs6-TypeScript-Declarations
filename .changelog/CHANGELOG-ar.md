@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.81.1
+
+###### 2026/10/23
+
+* `تحسين` تكمل تعريفات speech الخيار punctuation: تبقى علامات الترقيم الخاصة بالنموذج (SenseVoice), وتحصل نتائج النماذج المتدفقة على علامات الترقيم من نموذج ترقيم مثبت (⁨3-Macaw Speech⁩ 1.2.0 أو أحدث, الصينية والإنجليزية), ويزيل false كل علامات الترقيم
+
 # v4.81.0
 
 ###### 2026/10/22

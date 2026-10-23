@@ -178,6 +178,12 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 
 ## Journal des modifications
 
+### v4.81.1
+
+###### 2026/10/23
+
+* `Amélioration` les déclarations de speech complètent l'option punctuation: la ponctuation propre au modèle (SenseVoice) est conservée, les résultats des modèles en continu sont ponctués par un modèle de ponctuation installé (3-Macaw Speech 1.2.0 ou ultérieur, chinois et anglais) et false supprime toute la ponctuation
+
 ### v4.81.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ Les déclarations sont généralement mises à jour avec les nouvelles versions 
 ###### 2026/10/22
 
 * `Fonctionnalité` Déclarations typées et complétion ai.agent pour Node.js, Bun et Workers, avec contrôle des tâches, événements, canaux des scripts enregistrés et résultats asynchrones
-
-### v4.79.1
-
-###### 2026/10/22
-
-* `Amélioration` les déclarations de speech décrivent les fichiers audio autres que WAV: avec un plugin qui déclare la fonction audioDecode (3-Macaw Speech 1.2.0 ou ultérieur), recognize, recognizeAsync et detectVoice acceptent MP3, AAC, Ogg, FLAC et les autres formats que l'appareil décode, ainsi que la piste audio des fichiers vidéo; Speech.Feature ajoute 'audioDecode'
 
 [Journal complet](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-fr.md)
 

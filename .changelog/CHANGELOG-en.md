@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.81.1
+
+###### 2026/10/23
+
+* `Improvement` speech declarations complete the punctuation option: the model's own punctuation (SenseVoice) is kept, results of streaming models get punctuation from an installed punctuation model (3-Macaw Speech 1.2.0 or later, Chinese and English), and false removes all punctuation
+
 # v4.81.0
 
 ###### 2026/10/22

@@ -18,6 +18,15 @@
     "adjustment": "조정"
   },
   "$data": {
+    "v4.81.1": {
+      "released_date": "2026/10/23",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "speech 선언에서 punctuation 옵션 보완: 모델 자체의 문장 부호 (SenseVoice)는 유지하고, 스트리밍 모델 결과에는 설치된 문장 부호 모델로 문장 부호를 붙이며 (3-Macaw Speech 1.2.0 이상, 중국어와 영어), false는 모든 문장 부호를 제거"
+        }
+      ]
+    },
     "v4.81.0": {
       "released_date": "2026/10/22",
       "entries": [

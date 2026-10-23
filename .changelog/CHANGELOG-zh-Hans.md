@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.81.1
+
+###### 2026/10/23
+
+* `优化` speech 声明补全 punctuation 选项: 模型自带标点 (SenseVoice) 时保留, 流式模型的结果由已安装的标点模型补上标点 (3-Macaw Speech 1.2.0 起, 中文与英文), false 去掉所有标点
+
 # v4.81.0
 
 ###### 2026/10/22

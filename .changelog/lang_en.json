@@ -18,6 +18,15 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.81.1": {
+      "released_date": "2026/10/23",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "speech declarations complete the punctuation option: the model's own punctuation (SenseVoice) is kept, results of streaming models get punctuation from an installed punctuation model (3-Macaw Speech 1.2.0 or later, Chinese and English), and false removes all punctuation"
+        }
+      ]
+    },
     "v4.81.0": {
       "released_date": "2026/10/22",
       "entries": [

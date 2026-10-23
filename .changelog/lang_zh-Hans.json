@@ -18,6 +18,15 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.81.1": {
+      "released_date": "2026/10/23",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "speech 声明补全 punctuation 选项: 模型自带标点 (SenseVoice) 时保留, 流式模型的结果由已安装的标点模型补上标点 (3-Macaw Speech 1.2.0 起, 中文与英文), false 去掉所有标点"
+        }
+      ]
+    },
     "v4.81.0": {
       "released_date": "2026/10/22",
       "entries": [

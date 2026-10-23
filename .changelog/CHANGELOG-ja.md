@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.81.1
+
+###### 2026/10/23
+
+* `改善` speech の宣言で punctuation オプションを補足: モデル自身の句読点 (SenseVoice) は残し, ストリーミングモデルの結果にはインストール済みの句読点モデルで句読点を付け (3-Macaw Speech 1.2.0 以降, 中国語と英語), false ですべての句読点を除去
+
 # v4.81.0
 
 ###### 2026/10/22

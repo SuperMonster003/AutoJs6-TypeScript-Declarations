@@ -18,6 +18,15 @@
     "adjustment": "Ajuste"
   },
   "$data": {
+    "v4.81.1": {
+      "released_date": "2026/10/23",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "las declaraciones de speech completan la opción punctuation: se conserva la puntuación propia del modelo (SenseVoice), los resultados de los modelos en streaming reciben puntuación de un modelo de puntuación instalado (3-Macaw Speech 1.2.0 o posterior, chino e inglés) y false elimina toda la puntuación"
+        }
+      ]
+    },
     "v4.81.0": {
       "released_date": "2026/10/22",
       "entries": [

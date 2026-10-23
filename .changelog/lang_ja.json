@@ -18,6 +18,15 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.81.1": {
+      "released_date": "2026/10/23",
+      "entries": [
+        {
+          "category": "improvement",
+          "text": "speech の宣言で punctuation オプションを補足: モデル自身の句読点 (SenseVoice) は残し, ストリーミングモデルの結果にはインストール済みの句読点モデルで句読点を付け (3-Macaw Speech 1.2.0 以降, 中国語と英語), false ですべての句読点を除去"
+        }
+      ]
+    },
     "v4.81.0": {
       "released_date": "2026/10/22",
       "entries": [

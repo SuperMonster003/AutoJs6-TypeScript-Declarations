@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.81.1
+
+###### 2026/10/23
+
+* `개선` speech 선언에서 punctuation 옵션 보완: 모델 자체의 문장 부호 (SenseVoice)는 유지하고, 스트리밍 모델 결과에는 설치된 문장 부호 모델로 문장 부호를 붙이며 (3-Macaw Speech 1.2.0 이상, 중국어와 영어), false는 모든 문장 부호를 제거
+
 ### v4.81.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `기능` 작업 제어, 이벤트, 등록된 스크립트 채널과 비동기 결과를 포함하는 Node.js/Bun/Worker ai.agent 타입 선언 및 완성
-
-### v4.79.1
-
-###### 2026/10/22
-
-* `개선` speech 선언에서 WAV 이외의 오디오 파일을 설명: 플러그인이 audioDecode 기능을 선언하면 (3-Macaw Speech 1.2.0 이상) recognize, recognizeAsync, detectVoice가 MP3, AAC, Ogg, FLAC 등 기기가 디코딩할 수 있는 형식과 동영상 파일의 오디오 트랙을 받음; Speech.Feature에 'audioDecode' 추가
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

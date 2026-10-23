@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.81.1
+
+###### 2026/10/23
+
+* `优化` speech 声明补全 punctuation 选项: 模型自带标点 (SenseVoice) 时保留, 流式模型的结果由已安装的标点模型补上标点 (3-Macaw Speech 1.2.0 起, 中文与英文), false 去掉所有标点
+
 ### v4.81.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `新增` Node.js/Bun/Worker 的 ai.agent 声明与补全, 包含任务控制, 事件, 注册脚本通道和异步返回值
-
-### v4.79.1
-
-###### 2026/10/22
-
-* `优化` speech 声明说明 WAV 以外的音频文件: 插件声明 audioDecode 功能时 (3-Macaw Speech 1.2.0 起) recognize, recognizeAsync 与 detectVoice 接受 MP3, AAC, Ogg, FLAC 等设备能解码的格式与视频文件的音轨; Speech.Feature 增加 'audioDecode'
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

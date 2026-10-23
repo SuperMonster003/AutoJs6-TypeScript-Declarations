@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.81.1
+
+###### 2026/10/23
+
+* `개선` speech 선언에서 punctuation 옵션 보완: 모델 자체의 문장 부호 (SenseVoice)는 유지하고, 스트리밍 모델 결과에는 설치된 문장 부호 모델로 문장 부호를 붙이며 (3-Macaw Speech 1.2.0 이상, 중국어와 영어), false는 모든 문장 부호를 제거
+
 # v4.81.0
 
 ###### 2026/10/22

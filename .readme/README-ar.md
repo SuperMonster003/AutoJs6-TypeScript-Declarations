@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.81.1
+
+###### 2026/10/23
+
+* `تحسين` تكمل تعريفات speech الخيار punctuation: تبقى علامات الترقيم الخاصة بالنموذج (SenseVoice), وتحصل نتائج النماذج المتدفقة على علامات الترقيم من نموذج ترقيم مثبت (⁨3-Macaw Speech⁩ 1.2.0 أو أحدث, الصينية والإنجليزية), ويزيل false كل علامات الترقيم
+
 ### v4.81.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `ميزة` تعريفات وإكمال ai.agent ذات الأنواع في Node.js وBun وWorker, بما يشمل التحكم في المهام والأحداث وقنوات النصوص المسجلة والنتائج غير المتزامنة
-
-### v4.79.1
-
-###### 2026/10/22
-
-* `تحسين` تشرح تعريفات speech الملفات الصوتية غير WAV: مع إضافة تعلن الميزة audioDecode (⁨3-Macaw Speech⁩ 1.2.0 أو أحدث) تقبل recognize و recognizeAsync و detectVoice صيغ MP3 و AAC و Ogg و FLAC وغيرها مما يفك الجهاز ترميزه, ومسار الصوت في ملفات الفيديو; وتضيف Speech.Feature القيمة 'audioDecode'
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

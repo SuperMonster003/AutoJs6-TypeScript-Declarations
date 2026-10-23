@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.81.1
+
+###### 2026/10/23
+
+* `改善` speech の宣言で punctuation オプションを補足: モデル自身の句読点 (SenseVoice) は残し, ストリーミングモデルの結果にはインストール済みの句読点モデルで句読点を付け (3-Macaw Speech 1.2.0 以降, 中国語と英語), false ですべての句読点を除去
+
 ### v4.81.0
 
 ###### 2026/10/22
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/22
 
 * `機能` Node.js/Bun/Worker の ai.agent 型宣言と補完, タスク制御, イベント, 登録済みスクリプトのチャネルと非同期結果
-
-### v4.79.1
-
-###### 2026/10/22
-
-* `改善` speech の宣言で WAV 以外の音声ファイルを説明: プラグインが audioDecode 機能を宣言している場合 (3-Macaw Speech 1.2.0 以降), recognize, recognizeAsync, detectVoice は MP3, AAC, Ogg, FLAC などデバイスがデコードできる形式と動画ファイルの音声トラックを受け付ける; Speech.Feature に 'audioDecode' を追加
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

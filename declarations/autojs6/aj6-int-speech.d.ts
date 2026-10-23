@@ -262,7 +262,12 @@ declare namespace Internal {
             language?: string;
             /** Hotwords of transducer models, at most 200 of at most 128 characters; other models answer a warning. */
             hotwords?: string[];
-            /** Keep the punctuation the model emits; default true. */
+            /**
+             * Punctuation; default true. The model's own punctuation (SenseVoice) is kept; results of
+             * streaming models get punctuation from an installed punctuation model (3-Macaw Speech 1.2.0
+             * or later; Chinese and English, English casing restored) and stay as they are when none
+             * covers their language. `false` removes all punctuation.
+             */
             punctuation?: boolean;
             /** Voice activity segmentation (files and PCM) or gating (microphone); default true. */
             vad?: boolean;

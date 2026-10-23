@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.81.1
+
+###### 2026/10/23
+
+* `Amélioration` les déclarations de speech complètent l'option punctuation: la ponctuation propre au modèle (SenseVoice) est conservée, les résultats des modèles en continu sont ponctués par un modèle de ponctuation installé (3-Macaw Speech 1.2.0 ou ultérieur, chinois et anglais) et false supprime toute la ponctuation
+
 # v4.81.0
 
 ###### 2026/10/22
