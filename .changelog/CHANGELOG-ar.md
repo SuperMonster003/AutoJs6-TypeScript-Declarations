@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.83.0
+
+###### 2026/10/24
+
+* `ميزة` تعريفات sqlite مع رد النداء onDowngrade: يُستدعى عندما تكون version المطلوبة أقل من إصدار قاعدة البيانات الحالية (AutoJs6 6.8.0 أو أحدث); وبدونه لا يفعل خفض الإصدار شيئا ويحتفظ بالجداول والبيانات
+
 # v4.82.0
 
 ###### 2026/10/23

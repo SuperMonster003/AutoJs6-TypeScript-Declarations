@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.83.0
+
+###### 2026/10/24
+
+* `ميزة` تعريفات sqlite مع رد النداء onDowngrade: يُستدعى عندما تكون version المطلوبة أقل من إصدار قاعدة البيانات الحالية (AutoJs6 6.8.0 أو أحدث); وبدونه لا يفعل خفض الإصدار شيئا ويحتفظ بالجداول والبيانات
+
 ### v4.82.0
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/23
 
 * `تحسين` تكمل تعريفات speech الخيار punctuation: تبقى علامات الترقيم الخاصة بالنموذج (SenseVoice), وتحصل نتائج النماذج المتدفقة على علامات الترقيم من نموذج ترقيم مثبت (⁨3-Macaw Speech⁩ 1.2.0 أو أحدث, الصينية والإنجليزية), ويزيل false كل علامات الترقيم
-
-### v4.81.0
-
-###### 2026/10/22
-
-* `ميزة` تعريفات settings.export و settings.categories: تصدير إعدادات AutoJs6 حسب الفئة إلى أرشيف إعدادات (دون بيانات الاعتماد) وسرد الفئات مع عدد عناصرها, مع الأنواع Settings.CategoryId و Settings.ExportResult و Settings.Category
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

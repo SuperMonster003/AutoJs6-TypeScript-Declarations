@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.83.0
+
+###### 2026/10/24
+
+* `Fonctionnalité` Déclarations de sqlite avec le rappel onDowngrade: appelé lorsque la version demandée est inférieure à celle de la base de données existante (AutoJs6 6.8.0 ou ultérieur); sans lui, la rétrogradation ne fait rien et conserve les tables et les données
+
 # v4.82.0
 
 ###### 2026/10/23

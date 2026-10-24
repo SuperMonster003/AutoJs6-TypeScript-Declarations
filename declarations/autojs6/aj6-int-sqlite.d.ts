@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Oct 15, 2026
+// Last modified: Oct 24, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -37,6 +37,7 @@ declare namespace Internal {
         onCreate?(database: WrappedDatabase): void;
         onOpen?(database: WrappedDatabase): void;
         onUpgrade?(database: WrappedDatabase, oldVersion: number, newVersion: number): void;
+        onDowngrade?(database: WrappedDatabase, oldVersion: number, newVersion: number): void;
     }
 
     interface WrappedDatabase extends Omit<org.autojs.autojs.core.database.Database, 'attachedDbs' | 'query' | 'rawQuery'> {

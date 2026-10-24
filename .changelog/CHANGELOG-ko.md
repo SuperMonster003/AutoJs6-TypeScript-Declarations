@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.83.0
+
+###### 2026/10/24
+
+* `기능` sqlite 선언에 onDowngrade 콜백 추가: 요청한 version 이 기존 데이터베이스 버전보다 낮을 때 호출 (AutoJs6 6.8.0 이상); 구현하지 않으면 다운그레이드는 아무 작업도 하지 않고 테이블과 데이터를 유지
+
 # v4.82.0
 
 ###### 2026/10/23

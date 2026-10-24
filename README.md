@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.83.0
+
+###### 2026/10/24
+
+* `新增` sqlite 声明补全 onDowngrade 回调: 打开数据库时请求的 version 低于现有版本时调用 (AutoJs6 6.8.0 起), 未实现时降级不执行任何操作, 保留表与数据
+
 ### v4.82.0
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/23
 
 * `优化` speech 声明补全 punctuation 选项: 模型自带标点 (SenseVoice) 时保留, 流式模型的结果由已安装的标点模型补上标点 (3-Macaw Speech 1.2.0 起, 中文与英文), false 去掉所有标点
-
-### v4.81.0
-
-###### 2026/10/22
-
-* `新增` settings.export 与 settings.categories 声明: 将 AutoJs6 设置按分类导出为设置归档 (不含凭据) 并列出分类与条目数, 含 Settings.CategoryId, Settings.ExportResult 与 Settings.Category 类型
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.83.0
+
+###### 2026/10/24
+
+* `機能` sqlite の宣言に onDowngrade コールバックを追加: 要求した version が既存データベースのバージョンより低いときに呼ばれる (AutoJs6 6.8.0 以降); 未実装の場合, ダウングレードは何もせず, テーブルとデータを保持
+
 ### v4.82.0
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/23
 
 * `改善` speech の宣言で punctuation オプションを補足: モデル自身の句読点 (SenseVoice) は残し, ストリーミングモデルの結果にはインストール済みの句読点モデルで句読点を付け (3-Macaw Speech 1.2.0 以降, 中国語と英語), false ですべての句読点を除去
-
-### v4.81.0
-
-###### 2026/10/22
-
-* `機能` settings.export と settings.categories の宣言: AutoJs6 の設定をカテゴリ別に設定アーカイブへエクスポートし (認証情報を除く), カテゴリと項目数を一覧表示; Settings.CategoryId, Settings.ExportResult, Settings.Category 型を追加
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

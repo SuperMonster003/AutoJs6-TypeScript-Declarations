@@ -178,6 +178,12 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.83.0
+
+###### 2026/10/24
+
+* `Función` Declaraciones de sqlite con la devolución de llamada onDowngrade: se llama cuando la version solicitada es inferior a la de la base de datos existente (AutoJs6 6.8.0 o posterior); sin ella, la degradación no hace nada y conserva las tablas y los datos
+
 ### v4.82.0
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/23
 
 * `Mejora` las declaraciones de speech completan la opción punctuation: se conserva la puntuación propia del modelo (SenseVoice), los resultados de los modelos en streaming reciben puntuación de un modelo de puntuación instalado (3-Macaw Speech 1.2.0 o posterior, chino e inglés) y false elimina toda la puntuación
-
-### v4.81.0
-
-###### 2026/10/22
-
-* `Función` Declaraciones de settings.export y settings.categories: exportar la configuración de AutoJs6 por categorías a un archivo de configuración (sin credenciales) y listar las categorías con su número de entradas, con los tipos Settings.CategoryId, Settings.ExportResult y Settings.Category
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

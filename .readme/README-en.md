@@ -178,6 +178,12 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.83.0
+
+###### 2026/10/24
+
+* `Feature` sqlite declarations add the onDowngrade callback: called when the requested version is lower than the version of the existing database (AutoJs6 6.8.0 or later); without it, the downgrade does nothing and keeps the tables and data
+
 ### v4.82.0
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/23
 
 * `Improvement` speech declarations complete the punctuation option: the model's own punctuation (SenseVoice) is kept, results of streaming models get punctuation from an installed punctuation model (3-Macaw Speech 1.2.0 or later, Chinese and English), and false removes all punctuation
-
-### v4.81.0
-
-###### 2026/10/22
-
-* `Feature` settings.export and settings.categories declarations: export AutoJs6 settings by category to a settings archive (without credentials) and list the categories with their entry counts, with the Settings.CategoryId, Settings.ExportResult and Settings.Category types
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

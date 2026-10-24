@@ -3485,6 +3485,7 @@ declare namespace org {
 						public isWriteAheadLoggingEnabled(): boolean;
 						public needUpgrade(newVersion: number): boolean;
 						public onCreate(db: __javaRoots.androidRoot.database.sqlite.SQLiteDatabase): void;
+						public onDowngrade(db: __javaRoots.androidRoot.database.sqlite.SQLiteDatabase, oldVersion: number, newVersion: number): void;
 						public onOpen(db: __javaRoots.androidRoot.database.sqlite.SQLiteDatabase): void;
 						public onUpgrade(db: __javaRoots.androidRoot.database.sqlite.SQLiteDatabase, oldVersion: number, newVersion: number): void;
 						public query(table: string, columns: string[], selection: string, selectionArgs: string[], groupBy: string, having: string, orderBy: string): any;
@@ -3523,6 +3524,7 @@ declare namespace org {
 						export interface DatabaseCallback {
 							onCorruption(param0: __javaRoots.androidRoot.database.sqlite.SQLiteDatabase): void;
 							onCreate(param0: __javaRoots.orgRoot.autojs.autojs.core.database.Database): void;
+							onDowngrade(param0: __javaRoots.orgRoot.autojs.autojs.core.database.Database, param1: number, param2: number): void;
 							onOpen(param0: __javaRoots.orgRoot.autojs.autojs.core.database.Database): void;
 							onUpgrade(param0: __javaRoots.orgRoot.autojs.autojs.core.database.Database, param1: number, param2: number): void;
 						}
@@ -5626,6 +5628,7 @@ declare namespace org {
 						public addListener(listener: __javaRoots.orgRoot.autojs.autojs.core.inputevent.InputEventObserver.InputEventListener): void;
 						public ensureObservedAsync(): void;
 						public static getGlobal(context: __javaRoots.androidRoot.content.Context): __javaRoots.orgRoot.autojs.autojs.core.inputevent.InputEventObserver;
+						public hasListeners(): boolean;
 						public observe(): void;
 						public onInputEvent(eventStr: string): void;
 						public recycle(): void;
@@ -5764,6 +5767,7 @@ declare namespace org {
 						public getMainLooper(): __javaRoots.androidRoot.os.Looper;
 						public getScriptRuntime(): __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime;
 						public getServantLooper(): __javaRoots.androidRoot.os.Looper;
+						public newSettlementLatch(): __javaRoots.orgRoot.autojs.autojs.core.looper.SettlementLatch;
 						public notifyThreadExit(thread: __javaRoots.orgRoot.autojs.autojs.core.looper.TimerThread): void;
 						public prepare(): void;
 						public recycle(): void;
@@ -5868,11 +5872,39 @@ declare namespace org {
 		export namespace autojs {
 			export namespace core {
 				export namespace looper {
+					export class SettlementLatch {
+						public constructor(queue: __javaRoots.orgRoot.autojs.autojs.core.looper.SettlementLatch.CallbackQueue, mayBlock: boolean);
+						public await(): any;
+						public settle(value: any): void;
+					}
+					export namespace SettlementLatch {
+						export class CallbackQueue {
+							public constructor(implementation: CallbackQueue);
+							public constructor();
+						}
+						export interface CallbackQueue {
+							beginWait(): void;
+							endWait(): void;
+							millisUntilNextCallback(): number;
+							takeDueCallback(): __javaRoots.javaRoot.lang.Runnable;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+declare namespace org {
+	export namespace autojs {
+		export namespace autojs {
+			export namespace core {
+				export namespace looper {
 					export class Timer {
 						public static readonly EMPTY_RUNNABLE: __javaRoots.javaRoot.lang.Runnable;
 						public readonly onPendingCallbacksChanged$app: __javaRoots.kotlinRoot.jvm.functions.Function0<__javaRoots.kotlinRoot.Unit>;
 						public constructor(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, maxCallbackMillisForAllThread: __javaRoots.orgRoot.autojs.autojs.concurrent.VolatileBox<__javaRoots.javaRoot.lang.Long>, timerId: number);
 						public constructor(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, maxCallbackMillisForAllThread: __javaRoots.orgRoot.autojs.autojs.concurrent.VolatileBox<__javaRoots.javaRoot.lang.Long>, looper: __javaRoots.androidRoot.os.Looper, timerId: number);
+						public callbackQueueForCurrentThread$app(): __javaRoots.orgRoot.autojs.autojs.core.looper.SettlementLatch.CallbackQueue;
 						public clearImmediate(n: number): boolean;
 						public clearInterval(n: number): boolean;
 						public clearTimeout(n: number): boolean;
@@ -6272,67 +6304,9 @@ declare namespace org {
 				export namespace pref {
 					export class Pref {
 						public static readonly INSTANCE: __javaRoots.orgRoot.autojs.autojs.core.pref.Pref;
-						/** @deprecated */
-						public readonly gestureObservingEnabled: boolean;
-						/** @deprecated */
-						public readonly stableModeEnabled: boolean;
-						/** @deprecated */
-						public static readonly autoCheckForUpdatesEnabled: boolean;
-						/** @deprecated */
-						public static readonly codeHighlightThresholdChars: number;
-						/** @deprecated */
-						public static readonly currentTheme: string;
-						/** @deprecated */
-						public static readonly explorerPlaybackHistoryEnabled: boolean;
-						/** @deprecated */
-						public static readonly extendingJsBuildInObjectsEnabled: boolean;
-						/** @deprecated */
-						public static readonly fileExtensionsHidden: boolean;
-						/** @deprecated */
-						public static readonly fileExtensionsShownForAll: boolean;
-						/** @deprecated */
-						public static readonly fileExtensionsShownForAllButExecutable: boolean;
-						/** @deprecated */
-						public static readonly guardModeEnabled: boolean;
-						/** @deprecated */
-						public static readonly hiddenFilesShown: boolean;
-						/** @deprecated */
-						public static readonly keyKeepScreenOnWhenInForeground: string;
 						public static readonly keyStorePath: string;
-						/** @deprecated */
-						public static readonly largeFileModeThresholdBytes: number;
-						/** @deprecated */
-						public static readonly lastNoNewerUpdatesTimestamp: number;
-						/** @deprecated */
-						public static readonly lastUpdatesAutoCheckedTimestamp: number;
 						public static readonly lastUpdatesCheckedTimeString: string;
-						/** @deprecated */
-						public static readonly lastUpdatesPostponedTimestamp: number;
-						/** @deprecated */
-						public static readonly newScriptModuleLayerEnabled: boolean;
-						/** @deprecated */
-						public static readonly quickRestartEnabled: boolean;
-						/** @deprecated */
-						public static readonly recordToastEnabled: boolean;
-						/** @deprecated */
-						public static readonly rootMode: __javaRoots.orgRoot.autojs.autojs.util.RootUtils.RootMode;
-						/** @deprecated */
-						public static readonly scheduledRestartPreferredWorkManager: boolean;
-						/** @deprecated */
-						public static readonly screenCaptureRequestDelay: number;
 						public static readonly scriptDirPath: string;
-						/** @deprecated */
-						public static readonly scriptModuleDebugPrintDisabledModules: __javaRoots.javaRoot.util.Set<string>;
-						/** @deprecated */
-						public static readonly scriptModuleDebugPrintEnabled: boolean;
-						/** @deprecated */
-						public static readonly serverAddress: string;
-						/** @deprecated */
-						public static readonly useVolumeControlRecordEnabled: boolean;
-						/** @deprecated */
-						public static readonly useVolumeControlRunningEnabled: boolean;
-						/** @deprecated */
-						public static clearUpdatesCheckedStates(): void;
 						public static containsKey(keyRes: number): boolean;
 						public static containsKey(key: string): boolean;
 						public static containsKey(...keyResList: number[]): boolean;
@@ -6340,82 +6314,22 @@ declare namespace org {
 						public static getBoolean(keyRes: number, defValue: number): boolean;
 						public static getBoolean(keyRes: number, defValue: boolean): boolean;
 						public static getBoolean(key: string, defValue: boolean): boolean;
-						/** @deprecated */
-						public static getCodeHighlightThresholdChars(): number;
-						/** @deprecated */
-						public static getCurrentTheme(): string;
-						/** @deprecated */
-						public static getEditorTextSize(defValue: number): number;
 						public static getFloat(key: string, defValue: number): number;
 						public static getInt(keyRes: number, defValue: number): number;
 						public static getInt(key: string, defValue: number): number;
-						/** @deprecated */
-						public static getKeyKeepScreenOnWhenInForeground(): string;
 						public static getKeyStorePath(): string;
-						/** @deprecated */
-						public static getLargeFileModeThresholdBytes(): number;
-						/** @deprecated */
-						public static getLastNoNewerUpdatesTimestamp(): number;
-						/** @deprecated */
-						public static getLastUpdatesAutoCheckedTimestamp(): number;
 						public static getLastUpdatesCheckedTimeString(): string;
-						/** @deprecated */
-						public static getLastUpdatesPostponedTimestamp(): number;
 						public static getLinkedHashSet(keyRes: number): __javaRoots.javaRoot.util.LinkedHashSet<string>;
 						public static getLinkedList(key: string): __javaRoots.javaRoot.util.LinkedList<string>;
 						public static getLong(keyRes: number, defValue: number): number;
 						public static getLong(key: string, defValue: number): number;
-						/** @deprecated */
-						public static getRootMode(): __javaRoots.orgRoot.autojs.autojs.util.RootUtils.RootMode;
-						/** @deprecated */
-						public static getScreenCaptureRequestDelay(): number;
 						public static getScriptDirPath(): string;
-						/** @deprecated */
-						public static getScriptModuleDebugPrintDisabledModules(): __javaRoots.javaRoot.util.Set<string>;
-						/** @deprecated */
-						public static getServerAddress(): string;
 						public static getString(keyRes: number, defKeyRes: number): string;
 						public static getString(keyRes: number, defValue: string): string;
 						public static getString(key: string, defValue: string): string;
 						public static getStringOrNull(keyRes: number): string;
 						public static getStringOrNull(key: string): string;
 						public static getStringSet(keyRes: number, defValues: __javaRoots.javaRoot.util.Set<string>): __javaRoots.javaRoot.util.Set<string>;
-						/** @deprecated */
-						public static isAutoCheckForUpdatesEnabled(): boolean;
-						/** @deprecated */
-						public static isCodeHighlightEnabledForLength(length: number): boolean;
-						/** @deprecated */
-						public static isExplorerPlaybackHistoryEnabled(): boolean;
-						/** @deprecated */
-						public static isExtendingJsBuildInObjectsEnabled(): boolean;
-						/** @deprecated */
-						public static isFileExtensionsHidden(): boolean;
-						/** @deprecated */
-						public static isFileExtensionsShownForAll(): boolean;
-						/** @deprecated */
-						public static isFileExtensionsShownForAllButExecutable(): boolean;
-						/** @deprecated */
-						public isGestureObservingEnabled(): boolean;
-						/** @deprecated */
-						public static isGuardModeEnabled(): boolean;
-						/** @deprecated */
-						public static isHiddenFilesShown(): boolean;
-						/** @deprecated */
-						public static isNewScriptModuleLayerEnabled(): boolean;
-						/** @deprecated */
-						public static isQuickRestartEnabled(): boolean;
-						/** @deprecated */
-						public static isRecordToastEnabled(): boolean;
-						/** @deprecated */
-						public static isScheduledRestartPreferredWorkManager(): boolean;
-						/** @deprecated */
-						public static isScriptModuleDebugPrintEnabled(): boolean;
-						/** @deprecated */
-						public isStableModeEnabled(): boolean;
-						/** @deprecated */
-						public static isUseVolumeControlRecordEnabled(): boolean;
-						/** @deprecated */
-						public static isUseVolumeControlRunningEnabled(): boolean;
 						public static putBoolean(keyRes: number, value: boolean): void;
 						public static putBoolean(key: string, value: boolean): void;
 						public static putBooleanSync(keyRes: number, value: boolean): void;
@@ -6433,40 +6347,8 @@ declare namespace org {
 						public static putString(key: string, value: string): void;
 						public static putStringSet(keyRes: number, values: __javaRoots.javaRoot.util.Set<string>): void;
 						public static putStringSync(key: string, value: string): void;
-						/** @deprecated */
-						public static refreshLastNoNewerUpdatesTimestamp(): void;
-						/** @deprecated */
-						public static refreshLastUpdatesAutoCheckedTimestamp(): void;
-						/** @deprecated */
-						public static refreshLastUpdatesCheckedTimestamp(): void;
-						/** @deprecated */
-						public static refreshLastUpdatesPostponedTimestamp(): void;
 						public static registerOnSharedPreferenceChangeListener(listener: __javaRoots.androidRoot.content.SharedPreferences.OnSharedPreferenceChangeListener): void;
 						public static remove(key: string): void;
-						/** @deprecated */
-						public static rootRecordGeneratesBinary(): boolean;
-						/** @deprecated */
-						public static setCodeHighlightThresholdChars(value: number): void;
-						/** @deprecated */
-						public static setCurrentTheme(theme: string): void;
-						/** @deprecated */
-						public static setEditorTextSize(value: number): void;
-						/** @deprecated */
-						public static setLargeFileModeThresholdBytes(value: number): void;
-						/** @deprecated */
-						public static setRootMode(mode: __javaRoots.orgRoot.autojs.autojs.util.RootUtils.RootMode): void;
-						/** @deprecated */
-						public static setScriptModuleDebugPrintDisabledModules(value: __javaRoots.javaRoot.util.Set<string>): void;
-						/** @deprecated */
-						public static setServerAddress(address: string): void;
-						/** @deprecated */
-						public static shouldEnableLargeFileModeForSize(size: number): boolean;
-						/** @deprecated */
-						public static shouldStartA11yServiceWithRoot(): boolean;
-						/** @deprecated */
-						public static shouldStartA11yServiceWithSecureSettings(): boolean;
-						/** @deprecated */
-						public static shouldStartA11yServiceWithShizuku(): boolean;
 						protected constructor();
 					}
 				}
@@ -6549,6 +6431,7 @@ declare namespace org {
 						public static readonly EDITOR_SMART_HINT: __javaRoots.orgRoot.autojs.autojs.core.pref.SettingCategory;
 						public static readonly EXPLORER: __javaRoots.orgRoot.autojs.autojs.core.pref.SettingCategory;
 						public static readonly EXTENSIBILITY: __javaRoots.orgRoot.autojs.autojs.core.pref.SettingCategory;
+						public static readonly FLOATING: __javaRoots.orgRoot.autojs.autojs.core.pref.SettingCategory;
 						public static readonly GENERAL: __javaRoots.orgRoot.autojs.autojs.core.pref.SettingCategory;
 						public static readonly HISTORY: __javaRoots.orgRoot.autojs.autojs.core.pref.SettingCategory;
 						public static readonly LAYOUT_INSPECTOR: __javaRoots.orgRoot.autojs.autojs.core.pref.SettingCategory;
@@ -6870,6 +6753,7 @@ declare namespace org {
 						public static readonly DESCRIPTOR: string;
 					}
 					export interface IUserService extends __javaRoots.androidRoot.os.IInterface {
+						attachHost(param0: __javaRoots.androidRoot.os.IBinder): void;
 						closeExplorerDirectory(param0: string): void;
 						currentActivity(): string;
 						currentComponent(): string;
@@ -6944,12 +6828,15 @@ declare namespace org {
 						public static of(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime): __javaRoots.orgRoot.autojs.autojs.core.ui.UiContentHost;
 					}
 					export interface UiContentHost {
+						readonly bindingScope: __javaRoots.orgRoot.mozilla.javascript.VarScope;
 						readonly contentParent: __javaRoots.androidRoot.view.ViewGroup;
 						readonly contentRoot: __javaRoots.androidRoot.view.ViewGroup;
 						readonly dialogContext: __javaRoots.androidRoot.content.Context;
 						readonly hostWindow: __javaRoots.androidRoot.view.Window;
 						readonly inflaterContext: __javaRoots.androidRoot.content.Context;
 						readonly lifecycleEmitter: __javaRoots.orgRoot.autojs.autojs.core.eventloop.EventEmitter;
+						checkBinding(attrName: string, expression: string): __javaRoots.javaRoot.lang.Throwable;
+						getBindingScope(): __javaRoots.orgRoot.mozilla.javascript.VarScope;
 						getContentParent(): __javaRoots.androidRoot.view.ViewGroup;
 						getContentRoot(): __javaRoots.androidRoot.view.ViewGroup;
 						getDialogContext(): __javaRoots.androidRoot.content.Context;
@@ -9165,6 +9052,7 @@ declare namespace org {
 					public readonly scriptable: __javaRoots.orgRoot.autojs.autojs.rhino.TopLevelScope;
 					public readonly thread: __javaRoots.javaRoot.lang.Thread;
 					public constructor(androidContext: __javaRoots.androidRoot.content.Context);
+					public canRequireNamedModule$app(cx: __javaRoots.orgRoot.mozilla.javascript.Context, id: string): boolean;
 					public destroy(): void;
 					public doExecution(source: __javaRoots.orgRoot.autojs.autojs.script.JavaScriptSource): any;
 					public enterContext(): __javaRoots.orgRoot.mozilla.javascript.Context;
@@ -9521,6 +9409,7 @@ declare namespace org {
 		export namespace autojs {
 			export namespace execution {
 				export class ScriptExecuteActivity extends __javaRoots.androidxRoot.appcompat.app.AppCompatActivity {
+					public readonly bindingScope: __javaRoots.orgRoot.mozilla.javascript.VarScope;
 					public readonly contentParent: __javaRoots.androidRoot.view.ViewGroup;
 					public readonly contentRoot: __javaRoots.androidRoot.view.ViewGroup;
 					public readonly dialogContext: __javaRoots.androidRoot.content.Context;
@@ -9532,8 +9421,10 @@ declare namespace org {
 					public readonly onActivityResultDelegateMediator: __javaRoots.orgRoot.autojs.autojs.app.OnActivityResultDelegate.Mediator;
 					public constructor();
 					public acquireComposeInsets(): __javaRoots.javaRoot.io.Closeable;
+					public checkBinding(attrName: string, expression: string): __javaRoots.javaRoot.lang.Throwable;
 					public emit(event: string, ...args: any[]): void;
 					public finish(): void;
+					public getBindingScope(): __javaRoots.orgRoot.mozilla.javascript.VarScope;
 					public getContentParent(): __javaRoots.androidRoot.view.ViewGroup;
 					public getContentRoot(): __javaRoots.androidRoot.view.ViewGroup;
 					public getDialogContext(): __javaRoots.androidRoot.content.Context;
@@ -10303,10 +10194,12 @@ declare namespace org {
 					public readonly continuations: __javaRoots.javaRoot.util.HashSet<any>;
 					public readonly rhinoJavaScriptEngine: __javaRoots.orgRoot.autojs.autojs.engine.RhinoJavaScriptEngine;
 					public constructor(factory: __javaRoots.orgRoot.mozilla.javascript.ContextFactory);
+					public bind(engine: __javaRoots.orgRoot.autojs.autojs.engine.RhinoJavaScriptEngine, apply: __javaRoots.kotlinRoot.jvm.functions.Function1<any, __javaRoots.kotlinRoot.Unit>): void;
 					public captureContinuation(): __javaRoots.orgRoot.mozilla.javascript.ContinuationPending;
 					public getContinuations(): __javaRoots.javaRoot.util.HashSet<any>;
 					public getRhinoJavaScriptEngine(): __javaRoots.orgRoot.autojs.autojs.engine.RhinoJavaScriptEngine;
 					public hasPendingContinuation(): boolean;
+					public release(engine: __javaRoots.orgRoot.autojs.autojs.engine.RhinoJavaScriptEngine): void;
 					public resumeContinuation(continuation: any, scope: __javaRoots.orgRoot.mozilla.javascript.VarScope, functionResult: any): any;
 					public setRhinoJavaScriptEngine(_set___: __javaRoots.orgRoot.autojs.autojs.engine.RhinoJavaScriptEngine): void;
 					public resumeContinuation(...args: any[]): any;
@@ -10514,17 +10407,12 @@ declare namespace org {
 					public readonly accessibilityBridge: __javaRoots.orgRoot.autojs.autojs.core.accessibility.AccessibilityBridge;
 					public readonly app: __javaRoots.orgRoot.autojs.autojs.runtime.api.AppUtils;
 					public augmentedApp: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject;
-					public augmentedAutojs: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject;
-					public augmentedOcrMLKit: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject;
-					public augmentedOcrPaddle: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject;
-					public augmentedOcrRapid: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject;
 					public readonly automator: __javaRoots.orgRoot.autojs.autojs.core.accessibility.SimpleActionAutomator;
 					public readonly barcode: __javaRoots.orgRoot.autojs.autojs.runtime.api.Barcode;
 					public readonly bridges: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptBridges;
 					public readonly closeableManager: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope;
 					public readonly colors: __javaRoots.orgRoot.autojs.autojs.core.image.Colors;
 					public readonly console: __javaRoots.orgRoot.autojs.autojs.core.console.ConsoleImpl;
-					public consoleProxyObject: __javaRoots.orgRoot.autojs.autojs.rhino.ProxyObject;
 					public readonly device: __javaRoots.orgRoot.autojs.autojs.runtime.api.Device;
 					public readonly dialogs: __javaRoots.orgRoot.autojs.autojs.runtime.api.Dialogs;
 					public readonly engines: __javaRoots.orgRoot.autojs.autojs.runtime.api.Engines;
@@ -10628,6 +10516,7 @@ declare namespace org {
 					public initPrologue(): void;
 					public isExiting(): boolean;
 					public isJavaPrimitiveWrap(): boolean;
+					public isScriptModulePending(name: string): boolean;
 					public isStopped(): boolean;
 					public load(dir: string, isRecursive: boolean): void;
 					public load(...path: string[]): void;
@@ -10654,12 +10543,7 @@ declare namespace org {
 					public selector(): __javaRoots.orgRoot.autojs.autojs.core.accessibility.UiSelector;
 					public static setApplicationContext(context: __javaRoots.androidRoot.content.Context): void;
 					public setAugmentedApp$app(_set___: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject): void;
-					public setAugmentedAutojs$app(_set___: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject): void;
-					public setAugmentedOcrMLKit$app(_set___: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject): void;
-					public setAugmentedOcrPaddle$app(_set___: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject): void;
-					public setAugmentedOcrRapid$app(_set___: __javaRoots.orgRoot.mozilla.javascript.ScriptableObject): void;
 					public setClip(text: string): void;
-					public setConsoleProxyObject$app(_set___: __javaRoots.orgRoot.autojs.autojs.rhino.ProxyObject): void;
 					public setEvents(_set___: __javaRoots.orgRoot.autojs.autojs.runtime.api.Events): void;
 					public setExiting(_set___: boolean): void;
 					public setJavaPrimitiveWrap(b: boolean): void;
@@ -16218,6 +16102,7 @@ declare namespace org {
 							public getStage(): __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
 							public isDone(): boolean;
 							public release$app(failures: __javaRoots.javaRoot.util.List<__javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Failure>): void;
+							public releaseNow(): boolean;
 						}
 						export class Stage extends __javaRoots.javaRoot.lang.Enum<__javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage> {
 							public static readonly ACCESSIBILITY_EVENTS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
@@ -16226,6 +16111,7 @@ declare namespace org {
 							public static readonly ACCESSIBILITY_PULSE: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
 							public static readonly ACCESSIBILITY_TAP: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
 							public static readonly AI: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly CLASS_LOADERS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
 							public static readonly CLOSEABLES: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
 							public static readonly COMPOSE: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
 							public static readonly CONSOLE: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
@@ -16254,6 +16140,7 @@ declare namespace org {
 							public static readonly TTS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
 							public static readonly UI: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
 							public static readonly WEBSOCKETS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
+							public static readonly WEB_VIEWS: __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
 							public static readonly entries: __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage>;
 							public static getEntries(): __javaRoots.kotlinRoot.enums.EnumEntries<__javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage>;
 							public static valueOf(value: string): __javaRoots.orgRoot.autojs.autojs.runtime.resource.RuntimeResourceScope.Stage;
@@ -19069,6 +18956,7 @@ declare namespace org {
 					public static toFunctionName(cls: __javaRoots.kotlinRoot.reflect.KClass<any>, func: __javaRoots.kotlinRoot.reflect.KFunction<any>, paramName: string): string;
 					public static toJsValue(scope: __javaRoots.orgRoot.mozilla.javascript.VarScope, value: any): any;
 					public undefined(_function_: __javaRoots.kotlinRoot.jvm.functions.Function0<any>): __javaRoots.orgRoot.mozilla.javascript.Undefined;
+					public static unregisterStandardObjects($this$unregisterStandardObjects: __javaRoots.orgRoot.mozilla.javascript.Context): void;
 					public static unwrap(o: any): any;
 					public static withRhinoContext<R>(_function_: __javaRoots.kotlinRoot.jvm.functions.Function1<any, R>): R;
 					public static withRhinoContext<R>(scriptRuntime: __javaRoots.orgRoot.autojs.autojs.runtime.ScriptRuntime, _function_: __javaRoots.kotlinRoot.jvm.functions.Function1<any, R>): R;
@@ -19306,10 +19194,10 @@ declare namespace org {
 //org.autojs.autojs.core.accessibility.codegen.store.DuplicateCheck.evaluate..inlined.thenByDescending.4:1
 //org.autojs.autojs.core.accessibility.codegen.store.ModelCatalogParser.translations..inlined.sortedBy.1:1
 //org.autojs.autojs.core.accessibility.codegen.store.ModelCatalogRepository.refresh.lambda.1..inlined.sortedBy.1:1
+//org.autojs.autojs.core.accessibility.codegen.store.ModelStore.Companion.encodeRegistry..inlined.sortedBy.1:1
 //org.autojs.autojs.core.accessibility.codegen.store.ModelStore.listInstalled.lambda.0..inlined.compareBy.1:1
 //org.autojs.autojs.core.accessibility.codegen.store.ModelStore.listInstalled.lambda.0..inlined.thenBy.1:1
 //org.autojs.autojs.core.accessibility.codegen.store.ModelStore.listInstalled.lambda.0..inlined.thenByDescending.1:1
-//org.autojs.autojs.core.accessibility.codegen.store.ModelStore.writeRegistryLocked.lambda.1.0..inlined.sortedBy.1:1
 //org.autojs.autojs.core.accessibility.codegen.store.VersionComparison.localizedName.name..inlined.sortedBy.1:1
 //org.autojs.autojs.core.accessibility.codegen.verify.PlanVerifier:1
 //org.autojs.autojs.core.accessibility.codegen.verify.PlanVerifier.MatchKey:1
@@ -19377,6 +19265,7 @@ declare namespace org {
 //org.autojs.autojs.core.looper.ServantLooperHolder:1
 //org.autojs.autojs.core.looper.WakeUpOnRemoveSet:1
 //org.autojs.autojs.core.plugin.AidlPluginHost:1
+//org.autojs.autojs.core.plugin.AidlPluginHost.Companion.abandoningLate.1:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.DedicatedBinding:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.LeasedCall:1
 //org.autojs.autojs.core.plugin.AidlPluginHost.retryAfterBinderFailure.1:1
@@ -19533,6 +19422,7 @@ declare namespace org {
 //org.autojs.autojs.core.plugin.speech.SpeechPluginHost.call.1:1
 //org.autojs.autojs.core.plugin.speech.SpeechPluginHost.lease.1:1
 //org.autojs.autojs.core.plugin.speech.SpeechProgressDeadline.await.1:1
+//org.autojs.autojs.core.plugin.speech.SpeechSessionOpening.open.1:1
 //org.autojs.autojs.core.plugin.tool.PluginToolRegistry.refresh.2.1.invokeSuspend..inlined.sortedBy.1:1
 //org.autojs.autojs.core.plugin.tool.PluginToolRegistry.refresh.2.1.invokeSuspend..inlined.sortedBy.2:1
 //org.autojs.autojs.core.plugin.typescript.TypeScriptApkBuildCompiler.createPlan..inlined.sortedBy.1:1
@@ -19700,7 +19590,9 @@ declare namespace org {
 //org.autojs.autojs.project.AgentScriptCatalog.listScripts.scan..inlined.thenBy.1:1
 //org.autojs.autojs.project.FuzzyDeserializer:1
 //org.autojs.autojs.rhino.AndroidClassLoader.jarToDexR8..inlined.sortedBy.1:1
+//org.autojs.autojs.rhino.AutoJsContext.Binding:1
 //org.autojs.autojs.rhino.ClassFileDexer.dexOutputs..inlined.sortedBy.1:1
+//org.autojs.autojs.rhino.OwnedDexLoaders:1
 //org.autojs.autojs.runtime.api.augment.installer.InstallerBlockingWait:1
 //org.autojs.autojs.runtime.api.augment.proxy.JavaProxyObject:1
 //org.autojs.autojs.runtime.api.augment.selector.SelectorMethodResolver.resolve..inlined.sortedBy.1:1
@@ -19723,6 +19615,7 @@ declare namespace org {
 //org.autojs.autojs.runtime.api.tts.TtsEngineDirectory.select..inlined.thenByDescending.1:1
 //org.autojs.autojs.runtime.api.tts.TtsOptionsParser.OptionalField:1
 //org.autojs.autojs.storage.database.Database:1
+//org.autojs.autojs.storage.database.DatabaseRecovery.prune..inlined.sortedByDescending.1:1
 //org.autojs.autojs.storage.database.ModelChange:1
 //org.autojs.autojs.storage.history.HistoryCleanup.cleanupEmergencyDraftsLocked..inlined.sortedBy.1:1
 //org.autojs.autojs.theme.ThemeColorApplyPolicy:1
@@ -19837,6 +19730,7 @@ declare namespace org {
 //org.autojs.autojs.ui.settings.codegen.CodeGenModelsViewModel.build..inlined.thenBy.2:1
 //org.autojs.autojs.ui.settings.codegen.CodeGenModelsViewModel.build..inlined.thenByDescending.1:1
 //org.autojs.autojs.ui.settings.codegen.CodeGenModelsViewModel.build.lambda.9..inlined.sortedByDescending.1:1
+//org.autojs.autojs.ui.settings.transfer.DeploymentProgressDialog.follow.2:1
 //org.autojs.autojs.ui.shortcut.ShortcutBackupFragment.onViewCreated.1.1.1:1
 //org.autojs.autojs.ui.storage.BaseSearchSortListActivity:2
 //org.autojs.autojs.ui.storage.BatchRenameHistoryActivity.sortItems..inlined.compareBy.1:1

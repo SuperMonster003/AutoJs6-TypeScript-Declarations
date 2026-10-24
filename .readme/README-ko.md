@@ -178,6 +178,12 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.83.0
+
+###### 2026/10/24
+
+* `기능` sqlite 선언에 onDowngrade 콜백 추가: 요청한 version 이 기존 데이터베이스 버전보다 낮을 때 호출 (AutoJs6 6.8.0 이상); 구현하지 않으면 다운그레이드는 아무 작업도 하지 않고 테이블과 데이터를 유지
+
 ### v4.82.0
 
 ###### 2026/10/23
@@ -189,12 +195,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/23
 
 * `개선` speech 선언에서 punctuation 옵션 보완: 모델 자체의 문장 부호 (SenseVoice)는 유지하고, 스트리밍 모델 결과에는 설치된 문장 부호 모델로 문장 부호를 붙이며 (3-Macaw Speech 1.2.0 이상, 중국어와 영어), false는 모든 문장 부호를 제거
-
-### v4.81.0
-
-###### 2026/10/22
-
-* `기능` settings.export 및 settings.categories 선언: AutoJs6 설정을 분류별로 설정 아카이브로 내보내고 (자격 증명 제외), 분류와 항목 수를 나열; Settings.CategoryId, Settings.ExportResult, Settings.Category 타입 추가
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

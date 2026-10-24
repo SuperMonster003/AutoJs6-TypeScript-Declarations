@@ -18,6 +18,15 @@
     "adjustment": "Ajustement"
   },
   "$data": {
+    "v4.83.0": {
+      "released_date": "2026/10/24",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "Déclarations de sqlite avec le rappel onDowngrade: appelé lorsque la version demandée est inférieure à celle de la base de données existante (AutoJs6 6.8.0 ou ultérieur); sans lui, la rétrogradation ne fait rien et conserve les tables et les données"
+        }
+      ]
+    },
     "v4.82.0": {
       "released_date": "2026/10/23",
       "entries": [

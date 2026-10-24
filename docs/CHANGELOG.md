@@ -13,6 +13,12 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.83.0
+
+###### 2026/10/24
+
+* `新增` sqlite 声明补全 onDowngrade 回调: 打开数据库时请求的 version 低于现有版本时调用 (AutoJs6 6.8.0 起), 未实现时降级不执行任何操作, 保留表与数据
+
 # v4.82.0
 
 ###### 2026/10/23
