@@ -5,13 +5,31 @@ import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// node tools/verify-runtime-declarations.mjs [<typescript.js>] [--ace <AutoJs6-Plugin-Ace-Editor>]
+// --ace also requires the Ace plugin's bundled copies to carry this manifest's digests.
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
-const ts = require(process.argv[2] ? resolve(process.argv[2]) : 'typescript');
-const manifest = JSON.parse(readFileSync(resolve(root, 'declarations/runtime-declarations.json'), 'utf8'));
-for (const [name, expected] of Object.entries(manifest.files)) {
-    const text = readFileSync(resolve(root, 'declarations', name), 'utf8').replace(/\r\n?/g, '\n');
-    assert.equal(createHash('sha256').update(text).digest('hex'), expected, `Stale runtime declaration: ${name}`);
+const args = process.argv.slice(2);
+const aceAt = args.indexOf('--ace');
+assert(aceAt < 0 || args[aceAt + 1], '--ace requires a directory');
+const ace = aceAt < 0 ? null : resolve(args[aceAt + 1]);
+const compiler = args.find((value, at) => !value.startsWith('--') && (aceAt < 0 || at !== aceAt + 1));
+const ts = require(compiler ? resolve(compiler) : 'typescript');
+const manifestText = readFileSync(resolve(root, 'declarations/runtime-declarations.json'), 'utf8').replace(/\r\n?/g, '\n');
+const manifest = JSON.parse(manifestText);
+const directories = [resolve(root, 'declarations')];
+if (ace) {
+    const lock = JSON.parse(readFileSync(resolve(ace, 'tools/ace-lsp/ace-builds-lock.json'), 'utf8'));
+    const bundled = resolve(ace, lock.assetRoot, 'autojs6/types');
+    assert.equal(readFileSync(resolve(bundled, 'runtime-declarations.json'), 'utf8').replace(/\r\n?/g, '\n'), manifestText,
+        'The Ace runtime-declarations.json differs; run node tools/sync-runtime-declarations.mjs --ace <Ace checkout>');
+    directories.push(bundled);
+}
+for (const directory of directories) {
+    for (const [name, expected] of Object.entries(manifest.files)) {
+        const text = readFileSync(resolve(directory, name), 'utf8').replace(/\r\n?/g, '\n');
+        assert.equal(createHash('sha256').update(text).digest('hex'), expected, `Stale runtime declaration: ${resolve(directory, name)}`);
+    }
 }
 const bunTypes = readFileSync(resolve(root, 'declarations/autojs6-bun/host-client.d.mts'), 'utf8');
 const declaredCapabilities = new Set([...bunTypes.match(/export type HostCapability = ([^;]+);/)[1].matchAll(/"([^"]+)"/g)].map(match => match[1]));
@@ -319,4 +337,4 @@ for (const runtime of ['node', 'bun']) {
     result.push({ runtime, diagnostics: diagnostics.length, ...verifyRuntimeTypes(program, runtime) });
 }
 assert.deepEqual(imageMembers.get('node'),imageMembers.get('bun'),'Node and Bun image declaration names differ');
-console.log(JSON.stringify({ typescript: ts.version, checkedAssets: Object.keys(manifest.files).length, results: result }, null, 2));
+console.log(JSON.stringify({ typescript: ts.version, checkedAssets: Object.keys(manifest.files).length, aceCopies: ace ? Object.keys(manifest.files).length : null, results: result }, null, 2));

@@ -80,6 +80,17 @@ if (ace) {
         changed++;
         if (!check) writeFileSync(file, text);
     }
+    // The AutoJs6 host's tools/ace-completion/import-autojs6-dts.mjs writes BUNDLED_DECLARATIONS.md.
+    // package.json is also copied here, so keep the version it records in step.
+    const notes = resolve(targets[1], 'autojs6/BUNDLED_DECLARATIONS.md');
+    assert(existsSync(notes), `${notes} is missing; run the AutoJs6 host's tools/ace-completion/import-autojs6-dts.mjs`);
+    const recorded = readFileSync(notes, 'utf8');
+    assert(/^- Version: .*$/m.test(recorded), `${notes} has no "- Version:" line`);
+    const versioned = recorded.replace(/^- Version: .*$/m, `- Version: ${JSON.parse(text).version}`);
+    if (versioned !== recorded) {
+        changed++;
+        if (!check) writeFileSync(notes, versioned);
+    }
 }
 assert(!check || changed === 0, `${changed} runtime declaration files are stale; run the sync command without --check`);
 console.log(JSON.stringify({ checked: check, targets: targets.length, declarations: sources.size - 1, changed }));

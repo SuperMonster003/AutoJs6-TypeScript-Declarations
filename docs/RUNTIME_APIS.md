@@ -95,12 +95,16 @@ Update the copies from sibling source checkouts and optionally synchronize Ace:
 ```shell
 node tools/sync-runtime-declarations.mjs --ace ../AutoJs6-Plugin-Ace-Editor
 node tools/sync-runtime-declarations.mjs --ace ../AutoJs6-Plugin-Ace-Editor --check
-node tools/verify-runtime-declarations.mjs
+node tools/verify-runtime-declarations.mjs [<typescript.js>] [--ace ../AutoJs6-Plugin-Ace-Editor]
 ```
 
 `--node` and `--bun` override source checkout locations. `--check` is read-only. Synchronization
 does not publish an npm package or install a plugin. The tests check both declaration bodies,
 public-index reachability, asynchronous types, isolation from Rhino globals and copied hashes.
+With `--ace`, synchronization also keeps the `- Version:` line of Ace's bundled
+`autojs6/BUNDLED_DECLARATIONS.md` equal to `package.json`, and the verifier requires Ace's copies
+to carry the digests of `declarations/runtime-declarations.json`. The AutoJs6 host's `Script API
+coverage` workflow runs both (`--check --ace` / `--ace`).
 
 Workers additionally expose pinyin/pinyin4j, console and screen_metrics with canonical
 autojs6: aliases. Pinyin constants and callable conversion results retain their types,
