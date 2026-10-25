@@ -43,9 +43,9 @@ Goals:
 
 Tasks:
 
-- [ ] Create or maintain a local API sync matrix for all `augment` registrations.
-- [ ] Mark modules as `current`, `partial`, `missing`, or `legacy/assets`.
-- [ ] Add representative TypeScript smoke files or a compile-only validation workflow.
+- [ ] Create or maintain a local API sync matrix for all `augment` registrations. Superseded: 由 AutoJs6 docs/api-coverage 接管 (api-coverage P0.2, 2026-10-25; matrix `tools/api-coverage/runtime_matrix.py`, `docs/api-coverage/MATRIX.md` in the AutoJs6 repository).
+- [ ] Mark modules as `current`, `partial`, `missing`, or `legacy/assets`. Superseded: 由 AutoJs6 docs/api-coverage 接管 (api-coverage P0.2, 2026-10-25; matrix `tools/api-coverage/runtime_matrix.py`, `docs/api-coverage/MATRIX.md` in the AutoJs6 repository).
+- [ ] Add representative TypeScript smoke files or a compile-only validation workflow. Superseded: 由 AutoJs6 docs/api-coverage 接管 (api-coverage P0.2, 2026-10-25; matrix `tools/api-coverage/runtime_matrix.py`, `docs/api-coverage/MATRIX.md` in the AutoJs6 repository).
 - [x] Check whether generated Java declarations such as `aj6-main-app.d.ts` need a full regeneration later.
 
 Acceptance:
