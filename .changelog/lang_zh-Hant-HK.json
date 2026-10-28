@@ -18,6 +18,23 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.84.0": {
+      "released_date": "2026/10/29",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "選擇器宣告補全 normalize 與 prefer: 全局函數, 鏈式方法與對象選擇器的鍵, 含 Selector.NormalizeOptions 與 Selector.PreferKey 類型 (AutoJs6 6.8.0 起)"
+        },
+        {
+          "category": "feature",
+          "text": "auto 宣告補全 clearFlags 方法, setFlags 的 ! 前綴與 noFastPath / noRefreshOnHit 標誌; explain 可傳入羅盤與結果類型, 結果含 target / trail / result 等字段; stats 補全 fastPath 與 queries.refinds (AutoJs6 6.8.0 起)"
+        },
+        {
+          "category": "improvement",
+          "text": "pickup / detect 的結果類型 Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams 改由 AutoJs6 的節點方法註冊表生成, 包含全部 206 個可調用的方法名及帶參數的重載, 並補全 ## / $$ / .. 與數組形式的結果類型"
+        }
+      ]
+    },
     "v4.83.0": {
       "released_date": "2026/10/24",
       "entries": [

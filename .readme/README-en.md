@@ -178,6 +178,14 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.84.0
+
+###### 2026/10/29
+
+* `Feature` Selector declarations for normalize and prefer: global functions, chained methods and object selector keys, with the Selector.NormalizeOptions and Selector.PreferKey types (AutoJs6 6.8.0 or later)
+* `Feature` auto declarations add the clearFlags method, the ! prefix of setFlags and the noFastPath / noRefreshOnHit flags; explain takes a compass and a result type, and its result declares target / trail / result and more; stats declares fastPath and queries.refinds (AutoJs6 6.8.0 or later)
+* `Improvement` The result types of pickup / detect (Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams) are generated from the node method registry of AutoJs6: all 206 callable method names and their overloads with parameters, plus the ## / $$ / .. result types and the array forms
+
 ### v4.83.0
 
 ###### 2026/10/24
@@ -189,12 +197,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/23
 
 * `Feature` memory declarations for bridge sessions: Snapshot.bridgeSessions gives the finished but unreclaimed bridge sessions of each plugin engine (Node.js, Bun, QuickJS, Lua and Python), and RetainedRuntime.engine tells rhino from node, with the Memory.BridgeSessions and Memory.RetainedEngine types
-
-### v4.81.1
-
-###### 2026/10/23
-
-* `Improvement` speech declarations complete the punctuation option: the model's own punctuation (SenseVoice) is kept, results of streaming models get punctuation from an installed punctuation model (3-Macaw Speech 1.2.0 or later, Chinese and English), and false removes all punctuation
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

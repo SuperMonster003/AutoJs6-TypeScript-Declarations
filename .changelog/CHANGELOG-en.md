@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.84.0
+
+###### 2026/10/29
+
+* `Feature` Selector declarations for normalize and prefer: global functions, chained methods and object selector keys, with the Selector.NormalizeOptions and Selector.PreferKey types (AutoJs6 6.8.0 or later)
+* `Feature` auto declarations add the clearFlags method, the ! prefix of setFlags and the noFastPath / noRefreshOnHit flags; explain takes a compass and a result type, and its result declares target / trail / result and more; stats declares fastPath and queries.refinds (AutoJs6 6.8.0 or later)
+* `Improvement` The result types of pickup / detect (Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams) are generated from the node method registry of AutoJs6: all 206 callable method names and their overloads with parameters, plus the ## / $$ / .. result types and the array forms
+
 # v4.83.0
 
 ###### 2026/10/24

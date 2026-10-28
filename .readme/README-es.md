@@ -178,6 +178,14 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.84.0
+
+###### 2026/10/29
+
+* `Función` Declaraciones de los selectores normalize y prefer: funciones globales, métodos encadenados y claves del selector de objeto, con los tipos Selector.NormalizeOptions y Selector.PreferKey (AutoJs6 6.8.0 o posterior)
+* `Función` Declaraciones de auto: el método clearFlags, el prefijo ! de setFlags y los indicadores noFastPath / noRefreshOnHit; explain acepta una brújula y un tipo de resultado, y su resultado declara target / trail / result y otros campos; stats declara fastPath y queries.refinds (AutoJs6 6.8.0 o posterior)
+* `Mejora` Los tipos de resultado de pickup / detect (Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams) se generan a partir del registro de métodos de nodo de AutoJs6: los 206 nombres de métodos invocables y sus sobrecargas con parámetros, además de los tipos de resultado ## / $$ / .. y las formas de array
+
 ### v4.83.0
 
 ###### 2026/10/24
@@ -189,12 +197,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 ###### 2026/10/23
 
 * `Función` Declaraciones de memory para las sesiones de puente: Snapshot.bridgeSessions da las sesiones de puente terminadas pero aún no recuperadas de cada motor de plugins (Node.js, Bun, QuickJS, Lua y Python), y RetainedRuntime.engine distingue rhino de node, con los tipos Memory.BridgeSessions y Memory.RetainedEngine
-
-### v4.81.1
-
-###### 2026/10/23
-
-* `Mejora` las declaraciones de speech completan la opción punctuation: se conserva la puntuación propia del modelo (SenseVoice), los resultados de los modelos en streaming reciben puntuación de un modelo de puntuación instalado (3-Macaw Speech 1.2.0 o posterior, chino e inglés) y false elimina toda la puntuación
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

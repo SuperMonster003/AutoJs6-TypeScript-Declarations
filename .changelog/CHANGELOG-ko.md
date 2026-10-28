@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.84.0
+
+###### 2026/10/29
+
+* `기능` 선택자 선언에 normalize 와 prefer 추가: 전역 함수, 체인 메서드, 객체 선택자 키; Selector.NormalizeOptions, Selector.PreferKey 타입 추가 (AutoJs6 6.8.0 이상)
+* `기능` auto 선언에 clearFlags 메서드, setFlags 의 ! 접두사, noFastPath / noRefreshOnHit 플래그 추가; explain 은 나침반과 결과 타입을 받고, 결과에 target / trail / result 등의 필드 추가; stats 에 fastPath 와 queries.refinds 추가 (AutoJs6 6.8.0 이상)
+* `개선` pickup / detect 의 결과 타입 Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams 를 AutoJs6 의 노드 메서드 레지스트리에서 생성하여 호출 가능한 206 개 메서드 이름과 매개변수가 있는 오버로드를 모두 수록; ## / $$ / .. 와 배열 형식의 결과 타입도 추가
+
 # v4.83.0
 
 ###### 2026/10/24

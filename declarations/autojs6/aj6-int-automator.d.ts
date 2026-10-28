@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Sep 7, 2026
+// Last modified: Oct 29, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -626,20 +626,34 @@ declare namespace Internal {
         setMode(modeStr: Automator.Mode): void;
 
         /**
-         * Sets the accessibility bridge flags; the given set replaces the previous one.
+         * Sets the accessibility bridge flags: the default flags (`eventAssistedPolling` since 6.8.0) plus the names given,
+         * minus the names prefixed with `!` (6.8.0), replace the previous ones; a name both set and cleared throws.
          * `appWindowsFallback` (6.8.0): look for a root in the other application windows when the active one has none;
-         * `eventAssistedPolling` (6.8.0): wake blocking waits (`findOne(timeout)`, `waitUntilGone`, `waitForStable`) by accessibility events between attempts.
-         * zh-CN: 设置无障碍桥接标志; 本次给出的集合替换之前的.
-         * `appWindowsFallback` (6.8.0): 活动窗口没有根节点时到其他应用窗口中寻找; `eventAssistedPolling` (6.8.0): 阻塞等待两次尝试之间由无障碍事件唤醒.
+         * `eventAssistedPolling` (6.8.0, on by default): repeated queries and waits sleep until an accessibility event, at least 50 ms
+         * after the attempt before and at most 200 ms on a quiet screen, instead of a fixed 50 ms interval;
+         * `noFastPath` (6.8.0): polled queries with an exact id condition walk the tree on every attempt instead of asking the
+         * framework for the id first; `noRefreshOnHit` (6.8.0): single results are returned as found, not refreshed.
+         * zh-CN: 设置无障碍桥接标志: 以默认标志 (6.8.0 起为 `eventAssistedPolling`) 加上给出的名字, 再去掉带 `!` 前缀的名字 (6.8.0), 替换之前的标志; 同一名字既设置又清除时抛出异常.
+         * `appWindowsFallback` (6.8.0): 活动窗口没有根节点时到其他应用窗口中寻找; `eventAssistedPolling` (6.8.0, 默认开启): 重复查询与等待休眠到无障碍事件到达,
+         * 距上一次尝试至少 50 ms, 界面静止时至多 200 ms, 而非固定 50 ms 间隔; `noFastPath` (6.8.0): 含精确 id 条件的轮询查询每次尝试都遍历控件树, 不先经系统按 id 查找;
+         * `noRefreshOnHit` (6.8.0): 单个结果不刷新即返回.
          * @example
          * auto.setFlags("useUsageStats");
          * @example
          * auto.setFlags(["useShell", "useUsageStats", "findOnUiThread"]);
          * @example
-         * auto.setFlags(["appWindowsFallback", "eventAssistedPolling"]);
+         * auto.setFlags(["!eventAssistedPolling", "noRefreshOnHit"]);
          * @see org.autojs.autojs.core.accessibility.AccessibilityBridge.setFlags
          */
-        setFlags(flags: Automator.Flags | Automator.Flags[]): void;
+        setFlags(flags: Automator.FlagSetting | Automator.FlagSetting[]): void;
+
+        /**
+         * Clears the flags named (6.8.0); the others stay as they are.
+         * zh-CN: 清除给出名字的标志 (6.8.0); 其余标志保持不变.
+         * @example
+         * auto.clearFlags("eventAssistedPolling");
+         */
+        clearFlags(flags: Automator.Flags | Automator.Flags[]): void;
 
         /**
          * Sets the filter deciding which windows `auto.root` / `auto.windowRoots` and the selectors search: a function over
@@ -667,12 +681,19 @@ declare namespace Internal {
         findWindowRoots(filter?: Automator.WindowFilterLike | null): UiObject[];
 
         /**
-         * Explains why a selector matches or fails: per-filter and cumulative counts, the failing step, near misses and a text report.
-         * zh-CN: 解释选择器为何匹配或失败: 逐过滤器与累计计数, 失败步骤, 差一点的节点与文本报告.
+         * Explains why a selector matches or fails: per-filter and cumulative counts, the failing step, near misses and a text report;
+         * then (6.8.0) what a single result goes through: the node taken (under `prefer`), the node each step of the compass reaches,
+         * what the result type resolves to (nothing is called), and whether the fast path, the refresh on hit and `normalize` apply.
+         * The arguments after the selector read as in `pickup`; a wrong compass or result type is reported, not thrown.
+         * zh-CN: 解释选择器为何匹配或失败: 逐过滤器与累计计数, 失败步骤, 差一点的节点与文本报告; 以及 (6.8.0) 单个结果经历的过程: 取哪个控件 (`prefer` 下),
+         * 罗盘每一步到达的控件, 结果类型解析为什么 (不调用), 快路径, 命中刷新与 `normalize` 是否生效. 选择器之后的参数按 `pickup` 的方式区分; 错误的罗盘或结果类型写进报告而不抛出.
          * @example
          * console.log(auto.explain(text('Login').clickable()).text);
+         * @example
+         * console.log(auto.explain(text('Login'), 'p2c0', ['setText', 'hi']).trail);
          */
-        explain(selector: Automator.Target, root?: UiObject | null): Automator.ExplainResult;
+        explain(selector: Automator.Target, root?: UiObject | null, compass?: Detect.Compass | null, resultType?: Pickup.ResultType): Automator.ExplainResult;
+        explain(selector: Automator.Target, compassOrResultType: Detect.Compass | Pickup.ResultType, resultType?: Pickup.ResultType): Automator.ExplainResult;
 
         /**
          * Dumps the node tree as text (default), JSON or uiautomator-style XML.
@@ -700,7 +721,9 @@ declare namespace Internal {
 }
 
 declare namespace Automator {
-    type Flags = 'findOnUiThread' | 'useUsageStats' | 'useShell' | 'appWindowsFallback' | 'eventAssistedPolling';
+    type Flags = 'findOnUiThread' | 'useUsageStats' | 'useShell' | 'appWindowsFallback' | 'eventAssistedPolling' | 'noFastPath' | 'noRefreshOnHit';
+    /** A flag of `auto.setFlags`, prefixed with `!` to clear it (6.8.0). zh-CN: `auto.setFlags` 的标志, 带 `!` 前缀表示清除 (6.8.0). */
+    type FlagSetting = Flags | `!${Flags}`;
     type Mode = 'normal' | 'fast';
     type AccessibilityEvent = org.autojs.autojs.core.automator.AccessibilityEventWrapper;
     type AccessibilityEventListener = org.autojs.autojs.core.accessibility.SimpleActionAutomator.Companion.AccessibilityEventCallback | ((event: AccessibilityEvent) => void) | {
@@ -1018,9 +1041,50 @@ declare namespace Automator {
         matches: UiObject[];
         /** Nodes that failed only the failing filter. zh-CN: 只差失败的那个过滤器的节点. */
         nearMisses: UiObject[];
+        /** The node a single result takes, or `null` (6.8.0). zh-CN: 单个结果取的控件, 或 `null` (6.8.0). */
+        target: UiObject | null;
+        /** The 0-based index of `target` among the matches in the order found, `-1` without one. zh-CN: `target` 在按找到顺序的匹配中的索引 (从 0 计), 没有时为 `-1`. */
+        targetIndex: number;
+        /** `prefer(...)` of the selector, or `null`. zh-CN: 选择器的 `prefer(...)`, 或 `null`. */
+        preference: string | null;
+        /** The compass given, as a script literal, or `null`. zh-CN: 给出的罗盘 (脚本字面量形式), 或 `null`. */
+        compass: string | null;
+        /** Why the compass is refused, or `null`. zh-CN: 罗盘被拒绝的原因, 或 `null`. */
+        compassError: string | null;
+        /** One hop per step of the compass walked from `target`, up to the first that reaches nothing. zh-CN: 从 `target` 起罗盘每一步一项, 直到首个没有到达控件的一步. */
+        trail: ExplainHop[];
+        /** The node at the end of the compass (`target` without a compass), or `null`. zh-CN: 罗盘终点的控件 (没有罗盘时为 `target`), 或 `null`. */
+        reached: UiObject | null;
+        /** What the result type resolves to, or `null` when none is given. zh-CN: 结果类型的解析, 未给出时为 `null`. */
+        result: ExplainResolution | null;
+        /** The key of the fast path (`id(...)`), or `null` when the selector has none. zh-CN: 快路径的键 (`id(...)`), 选择器没有时为 `null`. */
+        fastPath: string | null;
+        /** Whether the fast path is on (no flag `noFastPath`). zh-CN: 快路径是否开启 (未设 `noFastPath` 标志). */
+        fastPathEnabled: boolean;
+        /** Whether a single result is refreshed before it is returned (no flag `noRefreshOnHit`). zh-CN: 单个结果返回前是否刷新 (未设 `noRefreshOnHit` 标志). */
+        refreshOnHit: boolean;
+        /** Whether `target` refreshes now; `null` without a target or with the refresh off. zh-CN: `target` 此刻能否刷新; 没有目标或刷新关闭时为 `null`. */
+        refreshes: boolean | null;
+        /** `normalize(...)` in effect, or `null`. zh-CN: 生效中的 `normalize(...)`, 或 `null`. */
+        normalize: string | null;
         /** The report as text. zh-CN: 文本报告. */
         text: string;
         toString(): string;
+    }
+
+    /** A step of the compass (as the compass writes it) and the node it reaches (6.8.0). zh-CN: 罗盘的一步 (罗盘写法) 及其到达的控件 (6.8.0). */
+    interface ExplainHop {
+        step: string;
+        node: UiObject | null;
+    }
+
+    /** The result type as given and what it resolves to (6.8.0). zh-CN: 给出的结果类型及其解析 (6.8.0). */
+    interface ExplainResolution {
+        /** The result type as a script literal (`"widget" (default)` when none is given). zh-CN: 结果类型的脚本字面量. */
+        given: string;
+        kind: 'symbol' | 'arrayForm' | 'method' | 'empty' | 'nothing' | 'refused';
+        /** The symbol, or the method signature and the converted arguments, or why it is refused. zh-CN: 符号, 或方法签名与转换后的参数, 或被拒绝的原因. */
+        detail: string;
     }
 
     type DumpFormat = 'text' | 'json' | 'xml';
@@ -1050,6 +1114,23 @@ declare namespace Automator {
         found: number;
         missed: number;
         attempts: number;
+        /** Searches again after a single result that had left the window (6.8.0). zh-CN: 单个结果已离开窗口后的重新筛选次数 (6.8.0). */
+        refinds: number;
+    }
+
+    /**
+     * The attempts of the framework fast path of the polled queries (6.8.0): `hits` answered by a single candidate of the id
+     * lookup, `misses` answered "nothing" by an empty lookup, `fallbacks` with an id that walked the tree all the same, `mismatches`
+     * full searches that found nodes after an empty lookup (expected 0), `walks` attempts that walked without a lookup.
+     * zh-CN: 轮询查询的框架快路径的尝试数 (6.8.0): `hits` 由按 id 查找的唯一候选作答, `misses` 由空查找判定未找到, `fallbacks` 有 id 条件但仍遍历,
+     * `mismatches` 查找为空而完整遍历找到控件 (应为 0), `walks` 不查找而直接遍历.
+     */
+    interface FastPathCounts {
+        hits: number;
+        misses: number;
+        fallbacks: number;
+        mismatches: number;
+        walks: number;
     }
 
     interface SelectorStats {
@@ -1074,6 +1155,8 @@ declare namespace Automator {
         searches: Timing;
         /** Polling queries (`findOne(timeout)`, `wait`, Flow waits). zh-CN: 轮询查询 (`findOne(timeout)`, `wait`, Flow 等待). */
         queries: QueryTiming;
+        /** The framework fast path (6.8.0). zh-CN: 框架快路径 (6.8.0). */
+        fastPath: FastPathCounts;
         selectors: SelectorStats[];
         slowest: SelectorStats | null;
         /** Flow steps. zh-CN: Flow 步骤. */

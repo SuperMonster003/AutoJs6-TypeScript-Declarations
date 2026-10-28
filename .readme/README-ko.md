@@ -178,6 +178,14 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.84.0
+
+###### 2026/10/29
+
+* `기능` 선택자 선언에 normalize 와 prefer 추가: 전역 함수, 체인 메서드, 객체 선택자 키; Selector.NormalizeOptions, Selector.PreferKey 타입 추가 (AutoJs6 6.8.0 이상)
+* `기능` auto 선언에 clearFlags 메서드, setFlags 의 ! 접두사, noFastPath / noRefreshOnHit 플래그 추가; explain 은 나침반과 결과 타입을 받고, 결과에 target / trail / result 등의 필드 추가; stats 에 fastPath 와 queries.refinds 추가 (AutoJs6 6.8.0 이상)
+* `개선` pickup / detect 의 결과 타입 Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams 를 AutoJs6 의 노드 메서드 레지스트리에서 생성하여 호출 가능한 206 개 메서드 이름과 매개변수가 있는 오버로드를 모두 수록; ## / $$ / .. 와 배열 형식의 결과 타입도 추가
+
 ### v4.83.0
 
 ###### 2026/10/24
@@ -189,12 +197,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/23
 
 * `기능` memory 선언에 브리지 세션 추가: Snapshot.bridgeSessions 는 플러그인 엔진 (Node.js, Bun, QuickJS, Lua, Python) 별로 종료 후 회수되지 않은 브리지 세션 수를 제공하고, RetainedRuntime.engine 으로 rhino 와 node 를 구분; Memory.BridgeSessions, Memory.RetainedEngine 타입 추가
-
-### v4.81.1
-
-###### 2026/10/23
-
-* `개선` speech 선언에서 punctuation 옵션 보완: 모델 자체의 문장 부호 (SenseVoice)는 유지하고, 스트리밍 모델 결과에는 설치된 문장 부호 모델로 문장 부호를 붙이며 (3-Macaw Speech 1.2.0 이상, 중국어와 영어), false는 모든 문장 부호를 제거
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

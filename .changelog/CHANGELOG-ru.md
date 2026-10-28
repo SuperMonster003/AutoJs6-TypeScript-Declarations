@@ -13,6 +13,14 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.84.0
+
+###### 2026/10/29
+
+* `Функция` Объявления селекторов normalize и prefer: глобальные функции, методы цепочки и ключи объектного селектора, с типами Selector.NormalizeOptions и Selector.PreferKey (AutoJs6 6.8.0 и новее)
+* `Функция` Объявления auto: метод clearFlags, префикс ! в setFlags и флаги noFastPath / noRefreshOnHit; explain принимает компас и тип результата, а его результат содержит поля target / trail / result и другие; stats содержит fastPath и queries.refinds (AutoJs6 6.8.0 и новее)
+* `Улучшение` Типы результатов pickup / detect (Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams) генерируются из реестра методов узлов AutoJs6: все 206 вызываемых имён методов и их перегрузки с параметрами, а также типы результатов ## / $$ / .. и формы массивов
+
 # v4.83.0
 
 ###### 2026/10/24

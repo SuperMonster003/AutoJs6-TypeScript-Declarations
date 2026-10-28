@@ -178,6 +178,14 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.84.0
+
+###### 2026/10/29
+
+* `機能` セレクターの宣言に normalize と prefer を追加: グローバル関数, チェーンメソッド, オブジェクトセレクターのキー; Selector.NormalizeOptions, Selector.PreferKey 型を追加 (AutoJs6 6.8.0 以降)
+* `機能` auto の宣言に clearFlags メソッド, setFlags の ! プレフィックス, noFastPath / noRefreshOnHit フラグを追加; explain はコンパスと結果タイプを受け取り, 結果に target / trail / result などのフィールドを追加; stats に fastPath と queries.refinds を追加 (AutoJs6 6.8.0 以降)
+* `改善` pickup / detect の結果タイプ Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams を AutoJs6 のノードメソッドレジストリから生成し, 呼び出し可能な 206 個のメソッド名と引数付きオーバーロードをすべて収録; ## / $$ / .. と配列形式の結果タイプも追加
+
 ### v4.83.0
 
 ###### 2026/10/24
@@ -189,12 +197,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/23
 
 * `機能` memory の宣言にブリッジセッションを追加: Snapshot.bridgeSessions はプラグインエンジン (Node.js, Bun, QuickJS, Lua, Python) ごとに終了後も回収されていないブリッジセッション数を示し, RetainedRuntime.engine で rhino と node を区別; Memory.BridgeSessions, Memory.RetainedEngine 型を追加
-
-### v4.81.1
-
-###### 2026/10/23
-
-* `改善` speech の宣言で punctuation オプションを補足: モデル自身の句読点 (SenseVoice) は残し, ストリーミングモデルの結果にはインストール済みの句読点モデルで句読点を付け (3-Macaw Speech 1.2.0 以降, 中国語と英語), false ですべての句読点を除去
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

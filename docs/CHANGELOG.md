@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.84.0
+
+###### 2026/10/29
+
+* `新增` 选择器声明补全 normalize 与 prefer: 全局函数, 链式方法与对象选择器的键, 含 Selector.NormalizeOptions 与 Selector.PreferKey 类型 (AutoJs6 6.8.0 起)
+* `新增` auto 声明补全 clearFlags 方法, setFlags 的 ! 前缀与 noFastPath / noRefreshOnHit 标志; explain 可传入罗盘与结果类型, 结果含 target / trail / result 等字段; stats 补全 fastPath 与 queries.refinds (AutoJs6 6.8.0 起)
+* `优化` pickup / detect 的结果类型 Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams 改由 AutoJs6 的节点方法注册表生成, 包含全部 206 个可调用的方法名及带参数的重载, 并补全 ## / $$ / .. 与数组形式的结果类型
+
 # v4.83.0
 
 ###### 2026/10/24

@@ -178,6 +178,14 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.84.0
+
+###### 2026/10/29
+
+* `新增` 選擇器宣告補全 normalize 與 prefer: 全局函數, 鏈式方法與對象選擇器的鍵, 含 Selector.NormalizeOptions 與 Selector.PreferKey 類型 (AutoJs6 6.8.0 起)
+* `新增` auto 宣告補全 clearFlags 方法, setFlags 的 ! 前綴與 noFastPath / noRefreshOnHit 標誌; explain 可傳入羅盤與結果類型, 結果含 target / trail / result 等字段; stats 補全 fastPath 與 queries.refinds (AutoJs6 6.8.0 起)
+* `優化` pickup / detect 的結果類型 Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams 改由 AutoJs6 的節點方法註冊表生成, 包含全部 206 個可調用的方法名及帶參數的重載, 並補全 ## / $$ / .. 與數組形式的結果類型
+
 ### v4.83.0
 
 ###### 2026/10/24
@@ -189,12 +197,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/23
 
 * `新增` memory 宣告補全橋接會話: Snapshot.bridgeSessions 給出 Node.js, Bun, QuickJS, Lua 與 Python 各插件引擎已結束但未回收的橋接會話數, RetainedRuntime.engine 區分 rhino 與 node, 含 Memory.BridgeSessions 與 Memory.RetainedEngine 類型
-
-### v4.81.1
-
-###### 2026/10/23
-
-* `優化` speech 聲明補全 punctuation 選項: 模型自帶標點 (SenseVoice) 時保留, 串流模型的結果由已安裝的標點模型補上標點 (3-Macaw Speech 1.2.0 起, 中文與英文), false 去掉所有標點
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-HK.md)
 

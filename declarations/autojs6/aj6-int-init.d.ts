@@ -1119,6 +1119,23 @@ declare namespace Internal {
         // @ts-ignore
         public multiLine(b?: boolean): this;
 
+        /**
+         * Normalizes the string conditions of the selector before matching (6.8.0): all options (`normalize()` / `normalize(true)`),
+         * none (`normalize(false)`), or the options given. Texts (`text` / `desc` / `content` ...) take every option, names
+         * (`id` / `className` / `packageName` ...) only `trim` and `caseInsensitive`; a pattern normalizes the value only. The last
+         * `normalize` of a selector applies, wherever it stands.
+         * zh-CN: 匹配前规范化选择器的字符串条件 (6.8.0): 全部选项 (`normalize()` / `normalize(true)`), 关闭 (`normalize(false)`), 或给出的选项.
+         * 文本类条件采用全部选项, 名称类条件只采用 `trim` 与 `caseInsensitive`; 正则条件只规范化属性值. 选择器中最后一个 `normalize` 生效, 与位置无关.
+         * @example
+         * text('OK').normalize().exists(); // matches " ok "
+         * @example
+         * textContains('next').normalize({ caseInsensitive: true, whitespace: true }).findOnce();
+         */
+        // @ts-ignore
+        public normalize(enabled?: boolean): this;
+        // @ts-ignore
+        public normalize(options: Selector.NormalizeOptions): this;
+
         // @ts-ignore
         public packageName(app: org.autojs.autojs.util.App): this;
         // @ts-ignore
@@ -1142,6 +1159,18 @@ declare namespace Internal {
 
         // @ts-ignore
         public password(b?: boolean): this;
+
+        /**
+         * Takes the best of several matching nodes for a single result (6.8.0): `findOnce()`, `findOne(timeout)`, `untilFindOne()`
+         * and the single result of `pickup` compare the candidates by the keys in order (ties: the node found first); `find()`,
+         * `findOnce(index)` and `exists()` are not affected. With `'visible'`, the compass step `k` passes over invisible clickable nodes.
+         * zh-CN: 多个控件符合条件时为单个结果取最优者 (6.8.0): `findOnce()`, `findOne(timeout)`, `untilFindOne()` 与 `pickup` 的单个结果按键的顺序逐个比较候选
+         * (全部相同时取先找到的); `find()`, `findOnce(index)` 与 `exists()` 不受影响. 含 `'visible'` 时, 罗盘的 `k` 跳过不可见的可点击控件.
+         * @example
+         * text('OK').prefer('visible', 'clickable').findOne(3e3);
+         */
+        // @ts-ignore
+        public prefer(...keys: Selector.PreferKey[]): this;
 
         // @ts-ignore
         public right(min: number, max: number): this;
