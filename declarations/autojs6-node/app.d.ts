@@ -177,6 +177,8 @@ declare module "app" {
       /** "am force-stop" through Shizuku, root or the plain shell; true when the command succeeds. */
       kill(packageName: string, options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
       killDual(packageName: string, options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
+      /** Rhino's app.autojs: the autojs6:autojs module of this thread. */
+      readonly autojs: typeof import("autojs6:autojs");
     }
   }
 

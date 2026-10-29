@@ -82,6 +82,20 @@ declare module "plugins" {
       readonly debug: true;
     }
 
+    export interface PluginToolCallOptions extends AutoJs6Node.BridgeCallOptions {
+      invocationId?: string;
+      overwrite?: boolean;
+      outputs?: AutoJs6Node.JsonObject;
+    }
+
+    export interface PluginToolsModule {
+      list(options?: AutoJs6Node.BridgeCallOptions): Promise<readonly AutoJs6Node.JsonObject[]>;
+      providers(options?: AutoJs6Node.BridgeCallOptions): Promise<readonly AutoJs6Node.JsonObject[]>;
+      call(name: string, args?: AutoJs6Node.JsonObject | null, options?: PluginToolCallOptions): Promise<AutoJs6Node.JsonValue>;
+      callAsync(name: string, args?: AutoJs6Node.JsonObject | null, options?: PluginToolCallOptions): Promise<AutoJs6Node.JsonValue>;
+      cancel(invocationId: string, options?: AutoJs6Node.BridgeCallOptions): Promise<unknown>;
+    }
+
     export interface PluginsModule {
       install(id: string, options?: PluginInstallOptions): PluginStatus | Promise<PluginStatus>;
       enable(id: string): PluginStatus;
@@ -101,6 +115,15 @@ declare module "plugins" {
       list(): readonly PluginStatus[];
       manifest(id: string): PluginManifest;
       resolve(id: string, exportName?: string): string;
+      /** Rhino's plugins.extend* on the shared jsox: Mathx / Arrayx / Numberx extend the built-ins of this thread. */
+      extend(...names: (string | readonly string[])[]): void;
+      extendAll(): void;
+      extendAllBut(...names: (string | readonly string[])[]): void;
+      /**
+       * Rhino's plugins.tools: the tools of installed tool-provider plugins (capability plugin_tools; the tools of
+       * USER_GRANTED providers are listed and run when the script also declares plugin_tools.user_granted).
+       */
+      readonly tools: PluginToolsModule;
       load<T = unknown>(id: string, exportName?: string): T;
     }
   }

@@ -28,6 +28,32 @@ declare module "dialogs" {
       dismiss(options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
     }
 
+    export interface BuildProperties {
+      title?: string;
+      content?: string;
+      positive?: string;
+      negative?: string;
+      neutral?: string;
+      items?: readonly SelectItem[];
+      itemsSelectMode?: "select" | "single" | "multi";
+      itemsSelectedIndex?: number | readonly number[];
+      inputHint?: string;
+      inputPrefill?: string;
+      [key: string]: unknown;
+    }
+
+    export type BuiltDialogEvent = "show" | "positive" | "negative" | "input" | "item_select" | "single_choice" | "multi_choice" | "cancel" | "dismiss";
+
+    export interface BuiltDialog {
+      on(event: BuiltDialogEvent, listener: (...args: any[]) => void): this;
+      once(event: BuiltDialogEvent, listener: (...args: any[]) => void): this;
+      off(event: BuiltDialogEvent, listener: (...args: any[]) => void): this;
+      addListener(event: BuiltDialogEvent, listener: (...args: any[]) => void): this;
+      removeListener(event: BuiltDialogEvent, listener: (...args: any[]) => void): this;
+      emit(event: BuiltDialogEvent, ...args: unknown[]): boolean;
+      show(options?: DialogOptions): Promise<unknown>;
+    }
+
     export interface DialogsModule {
       alert(title: string, message?: string, options?: DialogOptions): Promise<void>;
       alert(title: string, options?: DialogOptions): Promise<void>;
@@ -43,6 +69,11 @@ declare module "dialogs" {
       rawInput(title: string, options?: DialogOptions): Promise<string | null>;
       singleChoice(title: string, items: readonly SelectItem[], selected?: number, options?: DialogOptions): Promise<number>;
       multiChoice(title: string, items: readonly SelectItem[], selected?: readonly number[], options?: DialogOptions): Promise<readonly number[]>;
+      /**
+       * Rhino's dialogs.build: show() takes the route from the properties (items -> select / singleChoice / multiChoice
+       * by itemsSelectMode, inputHint / inputPrefill -> input, negative -> confirm, else alert) and resolves with its result.
+       */
+      build(properties: BuildProperties): BuiltDialog;
       /** Activity-backed dialogs; timeout, abort and Worker/execution exit dismiss owned windows. */
       readonly progress: {
         show(descriptor?: ProgressOptions, options?: AutoJs6Node.BridgeCallOptions): Promise<ProgressHandle>;
