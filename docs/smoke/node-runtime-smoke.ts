@@ -285,8 +285,8 @@ async function checkHostShell() {
   hostShell.spawn('echo',{env:{COUNT:3}});
   // @ts-expect-error Status properties are readonly.
   child.pid=42;
-  // @ts-expect-error Host process has no Java stream accessor.
-  child.getInputStream();
+  // The Rhino stream accessors (api-coverage Q31) return the same Node streams.
+  const stdout:import('shell').OutputStream=child.getInputStream();const alive:boolean=child.isAlive();
 }
 
 import hostDevice = require('autojs6:device');
