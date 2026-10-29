@@ -17,6 +17,9 @@ declare namespace Internal {
 
     interface Threads extends Omit<org.autojs.autojs.runtime.api.Threads, 'disposable' | 'lock' | 'pool' | 'interrupt'> {
 
+        /* Members of the Java prototype, declared here so that completion does not need the Java class declarations. */
+        shutDownAll(): void;
+
         /**
          * @Overrides for JSDoc or more specific types
          */

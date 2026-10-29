@@ -6355,6 +6355,9 @@ declare namespace Internal {
 
     interface Color {
 
+        /** Readable text of the color, as console.log prints it. */
+        toStringReadable(): string;
+
         /** Short aliases of the corresponding toX conversion methods. */
         argb(): number[];
         rgb(): number[];

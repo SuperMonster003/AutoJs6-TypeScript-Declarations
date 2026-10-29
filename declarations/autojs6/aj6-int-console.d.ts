@@ -16,6 +16,11 @@ declare namespace Internal {
 
     interface Console extends Omit<org.autojs.autojs.core.console.GlobalConsole, 'expand' | 'collapse' | 'setTitleBackgroundTint' | 'setTitleBackgroundAlpha' | 'setTitleIconsTint' | 'setContentBackgroundTint' | 'setContentBackgroundAlpha' | 'setBackgroundTint' | 'setBackgroundAlpha' | 'setContentTextColors'> {
 
+        /* Members of the Java prototype, declared here so that completion does not need the Java class declarations. */
+        isShowing(): boolean;
+        setGravity(gravity: number | string): void;
+        setTouchThrough(touchThrough?: boolean): void;
+
         /**
          * @example
          * let a = 1 + 1;

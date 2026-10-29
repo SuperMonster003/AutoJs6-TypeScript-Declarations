@@ -23,6 +23,9 @@ declare namespace Internal {
 
         __widgets__: object;
 
+        /** Starting view of the `ui.<id>` lookup; assigning it does not call setContentView. */
+        view: android.view.View;
+
         /**
          * @param ctx
          * @param xml

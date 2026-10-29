@@ -30,6 +30,26 @@ declare namespace Internal {
         register(sensorName: 'relative_humidity', delay?: number): Sensors.RelativeHumidity | null;
         register(sensorName: string, delay?: number): Sensors.EventEmitter | null;
         unregister(emitter: Sensors.EventEmitter | null): void;
+
+        /* Members of the Java prototype (EventEmitter and Sensors), declared here so that completion does not need the Java class declarations. */
+        readonly delay: org.autojs.autojs.runtime.api.Sensors.Delay;
+        addListener(eventName: string, listener: (...args: unknown[]) => void): this;
+        emit(eventName: string, ...args: unknown[]): boolean;
+        emitSticky(eventName: string, ...args: unknown[]): boolean;
+        eventNames(): string[];
+        getMaxListeners(): number;
+        getSensor(sensorName: string): android.hardware.Sensor | null;
+        getTimer(): org.autojs.autojs.core.looper.Timer;
+        listenerCount(eventName: string): number;
+        listeners(eventName: string): Function[];
+        on(eventName: string, listener: (...args: unknown[]) => void): this;
+        once(eventName: string, listener: (...args: unknown[]) => void): this;
+        prependListener(eventName: string, listener: (...args: unknown[]) => void): this;
+        prependOnceListener(eventName: string, listener: (...args: unknown[]) => void): this;
+        removeAllListeners(eventName?: string): this;
+        removeListener(eventName: string, listener: Function): this;
+        setMaxListeners(maxListeners: number): this;
+        unregisterAll(): void;
     }
 
     namespace Sensors {

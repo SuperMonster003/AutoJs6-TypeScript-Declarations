@@ -392,7 +392,18 @@ declare namespace org {
 
                 // @ts-ignore
                 export class App extends java.lang.Enum<org.autojs.autojs.util.App> {
-                    /* Empty body. */
+                    readonly alias: string;
+                    readonly packageName: string;
+                    getAlias(): string;
+                    getPackageName(): string;
+                    getAppName(): string;
+                    getAppNameZh(): string;
+                    getAppNameEn(): string;
+                    isInstalled(): boolean;
+                    ensureInstalled(): void;
+                    launch(): boolean;
+                    launchSettings(): boolean;
+                    uninstall(): void;
                 }
 
             }

@@ -21,6 +21,13 @@ declare namespace Internal {
 
         readonly state: Shizuku.State;
 
+        /* Members of the Java prototype, declared here so that completion does not need the Java class declarations. */
+        hasPermission(): boolean;
+        hasService(): boolean;
+        isInstalled(context: android.content.Context): boolean;
+        isOperational(): boolean;
+        isRunning(): boolean;
+
         (command: Shell.Command): AbstractShell.Result;
         (command: Shell.Command, withRoot: boolean | number): AbstractShell.Result;
         (command: Shell.Command, commandArgument: Shell.CommandArguments): AbstractShell.Result;

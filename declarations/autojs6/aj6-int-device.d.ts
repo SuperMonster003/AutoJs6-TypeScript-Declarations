@@ -17,6 +17,24 @@ declare namespace Internal {
     class Device extends org.autojs.autojs.runtime.api.Device {
 
         /**
+         * Members of the Java prototype, declared here so that completion does not need the Java class declarations.
+         */
+
+        readonly brands: org.autojs.autojs.util.RomUtils.Brand;
+        readonly manufacturers: org.autojs.autojs.runtime.api.Device.Manufacturers;
+        readonly roms: org.autojs.autojs.util.RomUtils;
+        ensureReadPhoneStatePermission(): void;
+        getMarketName(): string;
+        getOrientation(): number;
+        getRotation(): number;
+        hasReadPhoneStatePermission(): boolean;
+        isManufacturer(manufacturer: string): boolean;
+        isPowerSourceAC(): boolean;
+        isPowerSourceDock(): boolean;
+        isPowerSourceUSB(): boolean;
+        isPowerSourceWireless(): boolean;
+
+        /**
          * @Overrides for JSDoc or more specific types
          */
 

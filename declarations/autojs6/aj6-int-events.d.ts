@@ -23,6 +23,28 @@ declare namespace Internal {
         __asEmitter__<T extends object>(obj: T, thread?: Events.ThreadTarget | null): T & EventEmitter$;
 
         /**
+         * Members of the Java prototype (EventEmitter and Events), declared here so that completion does not need the Java class declarations.
+         */
+
+        addListener(eventName: string, listener: any): this;
+        emit(eventName: string, ...args: any[]): boolean;
+        emitSticky(eventName: string, ...args: any[]): boolean;
+        eventNames(): string[];
+        getMaxListeners(): number;
+        getTimer(): org.autojs.autojs.core.looper.Timer;
+        listenerCount(eventName: string): number;
+        listeners(eventName: string): any[];
+        on(eventName: string, listener: any): this;
+        once(eventName: string, listener: any): this;
+        prependListener(eventName: string, listener: any): this;
+        prependOnceListener(eventName: string, listener: any): this;
+        removeAllListeners(eventName?: string): this;
+        removeListener(eventName: string, listener: any): this;
+        removeNotificationObserver(): void;
+        removeToastObserver(): void;
+        setMaxListeners(maxListeners: number): this;
+
+        /**
          * @Overrides for JSDoc or more specific types
          */
 

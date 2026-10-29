@@ -101,6 +101,9 @@ declare namespace Zip {
 
         toString(): string;
 
+        /** Readable text of the handle, as console.log prints it. */
+        toStringReadable(): string;
+
         addFile(filePath: string, options?: ZipOptions): void;
 
         addFiles(filePathList: FilePathList, options?: ZipOptions): void;

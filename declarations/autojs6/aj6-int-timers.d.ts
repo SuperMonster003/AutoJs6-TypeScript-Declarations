@@ -52,6 +52,14 @@ declare namespace Internal {
 
         keepAlive(timeout?: number | null): number;
 
+        /* Members of the Java prototype, the same as the global functions; declared here so that completion does not need the Java class declarations. */
+        clearImmediate(id: number): boolean;
+        clearInterval(id: number): boolean;
+        clearTimeout(id: number): boolean;
+        setImmediate(callback: any, ...args: any[]): number;
+        setInterval(callback: Function, interval?: number, ...args: any[]): number;
+        setTimeout(callback: Function, delay?: number, ...args: any[]): number;
+
     }
 
 }
