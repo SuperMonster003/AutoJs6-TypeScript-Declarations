@@ -4,6 +4,8 @@ declare module "storage" {
 
     export interface StorageStore {
       readonly name: string;
+      /** The number of keys (a read-only property in Rhino). */
+      size(options?: AutoJs6Node.BridgeCallOptions): Promise<number>;
       get<T extends StorageValue = StorageValue>(key: string, defaultValue: T, options?: AutoJs6Node.BridgeCallOptions): Promise<StorageValue | T>;
       get<T extends StorageValue = StorageValue>(key: string, defaultValue?: T, options?: AutoJs6Node.BridgeCallOptions): Promise<StorageValue | T | undefined>;
       put(key: string, value: StorageValue, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
@@ -23,8 +25,9 @@ declare module "storage" {
       open(name: string): StorageStore;
       remove(name: string, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
       removeSync(name: string, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
-      names(): never;
-      all(): never;
+      /** The non-empty stores of this package and working directory that Node scripts have put values in (the runtime keeps their names), sorted. */
+      names(options?: AutoJs6Node.BridgeCallOptions): Promise<readonly string[]>;
+      all(options?: AutoJs6Node.BridgeCallOptions): Promise<readonly StorageStore[]>;
     }
   }
 

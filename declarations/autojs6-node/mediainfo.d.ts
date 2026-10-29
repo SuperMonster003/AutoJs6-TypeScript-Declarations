@@ -95,6 +95,12 @@ declare module "mediainfo" {
       read(path: string, options: ReadOptions & { readonly schema: "autojs6-plugin-mediainfo-snapshot-v2" }): Promise<PluginSnapshotV2>;
       read(path: string, options?: DefaultReadOptions): Promise<Snapshot>;
       read(path: string, options: ReadOptions): Promise<ReadResult>;
+      /** Rhino's snapshot: the plugin snapshot in the given schema, or in the plugin's default schema (capabilities().defaultSnapshotSchema). */
+      snapshot(path: string, options: ReadOptions & { readonly schema: "autojs6-plugin-mediainfo-snapshot-v1" }): Promise<PluginSnapshotV1>;
+      snapshot(path: string, options: ReadOptions & { readonly schema: "autojs6-plugin-mediainfo-snapshot-v2" }): Promise<PluginSnapshotV2>;
+      snapshot(path: string, options?: ReadOptions): Promise<PluginSnapshot>;
+      readonly SNAPSHOT_SCHEMA_V1: "autojs6-plugin-mediainfo-snapshot-v1";
+      readonly SNAPSHOT_SCHEMA_V2: "autojs6-plugin-mediainfo-snapshot-v2";
       get(path: string, streamKind: StreamKind, parameter?: string, options?: QueryOptions): Promise<string>;
       countGet(path: string, streamKind: StreamKind, options?: AutoJs6Node.BridgeCallOptions): Promise<number>;
       capabilities(options?: AutoJs6Node.BridgeCallOptions): Promise<Capabilities>;

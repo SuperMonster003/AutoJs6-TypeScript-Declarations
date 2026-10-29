@@ -55,6 +55,7 @@
 /// <reference path="./converter.d.ts" />
 /// <reference path="./s13n.d.ts" />
 /// <reference path="./mime.d.ts" />
+/// <reference path="./zip.d.ts" />
 /// <reference path="./nanoid.d.ts" />
 /// <reference path="./util.d.ts" />
 /// <reference path="./opencc.d.ts" />

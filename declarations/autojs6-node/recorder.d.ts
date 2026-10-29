@@ -39,7 +39,22 @@ declare module "recorder" {
       readonly maxDurationMs?: number;
     }
 
+    /**
+     * Rhino's recorder: the timing recorder (recorder(key?, ts?), save / load / isLessThan / isGreaterThan / has /
+     * remove / clear, synchronous, per thread) with the audio recorder's getStatus / start / stop.
+     */
     export interface RecorderModule {
+      /** A function key runs it and gives its duration; another key saves the first time and loads afterwards. */
+      (key?: unknown, timestamp?: unknown): number;
+      /** Saves the time (now, or timestamp) under key (or on the anonymous stack); returns it. */
+      save(key?: string | null, timestamp?: number | null): number;
+      /** The milliseconds from the saved time to now (or timestamp); the anonymous form pops the last record. */
+      load(key?: string | null, timestamp?: number | null): number;
+      isLessThan(key: string | null, compare: number): boolean;
+      isGreaterThan(key: string | null, compare: number): boolean;
+      has(key: string | null): boolean;
+      remove(key: string | null): boolean;
+      clear(): void;
       getStatus(options?: AutoJs6Node.BridgeCallOptions): Promise<RecorderStatus>;
       start(options?: RecorderStartOptions): Promise<Recording>;
       /** Returns the last completed recording, or null when none has started. */

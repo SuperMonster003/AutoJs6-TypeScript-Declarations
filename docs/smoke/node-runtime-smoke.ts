@@ -313,7 +313,7 @@ async function checkAndroidAndCalendarTasks(){
   const width:number=await paint.measureText('owned');await androidColors.setPaintColor(paint,'#00ff00');
   const state=await androidColors.createColorStateList({states:[['!enabled'],[]],colors:['red','blue']});
   const snapshot:androidObjects.ColorStateListSnapshot=state.toJSON();const view=await androidUi.createView('Text',{textColor:snapshot});
-  const theme:androidObjects.ThemeColor=await androidColors.themeColor;const uri:androidObjects.UriSnapshot=await androidObjects.getUriForFile('owned.txt');
+  const theme:androidObjects.ThemeColor=await androidColors.getThemeColor();const uri:androidObjects.UriSnapshot=await androidObjects.getUriForFile('owned.txt');
   const daily:calendarTasks.TimedTask=await calendarTasks.addDailyTask({path:'child.cjs',time:'09:00',endMode:'count',times:2});
   const updated:calendarTasks.TimedTask|null=await calendarTasks.updateTask(daily,{time:'10:00'});
   const intent:calendarTasks.IntentTask=await calendarTasks.addIntentTask({path:'child.cjs',action:'owned',category:null,dataType:'text/plain'});

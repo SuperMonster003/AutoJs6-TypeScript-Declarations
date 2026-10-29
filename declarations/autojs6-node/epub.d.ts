@@ -350,6 +350,8 @@ declare module "epub" {
     annotations(callOptions?: CallOptions): Promise<Annotation[]>;
     annotationsAsync(callOptions?: CallOptions): Promise<Annotation[]>;
     close(callOptions?: CallOptions): Promise<void>;
+    /** `EpubBook { path: <path> }`, with `, closed` after the path once closed (Rhino's text). */
+    toString(): string;
   }
   interface EventMap {
     open: OpenEvent;

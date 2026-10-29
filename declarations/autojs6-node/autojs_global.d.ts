@@ -934,6 +934,7 @@ declare namespace AutoJs6Node {
     readonly s13n: typeof import("s13n");
     readonly fmt: typeof import("formatter");
     readonly cvt: typeof import("converter");
+    readonly zip: typeof import("autojs6:zip");
   }
 }
 

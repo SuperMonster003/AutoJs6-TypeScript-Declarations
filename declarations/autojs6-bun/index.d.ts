@@ -3,7 +3,7 @@
 declare module "autojs6:bun-host" {
     /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
     export const SDK_VERSION: 1;
-    export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
+    export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
     export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
     export class HostCallError extends Error {
       readonly code: string;
@@ -11,7 +11,7 @@ declare module "autojs6:bun-host" {
       readonly status: number;
       constructor(code: string, message: string, capability?: string | null, status?: number);
     }
-    export const HOST_API_METHODS: Readonly<Record<"agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
+    export const HOST_API_METHODS: Readonly<Record<"agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
     export const OPENCC_CONVERSION_TYPES: readonly [
       "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
       "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -4448,6 +4448,8 @@ declare module "autojs6:bun-host" {
           isEmptyObject(o: unknown): boolean;
           /** typeof o is "object" and o is not null. */
           isObjectSpecies(o: unknown): boolean;
+          /** The axios 1.1.2 library of AutoJs6 Rhino scripts, embedded in the client and running on fetch. */
+          readonly axios: RuntimeAxios.AxiosStatic;
         }
       }
     export namespace RuntimeS13n {
@@ -4618,6 +4620,185 @@ declare module "autojs6:bun-host" {
       }
     // END GENERATED JS TOOLS TYPES
 
+    /** host.global.axios: the axios 1.1.2 library of AutoJs6 Rhino scripts, embedded in the client and running on fetch (api-coverage Q64). */
+    export namespace RuntimeAxios {
+        export type Method = "get" | "GET" | "delete" | "DELETE" | "head" | "HEAD" | "options" | "OPTIONS" | "post" | "POST" | "put" | "PUT" | "patch" | "PATCH";
+        export type ResponseType = "arraybuffer" | "blob" | "json" | "text";
+        export type Headers = Record<string, string | number | boolean | null | undefined | readonly string[]>;
+        export interface Transformer { (this: RequestConfig, data: any, headers: Headers): any }
+        export interface CancelToken { readonly promise: Promise<Cancel>; readonly reason?: Cancel; throwIfRequested(): void }
+        export interface Cancel { readonly message: string | undefined }
+        export interface RequestConfig<D = any> {
+          url?: string; method?: Method | string; baseURL?: string; headers?: Headers;
+          params?: any; paramsSerializer?: ((params: any) => string) | { encode?: (value: any) => any; serialize?: (params: any) => string };
+          data?: D; timeout?: number; timeoutErrorMessage?: string; withCredentials?: boolean;
+          auth?: { username: string; password: string }; responseType?: ResponseType;
+          transformRequest?: Transformer | Transformer[]; transformResponse?: Transformer | Transformer[];
+          validateStatus?: ((status: number) => boolean) | null; maxRedirects?: number;
+          onUploadProgress?: (event: any) => void; onDownloadProgress?: (event: any) => void;
+          cancelToken?: CancelToken; signal?: AbortSignal;
+          transitional?: { silentJSONParsing?: boolean; forcedJSONParsing?: boolean; clarifyTimeoutError?: boolean };
+          [option: string]: unknown;
+        }
+        export interface Response<T = any, D = any> {
+          data: T; status: number; statusText: string; headers: Record<string, string>; config: RequestConfig<D>; request?: any;
+        }
+        export interface AxiosError<T = unknown, D = any> extends Error {
+          readonly isAxiosError: true; code?: string; config?: RequestConfig<D>; request?: any; response?: Response<T, D>; toJSON(): object;
+        }
+        export interface Interceptors<V> {
+          use(onFulfilled?: (value: V) => V | Promise<V>, onRejected?: (error: any) => any, options?: { synchronous?: boolean; runWhen?: (config: RequestConfig) => boolean }): number;
+          eject(id: number): void;
+          clear(): void;
+        }
+        export interface Instance {
+          <T = any, R = Response<T>, D = any>(config: RequestConfig<D>): Promise<R>;
+          <T = any, R = Response<T>, D = any>(url: string, config?: RequestConfig<D>): Promise<R>;
+          defaults: RequestConfig & { headers: Record<string, any> };
+          readonly interceptors: { readonly request: Interceptors<RequestConfig>; readonly response: Interceptors<Response> };
+          getUri(config?: RequestConfig): string;
+          request<T = any, R = Response<T>, D = any>(config: RequestConfig<D>): Promise<R>;
+          get<T = any, R = Response<T>, D = any>(url: string, config?: RequestConfig<D>): Promise<R>;
+          delete<T = any, R = Response<T>, D = any>(url: string, config?: RequestConfig<D>): Promise<R>;
+          head<T = any, R = Response<T>, D = any>(url: string, config?: RequestConfig<D>): Promise<R>;
+          options<T = any, R = Response<T>, D = any>(url: string, config?: RequestConfig<D>): Promise<R>;
+          post<T = any, R = Response<T>, D = any>(url: string, data?: D, config?: RequestConfig<D>): Promise<R>;
+          put<T = any, R = Response<T>, D = any>(url: string, data?: D, config?: RequestConfig<D>): Promise<R>;
+          patch<T = any, R = Response<T>, D = any>(url: string, data?: D, config?: RequestConfig<D>): Promise<R>;
+          postForm<T = any, R = Response<T>, D = any>(url: string, data?: D, config?: RequestConfig<D>): Promise<R>;
+          putForm<T = any, R = Response<T>, D = any>(url: string, data?: D, config?: RequestConfig<D>): Promise<R>;
+          patchForm<T = any, R = Response<T>, D = any>(url: string, data?: D, config?: RequestConfig<D>): Promise<R>;
+        }
+        export interface AxiosStatic extends Instance {
+          create(config?: RequestConfig): Instance;
+          readonly VERSION: string;
+          readonly Axios: new (config?: RequestConfig) => Instance;
+          readonly AxiosError: new (message?: string, code?: string, config?: RequestConfig, request?: any, response?: Response) => AxiosError;
+          readonly CanceledError: new (message?: string, config?: RequestConfig, request?: any) => AxiosError;
+          readonly Cancel: AxiosStatic["CanceledError"];
+          readonly CancelToken: { new (executor: (cancel: (message?: string) => void) => void): CancelToken; source(): { token: CancelToken; cancel(message?: string): void } };
+          isCancel(value: unknown): value is Cancel;
+          isAxiosError<T = any, D = any>(value: unknown): value is AxiosError<T, D>;
+          all<T>(values: Array<T | Promise<T>>): Promise<T[]>;
+          spread<T, R>(callback: (...args: T[]) => R): (array: T[]) => R;
+          toFormData(sourceObj: object, targetFormData?: FormData, options?: object): FormData;
+          formToJSON(form: FormData): object;
+          /** The browser objects the library runs on (Rhino: the host's browser-libs; Bun: its own, with a fetch-based XMLHttpRequest). */
+          readonly browser: Readonly<{ window: object; FormData: typeof FormData; Blob: typeof Blob; XMLHttpRequest: new () => EventTarget; EventTarget: typeof EventTarget; Event: typeof Event; setTimeout(callback: () => void, delay?: number): unknown }>;
+        }
+      }
+
+    // BEGIN GENERATED MEDIAINFO TYPES
+    export namespace RuntimeMediainfo {
+        export type StreamKind = "general" | "video" | "audio" | "text" | "other" | "image" | "menu";
+        export type InfoKind = "NAME" | "TEXT" | "MEASURE" | "OPTIONS" | "NAME_TEXT" | "MEASURE_TEXT" | "INFO" | "HOWTO" | "DOMAIN";
+        export interface QueryOptions extends AutomationCallOptions {
+          /** Zero-based stream index; defaults to 0. */
+          readonly streamNumber?: number;
+          /** Defaults to TEXT; other kinds require an advertising MediaInfo plugin. */
+          readonly infoKind?: InfoKind | Lowercase<InfoKind>;
+        }
+        export type PluginSnapshotSchema =
+          | "autojs6-plugin-mediainfo-snapshot-v1"
+          | "autojs6-plugin-mediainfo-snapshot-v2";
+
+        export interface ReadOptions extends AutomationCallOptions {
+          readonly includeInform?: boolean;
+          readonly includeSections?: boolean;
+          readonly schema?: PluginSnapshotSchema;
+        }
+
+        export interface DefaultReadOptions extends ReadOptions {
+          readonly schema?: undefined;
+        }
+
+        export interface SectionMap {
+          readonly [section: string]: readonly Readonly<Record<string, string>>[];
+        }
+
+        export interface Snapshot {
+          readonly schema: "autojs6-node-mediainfo-snapshot-v1";
+          readonly path: string;
+          readonly fileName: string;
+          readonly sizeBytes: number;
+          readonly inform: string;
+          readonly sections: SectionMap;
+        }
+
+        export interface PluginSnapshotV1 {
+          readonly schema: "autojs6-plugin-mediainfo-snapshot-v1";
+          readonly fileName: string;
+          readonly sizeBytes: number;
+          readonly inform: string;
+          readonly sections: SectionMap;
+        }
+
+        export type SnapshotJsonValue =
+          | string
+          | number
+          | boolean
+          | null
+          | readonly SnapshotJsonValue[]
+          | Readonly<{ [key: string]: SnapshotJsonValue }>;
+
+        export interface PluginSnapshotV2Track {
+          readonly fields: Readonly<Record<string, SnapshotJsonValue>>;
+          readonly attributes?: Readonly<Record<string, SnapshotJsonValue>>;
+          readonly extra?: Readonly<Record<string, SnapshotJsonValue>>;
+        }
+
+        export interface PluginSnapshotV2 {
+          readonly schema: "autojs6-plugin-mediainfo-snapshot-v2";
+          readonly file: Readonly<{
+            name: string;
+            sizeBytes: number;
+          }>;
+          readonly engine: Readonly<{
+            name: string;
+            version: string;
+            url?: string;
+          }>;
+          readonly inform: string;
+          readonly tracks: Readonly<Record<string, readonly PluginSnapshotV2Track[]>>;
+        }
+
+        export interface Capabilities {
+          readonly schema: "autojs6-node-mediainfo-capabilities-v1";
+          readonly snapshotSchemas: readonly PluginSnapshotSchema[];
+          readonly defaultSnapshotSchema: PluginSnapshotSchema;
+          readonly engineVersion?: string;
+          readonly streamCount?: boolean;
+          readonly streamNumber?: boolean;
+          readonly infoKinds?: readonly InfoKind[];
+        }
+
+        export type PluginSnapshot = PluginSnapshotV1 | PluginSnapshotV2;
+        export type ReadResult = Snapshot | PluginSnapshot;
+
+        /** File paths may be absolute or relative to the host working directory; Android file access applies. Requires the updated host. */
+        export interface MediainfoModule {
+          (path: string, options: ReadOptions & { readonly schema: "autojs6-plugin-mediainfo-snapshot-v1" }): Promise<PluginSnapshotV1>;
+          (path: string, options: ReadOptions & { readonly schema: "autojs6-plugin-mediainfo-snapshot-v2" }): Promise<PluginSnapshotV2>;
+          (path: string, options?: DefaultReadOptions): Promise<Snapshot>;
+          (path: string, options: ReadOptions): Promise<ReadResult>;
+          read(path: string, options: ReadOptions & { readonly schema: "autojs6-plugin-mediainfo-snapshot-v1" }): Promise<PluginSnapshotV1>;
+          read(path: string, options: ReadOptions & { readonly schema: "autojs6-plugin-mediainfo-snapshot-v2" }): Promise<PluginSnapshotV2>;
+          read(path: string, options?: DefaultReadOptions): Promise<Snapshot>;
+          read(path: string, options: ReadOptions): Promise<ReadResult>;
+          /** Rhino's snapshot: the plugin snapshot in the given schema, or in the plugin's default schema (capabilities().defaultSnapshotSchema). */
+          snapshot(path: string, options: ReadOptions & { readonly schema: "autojs6-plugin-mediainfo-snapshot-v1" }): Promise<PluginSnapshotV1>;
+          snapshot(path: string, options: ReadOptions & { readonly schema: "autojs6-plugin-mediainfo-snapshot-v2" }): Promise<PluginSnapshotV2>;
+          snapshot(path: string, options?: ReadOptions): Promise<PluginSnapshot>;
+          readonly SNAPSHOT_SCHEMA_V1: "autojs6-plugin-mediainfo-snapshot-v1";
+          readonly SNAPSHOT_SCHEMA_V2: "autojs6-plugin-mediainfo-snapshot-v2";
+          get(path: string, streamKind: StreamKind, parameter?: string, options?: QueryOptions): Promise<string>;
+          countGet(path: string, streamKind: StreamKind, options?: AutomationCallOptions): Promise<number>;
+          capabilities(options?: AutomationCallOptions): Promise<Capabilities>;
+        }
+      }
+
+    // END GENERATED MEDIAINFO TYPES
+
     export interface HostClient {
       readonly ai: RuntimeAi.API;
       readonly flow: RuntimeFlow.API;
@@ -4645,6 +4826,8 @@ declare module "autojs6:bun-host" {
       readonly database: RuntimeDatabase.DatabaseModule;
       readonly sqlite: RuntimeSqlite.SQLiteModule;
       readonly files: RuntimeFiles.FilesModule;
+      /** Node's mediainfo module (MediaInfo plugin), with Rhino's snapshot and schema constants; needs mediainfo.control. */
+      readonly mediainfo: RuntimeMediainfo.MediainfoModule;
       readonly storage: RuntimeStorage.StorageModule;
       readonly storages: RuntimeStorage.StorageModule;
       readonly app: RuntimeApp.AppModule;
