@@ -143,9 +143,9 @@ declare namespace Internal {
          *     return http.post(url, data, options, callback);
          * };
          */
-        postJson(url: string, data?: any, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+        postJson(url: string, data: any, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
 
-        postJsonAsync(url: string, data?: any, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
+        postJsonAsync(url: string, data: any, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
 
         /**
          * @example
@@ -272,9 +272,9 @@ declare namespace Internal {
          *     return r;
          * }
          */
-        request(url: string, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
+        request(url: string, options: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
 
-        requestAsync(url: string, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
+        requestAsync(url: string, options: Http.RequestBuilderOptions, callback?: Http.Callback): Promise<Http.WrappedResponse>;
 
         put(url: string, data?: Http.RequestData, options?: Http.RequestBuilderOptions, callback?: Http.Callback): Http.WrappedResponse | void;
 
@@ -375,7 +375,7 @@ declare namespace Internal {
          *     return body;
          * }
          */
-        buildRequest(url: string, options?: Http.RequestBuilderOptions): okhttp3.Request;
+        buildRequest(url: string, options: Http.RequestBuilderOptions): okhttp3.Request;
 
     }
 

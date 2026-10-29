@@ -633,7 +633,7 @@ declare namespace Internal {
          *     return c;
          * }
          */
-        build(properties: Dialogs.Build.Properties): Dialogs.JsDialog;
+        build(properties?: Dialogs.Build.Properties): Dialogs.JsDialog;
 
     }
 

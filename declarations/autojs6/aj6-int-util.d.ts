@@ -765,7 +765,7 @@ declare namespace Util {
          *     return types[type] ? Packages["java.lang." + types[type]].TYPE : Packages[type];
          * }
          */
-        array(type: Java.LangAbbr | java.lang.Class<any> | any, ...dimensions: number[]): Array<java.lang.Integer | java.lang.Long | java.lang.Double | java.lang.Character | java.lang.Byte | java.lang.Float | java.lang.String | any>;
+        array(type: Java.LangAbbr | java.lang.Class<any> | any, dimension: number, ...dimensions: number[]): Array<java.lang.Integer | java.lang.Long | java.lang.Double | java.lang.Character | java.lang.Byte | java.lang.Float | java.lang.String | any>;
 
         /**
          * @example
@@ -785,7 +785,7 @@ declare namespace Util {
          *     return arr;
          * };
          */
-        toJsArray(list?: java.util.List<any>, nullListToEmptyArray?: boolean): any[];
+        toJsArray(list: java.util.List<any> | null | undefined, nullListToEmptyArray?: boolean): any[];
 
         /**
          * @example
@@ -805,7 +805,7 @@ declare namespace Util {
          *     return map;
          * };
          */
-        objectToMap(obj?: object): java.util.HashMap<any, any> | null;
+        objectToMap(obj: object | null | undefined): java.util.HashMap<any, any> | null;
 
         /**
          * @example
@@ -825,7 +825,7 @@ declare namespace Util {
          *     return obj;
          * };
          */
-        mapToObject(map?: java.util.HashMap<any, any>): object | null;
+        mapToObject(map: java.util.HashMap<any, any> | null | undefined): object | null;
 
     }
 
@@ -846,9 +846,9 @@ declare namespace Util {
             toString(): string;
         };
 
-        getPattern(text: string): number[];
+        getPattern(text: string, timeUnit?: number): number[];
 
-        getCode(text: string): string;
+        getCode(text: string, timeUnit?: number): string;
 
         vibrate(text: string, delay?: number): void;
 

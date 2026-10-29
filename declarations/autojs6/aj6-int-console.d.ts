@@ -187,8 +187,7 @@ declare namespace Internal {
          *     };
          * })()
          */
-        trace(message: string, ...args): void;
-        trace(message: string, level: 'verbose' | 'debug' | 'info' | 'warn' | 'error' | number): void;
+        trace(message?: string, level?: 'verbose' | 'debug' | 'info' | 'warn' | 'error' | number): void;
 
         /**
          * Configuration of saving Auto.js logs to local storage (path, file name, etc...)
@@ -332,7 +331,7 @@ declare namespace Internal {
             assert?: OmniColor;
         }): this;
         // @ts-ignore
-        setContentTextColor(verbose: OmniColor, log?: OmniColor, info?: OmniColor, warn?: OmniColor, error?: OmniColor, assert?: OmniColor): this;
+        setContentTextColor(verbose?: OmniColor, log?: OmniColor, info?: OmniColor, warn?: OmniColor, error?: OmniColor, assert?: OmniColor): this;
 
         setContentTextColor(colors: OmniColor[]): this;
 
@@ -508,12 +507,12 @@ declare function warn(data?: any, ...text): void;
  * scope.openConsole = console.show.bind(console);
  * @see console.show
  */
-declare function openConsole(): void;
+declare function openConsole(isReset?: boolean): void;
 
 /**
  * @see console.show
  */
-declare function showConsole(): void;
+declare function showConsole(isReset?: boolean): void;
 
 /**
  * @example Source code summary (zh-CN: 源代码摘要)

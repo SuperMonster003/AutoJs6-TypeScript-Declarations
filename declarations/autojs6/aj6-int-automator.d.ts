@@ -212,7 +212,7 @@ declare namespace Internal {
          *     return strokes;
          * }
          */
-        gestures(...stroke: StrokeParams[]): boolean;
+        gestures(stroke: StrokeParams, ...strokes: StrokeParams[]): boolean;
 
         gesturesAsync(stroke: StrokeParams, callback: GestureResultCallbackLike): void;
         gesturesAsync(strokeA: StrokeParams, strokeB: StrokeParams, callback: GestureResultCallbackLike): void;
@@ -264,7 +264,7 @@ declare namespace Internal {
          *     return strokes;
          * }
          */
-        gesturesAsync(...stroke: StrokeParams[]): void;
+        gesturesAsync(stroke: StrokeParams, ...strokes: StrokeParams[]): void;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)
@@ -541,7 +541,7 @@ declare namespace Internal {
 
         stateListener(listener?: Automator.StateListener | null): void;
 
-        registerEvent(name: string, listener?: Automator.AccessibilityEventListener | null): void;
+        registerEvent(name: string, listener: Automator.AccessibilityEventListener | null | undefined): void;
         /**
          * With `options`, repeated deliveries are filtered: `distinct` by window / source / event fingerprint / a key function,
          * `within` milliseconds (default 500), or `debounce` by delivering only the last event of a burst.
@@ -551,7 +551,7 @@ declare namespace Internal {
          */
         registerEvent(name: string, listener: Automator.AccessibilityEventListener, options: Automator.RegisterEventOptions): void;
 
-        registerEvents(name: string, listener?: Automator.AccessibilityEventListener | null): void;
+        registerEvents(name: string, listener: Automator.AccessibilityEventListener | null | undefined): void;
         registerEvents(name: string, listener: Automator.AccessibilityEventListener, options: Automator.RegisterEventOptions): void;
 
         removeEvent(name: string): void;
@@ -1307,7 +1307,7 @@ declare function gestureAsync(duration: number, ...point: [x: number, y: number]
 /**
  * @see Internal.Automator.gestures
  */
-declare function gestures(...stroke: StrokeParams[]): boolean;
+declare function gestures(stroke: StrokeParams, ...strokes: StrokeParams[]): boolean;
 
 declare function gesturesAsync(stroke: StrokeParams, callback: GestureResultCallbackLike): void;
 declare function gesturesAsync(strokeA: StrokeParams, strokeB: StrokeParams, callback: GestureResultCallbackLike): void;
@@ -1326,7 +1326,7 @@ declare function gesturesAsync(strokesGroup: [...StrokeParams[]], callback?: Ges
  *
  * @see Internal.Automator.gesturesAsync
  */
-declare function gesturesAsync(...stroke: StrokeParams[]): void;
+declare function gesturesAsync(stroke: StrokeParams, ...strokes: StrokeParams[]): void;
 
 /**
  * @see Internal.Automator.scrollDown

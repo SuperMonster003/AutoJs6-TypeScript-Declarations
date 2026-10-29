@@ -6340,7 +6340,7 @@ declare namespace Internal {
         // @ts-ignore
         luminance(color: OmniColor): number;
 
-        toColorStateList(...color: (OmniColor)[]): android.content.res.ColorStateList;
+        toColorStateList(color: OmniColor, ...colors: (OmniColor)[]): android.content.res.ColorStateList;
 
         setPaintColor(paint: Paint, color: OmniColor): void;
 

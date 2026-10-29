@@ -175,7 +175,7 @@ declare namespace Internal {
          * @see org.autojs.autojs.execution.ScriptExecution
          * @see org.autojs.autojs.script.StringScriptSource
          */
-        public execScript(name: string, script: string, config: org.autojs.autojs.execution.ExecutionConfig): org.autojs.autojs.execution.ScriptExecution;
+        public execScript(name: string, script: string, config?: org.autojs.autojs.execution.ExecutionConfig): org.autojs.autojs.execution.ScriptExecution;
 
         /**
          * @example without extended module
@@ -251,7 +251,7 @@ declare namespace Internal {
          * @see org.autojs.autojs.script.JavaScriptFileSource
          * @see org.autojs.autojs.script.PythonFileSource
          */
-        public execScriptFile(path: string, config: org.autojs.autojs.execution.ExecutionConfig): org.autojs.autojs.execution.ScriptExecution;
+        public execScriptFile(path: string, config?: org.autojs.autojs.execution.ExecutionConfig): org.autojs.autojs.execution.ScriptExecution;
 
         /**
          * @example
@@ -295,7 +295,7 @@ declare namespace Internal {
          * @see org.autojs.autojs.runtime.ScriptRuntime
          * @see org.autojs.autojs.script.AutoFileSource
          */
-        public execAutoFile(path: string, config: org.autojs.autojs.execution.ExecutionConfig): org.autojs.autojs.execution.ScriptExecution;
+        public execAutoFile(path: string, config?: org.autojs.autojs.execution.ExecutionConfig): org.autojs.autojs.execution.ScriptExecution;
 
     }
 

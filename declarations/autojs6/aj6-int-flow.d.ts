@@ -554,9 +554,9 @@ declare namespace Flow {
         (name: string, options: WaitOptions, onOk?: OnOk<boolean>, onErr?: OnErr): Flow<boolean>;
     }
 
-    /** `clickWhenStableAfter(cond, timeout?, interval?, delayMin?, delayMax?, onOk?, onErr?)` or `(cond, options, onOk?, onErr?)`. */
+    /** `clickWhenStableAfter(cond, timeout, interval, delayMin, delayMax?, onOk?, onErr?)` or `(cond, options, onOk?, onErr?)`: the positional delay follows the timeout and the interval, the options give it as `delay`. zh-CN: 位置形式的延时在超时与间隔之后, 选项形式以 `delay` 给出. */
     interface WaitAfterFunction {
-        (cond: SelectorCond, timeout?: number, interval?: number, delayMin?: number, delayMax?: number | string, onOk?: OnOk<UiObject>, onErr?: OnErr): Flow<UiObject>;
+        (cond: SelectorCond, timeout: number, interval: number, delayMin: number, delayMax?: number | string, onOk?: OnOk<UiObject>, onErr?: OnErr): Flow<UiObject>;
         (cond: SelectorCond, options: WaitOptions, onOk?: OnOk<UiObject>, onErr?: OnErr): Flow<UiObject>;
     }
 
