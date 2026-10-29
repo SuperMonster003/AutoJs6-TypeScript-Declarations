@@ -392,6 +392,12 @@ declare namespace org {
 
                 // @ts-ignore
                 export class App extends java.lang.Enum<org.autojs.autojs.util.App> {
+                    /* Empty body. */
+                }
+
+                /* Instance members merged into the forward above (and, in the Ace editor, into the main-app class). */
+                // @ts-ignore
+                export interface App {
                     readonly alias: string;
                     readonly packageName: string;
                     getAlias(): string;
