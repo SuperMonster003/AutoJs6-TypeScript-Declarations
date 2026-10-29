@@ -427,3 +427,37 @@ async function aiAgentSmoke(signal: AutoJs6Node.AbortSignalLike) {
   run.id = 'changed';
   return {result, history, context, reported, granted};
 }
+
+// worker_threads: Node exports plus the root-script WorkerPool (AutoJs6 api-coverage P5.2b).
+import workerThreads = require('worker_threads');
+import nodeWorkerThreads = require('node:worker_threads');
+
+async function workerPoolTasks() {
+  const pool = new workerThreads.WorkerPool('./square.cjs', { maxWorkers: 2, queueLimit: null, taskTimeoutMs: 0 });
+  const task = pool.run<number>(21, { timeoutMs: 1000 });
+  const cancelled: boolean = task.cancel();
+  const answer: number = await task;
+  const counts: workerThreads.WorkerPoolDiagnostics = pool.diagnostics();
+  const shutdown: Promise<void> = pool.shutdown();
+  await pool.close();
+  const withoutNew: nodeWorkerThreads.WorkerPool = nodeWorkerThreads.WorkerPool('./square.cjs');
+  const defaultWorkers: number = workerThreads.policy.workerPool.maxWorkers;
+  const queueRejected: number = workerThreads.diagnostics().workerPoolQueueRejectedCount;
+  const nativeWorkers: boolean = workerThreads.nativeAvailable;
+  // @ts-expect-error idleTimeoutMs is a number of milliseconds.
+  workerThreads.WorkerPool('./square.cjs', { idleTimeoutMs: '1s' });
+  const port = workerThreads.parentPort;
+  if (!workerThreads.isMainThread && port) {
+    port.on('message', (message: workerThreads.WorkerPoolTaskMessage<number>) => {
+      const reply: workerThreads.WorkerPoolReplyMessage<number> = { __autojs6PoolTaskId: message.__autojs6PoolTaskId, value: message.value * message.value };
+      port.postMessage(reply);
+    });
+  }
+  const worker = new workerThreads.Worker('./square.cjs', { workerData: 1, resourceLimits: { maxOldGenerationSizeMb: 64 } });
+  worker.on('exit', (exitCode: number) => exitCode);
+  const exited: Promise<number> = worker.terminate();
+  const { port1, port2 } = new workerThreads.MessageChannel();
+  port1.postMessage({ ready: true });
+  const received: { readonly message: any } | undefined = workerThreads.receiveMessageOnPort(port2);
+  return [cancelled, answer, counts, shutdown, withoutNew, defaultWorkers, queueRejected, nativeWorkers, exited, received];
+}

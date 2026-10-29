@@ -42,6 +42,7 @@
 /// <reference path="./net.d.ts" />
 /// <reference path="./tls.d.ts" />
 /// <reference path="./dns.d.ts" />
+/// <reference path="./worker_threads.d.ts" />
 /// <reference path="./axios.d.ts" />
 /// <reference path="./websocket.d.ts" />
 /// <reference path="./work_manager.d.ts" />
