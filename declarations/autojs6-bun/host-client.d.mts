@@ -286,6 +286,16 @@ export interface PinyinOptions {
   readonly customDictionary?: Readonly<Record<string, readonly (readonly string[])[]>>;
 }
 export interface PinyinApi {
+  readonly STYLE_NORMAL: 0;
+  readonly STYLE_TONE: 1;
+  readonly STYLE_TONE2: 2;
+  readonly STYLE_INITIALS: 3;
+  readonly STYLE_FIRST_LETTER: 4;
+  readonly STYLE_TO3NE: 5;
+  readonly MODE_NORMAL: 0;
+  readonly MODE_SURNAME: 1;
+  readonly MODE_PLACENAME: 2;
+  readonly MODE_PLACE_NAME: 2;
   convert(text: string, options?: PinyinOptions | null): Promise<string[][]>;
   simple(text: string, enableNumericTone?: boolean, enableSegment?: boolean): Promise<string>;
   compare(left: string, right: string): Promise<number>;
@@ -4236,6 +4246,375 @@ export namespace RuntimeAi {
   }
 // END GENERATED AI TYPES
 
+// BEGIN GENERATED JS TOOLS TYPES
+export namespace RuntimeUtil {
+    type JavaHandle = RuntimeJava.ObjectHandle;
+    type JavaClass = string | RuntimeJava.ClassDescriptor | JavaHandle;
+
+    export interface InspectOptions {
+      readonly showHidden?: boolean;
+      readonly depth?: number | null;
+      readonly colors?: boolean;
+      readonly customInspect?: boolean;
+      readonly maxArrayItems?: number;
+      readonly maxStringLength?: number;
+      readonly maxObjectKeys?: number;
+    }
+
+    export interface Inspect {
+      (object: unknown, options?: InspectOptions | boolean | null, depth?: number | null, colors?: boolean): string;
+      readonly colors: { readonly [name: string]: readonly [number, number] };
+      readonly styles: { readonly [style: string]: string };
+    }
+
+    export interface MorseCode {
+      readonly code: string;
+      readonly pattern: number[];
+      getCode(): string;
+      getPattern(): number[];
+      vibrate(delay?: number): Promise<void>;
+      toString(): string;
+    }
+
+    export interface MorseCodeModule {
+      /** A dot is 1 unit, a dash 3, the gap within a character 1, between characters 3, between words 7 (unit timeSpan, 100 ms). */
+      (source: unknown, timeSpan?: number): MorseCode;
+      getCode(source: unknown, timeSpan?: number): string;
+      getPattern(source: unknown, timeSpan?: number): number[];
+      vibrate(source: unknown, delay?: number): Promise<void>;
+    }
+
+    export interface VersionCodeInfo {
+      readonly versionCode: string;
+      readonly apiLevel: number;
+      readonly releaseName: string;
+      readonly platformVersion: string;
+      readonly internalCodename: string;
+      readonly releaseDate: string;
+      /** Local midnight of the release date (milliseconds). */
+      readonly releaseTimestamp: number;
+      valueOf(): number;
+    }
+
+    export interface VersionCodesModule {
+      /** The version code constants (CUPCAKE ... CINNAMON_BUN) are on the prototype. */
+      readonly [versionCode: string]: unknown;
+      search(query: string | number | Date): VersionCodeInfo | null;
+      searchAll(query: string | number | Date): VersionCodeInfo[];
+      summary(isInDetail?: boolean): string;
+      toString(isInDetail?: boolean): string;
+    }
+
+    export interface JavaModule {
+      instanceof(obj: unknown, clazz: JavaClass | null | undefined): Promise<boolean>;
+      instanceOf(obj: unknown, clazz: JavaClass | null | undefined): Promise<boolean>;
+      /** A Java array of a class (name, descriptor or Class handle) or string / int / long / double / char / byte / float / short / boolean. */
+      array(componentType: JavaClass, dimension: number, ...dimensions: number[]): Promise<JavaHandle>;
+      toJsArray(list: JavaHandle | readonly unknown[] | null | undefined, nullListToEmptyArray?: boolean): Promise<unknown[] | null>;
+      objectToMap(o: object | null | undefined): Promise<JavaHandle | null>;
+      mapToObject(map: JavaHandle | object | null | undefined): Promise<{ [key: string]: unknown } | null>;
+    }
+
+    export interface UtilModule {
+      isArray(o: unknown): o is unknown[];
+      isBoolean(o: unknown): o is boolean;
+      isNull(o: unknown): o is null;
+      isNullOrUndefined(o: unknown): o is null | undefined;
+      isNumber(o: unknown): o is number;
+      isString(o: unknown): o is string;
+      isSymbol(o: unknown): o is symbol;
+      isUndefined(o: unknown): o is undefined;
+      isRegExp(o: unknown): o is RegExp;
+      isObject(o: unknown): o is object;
+      isDate(o: unknown): o is Date;
+      isError(o: unknown): o is Error;
+      isFunction(o: unknown): o is (...args: unknown[]) => unknown;
+      isBigInt(o: unknown): o is bigint;
+      /** A Java object handle of the Java facade (not a java.type() descriptor). */
+      isJavaObject(o: unknown): boolean;
+      /** A Java array handle. */
+      isJavaArray(o: unknown): boolean;
+      isInteger(o: unknown): boolean;
+      isPrimitive(o: unknown): boolean;
+      isReference(o: unknown): boolean;
+      isEmptyObject(o: unknown): boolean;
+      extend(d: Function, b: Function | { readonly prototype: unknown } | null): void;
+      format(...args: unknown[]): string;
+      readonly inspect: Inspect;
+      deprecate(...args: unknown[]): void;
+      debuglog(...args: unknown[]): void;
+      log(...args: unknown[]): void;
+      checkStringParam(src: unknown, pattern: string | RegExp): boolean;
+      checkStringArgument(src: unknown, pattern: string | RegExp): boolean;
+      assureStringStartsWith(s: unknown, start: unknown): string;
+      assureStringEndsWith(s: unknown, end: unknown): string;
+      assureStringSurroundsWith(s: unknown, start: unknown, end?: unknown): string;
+      ensureType(o: unknown, type: string): void;
+      ensureStringType(...values: unknown[]): void;
+      ensureNumberType(...values: unknown[]): void;
+      ensureUndefinedType(...values: unknown[]): void;
+      ensureBooleanType(...values: unknown[]): void;
+      ensureSymbolType(...values: unknown[]): void;
+      ensureBigIntType(...values: unknown[]): void;
+      ensureBigintType(...values: unknown[]): void;
+      ensureObjectType(...values: unknown[]): void;
+      ensureFunctionType(...values: unknown[]): void;
+      ensureNonNullObjectType(...values: unknown[]): void;
+      ensureArrayType(...values: unknown[]): void;
+      toRegular<T extends Function>(f: T): T;
+      /** Obsolete in AutoJs6 (throws, as in Rhino). */
+      toRegularAndCall(...args: unknown[]): never;
+      /** Obsolete in AutoJs6 (throws, as in Rhino). */
+      toRegularAndApply(...args: unknown[]): never;
+      /** Pixels of a dp value, with the screen density of the device (float math as the host). */
+      dpToPx(dp: number | string): number;
+      /** Pixels of an sp value; linear with the scaled density (api-coverage Q60). */
+      spToPx(sp: number | string): number;
+      pxToDp(px: number | string): number;
+      pxToSp(px: number | string): number;
+      readonly java: JavaModule;
+      readonly version: { readonly sdkInt: number };
+      readonly versionCodes: VersionCodesModule;
+      readonly morseCode: MorseCodeModule;
+      __assignFunctions__(src: object, target: object, funcNames: readonly string[]): void;
+    }
+  }
+export namespace RuntimeSpecies {
+    /**
+     * The species of a value as the AutoJs6 species module (Rhino) names it: "Null", "Undefined", "Boolean", "String",
+     * "Number", "BigInt", "Symbol", or the class of an object ("Array", "Object", "Date", "JavaObject" for a Java handle,
+     * "JavaClass" for a java.type() descriptor ...). Each function takes exactly one argument (TypeError otherwise).
+     */
+    export interface SpeciesModule {
+      (o: unknown): string;
+      isArray(o: unknown): boolean;
+      isArrayBuffer(o: unknown): boolean;
+      isBigInt(o: unknown): boolean;
+      isBoolean(o: unknown): boolean;
+      isContinuation(o: unknown): boolean;
+      isDataView(o: unknown): boolean;
+      isDate(o: unknown): boolean;
+      isError(o: unknown): boolean;
+      isFloat32Array(o: unknown): boolean;
+      isFloat64Array(o: unknown): boolean;
+      isFunction(o: unknown): boolean;
+      isHTMLDocument(o: unknown): boolean;
+      isInt16Array(o: unknown): boolean;
+      isInt32Array(o: unknown): boolean;
+      isInt8Array(o: unknown): boolean;
+      isJavaClass(o: unknown): boolean;
+      isJavaObject(o: unknown): boolean;
+      isJavaPackage(o: unknown): boolean;
+      isMap(o: unknown): boolean;
+      isNamespace(o: unknown): boolean;
+      isNull(o: unknown): boolean;
+      isNumber(o: unknown): boolean;
+      isObject(o: unknown): boolean;
+      isQName(o: unknown): boolean;
+      isRegExp(o: unknown): boolean;
+      isSet(o: unknown): boolean;
+      isString(o: unknown): boolean;
+      isUint16Array(o: unknown): boolean;
+      isUint32Array(o: unknown): boolean;
+      isUint8Array(o: unknown): boolean;
+      isUint8ClampedArray(o: unknown): boolean;
+      isUndefined(o: unknown): boolean;
+      isWeakMap(o: unknown): boolean;
+      isWeakSet(o: unknown): boolean;
+      isWindow(o: unknown): boolean;
+      isXML(o: unknown): boolean;
+      isXMLList(o: unknown): boolean;
+    }
+  }
+export namespace RuntimeGlobal {
+    /**
+     * The global data functions of AutoJs6 Rhino scripts as a module (a Node script has no Rhino global object). Same
+     * argument counts, conversions and errors as Rhino; randomInt / randomFloat are jsox.mathx's.
+     */
+    export interface GlobalModule {
+      /** A random number in [0, 1), or in [min, max] (NaN when only one bound is given). */
+      random(min?: number | null, max?: number | null): number;
+      randomInt(...values: readonly unknown[]): number;
+      randomFloat(...values: readonly unknown[]): number;
+      isInteger(o: unknown): boolean;
+      isPrimitive(o: unknown): boolean;
+      /** species.isObject: a plain script object (not an array, function or Java handle). */
+      isObject(o: unknown): boolean;
+      isReference(o: unknown): boolean;
+      isBigInt(o: unknown): o is bigint;
+      isEmptyObject(o: unknown): boolean;
+      /** typeof o is "object" and o is not null. */
+      isObjectSpecies(o: unknown): boolean;
+    }
+  }
+export namespace RuntimeS13n {
+    type JavaHandle = RuntimeJava.ObjectHandle;
+    export type TimeUnitName = string;
+
+    /** AutoJs6 s13n (Rhino): the same argument counts, conversions and errors; point / throwable need java_interop. */
+    export interface S13nModule {
+      /** An integer byte count from a number or a string with a unit (the loose mode of cvt.bytes). */
+      bytes(source: number | string, fromUnit?: string): number;
+      /** A signed 32-bit color int from #RGB / #ARGB / #RRGGBB / #AARRGGBB, a color name or a number. */
+      color(o: string | number): number;
+      /** An android.graphics.Point handle from [x, y], { x, y }, a number (y defaults to it), an OpenCV Point or a Point handle. */
+      point(source: readonly [number, number] | { readonly x: number; readonly y: number } | number | JavaHandle, y?: number | null): Promise<JavaHandle>;
+      /** A java.lang.Throwable handle from a Throwable handle, a message or an Error. */
+      throwable(o: string | Error | JavaHandle): Promise<JavaHandle>;
+      /** A time converted from fromUnit to toUnit (milliseconds by default); a text with six numbers is a local date-time. */
+      time(source: number | string | Date, fromUnit?: TimeUnitName | { readonly fromUnit?: TimeUnitName; readonly toUnit?: TimeUnitName } | null, toUnit?: TimeUnitName | null): number;
+    }
+  }
+export namespace RuntimeConverter {
+    export interface BytesOptions {
+      readonly fromUnit?: string;
+      readonly toUnit?: string;
+      readonly fractionDigits?: number;
+      readonly autoCarryThreshold?: number;
+      readonly strict?: boolean;
+    }
+
+    export interface BytesConverter {
+      (source: number | string, toUnit?: string | number | BytesOptions | null, options?: string | number | BytesOptions | null): number;
+      readonly UNITS: string;
+      readonly AUTO: "AUTO";
+      readonly IEC_DIV: 1024;
+      readonly SI_DIV: 1000;
+      strict(source: number | string, toUnit?: string | number | BytesOptions | null, options?: string | number | BytesOptions | null): number;
+      loose(source: number | string, toUnit?: string | number | BytesOptions | null, options?: string | number | BytesOptions | null): number;
+    }
+
+    export interface ConverterModule {
+      readonly bytes: BytesConverter;
+    }
+  }
+export namespace RuntimeFormatter {
+    export interface BytesOptions {
+      readonly fromUnit?: string;
+      readonly toUnit?: string;
+      readonly useIecIdentifier?: boolean;
+      readonly useSpace?: boolean;
+      readonly fractionDigits?: number;
+      readonly trimTrailingZero?: boolean;
+      readonly autoCarryThreshold?: number;
+      readonly strict?: boolean;
+    }
+
+    export interface BytesFormatter {
+      (source: number | string, toUnit?: string | number | boolean | BytesOptions | null, options?: string | number | boolean | BytesOptions | null): string;
+      readonly UNITS: string;
+      readonly AUTO: "AUTO";
+      readonly IEC_DIV: 1024;
+      readonly SI_DIV: 1000;
+      strict(source: number | string, toUnit?: string | number | BytesOptions | null, options?: string | number | BytesOptions | null): string;
+      loose(source: number | string, toUnit?: string | number | boolean | BytesOptions | null, options?: string | number | boolean | BytesOptions | null): string;
+    }
+
+    export interface FormatterModule {
+      readonly bytes: BytesFormatter;
+    }
+  }
+export namespace RuntimeJsox {
+    export type ModuleName =
+      | "Mathx"
+      | "mathx"
+      | "Math"
+      | "Arrayx"
+      | "arrayx"
+      | "Array"
+      | "Numberx"
+      | "numberx"
+      | "Number";
+    export type ModuleNameInput = ModuleName | readonly ModuleNameInput[];
+
+    export interface PointLike {
+      readonly x: number;
+      readonly y: number;
+    }
+
+    export type PointInput = readonly [number, number] | PointLike;
+
+    export interface MathxModule {
+      randInt(...values: readonly unknown[]): number;
+      randomInt(...values: readonly unknown[]): number;
+      randFloat(...values: readonly unknown[]): number;
+      randomFloat(...values: readonly unknown[]): number;
+      random(...values: readonly unknown[]): number;
+      sum(...values: readonly unknown[]): number;
+      mean(...values: readonly unknown[]): number;
+      avg(...values: readonly unknown[]): number;
+      median(...values: readonly unknown[]): number;
+      "var"(...values: readonly unknown[]): number;
+      std(...values: readonly unknown[]): number;
+      cv(...values: readonly unknown[]): number;
+      mode(...values: readonly unknown[]): number;
+      dist(a: PointInput, b: PointInput, fraction?: number): number;
+      logMn(base: number, antilogarithm: number, fraction?: number): number;
+      floorLog(base: number, antilogarithm: number): number;
+      ceilLog(base: number, antilogarithm: number): number;
+      roundLog(base: number, antilogarithm: number): number;
+      floorPow(base: number, antilogarithm: number): number;
+      ceilPow(base: number, antilogarithm: number): number;
+      roundPow(base: number, antilogarithm: number): number;
+      max(...values: readonly unknown[]): number;
+      min(...values: readonly unknown[]): number;
+    }
+
+    export interface ArrayxModule {
+      ensureArray(...values: readonly unknown[]): void;
+      distinct<T>(arr: readonly T[]): T[];
+      distinctBy<T>(arr: readonly T[], selector: (value: T) => unknown): T[];
+      union<T>(...arrays: readonly (readonly T[])[]): T[];
+      intersect<T>(...arrays: readonly (readonly T[])[]): T[];
+      subtract<T>(left: readonly T[], right: readonly T[]): T[];
+      differ<T>(left: readonly T[], right: readonly T[]): T[];
+      sortBy<T>(arr: T[], selector: (value: T) => unknown): T[];
+      sortByDescending<T>(arr: T[], selector: (value: T) => unknown): T[];
+      sortDescending<T>(arr: T[]): T[];
+      sorted<T>(arr: readonly T[]): T[];
+      sortedBy<T>(arr: readonly T[], selector: (value: T) => unknown): T[];
+      sortedByDescending<T>(arr: readonly T[], selector: (value: T) => unknown): T[];
+      sortedDescending<T>(arr: readonly T[]): T[];
+      shuffle<T>(arr: T[]): T[];
+    }
+
+    export interface NumberxModule {
+      readonly ICU: 996;
+      ensureNumber(...values: readonly unknown[]): void;
+      ensureNumberLike(value: unknown, allowNaN?: boolean): number;
+      ensureNumbersLike(values: readonly unknown[], allowNaN?: boolean, containsNaN?: boolean): number[];
+      check(...values: readonly unknown[]): boolean;
+      clamp(num: unknown, ...clamps: readonly unknown[]): number;
+      clampTo(num: unknown, range: readonly unknown[], cycle?: unknown): number;
+      toFixedNum(num: unknown, fraction?: unknown): number;
+      padStart(num: unknown, targetLength: unknown, pad?: unknown): string;
+      padEnd(num: unknown, targetLength: unknown, pad?: unknown): string;
+      parseFloat(value: unknown, radix?: unknown): number;
+      parsePercent(value: unknown): number;
+      parseRatio(value: unknown): number;
+      parseAny(value: unknown): number;
+    }
+
+    export interface JsoxModule {
+      /** Same as extend. */
+      (...modules: readonly ModuleNameInput[]): void;
+      readonly mathx: MathxModule;
+      readonly Mathx: MathxModule;
+      readonly arrayx: ArrayxModule;
+      readonly Arrayx: ArrayxModule;
+      readonly numberx: NumberxModule;
+      readonly Numberx: NumberxModule;
+      /**
+       * Installs the members of the named modules (Mathx when none is given) on this thread's Math, Array.prototype,
+       * Number.prototype and Number, as in Rhino (api-coverage Q59); an unknown name is a RangeError.
+       */
+      extend(...modules: readonly ModuleNameInput[]): void;
+      /** extend("Mathx", "Numberx", "Arrayx"). */
+      extendAll(): void;
+    }
+  }
+// END GENERATED JS TOOLS TYPES
+
 export interface HostClient {
   readonly ai: RuntimeAi.API;
   readonly flow: RuntimeFlow.API;
@@ -4244,6 +4623,14 @@ export interface HostClient {
   readonly speech: RuntimeSpeech.API;
   readonly tts: RuntimeTts.API;
   readonly java: RuntimeJava.API;
+  /** AutoJs6 util / species / global data functions / s13n / cvt / fmt / jsox, computed locally as in Rhino; util.java, s13n.point / throwable and morse vibration use the Java facade (java.interop). */
+  readonly util: RuntimeUtil.UtilModule;
+  readonly species: RuntimeSpecies.SpeciesModule;
+  readonly global: RuntimeGlobal.GlobalModule;
+  readonly s13n: RuntimeS13n.S13nModule;
+  readonly cvt: RuntimeConverter.ConverterModule;
+  readonly fmt: RuntimeFormatter.FormatterModule;
+  readonly jsox: RuntimeJsox.JsoxModule;
   readonly android: RuntimeAndroid.AndroidModule;
   readonly colors: RuntimeColors.ColorsModule;
   readonly tasks: RuntimeTasks.TasksModule;

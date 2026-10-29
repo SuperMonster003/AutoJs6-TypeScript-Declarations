@@ -42,9 +42,7 @@ declare module "jsox" {
       ceilPow(base: number, antilogarithm: number): number;
       roundPow(base: number, antilogarithm: number): number;
       max(...values: readonly unknown[]): number;
-      maxi(...values: readonly unknown[]): number;
       min(...values: readonly unknown[]): number;
-      mini(...values: readonly unknown[]): number;
     }
 
     export interface ArrayxModule {
@@ -82,27 +80,22 @@ declare module "jsox" {
       parseAny(value: unknown): number;
     }
 
-    export interface Status {
-      readonly schema: "autojs6-node-jsox-v1";
-      readonly task: "P13-27";
-      readonly modules: readonly ("Mathx" | "Numberx" | "Arrayx")[];
-      readonly nodeModules: readonly ("jsox" | "jsox.mathx" | "jsox.arrayx" | "jsox.numberx")[];
-      readonly safeDefault: true;
-      readonly defaultGlobalMutation: false;
-      readonly rawAndroidObjects: false;
-    }
-
     export interface JsoxModule {
-      <T extends object>(target: T, ...modules: readonly ModuleNameInput[]): T;
+      /** Same as extend. */
+      (...modules: readonly ModuleNameInput[]): void;
       readonly mathx: MathxModule;
       readonly Mathx: MathxModule;
       readonly arrayx: ArrayxModule;
       readonly Arrayx: ArrayxModule;
       readonly numberx: NumberxModule;
       readonly Numberx: NumberxModule;
-      extend<T extends object>(target: T, ...modules: readonly ModuleNameInput[]): T;
-      extendAll<T extends object>(target: T): T;
-      status(): Status;
+      /**
+       * Installs the members of the named modules (Mathx when none is given) on this thread's Math, Array.prototype,
+       * Number.prototype and Number, as in Rhino (api-coverage Q59); an unknown name is a RangeError.
+       */
+      extend(...modules: readonly ModuleNameInput[]): void;
+      /** extend("Mathx", "Numberx", "Arrayx"). */
+      extendAll(): void;
     }
   }
 

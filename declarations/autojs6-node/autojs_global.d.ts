@@ -927,6 +927,13 @@ declare namespace AutoJs6Node {
     readonly speech: typeof import("speech");
     readonly tts: typeof import("tts");
     readonly java: AutoJsJavaFacade;
+    readonly util: typeof import("autojs6:util");
+    readonly species: typeof import("species");
+    readonly global: typeof import("autojs6:global");
+    readonly jsox: typeof import("jsox");
+    readonly s13n: typeof import("s13n");
+    readonly fmt: typeof import("formatter");
+    readonly cvt: typeof import("converter");
   }
 }
 
