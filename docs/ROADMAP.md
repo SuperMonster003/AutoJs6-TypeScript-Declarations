@@ -255,7 +255,7 @@ Verification:
 - [x] Run the chosen TypeScript validation command, excluding `aj6-main-app.d.ts` unless generator fixes are in scope.
 - [x] Add smoke samples for key globals: `colors`, `Color`, `Canvas`, `zip`, `sysprops`, `nanoid`, `pinyin4j`, `cvt`, `fmt`, `jsox`.
 - [x] Check that `index.d.ts` can be consumed from a fresh project.
-- [ ] Check that WebStorm/TypeScript completion sees newly added globals.
+- [x] Check that WebStorm/TypeScript completion sees newly added globals.
 
 Progress:
 
@@ -265,6 +265,7 @@ Progress:
 - 2026-06-15: Chose `v3.0.0` for the release because the sync spans new modules, existing module contracts, entry points, and regenerated Android/library declarations; updated `package.json`, README version history, and `docs/CHANGELOG.md`.
 - 2026-06-15: Verified npm package contents with `npm pack --dry-run --json`; package resolves as `@sm003/autojs6-dts@3.0.0`, includes core declarations and release docs, and excludes internal roadmap/smoke artifacts.
 - 2026-07-27: The regenerated bundle removed the previous parser blockers. The canonical `declarations/autojs6/index.d.ts` entry and the latest augment smoke sample now compile together with TypeScript 5.1.3 and `skipLibCheck`.
+- 2026-10-29 (AutoJs6 api-coverage P2.2): TypeScript language service check of global completion: a plain JS file that only references `declarations/autojs6/index.d.ts` is offered all 692 top-level value globals (`declare` var / function / class / enum) of `aj6-int-*.d.ts` at the global position, with TypeScript 5.1.3 and 6.0.3 (Ace's bundled compiler). WebStorm's own UI was not opened; it reads the same declaration files.
 
 Validation command:
 
