@@ -178,6 +178,14 @@ npm update @sm003/autojs6-dts
 
 ## 변경 기록
 
+### v4.85.0
+
+###### 2026/10/29
+
+* `기능` speech 선언에 diarize, detectLanguage, tag와 그 Async 형식 추가: 화자 분리 (누가 언제 말했는지, 등록된 성문으로 화자 이름 지정 가능), 언어 식별, 오디오 태깅 (AudioSet의 527개 레이블); 옵션에 onProgress 진행 콜백을 지정할 수 있고 Speech.Diarization, Speech.LanguageDetection, Speech.Tagging 등의 결과 타입 포함 (AutoJs6 6.8.0 이상, 3-Macaw Speech 1.3.0 필요)
+* `기능` speech 선언에 화자 인식 speech.speaker 추가: enroll, verify, identify와 그 Async 형식, list, remove, 오류 코드 SPEAKER_NOT_FOUND와 AUDIO_TOO_SHORT (AutoJs6 6.8.0 이상, 3-Macaw Speech 1.3.0 필요)
+* `개선` Speech.Feature에 'speaker', 'diarization', 'languageId', 'audioTagging' 추가; Speech.Kind에 모델 종류 'speaker', 'segment', 'langid', 'tagger'를 추가하여 models.list, setDefault, getDefault에서 사용 가능
+
 ### v4.84.0
 
 ###### 2026/10/29
@@ -191,12 +199,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/24
 
 * `기능` sqlite 선언에 onDowngrade 콜백 추가: 요청한 version 이 기존 데이터베이스 버전보다 낮을 때 호출 (AutoJs6 6.8.0 이상); 구현하지 않으면 다운그레이드는 아무 작업도 하지 않고 테이블과 데이터를 유지
-
-### v4.82.0
-
-###### 2026/10/23
-
-* `기능` memory 선언에 브리지 세션 추가: Snapshot.bridgeSessions 는 플러그인 엔진 (Node.js, Bun, QuickJS, Lua, Python) 별로 종료 후 회수되지 않은 브리지 세션 수를 제공하고, RetainedRuntime.engine 으로 rhino 와 node 를 구분; Memory.BridgeSessions, Memory.RetainedEngine 타입 추가
 
 [전체 변경 기록](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ko.md)
 

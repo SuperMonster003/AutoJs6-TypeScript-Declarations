@@ -178,6 +178,14 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.85.0
+
+###### 2026/10/29
+
+* `新增` speech 宣告補全 diarize, detectLanguage 與 tag 及其 Async 形式: 語者分離 (誰在何時說話, 可依已註冊的聲紋辨認), 語言辨識與音訊標籤 (AudioSet 的 527 個標籤), 選項可帶 onProgress 進度回呼, 含 Speech.Diarization, Speech.LanguageDetection 與 Speech.Tagging 等結果型別 (AutoJs6 6.8.0 起, 需要 3-Macaw Speech 1.3.0)
+* `新增` speech 宣告補全 speech.speaker 語者辨識: enroll, verify, identify 及其 Async 形式, list 與 remove, 以及錯誤碼 SPEAKER_NOT_FOUND 與 AUDIO_TOO_SHORT (AutoJs6 6.8.0 起, 需要 3-Macaw Speech 1.3.0)
+* `最佳化` Speech.Feature 增加 'speaker', 'diarization', 'languageId' 與 'audioTagging'; Speech.Kind 增加 'speaker', 'segment', 'langid' 與 'tagger' 四種模型類別, models.list, setDefault 與 getDefault 可使用這些類別
+
 ### v4.84.0
 
 ###### 2026/10/29
@@ -191,12 +199,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/24
 
 * `新增` sqlite 宣告補全 onDowngrade 回呼: 開啟資料庫時請求的 version 低於現有版本時呼叫 (AutoJs6 6.8.0 起), 未實作時降級不執行任何操作, 保留資料表與資料
-
-### v4.82.0
-
-###### 2026/10/23
-
-* `新增` memory 宣告補全橋接工作階段: Snapshot.bridgeSessions 提供 Node.js, Bun, QuickJS, Lua 與 Python 各外掛引擎已結束但未回收的橋接工作階段數, RetainedRuntime.engine 區分 rhino 與 node, 含 Memory.BridgeSessions 與 Memory.RetainedEngine 型別
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-TW.md)
 

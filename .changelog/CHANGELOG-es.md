@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.85.0
+
+###### 2026/10/29
+
+* `Función` las declaraciones de speech añaden diarize, detectLanguage y tag con sus formas Async: diarización de hablantes (quién habla y cuándo, con nombre opcional según las huellas de voz registradas), identificación del idioma y etiquetado de audio (las 527 etiquetas de AudioSet); las opciones aceptan un callback onProgress, con tipos de resultado como Speech.Diarization, Speech.LanguageDetection y Speech.Tagging (AutoJs6 6.8.0 o posterior, requiere 3-Macaw Speech 1.3.0)
+* `Función` las declaraciones de speech añaden speech.speaker para el reconocimiento de hablantes: enroll, verify e identify con sus formas Async, list y remove, y los códigos de error SPEAKER_NOT_FOUND y AUDIO_TOO_SHORT (AutoJs6 6.8.0 o posterior, requiere 3-Macaw Speech 1.3.0)
+* `Mejora` Speech.Feature añade 'speaker', 'diarization', 'languageId' y 'audioTagging'; Speech.Kind añade los tipos de modelo 'speaker', 'segment', 'langid' y 'tagger', que aceptan models.list, setDefault y getDefault
+
 # v4.84.0
 
 ###### 2026/10/29

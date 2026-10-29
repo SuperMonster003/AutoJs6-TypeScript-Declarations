@@ -3,18 +3,20 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Oct 20, 2026
+// Last modified: Oct 29, 2026
 
 /// <reference path="./index.d.ts" />
 
 /**
- * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/speech/Speech.kt
- * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/speech/SpeechModels.kt
- * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/speech/SpeechSession.kt
- * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/speech/SpeechWakeSession.kt
- * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/augment/speech/SpeechJsErrors.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/modules/speech/Speech.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/modules/speech/SpeechModels.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/modules/speech/SpeechSpeaker.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/modules/speech/SpeechSession.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/modules/speech/SpeechWakeSession.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/modules/speech/SpeechJsErrors.kt
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/speech/SpeechScriptArguments.kt
  * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/runtime/api/speech/SpeechScriptValues.kt
+ * @Source %AutoJs6%/app/src/main/java/org/autojs/autojs/core/plugin/speech/SpeechBundles.kt
  * @Source %AutoJs6%/plugin-api/speech-api/src/main/java/org/autojs/plugin/speech/api/SpeechContract.kt
  * @Source %AutoJs6%/plugin-api/speech-api/src/main/java/org/autojs/plugin/speech/api/SpeechErrorCodes.kt
  * @Source %AutoJs6%/plugin-api/speech-api/src/main/java/org/autojs/plugin/speech/api/SpeechLimits.kt
@@ -26,9 +28,11 @@ declare namespace Internal {
     /**
      * The global `speech` object (also `$speech`), available since AutoJs6 6.8.0 through the
      * external 3-Macaw Speech plugin: offline speech recognition of files, PCM and the
-     * microphone, voice activity detection, wake words and neural speech synthesis, with the
-     * models kept in the plugin. AutoJs6 has no recognizer or synthesizer of its own: while the
-     * plugin is missing, disabled or incompatible, every method throws (or rejects with) a
+     * microphone, voice activity detection, wake words and neural speech synthesis, and from
+     * 3-Macaw Speech 1.3.0 speaker recognition, speaker diarization, language identification and
+     * audio tagging, with the models kept in the plugin. AutoJs6 has no recognizer or synthesizer
+     * of its own: while the plugin is missing, disabled or incompatible, every method throws (or
+     * rejects with) a
      * `SpeechError` whose `code` is `PLUGIN_UNAVAILABLE`, `PLUGIN_DISABLED` or
      * `PLUGIN_INCOMPATIBLE`; {@link isAvailable} probes without throwing.
      *
@@ -43,8 +47,9 @@ declare namespace Internal {
      * the wrong shape or range fails with `INVALID_OPTIONS`, a value beyond a contract ceiling
      * (session length, hotwords, keywords, text length) with `LIMIT_EXCEEDED`. The synchronous
      * forms that may wait long ({@link recognize}, {@link detectVoice}, {@link synthesize},
-     * `models.install`, `models.importFile` and `models.refreshCatalog`) refuse the UI thread
-     * with `INVALID_OPTIONS`; use the `Async` forms there.
+     * {@link diarize}, {@link detectLanguage}, {@link tag}, `speaker.enroll`, `speaker.verify`,
+     * `speaker.identify`, `models.install`, `models.importFile` and `models.refreshCatalog`)
+     * refuse the UI thread with `INVALID_OPTIONS`; use the `Async` forms there.
      *
      * @see https://docs.autojs6.com/#/speech
      */
@@ -155,6 +160,52 @@ declare namespace Internal {
          */
         speak(text: string, options?: Speech.SpeakOptions | null): Promise<Tts.Result>;
 
+        /**
+         * Who spoke when in an audio file (speaker diarization; feature `diarization`, 3-Macaw
+         * Speech 1.3.0 and later). The file follows the rules of {@link recognize} (a path only, no
+         * PCM). Needs a `segment` model and a `speaker` model; a missing one fails with
+         * `MODEL_MISSING`. Speakers are numbered from 0 in order of first appearance; more than
+         * 10000 turns fail with `LIMIT_EXCEEDED`. Blocking; refuses the UI thread.
+         * @since 6.8.0
+         * @example
+         * let result = speech.diarize('./meeting.wav', { speakers: 2 });
+         * result.segments.forEach(s => console.log(s.speaker, s.startMillis, s.endMillis));
+         */
+        diarize(file: string, options?: Speech.DiarizeOptions | null): Speech.Diarization;
+
+        /** {@link diarize} settled on the script thread; usable on the UI thread. @since 6.8.0 */
+        diarizeAsync(file: string, options?: Speech.DiarizeOptions | null): Promise<Speech.Diarization>;
+
+        /**
+         * The spoken language of an audio file (feature `languageId`, 3-Macaw Speech 1.3.0 and
+         * later): the plugin cuts the speech into windows of at most 30 seconds and votes over the
+         * first `windows` of them. The file follows the rules of {@link recognize} (a path only);
+         * a file without speech fails with `AUDIO_TOO_SHORT`. Blocking; refuses the UI thread.
+         * @since 6.8.0
+         * @example
+         * let detected = speech.detectLanguage('./voice.mp3', { windows: 5 });
+         * console.log(detected.language, JSON.stringify(detected.candidates));
+         */
+        detectLanguage(file: string, options?: Speech.DetectLanguageOptions | null): Speech.LanguageDetection;
+
+        /** {@link detectLanguage} settled on the script thread; usable on the UI thread. @since 6.8.0 */
+        detectLanguageAsync(file: string, options?: Speech.DetectLanguageOptions | null): Promise<Speech.LanguageDetection>;
+
+        /**
+         * The sounds in an audio file (audio tagging; feature `audioTagging`, 3-Macaw Speech 1.3.0
+         * and later), scored in windows of 10 seconds against the 527 English labels of AudioSet.
+         * Each label keeps its best window; the `topK` best labels are answered. The file follows
+         * the rules of {@link recognize} (a path only). Blocking; refuses the UI thread.
+         * @since 6.8.0
+         * @example
+         * let tagged = speech.tag('./street.wav', { topK: 3 });
+         * tagged.labels.forEach(l => console.log(l.label, l.score, l.startMillis));
+         */
+        tag(file: string, options?: Speech.TagOptions | null): Speech.Tagging;
+
+        /** {@link tag} settled on the script thread; usable on the UI thread. @since 6.8.0 */
+        tagAsync(file: string, options?: Speech.TagOptions | null): Promise<Speech.Tagging>;
+
         /** Model catalog and installed models of the plugin. @since 6.8.0 */
         readonly models: Speech.Models;
 
@@ -195,10 +246,27 @@ declare namespace Internal {
             | 'INTERNAL';
 
         /** What the plugin implements; a call whose feature is missing fails with `PLUGIN_INCOMPATIBLE`. */
-        type Feature = 'asr' | 'asrStreaming' | 'vad' | 'kws' | 'tts' | 'ttsSystemEngine' | 'models' | 'audioDecode' | 'speaker';
+        type Feature =
+            | 'asr'
+            | 'asrStreaming'
+            | 'vad'
+            | 'kws'
+            | 'tts'
+            | 'ttsSystemEngine'
+            | 'models'
+            | 'audioDecode'
+            | 'speaker'
+            | 'diarization'
+            | 'languageId'
+            | 'audioTagging';
 
-        /** Model kinds: recognition, synthesis, keyword spotting (wake words) and voice activity detection. */
-        type Kind = 'asr' | 'tts' | 'kws' | 'vad';
+        /**
+         * Model kinds: recognition, synthesis, keyword spotting (wake words), voice activity
+         * detection, and from 3-Macaw Speech 1.3.0 speaker embedding (`speaker`), speaker
+         * segmentation for diarization (`segment`), language identification (`langid`) and audio
+         * tagging (`tagger`).
+         */
+        type Kind = 'asr' | 'tts' | 'kws' | 'vad' | 'speaker' | 'segment' | 'langid' | 'tagger';
 
         /** `pending` until `ready`, then `active`, then `ended`. */
         type State = 'pending' | 'active' | 'ended';
@@ -248,7 +316,7 @@ declare namespace Internal {
         }
 
         interface Capabilities {
-            /** Speech contract version: 1, or 2 from 3-Macaw Speech 1.3.0 (speakers). */
+            /** Speech contract version: 1, or 2 from 3-Macaw Speech 1.3.0 (speakers and the offline analyses). */
             readonly contractVersion: number;
             readonly features: (Feature | (string & {}))[];
             /** Version of the plugin's model catalog. */
@@ -558,6 +626,10 @@ declare namespace Internal {
             readonly kind: Kind;
             readonly modelType: string;
             readonly name: string;
+            /**
+             * Language tags such as `'zh'`; empty for voice activity detection, `['mul']` for
+             * language identification and `['zxx']` for segmentation and tagging models.
+             */
             readonly languages: string[];
             /** Download size in bytes, 0 for an imported model. */
             readonly sizeBytes: number;
@@ -722,6 +794,123 @@ declare namespace Internal {
             list(): SpeakerInfo[];
             /** Removes the speaker's voiceprint; false when the name is not enrolled. @since 6.8.0 */
             remove(name: string): boolean;
+        }
+
+        /**
+         * Options shared by {@link Speech.diarize}, {@link Speech.detectLanguage} and
+         * {@link Speech.tag}. AutoJs6 waits 10 minutes for each progress of the plugin (`TIMEOUT`
+         * without one), with no limit on the whole call.
+         */
+        interface AnalysisOptions {
+            /** Milliseconds of audio done and in all, called on the script thread; a thrown error is rethrown once the call ends. */
+            onProgress?: (done: number, total: number) => void;
+        }
+
+        interface DiarizeOptions extends AnalysisOptions {
+            /** Segmentation model id (kind `segment`); default the default `segment` model. */
+            model?: string;
+            /** Speaker embedding model id (kind `speaker`); default the default `speaker` model. */
+            speakerModel?: string;
+            /** Number of speakers when known, an integer from 0 to 20; 0 (default) lets the plugin count them. */
+            speakers?: number;
+            /** Clustering threshold from 0 to 2, a larger one merges more voices into one speaker; default the plugin's value. */
+            threshold?: number;
+            /** Also names each speaker after the closest voiceprint enrolled with {@link Speech.speaker}; default false. */
+            identify?: boolean;
+        }
+
+        interface DiarizationSegment {
+            readonly startMillis: number;
+            readonly endMillis: number;
+            /** The speaker number, from 0 in order of first appearance. */
+            readonly speaker: number;
+        }
+
+        interface DiarizationName {
+            /** The speaker number of {@link DiarizationSegment.speaker}. */
+            readonly speaker: number;
+            /** The enrolled speaker whose voiceprint is closest, null when its score is below that speaker model's threshold. */
+            readonly name: string | null;
+            /** Cosine score of the closest voiceprint, four decimals; null when nothing could be compared. */
+            readonly score: number | null;
+        }
+
+        interface Diarization {
+            /** Speaker turns in ascending time. */
+            readonly segments: DiarizationSegment[];
+            /** Number of speakers found. */
+            readonly speakers: number;
+            /** Length of the decoded audio. */
+            readonly durationMillis: number;
+            /** The segmentation model used. */
+            readonly modelId: string;
+            /** With `identify: true`: one entry per speaker. */
+            readonly names?: DiarizationName[];
+        }
+
+        interface DetectLanguageOptions extends AnalysisOptions {
+            /** Language identification model id (kind `langid`); default the default `langid` model. */
+            model?: string;
+            /** Speech windows to vote over, an integer from 1 to 60 (default 3); 60 windows cover 30 minutes. */
+            windows?: number;
+        }
+
+        interface LanguageSegment {
+            readonly startMillis: number;
+            readonly endMillis: number;
+            readonly language: string;
+        }
+
+        interface LanguageDetection {
+            /** The language most windows voted for, a Whisper code such as `'zh'`, `'en'` or `'ja'`; a tie goes to the earliest window. */
+            readonly language: string;
+            /** Every language voted for with its share of the windows (0 to 1, four decimals), most voted first. */
+            readonly candidates: { readonly language: string; readonly score: number }[];
+            /** One entry per window that voted. */
+            readonly segments: LanguageSegment[];
+            /** Length of the decoded audio. */
+            readonly durationMillis: number;
+            readonly modelId: string;
+        }
+
+        interface TagOptions extends AnalysisOptions {
+            /** Audio tagging model id (kind `tagger`); default the default `tagger` model. */
+            model?: string;
+            /** Labels to answer, an integer from 1 to 20 (default 5); also the labels per window of `timeline`. */
+            topK?: number;
+            /** Also answers the `topK` labels of every 10 second window; default false. */
+            timeline?: boolean;
+        }
+
+        interface AudioLabel {
+            /** English AudioSet label such as `'Speech'` or `'Music'`. */
+            readonly label: string;
+            /** AudioSet ontology id such as `'/m/09x0r'`. */
+            readonly mid: string;
+            /** Four decimals. */
+            readonly score: number;
+        }
+
+        interface TaggedLabel extends AudioLabel {
+            /** The window where the label scored best. */
+            readonly startMillis: number;
+            readonly endMillis: number;
+        }
+
+        interface TagWindow {
+            readonly startMillis: number;
+            readonly endMillis: number;
+            readonly labels: AudioLabel[];
+        }
+
+        interface Tagging {
+            /** The `topK` labels with the best scores, best first. */
+            readonly labels: TaggedLabel[];
+            /** Length of the decoded audio. */
+            readonly durationMillis: number;
+            readonly modelId: string;
+            /** With `timeline: true`: one entry per 10 second window. */
+            readonly timeline?: TagWindow[];
         }
     }
 }

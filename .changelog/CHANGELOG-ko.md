@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.85.0
+
+###### 2026/10/29
+
+* `기능` speech 선언에 diarize, detectLanguage, tag와 그 Async 형식 추가: 화자 분리 (누가 언제 말했는지, 등록된 성문으로 화자 이름 지정 가능), 언어 식별, 오디오 태깅 (AudioSet의 527개 레이블); 옵션에 onProgress 진행 콜백을 지정할 수 있고 Speech.Diarization, Speech.LanguageDetection, Speech.Tagging 등의 결과 타입 포함 (AutoJs6 6.8.0 이상, 3-Macaw Speech 1.3.0 필요)
+* `기능` speech 선언에 화자 인식 speech.speaker 추가: enroll, verify, identify와 그 Async 형식, list, remove, 오류 코드 SPEAKER_NOT_FOUND와 AUDIO_TOO_SHORT (AutoJs6 6.8.0 이상, 3-Macaw Speech 1.3.0 필요)
+* `개선` Speech.Feature에 'speaker', 'diarization', 'languageId', 'audioTagging' 추가; Speech.Kind에 모델 종류 'speaker', 'segment', 'langid', 'tagger'를 추가하여 models.list, setDefault, getDefault에서 사용 가능
+
 # v4.84.0
 
 ###### 2026/10/29

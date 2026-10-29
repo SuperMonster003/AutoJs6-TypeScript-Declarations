@@ -178,6 +178,14 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.85.0
+
+###### 2026/10/29
+
+* `機能` speech の宣言に diarize, detectLanguage, tag とその Async 形式を追加: 話者分離 (誰がいつ話したか, 登録済みの声紋で話者名も付けられる), 言語識別, 音声タグ付け (AudioSet の 527 ラベル); オプションに onProgress 進捗コールバックを指定でき, Speech.Diarization, Speech.LanguageDetection, Speech.Tagging などの結果型を追加 (AutoJs6 6.8.0 以降, 3-Macaw Speech 1.3.0 が必要)
+* `機能` speech の宣言に話者認識の speech.speaker を追加: enroll, verify, identify とその Async 形式, list, remove, エラーコード SPEAKER_NOT_FOUND と AUDIO_TOO_SHORT (AutoJs6 6.8.0 以降, 3-Macaw Speech 1.3.0 が必要)
+* `改善` Speech.Feature に 'speaker', 'diarization', 'languageId', 'audioTagging' を追加; Speech.Kind にモデル種別 'speaker', 'segment', 'langid', 'tagger' を追加し, models.list, setDefault, getDefault で使用可能
+
 ### v4.84.0
 
 ###### 2026/10/29
@@ -191,12 +199,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/24
 
 * `機能` sqlite の宣言に onDowngrade コールバックを追加: 要求した version が既存データベースのバージョンより低いときに呼ばれる (AutoJs6 6.8.0 以降); 未実装の場合, ダウングレードは何もせず, テーブルとデータを保持
-
-### v4.82.0
-
-###### 2026/10/23
-
-* `機能` memory の宣言にブリッジセッションを追加: Snapshot.bridgeSessions はプラグインエンジン (Node.js, Bun, QuickJS, Lua, Python) ごとに終了後も回収されていないブリッジセッション数を示し, RetainedRuntime.engine で rhino と node を区別; Memory.BridgeSessions, Memory.RetainedEngine 型を追加
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

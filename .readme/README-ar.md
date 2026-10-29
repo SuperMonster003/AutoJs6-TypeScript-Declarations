@@ -178,6 +178,14 @@ npm update @sm003/autojs6-dts
 
 ## سجل التغييرات
 
+### v4.85.0
+
+###### 2026/10/29
+
+* `ميزة` تضيف تعريفات speech الدوال diarize و detectLanguage و tag مع صيغها Async: فصل المتحدثين (من تحدث ومتى, مع تسميتهم اختياريا حسب البصمات الصوتية المسجلة), وتحديد اللغة, ووسم الأصوات (تسميات AudioSet البالغة 527); وتقبل الخيارات دالة الاستدعاء onProgress, مع أنواع نتائج مثل Speech.Diarization و Speech.LanguageDetection و Speech.Tagging (AutoJs6 6.8.0 أو أحدث, يتطلب ⁨3-Macaw Speech⁩ 1.3.0)
+* `ميزة` تضيف تعريفات speech الكائن speech.speaker للتعرف على المتحدث: enroll و verify و identify مع صيغها Async, و list و remove, ورمزي الخطأ SPEAKER_NOT_FOUND و AUDIO_TOO_SHORT (AutoJs6 6.8.0 أو أحدث, يتطلب ⁨3-Macaw Speech⁩ 1.3.0)
+* `تحسين` تضيف Speech.Feature القيم 'speaker' و 'diarization' و 'languageId' و 'audioTagging'; وتضيف Speech.Kind أنواع النماذج 'speaker' و 'segment' و 'langid' و 'tagger' التي تقبلها models.list و setDefault و getDefault
+
 ### v4.84.0
 
 ###### 2026/10/29
@@ -191,12 +199,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/24
 
 * `ميزة` تعريفات sqlite مع رد النداء onDowngrade: يُستدعى عندما تكون version المطلوبة أقل من إصدار قاعدة البيانات الحالية (AutoJs6 6.8.0 أو أحدث); وبدونه لا يفعل خفض الإصدار شيئا ويحتفظ بالجداول والبيانات
-
-### v4.82.0
-
-###### 2026/10/23
-
-* `ميزة` تعريفات memory لجلسات الجسر: يعطي Snapshot.bridgeSessions عدد جلسات الجسر المنتهية التي لم تُستعَد بعد لكل محرك إضافات (Node.js و Bun و QuickJS و Lua و Python), ويميز RetainedRuntime.engine بين rhino و node, مع النوعين Memory.BridgeSessions و Memory.RetainedEngine
 
 [سجل التغييرات الكامل](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 

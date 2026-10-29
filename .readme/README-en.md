@@ -178,6 +178,14 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.85.0
+
+###### 2026/10/29
+
+* `Feature` speech declarations add diarize, detectLanguage and tag with their Async forms: speaker diarization (who spoke when, optionally named after enrolled voiceprints), language identification and audio tagging (the 527 AudioSet labels); the options take an onProgress callback, with result types such as Speech.Diarization, Speech.LanguageDetection and Speech.Tagging (AutoJs6 6.8.0 or later, needs 3-Macaw Speech 1.3.0)
+* `Feature` speech declarations add speech.speaker for speaker recognition: enroll, verify and identify with their Async forms, list and remove, and the SPEAKER_NOT_FOUND and AUDIO_TOO_SHORT error codes (AutoJs6 6.8.0 or later, needs 3-Macaw Speech 1.3.0)
+* `Improvement` Speech.Feature gains 'speaker', 'diarization', 'languageId' and 'audioTagging'; Speech.Kind gains the model kinds 'speaker', 'segment', 'langid' and 'tagger', which models.list, setDefault and getDefault accept
+
 ### v4.84.0
 
 ###### 2026/10/29
@@ -191,12 +199,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 ###### 2026/10/24
 
 * `Feature` sqlite declarations add the onDowngrade callback: called when the requested version is lower than the version of the existing database (AutoJs6 6.8.0 or later); without it, the downgrade does nothing and keeps the tables and data
-
-### v4.82.0
-
-###### 2026/10/23
-
-* `Feature` memory declarations for bridge sessions: Snapshot.bridgeSessions gives the finished but unreclaimed bridge sessions of each plugin engine (Node.js, Bun, QuickJS, Lua and Python), and RetainedRuntime.engine tells rhino from node, with the Memory.BridgeSessions and Memory.RetainedEngine types
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

@@ -32,6 +32,21 @@ const speechError: Error = new speech.SpeechError('Example', 'MODEL_MISSING');
 const speechCode: Internal.Speech.ErrorCode | (string & {}) = speech.SpeechError('Example').code;
 speech.speak('Hello', { speed: 1.1 });
 speech.speak('Hello', { model: 'tts.kokoro.multi-lang.v1_1', speaker: 3, language: 'zh', pitch: 1.2 });
+const speechDiarization: Internal.Speech.Diarization = speech.diarize('./meeting.wav', { speakers: 2, threshold: 0.85, identify: true, onProgress: (done, total) => done / total });
+const speechTurn: number = speechDiarization.segments[0].speaker + speechDiarization.speakers + speechDiarization.durationMillis;
+const speechNamed: string | null = speechDiarization.names?.[0].name ?? null;
+speech.diarizeAsync('./meeting.wav', { model: 'segment.pyannote.3-0', speakerModel: 'speaker.eres2net.3dspeaker.en-voxceleb' }).then(result => result.modelId);
+const speechSpokenLanguage: string = speech.detectLanguage('./voice.mp3', { windows: 5 }).language;
+speech.detectLanguageAsync('./voice.mp3').then(result => result.candidates[0].score + result.segments[0].endMillis);
+const speechLabel: Internal.Speech.TaggedLabel = speech.tag('./street.wav', { topK: 3 }).labels[0];
+speech.tagAsync('./street.wav', { timeline: true }).then(result => result.timeline?.[0].labels[0].mid ?? speechLabel.label);
+const speechAnalysisKinds: Internal.Speech.Kind[] = ['speaker', 'segment', 'langid', 'tagger'];
+const speechSegmentDefault: Internal.Speech.ModelInfo | null = speech.models.getDefault('segment');
+const speechAnalysisFeature: Internal.Speech.Feature = 'audioTagging';
+// @ts-expect-error The analyses take a file path, not PCM.
+speech.diarize(new Int16Array(16000));
+// @ts-expect-error The language detection result has no labels.
+speech.detectLanguage('./voice.wav').labels;
 // @ts-expect-error The engine is fixed for speech.speak.
 speech.speak('Hello', { engine: 'other' });
 // @ts-expect-error The rate comes from speed.

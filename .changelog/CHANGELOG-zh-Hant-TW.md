@@ -13,6 +13,14 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.85.0
+
+###### 2026/10/29
+
+* `新增` speech 宣告補全 diarize, detectLanguage 與 tag 及其 Async 形式: 語者分離 (誰在何時說話, 可依已註冊的聲紋辨認), 語言辨識與音訊標籤 (AudioSet 的 527 個標籤), 選項可帶 onProgress 進度回呼, 含 Speech.Diarization, Speech.LanguageDetection 與 Speech.Tagging 等結果型別 (AutoJs6 6.8.0 起, 需要 3-Macaw Speech 1.3.0)
+* `新增` speech 宣告補全 speech.speaker 語者辨識: enroll, verify, identify 及其 Async 形式, list 與 remove, 以及錯誤碼 SPEAKER_NOT_FOUND 與 AUDIO_TOO_SHORT (AutoJs6 6.8.0 起, 需要 3-Macaw Speech 1.3.0)
+* `最佳化` Speech.Feature 增加 'speaker', 'diarization', 'languageId' 與 'audioTagging'; Speech.Kind 增加 'speaker', 'segment', 'langid' 與 'tagger' 四種模型類別, models.list, setDefault 與 getDefault 可使用這些類別
+
 # v4.84.0
 
 ###### 2026/10/29

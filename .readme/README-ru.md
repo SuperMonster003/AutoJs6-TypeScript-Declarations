@@ -178,6 +178,14 @@ npm update @sm003/autojs6-dts
 
 ## Журнал изменений
 
+### v4.85.0
+
+###### 2026/10/29
+
+* `Функция` объявления speech добавляют diarize, detectLanguage и tag с их формами Async: разделение по говорящим (кто и когда говорил, по желанию с именами по зарегистрированным голосовым отпечаткам), определение языка и разметку звуков (527 меток AudioSet); параметры принимают обратный вызов onProgress, добавлены типы результатов, такие как Speech.Diarization, Speech.LanguageDetection и Speech.Tagging (AutoJs6 6.8.0 или новее, нужен 3-Macaw Speech 1.3.0)
+* `Функция` объявления speech добавляют speech.speaker для распознавания говорящего: enroll, verify и identify с их формами Async, list и remove, а также коды ошибок SPEAKER_NOT_FOUND и AUDIO_TOO_SHORT (AutoJs6 6.8.0 или новее, нужен 3-Macaw Speech 1.3.0)
+* `Улучшение` в Speech.Feature добавлены 'speaker', 'diarization', 'languageId' и 'audioTagging'; в Speech.Kind добавлены типы моделей 'speaker', 'segment', 'langid' и 'tagger', которые принимают models.list, setDefault и getDefault
+
 ### v4.84.0
 
 ###### 2026/10/29
@@ -191,12 +199,6 @@ npm update @sm003/autojs6-dts
 ###### 2026/10/24
 
 * `Функция` Объявления sqlite с обратным вызовом onDowngrade: вызывается, когда запрошенная version ниже версии существующей базы данных (AutoJs6 6.8.0 и новее); без него понижение версии ничего не делает и сохраняет таблицы и данные
-
-### v4.82.0
-
-###### 2026/10/23
-
-* `Функция` Объявления memory для сеансов моста: Snapshot.bridgeSessions даёт число завершённых, но ещё не освобождённых сеансов моста каждого движка плагинов (Node.js, Bun, QuickJS, Lua и Python), а RetainedRuntime.engine отличает rhino от node, с типами Memory.BridgeSessions и Memory.RetainedEngine
 
 [Полный журнал изменений](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 
