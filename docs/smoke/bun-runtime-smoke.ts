@@ -47,8 +47,10 @@ const synchronousFileText: string = host.files.read('owned.txt');
 store.put('callback', () => 1);
 // @ts-expect-error A path is required for writes.
 host.files.write(null, 'owned');
-// @ts-expect-error The filter must synchronously return a boolean or nullish value.
-host.files.listDir('.', () => 1);
+// The filter result is tested for truthiness, as in Rhino.
+const listed: Promise<string[]> = host.files.listDir('.', name => name.length);
+// @ts-expect-error The filter receives the file name.
+host.files.listDir('.', (name: number) => name > 0);
 const capability: HostCapability = 'screen.metrics';
 host.hasCapability(capability);
 host.hasCapability('accessibility.gesture');
@@ -62,8 +64,9 @@ const clip: Promise<string> = host.clipboard.getText({timeoutMs:5000,signal:new 
 const syncNode: import('autojs6:bun-host').RuntimeAccessibility.UiNodeSnapshot = host.accessibility.findOne(selected);
 // @ts-expect-error Explicit selectors require the versioned descriptor.
 host.accessibility.click({text:'fixture'});
-// @ts-expect-error Privileged Intent execution is not part of this interface.
 host.app.startActivity({action:'VIEW',root:true});
+// @ts-expect-error The Rhino route options of an intent are booleans.
+host.app.startActivity({action:'VIEW',root:'yes'});
 // @ts-expect-error Clipboard writes require text.
 host.clipboard.setText({text:'fixture'});
 const text: Promise<string> = host.pinyin.simple('北京上海');
