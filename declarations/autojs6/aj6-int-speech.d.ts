@@ -158,6 +158,14 @@ declare namespace Internal {
         /** Model catalog and installed models of the plugin. @since 6.8.0 */
         readonly models: Speech.Models;
 
+        /**
+         * Speaker voiceprints the plugin keeps (feature `speaker`, 3-Macaw Speech 1.3.0 and later;
+         * an earlier plugin refuses every call with `PLUGIN_INCOMPATIBLE`). No result carries an
+         * embedding.
+         * @since 6.8.0
+         */
+        readonly speaker: Speech.Speaker;
+
         /** The error class of the module; `e instanceof speech.SpeechError`. @since 6.8.0 */
         readonly SpeechError: Speech.ErrorConstructor;
     }
@@ -182,10 +190,12 @@ declare namespace Internal {
             | 'ENGINE_FAILED'
             | 'IO_FAILED'
             | 'TIMEOUT'
+            | 'SPEAKER_NOT_FOUND'
+            | 'AUDIO_TOO_SHORT'
             | 'INTERNAL';
 
         /** What the plugin implements; a call whose feature is missing fails with `PLUGIN_INCOMPATIBLE`. */
-        type Feature = 'asr' | 'asrStreaming' | 'vad' | 'kws' | 'tts' | 'ttsSystemEngine' | 'models' | 'audioDecode';
+        type Feature = 'asr' | 'asrStreaming' | 'vad' | 'kws' | 'tts' | 'ttsSystemEngine' | 'models' | 'audioDecode' | 'speaker';
 
         /** Model kinds: recognition, synthesis, keyword spotting (wake words) and voice activity detection. */
         type Kind = 'asr' | 'tts' | 'kws' | 'vad';
@@ -238,7 +248,7 @@ declare namespace Internal {
         }
 
         interface Capabilities {
-            /** Speech contract version, 1. */
+            /** Speech contract version: 1, or 2 from 3-Macaw Speech 1.3.0 (speakers). */
             readonly contractVersion: number;
             readonly features: (Feature | (string & {}))[];
             /** Version of the plugin's model catalog. */
@@ -617,6 +627,101 @@ declare namespace Internal {
              * @since 6.8.0
              */
             refreshCatalog(): { version: number; updated: boolean };
+        }
+
+        interface EnrollOptions {
+            /** Drops the speaker's earlier samples first; required to switch a speaker to another model. */
+            replace?: boolean;
+            /** Speaker model id; the default speaker model when omitted. */
+            model?: string;
+        }
+
+        interface Enrollment {
+            readonly name: string;
+            /** Samples the voiceprint averages so far. */
+            readonly samples: number;
+            /** Milliseconds of speech this call used. */
+            readonly durationMillis: number;
+            readonly modelId: string;
+        }
+
+        interface VerifyOptions {
+            /** Cosine score between 0 and 1; the plugin's default of the speaker model when omitted. */
+            threshold?: number;
+        }
+
+        interface IdentifyOptions extends VerifyOptions {
+            /** Candidates to answer, an integer from 1 to 10 (default 3). */
+            topK?: number;
+        }
+
+        interface Match {
+            /** The speaker; for {@link Speaker.identify} null when no score reached the threshold. */
+            readonly name: string | null;
+            /** Cosine score, four decimals. */
+            readonly score: number;
+            readonly matched: boolean;
+            /** The threshold used. */
+            readonly threshold: number;
+        }
+
+        interface Verification extends Match {
+            readonly name: string;
+        }
+
+        interface Identification extends Match {
+            /** The best speakers, highest score first, at most `topK`. */
+            readonly candidates: { readonly name: string; readonly score: number }[];
+        }
+
+        interface SpeakerInfo {
+            readonly name: string;
+            readonly samples: number;
+            /** Last enrollment, milliseconds since the epoch. */
+            readonly updatedAt: number;
+            readonly modelId: string;
+        }
+
+        /**
+         * Recordings follow the file rules of `speech.recognize`, each at most 60 seconds
+         * (`LIMIT_EXCEEDED`) with at least 1 second of speech (`AUDIO_TOO_SHORT`). Names are trimmed,
+         * 1 to 64 characters without control characters. The plugin keeps at most 50 speakers.
+         */
+        interface Speaker {
+            /**
+             * Enrolls a speaker from one recording or an array of 1 to 10, averaged; the samples join
+             * the speaker's earlier ones unless `replace: true`. Blocking; refuses the UI thread.
+             * @since 6.8.0
+             * @example
+             * let enrolled = speech.speaker.enroll('Alice', ['./alice-1.wav', './alice-2.wav'], { replace: true });
+             * console.log(enrolled.samples, enrolled.durationMillis);
+             */
+            enroll(name: string, files: string | string[], options?: EnrollOptions | null): Enrollment;
+            /** {@link enroll} settled on the script thread; usable on the UI thread. @since 6.8.0 */
+            enrollAsync(name: string, files: string | string[], options?: EnrollOptions | null): Promise<Enrollment>;
+            /**
+             * Whether the recording is the enrolled speaker's; `SPEAKER_NOT_FOUND` for a name not
+             * enrolled. Blocking; refuses the UI thread.
+             * @since 6.8.0
+             */
+            verify(name: string, file: string, options?: VerifyOptions | null): Verification;
+            /** {@link verify} settled on the script thread; usable on the UI thread. @since 6.8.0 */
+            verifyAsync(name: string, file: string, options?: VerifyOptions | null): Promise<Verification>;
+            /**
+             * The enrolled speakers of the current speaker model most like the recording. Blocking;
+             * refuses the UI thread.
+             * @since 6.8.0
+             * @example
+             * let who = speech.speaker.identify('./test.wav', { topK: 3 });
+             * console.log(who.name === null ? 'unknown' : who.name, who.candidates);
+             */
+            identify(file: string, options?: IdentifyOptions | null): Identification;
+            /** {@link identify} settled on the script thread; usable on the UI thread. @since 6.8.0 */
+            identifyAsync(file: string, options?: IdentifyOptions | null): Promise<Identification>;
+            /** The enrolled speakers, sorted by name. @since 6.8.0 */
+            list(): SpeakerInfo[];
+            /** Removes the speaker's voiceprint; false when the name is not enrolled. @since 6.8.0 */
+            remove(name: string): boolean;
         }
     }
 }
