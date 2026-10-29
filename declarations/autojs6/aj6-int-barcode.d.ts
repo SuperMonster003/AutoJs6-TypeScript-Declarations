@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Jul 27, 2026
+// Last modified: Oct 29, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -126,6 +126,47 @@ declare namespace Internal {
             valueType: number;
             valueTypeName: string;
             wifi: any | null;
+
+            /** The plugin contract's barcode result this object wraps. */
+            readonly barcode: org.autojs.plugin.mlkit.barcode.api.BarcodeResult;
+            /** Same as displayValue. */
+            readonly value: string | null;
+
+            getFormat(): number;
+            /** Format name with the FORMAT_ prefix, such as "FORMAT_QR_CODE". */
+            getFormatName(): string;
+            getValueType(): number;
+            /** Value type name with the TYPE_ prefix, such as "TYPE_URL". */
+            getValueTypeName(): string;
+            /** Same as getValueType. */
+            getType(): number;
+            /** Same as getValueTypeName. */
+            getTypeName(): string;
+            getBoundingBox(): Android.Rect | null;
+            getCornerPoints(): android.graphics.Point[] | null;
+            getDisplayValue(): string | null;
+            getRawValue(): string | null;
+            getRawBytes(): number[] | null;
+            /** Structured payload of a TYPE_CALENDAR_EVENT result, else null. */
+            getCalendarEvent(): any | null;
+            /** Structured payload of a TYPE_CONTACT_INFO result, else null. */
+            getContactInfo(): any | null;
+            /** Structured payload of a TYPE_DRIVER_LICENSE result, else null. */
+            getDriverLicense(): any | null;
+            /** Structured payload of a TYPE_EMAIL result, else null. */
+            getEmail(): any | null;
+            /** Structured payload of a TYPE_GEO result, else null. */
+            getGeoPoint(): any | null;
+            /** Structured payload of a TYPE_PHONE result, else null. */
+            getPhone(): any | null;
+            /** Structured payload of a TYPE_SMS result, else null. */
+            getSms(): any | null;
+            /** Structured payload of a TYPE_URL result, else null. */
+            getUrl(): any | null;
+            /** Structured payload of a TYPE_WIFI result, else null. */
+            getWifi(): any | null;
+            /** "[format] <value type> displayValue". */
+            toString(): string;
 
         }
 

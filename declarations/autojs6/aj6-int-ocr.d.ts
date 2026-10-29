@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 4.8.4
 //
-// Last modified: Sep 12, 2026
+// Last modified: Oct 29, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -35,10 +35,10 @@ declare namespace Internal {
         recognizeText(img: ImageWrapper | string, options?: DetectOptionsMLKit): string[];
         recognizeText(img: ImageWrapper | string, region: OmniRegion): string[];
 
-        detect(options?: DetectOptionsMLKit): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(img: ImageWrapper | string, options?: DetectOptionsMLKit): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(img: ImageWrapper | string, region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(options?: DetectOptionsMLKit): Ocr.Result[];
+        detect(region: OmniRegion): Ocr.Result[];
+        detect(img: ImageWrapper | string, options?: DetectOptionsMLKit): Ocr.Result[];
+        detect(img: ImageWrapper | string, region: OmniRegion): Ocr.Result[];
 
     }
 
@@ -54,10 +54,10 @@ declare namespace Internal {
         recognizeText(img: ImageWrapper | string, options?: DetectOptionsPaddle): string[];
         recognizeText(img: ImageWrapper | string, region: OmniRegion): string[];
 
-        detect(options?: DetectOptionsPaddle): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(img: ImageWrapper | string, options?: DetectOptionsPaddle): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(img: ImageWrapper | string, region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(options?: DetectOptionsPaddle): Ocr.Result[];
+        detect(region: OmniRegion): Ocr.Result[];
+        detect(img: ImageWrapper | string, options?: DetectOptionsPaddle): Ocr.Result[];
+        detect(img: ImageWrapper | string, region: OmniRegion): Ocr.Result[];
 
     }
 
@@ -73,10 +73,10 @@ declare namespace Internal {
         recognizeText(img: ImageWrapper | string, options?: DetectOptionsRapid): string[];
         recognizeText(img: ImageWrapper | string, region: OmniRegion): string[];
 
-        detect(options?: DetectOptionsRapid): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(img: ImageWrapper | string, options?: DetectOptionsRapid): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(img: ImageWrapper | string, region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(options?: DetectOptionsRapid): Ocr.Result[];
+        detect(region: OmniRegion): Ocr.Result[];
+        detect(img: ImageWrapper | string, options?: DetectOptionsRapid): Ocr.Result[];
+        detect(img: ImageWrapper | string, region: OmniRegion): Ocr.Result[];
 
     }
 
@@ -96,10 +96,10 @@ declare namespace Internal {
         recognizeText(img: ImageWrapper | string, options?: DetectOptionsAny): string[];
         recognizeText(img: ImageWrapper | string, region: OmniRegion): string[];
 
-        detect(options?: DetectOptionsAny): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(img: ImageWrapper | string, options?: DetectOptionsAny): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(img: ImageWrapper | string, region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(options?: DetectOptionsAny): Ocr.Result[];
+        detect(region: OmniRegion): Ocr.Result[];
+        detect(img: ImageWrapper | string, options?: DetectOptionsAny): Ocr.Result[];
+        detect(img: ImageWrapper | string, region: OmniRegion): Ocr.Result[];
 
         /** Resolved engine; auto selection returns an empty string when no enabled plugin is available. */
         get mode(): ModeName;
@@ -119,10 +119,10 @@ declare namespace Internal {
         recognizeText(img: ImageWrapper | string, options?: Ocr.DetectOptions): string[];
         recognizeText(img: ImageWrapper | string, region: OmniRegion): string[];
 
-        detect(options?: Ocr.DetectOptions): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(img: ImageWrapper | string, options?: Ocr.DetectOptions): org.autojs.autojs.runtime.api.OcrResult[];
-        detect(img: ImageWrapper | string, region: OmniRegion): org.autojs.autojs.runtime.api.OcrResult[];
+        detect(options?: Ocr.DetectOptions): Ocr.Result[];
+        detect(region: OmniRegion): Ocr.Result[];
+        detect(img: ImageWrapper | string, options?: Ocr.DetectOptions): Ocr.Result[];
+        detect(img: ImageWrapper | string, region: OmniRegion): Ocr.Result[];
 
     }
 
@@ -132,8 +132,30 @@ declare namespace Internal {
         type ModeName = '' | 'mlkit' | 'paddle' | 'rapid';
         type DetectOptionsAny = DetectOptionsMLKit | DetectOptionsPaddle | DetectOptionsRapid;
 
+        /**
+         * One recognized text region; ocr.detect and the detect method of each engine return an array of them.
+         * @see https://docs.autojs6.com/#/dataTypes?id=ocrresult
+         */
+        class Result extends org.autojs.autojs.runtime.api.OcrResult {
+            /** The recognized text. */
+            readonly text: string;
+            /** Same as text. */
+            readonly label: string;
+            /** Recognition confidence, from 0 to 1. */
+            readonly confidence: number;
+            /** The bounding rectangle of the recognized text. */
+            readonly bounds: Android.Rect;
+            /**
+             * Reading order: negative when this result comes first, positive when it comes after, 0 at the same position.
+             * Results whose vertical centers differ by less than half the taller height are on one line (left to right),
+             * otherwise they are ordered by their bottom edges (top to bottom).
+             */
+            compareTo(other: org.autojs.autojs.runtime.api.OcrResult): number;
+            toString(): string;
+        }
+
         type RecognizeTextMethod = (img: ImageWrapper) => string[];
-        type DetectMethod = (img: ImageWrapper) => org.autojs.autojs.runtime.api.OcrResult[];
+        type DetectMethod = (img: ImageWrapper) => Ocr.Result[];
 
         interface DetectOptions {
             region?: OmniRegion;
