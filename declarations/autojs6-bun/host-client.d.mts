@@ -1,6 +1,8 @@
 /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
 export declare const SDK_VERSION: 1;
-export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control";
+export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control"
+  | "autojs.control" | "autojs.manage" | "settings.control" | "settings.write" | "sysprops.control" | "memory.control" | "memory.dump"
+  | "installer.control" | "installer.mutate" | "engines.control" | "engines.exec" | "plugintools.control" | "plugintools.usergranted";
 export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
 export declare class HostCallError extends Error {
   readonly code: string;
@@ -8,7 +10,8 @@ export declare class HostCallError extends Error {
   readonly status: number;
   constructor(code: string, message: string, capability?: string | null, status?: number);
 }
-export declare const HOST_API_METHODS: Readonly<Record<"agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control", readonly string[]>>;
+export declare const HOST_API_METHODS: Readonly<Record<"agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control"
+  | "autojs.control" | "settings.control" | "sysprops.control" | "memory.control" | "installer.control" | "engines.control" | "plugintools.control", readonly string[]>>;
 export declare const OPENCC_CONVERSION_TYPES: readonly [
   "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
   "s2twi", "twi2s", "s2jp", "t2twi", "hk2tw", "hk2twi", "hk2jp", "tw2hk", "tw2twi", "tw2jp",
@@ -590,6 +593,8 @@ export namespace RuntimeApp {
       /** "am force-stop" through Shizuku, root or the plain shell; true when the command succeeds. */
       kill(packageName: string, options?: AutomationCallOptions): Promise<boolean>;
       killDual(packageName: string, options?: AutomationCallOptions): Promise<boolean>;
+      /** Rhino's app.autojs: the autojs6:autojs module of this thread. */
+      readonly autojs: RuntimeAutojs.AutojsModule;
     }
   }
 export namespace RuntimeAccessibility {
@@ -1219,13 +1224,78 @@ export namespace RuntimeNotifications {
       readonly reason: string;
     }
 
+    /** Rhino notice.config presets: defaults of this thread (title, text, channel and channelName feed notify). */
+    export interface NoticePreset {
+      useScriptNameAsDefaultChannelId?: boolean | null;
+      useDynamicDefaultNotificationId?: boolean | null;
+      enableChannelInvalidModificationWarnings?: boolean | null;
+      defaultTitle?: string | null;
+      defaultContent?: string | null;
+      defaultBigContent?: string | null;
+      defaultAppendScriptName?: unknown;
+      defaultAutoCancel?: boolean | null;
+      defaultIsSilent?: boolean | null;
+      defaultPriority?: unknown;
+      defaultChannelId?: string | null;
+      defaultChannelName?: string | null;
+      defaultChannelDescription?: string | null;
+      defaultImportanceForChannel?: unknown;
+      defaultEnableVibrationForChannel?: boolean | null;
+      defaultVibrationPatternForChannel?: unknown;
+      defaultEnableLightsForChannel?: boolean | null;
+      defaultLightColorForChannel?: unknown;
+      defaultLockscreenVisibilityForChannel?: unknown;
+    }
+
+    export interface ChannelOptions {
+      id?: string | number;
+      channelId?: string | number;
+      name?: string;
+      description?: string;
+      importance?: number;
+      enableVibration?: boolean;
+      vibrationPattern?: readonly number[];
+      enableLights?: boolean;
+      lightColor?: number;
+      lockscreenVisibility?: number;
+    }
+
+    export interface Channel {
+      readonly id: string;
+      readonly name: string | null;
+      readonly description: string | null;
+      readonly importance: number;
+      readonly [key: string]: JsonValue;
+    }
+
+    /** Rhino notice.channel (Android 8+; an id defaults to "script_channel"). */
+    export interface ChannelModule {
+      create(channelId: string | number | ChannelOptions, options?: ChannelOptions | null, callOptions?: AutomationCallOptions): Promise<string>;
+      createIfNeeded(channelId: string | number | ChannelOptions, options?: ChannelOptions | null, callOptions?: AutomationCallOptions): Promise<void>;
+      contains(channelId: string | number, options?: AutomationCallOptions): Promise<boolean>;
+      get(channelId: string | number, options?: AutomationCallOptions): Promise<Channel | null>;
+      getAll(options?: AutomationCallOptions): Promise<readonly Channel[]>;
+      remove(channelId: string | number, options?: AutomationCallOptions): Promise<boolean>;
+    }
+
     export interface NotificationsModule {
       notify(options: NotifyOptions, callOptions?: AutomationCallOptions): Promise<NotificationId>;
+      /** Posts a NotificationCompat.Builder handle of the Java facade (java_interop). */
+      notify(builder: RuntimeJava.ObjectHandle, callOptions?: { id?: NotificationId }): Promise<NotificationId>;
       cancel(id: NotificationId, options?: AutomationCallOptions): Promise<void>;
       cancelAll(options?: AutomationCallOptions): Promise<void>;
       getPermissionStatus(options?: AutomationCallOptions): Promise<NotificationPermissionStatus>;
       openSettings(options?: NotificationSettingsOptions): Promise<NotificationSettingsResult>;
       openNotificationSettings(options?: NotificationSettingsOptions): Promise<NotificationSettingsResult>;
+      isEnabled(options?: AutomationCallOptions): Promise<boolean>;
+      /** Opens the notification settings and rejects when notifications are disabled (needs notifications.settings). */
+      ensureEnabled(options?: AutomationCallOptions): Promise<void>;
+      launchSettings(options?: AutomationCallOptions): Promise<void>;
+      config(preset: NoticePreset): void;
+      /** A NotificationCompat.Builder handle (java_interop), as Rhino's notice.getBuilder. */
+      getBuilder(): Promise<RuntimeJava.ObjectHandle>;
+      readonly builder: Promise<RuntimeJava.ObjectHandle>;
+      readonly channel: ChannelModule;
     }
   }
 // END GENERATED EVENT TYPES
@@ -1383,6 +1453,32 @@ export namespace RuntimeDialogs {
       dismiss(options?: AutomationCallOptions): Promise<boolean>;
     }
 
+    export interface BuildProperties {
+      title?: string;
+      content?: string;
+      positive?: string;
+      negative?: string;
+      neutral?: string;
+      items?: readonly SelectItem[];
+      itemsSelectMode?: "select" | "single" | "multi";
+      itemsSelectedIndex?: number | readonly number[];
+      inputHint?: string;
+      inputPrefill?: string;
+      [key: string]: unknown;
+    }
+
+    export type BuiltDialogEvent = "show" | "positive" | "negative" | "input" | "item_select" | "single_choice" | "multi_choice" | "cancel" | "dismiss";
+
+    export interface BuiltDialog {
+      on(event: BuiltDialogEvent, listener: (...args: any[]) => void): this;
+      once(event: BuiltDialogEvent, listener: (...args: any[]) => void): this;
+      off(event: BuiltDialogEvent, listener: (...args: any[]) => void): this;
+      addListener(event: BuiltDialogEvent, listener: (...args: any[]) => void): this;
+      removeListener(event: BuiltDialogEvent, listener: (...args: any[]) => void): this;
+      emit(event: BuiltDialogEvent, ...args: unknown[]): boolean;
+      show(options?: DialogOptions): Promise<unknown>;
+    }
+
     export interface DialogsModule {
       alert(title: string, message?: string, options?: DialogOptions): Promise<void>;
       alert(title: string, options?: DialogOptions): Promise<void>;
@@ -1398,6 +1494,11 @@ export namespace RuntimeDialogs {
       rawInput(title: string, options?: DialogOptions): Promise<string | null>;
       singleChoice(title: string, items: readonly SelectItem[], selected?: number, options?: DialogOptions): Promise<number>;
       multiChoice(title: string, items: readonly SelectItem[], selected?: readonly number[], options?: DialogOptions): Promise<readonly number[]>;
+      /**
+       * Rhino's dialogs.build: show() takes the route from the properties (items -> select / singleChoice / multiChoice
+       * by itemsSelectMode, inputHint / inputPrefill -> input, negative -> confirm, else alert) and resolves with its result.
+       */
+      build(properties: BuildProperties): BuiltDialog;
       /** Activity-backed dialogs; timeout, abort and Worker/execution exit dismiss owned windows. */
       readonly progress: {
         show(descriptor?: ProgressOptions, options?: AutomationCallOptions): Promise<ProgressHandle>;
@@ -5311,6 +5412,251 @@ export namespace RuntimeMediainfo {
 
 // END GENERATED MEDIAINFO TYPES
 
+// BEGIN GENERATED SYSTEM TYPES
+export namespace RuntimeAutojs {
+    export type RootMode = "AUTO_DETECT" | "FORCE_ROOT" | "FORCE_NON_ROOT";
+    export type RootModeInput = RootMode | 1 | 0 | -1 | boolean | "root" | "non-root" | "auto";
+    export interface Version {
+      readonly code: number;
+      readonly name: string;
+      readonly date: string;
+      isHigherThan(other: string | { toString(): string }): boolean;
+      isLowerThan(other: string | { toString(): string }): boolean;
+      isEqual(other: string | { toString(): string }): boolean;
+      isAtLeast(other: string | { toString(): string }, ignoreSuffix?: boolean): boolean;
+    }
+    export interface ThemeColor {
+      readonly colorPrimary: number;
+      readonly colorPrimaryDark: number;
+      readonly colorAccent: number;
+    }
+    export type Resources = { readonly [type: string]: { readonly [name: string]: Promise<number> } };
+    export interface AutojsModule {
+      readonly versionCode: number;
+      readonly versionName: string;
+      readonly versionDate: string;
+      readonly name: string;
+      readonly packageName: string;
+      readonly version: Version;
+      readonly R: Resources;
+      readonly rotation: Promise<number>;
+      readonly orientation: Promise<number>;
+      readonly themeColor: Promise<ThemeColor>;
+      isRootAvailable(options?: AutomationCallOptions): Promise<boolean>;
+      getRootMode(options?: AutomationCallOptions): Promise<RootMode>;
+      /** isWriteIntoPreference: true or "write_into_pref" also stores the mode in the settings. */
+      setRootMode(mode: RootModeInput, isWriteIntoPreference?: boolean | string, options?: AutomationCallOptions): Promise<void>;
+      canModifySystemSettings(options?: AutomationCallOptions): Promise<boolean>;
+      canWriteSecureSettings(options?: AutomationCallOptions): Promise<boolean>;
+      canDisplayOverOtherApps(options?: AutomationCallOptions): Promise<boolean>;
+      getLanguage(options?: AutomationCallOptions): Promise<Intl.Locale>;
+      getLanguageTag(options?: AutomationCallOptions): Promise<string>;
+      isScreenPortrait(options?: AutomationCallOptions): Promise<boolean>;
+      isScreenLandscape(options?: AutomationCallOptions): Promise<boolean>;
+      /** scripts run after the restart ("@" is the current script, ".js" is appended). */
+      restart(scripts?: string | readonly string[] | null, options?: AutomationCallOptions): Promise<void>;
+      exit(scripts?: string | readonly string[] | null, options?: AutomationCallOptions): Promise<void>;
+    }
+  }
+export namespace RuntimeInstaller {
+    export type Source = string | { readonly [key: string]: JsonValue } | readonly (string | { readonly [key: string]: JsonValue })[];
+    export type Options = { readonly [key: string]: JsonValue } & AutomationCallOptions;
+    export interface InstallerError extends Error {
+      readonly code?: string;
+      readonly retryable?: boolean;
+      readonly status?: number;
+      readonly systemMessage?: string;
+      readonly packageName?: string;
+      readonly authorizer?: string;
+    }
+    export interface InstallerErrorConstructor {
+      new (message?: string, fields?: { readonly [key: string]: JsonValue }): InstallerError;
+      readonly prototype: InstallerError;
+    }
+    export type SessionEvent = "stage" | "progress" | "complete" | "error";
+    export interface InstallSession {
+      on(event: SessionEvent, listener: (...args: any[]) => void): this;
+      once(event: SessionEvent, listener: (...args: any[]) => void): this;
+      off(event: SessionEvent, listener: (...args: any[]) => void): this;
+      addListener(event: SessionEvent, listener: (...args: any[]) => void): this;
+      removeListener(event: SessionEvent, listener: (...args: any[]) => void): this;
+      listenerCount(event: SessionEvent): number;
+      readonly id: string;
+      readonly state: string;
+      readonly result: JsonValue | undefined;
+      cancel(options?: AutomationCallOptions): Promise<boolean>;
+      wait(timeoutMs?: number): Promise<JsonValue>;
+    }
+    export interface Authorizer {
+      readonly available: Promise<readonly string[]>;
+      state(name?: string, options?: AutomationCallOptions): Promise<{ readonly [key: string]: JsonValue }>;
+      request(name: string, timeoutMs?: number, options?: AutomationCallOptions): Promise<{ readonly [key: string]: JsonValue }>;
+      requestAsync(name: string, timeoutMs?: number, options?: AutomationCallOptions): Promise<{ readonly [key: string]: JsonValue }>;
+    }
+    export interface InstallerModule {
+      readonly InstallerError: InstallerErrorConstructor;
+      readonly authorizer: Authorizer;
+      readonly status: Promise<{ readonly [key: string]: JsonValue }>;
+      isAvailable(options?: AutomationCallOptions): Promise<boolean>;
+      isDefault(options?: AutomationCallOptions): Promise<boolean>;
+      users(options?: AutomationCallOptions): Promise<readonly { readonly [key: string]: JsonValue }[]>;
+      usersAsync(options?: AutomationCallOptions): Promise<readonly { readonly [key: string]: JsonValue }[]>;
+      inspect(source: Source, options?: AutomationCallOptions): Promise<JsonValue>;
+      inspectAsync(source: Source, options?: AutomationCallOptions): Promise<JsonValue>;
+      install(source: Source, options?: Options): Promise<JsonValue>;
+      installAsync(source: Source, options?: Options): Promise<JsonValue>;
+      uninstall(packageName: string, options?: Options): Promise<{ readonly [key: string]: JsonValue }>;
+      uninstallAsync(packageName: string, options?: Options): Promise<{ readonly [key: string]: JsonValue }>;
+      setDefault(enabled?: boolean, options?: Options): Promise<JsonValue>;
+      setDefaultAsync(enabled?: boolean, options?: Options): Promise<JsonValue>;
+      session(source: Source, options?: Options): Promise<InstallSession>;
+    }
+  }
+export namespace RuntimeMemory {
+    export interface MemoryModule {
+      snapshot(options?: AutomationCallOptions): Promise<{ readonly [key: string]: JsonValue }>;
+      /** Waits up to timeoutMs (0 .. 60000, 10000 by default) for the tracked objects to be cleared. */
+      collect(timeoutMs?: number, options?: AutomationCallOptions): Promise<{ readonly [key: string]: JsonValue }>;
+      retained(options?: AutomationCallOptions): Promise<readonly { readonly [key: string]: JsonValue }[]>;
+      /** Debug builds, or with the developer option on; resolves with the absolute path of the dump. */
+      dumpHeap(path?: string, options?: AutomationCallOptions): Promise<string>;
+    }
+  }
+export namespace RuntimeSettings {
+    export interface SettingsModule {
+      isEnabled(key: string, options?: AutomationCallOptions): Promise<boolean>;
+      setEnabled(key: string, enabled: boolean, options?: AutomationCallOptions): Promise<void>;
+      export(path?: string | null, categories?: string | readonly string[] | null, options?: AutomationCallOptions): Promise<{ readonly [key: string]: JsonValue }>;
+      categories(options?: AutomationCallOptions): Promise<readonly { readonly [key: string]: JsonValue }[]>;
+    }
+  }
+export namespace RuntimeSysprops {
+    export interface SyspropsModule {
+      get(name: string, defaultValue?: string, options?: AutomationCallOptions): Promise<string>;
+      getInt(name: string, defaultValue?: number, options?: AutomationCallOptions): Promise<number>;
+      getBoolean(name: string, defaultValue?: boolean, options?: AutomationCallOptions): Promise<boolean>;
+      getAll(options?: AutomationCallOptions): Promise<Readonly<Record<string, string>>>;
+    }
+  }
+export namespace RuntimePowerManager {
+    export interface PowerManagerModule {
+      isIgnoringBatteryOptimizations(packageName?: string | null, options?: AutomationCallOptions): Promise<boolean>;
+      requestIgnoreBatteryOptimizations(forceRequest?: boolean, packageName?: string | null, options?: AutomationCallOptions): Promise<void>;
+    }
+  }
+export namespace RuntimeSystem {
+    export type ComponentMode = "auto" | "accessibility" | "a11y" | "shizuku" | "root" | { readonly by?: string; readonly mode?: string };
+    export interface WaitCallback {
+      then?(value: boolean): unknown;
+      else?(value: boolean): unknown;
+    }
+    export interface SystemModule {
+      readonly WIDTH: number;
+      readonly HEIGHT: number;
+      currentPackage(mode?: ComponentMode): Promise<string>;
+      currentActivity(mode?: ComponentMode): Promise<string>;
+      currentComponent(mode?: ComponentMode): Promise<string>;
+      waitForActivity(activityName: string, limit?: number | WaitCallback, interval?: number | WaitCallback, callback?: WaitCallback): Promise<unknown>;
+      waitForPackage(packageName: string, limit?: number | WaitCallback, interval?: number | WaitCallback, callback?: WaitCallback): Promise<unknown>;
+      isStopped(): boolean;
+      isShuttingDown(): boolean;
+      notStopped(): boolean;
+      isRunning(): boolean;
+      exit(error?: unknown): void;
+      stop(): void;
+      requiresApi(api: number): void;
+      requiresAutojsVersion(version: string | number): void;
+      setScreenMetrics(width: number, height: number): void;
+      readonly isAutoJs6: true;
+      /** Rhino's getClip / setClip: the system clipboard (capability clipboard). */
+      getClip(options?: AutomationCallOptions): Promise<string>;
+      setClip(text: unknown, options?: AutomationCallOptions): Promise<void>;
+    }
+  }
+export namespace RuntimeEngines {
+    export interface EngineSnapshot {
+      readonly id: number | string;
+      readonly engineName: string;
+      readonly backend?: string;
+      readonly sourceName?: string;
+      readonly cwd?: string;
+      readonly workingDirectory?: string;
+      readonly packageName?: string;
+      readonly nodeVersion?: string;
+      readonly spawnDepth: number;
+    }
+
+    /** A host execution as engines.all() lists it (Rhino's view of every running script). */
+    export interface HostExecution {
+      readonly id: number;
+      readonly engineName: string;
+      readonly sourceName: string;
+      readonly sourcePath: string;
+      readonly workingDirectory: string;
+      readonly state: string;
+      readonly startedAt: number;
+      readonly uptimeMs: number | null;
+    }
+
+    export interface StopAllOptions extends AutomationCallOptions {
+      /** "host" (default, as Rhino) stops every host execution, this one included; "plugin" keeps the plugin-process view. */
+      scope?: "host" | "plugin";
+    }
+
+    export interface ExecOptions extends AutomationCallOptions {
+      /** The run's limit in milliseconds, at most 60000 (the default). */
+      timeoutMs?: number;
+      delay?: number;
+      interval?: number;
+      loopTimes?: number;
+      cwd?: string;
+      arguments?: { readonly [key: string]: JsonValue };
+    }
+
+    export interface EnginesModule {
+      myEngine(): EngineSnapshot;
+      all(options?: AutomationCallOptions): Promise<readonly HostExecution[]>;
+      getEngines(options?: AutomationCallOptions): Promise<readonly HostExecution[]>;
+      stopAll(options?: StopAllOptions): Promise<number>;
+      /** Rhino's stopAllAndToast: every host execution, with the host's toast. */
+      stopAllAndToast(options?: AutomationCallOptions): Promise<number>;
+      stopSelf(options?: AutomationCallOptions): Promise<boolean>;
+      execScript(name: string, source: string, options?: ExecOptions): Promise<EngineSnapshot>;
+      execScriptFile(path: string, options?: ExecOptions): Promise<EngineSnapshot>;
+      /** An Auto.js recording (.auto) file. */
+      execAutoFile(path: string, options?: ExecOptions): Promise<EngineSnapshot>;
+    }
+  }
+export namespace RuntimePlugins {
+    export interface PluginToolCallOptions extends AutomationCallOptions {
+      invocationId?: string;
+      overwrite?: boolean;
+      outputs?: { readonly [key: string]: JsonValue };
+    }
+
+    export interface PluginToolsModule {
+      list(options?: AutomationCallOptions): Promise<readonly { readonly [key: string]: JsonValue }[]>;
+      providers(options?: AutomationCallOptions): Promise<readonly { readonly [key: string]: JsonValue }[]>;
+      call(name: string, args?: { readonly [key: string]: JsonValue } | null, options?: PluginToolCallOptions): Promise<JsonValue>;
+      callAsync(name: string, args?: { readonly [key: string]: JsonValue } | null, options?: PluginToolCallOptions): Promise<JsonValue>;
+      cancel(invocationId: string, options?: AutomationCallOptions): Promise<unknown>;
+    }
+
+    /** Rhino's plugins: extend* and tools (Bun grants plugintools.control and plugintools.usergranted for tools). */
+    export interface PluginsModule {
+      /** Rhino's plugins.extend* on the shared jsox: Mathx / Arrayx / Numberx extend the built-ins of this thread. */
+      extend(...names: (string | readonly string[])[]): void;
+      extendAll(): void;
+      extendAllBut(...names: (string | readonly string[])[]): void;
+      /**
+       * Rhino's plugins.tools: the tools of installed tool-provider plugins (grant plugintools.control; the tools of
+       * USER_GRANTED providers are listed and run when plugintools.usergranted is on too).
+       */
+      readonly tools: PluginToolsModule;
+    }
+  }
+// END GENERATED SYSTEM TYPES
+
 export interface HostClient {
   readonly ai: RuntimeAi.API;
   readonly flow: RuntimeFlow.API;
@@ -5322,7 +5668,8 @@ export interface HostClient {
   /** AutoJs6 util / species / global data functions / s13n / cvt / fmt / jsox, computed locally as in Rhino; util.java, s13n.point / throwable and morse vibration use the Java facade (java.interop). */
   readonly util: RuntimeUtil.UtilModule;
   readonly species: RuntimeSpecies.SpeciesModule;
-  readonly global: RuntimeGlobal.GlobalModule;
+  /** Rhino's global functions: the data functions of the JS tools core and the system functions (current*, waitFor*, exit / stop, requires*, setScreenMetrics, WIDTH / HEIGHT, getClip / setClip). */
+  readonly global: RuntimeGlobal.GlobalModule & RuntimeSystem.SystemModule;
   readonly s13n: RuntimeS13n.S13nModule;
   readonly cvt: RuntimeConverter.ConverterModule;
   readonly fmt: RuntimeFormatter.FormatterModule;
@@ -5337,6 +5684,23 @@ export interface HostClient {
   /** Rhino's timing recorder, computed locally per thread (the Node runtime's audio recorder members are not in Bun). */
   readonly recorder: ((key?: unknown, timestamp?: unknown) => number) & Omit<RuntimeRecorder.RecorderModule, "getStatus" | "start" | "stop">;
   readonly tasks: RuntimeTasks.TasksModule;
+  /**
+   * Rhino's system information family (api-coverage P4.1b). The version fields are synchronous (the host info snapshot);
+   * the rest asks the host: autojs.control (setRootMode / restart / exit also autojs.manage), installer.control
+   * (install / uninstall / setDefault / sessions also installer.mutate), memory.control (dumpHeap also memory.dump),
+   * settings.control (setEnabled also settings.write, export files.control), sysprops.control, device.control and
+   * device.power for powerManager. A call whose grants are off rejects NOT_GRANTED with missingCapabilities.
+   */
+  readonly autojs: RuntimeAutojs.AutojsModule;
+  readonly installer: RuntimeInstaller.InstallerModule;
+  readonly memory: RuntimeMemory.MemoryModule;
+  readonly settings: RuntimeSettings.SettingsModule;
+  readonly sysprops: RuntimeSysprops.SyspropsModule;
+  readonly powerManager: RuntimePowerManager.PowerManagerModule;
+  /** Rhino's engines as the host sees its executions (engines.control; execScript* also engines.exec). myEngine is this execution. */
+  readonly engines: RuntimeEngines.EnginesModule;
+  /** Rhino's plugins.extend* (the built-ins of this thread) and plugins.tools (plugintools.control, plugintools.usergranted). */
+  readonly plugins: RuntimePlugins.PluginsModule;
   readonly events: RuntimeEvents.EventsModule;
   readonly notifications: RuntimeNotifications.NotificationsModule;
   readonly shell: RuntimeShell.ShellModule;
