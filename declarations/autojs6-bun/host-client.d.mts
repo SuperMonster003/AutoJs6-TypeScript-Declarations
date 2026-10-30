@@ -2,7 +2,9 @@
 export declare const SDK_VERSION: 1;
 export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control"
   | "autojs.control" | "autojs.manage" | "settings.control" | "settings.write" | "sysprops.control" | "memory.control" | "memory.dump"
-  | "installer.control" | "installer.mutate" | "engines.control" | "engines.exec" | "plugintools.control" | "plugintools.usergranted";
+  | "installer.control" | "installer.mutate" | "engines.control" | "engines.exec" | "plugintools.control"
+  /** Not a grant: offered with every host bridge, a Worker's exit / stop ends the execution through it (host 6.8.0). */
+  | "execution.control";
 export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
 export declare class HostCallError extends Error {
   readonly code: string;
@@ -411,6 +413,29 @@ export interface DeviceInfo {
   readonly sdkInt: number;
   readonly release: string;
   readonly supportedAbis: readonly string[];
+}
+/**
+ * Rhino's synchronous device fields from android.os.Build at script startup (api-coverage P4.1c), offered with the
+ * device.info grant (on by default) like the info() snapshot and absent without it. buildId is Build.DISPLAY, as in Rhino.
+ */
+export interface DeviceBuildFields {
+  readonly sdkInt?: number;
+  readonly release?: string;
+  readonly model?: string;
+  readonly brand?: string;
+  readonly product?: string;
+  readonly board?: string;
+  readonly bootloader?: string;
+  readonly hardware?: string;
+  readonly fingerprint?: string;
+  readonly buildId?: string;
+  readonly buildDisplay?: string;
+  readonly manufacturer?: string;
+  readonly device?: string;
+  readonly incremental?: string;
+  readonly baseOS?: string;
+  readonly securityPatch?: string;
+  readonly codename?: string;
 }
 // BEGIN GENERATED AUTOMATION TYPES
 export interface AutomationCallOptions { readonly timeoutMs?: number; readonly signal?: AbortSignal }
@@ -1268,7 +1293,10 @@ export namespace RuntimeNotifications {
       readonly [key: string]: JsonValue;
     }
 
-    /** Rhino notice.channel (Android 8+; an id defaults to "script_channel"). */
+    /**
+     * Rhino notice.channel (Android 8+). An omitted id defaults as in Rhino: config defaultChannelId, else the script's
+     * file name (such as "main.js"), or "script_channel" when useScriptNameAsDefaultChannelId is false.
+     */
     export interface ChannelModule {
       create(channelId: string | number | ChannelOptions, options?: ChannelOptions | null, callOptions?: AutomationCallOptions): Promise<string>;
       createIfNeeded(channelId: string | number | ChannelOptions, options?: ChannelOptions | null, callOptions?: AutomationCallOptions): Promise<void>;
@@ -5414,8 +5442,19 @@ export namespace RuntimeMediainfo {
 
 // BEGIN GENERATED SYSTEM TYPES
 export namespace RuntimeAutojs {
-    export type RootMode = "AUTO_DETECT" | "FORCE_ROOT" | "FORCE_NON_ROOT";
-    export type RootModeInput = RootMode | 1 | 0 | -1 | boolean | "root" | "non-root" | "auto";
+    export type RootModeName = "AUTO_DETECT" | "FORCE_ROOT" | "FORCE_NON_ROOT";
+    /** Rhino's RootUtils.RootMode: one frozen object per mode. */
+    export interface RootMode {
+      /** The settings key, such as "key_$_root_mode_auto_detect". */
+      readonly key: string;
+      /** The English description, such as "Auto detect root access". */
+      readonly description: string;
+      name(): RootModeName;
+      ordinal(): number;
+      /** "RootMode{key=..., description='...'}", as the Java enum prints. */
+      toString(): string;
+    }
+    export type RootModeInput = RootMode | RootModeName | 1 | 0 | -1 | boolean | "root" | "non-root" | "auto";
     export interface Version {
       readonly code: number;
       readonly name: string;
@@ -5642,15 +5681,15 @@ export namespace RuntimePlugins {
       cancel(invocationId: string, options?: AutomationCallOptions): Promise<unknown>;
     }
 
-    /** Rhino's plugins: extend* and tools (Bun grants plugintools.control and plugintools.usergranted for tools). */
+    /** Rhino's plugins: extend* and tools (Bun grant plugintools.control for tools). */
     export interface PluginsModule {
       /** Rhino's plugins.extend* on the shared jsox: Mathx / Arrayx / Numberx extend the built-ins of this thread. */
       extend(...names: (string | readonly string[])[]): void;
       extendAll(): void;
       extendAllBut(...names: (string | readonly string[])[]): void;
       /**
-       * Rhino's plugins.tools: the tools of installed tool-provider plugins (grant plugintools.control; the tools of
-       * USER_GRANTED providers are listed and run when plugintools.usergranted is on too).
+       * Rhino's plugins.tools: the tools of installed tool-provider plugins, USER_GRANTED providers included as in Rhino
+       * (grant plugintools.control).
        */
       readonly tools: PluginToolsModule;
     }
@@ -5669,7 +5708,14 @@ export interface HostClient {
   readonly util: RuntimeUtil.UtilModule;
   readonly species: RuntimeSpecies.SpeciesModule;
   /** Rhino's global functions: the data functions of the JS tools core and the system functions (current*, waitFor*, exit / stop, requires*, setScreenMetrics, WIDTH / HEIGHT, getClip / setClip). */
-  readonly global: RuntimeGlobal.GlobalModule & RuntimeSystem.SystemModule;
+  readonly global: RuntimeGlobal.GlobalModule & RuntimeSystem.SystemModule & {
+    /**
+     * Puts the system functions and R on target (globalThis by default) as Rhino's globals, for the calling thread (call
+     * it in each Worker too): accessors over these members, assigning one replaces it; names target already has are left
+     * alone. Returns the installed names. Not enumerable on host.global.
+     */
+    install(target?: object): readonly string[];
+  };
   readonly s13n: RuntimeS13n.S13nModule;
   readonly cvt: RuntimeConverter.ConverterModule;
   readonly fmt: RuntimeFormatter.FormatterModule;
@@ -5699,7 +5745,7 @@ export interface HostClient {
   readonly powerManager: RuntimePowerManager.PowerManagerModule;
   /** Rhino's engines as the host sees its executions (engines.control; execScript* also engines.exec). myEngine is this execution. */
   readonly engines: RuntimeEngines.EnginesModule;
-  /** Rhino's plugins.extend* (the built-ins of this thread) and plugins.tools (plugintools.control, plugintools.usergranted). */
+  /** Rhino's plugins.extend* (the built-ins of this thread) and plugins.tools (plugintools.control; USER_GRANTED providers included as in Rhino). */
   readonly plugins: RuntimePlugins.PluginsModule;
   readonly events: RuntimeEvents.EventsModule;
   readonly notifications: RuntimeNotifications.NotificationsModule;
@@ -5727,8 +5773,11 @@ export interface HostClient {
   /** Raw calls still obey the same host grants and method validation. No generic Node bridge is exposed. */
   call(capability: string, payload?: { readonly [key: string]: JsonValue }): Promise<{ [key: string]: JsonValue }>;
   toast(text: string, duration?: "short" | "long"): Promise<{ shown: boolean }>;
-  /** Async device methods; info() preserves the original small snapshot, getInfo() returns the full live snapshot. */
-  readonly device: Omit<RuntimeDevice.DeviceModule, "info" | "sdkInt" | "width" | "height" | "density" | "densityDpi" | "release" | "model" | "brand" | "product" | "board" | "bootloader" | "hardware" | "fingerprint" | "buildId"> & { info(): Promise<DeviceInfo> };
+  /**
+   * Async device methods; info() preserves the original small snapshot, getInfo() returns the full live snapshot. The
+   * Build fields are synchronous with device.info (DeviceBuildFields).
+   */
+  readonly device: Omit<RuntimeDevice.DeviceModule, "info" | "sdkInt" | "width" | "height" | "density" | "densityDpi" | "release" | "model" | "brand" | "product" | "board" | "bootloader" | "hardware" | "fingerprint" | "buildId"> & DeviceBuildFields & { info(): Promise<DeviceInfo> };
   readonly dialogs: RuntimeDialogs.DialogsModule;
   readonly ui: RuntimeUi.UiModule;
   readonly compose: RuntimeCompose.Api;
