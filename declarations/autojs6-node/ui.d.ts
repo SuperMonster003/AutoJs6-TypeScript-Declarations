@@ -624,6 +624,90 @@ declare module "ui" {
       showLayout(layoutJson: LayoutDescriptor, options?: UiShowOptions): Promise<UiHandle>;
       state<T extends Record<string, AutoJs6Node.JsonValue>>(initial: T): UiState<T>;
       bind<T extends Record<string, AutoJs6Node.JsonValue>, K extends keyof T & string>(state: UiState<T>, key: K): Binding<T[K]>;
+
+      // Rhino's content view and window members (api-coverage P3.3, Q164 (a)). One content window per execution (the
+      // Activity of showLayout); layout / layoutFile / setContentView replace its root. XML ids resolve when the Promise
+      // settles, so root / findById / findByStringId answer synchronously with native View handles.
+      layout(xml: string): Promise<void>;
+      /** Reads the XML file (relative to the working directory) and calls layout. */
+      layoutFile(path: string): Promise<void>;
+      setContentView(view: NativeViewToken): Promise<void>;
+      /** Closes the content window. */
+      finish(): Promise<void>;
+      readonly root: NativeViewHandle | null;
+      findById(id: string): NativeViewHandle | null;
+      /** A view of the content window by XML id, when it is `view` or one of its descendants. */
+      findByStringId(view: NativeViewToken, id: string): NativeViewHandle | null;
+      /** create / resume / pause / stop / destroy / back_pressed of the content window; a back_pressed listener that leaves
+       * `event.consumed` false lets the window close. */
+      readonly emitter: UiEmitter;
+      /** Runs the action on this thread now (view operations are queued to the UI thread by the host). */
+      run<T>(action: () => T | PromiseLike<T>): Promise<T>;
+      post(action: () => void, delay?: number): true;
+      /** Always false: a Node thread is never the Android UI thread. */
+      isUiThread(): false;
+      /** A custom XML tag expanded here: render() returns its XML, attribute setters and the hooks receive native View handles. */
+      registerWidget(name: string, widget: new () => Widget): void;
+      readonly Widget: WidgetConstructor;
+      /** Recorded for Rhino scripts; the Node XML reader does not distinguish Android layout semantics. */
+      useAndroidLayout(enabled?: boolean | null): void;
+      /** Resource references as strings (`ui.R.drawable.icon` is "@drawable/icon"), not Rhino's integer ids. */
+      readonly R: Readonly<Record<string, Readonly<Record<string, string>>>>;
+      /** The scope `{{expression}}` attributes are evaluated in before a layout goes to the host (default globalThis). */
+      bindingContext: object;
+      // Window members act on the content window; set before it opens, they apply when it does.
+      keepScreenOn(): Promise<void>;
+      backgroundColor(color: string | number): Promise<void>;
+      statusBarColor(color: string | number): Promise<void>;
+      statusBarIconLight(isLight?: boolean): Promise<void>;
+      statusBarIconLightBy(backgroundColor: string | number): Promise<void>;
+      navigationBarColor(color: string | number): Promise<void>;
+      navigationBarIconLight(isLight?: boolean): Promise<void>;
+      navigationBarIconLightBy(backgroundColor: string | number): Promise<void>;
+      getStatusBarHeight(options?: BarHeightOptions): Promise<number>;
+      getVisibleStatusBarHeight(options?: BarHeightOptions): Promise<number>;
+      getNavigationBarHeight(options?: BarHeightOptions): Promise<number>;
+      getVisibleNavigationBarHeight(options?: BarHeightOptions): Promise<number>;
+      /** Each read queries the host (a new Promise). */
+      readonly statusBarHeight: Promise<number>;
+      readonly visibleStatusBarHeight: Promise<number>;
+      readonly navigationBarHeight: Promise<number>;
+      readonly visibleNavigationBarHeight: Promise<number>;
+    }
+
+    export interface BarHeightOptions { withComputed?: boolean; withDimen?: boolean; ignoreVisibility?: boolean }
+    export interface UiEmitter {
+      on(event: string, listener: (...args: any[]) => void): this;
+      addListener(event: string, listener: (...args: any[]) => void): this;
+      prependListener(event: string, listener: (...args: any[]) => void): this;
+      once(event: string, listener: (...args: any[]) => void): this;
+      prependOnceListener(event: string, listener: (...args: any[]) => void): this;
+      off(event: string, listener: (...args: any[]) => void): this;
+      removeListener(event: string, listener: (...args: any[]) => void): this;
+      removeAllListeners(event?: string): this;
+      emit(event: string, ...args: unknown[]): boolean;
+      listeners(event: string): Function[];
+      rawListeners(event: string): Function[];
+      listenerCount(event: string): number;
+      eventNames(): string[];
+      setMaxListeners(count: number): this;
+      getMaxListeners(): number;
+    }
+    export interface Widget {
+      render(): string;
+      defineAttr(name: string, alias?: string, applier?: (view: NativeViewHandle, name: string, value: string, defineSetter: () => void) => unknown): void;
+      defineAttr(name: string, applier: (view: NativeViewHandle, name: string, value: string, defineSetter: () => void) => unknown): void;
+      defineAttr(name: string, getter: (view: NativeViewHandle, name: string) => unknown, setter: (view: NativeViewHandle, name: string, value: string, defineSetter: () => void) => unknown): void;
+      hasAttr(name: string): boolean;
+      getAttr(view: NativeViewHandle, name: string, ...args: unknown[]): unknown;
+      setAttr(view: NativeViewHandle, name: string, value: string): unknown;
+      onViewCreated?(view: NativeViewHandle): unknown;
+      onFinishInflation?(view: NativeViewHandle): unknown;
+    }
+    export interface WidgetConstructor {
+      new(): Widget;
+      (): Widget;
+      readonly prototype: Widget;
     }
   }
 
@@ -634,3 +718,6 @@ declare module "autojs6:ui" {
   import ui = require("ui");
   export = ui;
 }
+
+/** Rhino's global isUiThread (api-coverage P3.3): always false in Node. */
+declare function isUiThread(): false;

@@ -33,6 +33,13 @@ declare namespace RuntimeCompose {
     }
     type Props<N extends ComponentName> = Catalog[N] & SharedProps;
     interface Node<N extends ComponentName = ComponentName> {
+        // Rhino ComposeNode's own members and shortcut accessors (api-coverage P3.3, Q104 / Q106); writing an accessor is set.
+        readonly type: N; readonly key: string | number | null; readonly nodeId: number;
+        /** The node this one was appended to (or a slot of), else null. */
+        readonly parent: Node | null; readonly children: readonly Node[];
+        w: ComposeDpInput | undefined; h: ComposeDpInput | undefined; padding: ComposePaddingInput | undefined; bg: ComposeColorInput | undefined;
+        weight: number | undefined; alpha: number | undefined; testTag: string | undefined; contentDescription: string | null | undefined;
+        toString(): string;
         set(value: Partial<Props<N>>): this;
         get<K extends keyof Props<N>>(name: K): Props<N>[K];
         append(value: Child): this; insert(index: number, value: Child): this; remove(value: Node | number): this;
@@ -41,6 +48,15 @@ declare namespace RuntimeCompose {
         focus(): Promise<void>; blur(): Promise<void>;
         scrollTo(target: number | { index?: number; offset?: number }): Promise<void>;
         edit(value: { text?: string; selection?: { start: number; end: number } }): Promise<void>;
+    }
+    /** Rhino's ComposeError (code INVALID_ARGUMENT for facade argument errors; plugin codes from the host). */
+    interface ComposeError extends Error {
+        readonly name: "ComposeError"; code: string; nodeId: number | null; prop: string | null; cause: unknown; retryable: boolean;
+    }
+    interface ComposeErrorConstructor {
+        new(message?: string, code?: string, nodeId?: number | null, prop?: string | null, cause?: unknown): ComposeError;
+        (message?: string, code?: string, nodeId?: number | null, prop?: string | null, cause?: unknown): ComposeError;
+        readonly prototype: ComposeError;
     }
     interface Theme { seed?: ComposeColorInput; colors?: Readonly<Record<string, ComposeColorInput>>; dark?: boolean | 'system'; dynamicColor?: boolean; typography?: { fontFamily?: string; scale?: number } }
     interface Options { theme?: Theme }
@@ -62,6 +78,8 @@ declare namespace RuntimeCompose {
         setPosition(x: number, y: number): Promise<void>; setSize(width: number, height: number): Promise<void>;
         requestFocus(): Promise<void>; disableFocus(): Promise<void>; setTouchable(touchable: boolean): Promise<void>;
         getX(): Promise<number>; getY(): Promise<number>; getWidth(): Promise<number>; getHeight(): Promise<number>;
+        /** No adjustment frame (as Rhino raw windows): false is a no-op, true rejects with ComposeError INVALID_ARGUMENT. */
+        setAdjustEnabled(enabled: boolean): Promise<void>;
     }
     interface Modifier {
         padding(all: ComposeDpInput): Modifier;
@@ -653,6 +671,7 @@ declare namespace RuntimeCompose {
         version(): Promise<{ plugin: number; contract: number; compose: string }>;
         theme(): Theme | undefined; theme(value: Theme): Theme;
         readonly sessions: readonly Session[];
+        readonly ComposeError: ComposeErrorConstructor;
     }
     type Api = Core & { readonly [N in ComponentName]: (props?: Props<N> | null, ...children: Child[]) => Node<N> };
 }
@@ -660,6 +679,10 @@ declare module "compose" {
     namespace compose {
         type Node<N extends RuntimeCompose.ComponentName = RuntimeCompose.ComponentName> = RuntimeCompose.Node<N>;
         type Session = RuntimeCompose.Session;
+        type FloatySession = RuntimeCompose.FloatySession;
+        type State<T = unknown> = RuntimeCompose.State<T>;
+        type Ref = RuntimeCompose.Ref;
+        type ComposeError = RuntimeCompose.ComposeError;
         type Event = RuntimeCompose.Event;
         type Theme = RuntimeCompose.Theme;
     }
@@ -670,3 +693,5 @@ declare module "autojs6:compose" {
     import compose = require("compose");
     export = compose;
 }
+/** Rhino's global ComposeError (the compose module's constructor). */
+declare const ComposeError: RuntimeCompose.ComposeErrorConstructor;
