@@ -924,6 +924,7 @@ declare namespace AutoJs6Node {
     readonly flow: typeof import("flow");
     readonly mail: typeof import("mail");
     readonly epub: typeof import("epub");
+    readonly gallery: typeof import("gallery");
     readonly speech: typeof import("speech");
     readonly tts: typeof import("tts");
     readonly java: AutoJsJavaFacade;

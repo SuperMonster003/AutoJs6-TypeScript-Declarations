@@ -356,9 +356,9 @@ declare module "autojs6:compat" {
 
     /** Legacy one-shot WorkManager calls keep string IDs. New calendar tasks use numeric IDs. */
     export interface RhinoTasksCompatModule extends Omit<import("tasks").TasksModule, "addDisposableTask" | "queryTasks" | "queryTimedTasks" | "getTimedTask"> {
-      addDisposableTask(options: RhinoDisposableTaskOptions): Promise<string>;
-      queryTasks(options?: RhinoTasksQueryOptions): Promise<readonly workManager.WorkTask[]>;
-      queryTimedTasks(options?: import("tasks").QueryOptions): Promise<readonly (import("tasks").TimedTask | workManager.WorkTask)[]>;
+      addDisposableTask(options: RhinoDisposableTaskOptions | null): Promise<string>;
+      queryTasks(options?: RhinoTasksQueryOptions | null): Promise<readonly workManager.WorkTask[]>;
+      queryTimedTasks(options?: import("tasks").QueryOptions | null): Promise<readonly (import("tasks").TimedTask | workManager.WorkTask)[]>;
       getTimedTask(id: string, options?: AutoJs6Node.BridgeCallOptions): Promise<import("tasks").TimedTask | workManager.WorkTask | null>;
       getTimedTask(id: number | import("tasks").TimedTask, options?: AutoJs6Node.BridgeCallOptions): Promise<import("tasks").TimedTask | null>;
     }
@@ -459,6 +459,7 @@ declare module "autojs6:compat" {
     readonly ai: typeof import("ai");
     readonly mail: typeof import("mail");
       readonly epub: typeof import("epub");
+      readonly gallery: typeof import("gallery");
       readonly speech: typeof import("speech");
       readonly tts: typeof import("tts");
       requestScreenCapture(options?: ScreenCaptureRequestOptions): Promise<boolean>;

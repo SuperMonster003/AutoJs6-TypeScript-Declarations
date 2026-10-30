@@ -278,7 +278,7 @@ declare module "autojs6:threads" {
     }
     export interface ThreadsModule {
       start(action: ((signal: AutoJs6Node.AbortSignalLike) => unknown) | { run(): unknown }): Thread;
-      pool(options?: PoolOptions): Pool;
+      pool(options?: PoolOptions | null): Pool;
       atomic(initial?: number | SharedArrayBuffer | { readonly buffer: SharedArrayBuffer }): AtomicLong;
       lock(shared?: SharedArrayBuffer | { readonly buffer: SharedArrayBuffer }): Lock;
       disposable<T = unknown>(): VolatileDispose<T>;
@@ -320,7 +320,7 @@ declare module "autojs6:timers" {
       keepAlive(timeout?: number): number;
       /** Runs listener every interval ms (200 by default) until the timeout or until condition returns a value other than false; then callback(value). */
       setIntervalExt(listener: () => void, interval?: number, timeoutOrCondition?: number | ((this: IntervalRecord) => unknown),
-        callback?: (this: IntervalRecord, value: unknown) => void): AutoJs6NodeTimers.TimerHandle;
+        callback?: (this: IntervalRecord, value: unknown) => void): number;
       /** Abandoned in Rhino: only warns once. */
       loop(): void;
     }

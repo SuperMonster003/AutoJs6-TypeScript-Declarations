@@ -6,6 +6,7 @@ declare module "speech" {
     interface API {
         readonly SpeechError: ErrorConstructor;
         readonly models: Models;
+        readonly speaker: Speaker;
         isAvailable(callOptions?: CallOptions): Promise<boolean>;
         capabilities(callOptions?: CallOptions): Promise<Capabilities>;
         /** Returns a pending session. Attach ready/error/end listeners before feeding audio. */
@@ -13,6 +14,15 @@ declare module "speech" {
         recognize(source: AudioSource, options?: RecognizeOptions | null, callOptions?: CallOptions): Promise<Recognition>;
         recognizeAsync(source: AudioSource, options?: RecognizeOptions | null, callOptions?: CallOptions): Promise<Recognition>;
         detectVoice(source: AudioSource, options?: VadOptions | null, callOptions?: CallOptions): Promise<VadResult>;
+        /** Who spoke when in an audio file (feature `diarization`); no deadline by default. */
+        diarize(file: string, options?: DiarizeOptions | null, callOptions?: CallOptions): Promise<Diarization>;
+        diarizeAsync(file: string, options?: DiarizeOptions | null, callOptions?: CallOptions): Promise<Diarization>;
+        /** The languages spoken in an audio file (feature `languageId`). */
+        detectLanguage(file: string, options?: DetectLanguageOptions | null, callOptions?: CallOptions): Promise<LanguageDetection>;
+        detectLanguageAsync(file: string, options?: DetectLanguageOptions | null, callOptions?: CallOptions): Promise<LanguageDetection>;
+        /** Sound labels of an audio file (feature `audioTagging`). */
+        tag(file: string, options?: TagOptions | null, callOptions?: CallOptions): Promise<Tagging>;
+        tagAsync(file: string, options?: TagOptions | null, callOptions?: CallOptions): Promise<Tagging>;
         wake(keywords: KeywordInput | readonly KeywordInput[], options?: WakeOptions | null, callOptions?: CallOptions): Promise<WakeSession>;
         synthesize(text: string, path: string, options?: SynthesisOptions | null, callOptions?: CallOptions): Promise<SynthesisResult>;
         synthesizeAsync(text: string, path: string, options?: SynthesisOptions | null, callOptions?: CallOptions): Promise<SynthesisResult>;
@@ -43,10 +53,10 @@ declare module "speech" {
             | 'INTERNAL';
 
         /** What the plugin implements; a call whose feature is missing fails with `PLUGIN_INCOMPATIBLE`. */
-        type Feature = 'asr' | 'asrStreaming' | 'vad' | 'kws' | 'tts' | 'ttsSystemEngine' | 'models';
+        type Feature = 'asr' | 'asrStreaming' | 'vad' | 'kws' | 'tts' | 'ttsSystemEngine' | 'models' | 'audioDecode' | 'speaker' | 'diarization' | 'languageId' | 'audioTagging';
 
         /** Model kinds: recognition, synthesis, keyword spotting (wake words) and voice activity detection. */
-        type Kind = 'asr' | 'tts' | 'kws' | 'vad';
+        type Kind = 'asr' | 'tts' | 'kws' | 'vad' | 'speaker' | 'segment' | 'langid' | 'tagger';
 
         /** `pending` until `ready`, then `active`, then `ended`. */
         type State = 'pending' | 'active' | 'ended';
@@ -432,6 +442,188 @@ declare module "speech" {
             /** At most 128 characters. */
             name?: string;
             languages?: string[];
+        }
+
+        interface EnrollOptions {
+            /** Drops the speaker's earlier samples first; required to switch a speaker to another model. */
+            replace?: boolean;
+            /** Speaker model id; the default speaker model when omitted. */
+            model?: string;
+        }
+
+        interface Enrollment {
+            readonly name: string;
+            /** Samples the voiceprint averages so far. */
+            readonly samples: number;
+            /** Milliseconds of speech this call used. */
+            readonly durationMillis: number;
+            readonly modelId: string;
+        }
+
+        interface VerifyOptions {
+            /** Cosine score between 0 and 1; the plugin's default of the speaker model when omitted. */
+            threshold?: number;
+        }
+
+        interface IdentifyOptions extends VerifyOptions {
+            /** Candidates to answer, an integer from 1 to 10 (default 3). */
+            topK?: number;
+        }
+
+        interface Match {
+            /** The speaker; for {@link Speaker.identify} null when no score reached the threshold. */
+            readonly name: string | null;
+            /** Cosine score, four decimals. */
+            readonly score: number;
+            readonly matched: boolean;
+            /** The threshold used. */
+            readonly threshold: number;
+        }
+
+        interface Verification extends Match {
+            readonly name: string;
+        }
+
+        interface Identification extends Match {
+            /** The best speakers, highest score first, at most `topK`. */
+            readonly candidates: { readonly name: string; readonly score: number }[];
+        }
+
+        interface SpeakerInfo {
+            readonly name: string;
+            readonly samples: number;
+            /** Last enrollment, milliseconds since the epoch. */
+            readonly updatedAt: number;
+            readonly modelId: string;
+        }
+
+        /**
+         * Options shared by {@link API.diarize}, {@link API.detectLanguage} and
+         * {@link API.tag}. AutoJs6 waits 10 minutes for each progress of the plugin (`TIMEOUT`
+         * without one), with no limit on the whole call.
+         */
+        interface AnalysisOptions {
+            /** Milliseconds of audio done and in all, called on this JS thread. */
+            onProgress?: (done: number, total: number) => void;
+        }
+
+        interface DiarizeOptions extends AnalysisOptions {
+            /** Segmentation model id (kind `segment`); default the default `segment` model. */
+            model?: string;
+            /** Speaker embedding model id (kind `speaker`); default the default `speaker` model. */
+            speakerModel?: string;
+            /** Number of speakers when known, an integer from 0 to 20; 0 (default) lets the plugin count them. */
+            speakers?: number;
+            /** Clustering threshold from 0 to 2, a larger one merges more voices into one speaker; default the plugin's value. */
+            threshold?: number;
+            /** Also names each speaker after the closest voiceprint enrolled with {@link API.speaker}; default false. */
+            identify?: boolean;
+        }
+
+        interface DiarizationSegment {
+            readonly startMillis: number;
+            readonly endMillis: number;
+            /** The speaker number, from 0 in order of first appearance. */
+            readonly speaker: number;
+        }
+
+        interface DiarizationName {
+            /** The speaker number of {@link DiarizationSegment.speaker}. */
+            readonly speaker: number;
+            /** The enrolled speaker whose voiceprint is closest, null when its score is below that speaker model's threshold. */
+            readonly name: string | null;
+            /** Cosine score of the closest voiceprint, four decimals; null when nothing could be compared. */
+            readonly score: number | null;
+        }
+
+        interface Diarization {
+            /** Speaker turns in ascending time. */
+            readonly segments: DiarizationSegment[];
+            /** Number of speakers found. */
+            readonly speakers: number;
+            /** Length of the decoded audio. */
+            readonly durationMillis: number;
+            /** The segmentation model used. */
+            readonly modelId: string;
+            /** With `identify: true`: one entry per speaker. */
+            readonly names?: DiarizationName[];
+        }
+
+        interface DetectLanguageOptions extends AnalysisOptions {
+            /** Language identification model id (kind `langid`); default the default `langid` model. */
+            model?: string;
+            /** Speech windows to judge, an integer from 1 to 60 (default 3); 60 windows cover 30 minutes. */
+            windows?: number;
+        }
+
+        interface LanguageSegment {
+            readonly startMillis: number;
+            readonly endMillis: number;
+            readonly language: string;
+        }
+
+        interface LanguageDetection {
+            /** The language spoken longest over {@link segments} (3-Macaw Speech 1.3.0: of most windows), a Whisper code such as `'zh'`, `'en'` or `'ja'`; a tie goes to the language heard first. */
+            readonly language: string;
+            /** Every language heard with its share of the speaking time (3-Macaw Speech 1.3.0: of the windows; 0 to 1, four decimals), the largest first. */
+            readonly candidates: { readonly language: string; readonly score: number }[];
+            /** One entry per sentence (3-Macaw Speech 1.3.0: per window); a joined sentence spans the silence inside it. */
+            readonly segments: LanguageSegment[];
+            /** Length of the decoded audio. */
+            readonly durationMillis: number;
+            readonly modelId: string;
+        }
+
+        interface TagOptions extends AnalysisOptions {
+            /** Audio tagging model id (kind `tagger`); default the default `tagger` model. */
+            model?: string;
+            /** Labels to answer, an integer from 1 to 20 (default 5); also the labels per window of `timeline`. */
+            topK?: number;
+            /** Also answers the `topK` labels of every 10 second window; default false. */
+            timeline?: boolean;
+        }
+
+        interface AudioLabel {
+            /** English AudioSet label such as `'Speech'` or `'Music'`. */
+            readonly label: string;
+            /** AudioSet ontology id such as `'/m/09x0r'`. */
+            readonly mid: string;
+            /** Four decimals. */
+            readonly score: number;
+        }
+
+        interface TaggedLabel extends AudioLabel {
+            /** The window where the label scored best. */
+            readonly startMillis: number;
+            readonly endMillis: number;
+        }
+
+        interface TagWindow {
+            readonly startMillis: number;
+            readonly endMillis: number;
+            readonly labels: AudioLabel[];
+        }
+
+        interface Tagging {
+            /** The `topK` labels with the best scores, best first. */
+            readonly labels: TaggedLabel[];
+            /** Length of the decoded audio. */
+            readonly durationMillis: number;
+            readonly modelId: string;
+            /** With `timeline: true`: one entry per 10 second window. */
+            readonly timeline?: TagWindow[];
+        }
+
+        /** Speaker voiceprints the plugin keeps (feature `speaker`, 3-Macaw Speech 1.3.0 and later). */
+        interface Speaker {
+            enroll(name: string, files: string | string[], options?: EnrollOptions | null, callOptions?: CallOptions): Promise<Enrollment>;
+            enrollAsync(name: string, files: string | string[], options?: EnrollOptions | null, callOptions?: CallOptions): Promise<Enrollment>;
+            verify(name: string, file: string, options?: VerifyOptions | null, callOptions?: CallOptions): Promise<Verification>;
+            verifyAsync(name: string, file: string, options?: VerifyOptions | null, callOptions?: CallOptions): Promise<Verification>;
+            identify(file: string, options?: IdentifyOptions | null, callOptions?: CallOptions): Promise<Identification>;
+            identifyAsync(file: string, options?: IdentifyOptions | null, callOptions?: CallOptions): Promise<Identification>;
+            list(callOptions?: CallOptions): Promise<SpeakerInfo[]>;
+            remove(name: string, callOptions?: CallOptions): Promise<boolean>;
         }
 
         interface Models {

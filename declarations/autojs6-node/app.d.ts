@@ -166,11 +166,11 @@ declare module "app" {
       /** Starts a regular Android service, subject to Android background-start restrictions. */
       startService(request: IntentRequest, options?: AutoJs6Node.BridgeCallOptions): Promise<string | null>;
       /** Returns packages visible to Android's package manager. */
-      getInstalledApps(filter?: { readonly includeSystem?: boolean }, options?: AutoJs6Node.BridgeCallOptions): Promise<readonly PackageInfo[]>;
+      getInstalledApps(filter?: { readonly includeSystem?: boolean } | null, options?: AutoJs6Node.BridgeCallOptions): Promise<readonly PackageInfo[]>;
       getPackageInfo(packageName: string, options?: AutoJs6Node.BridgeCallOptions): Promise<PackageInfo | null>;
-      getInstalledPackages(query?: PackageQueryOptions, options?: AutoJs6Node.BridgeCallOptions): Promise<readonly PackageSnapshot[]>;
+      getInstalledPackages(query?: PackageQueryOptions | null, options?: AutoJs6Node.BridgeCallOptions): Promise<readonly PackageSnapshot[]>;
       /** Reads an APK file in the script's file scope; null when it is not a readable package. */
-      getApkInfo(path: string, query?: PackageQueryOptions, options?: AutoJs6Node.BridgeCallOptions): Promise<PackageSnapshot | null>;
+      getApkInfo(path: string, query?: PackageQueryOptions | null, options?: AutoJs6Node.BridgeCallOptions): Promise<PackageSnapshot | null>;
       getAppByAlias(alias: string, options?: AutoJs6Node.BridgeCallOptions): Promise<PresetApp | null>;
       /** Delivers to the host app's local receivers before resolving; a string is an action name. */
       sendLocalBroadcastSync(request: IntentRequest | string, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;

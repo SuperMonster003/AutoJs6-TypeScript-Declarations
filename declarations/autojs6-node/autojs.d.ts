@@ -27,7 +27,7 @@ declare module "autojs6:autojs" {
       isHigherThan(other: string | { toString(): string }): boolean;
       isLowerThan(other: string | { toString(): string }): boolean;
       isEqual(other: string | { toString(): string }): boolean;
-      isAtLeast(other: string | { toString(): string }, ignoreSuffix?: boolean): boolean;
+      isAtLeast(other: string | { toString(): string }, ignoreSuffix?: boolean | null): boolean;
     }
     export interface ThemeColor {
       readonly colorPrimary: number;

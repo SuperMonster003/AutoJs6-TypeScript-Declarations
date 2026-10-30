@@ -55,7 +55,7 @@ declare module "device" {
       isPowerSourceUSB(options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
       isPowerSourceWireless(options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
       isPowerSourceDock(options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
-      getIpAddress(useIPv4?: boolean, options?: AutoJs6Node.BridgeCallOptions): Promise<string>;
+      getIpAddress(useIPv4?: boolean | null, options?: AutoJs6Node.BridgeCallOptions): Promise<string>;
       getIpv6Address(options?: AutoJs6Node.BridgeCallOptions): Promise<string>;
       getGatewayAddress(options?: AutoJs6Node.BridgeCallOptions): Promise<string>;
       isActiveNetworkMetered(options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;

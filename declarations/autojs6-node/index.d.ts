@@ -92,3 +92,4 @@
 /// <reference path="./ai.d.ts" />
 /// <reference path="./mail.d.ts" />
 /// <reference path="./epub.d.ts" />
+/// <reference path="./gallery.d.ts" />

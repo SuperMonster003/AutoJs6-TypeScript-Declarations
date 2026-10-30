@@ -3,7 +3,7 @@
 declare module "autojs6:bun-host" {
     /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
     export const SDK_VERSION: 1;
-    export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "device.identifiers" | "media.control" | "media.library" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "events.touch" | "events.key.intercept" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "accessibility.service" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control" | "ocr.control" | "barcode.control" | "yolo.control"
+    export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "theme.control" | "gallery.control" | "batchrename.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "device.identifiers" | "media.control" | "media.library" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "events.touch" | "events.key.intercept" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "accessibility.service" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control" | "ocr.control" | "barcode.control" | "yolo.control"
       | "autojs.control" | "autojs.manage" | "settings.control" | "settings.write" | "sysprops.control" | "memory.control" | "memory.dump"
       | "installer.control" | "installer.mutate" | "engines.control" | "engines.exec" | "plugintools.control"
       | "terminal.control" | "floaty.control" | "floaty.raw" | "floaty.touch"
@@ -16,7 +16,7 @@ declare module "autojs6:bun-host" {
       readonly status: number;
       constructor(code: string, message: string, capability?: string | null, status?: number);
     }
-    export const HOST_API_METHODS: Readonly<Record<"agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control" | "ocr.control" | "barcode.control" | "yolo.control"
+    export const HOST_API_METHODS: Readonly<Record<"agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "theme.control" | "gallery.control" | "batchrename.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control" | "ocr.control" | "barcode.control" | "yolo.control"
       | "autojs.control" | "settings.control" | "sysprops.control" | "memory.control" | "installer.control" | "engines.control" | "plugintools.control", readonly string[]>>;
     export const OPENCC_CONVERSION_TYPES: readonly [
       "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
@@ -810,11 +810,11 @@ declare module "autojs6:bun-host" {
           /** Starts a regular Android service, subject to Android background-start restrictions. */
           startService(request: IntentRequest, options?: AutomationCallOptions): Promise<string | null>;
           /** Returns packages visible to Android's package manager. */
-          getInstalledApps(filter?: { readonly includeSystem?: boolean }, options?: AutomationCallOptions): Promise<readonly PackageInfo[]>;
+          getInstalledApps(filter?: { readonly includeSystem?: boolean } | null, options?: AutomationCallOptions): Promise<readonly PackageInfo[]>;
           getPackageInfo(packageName: string, options?: AutomationCallOptions): Promise<PackageInfo | null>;
-          getInstalledPackages(query?: PackageQueryOptions, options?: AutomationCallOptions): Promise<readonly PackageSnapshot[]>;
+          getInstalledPackages(query?: PackageQueryOptions | null, options?: AutomationCallOptions): Promise<readonly PackageSnapshot[]>;
           /** Reads an APK file in the script's file scope; null when it is not a readable package. */
-          getApkInfo(path: string, query?: PackageQueryOptions, options?: AutomationCallOptions): Promise<PackageSnapshot | null>;
+          getApkInfo(path: string, query?: PackageQueryOptions | null, options?: AutomationCallOptions): Promise<PackageSnapshot | null>;
           getAppByAlias(alias: string, options?: AutomationCallOptions): Promise<PresetApp | null>;
           /** Delivers to the host app's local receivers before resolving; a string is an action name. */
           sendLocalBroadcastSync(request: IntentRequest | string, options?: AutomationCallOptions): Promise<void>;
@@ -977,13 +977,372 @@ declare module "autojs6:bun-host" {
         export type Bytes = readonly number[] | Uint8Array | Int8Array | Uint8ClampedArray;
 
         /**
+         * files.batchRename (capability batch_rename), through the external Batch Rename plugin: Rhino's members with the same
+         * argument rules and error codes, each returning a Promise. A plan belongs to the execution, so a Worker can apply a plan of
+         * the main thread. onProgress runs on the calling JS thread; a throwing onProgress does not interrupt the batch, the call
+         * rejects with its error afterwards.
+         */
+        export interface FilesBatchRename {
+          (paths: string | string[], options: FilesBatchRename.Options, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.Result>;
+          readonly BatchRenameError: FilesBatchRename.BatchRenameErrorConstructor;
+          plan(paths: string | string[], options: FilesBatchRename.Options, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.Plan>;
+          planAsync(paths: string | string[], options: FilesBatchRename.Options, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.Plan>;
+          preview(item: string | FilesBatchRename.PreviewItem, options: FilesBatchRename.Options, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.PreviewResult>;
+          preview(items: (string | FilesBatchRename.PreviewItem)[], options: FilesBatchRename.Options, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.PreviewResult[]>;
+          previewAsync(item: string | FilesBatchRename.PreviewItem, options: FilesBatchRename.Options, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.PreviewResult>;
+          previewAsync(items: (string | FilesBatchRename.PreviewItem)[], options: FilesBatchRename.Options, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.PreviewResult[]>;
+          apply(plan: FilesBatchRename.Plan, options?: FilesBatchRename.ApplyOptions | null, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.Result>;
+          applyAsync(plan: FilesBatchRename.Plan, options?: FilesBatchRename.ApplyOptions | null, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.Result>;
+          undo(target: FilesBatchRename.Result | string, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.UndoResult>;
+          undoAsync(target: FilesBatchRename.Result | string, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.UndoResult>;
+          history(limit?: number | null, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.HistoryEntry[]>;
+          deleteHistory(target: FilesBatchRename.Result | FilesBatchRename.HistoryEntry | string, callOptions?: FilesBatchRename.CallOptions): Promise<boolean>;
+          clearHistory(options?: FilesBatchRename.ClearHistoryOptions | null, callOptions?: FilesBatchRename.CallOptions): Promise<number>;
+          presets(callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.Preset[]>;
+          presetsAsync(callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.Preset[]>;
+          importPresets(json: string | FilesBatchRename.PresetDocument, options?: FilesBatchRename.ImportPresetsOptions | null, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.ImportPresetsResult>;
+          importPresetsAsync(json: string | FilesBatchRename.PresetDocument, options?: FilesBatchRename.ImportPresetsOptions | null, callOptions?: FilesBatchRename.CallOptions): Promise<FilesBatchRename.ImportPresetsResult>;
+          isAvailable(callOptions?: FilesBatchRename.CallOptions): Promise<boolean>;
+        }
+
+        export namespace FilesBatchRename {
+            /** No deadline by default; a signal cancels the wait, journaled renames stay. */
+            type CallOptions = Pick<AutomationCallOptions, "signal" | "timeoutMs">;
+
+
+            type ErrorCode =
+                | 'PLUGIN_UNAVAILABLE'
+                | 'PLUGIN_DISABLED'
+                | 'PLUGIN_INCOMPATIBLE'
+                | 'INVALID_OPTIONS'
+                | 'INVALID_PATHS'
+                | 'LIMIT_EXCEEDED'
+                | 'PLAN_REJECTED'
+                | 'PLAN_STALE'
+                | 'IO_FAILED'
+                | 'UNDO_UNAVAILABLE'
+                | 'INTERNAL';
+
+            /** `name` is `'BatchRenameError'`; `toString()` yields `BatchRenameError [CODE]: message`; `message` is not enumerable. */
+            interface BatchRenameError extends Error {
+                readonly name: 'BatchRenameError';
+                readonly code: ErrorCode | string;
+            }
+
+            interface BatchRenameErrorConstructor {
+                (message?: string, code?: ErrorCode | string): BatchRenameError;
+                new(message?: string, code?: ErrorCode | string): BatchRenameError;
+                (message: string, code?: ErrorCode | string): BatchRenameError;
+                readonly prototype: BatchRenameError;
+            }
+
+            type Target = 'all' | 'name' | 'extension';
+
+            type TextFormat = 'none' | 'lower' | 'upper' | 'title' | 'capitalize';
+
+            type ConflictPolicy = 'fail' | 'skip' | 'number' | 'overwrite';
+
+            type ProgressCallback = (done: number, total: number, item: ResultItem) => void;
+
+            type PinyinTone = 'none' | 'mark' | 'number';
+
+            type PinyinSeparator = 'none' | 'space' | 'underscore' | 'hyphen';
+
+            type PinyinCase = 'lower' | 'capitalize';
+
+            /**
+             * Options of `files.batchRename(paths, options)`, `plan` and `preview`; null and undefined
+             * values take the default. `search` is required unless `preset` names a preset that gives it.
+             */
+            type Options = SearchOptions | PresetOptions;
+
+            interface SearchOptions extends CommonOptions {
+                /**
+                 * Plain text, or regular expression source with `regex`. A `RegExp` is always a regular
+                 * expression whose `g` / `i` flags replace `matchAll` / `caseSensitive` (`m`, `s`, `u`, `y`
+                 * apply as well). An empty string matches every item and replaces nothing.
+                 */
+                search: string | RegExp;
+                /** A preset of the plugin: the defaults, then the preset, then the other options given here. An unknown name throws `INVALID_OPTIONS`. */
+                preset?: string;
+            }
+
+            interface PresetOptions extends CommonOptions {
+                /** Overrides the search of the preset. */
+                search?: string | RegExp;
+                /** A preset of the plugin: the defaults, then the preset, then the other options given here. An unknown name throws `INVALID_OPTIONS`. */
+                preset: string;
+            }
+
+            /** The options besides `search` and `preset`. */
+            interface CommonOptions {
+                /**
+                 * Replacement with variables: counters `${start=X;increment=X;padding=X}` (with `enumerate`),
+                 * date and time `$YYYY` ... `$f` (unless `dateTime` is false), random values
+                 * `${rstringalnum=N}`, `${rstringalpha=N}`, `${rstringdigit=N}`, `${ruuidv4}` (with `random`),
+                 * `${pinyin}` (the pinyin of the original target part, always on) and the photo metadata
+                 * variables `$CAMERA_MAKE`, `$CAMERA_MODEL`, `$LENS`, `$ISO`, `$APERTURE`, `$SHUTTER`,
+                 * `$FOCAL`, `$FLASH`, `$WIDTH`, `$HEIGHT`, `$AUTHOR`, `$COPYRIGHT`, `$LATITUDE`, `$LONGITUDE`,
+                 * `$ALTITUDE`, `$DATE_TAKEN_YYYY`, `$DATE_TAKEN_YY`, `$DATE_TAKEN_MM`, `$DATE_TAKEN_DD`,
+                 * `$DATE_TAKEN_HH`, `$DATE_TAKEN_mm`, `$DATE_TAKEN_SS`, `$EXPOSURE_BIAS`, `$ORIENTATION`,
+                 * `$COLOR_SPACE` (with `metadata`); `$$` is a literal `$`. Regular expressions also take `$1`,
+                 * `$<name>` and `$&`. Default `''`.
+                 */
+                replace?: string;
+                /** Default false. */
+                regex?: boolean;
+                /** Replace every match instead of the first; default false. */
+                matchAll?: boolean;
+                /** Default false. */
+                caseSensitive?: boolean;
+                /** The part searched and replaced; default `'all'`. Folders and names like `.nomedia` have no extension. */
+                target?: Target;
+                /** Default true. */
+                includeFiles?: boolean;
+                /** Default true; also covers named folders. */
+                includeFolders?: boolean;
+                /** Add everything below the named folders; default true. */
+                includeSubfolders?: boolean;
+                /** Default `'none'`; case mapping follows the current language. */
+                format?: TextFormat;
+                /** Expand `${...}` counters; default false (literal text). */
+                enumerate?: boolean;
+                /** Expand random values; default false (literal text). */
+                random?: boolean;
+                /** Time of the date variables: modification time or the time of `plan`; false (or `'none'`) keeps them literal. Default `'modified'`. */
+                dateTime?: 'modified' | 'now' | 'none' | false;
+                /** Unicode normalization; default false. */
+                normalize?: 'nfc' | 'nfd' | 'none' | false;
+                /** Full-width forms and the ideographic space to half-width; default false. */
+                halfWidth?: boolean;
+                /** Replace characters FAT32 / exFAT reject and suffix reserved Windows names; default false. */
+                sanitize?: boolean;
+                /** Default `'_'`. */
+                sanitizeReplacement?: string;
+                /** Remove leading white space and trailing white space and dots; default false. */
+                trim?: boolean;
+                /** Continue counters after the largest number already present in the folders; default false. */
+                continueNumbering?: boolean;
+                /** Default `'fail'`. */
+                onConflict?: ConflictPolicy;
+                /** Suffix of the `'number'` policy, must contain `{n}`; default `' ({n})'`. */
+                conflictNumberPattern?: string;
+                /** Convert the Chinese characters of the new name to pinyin after the replacement, before `format`; default false. */
+                pinyin?: boolean;
+                /** Tones of `pinyin` and `${pinyin}`: none (`zhang`), marks (`zhāng`) or numbers (`zhang1`); default `'none'`. */
+                pinyinTone?: PinyinTone;
+                /** Separator between adjacent syllables; default `'none'`. */
+                pinyinSeparator?: PinyinSeparator;
+                /** `'lower'` (`zhangsan`) or `'capitalize'` (`ZhangSan`); default `'lower'`. */
+                pinyinCase?: PinyinCase;
+                /** Keep only the first letter of every syllable; default false. */
+                pinyinInitials?: boolean;
+                /**
+                 * Expand the photo metadata variables from the EXIF (and XMP) of image files; missing values
+                 * expand to nothing and mark `metadataMissing`, `$DATE_TAKEN_*` fall back to the modification
+                 * time. Default false; `preview` rejects it.
+                 */
+                metadata?: boolean;
+                /** Progress of the one-step call; `plan` ignores it. */
+                onProgress?: ProgressCallback;
+            }
+
+            interface ApplyOptions {
+                /** Overrides the policy of the plan. */
+                onConflict?: ConflictPolicy;
+                /** Called once per handled rename; `total` counts the items to rename. */
+                onProgress?: ProgressCallback;
+            }
+
+            /** The options of a plan with every default filled in; a `RegExp` search appears as its source. */
+            interface NormalizedOptions {
+                search: string;
+                replace: string;
+                regex: boolean;
+                /** Flags among `m`, `s`, `u` and `y`. */
+                regexFlags: string;
+                matchAll: boolean;
+                caseSensitive: boolean;
+                target: Target;
+                includeFiles: boolean;
+                includeFolders: boolean;
+                includeSubfolders: boolean;
+                format: TextFormat;
+                enumerate: boolean;
+                random: boolean;
+                dateTime: 'modified' | 'now' | 'none';
+                normalize: 'nfc' | 'nfd' | 'none';
+                halfWidth: boolean;
+                sanitize: boolean;
+                sanitizeReplacement: string;
+                trim: boolean;
+                continueNumbering: boolean;
+                onConflict: ConflictPolicy;
+                conflictNumberPattern: string;
+                pinyin: boolean;
+                pinyinTone: PinyinTone;
+                pinyinSeparator: PinyinSeparator;
+                pinyinCase: PinyinCase;
+                pinyinInitials: boolean;
+                metadata: boolean;
+            }
+
+            interface PreviewItem {
+                /** One file name of 1 to 1024 characters. */
+                name: string;
+                /** Default false. */
+                isDirectory?: boolean;
+                /** Epoch milliseconds or a `Date`; the time of the call when missing. */
+                lastModified?: number | Date;
+            }
+
+            interface PreviewResult {
+                readonly newName: string;
+                readonly status: PlanStatus;
+                readonly reason: PlanReason | null;
+            }
+
+            interface ClearHistoryOptions {
+                /** Every source when missing. */
+                source?: 'script' | 'explorer';
+            }
+
+            interface Preset {
+                readonly name: string;
+                /** The complete options of the preset. */
+                readonly options: NormalizedOptions;
+            }
+
+            /** The format of the files the plugin exports; missing options take their defaults. */
+            interface PresetDocument {
+                format: 'autojs6-batch-rename-presets';
+                version: 1;
+                presets: { name: string; options: Partial<NormalizedOptions> }[];
+            }
+
+            interface ImportPresetsOptions {
+                /** Default `'skip'`. */
+                onConflict?: 'skip' | 'overwrite' | 'rename';
+            }
+
+            interface ImportPresetsResult {
+                /** The names stored, `'rename'` names included. */
+                readonly imported: string[];
+                readonly skipped: string[];
+                /** `index` is the position in `presets`; `reason` is in English. */
+                readonly rejected: { readonly index: number; readonly name: string | null; readonly reason: string }[];
+            }
+
+            type PlanStatus = 'rename' | 'unchanged' | 'conflict' | 'invalid' | 'excluded';
+
+            type PlanReason =
+                | 'noMatch'
+                | 'sameName'
+                | 'excludedByCaller'
+                | 'notIncluded'
+                | 'duplicateInBatch'
+                | 'existingEntry'
+                | 'numbersExhausted'
+                | 'numbered'
+                | 'overwrite'
+                | 'empty'
+                | 'dotName'
+                | 'separator'
+                | 'tooLong'
+                | 'restrictedCharacter';
+
+            interface Plan {
+                readonly id: string;
+                /** With `preset`, the options the plugin merged (defaults, preset, given options); `apply` keeps using them. */
+                readonly options: NormalizedOptions;
+                /** In enumeration order: named paths first in their order, each folder depth first, sorted by name. */
+                readonly items: PlanItem[];
+                readonly counts: { readonly [status in PlanStatus]: number };
+                /** True with an `invalid` item, or with a `conflict` item under `'fail'`. */
+                readonly rejected: boolean;
+            }
+
+            interface PlanItem {
+                /** Absolute path. */
+                readonly path: string;
+                readonly name: string;
+                readonly kind: 'file' | 'dir';
+                /** 0 for a named path, one more per folder level below it. */
+                readonly depth: number;
+                /** The current name for items that keep it; the unusable name for `conflict` and `invalid`. */
+                readonly newName: string;
+                readonly status: PlanStatus;
+                readonly reason: PlanReason | null;
+                /** Set to true before `apply` to keep the name (reason `excludedByCaller`). */
+                excluded: boolean;
+                /** The `'overwrite'` policy replaces an existing entry of that name. */
+                readonly overwrites: boolean;
+                /** A photo metadata variable of the new name had no value; false without `metadata`. */
+                readonly metadataMissing: boolean;
+            }
+
+            type ResultStatus = 'renamed' | 'skipped' | 'failed' | 'stale' | 'excluded';
+
+            interface ResultItem {
+                /** Path before the batch. */
+                readonly path: string;
+                /** Path after the batch, renamed parent folders included. */
+                readonly newPath: string;
+                readonly status: ResultStatus;
+                /** The plan's reason for `skipped` and `excluded`; `missing`, `kindChanged`, `changed`, `occupied`, `trashFailed` or `ioFailed` otherwise. */
+                readonly reason: string | null;
+            }
+
+            interface Result {
+                /** Batch of the undo journal; null when nothing was to be renamed. */
+                readonly batchId: string | null;
+                readonly counts: { readonly [status in ResultStatus]: number };
+                /** One per plan item, in the same order. */
+                readonly items: ResultItem[];
+                readonly undoable: boolean;
+            }
+
+            interface UndoItem {
+                /** Path before the undo. */
+                readonly path: string;
+                /** Path after the undo. */
+                readonly newPath: string;
+                readonly status: 'restored' | 'stale' | 'failed';
+                readonly reason: string | null;
+            }
+
+            interface UndoResult {
+                readonly batchId: string;
+                readonly state: 'restored' | 'recoveryRequired';
+                readonly counts: { readonly restored: number; readonly stale: number; readonly failed: number };
+                readonly items: UndoItem[];
+                /** True while some items can still be undone (failed ones, for instance). */
+                readonly undoable: boolean;
+            }
+
+            interface HistoryEntry {
+                readonly batchId: string;
+                readonly source: 'script' | 'explorer';
+                readonly state: 'committed' | 'partial' | 'rejected' | 'restored' | 'recoveryRequired';
+                /** Milliseconds since the epoch. */
+                readonly createdAt: number;
+                /** Milliseconds since the epoch. */
+                readonly updatedAt: number;
+                readonly counts: { readonly renamed: number; readonly notRenamed: number; readonly restored: number };
+                readonly undoable: boolean;
+            }
+        }
+
+        /**
          * Rhino's files module (FilesModule and its prototype, the host's Files object): same argument counts, path
          * resolution (java.io.File, relative to cwd()), conversions and errors (a Java exception is an Error named after
          * its class). The file operations run synchronously in this process with node:fs, so the plugin's Android file
          * access applies; open, toFile and readAssets go through the Java facade (java_interop) and return Promises of
-         * handles the caller releases. files.batchRename is not available yet (api-coverage Q82).
+         * handles the caller releases. files.batchRename goes through the Batch Rename plugin and returns Promises.
          */
         export interface FilesModule {
+          /** Batch renaming through the Batch Rename plugin (capability batch_rename). */
+          readonly batchRename: FilesBatchRename;
           /** Environment.getExternalStorageDirectory() of this Android user. */
           readonly sdcardPath: string;
           getSdcardPath(): string;
@@ -1746,7 +2105,7 @@ declare module "autojs6:bun-host" {
           isPowerSourceUSB(options?: AutomationCallOptions): Promise<boolean>;
           isPowerSourceWireless(options?: AutomationCallOptions): Promise<boolean>;
           isPowerSourceDock(options?: AutomationCallOptions): Promise<boolean>;
-          getIpAddress(useIPv4?: boolean, options?: AutomationCallOptions): Promise<string>;
+          getIpAddress(useIPv4?: boolean | null, options?: AutomationCallOptions): Promise<string>;
           getIpv6Address(options?: AutomationCallOptions): Promise<string>;
           getGatewayAddress(options?: AutomationCallOptions): Promise<string>;
           isActiveNetworkMetered(options?: AutomationCallOptions): Promise<boolean>;
@@ -2108,24 +2467,24 @@ declare module "autojs6:bun-host" {
           extras?: Readonly<Record<string, string | number | boolean | null>>;
         }
         export interface TasksModule {
-          addTask(options: TimedTaskOptions | IntentTaskOptions): Promise<Task>;
-          addTimedTask(options: TimedTaskOptions & { repeatMode: RepeatMode }): Promise<TimedTask>;
-          addDailyTask(options: TimedTaskOptions): Promise<TimedTask>;
-          addWeeklyTask(options: TimedTaskOptions & { daysOfWeek: readonly Weekday[] }): Promise<TimedTask>;
-          addMonthlyTask(options: TimedTaskOptions & { dayOfMonth: number }): Promise<TimedTask>;
-          addYearlyTask(options: TimedTaskOptions & { dayOfMonth: number; monthOfYear: number }): Promise<TimedTask>;
-          addDisposableTask(options: TimedTaskOptions): Promise<TimedTask>;
-          addCountdownTask(options: TimedTaskOptions & { delayMs: number }): Promise<TimedTask>;
-          addIntentTask(options: IntentTaskOptions): Promise<IntentTask>;
-          addBroadcastIntentTask(options: IntentTaskOptions): Promise<IntentTask>;
-          queryTasks(options?: QueryOptions): Promise<readonly Task[]>;
-          queryTimedTasks(options?: QueryOptions): Promise<readonly TimedTask[]>;
-          queryIntentTasks(options?: QueryOptions): Promise<readonly IntentTask[]>;
+          addTask(options: TimedTaskOptions | IntentTaskOptions | null): Promise<Task>;
+          addTimedTask(options: TimedTaskOptions & { repeatMode: RepeatMode } | null): Promise<TimedTask>;
+          addDailyTask(options: TimedTaskOptions | null): Promise<TimedTask>;
+          addWeeklyTask(options: TimedTaskOptions & { daysOfWeek: readonly Weekday[] } | null): Promise<TimedTask>;
+          addMonthlyTask(options: TimedTaskOptions & { dayOfMonth: number } | null): Promise<TimedTask>;
+          addYearlyTask(options: TimedTaskOptions & { dayOfMonth: number; monthOfYear: number } | null): Promise<TimedTask>;
+          addDisposableTask(options: TimedTaskOptions | null): Promise<TimedTask>;
+          addCountdownTask(options: TimedTaskOptions & { delayMs: number } | null): Promise<TimedTask>;
+          addIntentTask(options: IntentTaskOptions | null): Promise<IntentTask>;
+          addBroadcastIntentTask(options: IntentTaskOptions | null): Promise<IntentTask>;
+          queryTasks(options?: QueryOptions | null): Promise<readonly Task[]>;
+          queryTimedTasks(options?: QueryOptions | null): Promise<readonly TimedTask[]>;
+          queryIntentTasks(options?: QueryOptions | null): Promise<readonly IntentTask[]>;
           getTimedTask(id: number | string | TimedTask, options?: AutomationCallOptions): Promise<TimedTask | null>;
           getIntentTask(id: number | string | IntentTask, options?: AutomationCallOptions): Promise<IntentTask | null>;
-          removeTask(task: Task | number | string, options?: AutomationCallOptions): Promise<boolean>;
-          removeTimedTask(id: number | string | TimedTask, options?: AutomationCallOptions): Promise<boolean>;
-          removeIntentTask(id: number | string | IntentTask, options?: AutomationCallOptions): Promise<boolean>;
+          removeTask(task: Task | number | string, options?: AutomationCallOptions | null): Promise<boolean>;
+          removeTimedTask(id: number | string | TimedTask, options?: AutomationCallOptions | null): Promise<boolean>;
+          removeIntentTask(id: number | string | IntentTask, options?: AutomationCallOptions | null): Promise<boolean>;
           updateTask(task: TimedTask, patch?: TimedTaskOptions): Promise<TimedTask | null>;
           updateTask(task: IntentTask, patch?: Partial<IntentTaskOptions>): Promise<IntentTask | null>;
           updateTask(task: Task, patch?: TimedTaskOptions | Partial<IntentTaskOptions>): Promise<Task | null>;
@@ -2262,9 +2621,65 @@ declare module "autojs6:bun-host" {
         }
 
         /**
+         * colors.theme (capability theme): reads and changes the AutoJs6 theme color and controls intelligent color libraries, with
+         * Rhino's argument rules and errors. The theme color lives in the host, so every member returns a Promise.
+         */
+        export interface ColorsTheme {
+          /** The primary color, or the script color still waiting in the 500 ms merge window. */
+          get(): Promise<number>;
+          /** Sets the theme color; `accent` and `dark` override the derived ones. Changes within 500 ms are merged. */
+          set(color: ColorArgument, options?: ThemeSetOptions | null): Promise<void>;
+          /** Sets the default theme color of AutoJs6. */
+          reset(): Promise<void>;
+          libraries(): Promise<ThemeLibrary[]>;
+          /** Activates an intelligent library, optionally from `options.group`; a RangeError names an unknown library or group. */
+          activate(libraryId: number, options?: { group?: number } | null): Promise<void>;
+          /** Stops the active intelligent library and keeps its color; false when none is active. */
+          deactivate(): Promise<boolean>;
+          /** Moves the active intelligent library to its next group; false when none is active. */
+          next(): Promise<boolean>;
+          /** Switches the "Script" state source of the active intelligent library. */
+          state(name: string): Promise<void>;
+          current(): Promise<ThemeCurrent>;
+        }
+
+        export interface ThemeSetOptions {
+          accent?: ColorArgument | null;
+          dark?: ColorArgument | null;
+        }
+
+        export interface ThemeLibrary {
+            id: number;
+            /** Names of preset libraries follow the application language. */
+            name: string;
+            kind: 'preset' | 'created' | 'imported' | 'cloned';
+            intelligent: boolean;
+            /** Colors of a plain library, or groups of an intelligent library. */
+            size: number;
+        }
+
+        export interface ThemeCurrent {
+            libraryId: number;
+            libraryName: string | null;
+            /** Whether the color comes from an active intelligent library. */
+            intelligent: boolean;
+            /** The current group of the intelligent library, otherwise null. */
+            groupId: number | null;
+            /** The current group of the intelligent library, or the color name in a plain library. */
+            groupName: string | null;
+            /** The state name with the "Script states" source, the internal state key with other sources, null without an intelligent library. */
+            state: string | null;
+            color: number;
+            accent: number;
+            dark: number;
+            /** The summary shown on the theme color page. */
+            summary: string;
+        }
+
+        /**
          * Rhino's colors module (ColorsModule, the color tables, android.graphics.Color.parseColor and the HSV helpers):
          * same argument counts, conversions and errors. Java objects are facade handles; the calls that need one return
-         * Promises. colors.theme is not available yet (api-coverage Q80).
+         * Promises, like colors.theme.
          */
         export interface ColorsModule {
           /** Every table constant by name (not enumerable). */
@@ -2273,6 +2688,8 @@ declare module "autojs6:bun-host" {
           readonly css: Readonly<Record<string, number>>;
           readonly web: Readonly<Record<string, number>>;
           readonly material: Readonly<Record<string, number>>;
+          /** The AutoJs6 theme color (capability theme). */
+          readonly theme: ColorsTheme;
           /** A Promise of the host's ThemeColor (a Java handle). */
           readonly themeColor: Promise<JavaHandle>;
           readonly [constant: string]: unknown;
@@ -2785,6 +3202,7 @@ declare module "autojs6:bun-host" {
         interface API {
             readonly SpeechError: ErrorConstructor;
             readonly models: Models;
+            readonly speaker: Speaker;
             isAvailable(callOptions?: CallOptions): Promise<boolean>;
             capabilities(callOptions?: CallOptions): Promise<Capabilities>;
             /** Returns a pending session. Attach ready/error/end listeners before feeding audio. */
@@ -2792,6 +3210,15 @@ declare module "autojs6:bun-host" {
             recognize(source: AudioSource, options?: RecognizeOptions | null, callOptions?: CallOptions): Promise<Recognition>;
             recognizeAsync(source: AudioSource, options?: RecognizeOptions | null, callOptions?: CallOptions): Promise<Recognition>;
             detectVoice(source: AudioSource, options?: VadOptions | null, callOptions?: CallOptions): Promise<VadResult>;
+            /** Who spoke when in an audio file (feature `diarization`); no deadline by default. */
+            diarize(file: string, options?: DiarizeOptions | null, callOptions?: CallOptions): Promise<Diarization>;
+            diarizeAsync(file: string, options?: DiarizeOptions | null, callOptions?: CallOptions): Promise<Diarization>;
+            /** The languages spoken in an audio file (feature `languageId`). */
+            detectLanguage(file: string, options?: DetectLanguageOptions | null, callOptions?: CallOptions): Promise<LanguageDetection>;
+            detectLanguageAsync(file: string, options?: DetectLanguageOptions | null, callOptions?: CallOptions): Promise<LanguageDetection>;
+            /** Sound labels of an audio file (feature `audioTagging`). */
+            tag(file: string, options?: TagOptions | null, callOptions?: CallOptions): Promise<Tagging>;
+            tagAsync(file: string, options?: TagOptions | null, callOptions?: CallOptions): Promise<Tagging>;
             wake(keywords: KeywordInput | readonly KeywordInput[], options?: WakeOptions | null, callOptions?: CallOptions): Promise<WakeSession>;
             synthesize(text: string, path: string, options?: SynthesisOptions | null, callOptions?: CallOptions): Promise<SynthesisResult>;
             synthesizeAsync(text: string, path: string, options?: SynthesisOptions | null, callOptions?: CallOptions): Promise<SynthesisResult>;
@@ -2822,10 +3249,10 @@ declare module "autojs6:bun-host" {
                 | 'INTERNAL';
 
             /** What the plugin implements; a call whose feature is missing fails with `PLUGIN_INCOMPATIBLE`. */
-            type Feature = 'asr' | 'asrStreaming' | 'vad' | 'kws' | 'tts' | 'ttsSystemEngine' | 'models';
+            type Feature = 'asr' | 'asrStreaming' | 'vad' | 'kws' | 'tts' | 'ttsSystemEngine' | 'models' | 'audioDecode' | 'speaker' | 'diarization' | 'languageId' | 'audioTagging';
 
             /** Model kinds: recognition, synthesis, keyword spotting (wake words) and voice activity detection. */
-            type Kind = 'asr' | 'tts' | 'kws' | 'vad';
+            type Kind = 'asr' | 'tts' | 'kws' | 'vad' | 'speaker' | 'segment' | 'langid' | 'tagger';
 
             /** `pending` until `ready`, then `active`, then `ended`. */
             type State = 'pending' | 'active' | 'ended';
@@ -3211,6 +3638,188 @@ declare module "autojs6:bun-host" {
                 /** At most 128 characters. */
                 name?: string;
                 languages?: string[];
+            }
+
+            interface EnrollOptions {
+                /** Drops the speaker's earlier samples first; required to switch a speaker to another model. */
+                replace?: boolean;
+                /** Speaker model id; the default speaker model when omitted. */
+                model?: string;
+            }
+
+            interface Enrollment {
+                readonly name: string;
+                /** Samples the voiceprint averages so far. */
+                readonly samples: number;
+                /** Milliseconds of speech this call used. */
+                readonly durationMillis: number;
+                readonly modelId: string;
+            }
+
+            interface VerifyOptions {
+                /** Cosine score between 0 and 1; the plugin's default of the speaker model when omitted. */
+                threshold?: number;
+            }
+
+            interface IdentifyOptions extends VerifyOptions {
+                /** Candidates to answer, an integer from 1 to 10 (default 3). */
+                topK?: number;
+            }
+
+            interface Match {
+                /** The speaker; for {@link Speaker.identify} null when no score reached the threshold. */
+                readonly name: string | null;
+                /** Cosine score, four decimals. */
+                readonly score: number;
+                readonly matched: boolean;
+                /** The threshold used. */
+                readonly threshold: number;
+            }
+
+            interface Verification extends Match {
+                readonly name: string;
+            }
+
+            interface Identification extends Match {
+                /** The best speakers, highest score first, at most `topK`. */
+                readonly candidates: { readonly name: string; readonly score: number }[];
+            }
+
+            interface SpeakerInfo {
+                readonly name: string;
+                readonly samples: number;
+                /** Last enrollment, milliseconds since the epoch. */
+                readonly updatedAt: number;
+                readonly modelId: string;
+            }
+
+            /**
+             * Options shared by {@link API.diarize}, {@link API.detectLanguage} and
+             * {@link API.tag}. AutoJs6 waits 10 minutes for each progress of the plugin (`TIMEOUT`
+             * without one), with no limit on the whole call.
+             */
+            interface AnalysisOptions {
+                /** Milliseconds of audio done and in all, called on this JS thread. */
+                onProgress?: (done: number, total: number) => void;
+            }
+
+            interface DiarizeOptions extends AnalysisOptions {
+                /** Segmentation model id (kind `segment`); default the default `segment` model. */
+                model?: string;
+                /** Speaker embedding model id (kind `speaker`); default the default `speaker` model. */
+                speakerModel?: string;
+                /** Number of speakers when known, an integer from 0 to 20; 0 (default) lets the plugin count them. */
+                speakers?: number;
+                /** Clustering threshold from 0 to 2, a larger one merges more voices into one speaker; default the plugin's value. */
+                threshold?: number;
+                /** Also names each speaker after the closest voiceprint enrolled with {@link API.speaker}; default false. */
+                identify?: boolean;
+            }
+
+            interface DiarizationSegment {
+                readonly startMillis: number;
+                readonly endMillis: number;
+                /** The speaker number, from 0 in order of first appearance. */
+                readonly speaker: number;
+            }
+
+            interface DiarizationName {
+                /** The speaker number of {@link DiarizationSegment.speaker}. */
+                readonly speaker: number;
+                /** The enrolled speaker whose voiceprint is closest, null when its score is below that speaker model's threshold. */
+                readonly name: string | null;
+                /** Cosine score of the closest voiceprint, four decimals; null when nothing could be compared. */
+                readonly score: number | null;
+            }
+
+            interface Diarization {
+                /** Speaker turns in ascending time. */
+                readonly segments: DiarizationSegment[];
+                /** Number of speakers found. */
+                readonly speakers: number;
+                /** Length of the decoded audio. */
+                readonly durationMillis: number;
+                /** The segmentation model used. */
+                readonly modelId: string;
+                /** With `identify: true`: one entry per speaker. */
+                readonly names?: DiarizationName[];
+            }
+
+            interface DetectLanguageOptions extends AnalysisOptions {
+                /** Language identification model id (kind `langid`); default the default `langid` model. */
+                model?: string;
+                /** Speech windows to judge, an integer from 1 to 60 (default 3); 60 windows cover 30 minutes. */
+                windows?: number;
+            }
+
+            interface LanguageSegment {
+                readonly startMillis: number;
+                readonly endMillis: number;
+                readonly language: string;
+            }
+
+            interface LanguageDetection {
+                /** The language spoken longest over {@link segments} (3-Macaw Speech 1.3.0: of most windows), a Whisper code such as `'zh'`, `'en'` or `'ja'`; a tie goes to the language heard first. */
+                readonly language: string;
+                /** Every language heard with its share of the speaking time (3-Macaw Speech 1.3.0: of the windows; 0 to 1, four decimals), the largest first. */
+                readonly candidates: { readonly language: string; readonly score: number }[];
+                /** One entry per sentence (3-Macaw Speech 1.3.0: per window); a joined sentence spans the silence inside it. */
+                readonly segments: LanguageSegment[];
+                /** Length of the decoded audio. */
+                readonly durationMillis: number;
+                readonly modelId: string;
+            }
+
+            interface TagOptions extends AnalysisOptions {
+                /** Audio tagging model id (kind `tagger`); default the default `tagger` model. */
+                model?: string;
+                /** Labels to answer, an integer from 1 to 20 (default 5); also the labels per window of `timeline`. */
+                topK?: number;
+                /** Also answers the `topK` labels of every 10 second window; default false. */
+                timeline?: boolean;
+            }
+
+            interface AudioLabel {
+                /** English AudioSet label such as `'Speech'` or `'Music'`. */
+                readonly label: string;
+                /** AudioSet ontology id such as `'/m/09x0r'`. */
+                readonly mid: string;
+                /** Four decimals. */
+                readonly score: number;
+            }
+
+            interface TaggedLabel extends AudioLabel {
+                /** The window where the label scored best. */
+                readonly startMillis: number;
+                readonly endMillis: number;
+            }
+
+            interface TagWindow {
+                readonly startMillis: number;
+                readonly endMillis: number;
+                readonly labels: AudioLabel[];
+            }
+
+            interface Tagging {
+                /** The `topK` labels with the best scores, best first. */
+                readonly labels: TaggedLabel[];
+                /** Length of the decoded audio. */
+                readonly durationMillis: number;
+                readonly modelId: string;
+                /** With `timeline: true`: one entry per 10 second window. */
+                readonly timeline?: TagWindow[];
+            }
+
+            /** Speaker voiceprints the plugin keeps (feature `speaker`, 3-Macaw Speech 1.3.0 and later). */
+            interface Speaker {
+                enroll(name: string, files: string | string[], options?: EnrollOptions | null, callOptions?: CallOptions): Promise<Enrollment>;
+                enrollAsync(name: string, files: string | string[], options?: EnrollOptions | null, callOptions?: CallOptions): Promise<Enrollment>;
+                verify(name: string, file: string, options?: VerifyOptions | null, callOptions?: CallOptions): Promise<Verification>;
+                verifyAsync(name: string, file: string, options?: VerifyOptions | null, callOptions?: CallOptions): Promise<Verification>;
+                identify(file: string, options?: IdentifyOptions | null, callOptions?: CallOptions): Promise<Identification>;
+                identifyAsync(file: string, options?: IdentifyOptions | null, callOptions?: CallOptions): Promise<Identification>;
+                list(callOptions?: CallOptions): Promise<SpeakerInfo[]>;
+                remove(name: string, callOptions?: CallOptions): Promise<boolean>;
             }
 
             interface Models {
@@ -5360,6 +5969,8 @@ declare module "autojs6:bun-host" {
          * argument counts, conversions and errors as Rhino; randomInt / randomFloat are jsox.mathx's.
          */
         export interface GlobalModule {
+          /** Always throws a NotImplementedError, as in Rhino. */
+          TODO(reason?: unknown): void;
           /** A random number in [0, 1), or in [min, max] (NaN when only one bound is given). */
           random(min?: number | null, max?: number | null): number;
           randomInt(...values: readonly unknown[]): number;
@@ -6182,7 +6793,7 @@ declare module "autojs6:bun-host" {
         }
         export interface ThreadsModule {
           start(action: ((signal: AbortSignal) => unknown) | { run(): unknown }): Thread;
-          pool(options?: PoolOptions): Pool;
+          pool(options?: PoolOptions | null): Pool;
           atomic(initial?: number | SharedArrayBuffer | { readonly buffer: SharedArrayBuffer }): AtomicLong;
           lock(shared?: SharedArrayBuffer | { readonly buffer: SharedArrayBuffer }): Lock;
           disposable<T = unknown>(): VolatileDispose<T>;
@@ -6214,7 +6825,7 @@ declare module "autojs6:bun-host" {
           keepAlive(timeout?: number): number;
           /** Runs listener every interval ms (200 by default) until the timeout or until condition returns a value other than false; then callback(value). */
           setIntervalExt(listener: () => void, interval?: number, timeoutOrCondition?: number | ((this: IntervalRecord) => unknown),
-            callback?: (this: IntervalRecord, value: unknown) => void): ReturnType<typeof setTimeout>;
+            callback?: (this: IntervalRecord, value: unknown) => void): number;
           /** Abandoned in Rhino: only warns once. */
           loop(): void;
         }
@@ -6273,6 +6884,26 @@ declare module "autojs6:bun-host" {
           variant?: string;
           lang?: string;
           region?: Region;
+          /** PP-OCRv3 on ONNX Runtime: run on NNAPI, falling back to the CPU; extras.executionProvider tells which ran. */
+          useOpenCL?: boolean;
+          /** Paddle OCR: CPU threads, 4 by default. */
+          cpuThreadNum?: number;
+          /** Paddle OCR: use the slim models, true by default. */
+          useSlim?: boolean;
+          /** Paddle OCR: run the text direction classifier; the plugin decides when this is not set. */
+          useCls?: boolean;
+          /** Paddle OCR: limit of the detection side, passed on when above 0 and preferred to detLongSize. */
+          detLimitSideLen?: number;
+          /** Paddle OCR: join the results of a text line (extras keeps the keys all parts agree on); recognizeText does not merge. */
+          mergeLine?: boolean;
+          /** Long side of the detection input: 0 by default on Paddle OCR, the fallback of maxSideLen on Rapid OCR. */
+          detLongSize?: number;
+          /** Confidence threshold: -1 by default on Paddle OCR (the plugin decides), boxScoreThresh on Rapid OCR. */
+          scoreThreshold?: number;
+          /** Rapid OCR: long side of the detection input, detLongSize by default; 1024 when neither is above 0. */
+          maxSideLen?: number;
+          /** Rapid OCR: the default of scoreThreshold, 0.5 by default. */
+          boxScoreThresh?: number;
           /** Rhino's mode for this call: auto, mlkit, paddle or rapid (an engine is then chosen unless engine / engineId is set). */
           mode?: OcrMode;
         }
@@ -6288,10 +6919,25 @@ declare module "autojs6:bun-host" {
           toString(): string;
         }
 
+        /**
+         * What the engine attaches to a result (Rhino's OcrResult.extras), frozen. The keys depend on the engine and plugin.
+         * Booleans and strings stay as they are, numbers become JS numbers (NaN and infinities become null), arrays and
+         * collections become arrays, nested bundles and maps become objects, and other values are dropped.
+         */
+        export interface OcrResultExtras {
+          /** Vertices of the text quadrilateral as [x1, y1, x2, y2, ...], in the same coordinates as bounds. */
+          readonly quad?: readonly number[];
+          /** The execution provider that actually ran (PP-OCRv3 on ONNX Runtime). */
+          readonly executionProvider?: "cpu" | "nnapi" | string;
+          readonly [key: string]: unknown;
+        }
+
         export interface OcrResult {
           readonly text: string;
           readonly confidence: number | null;
           readonly bounds?: RuntimeFlow.Bounds;
+          /** An empty object when the engine attaches nothing or the host is older than AutoJs6 6.8.0. */
+          readonly extras: OcrResultExtras;
         }
 
         export interface OcrModule {
@@ -6492,7 +7138,7 @@ declare module "autojs6:bun-host" {
           isHigherThan(other: string | { toString(): string }): boolean;
           isLowerThan(other: string | { toString(): string }): boolean;
           isEqual(other: string | { toString(): string }): boolean;
-          isAtLeast(other: string | { toString(): string }, ignoreSuffix?: boolean): boolean;
+          isAtLeast(other: string | { toString(): string }, ignoreSuffix?: boolean | null): boolean;
         }
         export interface ThemeColor {
           readonly colorPrimary: number;
@@ -6601,16 +7247,16 @@ declare module "autojs6:bun-host" {
       }
     export namespace RuntimeSysprops {
         export interface SyspropsModule {
-          get(name: string, defaultValue?: string, options?: AutomationCallOptions): Promise<string>;
-          getInt(name: string, defaultValue?: number, options?: AutomationCallOptions): Promise<number>;
-          getBoolean(name: string, defaultValue?: boolean, options?: AutomationCallOptions): Promise<boolean>;
+          get(name: string, defaultValue?: string | null, options?: AutomationCallOptions): Promise<string>;
+          getInt(name: string, defaultValue?: number | null, options?: AutomationCallOptions): Promise<number | null>;
+          getBoolean(name: string, defaultValue?: boolean | null, options?: AutomationCallOptions): Promise<boolean | null>;
           getAll(options?: AutomationCallOptions): Promise<Readonly<Record<string, string>>>;
         }
       }
     export namespace RuntimePowerManager {
         export interface PowerManagerModule {
           isIgnoringBatteryOptimizations(packageName?: string | null, options?: AutomationCallOptions): Promise<boolean>;
-          requestIgnoreBatteryOptimizations(forceRequest?: boolean, packageName?: string | null, options?: AutomationCallOptions): Promise<void>;
+          requestIgnoreBatteryOptimizations(forceRequest?: boolean | null, packageName?: string | null, options?: AutomationCallOptions): Promise<void>;
         }
       }
     export namespace RuntimeSystem {
@@ -6670,6 +7316,8 @@ declare module "autojs6:bun-host" {
           readonly workingDirectory?: string;
           readonly packageName?: string;
           readonly nodeVersion?: string;
+          /** The script's source directory in the host: relative paths of host-side calls resolve against it, not against cwd. */
+          readonly hostCwd: string;
           readonly spawnDepth: number;
         }
 
@@ -6744,11 +7392,218 @@ declare module "autojs6:bun-host" {
       }
     // END GENERATED SYSTEM TYPES
 
+    // BEGIN GENERATED PLUGIN FAMILY TYPES
+    export namespace RuntimeGallery {
+        /** No deadline by default: the picker and the editor wait for the user, convert ends within the host's 180 s. A signal also ends an active viewer. */
+        type CallOptions = Pick<AutomationCallOptions, "signal" | "timeoutMs">;
+        /** Every member returns a Promise; `x` and `xAsync` differ only for the viewer, which `viewAsync` waits to be shown. */
+        interface API {
+            readonly GalleryError: GalleryErrorConstructor;
+            pick(options?: PickOptions | null, callOptions?: CallOptions): Promise<PickedImage[] | null>;
+            pickAsync(options?: PickOptions | null, callOptions?: CallOptions): Promise<PickedImage[] | null>;
+            /** Answers once the plugin accepted the viewer; the execution keeps running until the session's `close` event. */
+            view(paths: string | string[], options?: ViewOptions | null, callOptions?: CallOptions): Promise<ViewSession>;
+            viewAsync(paths: string | string[], options?: ViewOptions | null, callOptions?: CallOptions): Promise<ViewSession>;
+            edit(path: string, options?: EditOptions | null, callOptions?: CallOptions): Promise<string | null>;
+            editAsync(path: string, options?: EditOptions | null, callOptions?: CallOptions): Promise<string | null>;
+            convert(path: string, options?: ConvertOptions | null, callOptions?: CallOptions): Promise<WrittenImage>;
+            convertAsync(path: string, options?: ConvertOptions | null, callOptions?: CallOptions): Promise<WrittenImage>;
+            isAvailable(callOptions?: CallOptions): Promise<boolean>;
+            isAvailableAsync(callOptions?: CallOptions): Promise<boolean>;
+        }
+
+
+            type ErrorCode =
+                | 'PLUGIN_UNAVAILABLE'
+                | 'PLUGIN_DISABLED'
+                | 'PLUGIN_INCOMPATIBLE'
+                | 'FILE_NOT_FOUND'
+                | 'FILE_UNREADABLE'
+                | 'UNSUPPORTED_FORMAT'
+                | 'DECODE_FAILED'
+                | 'LIMIT_EXCEEDED'
+                | 'INVALID_ARGUMENT'
+                | 'PERMISSION_REQUIRED'
+                | 'ACCESS_DENIED'
+                | 'OUTPUT_EXISTS'
+                | 'SESSION_CLOSED'
+                | 'SESSION_REPLACED'
+                | 'CANCELLED'
+                | 'TIMEOUT'
+                | 'IO'
+                | 'INTERNAL';
+
+            /** `name` is `'GalleryError'`; `toString()` yields `GalleryError [CODE]: message`; `message` is not enumerable. */
+            interface GalleryError extends Error {
+                readonly name: 'GalleryError';
+                readonly code: ErrorCode | string;
+            }
+
+            interface GalleryErrorConstructor {
+                (message?: string, code?: ErrorCode | string): GalleryError;
+                new(message?: string, code?: ErrorCode | string): GalleryError;
+                readonly prototype: GalleryError;
+            }
+
+            /** Output formats; `'jpg'` is accepted as `'jpeg'`. */
+            type Format = 'jpeg' | 'jpg' | 'png' | 'webp';
+
+            type SizeMode = 'original' | 'percent' | 'longEdge' | 'custom';
+
+            interface PickOptions {
+                /** Multiple selection with a confirm bar; default false (a tap answers). */
+                multiple?: boolean;
+                /** Multiple selection only, 1 to 200; default 200. */
+                maxCount?: number;
+                /** Image types such as `'image/png'`, at most 16; `'image/*'` lists every image. */
+                mimeTypes?: string | string[];
+                /** Picker title, at most 200 characters. */
+                title?: string;
+            }
+
+            interface PickedImage {
+                /** Absolute path of the image file. */
+                path: string;
+                name: string;
+                mimeType: string;
+                /** Pixels, 0 when unknown. */
+                width: number;
+                /** Pixels, 0 when unknown. */
+                height: number;
+                /** Bytes. */
+                size: number;
+                /** Capture time in UTC milliseconds, the modification time without one. */
+                dateTaken: number;
+            }
+
+            interface ViewOptions {
+                /** Start page; default 0. */
+                index?: number;
+            }
+
+            interface OutputOptions {
+                /** Output path (relative to the working directory); missing folders are created. */
+                output?: string;
+                /** Replace an existing `output`; without `output`, replace the source. Default false. */
+                overwrite?: boolean;
+                format?: Format;
+                /** 1 to 100; default 92. */
+                quality?: number;
+                /** Keep the capture details of the source; default false. */
+                keepExif?: boolean;
+                /** With `keepExif`, keep the location too; default false. */
+                keepLocation?: boolean;
+            }
+
+            /** For the editor, `format`, `quality`, `keepExif` and `keepLocation` seed the save dialog. */
+            interface EditOptions extends OutputOptions {
+            }
+
+            interface ConvertOptions extends OutputOptions {
+                /** WebP only; lossy below Android 11. */
+                lossless?: boolean;
+                /** Largest file size in bytes; JPEG and lossy WebP only, not with `quality`. */
+                targetBytes?: number;
+                /** Inferred from `percent`, `longEdge` or `width` / `height` when absent; default `'original'`. */
+                sizeMode?: SizeMode;
+                /** 1 to 1000. */
+                percent?: number;
+                /** 1 to 16384; smaller images are not enlarged. */
+                longEdge?: number;
+                /** 1 to 16384. */
+                width?: number;
+                /** 1 to 16384. */
+                height?: number;
+                /** Custom size only; false stretches to `width` x `height`. Default true. */
+                keepAspectRatio?: boolean;
+                /** JPEG fill of transparent pixels: an ARGB number or `'#RGB'`, `'#RRGGBB'`, `'#AARRGGBB'`; default white. */
+                background?: number | string;
+            }
+
+            interface WrittenImage {
+                /** Absolute path of the written file. */
+                path: string;
+                name: string;
+                mimeType: string;
+                width: number;
+                height: number;
+                /** Bytes. */
+                size: number;
+            }
+
+            type SessionState = 'pending' | 'open' | 'closed';
+
+            type CloseReason = 'user' | 'host' | 'replaced' | 'timeout' | 'error' | 'overflow' | 'script-exit' | string;
+
+            interface CloseOptions {
+                /** Close the viewer too; default true. */
+                finish?: boolean;
+            }
+
+            interface OpenEvent {
+                count: number;
+            }
+
+            interface PageEvent {
+                index: number;
+                path: string;
+            }
+
+            interface CloseEvent {
+                reason: CloseReason;
+            }
+
+            /**
+             * The event emitter returned by {@link API.view}. The script keeps running while the
+             * session is open; `close` is the terminal event.
+             * @see https://docs.autojs6.com/#/galleryViewSessionType
+             */
+            interface ViewSession {
+                /** Absolute image paths in page order. */
+                readonly paths: string[];
+                readonly count: number;
+                /** The page shown, -1 before the first `page` event. */
+                readonly index: number;
+                /** The path of the page shown, null before the first `page` event. */
+                readonly path: string | null;
+                readonly state: SessionState;
+                readonly isOpen: boolean;
+                readonly isClosed: boolean;
+                /** Close reason, null while open. */
+                readonly reason: CloseReason | null;
+
+                /** Ends the session (`close` follows with reason `'host'`) and closes the viewer unless `finish` is false. Idempotent. */
+                close(options?: CloseOptions): Promise<this>;
+
+                /** `GalleryViewSession { count: ..., state: ... }` with the index and reason when known. */
+                toString(): string;
+
+                on(eventName: 'open', listener: (event: OpenEvent) => void): this;
+                on(eventName: 'page', listener: (event: PageEvent) => void): this;
+                on(eventName: 'error', listener: (error: GalleryError) => void): this;
+                on(eventName: 'close', listener: (event: CloseEvent) => void): this;
+                on(eventName: string, listener: (...args: any[]) => void): this;
+
+                once(eventName: 'open', listener: (event: OpenEvent) => void): this;
+                once(eventName: 'page', listener: (event: PageEvent) => void): this;
+                once(eventName: 'error', listener: (error: GalleryError) => void): this;
+                once(eventName: 'close', listener: (event: CloseEvent) => void): this;
+                once(eventName: string, listener: (...args: any[]) => void): this;
+
+                off(eventName: string, listener: (...args: any[]) => void): this;
+                removeListener(eventName: string, listener: (...args: any[]) => void): this;
+                removeAllListeners(eventName?: string): this;
+                listenerCount(eventName: string): number;
+            }
+      }
+    // END GENERATED PLUGIN FAMILY TYPES
+
     export interface HostClient {
       readonly ai: RuntimeAi.API;
       readonly flow: RuntimeFlow.API;
       readonly mail: RuntimeMail.API;
       readonly epub: RuntimeEpub.API;
+      readonly gallery: RuntimeGallery.API;
       readonly speech: RuntimeSpeech.API;
       readonly tts: RuntimeTts.API;
       readonly java: RuntimeJava.API;

@@ -6,7 +6,7 @@ declare module "autojs6:power_manager" {
   namespace powerManager {
     export interface PowerManagerModule {
       isIgnoringBatteryOptimizations(packageName?: string | null, options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
-      requestIgnoreBatteryOptimizations(forceRequest?: boolean, packageName?: string | null, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
+      requestIgnoreBatteryOptimizations(forceRequest?: boolean | null, packageName?: string | null, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
     }
   }
 

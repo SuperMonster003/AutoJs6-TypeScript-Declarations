@@ -127,9 +127,65 @@ declare module "colors" {
     }
 
     /**
+     * colors.theme (capability theme): reads and changes the AutoJs6 theme color and controls intelligent color libraries, with
+     * Rhino's argument rules and errors. The theme color lives in the host, so every member returns a Promise.
+     */
+    export interface ColorsTheme {
+      /** The primary color, or the script color still waiting in the 500 ms merge window. */
+      get(): Promise<number>;
+      /** Sets the theme color; `accent` and `dark` override the derived ones. Changes within 500 ms are merged. */
+      set(color: ColorArgument, options?: ThemeSetOptions | null): Promise<void>;
+      /** Sets the default theme color of AutoJs6. */
+      reset(): Promise<void>;
+      libraries(): Promise<ThemeLibrary[]>;
+      /** Activates an intelligent library, optionally from `options.group`; a RangeError names an unknown library or group. */
+      activate(libraryId: number, options?: { group?: number } | null): Promise<void>;
+      /** Stops the active intelligent library and keeps its color; false when none is active. */
+      deactivate(): Promise<boolean>;
+      /** Moves the active intelligent library to its next group; false when none is active. */
+      next(): Promise<boolean>;
+      /** Switches the "Script" state source of the active intelligent library. */
+      state(name: string): Promise<void>;
+      current(): Promise<ThemeCurrent>;
+    }
+
+    export interface ThemeSetOptions {
+      accent?: ColorArgument | null;
+      dark?: ColorArgument | null;
+    }
+
+    export interface ThemeLibrary {
+        id: number;
+        /** Names of preset libraries follow the application language. */
+        name: string;
+        kind: 'preset' | 'created' | 'imported' | 'cloned';
+        intelligent: boolean;
+        /** Colors of a plain library, or groups of an intelligent library. */
+        size: number;
+    }
+
+    export interface ThemeCurrent {
+        libraryId: number;
+        libraryName: string | null;
+        /** Whether the color comes from an active intelligent library. */
+        intelligent: boolean;
+        /** The current group of the intelligent library, otherwise null. */
+        groupId: number | null;
+        /** The current group of the intelligent library, or the color name in a plain library. */
+        groupName: string | null;
+        /** The state name with the "Script states" source, the internal state key with other sources, null without an intelligent library. */
+        state: string | null;
+        color: number;
+        accent: number;
+        dark: number;
+        /** The summary shown on the theme color page. */
+        summary: string;
+    }
+
+    /**
      * Rhino's colors module (ColorsModule, the color tables, android.graphics.Color.parseColor and the HSV helpers):
      * same argument counts, conversions and errors. Java objects are facade handles; the calls that need one return
-     * Promises. colors.theme is not available yet (api-coverage Q80).
+     * Promises, like colors.theme.
      */
     export interface ColorsModule {
       /** Every table constant by name (not enumerable). */
@@ -138,6 +194,8 @@ declare module "colors" {
       readonly css: Readonly<Record<string, number>>;
       readonly web: Readonly<Record<string, number>>;
       readonly material: Readonly<Record<string, number>>;
+      /** The AutoJs6 theme color (capability theme). */
+      readonly theme: ColorsTheme;
       /** A Promise of the host's ThemeColor (a Java handle). */
       readonly themeColor: Promise<JavaHandle>;
       readonly [constant: string]: unknown;
