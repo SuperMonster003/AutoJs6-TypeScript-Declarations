@@ -20,6 +20,7 @@
 * `Функция` объявления speech добавляют diarize, detectLanguage и tag с их формами Async: разделение по говорящим (кто и когда говорил, по желанию с именами по зарегистрированным голосовым отпечаткам), определение языка и разметку звуков (527 меток AudioSet); параметры принимают обратный вызов onProgress, добавлены типы результатов, такие как Speech.Diarization, Speech.LanguageDetection и Speech.Tagging (AutoJs6 6.8.0 или новее, нужен 3-Macaw Speech 1.3.0)
 * `Функция` объявления speech добавляют speech.speaker для распознавания говорящего: enroll, verify и identify с их формами Async, list и remove, а также коды ошибок SPEAKER_NOT_FOUND и AUDIO_TOO_SHORT (AutoJs6 6.8.0 или новее, нужен 3-Macaw Speech 1.3.0)
 * `Улучшение` в Speech.Feature добавлены 'speaker', 'diarization', 'languageId' и 'audioTagging'; в Speech.Kind добавлены типы моделей 'speaker', 'segment', 'langid' и 'tagger', которые принимают models.list, setDefault и getDefault
+* `Улучшение` ImportOptions.kind в speech.models.importFile сужен до 'asr', 'kws' и 'tts': модель вне каталога можно импортировать только как один из этих трех видов, а у 'vad', 'speaker', 'segment', 'langid' и 'tagger' есть только модели каталога (как и работает 3-Macaw Speech)
 
 # v4.84.0
 

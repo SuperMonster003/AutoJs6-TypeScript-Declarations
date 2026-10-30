@@ -663,7 +663,8 @@ declare namespace Internal {
         interface ImportOptions extends InstallOptions {
             /** Model id of a model outside the catalog. */
             id?: string;
-            kind?: Kind;
+            /** Kind of a model outside the catalog: only these three (`INVALID_OPTIONS` otherwise); vad, speaker, segment, langid and tagger models are catalog models only, installed or imported from an archive that matches the catalog. */
+            kind?: 'asr' | 'kws' | 'tts';
             modelType?: string;
             /** At most 128 characters. */
             name?: string;

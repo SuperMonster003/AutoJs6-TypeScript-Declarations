@@ -185,6 +185,7 @@ npm update @sm003/autojs6-dts
 * `機能` speech の宣言に diarize, detectLanguage, tag とその Async 形式を追加: 話者分離 (誰がいつ話したか, 登録済みの声紋で話者名も付けられる), 言語識別, 音声タグ付け (AudioSet の 527 ラベル); オプションに onProgress 進捗コールバックを指定でき, Speech.Diarization, Speech.LanguageDetection, Speech.Tagging などの結果型を追加 (AutoJs6 6.8.0 以降, 3-Macaw Speech 1.3.0 が必要)
 * `機能` speech の宣言に話者認識の speech.speaker を追加: enroll, verify, identify とその Async 形式, list, remove, エラーコード SPEAKER_NOT_FOUND と AUDIO_TOO_SHORT (AutoJs6 6.8.0 以降, 3-Macaw Speech 1.3.0 が必要)
 * `改善` Speech.Feature に 'speaker', 'diarization', 'languageId', 'audioTagging' を追加; Speech.Kind にモデル種別 'speaker', 'segment', 'langid', 'tagger' を追加し, models.list, setDefault, getDefault で使用可能
+* `改善` speech.models.importFile の ImportOptions.kind を 'asr', 'kws', 'tts' に限定: カタログ外のモデルはこの 3 種類としてのみインポートでき, 'vad', 'speaker', 'segment', 'langid', 'tagger' はカタログのモデルのみ (3-Macaw Speech の実際の動作に合わせた)
 
 ### v4.84.0
 

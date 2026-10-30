@@ -32,6 +32,10 @@
         {
           "category": "improvement",
           "text": "Speech.Feature gains 'speaker', 'diarization', 'languageId' and 'audioTagging'; Speech.Kind gains the model kinds 'speaker', 'segment', 'langid' and 'tagger', which models.list, setDefault and getDefault accept"
+        },
+        {
+          "category": "improvement",
+          "text": "ImportOptions.kind of speech.models.importFile is narrowed to 'asr', 'kws' and 'tts': a model outside the catalog can be imported only as one of these three kinds, and 'vad', 'speaker', 'segment', 'langid' and 'tagger' have catalog models only (as 3-Macaw Speech behaves)"
         }
       ]
     },

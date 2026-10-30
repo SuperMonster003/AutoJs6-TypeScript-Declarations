@@ -20,6 +20,7 @@
 * `ميزة` تضيف تعريفات speech الدوال diarize و detectLanguage و tag مع صيغها Async: فصل المتحدثين (من تحدث ومتى, مع تسميتهم اختياريا حسب البصمات الصوتية المسجلة), وتحديد اللغة, ووسم الأصوات (تسميات AudioSet البالغة 527); وتقبل الخيارات دالة الاستدعاء onProgress, مع أنواع نتائج مثل Speech.Diarization و Speech.LanguageDetection و Speech.Tagging (AutoJs6 6.8.0 أو أحدث, يتطلب ⁨3-Macaw Speech⁩ 1.3.0)
 * `ميزة` تضيف تعريفات speech الكائن speech.speaker للتعرف على المتحدث: enroll و verify و identify مع صيغها Async, و list و remove, ورمزي الخطأ SPEAKER_NOT_FOUND و AUDIO_TOO_SHORT (AutoJs6 6.8.0 أو أحدث, يتطلب ⁨3-Macaw Speech⁩ 1.3.0)
 * `تحسين` تضيف Speech.Feature القيم 'speaker' و 'diarization' و 'languageId' و 'audioTagging'; وتضيف Speech.Kind أنواع النماذج 'speaker' و 'segment' و 'langid' و 'tagger' التي تقبلها models.list و setDefault و getDefault
+* `تحسين` تم حصر ImportOptions.kind في speech.models.importFile في 'asr' و'kws' و'tts': لا يمكن استيراد نموذج من خارج الكتالوج إلا كأحد هذه الأنواع الثلاثة, أما 'vad' و'speaker' و'segment' و'langid' و'tagger' فلها نماذج الكتالوج فقط (كما يعمل ⁨3-Macaw Speech⁩)
 
 # v4.84.0
 

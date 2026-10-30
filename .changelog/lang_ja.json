@@ -32,6 +32,10 @@
         {
           "category": "improvement",
           "text": "Speech.Feature に 'speaker', 'diarization', 'languageId', 'audioTagging' を追加; Speech.Kind にモデル種別 'speaker', 'segment', 'langid', 'tagger' を追加し, models.list, setDefault, getDefault で使用可能"
+        },
+        {
+          "category": "improvement",
+          "text": "speech.models.importFile の ImportOptions.kind を 'asr', 'kws', 'tts' に限定: カタログ外のモデルはこの 3 種類としてのみインポートでき, 'vad', 'speaker', 'segment', 'langid', 'tagger' はカタログのモデルのみ (3-Macaw Speech の実際の動作に合わせた)"
         }
       ]
     },

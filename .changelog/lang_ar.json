@@ -32,6 +32,10 @@
         {
           "category": "improvement",
           "text": "تضيف Speech.Feature القيم 'speaker' و 'diarization' و 'languageId' و 'audioTagging'; وتضيف Speech.Kind أنواع النماذج 'speaker' و 'segment' و 'langid' و 'tagger' التي تقبلها models.list و setDefault و getDefault"
+        },
+        {
+          "category": "improvement",
+          "text": "تم حصر ImportOptions.kind في speech.models.importFile في 'asr' و'kws' و'tts': لا يمكن استيراد نموذج من خارج الكتالوج إلا كأحد هذه الأنواع الثلاثة, أما 'vad' و'speaker' و'segment' و'langid' و'tagger' فلها نماذج الكتالوج فقط (كما يعمل ⁨3-Macaw Speech⁩)"
         }
       ]
     },

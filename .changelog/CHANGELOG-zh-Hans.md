@@ -20,6 +20,7 @@
 * `新增` speech 声明补全 diarize, detectLanguage 与 tag 及其 Async 形态: 说话人分离 (谁在何时说话, 可按已注册的声纹认人), 语种识别与音频标签 (AudioSet 的 527 个标签), 选项可带 onProgress 进度回调, 含 Speech.Diarization, Speech.LanguageDetection 与 Speech.Tagging 等结果类型 (AutoJs6 6.8.0 起, 需要 3-Macaw Speech 1.3.0)
 * `新增` speech 声明补全 speech.speaker 说话人识别: enroll, verify, identify 及其 Async 形态, list 与 remove, 以及错误码 SPEAKER_NOT_FOUND 与 AUDIO_TOO_SHORT (AutoJs6 6.8.0 起, 需要 3-Macaw Speech 1.3.0)
 * `优化` Speech.Feature 增加 'speaker', 'diarization', 'languageId' 与 'audioTagging'; Speech.Kind 增加 'speaker', 'segment', 'langid' 与 'tagger' 四种模型类别, models.list, setDefault 与 getDefault 可使用这些类别
+* `优化` speech.models.importFile 的 ImportOptions.kind 收窄为 'asr', 'kws' 与 'tts': 以用户导入身份登记目录以外的模型时只能是这三类, 'vad', 'speaker', 'segment', 'langid' 与 'tagger' 只有目录模型 (与 3-Macaw Speech 的实际行为一致)
 
 # v4.84.0
 

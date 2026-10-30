@@ -32,6 +32,10 @@
         {
           "category": "improvement",
           "text": "в Speech.Feature добавлены 'speaker', 'diarization', 'languageId' и 'audioTagging'; в Speech.Kind добавлены типы моделей 'speaker', 'segment', 'langid' и 'tagger', которые принимают models.list, setDefault и getDefault"
+        },
+        {
+          "category": "improvement",
+          "text": "ImportOptions.kind в speech.models.importFile сужен до 'asr', 'kws' и 'tts': модель вне каталога можно импортировать только как один из этих трех видов, а у 'vad', 'speaker', 'segment', 'langid' и 'tagger' есть только модели каталога (как и работает 3-Macaw Speech)"
         }
       ]
     },

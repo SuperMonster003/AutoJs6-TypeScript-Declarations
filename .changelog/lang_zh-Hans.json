@@ -32,6 +32,10 @@
         {
           "category": "improvement",
           "text": "Speech.Feature 增加 'speaker', 'diarization', 'languageId' 与 'audioTagging'; Speech.Kind 增加 'speaker', 'segment', 'langid' 与 'tagger' 四种模型类别, models.list, setDefault 与 getDefault 可使用这些类别"
+        },
+        {
+          "category": "improvement",
+          "text": "speech.models.importFile 的 ImportOptions.kind 收窄为 'asr', 'kws' 与 'tts': 以用户导入身份登记目录以外的模型时只能是这三类, 'vad', 'speaker', 'segment', 'langid' 与 'tagger' 只有目录模型 (与 3-Macaw Speech 的实际行为一致)"
         }
       ]
     },

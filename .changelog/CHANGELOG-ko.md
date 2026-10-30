@@ -20,6 +20,7 @@
 * `기능` speech 선언에 diarize, detectLanguage, tag와 그 Async 형식 추가: 화자 분리 (누가 언제 말했는지, 등록된 성문으로 화자 이름 지정 가능), 언어 식별, 오디오 태깅 (AudioSet의 527개 레이블); 옵션에 onProgress 진행 콜백을 지정할 수 있고 Speech.Diarization, Speech.LanguageDetection, Speech.Tagging 등의 결과 타입 포함 (AutoJs6 6.8.0 이상, 3-Macaw Speech 1.3.0 필요)
 * `기능` speech 선언에 화자 인식 speech.speaker 추가: enroll, verify, identify와 그 Async 형식, list, remove, 오류 코드 SPEAKER_NOT_FOUND와 AUDIO_TOO_SHORT (AutoJs6 6.8.0 이상, 3-Macaw Speech 1.3.0 필요)
 * `개선` Speech.Feature에 'speaker', 'diarization', 'languageId', 'audioTagging' 추가; Speech.Kind에 모델 종류 'speaker', 'segment', 'langid', 'tagger'를 추가하여 models.list, setDefault, getDefault에서 사용 가능
+* `개선` speech.models.importFile 의 ImportOptions.kind 를 'asr', 'kws', 'tts' 로 한정: 카탈로그 밖의 모델은 이 세 종류로만 가져올 수 있으며, 'vad', 'speaker', 'segment', 'langid', 'tagger' 는 카탈로그 모델만 있음 (3-Macaw Speech 의 실제 동작과 일치)
 
 # v4.84.0
 
