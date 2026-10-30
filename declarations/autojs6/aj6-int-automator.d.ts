@@ -692,8 +692,8 @@ declare namespace Internal {
          * @example
          * console.log(auto.explain(text('Login'), 'p2c0', ['setText', 'hi']).trail);
          */
-        explain(selector: Automator.Target, root?: UiObject | null, compass?: Detect.Compass | null, resultType?: Pickup.ResultType): Automator.ExplainResult;
-        explain(selector: Automator.Target, compassOrResultType: Detect.Compass | Pickup.ResultType, resultType?: Pickup.ResultType): Automator.ExplainResult;
+        explain(selector: NonNullable<Automator.Target>, root?: UiObject | null, compass?: Detect.Compass | null, resultType?: Pickup.ResultType): Automator.ExplainResult;
+        explain(selector: NonNullable<Automator.Target>, compassOrResultType: Detect.Compass | Pickup.ResultType, resultType?: Pickup.ResultType): Automator.ExplainResult;
 
         /**
          * Dumps the node tree as text (default), JSON or uiautomator-style XML.

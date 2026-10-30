@@ -20,23 +20,23 @@ declare namespace Internal {
 
         addTask<T extends TimedTask$ | IntentTask$ | null | undefined>(task: T): Tasks.NullishToNull<T>;
 
-        addTimedTask<TResult = TimedTask$>(options: Tasks.TimedTask.General<TResult>): Tasks.AddTaskResult<TimedTask$, TResult>;
+        addTimedTask<TResult = TimedTask$>(options: Tasks.TimedTask.General<TResult> | null): Tasks.AddTaskResult<TimedTask$, TResult>;
 
-        addDailyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Daily<TResult>): Tasks.AddTaskResult<TimedTask$, TResult>;
+        addDailyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Daily<TResult> | null): Tasks.AddTaskResult<TimedTask$, TResult>;
 
-        addWeeklyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Weekly<TResult>): Tasks.AddTaskResult<TimedTask$, TResult>;
+        addWeeklyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Weekly<TResult> | null): Tasks.AddTaskResult<TimedTask$, TResult>;
 
-        addMonthlyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Monthly<TResult>): Tasks.AddTaskResult<TimedTask$, TResult>;
+        addMonthlyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Monthly<TResult> | null): Tasks.AddTaskResult<TimedTask$, TResult>;
 
-        addYearlyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Yearly<TResult>): Tasks.AddTaskResult<TimedTask$, TResult>;
+        addYearlyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Yearly<TResult> | null): Tasks.AddTaskResult<TimedTask$, TResult>;
 
-        addDisposableTask<TResult = TimedTask$>(options: Tasks.TimedTask.Disposable<TResult>): Tasks.AddTaskResult<TimedTask$, TResult>;
+        addDisposableTask<TResult = TimedTask$>(options: Tasks.TimedTask.Disposable<TResult> | null): Tasks.AddTaskResult<TimedTask$, TResult>;
 
-        addCountdownTask<TResult = TimedTask$>(options: Tasks.TimedTask.Countdown<TResult>): Tasks.AddTaskResult<TimedTask$, TResult>;
+        addCountdownTask<TResult = TimedTask$>(options: Tasks.TimedTask.Countdown<TResult> | null): Tasks.AddTaskResult<TimedTask$, TResult>;
 
-        addIntentTask<TResult = IntentTask$>(options: Tasks.IntentTask.Basic<TResult>): Tasks.AddTaskResult<IntentTask$, TResult>;
+        addIntentTask<TResult = IntentTask$>(options: Tasks.IntentTask.Basic<TResult> | null): Tasks.AddTaskResult<IntentTask$, TResult>;
 
-        addBroadcastIntentTask<TResult = IntentTask$>(options: Tasks.IntentTask.Basic<TResult>): Tasks.AddTaskResult<IntentTask$, TResult>;
+        addBroadcastIntentTask<TResult = IntentTask$>(options: Tasks.IntentTask.Basic<TResult> | null): Tasks.AddTaskResult<IntentTask$, TResult>;
 
         getTimedTask(id: number): TimedTask$ | null;
 
@@ -76,15 +76,15 @@ declare namespace Internal {
      */
     interface WorkManager {
 
-        addDailyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Daily<TResult>): TimedTask$;
+        addDailyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Daily<TResult> | null): TimedTask$;
 
-        addWeeklyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Weekly<TResult>): TimedTask$;
+        addWeeklyTask<TResult = TimedTask$>(options: Tasks.TimedTask.Weekly<TResult> | null): TimedTask$;
 
-        addDisposableTask<TResult = TimedTask$>(options: Tasks.TimedTask.Disposable<TResult>): TimedTask$;
+        addDisposableTask<TResult = TimedTask$>(options: Tasks.TimedTask.Disposable<TResult> | null): TimedTask$;
 
-        addIntentTask<TResult = IntentTask$>(options: Tasks.IntentTask.Basic<TResult>): IntentTask$;
+        addIntentTask<TResult = IntentTask$>(options: Tasks.IntentTask.Basic<TResult> | null): IntentTask$;
 
-        addBroadcastIntentTask<TResult = IntentTask$>(options: Tasks.IntentTask.Basic<TResult>): IntentTask$;
+        addBroadcastIntentTask<TResult = IntentTask$>(options: Tasks.IntentTask.Basic<TResult> | null): IntentTask$;
 
         getTimedTask(id: number): TimedTask$ | null;
 
@@ -94,9 +94,9 @@ declare namespace Internal {
 
         removeIntentTask(id: number): boolean | null;
 
-        queryTimedTasks(options?: Tasks.Query.Timed): TimedTask$[];
+        queryTimedTasks(options?: Tasks.Query.Timed | null): TimedTask$[];
 
-        queryIntentTasks(options?: Tasks.Query.Intent): IntentTask$[];
+        queryIntentTasks(options?: Tasks.Query.Intent | null): IntentTask$[];
 
     }
 
