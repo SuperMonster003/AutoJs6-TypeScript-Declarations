@@ -3,7 +3,7 @@
 declare module "autojs6:bun-host" {
     /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
     export const SDK_VERSION: 1;
-    export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "device.identifiers" | "media.control" | "media.library" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control"
+    export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "device.identifiers" | "media.control" | "media.library" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "events.touch" | "events.key.intercept" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "accessibility.service" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control" | "ocr.control" | "barcode.control" | "yolo.control"
       | "autojs.control" | "autojs.manage" | "settings.control" | "settings.write" | "sysprops.control" | "memory.control" | "memory.dump"
       | "installer.control" | "installer.mutate" | "engines.control" | "engines.exec" | "plugintools.control"
       /** Not a grant: offered with every host bridge, a Worker's exit / stop ends the execution through it (host 6.8.0). */
@@ -15,7 +15,7 @@ declare module "autojs6:bun-host" {
       readonly status: number;
       constructor(code: string, message: string, capability?: string | null, status?: number);
     }
-    export const HOST_API_METHODS: Readonly<Record<"agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control"
+    export const HOST_API_METHODS: Readonly<Record<"agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.audio" | "dialogs.control" | "events.observe" | "notifications.post" | "database.control" | "shell.control" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "clipboard.control" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control" | "ocr.control" | "barcode.control" | "yolo.control"
       | "autojs.control" | "settings.control" | "sysprops.control" | "memory.control" | "installer.control" | "engines.control" | "plugintools.control", readonly string[]>>;
     export const OPENCC_CONVERSION_TYPES: readonly [
       "hk2s", "hk2t", "jp2t", "s2hk", "s2t", "s2tw", "s2twp", "t2hk", "t2s", "t2tw", "t2jp", "tw2s", "tw2t", "tw2sp",
@@ -308,6 +308,39 @@ declare module "autojs6:bun-host" {
       readonly volume_down: 25;
       readonly VOLUME_DOWN: 25;
     }
+    /**
+     * Rhino's automation family globals (api-coverage P4.4, Q184 (a)): the automator actions, sync, keepAlive / loop and the
+     * selector functions, as host.automator / threads / timers / selector have them; sleep / wait are the system family's.
+     */
+    export interface AutomationGlobals {
+      readonly click: RuntimeAutomator.ClickLike;
+      readonly longClick: RuntimeAutomator.ClickLike;
+      readonly press: RuntimeAutomator.AutomatorModule["press"];
+      readonly swipe: RuntimeAutomator.AutomatorModule["swipe"];
+      readonly gesture: RuntimeAutomator.AutomatorModule["gesture"];
+      readonly gestureAsync: RuntimeAutomator.AutomatorModule["gestureAsync"];
+      readonly gestures: RuntimeAutomator.AutomatorModule["gestures"];
+      readonly gesturesAsync: RuntimeAutomator.AutomatorModule["gesturesAsync"];
+      readonly scrollUp: RuntimeAutomator.Scroll;
+      readonly scrollDown: RuntimeAutomator.Scroll;
+      readonly input: RuntimeAutomator.EditText;
+      readonly setText: RuntimeAutomator.EditText;
+      readonly back: RuntimeAutomator.GlobalAction;
+      readonly home: RuntimeAutomator.GlobalAction;
+      readonly recents: RuntimeAutomator.GlobalAction;
+      readonly notifications: RuntimeAutomator.GlobalAction;
+      readonly quickSettings: RuntimeAutomator.GlobalAction;
+      readonly powerDialog: RuntimeAutomator.GlobalAction;
+      readonly splitScreen: RuntimeAutomator.GlobalAction;
+      readonly retry: RuntimeAutomator.AutomatorModule["retry"];
+      readonly sync: RuntimeThreads.ThreadsModule["sync"];
+      readonly keepAlive: RuntimeTimers.RhinoTimersModule["keepAlive"];
+      readonly loop: RuntimeTimers.RhinoTimersModule["loop"];
+      readonly pickup: RuntimeSelector.SelectorModule["pickup"];
+      readonly detect: RuntimeSelector.SelectorModule["detect"];
+      readonly existsOne: RuntimeSelector.SelectorModule["existsOne"];
+      readonly existsAll: RuntimeSelector.SelectorModule["existsAll"];
+    }
     export interface PinyinApi {
       readonly STYLE_NORMAL: 0;
       readonly STYLE_TONE: 1;
@@ -421,7 +454,29 @@ declare module "autojs6:bun-host" {
       setTouchable(touchable?: boolean): Promise<void>;
       setGlobalLogConfig(config: { readonly [key: string]: JsonValue }): Promise<void>;
       resetGlobalLogConfig(): Promise<void>;
+      /** Rhino's other window controls (AutoJs6 api-coverage P4.3): enabled defaults to true, as in Rhino. */
+      isShowing(): Promise<boolean>;
+      resetBackgroundAlpha(): Promise<void>;
+      resetContentBackgroundAlpha(): Promise<void>;
+      resetTitleBackgroundAlpha(): Promise<void>;
+      setAvoidStatusBar(enabled?: boolean): Promise<void>;
+      setColorful(enabled?: boolean): Promise<void>;
+      setInputVisible(visible?: boolean): Promise<void>;
+      setTimeVisible(visible?: boolean): Promise<void>;
+      setTouchThrough(enabled?: boolean): Promise<void>;
+      /** An android.view.Gravity value or a gravity name. */
+      setGravity(gravity: number | string): Promise<void>;
+      /** A java.text.SimpleDateFormat pattern; omitted, Rhino's default. */
+      setTimeFormat(format?: string | null): Promise<void>;
+      /**
+       * Rhino's console.build(options).show() as one call: applies the configurator fields that options names (size, position,
+       * gravity, title and its text / background / icons, content and the whole window's text and background, exitOnClose,
+       * touchable, touchThrough, timeVisible, timeFormat, colorful, avoidStatusBar, inputVisible) and shows the window.
+       */
+      configure(options?: ConsoleConfigureOptions): Promise<void>;
     }
+    /** Rhino's console.build options: the configurator fields, an array value spread as the setter's arguments. */
+    export type ConsoleConfigureOptions = { readonly [field: string]: JsonValue };
     /**
      * Rhino's console output and global console names (AutoJs6 api-coverage P4.3, D-10). With console.control the host prints
      * each line at Rhino's level (log and print at debug); without it the text goes to Bun's stdout, or stderr for warn / error /
@@ -452,7 +507,18 @@ declare module "autojs6:bun-host" {
       clearConsole(): Promise<void>;
       launchConsole(): Promise<void>;
     }
-    export interface HostConsole extends ConsoleApi, ConsoleOutputApi {}
+    /**
+     * Rhino's console input (AutoJs6 api-coverage P4.3, D-7, Q165 (a)), with console.control: the prompt (data, when given) is
+     * printed as log prints it, the console window shows its input bar, and the next line submitted there (or to stdin, first come
+     * first served with other scripts) resolves the Promise. The end of the execution or a console reset rejects it with
+     * ERR_AUTOJS6_BRIDGE_CANCELLED; without the overlay permission a hidden console window rejects NOT_GRANTED at once.
+     */
+    export interface ConsoleInputApi {
+      rawInput(...data: unknown[]): Promise<string>;
+      /** The line read as rawInput reads it, evaluated as JavaScript in the global scope (Rhino's console.input). */
+      input(...data: unknown[]): Promise<unknown>;
+    }
+    export interface HostConsole extends ConsoleApi, ConsoleOutputApi, ConsoleInputApi {}
     /** Rhino's isLong / isForcible forms: booleans, numbers (truthy) and "long" / "short" / "forcible" or their initials, in any case. */
     export type ToastFlag = boolean | number | "long" | "short" | "forcible" | "l" | "s" | "f" | (string & {});
     /**
@@ -1409,6 +1475,35 @@ declare module "autojs6:bun-host" {
           drainEvents(options?: AutomationCallOptions): Promise<readonly Event[]>;
           close(options?: AutomationCallOptions): Promise<boolean>;
         }
+        export interface TouchEvent extends EventBase { readonly type: "touch"; readonly x: number; readonly y: number; }
+        /** Rhino's EventEmitter on a Node EventEmitter: emitSticky reaches later listeners at once. */
+        export interface RhinoEmitter {
+          on(event: string | symbol, listener: (...args: any[]) => void): this;
+          once(event: string | symbol, listener: (...args: any[]) => void): this;
+          addListener(event: string | symbol, listener: (...args: any[]) => void): this;
+          prependListener(event: string | symbol, listener: (...args: any[]) => void): this;
+          prependOnceListener(event: string | symbol, listener: (...args: any[]) => void): this;
+          off(event: string | symbol, listener: (...args: any[]) => void): this;
+          removeListener(event: string | symbol, listener: (...args: any[]) => void): this;
+          removeAllListeners(event?: string | symbol): this;
+          emit(event: string | symbol, ...args: unknown[]): boolean;
+          emitSticky(event: string | symbol, ...args: unknown[]): boolean;
+          eventNames(): (string | symbol)[];
+          listenerCount(event: string | symbol): number;
+          getTimer(): unknown;
+        }
+        /** Rhino's events.broadcast: emit reaches the broadcast listeners of every script (this one's too). */
+        export interface Broadcast {
+          emit(event: string, ...args: unknown[]): Promise<boolean>;
+          on(event: string, listener: (...args: any[]) => void): this;
+          addListener(event: string, listener: (...args: any[]) => void): this;
+          once(event: string, listener: (...args: any[]) => void): this;
+          off(event: string, listener: (...args: any[]) => void): this;
+          removeListener(event: string, listener: (...args: any[]) => void): this;
+          removeAllListeners(event?: string): this;
+          listenerCount(event: string): number;
+          eventNames(): (string | symbol)[];
+        }
         export interface EventsModule extends Listeners {
           /** Requires events + events.notification and Android notification-listener access. */
           observeNotification(options?: ObserveOptions): Promise<Subscription>;
@@ -1420,6 +1515,50 @@ declare module "autojs6:bun-host" {
           observeBroadcasts(options?: ObserveOptions): Promise<Subscription>;
           /** Closes this client's sources and removes module listeners. Script termination also releases sources. */
           close(options?: AutomationCallOptions): Promise<void>;
+          /**
+           * Rhino's events module (api-coverage P3.4). Key events also reach the key name, __key_down__#name / __key_up__#name
+           * and key_down / key_up (keyCode, event); sticky events reach later listeners at once; an error event without
+           * listeners is not thrown.
+           */
+          on(event: string | symbol, listener: (...args: any[]) => void): this;
+          once(event: string | symbol, listener: (...args: any[]) => void): this;
+          off(event: string | symbol, listener: (...args: any[]) => void): this;
+          addListener(event: string | symbol, listener: (...args: any[]) => void): this;
+          prependListener(event: string | symbol, listener: (...args: any[]) => void): this;
+          prependOnceListener(event: string | symbol, listener: (...args: any[]) => void): this;
+          removeListener(event: string | symbol, listener: (...args: any[]) => void): this;
+          removeAllListeners(event?: string | symbol): this;
+          emit(event: string | symbol, ...args: unknown[]): boolean;
+          emitSticky(event: string | symbol, ...args: unknown[]): boolean;
+          eventNames(): (string | symbol)[];
+          getMaxListeners(): number;
+          setMaxListeners(count: number): this;
+          listenerCount(event: string | symbol): number;
+          listeners(event: string | symbol): Function[];
+          emitter(): RhinoEmitter;
+          getTimer(): unknown;
+          readonly broadcast: Broadcast;
+          /** Needs observeKey for the events; key is a key name such as volume_up. */
+          onKeyDown(key: string, listener: (event: KeyEvent) => void): this;
+          onceKeyDown(key: string, listener: (event: KeyEvent) => void): this;
+          removeAllKeyDownListeners(key: string): this;
+          onKeyUp(key: string, listener: (event: KeyEvent) => void): this;
+          onceKeyUp(key: string, listener: (event: KeyEvent) => void): this;
+          removeAllKeyUpListeners(key: string): this;
+          /** Consumes the keys while enabled: all (enabled) or one key name (key, enabled). Requires events.key.intercept (never implied) and accessibility. */
+          setKeyInterceptionEnabled(enabled: boolean): Promise<void>;
+          setKeyInterceptionEnabled(key: string, enabled: boolean): Promise<void>;
+          /** Requires events + events.touch (never implied) and Root or Shizuku. One event per position change, at most one per touch event timeout. */
+          observeTouch(options?: ObserveOptions): Promise<Subscription>;
+          onTouch(listener: (event: TouchEvent) => void): this;
+          removeAllTouchListeners(): this;
+          /** 10 ms by default. */
+          getTouchEventTimeout(): number;
+          setTouchEventTimeout(millis: number): void;
+          onNotification(listener: (event: NotificationEvent) => void): this;
+          onToast(listener: (event: ToastEvent) => void): this;
+          removeNotificationObserver(): Promise<void>;
+          removeToastObserver(): Promise<void>;
         }
       }
     export namespace RuntimeNotifications {
@@ -5768,6 +5907,554 @@ declare module "autojs6:bun-host" {
 
     // END GENERATED MEDIAINFO TYPES
 
+    // BEGIN GENERATED AUTOMATION FAMILY TYPES
+    export namespace RuntimeAutomator {
+        export type XY = readonly [x: number, y: number];
+        /** [x, y], [x] (both x) or {x, y}. */
+        export type Point = XY | readonly [x: number] | { readonly x: number; readonly y: number };
+        export interface BoundsLike { readonly left: number; readonly top: number; readonly right: number; readonly bottom: number; }
+        /** A bounds object or a node snapshot: its center is tapped. */
+        export type Target = BoundsLike | { readonly bounds: BoundsLike };
+        /** [start, duration, [x, y], ...] or [duration, [x, y], ...]. */
+        export type Stroke = readonly [start: number, duration: number, ...points: XY[]] | readonly [duration: number, ...points: XY[]];
+        /** true / onCompleted when Android completed the gesture, false / onCancelled otherwise. */
+        export type GestureCallback = ((completed: boolean) => void) | { onCompleted?(): void; onCancelled?(): void };
+        export interface RetryOptions { times?: number; delay?: number; backoff?: number; signal?: AbortSignal; }
+        export type GlobalAction = (options?: AutomationCallOptions) => Promise<boolean>;
+        export interface ClickLike {
+          (x: number, y: number): Promise<boolean>;
+          (point: Point | Target): Promise<boolean>;
+          /** The index-th node (all when omitted) whose text is text. */
+          (text: string, index?: number): Promise<boolean>;
+          (left: number, top: number, right: number, bottom: number): Promise<boolean>;
+        }
+        export interface Scroll {
+          /** The index-th scrollable node, the largest when omitted. */
+          (index?: number): Promise<boolean>;
+          (text: string, index?: number): Promise<boolean>;
+          (left: number, top: number, right: number, bottom: number): Promise<boolean>;
+        }
+        export interface EditText {
+          /** All editable nodes, or the index-th one. */
+          (text: unknown): Promise<boolean>;
+          (index: number, text: unknown): Promise<boolean>;
+        }
+        export interface AutomatorModule {
+          click: ClickLike;
+          longClick: ClickLike;
+          /** Duration 100 ms (Android's tap timeout) by default. */
+          press(x: number, y: number, duration?: number): Promise<boolean>;
+          press(point: XY, duration?: number): Promise<boolean>;
+          press(duration: number, point: XY): Promise<boolean>;
+          swipe(x1: number, y1: number, x2: number, y2: number, duration: number): Promise<boolean>;
+          swipe(from: XY, to: XY, duration: number): Promise<boolean>;
+          swipe(duration: number, from: XY, to: XY): Promise<boolean>;
+          swipe(duration: number, points: readonly XY[] | readonly number[]): Promise<boolean>;
+          swipe(points: readonly XY[] | readonly number[], duration: number): Promise<boolean>;
+          gesture(duration: number, ...points: (Point | readonly number[])[]): Promise<boolean>;
+          /** Returns at once; a trailing callback hears the result. */
+          gestureAsync(duration: number, ...points: (Point | readonly number[] | GestureCallback)[]): Promise<void>;
+          gestures(...strokes: Stroke[]): Promise<boolean>;
+          gesturesAsync(...strokes: (Stroke | GestureCallback)[]): Promise<void>;
+          scrollUp: Scroll;
+          scrollDown: Scroll;
+          /** Appends text. */
+          input: EditText;
+          /** Replaces the text. */
+          setText: EditText;
+          back: GlobalAction; home: GlobalAction; recents: GlobalAction;
+          notifications: GlobalAction; quickSettings: GlobalAction; powerDialog: GlobalAction; splitScreen: GlobalAction;
+          lockScreen: GlobalAction; takeScreenshot: GlobalAction; headsetHook: GlobalAction; headsethook: GlobalAction;
+          accessibilityButton: GlobalAction; accessibilityButtonChooser: GlobalAction; accessibilityShortcut: GlobalAction;
+          accessibilityAllApps: GlobalAction; dismissNotificationShade: GlobalAction;
+          switchToInputMethod(packageName: string, options?: AutomationCallOptions): Promise<boolean>;
+          switchToInputMethodWithId(id: string, options?: AutomationCallOptions): Promise<boolean>;
+          isServiceRunning(options?: AutomationCallOptions): Promise<boolean>;
+          ensureService(options?: AutomationCallOptions): Promise<void>;
+          /** Enables the service when Android allows it, then polls it; a timeout rejects with code ERR_AUTOJS6_TIMEOUT. */
+          waitForService(timeout?: number, options?: AutomationCallOptions): Promise<void>;
+          /** The accessibility screenshot (Android 11+), an image of the images module. Needs screen_capture and image too. */
+          captureScreen(options?: AutomationCallOptions): Promise<ImageHandle>;
+          /** Reruns fn(attempt) after a failure: times 3, delay 500 ms, backoff 1 by default. */
+          retry<T>(fn: (attempt: number) => T | PromiseLike<T>, options?: number | RetryOptions): Promise<T>;
+        }
+      }
+    export namespace RuntimeAuto {
+        export type Mode = "normal" | "fast";
+        export type Flag = "findOnUiThread" | "useUsageStats" | "useShell" | "appWindowsFallback" | "eventAssistedPolling" | "noFastPath" | "noRefreshOnHit";
+        export type WindowType = "application" | "inputMethod" | "system" | "accessibilityOverlay" | "splitScreenDivider" | "magnificationOverlay" | string;
+        export interface WindowSnapshot {
+          readonly id: number;
+          readonly type: WindowType;
+          readonly layer: number;
+          readonly title: string | null;
+          readonly active: boolean;
+          readonly focused: boolean;
+          readonly accessibilityFocused: boolean;
+          readonly displayId: number;
+          readonly packageName: string | null;
+          readonly bounds: RuntimeFlow.Bounds;
+        }
+        /** Rhino's window match arguments. */
+        export interface WindowFilter {
+          type?: WindowType | readonly WindowType[];
+          packageName?: string | RegExp;
+          title?: string | RegExp;
+          displayId?: number;
+          active?: boolean;
+          focused?: boolean;
+          id?: number;
+          layer?: number;
+        }
+        export interface ServiceInfo {
+          readonly id: string;
+          readonly eventTypes: number;
+          readonly feedbackType: number;
+          readonly flags: number;
+          readonly notificationTimeout: number;
+          readonly capabilities: number;
+          readonly packageNames: readonly string[] | null;
+        }
+        export interface State {
+          readonly hasInstance: boolean;
+          readonly hasService: boolean;
+          readonly isRunning: boolean;
+          readonly isOperational: boolean;
+          readonly adoptedByEvent: boolean;
+        }
+        /** The service state with this thread's mode, flags and registrations (Rhino's node lookup counters stay in the host). */
+        export interface Stats extends State {
+          readonly mode: Mode;
+          readonly flags: readonly Flag[];
+          readonly windowFilter: boolean;
+          readonly events: readonly string[];
+          readonly stateListener: boolean;
+        }
+        export interface AccessibilityEvent {
+          readonly type: "accessibility";
+          readonly name: string;
+          readonly eventType: number;
+          readonly packageName: string | null;
+          readonly className: string | null;
+          readonly eventTime: number;
+          readonly action: number;
+          readonly isFullScreen: boolean;
+          readonly source: RuntimeFlow.NodeSnapshot | null;
+          readonly time: number;
+        }
+        export interface RegisterOptions {
+          /** Drops an event equal to the previous one within `within` ms (500 by default): by window, by source node, or a key function. */
+          distinct?: boolean | "window" | "source" | ((event: AccessibilityEvent) => unknown);
+          within?: number;
+          debounce?: number;
+        }
+        export type EventListener = ((event: AccessibilityEvent) => void) | { onAccessibilityEvent(event: AccessibilityEvent): void };
+        export type StateListener = ((state: "connected" | "disconnected") => void) | { onConnected?(): void; onDisconnected?(): void };
+        export interface Explanation { readonly found: boolean; readonly text: string; toString(): string; readonly [key: string]: unknown; }
+        export interface AutoModule {
+          /** auto() / auto(forceRestart) / auto(mode, forceRestart?): sets the mode, then makes sure the service runs. */
+          (forceRestart?: boolean): Promise<void>;
+          (mode: Mode, forceRestart?: boolean): Promise<void>;
+          /** A new Promise per read. */
+          readonly service: Promise<ServiceInfo | null>;
+          readonly services: Promise<readonly string[]>;
+          readonly windows: Promise<readonly WindowSnapshot[]>;
+          readonly root: Promise<RuntimeFlow.NodeSnapshot | null>;
+          readonly rootInActiveWindow: Promise<RuntimeFlow.NodeSnapshot | null>;
+          readonly windowRoots: Promise<readonly RuntimeFlow.NodeSnapshot[]>;
+          readonly state: Promise<State>;
+          readonly stats: Promise<Stats>;
+          start(options?: AutomationCallOptions): Promise<boolean>;
+          stop(options?: AutomationCallOptions): Promise<boolean>;
+          /** start. */
+          enable(options?: AutomationCallOptions): Promise<boolean>;
+          /** stop. */
+          disable(options?: AutomationCallOptions): Promise<boolean>;
+          launchSettings(options?: AutomationCallOptions): Promise<void>;
+          clearCache(options?: AutomationCallOptions): Promise<boolean>;
+          hasInstance(options?: AutomationCallOptions): Promise<boolean>;
+          hasService(options?: AutomationCallOptions): Promise<boolean>;
+          exists(options?: AutomationCallOptions): Promise<boolean>;
+          isRunning(options?: AutomationCallOptions): Promise<boolean>;
+          isOperational(options?: AutomationCallOptions): Promise<boolean>;
+          /** D-1: enables the service when Android allows it, then polls it; a timeout rejects with code ERR_AUTOJS6_TIMEOUT. */
+          waitFor(timeout?: number, options?: AutomationCallOptions): Promise<void>;
+          /** flow.wait. */
+          readonly wait: RuntimeFlow.Wait;
+          setMode(mode: Mode): void;
+          /** Sets these flags ("!name" leaves one out) and clears the rest. */
+          setFlags(flags: Flag | `!${Flag}` | readonly (Flag | `!${Flag}`)[]): void;
+          clearFlags(flags: Flag | readonly Flag[]): void;
+          setWindowFilter(filter: WindowFilter | boolean | ((window: WindowSnapshot) => unknown) | null): void;
+          findWindows(filter?: WindowFilter, options?: AutomationCallOptions): Promise<readonly WindowSnapshot[]>;
+          findWindowRoots(filter?: WindowFilter, options?: AutomationCallOptions): Promise<readonly RuntimeFlow.NodeSnapshot[]>;
+          getWindowRoot(window: WindowSnapshot | number, options?: AutomationCallOptions): Promise<RuntimeFlow.NodeSnapshot | null>;
+          registerEvent(name: string, listener: EventListener | null, options?: RegisterOptions): Promise<void>;
+          registerEvents(name: string, listener: EventListener | null, options?: RegisterOptions): Promise<void>;
+          removeEvent(name: string): Promise<void>;
+          removeEvents(name: string): Promise<void>;
+          /** null removes the listener. */
+          stateListener(listener: StateListener | null): Promise<void>;
+          currentPackage(options?: AutomationCallOptions): Promise<string>;
+          currentActivity(options?: AutomationCallOptions): Promise<string>;
+          currentComponent(options?: AutomationCallOptions): Promise<string>;
+          explain(selector: RuntimeAccessibility.SelectorDescriptor, options?: AutomationCallOptions & { readonly [key: string]: unknown }): Promise<Explanation>;
+          /** The window tree as text ("text") or JSON. */
+          dump(options?: string | (AutomationCallOptions & { format?: string; readonly [key: string]: unknown })): Promise<string>;
+        }
+      }
+    export namespace RuntimeThreads {
+        /** Q175 (a): an asynchronous task of this thread; its signal aborts on interrupt. */
+        export interface Thread {
+          readonly id: number;
+          readonly name: string;
+          readonly signal: AbortSignal;
+          isAlive(): boolean;
+          isInterrupted(): boolean;
+          interrupt(): void;
+          getId(): number;
+          getName(): string;
+          /** true once the task ended; with a timeout, false when it still runs. */
+          join(timeout?: number): Promise<boolean>;
+          waitFor(): Promise<void>;
+          toString(): string;
+        }
+        export interface CurrentThread { readonly id: number; readonly name: string; readonly isMainThread?: boolean; toString(): string; }
+        export interface PoolOptions { corePoolSize?: number; maxPoolSize?: number; keepAliveTime?: number; }
+        export interface Pool {
+          submit<T>(task: (signal: AbortSignal) => T | PromiseLike<T>): Promise<T>;
+          execute(task: (signal: AbortSignal) => unknown): void;
+          shutdown(): void;
+          /** Interrupts the running tasks; resolves the count of tasks that never started. */
+          shutdownNow(): number;
+          isShutdown(): boolean;
+          isTerminated(): boolean;
+          awaitTermination(timeout?: number): Promise<boolean>;
+          getActiveCount(): number;
+          getQueueSize(): number;
+        }
+        /** Q176 (a): a 64-bit integer in a SharedArrayBuffer; post buffer to a Worker and open it there with threads.atomic(buffer). */
+        export interface AtomicLong {
+          readonly buffer: SharedArrayBuffer;
+          get(): number;
+          set(value: number): void;
+          getAndSet(value: number): number;
+          compareAndSet(expected: number, value: number): boolean;
+          getAndAdd(delta: number): number;
+          addAndGet(delta: number): number;
+          getAndIncrement(): number;
+          incrementAndGet(): number;
+          getAndDecrement(): number;
+          decrementAndGet(): number;
+          valueOf(): number;
+          toString(): string;
+        }
+        /** Q176 (a): a non-reentrant lock in a SharedArrayBuffer, shared with Workers as threads.lock(buffer). */
+        export interface Lock {
+          readonly buffer: SharedArrayBuffer;
+          lock(): Promise<void>;
+          /** Without a timeout, one attempt. */
+          tryLock(timeout?: number): Promise<boolean>;
+          unlock(): void;
+          isLocked(): boolean;
+        }
+        /** Rhino's VolatileDispose: blockedGet resolves with the value of setAndNotify, or null after the timeout. */
+        export interface VolatileDispose<T = unknown> {
+          setAndNotify(value: T): void;
+          blockedGet(timeout?: number): Promise<T | null>;
+          /** An interrupt of the waiting task rejects with new ErrorClass(message); a timeout resolves defaultValue. */
+          blockedGetOrThrow<D = T>(ErrorClass?: new (message?: string) => Error, timeout?: number, defaultValue?: D): Promise<T | D>;
+        }
+        export interface ThreadsModule {
+          start(action: ((signal: AbortSignal) => unknown) | { run(): unknown }): Thread;
+          pool(options?: PoolOptions): Pool;
+          atomic(initial?: number | SharedArrayBuffer | { readonly buffer: SharedArrayBuffer }): AtomicLong;
+          lock(shared?: SharedArrayBuffer | { readonly buffer: SharedArrayBuffer }): Lock;
+          disposable<T = unknown>(): VolatileDispose<T>;
+          interrupt(thread: Thread): void;
+          shutDownAll(): void;
+          currentThread(): Thread | CurrentThread;
+          /** Calls of the returned function on the same lock (a threads.lock, any object, else this, else fn) run one after another. */
+          sync<A extends unknown[], R>(fn: (...args: A) => R, lock?: object): (...args: A) => Promise<Awaited<R>>;
+        }
+      }
+    export namespace RuntimeContinuation {
+        export interface Continuation<T = unknown> {
+          await(): Promise<T>;
+          resume(value?: T): void;
+          resumeError(error: unknown): void;
+        }
+        export interface ContinuationModule {
+          /** Node awaits natively. */
+          readonly enabled: true;
+          create<T = unknown>(): Continuation<T>;
+          await<T>(value: T | PromiseLike<T>): Promise<T>;
+          delay(millis: number): Promise<void>;
+        }
+      }
+    export namespace RuntimeTimers {
+        export interface IntervalRecord { readonly interval: number; readonly timeout: number; readonly initTimestamp: number; readonly handle: ReturnType<typeof setTimeout>; }
+        export interface RhinoTimersModule {
+          /** An empty Node timer that keeps the event loop busy: an interval without timeout, else a timeout. */
+          keepAlive(timeout?: number): ReturnType<typeof setTimeout>;
+          /** Runs listener every interval ms (200 by default) until the timeout or until condition returns a value other than false; then callback(value). */
+          setIntervalExt(listener: () => void, interval?: number, timeoutOrCondition?: number | ((this: IntervalRecord) => unknown),
+            callback?: (this: IntervalRecord, value: unknown) => void): ReturnType<typeof setTimeout>;
+          /** Abandoned in Rhino: only warns once. */
+          loop(): void;
+        }
+      }
+    export namespace RuntimeYolo {
+        export interface LoadOptions extends AutomationCallOptions {
+          /** The YOLO plugin's component, package/class. */
+          component: string;
+          timeoutMillis?: number;
+          readonly [key: string]: unknown;
+        }
+        export interface Detection {
+          readonly classId: number;
+          readonly label: string;
+          readonly confidence: number;
+          readonly bounds: RuntimeFlow.Bounds;
+        }
+        /** Rhino's YoloDetector; failures carry Rhino's YOLO_* codes in error.code. */
+        export interface YoloDetector {
+          readonly id: string;
+          readonly component: string;
+          readonly closed: boolean;
+          detect(image: ImageHandleLike, options?: AutomationCallOptions & { confidence?: number; timeoutMillis?: number; readonly [key: string]: unknown }): Promise<readonly Detection[]>;
+          /** false when already closed. */
+          close(options?: AutomationCallOptions): Promise<boolean>;
+          toString(): string;
+        }
+        export interface YoloModule {
+          load(modelDir: string, options: LoadOptions): Promise<YoloDetector>;
+        }
+      }
+    export namespace RuntimeSelector {
+        export type Target = RuntimeFlow.Selector | RuntimeFlow.NodeSnapshot | string | RegExp;
+        export interface SelectorModule {
+          /** One probe of flow.wait: the result, or null when absent. */
+          pickup(target: Target, compass?: string | null, resultType?: RuntimeFlow.ResultType): Promise<unknown>;
+          detect(node: RuntimeFlow.NodeSnapshot, compass?: string | null, resultType?: RuntimeFlow.ResultType): Promise<unknown>;
+          existsOne(...targets: (Target | readonly Target[])[]): Promise<boolean>;
+          existsAll(...targets: (Target | readonly Target[])[]): Promise<boolean>;
+        }
+      }
+    export namespace RuntimeOcr {
+        export interface RegionObject {
+          readonly x: number;
+          readonly y: number;
+          readonly width: number;
+          readonly height: number;
+        }
+
+        export type Region = readonly [number, number, number, number] | RegionObject;
+
+        export interface OcrOptions extends AutomationCallOptions {
+          /** Select an installed host OCR plugin; unavailable selections return category "unavailable". */
+          engineId?: string;
+          engine?: string;
+          variant?: string;
+          lang?: string;
+          region?: Region;
+          /** Rhino's mode for this call: auto, mlkit, paddle or rapid (an engine is then chosen unless engine / engineId is set). */
+          mode?: OcrMode;
+        }
+
+        /** auto leaves the engine to the host; mlkit / paddle / rapid select mlkit-ocr / paddle-ocr / rapid-ocr. */
+        export type OcrMode = "auto" | "mlkit" | "paddle" | "rapid";
+
+        /** ocr.mlkit / paddle / rapid: the module with a fixed engine. */
+        export interface FixedEngineOcr {
+          recognize(image: ImageHandleLike, options?: OcrOptions): Promise<readonly OcrResult[]>;
+          recognizeText(image: ImageHandleLike, options?: OcrOptions): Promise<string>;
+          detect(image: ImageHandleLike, options?: OcrOptions): Promise<readonly OcrResult[]>;
+          toString(): string;
+        }
+
+        export interface OcrResult {
+          readonly text: string;
+          readonly confidence: number | null;
+          readonly bounds?: RuntimeFlow.Bounds;
+        }
+
+        export interface OcrModule {
+          recognize(image: ImageHandleLike, options?: OcrOptions): Promise<readonly OcrResult[]>;
+          recognizeText(image: ImageHandleLike, options?: OcrOptions): Promise<string>;
+          detectTextBounds(image: ImageHandleLike, options?: OcrOptions): Promise<readonly OcrResult[]>;
+          /** Rhino's detect: detectTextBounds. Node's recognizeText resolves one string (Rhino's returns lines). */
+          detect(image: ImageHandleLike, options?: OcrOptions): Promise<readonly OcrResult[]>;
+          /** The mode of this thread (api-coverage P3.4); assigning "" or null restores auto. */
+          mode: OcrMode;
+          tap(mode: OcrMode | Capitalize<OcrMode>): void;
+          summary(): string;
+          toString(): string;
+          readonly mlkit: FixedEngineOcr;
+          readonly paddle: FixedEngineOcr;
+          readonly rapid: FixedEngineOcr;
+        }
+      }
+    export namespace RuntimeBarcode {
+        export type BarcodeFormatName =
+          | "ALL"
+          | "AZTEC"
+          | "CODABAR"
+          | "CODE_39"
+          | "CODE_93"
+          | "CODE_128"
+          | "DATA_MATRIX"
+          | "EAN_8"
+          | "EAN_13"
+          | "ITF"
+          | "PDF_417"
+          | "QR_CODE"
+          | "UPC_A"
+          | "UPC_E";
+
+        export type BarcodeValueTypeName =
+          | "UNKNOWN"
+          | "CONTACT_INFO"
+          | "EMAIL"
+          | "ISBN"
+          | "PHONE"
+          | "PRODUCT"
+          | "SMS"
+          | "TEXT"
+          | "URL"
+          | "WIFI"
+          | "GEO"
+          | "CALENDAR_EVENT"
+          | "DRIVER_LICENSE";
+
+        export interface RegionObject {
+          readonly x: number;
+          readonly y: number;
+          readonly width: number;
+          readonly height: number;
+        }
+
+        export type Region = readonly [number, number, number, number] | RegionObject;
+
+        export interface PathImageInput {
+          readonly type: "path";
+          readonly path: string;
+        }
+
+        export type HandleImageInput = ImageHandleLike & { readonly type?: "imageHandle" };
+
+        export interface CaptureImageInput {
+          readonly type: "capture";
+          readonly requireExistingPermission: true;
+          readonly orientation?: "portrait" | "landscape" | "auto";
+        }
+
+        export type BarcodeImageInput = string | PathImageInput | HandleImageInput | CaptureImageInput;
+
+        export interface BarcodeOptions extends AutomationCallOptions {
+          region?: Region;
+          formats?: readonly BarcodeFormatName[];
+          format?: BarcodeFormatName | readonly BarcodeFormatName[];
+          qrOnly?: boolean;
+          maxResults?: number;
+          enableAllPotentialBarcodes?: boolean;
+          enableAllPotentialQrCodes?: boolean;
+        }
+
+        export interface BarcodeBounds extends RuntimeFlow.Bounds {
+          readonly width: number;
+          readonly height: number;
+        }
+
+        export interface EmailPayload {
+          readonly address?: string;
+          readonly subject?: string;
+          readonly body?: string;
+          readonly type?: number;
+        }
+
+        export interface PhonePayload {
+          readonly number?: string;
+          readonly type?: number;
+        }
+
+        export interface StructuredPayload {
+          readonly payloadType:
+            | "email"
+            | "phone"
+            | "sms"
+            | "url"
+            | "wifi"
+            | "geoPoint"
+            | "contactInfo"
+            | "calendarEvent"
+            | "driverLicense"
+            | "text"
+            | "unknown";
+          readonly email?: EmailPayload;
+          readonly phone?: PhonePayload;
+          readonly sms?: { readonly message?: string; readonly phoneNumber?: string };
+          readonly url?: { readonly title?: string; readonly url?: string };
+          readonly wifi?: { readonly ssid?: string; readonly password?: string; readonly encryptionType?: number };
+          readonly geoPoint?: { readonly lat: number; readonly lng: number };
+          readonly contactInfo?: {
+            readonly organization?: string;
+            readonly title?: string;
+            readonly name?: string;
+            readonly phones?: readonly PhonePayload[];
+            readonly emails?: readonly EmailPayload[];
+            readonly urls?: readonly string[];
+            readonly addresses?: readonly string[];
+          };
+          readonly calendarEvent?: {
+            readonly summary?: string;
+            readonly description?: string;
+            readonly location?: string;
+            readonly organizer?: string;
+            readonly status?: string;
+            readonly start?: string;
+            readonly end?: string;
+          };
+          readonly driverLicense?: {
+            readonly documentType?: string;
+            readonly firstName?: string;
+            readonly middleName?: string;
+            readonly lastName?: string;
+            readonly licenseNumber?: string;
+            readonly gender?: string;
+            readonly birthDate?: string;
+            readonly expiryDate?: string;
+            readonly issuingDate?: string;
+            readonly issuingCountry?: string;
+            readonly addressStreet?: string;
+            readonly addressCity?: string;
+            readonly addressState?: string;
+            readonly addressZip?: string;
+          };
+        }
+
+        export interface BarcodeSnapshot {
+          readonly schema: "autojs6-node-barcode-snapshot-v1";
+          readonly rawValue: string | null;
+          readonly displayValue: string | null;
+          readonly format: number;
+          readonly formatName: BarcodeFormatName;
+          readonly valueType: number;
+          readonly valueTypeName: BarcodeValueTypeName;
+          readonly boundingBox?: BarcodeBounds;
+          readonly cornerPoints?: readonly RuntimeFlow.PointValue[];
+          readonly structured?: StructuredPayload;
+        }
+
+        export interface BarcodeModule {
+          detect(image: BarcodeImageInput, options?: BarcodeOptions): Promise<BarcodeSnapshot | null>;
+          detectAll(image: BarcodeImageInput, options?: BarcodeOptions): Promise<readonly BarcodeSnapshot[]>;
+          recognizeText(image: BarcodeImageInput, options?: BarcodeOptions): Promise<string | null>;
+          recognizeTexts(image: BarcodeImageInput, options?: BarcodeOptions): Promise<readonly string[]>;
+        }
+      }
+    // END GENERATED AUTOMATION FAMILY TYPES
+
     // BEGIN GENERATED SYSTEM TYPES
     export namespace RuntimeAutojs {
         export type RootModeName = "AUTO_DETECT" | "FORCE_ROOT" | "FORCE_NON_ROOT";
@@ -5938,6 +6625,24 @@ declare module "autojs6:bun-host" {
           /** Rhino's getClip / setClip: the system clipboard (capability clipboard). */
           getClip(options?: AutomationCallOptions): Promise<string>;
           setClip(text: unknown, options?: AutomationCallOptions): Promise<void>;
+          /** Rhino's sleep (api-coverage P3.4): a random pause in [min, max] ms; an interrupted threads task rejects. */
+          sleep(min: number, max?: number): Promise<void>;
+          readonly wait: RhinoWait;
+        }
+        export interface RhinoWaitCallback<T = unknown> {
+          then?(value: T): unknown;
+          else?(value: T): unknown;
+        }
+        /**
+         * Rhino's wait: a function (sync or async) or a selector checked until satisfied. A limit below 100 counts checks,
+         * otherwise it is a timeout in ms (10000 by default); interval 200 ms; callback.then / else get the last check and a
+         * value they return replaces the boolean result.
+         */
+        export interface RhinoWait {
+          (condition: (() => unknown) | RuntimeSelector.Target, limit?: number | RhinoWaitCallback, interval?: number | RhinoWaitCallback,
+            callback?: RhinoWaitCallback): Promise<unknown>;
+          /** flow.waitAsync. */
+          readonly async: RuntimeFlow.Wait;
         }
       }
     export namespace RuntimeEngines {
@@ -6035,10 +6740,10 @@ declare module "autojs6:bun-host" {
       /** AutoJs6 util / species / global data functions / s13n / cvt / fmt / jsox, computed locally as in Rhino; util.java, s13n.point / throwable and morse vibration use the Java facade (java.interop). */
       readonly util: RuntimeUtil.UtilModule;
       readonly species: RuntimeSpecies.SpeciesModule;
-      /** Rhino's global functions: the data functions of the JS tools core and the system functions (current*, waitFor*, exit / stop, requires*, setScreenMetrics, WIDTH / HEIGHT, getClip / setClip) and the toast family's (toastLog and the rest, isUiThread). */
-      readonly global: RuntimeGlobal.GlobalModule & RuntimeSystem.SystemModule & ToastGlobals & {
+      /** Rhino's global functions: the data functions of the JS tools core and the system functions (current*, waitFor*, exit / stop, requires*, setScreenMetrics, WIDTH / HEIGHT, getClip / setClip, sleep / wait), the toast family's (toastLog and the rest, isUiThread) and the automation family's (AutomationGlobals). */
+      readonly global: RuntimeGlobal.GlobalModule & RuntimeSystem.SystemModule & ToastGlobals & AutomationGlobals & {
         /**
-         * Puts the system functions, R and the toast globals (ToastGlobals) on target (globalThis by default) as Rhino's globals, for the calling thread (call
+         * Puts the system functions, R, the toast globals (ToastGlobals) and the automation globals (AutomationGlobals) on target (globalThis by default) as Rhino's globals, for the calling thread (call
          * it in each Worker too): accessors over these members, assigning one replaces it; names target already has are left
          * alone. Returns the installed names. Not enumerable on host.global.
          */
@@ -6113,6 +6818,24 @@ declare module "autojs6:bun-host" {
       readonly compose: RuntimeCompose.Api;
       /** Rhino's key codes (KeysApi), local values. */
       readonly keys: KeysApi;
+      /**
+       * Rhino's automation family (api-coverage P4.4): automator and auto need accessibility.control (press / swipe / gesture*
+       * also accessibility.gesture, auto.start / stop / enable / disable / launchSettings / clearCache accessibility.service,
+       * automator.captureScreen screen.capture); threads, continuation, timers and the selector functions are local; yolo needs
+       * yolo.control, ocr ocr.control, barcode and qrcode barcode.control. A call whose grants are off rejects NOT_GRANTED with
+       * missingCapabilities.
+       */
+      readonly automator: RuntimeAutomator.AutomatorModule;
+      readonly auto: RuntimeAuto.AutoModule;
+      readonly threads: RuntimeThreads.ThreadsModule;
+      readonly continuation: RuntimeContinuation.ContinuationModule;
+      readonly timers: RuntimeTimers.RhinoTimersModule;
+      readonly yolo: RuntimeYolo.YoloModule;
+      readonly selector: RuntimeSelector.SelectorModule;
+      readonly ocr: RuntimeOcr.OcrModule;
+      readonly barcode: RuntimeBarcode.BarcodeModule;
+      /** Rhino's qrcode: barcode limited to QR codes. */
+      readonly qrcode: RuntimeBarcode.BarcodeModule;
       readonly pinyin: PinyinApi;
       readonly pinyin4j: Pinyin4jApi;
       readonly opencc: OpenccApi;
