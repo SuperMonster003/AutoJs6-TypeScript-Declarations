@@ -3,6 +3,8 @@
  * root, then accessibility); waitFor* poll with Rhino's limit / interval / callback rules and resolve. exit / stop end
  * the execution (from a Worker, the main thread's); the stop state is local to the thread. WIDTH / HEIGHT are the
  * device screen size at the start; setScreenMetrics scales the coordinates of accessibility.click / swipe / gesture.
+ * As in Rhino, these members and R of autojs6:autojs are also globals (accessors on globalThis in main threads and
+ * Workers; assigning one replaces it).
  */
 declare module "autojs6:system" {
   namespace system {
@@ -38,3 +40,26 @@ declare module "autojs6:system" {
   const system: system.SystemModule;
   export = system;
 }
+
+declare const WIDTH: number;
+declare const HEIGHT: number;
+declare const isAutoJs6: true;
+declare const R: import("autojs6:autojs").Resources;
+declare function currentPackage(mode?: import("autojs6:system").ComponentMode): Promise<string>;
+declare function currentActivity(mode?: import("autojs6:system").ComponentMode): Promise<string>;
+declare function currentComponent(mode?: import("autojs6:system").ComponentMode): Promise<string>;
+declare function waitForActivity(activityName: string, limit?: number | import("autojs6:system").WaitCallback,
+  interval?: number | import("autojs6:system").WaitCallback, callback?: import("autojs6:system").WaitCallback): Promise<unknown>;
+declare function waitForPackage(packageName: string, limit?: number | import("autojs6:system").WaitCallback,
+  interval?: number | import("autojs6:system").WaitCallback, callback?: import("autojs6:system").WaitCallback): Promise<unknown>;
+declare function isStopped(): boolean;
+declare function isShuttingDown(): boolean;
+declare function notStopped(): boolean;
+declare function isRunning(): boolean;
+declare function exit(error?: unknown): void;
+declare function stop(): void;
+declare function requiresApi(api: number): void;
+declare function requiresAutojsVersion(version: string | number): void;
+declare function setScreenMetrics(width: number, height: number): void;
+declare function getClip(options?: AutoJs6Node.BridgeCallOptions): Promise<string>;
+declare function setClip(text: unknown, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;

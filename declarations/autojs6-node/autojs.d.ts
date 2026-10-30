@@ -2,12 +2,24 @@
  * Rhino's autojs module (api-coverage P3.1b). The version fields are synchronous; autojs.version compares as the host's
  * io.github.g00fy2.versioncompare does. Everything that asks the host returns a Promise, the getters rotation /
  * orientation / themeColor included; R.<type>.<name> resolves with the resource id ("strings" reads as "string").
+ * getRootMode resolves with Rhino's RootMode object (key, description, name(), ordinal(), toString()).
  * Capabilities: autojs; setRootMode, restart and exit also need autojs.control.
  */
 declare module "autojs6:autojs" {
   namespace autojs {
-    export type RootMode = "AUTO_DETECT" | "FORCE_ROOT" | "FORCE_NON_ROOT";
-    export type RootModeInput = RootMode | 1 | 0 | -1 | boolean | "root" | "non-root" | "auto";
+    export type RootModeName = "AUTO_DETECT" | "FORCE_ROOT" | "FORCE_NON_ROOT";
+    /** Rhino's RootUtils.RootMode: one frozen object per mode. */
+    export interface RootMode {
+      /** The settings key, such as "key_$_root_mode_auto_detect". */
+      readonly key: string;
+      /** The English description, such as "Auto detect root access". */
+      readonly description: string;
+      name(): RootModeName;
+      ordinal(): number;
+      /** "RootMode{key=..., description='...'}", as the Java enum prints. */
+      toString(): string;
+    }
+    export type RootModeInput = RootMode | RootModeName | 1 | 0 | -1 | boolean | "root" | "non-root" | "auto";
     export interface Version {
       readonly code: number;
       readonly name: string;

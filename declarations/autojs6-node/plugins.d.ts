@@ -120,8 +120,8 @@ declare module "plugins" {
       extendAll(): void;
       extendAllBut(...names: (string | readonly string[])[]): void;
       /**
-       * Rhino's plugins.tools: the tools of installed tool-provider plugins (capability plugin_tools; the tools of
-       * USER_GRANTED providers are listed and run when the script also declares plugin_tools.user_granted).
+       * Rhino's plugins.tools: the tools of installed tool-provider plugins, USER_GRANTED providers included as in Rhino
+       * (capability plugin_tools, which implies plugin_tools.user_granted).
        */
       readonly tools: PluginToolsModule;
       load<T = unknown>(id: string, exportName?: string): T;

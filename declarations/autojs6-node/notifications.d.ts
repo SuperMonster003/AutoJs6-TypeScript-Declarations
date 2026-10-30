@@ -77,7 +77,10 @@ declare module "notifications" {
       readonly [key: string]: AutoJs6Node.JsonValue;
     }
 
-    /** Rhino notice.channel (Android 8+; an id defaults to "script_channel"). */
+    /**
+     * Rhino notice.channel (Android 8+). An omitted id defaults as in Rhino: config defaultChannelId, else the script's
+     * file name (such as "main.js"), or "script_channel" when useScriptNameAsDefaultChannelId is false.
+     */
     export interface ChannelModule {
       create(channelId: string | number | ChannelOptions, options?: ChannelOptions | null, callOptions?: AutoJs6Node.BridgeCallOptions): Promise<string>;
       createIfNeeded(channelId: string | number | ChannelOptions, options?: ChannelOptions | null, callOptions?: AutoJs6Node.BridgeCallOptions): Promise<void>;

@@ -150,7 +150,7 @@ declare namespace AutoJs6Node {
     readonly status: "native_builtins_with_host_policies" | "desktop_opt_in" | string;
     readonly defaultEnabled: boolean;
     readonly targetProfiles: readonly string[];
-    readonly conformanceSet: "node24_safe_stdlib_subset" | string;
+    readonly conformanceSet: "node26_native_builtins" | string;
     readonly moduleStatus: Readonly<Record<string, "limited_network_gated" | "disabled" | string>>;
     readonly conformanceModules: readonly string[];
     readonly cjsAliases: "bare_and_node_prefix" | string;
@@ -682,7 +682,7 @@ declare namespace AutoJs6Node {
     readonly rawProcessHandles: boolean;
   }
 
-  /** Native VM support. Node 24.21 VM Modules remain experimental upstream. */
+  /** Native VM support. Node 26.13 VM Modules remain experimental upstream. */
   export interface VmProfile {
     readonly status: "native_available" | string;
     readonly defaultEnabled: boolean;
