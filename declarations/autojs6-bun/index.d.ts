@@ -293,6 +293,21 @@ declare module "autojs6:bun-host" {
       readonly segment?: boolean;
       readonly customDictionary?: Readonly<Record<string, readonly (readonly string[])[]>>;
     }
+    /** Rhino's keys module: the android.view.KeyEvent codes of the keys events.observeKey / onKeyDown report (local values). */
+    export interface KeysApi {
+      readonly home: 3;
+      readonly HOME: 3;
+      readonly menu: 82;
+      readonly MENU: 82;
+      readonly back: 4;
+      readonly BACK: 4;
+      readonly volumeUp: 24;
+      readonly volume_up: 24;
+      readonly VOLUME_UP: 24;
+      readonly volumeDown: 25;
+      readonly volume_down: 25;
+      readonly VOLUME_DOWN: 25;
+    }
     export interface PinyinApi {
       readonly STYLE_NORMAL: 0;
       readonly STYLE_TONE: 1;
@@ -406,6 +421,67 @@ declare module "autojs6:bun-host" {
       setTouchable(touchable?: boolean): Promise<void>;
       setGlobalLogConfig(config: { readonly [key: string]: JsonValue }): Promise<void>;
       resetGlobalLogConfig(): Promise<void>;
+    }
+    /**
+     * Rhino's console output and global console names (AutoJs6 api-coverage P4.3, D-10). With console.control the host prints
+     * each line at Rhino's level (log and print at debug); without it the text goes to Bun's stdout, or stderr for warn / error /
+     * assert, which the host shows at info / error (Q171 (a)). The lines leave in call order after the current event loop turn,
+     * separately from Bun's own console; process.exit right after a call can drop them.
+     */
+    export interface ConsoleOutputApi {
+      log(...data: unknown[]): void;
+      print(...data: unknown[]): void;
+      verbose(...data: unknown[]): void;
+      info(...data: unknown[]): void;
+      warn(...data: unknown[]): void;
+      error(...data: unknown[]): void;
+      /** Rhino's global err. */
+      err(...data: unknown[]): void;
+      /** Prints message (default "java.lang.AssertionError") at assert level and throws an AssertionError when value, or what the function value returns, is falsy. */
+      assert(value: unknown, message?: string | null): HostConsole;
+      time(label?: string | null): void;
+      /** Prints "label: <ms>ms" (NaN for a label without time) at debug level. */
+      timeEnd(label?: string | null): void;
+      /** Prints the message and the caller's stack at level ("debug" by default; "verbose" / "debug" / "info" / "warn" / "error" or 2 to 6). */
+      trace(message?: unknown, level?: "verbose" | "debug" | "info" | "warn" | "error" | (string & {}) | number | null): void;
+      /** Prints the stack of an Error, or a message, at error level. */
+      printAllStackTrace(error: unknown): void;
+      /** Rhino's global names of show / clear / launch. */
+      openConsole(reset?: boolean): Promise<void>;
+      showConsole(reset?: boolean): Promise<void>;
+      clearConsole(): Promise<void>;
+      launchConsole(): Promise<void>;
+    }
+    export interface HostConsole extends ConsoleApi, ConsoleOutputApi {}
+    /** Rhino's isLong / isForcible forms: booleans, numbers (truthy) and "long" / "short" / "forcible" or their initials, in any case. */
+    export type ToastFlag = boolean | number | "long" | "short" | "forcible" | "l" | "s" | "f" | (string & {});
+    /**
+     * host.toast (ui.toast, on by default): toast(text, isLong?, isForcible?) as Rhino's (the "short" / "long" duration strings are
+     * its badges); text is converted with String, 1 to 1024 UTF-8 bytes after trimming. A forcible toast first dismisses this
+     * execution's earlier toasts. No per-run limit (AutoJs6 api-coverage Q172 (a)); Android's toast queue bounds what one app shows.
+     */
+    export interface HostToast {
+      (text: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
+      /** Rhino's toast.dismissAll: dismisses the toasts this execution has shown. */
+      dismissAll(): Promise<void>;
+    }
+    /**
+     * Rhino's toast globals on host.global (api-coverage P4.3): the toast, then the first argument at that host.console level
+     * (Rhino's toastLog / toastVerbose / toastInfo / toastWarn / toastError, with their lower-case aliases); isUiThread is false.
+     */
+    export interface ToastGlobals {
+      toastLog(text?: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
+      toastlog(text?: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
+      toastVerbose(text: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
+      toastverbose(text: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
+      toastInfo(text: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
+      toastinfo(text: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
+      toastWarn(text: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
+      toastwarn(text: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
+      toastError(text: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
+      toasterror(text: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
+      /** A Bun thread is never Android's UI thread. */
+      isUiThread(): false;
     }
     export interface DeviceInfo {
       readonly brand: string;
@@ -5959,10 +6035,10 @@ declare module "autojs6:bun-host" {
       /** AutoJs6 util / species / global data functions / s13n / cvt / fmt / jsox, computed locally as in Rhino; util.java, s13n.point / throwable and morse vibration use the Java facade (java.interop). */
       readonly util: RuntimeUtil.UtilModule;
       readonly species: RuntimeSpecies.SpeciesModule;
-      /** Rhino's global functions: the data functions of the JS tools core and the system functions (current*, waitFor*, exit / stop, requires*, setScreenMetrics, WIDTH / HEIGHT, getClip / setClip). */
-      readonly global: RuntimeGlobal.GlobalModule & RuntimeSystem.SystemModule & {
+      /** Rhino's global functions: the data functions of the JS tools core and the system functions (current*, waitFor*, exit / stop, requires*, setScreenMetrics, WIDTH / HEIGHT, getClip / setClip) and the toast family's (toastLog and the rest, isUiThread). */
+      readonly global: RuntimeGlobal.GlobalModule & RuntimeSystem.SystemModule & ToastGlobals & {
         /**
-         * Puts the system functions and R on target (globalThis by default) as Rhino's globals, for the calling thread (call
+         * Puts the system functions, R and the toast globals (ToastGlobals) on target (globalThis by default) as Rhino's globals, for the calling thread (call
          * it in each Worker too): accessors over these members, assigning one replaces it; names target already has are left
          * alone. Returns the installed names. Not enumerable on host.global.
          */
@@ -6024,7 +6100,7 @@ declare module "autojs6:bun-host" {
       hasCapability(capability: string): boolean;
       /** Raw calls still obey the same host grants and method validation. No generic Node bridge is exposed. */
       call(capability: string, payload?: { readonly [key: string]: JsonValue }): Promise<{ [key: string]: JsonValue }>;
-      toast(text: string, duration?: "short" | "long"): Promise<{ shown: boolean }>;
+      readonly toast: HostToast;
       /**
        * Async device methods; info() preserves the original small snapshot, getInfo() returns the full live snapshot. The
        * snapshot members are synchronous with device.info (DeviceSnapshotFields).
@@ -6035,13 +6111,15 @@ declare module "autojs6:bun-host" {
       readonly dialogs: RuntimeDialogs.DialogsModule;
       readonly ui: RuntimeUi.UiModule;
       readonly compose: RuntimeCompose.Api;
+      /** Rhino's key codes (KeysApi), local values. */
+      readonly keys: KeysApi;
       readonly pinyin: PinyinApi;
       readonly pinyin4j: Pinyin4jApi;
       readonly opencc: OpenccApi;
       readonly images: ImagesApi;
       readonly screenRecorder: ScreenRecorderApi;
       readonly coordinates: CoordinateApi;
-      readonly console: ConsoleApi;
+      readonly console: HostConsole;
     }
     export interface HostClientOptions {
       readonly socket?: string;
