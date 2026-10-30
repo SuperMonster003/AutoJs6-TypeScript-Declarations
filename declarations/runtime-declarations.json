@@ -11,7 +11,7 @@
     "autojs6-node/app.d.ts": "83a80904854869ac9decc9304fec8be0b8a5fb767363a0d7de054295218a14ba",
     "autojs6-node/autojs.d.ts": "f3909bdc4fb32553d7d799117c333537fc391a11fe97a4ae8ebdc0075f287b8c",
     "autojs6-node/autojs_global.d.ts": "1e4f95a1f96cc79231cea8532d9ad026aab4eb2df0f9ff5199f292f086d91656",
-    "autojs6-node/automation.d.ts": "02240d7906495c87e2f1a86a452adfe19a7e3371abb1c1b056633d370349da4f",
+    "autojs6-node/automation.d.ts": "c7cdf82d621d4be9a53d6b9585e2d85f77721bdf9894958f80e3e34d7d9eb24b",
     "autojs6-node/axios.d.ts": "7f20df43fdc90a7c71779a3db4c721fd307e34d85f6d80f27f5e358e0c49d794",
     "autojs6-node/barcode.d.ts": "257435f7a2399f1d3648ee9cd2ae847a1444c2bdb187fdb606e91c4b3222a73c",
     "autojs6-node/base64.d.ts": "65ce6d962553264ea2ea4f50f8bd5370de80eb4dd741ca085e5e8b9ecbda1467",
@@ -97,7 +97,7 @@
     "autojs6-node/work_manager.d.ts": "5d77db1003ae945c3ce7f9061b4e8609a29f8fe3b2a830a0c0fae051c67a2e68",
     "autojs6-node/worker_threads.d.ts": "6b29835d34c6f622309dcc6bd2c05693e8d3f66820be9ba6583313e004b0c9a3",
     "autojs6-node/zip.d.ts": "01b3a4dbf057b6bced41d9e50b3ad8c1580a65b4a6ad914e442c9e5bcde6ed1c",
-    "autojs6-bun/host-client.d.mts": "b87938f898c1297c89ab5380aeb063112d8810c9eafb2107c09c7952e5a5aa57",
-    "autojs6-bun/index.d.ts": "fe5f07517a0809c8e19c950f2886eb43550e163588de79cad9f0f041e50d0489"
+    "autojs6-bun/host-client.d.mts": "4cb3a131471180632c1558bf853c73f137e7b0f6d13d9155dfc07e6256839f36",
+    "autojs6-bun/index.d.ts": "bd9d427989891d8059c0ce043fad529dd5f798ac2517a21910de7d24bcfbd292"
   }
 }

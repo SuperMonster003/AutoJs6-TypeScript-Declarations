@@ -72,7 +72,7 @@ declare module "autojs6:automator" {
       switchToInputMethodWithId(id: string, options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
       isServiceRunning(options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
       ensureService(options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
-      /** Enables the service when Android allows it, then polls it; a timeout rejects with code ERR_AUTOJS6_TIMEOUT. */
+      /** Enables the service when Android allows it, then polls it; as in Rhino a timeout ends the whole execution (the promise never settles). */
       waitForService(timeout?: number, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
       /** The accessibility screenshot (Android 11+), an image of the images module. Needs screen_capture and image too. */
       captureScreen(options?: AutoJs6Node.BridgeCallOptions): Promise<AutoJs6Node.ImageHandle>;
@@ -183,7 +183,7 @@ declare module "autojs6:auto" {
       exists(options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
       isRunning(options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
       isOperational(options?: AutoJs6Node.BridgeCallOptions): Promise<boolean>;
-      /** D-1: enables the service when Android allows it, then polls it; a timeout rejects with code ERR_AUTOJS6_TIMEOUT. */
+      /** D-1: enables the service when Android allows it, then polls it; as in Rhino a timeout ends the whole execution (the promise never settles). */
       waitFor(timeout?: number, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
       /** flow.wait. */
       readonly wait: import("flow").Wait;
@@ -301,8 +301,8 @@ declare module "autojs6:continuation" {
       resumeError(error: unknown): void;
     }
     export interface ContinuationModule {
-      /** Node awaits natively. */
-      readonly enabled: true;
+      /** False as in a Rhino engine without the continuation feature; await is native here. */
+      readonly enabled: false;
       create<T = unknown>(): Continuation<T>;
       await<T>(value: T | PromiseLike<T>): Promise<T>;
       delay(millis: number): Promise<void>;
@@ -316,8 +316,8 @@ declare module "autojs6:timers" {
   namespace timers {
     export interface IntervalRecord { readonly interval: number; readonly timeout: number; readonly initTimestamp: number; readonly handle: AutoJs6NodeTimers.TimerHandle; }
     export interface RhinoTimersModule {
-      /** An empty Node timer that keeps the event loop busy: an interval without timeout, else a timeout. */
-      keepAlive(timeout?: number): AutoJs6NodeTimers.TimerHandle;
+      /** An empty timer that keeps the event loop busy: an interval without timeout, else a timeout. As in Rhino it returns a numeric id for clearTimeout / clearInterval. */
+      keepAlive(timeout?: number): number;
       /** Runs listener every interval ms (200 by default) until the timeout or until condition returns a value other than false; then callback(value). */
       setIntervalExt(listener: () => void, interval?: number, timeoutOrCondition?: number | ((this: IntervalRecord) => unknown),
         callback?: (this: IntervalRecord, value: unknown) => void): AutoJs6NodeTimers.TimerHandle;

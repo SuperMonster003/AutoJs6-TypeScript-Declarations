@@ -5983,7 +5983,7 @@ export namespace RuntimeAutomator {
       switchToInputMethodWithId(id: string, options?: AutomationCallOptions): Promise<boolean>;
       isServiceRunning(options?: AutomationCallOptions): Promise<boolean>;
       ensureService(options?: AutomationCallOptions): Promise<void>;
-      /** Enables the service when Android allows it, then polls it; a timeout rejects with code ERR_AUTOJS6_TIMEOUT. */
+      /** Enables the service when Android allows it, then polls it; as in Rhino a timeout ends the whole execution (the promise never settles). */
       waitForService(timeout?: number, options?: AutomationCallOptions): Promise<void>;
       /** The accessibility screenshot (Android 11+), an image of the images module. Needs screen_capture and image too. */
       captureScreen(options?: AutomationCallOptions): Promise<ImageHandle>;
@@ -6089,7 +6089,7 @@ export namespace RuntimeAuto {
       exists(options?: AutomationCallOptions): Promise<boolean>;
       isRunning(options?: AutomationCallOptions): Promise<boolean>;
       isOperational(options?: AutomationCallOptions): Promise<boolean>;
-      /** D-1: enables the service when Android allows it, then polls it; a timeout rejects with code ERR_AUTOJS6_TIMEOUT. */
+      /** D-1: enables the service when Android allows it, then polls it; as in Rhino a timeout ends the whole execution (the promise never settles). */
       waitFor(timeout?: number, options?: AutomationCallOptions): Promise<void>;
       /** flow.wait. */
       readonly wait: RuntimeFlow.Wait;
@@ -6197,8 +6197,8 @@ export namespace RuntimeContinuation {
       resumeError(error: unknown): void;
     }
     export interface ContinuationModule {
-      /** Node awaits natively. */
-      readonly enabled: true;
+      /** False as in a Rhino engine without the continuation feature; await is native here. */
+      readonly enabled: false;
       create<T = unknown>(): Continuation<T>;
       await<T>(value: T | PromiseLike<T>): Promise<T>;
       delay(millis: number): Promise<void>;
@@ -6207,8 +6207,8 @@ export namespace RuntimeContinuation {
 export namespace RuntimeTimers {
     export interface IntervalRecord { readonly interval: number; readonly timeout: number; readonly initTimestamp: number; readonly handle: ReturnType<typeof setTimeout>; }
     export interface RhinoTimersModule {
-      /** An empty Node timer that keeps the event loop busy: an interval without timeout, else a timeout. */
-      keepAlive(timeout?: number): ReturnType<typeof setTimeout>;
+      /** An empty timer that keeps the event loop busy: an interval without timeout, else a timeout. As in Rhino it returns a numeric id for clearTimeout / clearInterval. */
+      keepAlive(timeout?: number): number;
       /** Runs listener every interval ms (200 by default) until the timeout or until condition returns a value other than false; then callback(value). */
       setIntervalExt(listener: () => void, interval?: number, timeoutOrCondition?: number | ((this: IntervalRecord) => unknown),
         callback?: (this: IntervalRecord, value: unknown) => void): ReturnType<typeof setTimeout>;
