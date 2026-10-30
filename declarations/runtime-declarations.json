@@ -97,7 +97,7 @@
     "autojs6-node/work_manager.d.ts": "5d77db1003ae945c3ce7f9061b4e8609a29f8fe3b2a830a0c0fae051c67a2e68",
     "autojs6-node/worker_threads.d.ts": "6b29835d34c6f622309dcc6bd2c05693e8d3f66820be9ba6583313e004b0c9a3",
     "autojs6-node/zip.d.ts": "01b3a4dbf057b6bced41d9e50b3ad8c1580a65b4a6ad914e442c9e5bcde6ed1c",
-    "autojs6-bun/host-client.d.mts": "7a8d83b552a81355bdddc4e5376757e993eaf15fa47310950b9818da8a267f02",
-    "autojs6-bun/index.d.ts": "37b4123d6552b1ad411132d669fcd7f840d58303ca1d21a6ae7d15f55ccee1ea"
+    "autojs6-bun/host-client.d.mts": "b87938f898c1297c89ab5380aeb063112d8810c9eafb2107c09c7952e5a5aa57",
+    "autojs6-bun/index.d.ts": "fe5f07517a0809c8e19c950f2886eb43550e163588de79cad9f0f041e50d0489"
   }
 }

@@ -6,6 +6,7 @@ declare module "autojs6:bun-host" {
     export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "device.identifiers" | "media.control" | "media.library" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "events.touch" | "events.key.intercept" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "accessibility.service" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control" | "ocr.control" | "barcode.control" | "yolo.control"
       | "autojs.control" | "autojs.manage" | "settings.control" | "settings.write" | "sysprops.control" | "memory.control" | "memory.dump"
       | "installer.control" | "installer.mutate" | "engines.control" | "engines.exec" | "plugintools.control"
+      | "terminal.control" | "floaty.control" | "floaty.raw" | "floaty.touch"
       /** Not a grant: offered with every host bridge, a Worker's exit / stop ends the execution through it (host 6.8.0). */
       | "execution.control";
     export type JsonValue = null | boolean | number | string | readonly JsonValue[] | { readonly [key: string]: JsonValue };
@@ -518,7 +519,14 @@ declare module "autojs6:bun-host" {
       /** The line read as rawInput reads it, evaluated as JavaScript in the global scope (Rhino's console.input). */
       input(...data: unknown[]): Promise<unknown>;
     }
-    export interface HostConsole extends ConsoleApi, ConsoleOutputApi, ConsoleInputApi {}
+    /**
+     * console.build (AutoJs6 api-coverage P4.3, Q166 (a)): the setters record and return the configurator, the getters read the
+     * record; show() applies it with configure (console.control) in one call.
+     */
+    export interface ConsoleBuildApi {
+      build(options?: Record<string, unknown>): RuntimeConsole.ConsoleConfigurator;
+    }
+    export interface HostConsole extends ConsoleApi, ConsoleOutputApi, ConsoleInputApi, ConsoleBuildApi {}
     /** Rhino's isLong / isForcible forms: booleans, numbers (truthy) and "long" / "short" / "forcible" or their initials, in any case. */
     export type ToastFlag = boolean | number | "long" | "short" | "forcible" | "l" | "s" | "f" | (string & {});
     /**
@@ -548,6 +556,13 @@ declare module "autojs6:bun-host" {
       toasterror(text: unknown, isLong?: ToastFlag | null, isForcible?: ToastFlag | null): Promise<{ shown: boolean }>;
       /** A Bun thread is never Android's UI thread. */
       isUiThread(): false;
+    }
+    /** Rhino's web globals and ComposeError on host.global (AutoJs6 api-coverage P4.3): host.web's functions and compose's constructor. */
+    export interface UiFamilyGlobals {
+      newWebSocket: RuntimeWeb.WebModule["newWebSocket"];
+      newInjectableWebView: RuntimeWeb.WebModule["newInjectableWebView"];
+      newInjectableWebClient: RuntimeWeb.WebModule["newInjectableWebClient"];
+      readonly ComposeError: RuntimeCompose.ComposeErrorConstructor;
     }
     export interface DeviceInfo {
       readonly brand: string;
@@ -6741,9 +6756,9 @@ declare module "autojs6:bun-host" {
       readonly util: RuntimeUtil.UtilModule;
       readonly species: RuntimeSpecies.SpeciesModule;
       /** Rhino's global functions: the data functions of the JS tools core and the system functions (current*, waitFor*, exit / stop, requires*, setScreenMetrics, WIDTH / HEIGHT, getClip / setClip, sleep / wait), the toast family's (toastLog and the rest, isUiThread) and the automation family's (AutomationGlobals). */
-      readonly global: RuntimeGlobal.GlobalModule & RuntimeSystem.SystemModule & ToastGlobals & AutomationGlobals & {
+      readonly global: RuntimeGlobal.GlobalModule & RuntimeSystem.SystemModule & ToastGlobals & AutomationGlobals & UiFamilyGlobals & {
         /**
-         * Puts the system functions, R, the toast globals (ToastGlobals) and the automation globals (AutomationGlobals) on target (globalThis by default) as Rhino's globals, for the calling thread (call
+         * Puts the system functions, R, the toast globals (ToastGlobals), the automation globals (AutomationGlobals) and the web globals with ComposeError (UiFamilyGlobals) on target (globalThis by default) as Rhino's globals, for the calling thread (call
          * it in each Worker too): accessors over these members, assigning one replaces it; names target already has are left
          * alone. Returns the installed names. Not enumerable on host.global.
          */
@@ -6816,6 +6831,18 @@ declare module "autojs6:bun-host" {
       readonly dialogs: RuntimeDialogs.DialogsModule;
       readonly ui: RuntimeUi.UiModule;
       readonly compose: RuntimeCompose.Api;
+      /**
+       * Rhino's floaty (AutoJs6 api-coverage P4.3, Q173 (a)): floaty.control, rawWindow also floaty.raw, RawWindow.setTouchable
+       * floaty.touch; the views of a window are its own (ui.layout is not needed); getClip needs clipboard.control.
+       */
+      readonly floaty: RuntimeFloaty.FloatyModule;
+      /**
+       * Rhino's web (Q174 (a)): newWebSocket and ByteString run here (Bun's WebSocket, no grant); the injectable WebView and client
+       * are ui.layout views.
+       */
+      readonly web: RuntimeWeb.WebModule;
+      /** Rhino's terminal (terminal.control, Q3 (a)): exec / waitFor wait at most 15 min per call. */
+      readonly terminal: RuntimeTerminal.TerminalModule;
       /** Rhino's key codes (KeysApi), local values. */
       readonly keys: KeysApi;
       /**
@@ -6852,6 +6879,269 @@ declare module "autojs6:bun-host" {
       }) => Promise<{ ok: boolean; status: number; json(): Promise<unknown> }>;
     }
     export function createHostClient(options?: HostClientOptions): Promise<HostClient>;
+
+    // BEGIN GENERATED UI FAMILY TYPES
+    export namespace RuntimeFloaty {
+        type NativeViewHandle = RuntimeUi.NativeViewHandle;
+        type NativeViewToken = RuntimeUi.NativeViewToken;
+        export interface WindowOptions extends RuntimeUi.UiBridgeCallOptions {}
+        interface WindowBase {
+          readonly id: string;
+          readonly rootView: NativeViewHandle | null;
+          readonly closed: boolean;
+          findView(id: string): NativeViewHandle | null;
+          /** Pixels; each read queries the host (a new Promise). */
+          readonly x: Promise<number>;
+          readonly y: Promise<number>;
+          readonly width: Promise<number>;
+          readonly height: Promise<number>;
+          setPosition(x: number, y: number): Promise<void>;
+          setSize(width: number, height: number): Promise<void>;
+          requestFocus(): Promise<void>;
+          disableFocus(): Promise<void>;
+          /** Ends the execution when the window closes (the user's close button or close()). */
+          exitOnClose(): void;
+          close(): Promise<void>;
+          readonly [id: string]: unknown;
+        }
+        export interface FloatyWindow extends WindowBase {
+          isAdjustEnabled(): Promise<boolean>;
+          setAdjustEnabled(enabled?: boolean): Promise<void>;
+        }
+        export interface RawWindow extends WindowBase {
+          setTouchable(touchable?: boolean): Promise<void>;
+        }
+        export interface FloatyModule {
+          window(layout: string | NativeViewToken, options?: WindowOptions): Promise<FloatyWindow>;
+          rawWindow(layout: string | NativeViewToken, options?: WindowOptions): Promise<RawWindow>;
+          /** Closes this execution's floaty windows; resolves with their count. */
+          closeAll(): Promise<number>;
+          hasPermission(): Promise<boolean>;
+          checkPermission(): Promise<boolean>;
+          /** Opens the system settings page; the user grants the permission there. */
+          requestPermission(): Promise<void>;
+          /** Resolves when granted, else opens the settings page and rejects (code ERR_AUTOJS6_FLOATY_PERMISSION). */
+          ensurePermission(): Promise<void>;
+          getClip(maxDelayAfterWindowReady?: number): Promise<string>;
+        }
+      }
+    export namespace RuntimeWeb {
+        type NativeViewHandle = RuntimeUi.NativeViewHandle;
+        export interface ByteString {
+          utf8(): string;
+          string(charset?: string): string;
+          hex(): string;
+          base64(): string;
+          base64Url(): string;
+          size(): number;
+          getSize(): number;
+          getByte(index: number): number;
+          toByteArray(): Uint8Array;
+          toAsciiLowercase(): ByteString;
+          toAsciiUppercase(): ByteString;
+          substring(begin?: number, end?: number): ByteString;
+          startsWith(prefix: string | ByteString): boolean;
+          endsWith(suffix: string | ByteString): boolean;
+          indexOf(other: string | ByteString, fromIndex?: number): number;
+          equals(other: unknown): boolean;
+          toString(): string;
+        }
+        export interface ByteStringConstructor {
+          readonly prototype: ByteString;
+          of(...bytes: number[]): ByteString;
+          encodeUtf8(text: string): ByteString;
+          encodeString(text: string, charset?: string): ByteString;
+          decodeHex(hex: string): ByteString;
+          decodeBase64(base64: string): ByteString | null;
+          from(value: string | ArrayBuffer | ArrayBufferView | readonly number[] | ByteString): ByteString;
+        }
+        export interface WebSocketOptions {
+          headers?: Readonly<Record<string, string>>;
+          protocols?: readonly string[];
+          timeoutMs?: number;
+        }
+        type Listener = (...args: any[]) => void;
+        export interface WebSocket {
+          readonly url: string;
+          /** Rhino's OkHttpClient; always null in Node. */
+          readonly client: null;
+          request(): { readonly url: string; readonly method: "GET"; readonly headers: Readonly<Record<string, string>> };
+          /** Queues a text or binary message; false once closed. */
+          send(data: string | ByteString | Uint8Array): boolean;
+          close(code?: number, reason?: string): boolean;
+          close(reason: string): boolean;
+          cancel(): void;
+          /** Bytes queued and not yet sent. */
+          queueSize(): number;
+          /** Cancels and reconnects (at most `maxRebuildTimes` times; then emits max_rebuilds). */
+          rebuild(maxRebuildTimes?: number): void;
+          /** Ends the execution when the socket closes (after `timeout` ms). */
+          exitOnClose(exitOnCloseOrTimeout?: boolean | number): void;
+          /** The timers of this thread (Rhino: the event thread's timer). */
+          getTimer(): { setTimeout: typeof setTimeout; clearTimeout: typeof clearTimeout; setInterval: typeof setInterval; clearInterval: typeof clearInterval };
+          /** Emits and remembers the arguments: a listener added later receives them at once. */
+          emitSticky(event: string, ...args: unknown[]): boolean;
+          on(event: string, listener: Listener): this;
+          addListener(event: string, listener: Listener): this;
+          once(event: string, listener: Listener): this;
+          prependListener(event: string, listener: Listener): this;
+          prependOnceListener(event: string, listener: Listener): this;
+          off(event: string, listener: Listener): this;
+          removeListener(event: string, listener: Listener): this;
+          removeAllListeners(event?: string): this;
+          setMaxListeners(count: number): this;
+          emit(event: string, ...args: unknown[]): boolean;
+          listeners(event: string): Function[];
+          listenerCount(event: string): number;
+          eventNames(): string[];
+          getMaxListeners(): number;
+        }
+        /** A WebView native View handle with inject. */
+        export type InjectableWebView = NativeViewHandle & {
+          /** Evaluates the script in the page (after the first page finished); the callback and the Promise get the result as JSON text. */
+          inject(script: string, callback?: (value: string | null) => void): Promise<string | null>;
+        };
+        /** A WebView client for setWebViewClient whose inject waits for the first page finished. */
+        export interface InjectableWebClient {
+          onPageFinished(this: NativeViewHandle, event: unknown): void;
+          inject(script: string, callback?: (value: string | null) => void): Promise<string | null>;
+          injectAndWait(script: string): Promise<string | null>;
+        }
+        export interface WebModule {
+          readonly ByteString: ByteStringConstructor;
+          newWebSocket(url: string, options?: WebSocketOptions): WebSocket;
+          newInjectableWebView(url?: string): Promise<InjectableWebView>;
+          newInjectableWebView(context: unknown, url?: string): Promise<InjectableWebView>;
+          newInjectableWebClient(): InjectableWebClient;
+        }
+      }
+    export namespace RuntimeTerminal {
+        export interface TerminalError extends Error {
+          readonly name: "TerminalError";
+          code: string;
+          sessionId?: string;
+        }
+        export interface TerminalErrorConstructor {
+          new(message?: string, code?: string, sessionId?: string): TerminalError;
+          (message?: string, code?: string, sessionId?: string): TerminalError;
+          readonly prototype: TerminalError;
+        }
+        export interface OpenOptions {
+          cwd?: string;
+          show?: boolean;
+          [key: string]: unknown;
+        }
+        export interface ExecOptions {
+          cwd?: string;
+          timeout?: number;
+          show?: boolean;
+          [key: string]: unknown;
+        }
+        export interface TerminalSession {
+          readonly id: string;
+          readonly cwd?: string;
+          readonly state?: string;
+          readonly exitCode?: number | null;
+          readonly [field: string]: unknown;
+          isAlive(): Promise<boolean>;
+          isAliveAsync(): Promise<boolean>;
+          write(text: string): Promise<this>;
+          writeAsync(text: string): Promise<this>;
+          waitFor(pattern: string | RegExp, timeout?: number): Promise<string>;
+          waitForAsync(pattern: string | RegExp, timeout?: number): Promise<string>;
+          transcript(maxBytes?: number): Promise<string>;
+          transcriptAsync(maxBytes?: number): Promise<string>;
+          show(): Promise<this>;
+          showAsync(): Promise<this>;
+          close(): Promise<boolean>;
+          closeAsync(): Promise<boolean>;
+        }
+        export interface TerminalModule {
+          readonly TerminalError: TerminalErrorConstructor;
+          open(options?: OpenOptions): Promise<TerminalSession>;
+          openAsync(options?: OpenOptions): Promise<TerminalSession>;
+          sessions(): Promise<TerminalSession[]>;
+          sessionsAsync(): Promise<TerminalSession[]>;
+          session(id: string): Promise<TerminalSession | null>;
+          close(session: string | TerminalSession): Promise<boolean>;
+          closeAsync(session: string | TerminalSession): Promise<boolean>;
+          closeAll(): Promise<number>;
+          closeAllAsync(): Promise<number>;
+          show(session?: string | TerminalSession): Promise<void>;
+          showAsync(session?: string | TerminalSession): Promise<void>;
+          /** "available" | "not_installed" | "disabled" | "incompatible" | "unavailable" */
+          state(): Promise<string>;
+          isAvailable(): Promise<boolean>;
+          isAvailableAsync(): Promise<boolean>;
+          exec(command: string, options?: ExecOptions): Promise<unknown>;
+          execAsync(command: string, options?: ExecOptions): Promise<unknown>;
+          env(): Promise<Record<string, unknown>>;
+          envAsync(): Promise<Record<string, unknown>>;
+          readonly npm: {
+            run(script: string, dir?: string | null, options?: ExecOptions): Promise<unknown>;
+            runAsync(script: string, dir?: string | null, options?: ExecOptions): Promise<unknown>;
+          };
+        }
+      }
+    export namespace RuntimeConsole {
+      export interface ConsoleConfigurator {
+        setSize(width: number, height: number): this;
+        setPosition(x: number, y: number): this;
+        setGravity(gravity?: number | null): this;
+        setTitle(title?: unknown): this;
+        setTitleTextSize(size: number): this;
+        setTitleTextColor(color: unknown): this;
+        setTitleBackgroundColor(color: unknown): this;
+        setTitleBackgroundTint(color: unknown): this;
+        setTitleBackgroundAlpha(alpha?: number | null): this;
+        setTitleIconsTint(color: unknown): this;
+        setContentTextSize(size: number): this;
+        setContentTextColors(...colors: unknown[]): this;
+        setContentBackgroundColor(color: unknown): this;
+        setContentBackgroundTint(color: unknown): this;
+        setContentBackgroundAlpha(alpha?: number | null): this;
+        setTextSize(size: number): this;
+        setTextColor(color: unknown): this;
+        setBackgroundColor(color: unknown): this;
+        setBackgroundTint(color: unknown): this;
+        setBackgroundAlpha(alpha?: number | null): this;
+        setExitOnClose(exitOnCloseOrTimeout?: boolean | number): this;
+        setTouchable(touchable?: boolean): this;
+        setTouchThrough(touchThrough?: boolean): this;
+        setTimeVisible(visible?: boolean): this;
+        setTimeFormat(pattern?: string | null): this;
+        setColorful(colorful?: boolean): this;
+        setAvoidStatusBar(avoid?: boolean): this;
+        setInputVisible(visible?: boolean): this;
+        readonly size: { readonly width: number; readonly height: number } | null;
+        readonly position: { readonly x: number; readonly y: number } | null;
+        readonly gravity: number | null;
+        readonly title: string | null;
+        readonly titleTextSize: number | null;
+        readonly titleTextColor: unknown;
+        readonly titleBackgroundColor: unknown;
+        readonly titleBackgroundTint: unknown;
+        readonly titleBackgroundAlpha: number | null;
+        readonly titleIconsTint: unknown;
+        readonly contentTextSize: number | null;
+        readonly contentTextColors: readonly unknown[] | null;
+        readonly contentBackgroundColor: unknown;
+        readonly contentBackgroundTint: unknown;
+        readonly contentBackgroundAlpha: number | null;
+        readonly exitOnCloseTimeout: number | null;
+        readonly timeFormat: string | null;
+        isTouchable(): boolean | null;
+        isExitOnClose(): boolean | null;
+        isTimeVisible(): boolean | null;
+        isColorful(): boolean | null;
+        isAvoidStatusBar(): boolean | null;
+        isInputVisible(): boolean | null;
+        /** The record as console.configure options. */
+        toOptions(): Record<string, unknown>;
+        show(isReset?: boolean): Promise<void>;
+      }
+    }
+    // END GENERATED UI FAMILY TYPES
 
     export namespace RuntimeUi {
         export interface UiBridgeCallOptions { timeoutMs?: number; signal?: AbortSignal }
@@ -7479,6 +7769,90 @@ declare module "autojs6:bun-host" {
           showLayout(layoutJson: LayoutDescriptor, options?: UiShowOptions): Promise<UiHandle>;
           state<T extends Record<string, JsonValue>>(initial: T): UiState<T>;
           bind<T extends Record<string, JsonValue>, K extends keyof T & string>(state: UiState<T>, key: K): Binding<T[K]>;
+
+          // Rhino's content view and window members (api-coverage P3.3, Q164 (a)). One content window per execution (the
+          // Activity of showLayout); layout / layoutFile / setContentView replace its root. XML ids resolve when the Promise
+          // settles, so root / findById / findByStringId answer synchronously with native View handles.
+          layout(xml: string): Promise<void>;
+          /** Reads the XML file (relative to the working directory) and calls layout. */
+          layoutFile(path: string): Promise<void>;
+          setContentView(view: NativeViewToken): Promise<void>;
+          /** Closes the content window. */
+          finish(): Promise<void>;
+          readonly root: NativeViewHandle | null;
+          findById(id: string): NativeViewHandle | null;
+          /** A view of the content window by XML id, when it is `view` or one of its descendants. */
+          findByStringId(view: NativeViewToken, id: string): NativeViewHandle | null;
+          /** create / resume / pause / stop / destroy / back_pressed of the content window; a back_pressed listener that leaves
+           * `event.consumed` false lets the window close. */
+          readonly emitter: UiEmitter;
+          /** Runs the action on this thread now (view operations are queued to the UI thread by the host). */
+          run<T>(action: () => T | PromiseLike<T>): Promise<T>;
+          post(action: () => void, delay?: number): true;
+          /** Always false: a Node thread is never the Android UI thread. */
+          isUiThread(): false;
+          /** A custom XML tag expanded here: render() returns its XML, attribute setters and the hooks receive native View handles. */
+          registerWidget(name: string, widget: new () => Widget): void;
+          readonly Widget: WidgetConstructor;
+          /** Recorded for Rhino scripts; the Node XML reader does not distinguish Android layout semantics. */
+          useAndroidLayout(enabled?: boolean | null): void;
+          /** Resource references as strings (`ui.R.drawable.icon` is "@drawable/icon"), not Rhino's integer ids. */
+          readonly R: Readonly<Record<string, Readonly<Record<string, string>>>>;
+          /** The scope `{{expression}}` attributes are evaluated in before a layout goes to the host (default globalThis). */
+          bindingContext: object;
+          // Window members act on the content window; set before it opens, they apply when it does.
+          keepScreenOn(): Promise<void>;
+          backgroundColor(color: string | number): Promise<void>;
+          statusBarColor(color: string | number): Promise<void>;
+          statusBarIconLight(isLight?: boolean): Promise<void>;
+          statusBarIconLightBy(backgroundColor: string | number): Promise<void>;
+          navigationBarColor(color: string | number): Promise<void>;
+          navigationBarIconLight(isLight?: boolean): Promise<void>;
+          navigationBarIconLightBy(backgroundColor: string | number): Promise<void>;
+          getStatusBarHeight(options?: BarHeightOptions): Promise<number>;
+          getVisibleStatusBarHeight(options?: BarHeightOptions): Promise<number>;
+          getNavigationBarHeight(options?: BarHeightOptions): Promise<number>;
+          getVisibleNavigationBarHeight(options?: BarHeightOptions): Promise<number>;
+          /** Each read queries the host (a new Promise). */
+          readonly statusBarHeight: Promise<number>;
+          readonly visibleStatusBarHeight: Promise<number>;
+          readonly navigationBarHeight: Promise<number>;
+          readonly visibleNavigationBarHeight: Promise<number>;
+        }
+
+        export interface BarHeightOptions { withComputed?: boolean; withDimen?: boolean; ignoreVisibility?: boolean }
+        export interface UiEmitter {
+          on(event: string, listener: (...args: any[]) => void): this;
+          addListener(event: string, listener: (...args: any[]) => void): this;
+          prependListener(event: string, listener: (...args: any[]) => void): this;
+          once(event: string, listener: (...args: any[]) => void): this;
+          prependOnceListener(event: string, listener: (...args: any[]) => void): this;
+          off(event: string, listener: (...args: any[]) => void): this;
+          removeListener(event: string, listener: (...args: any[]) => void): this;
+          removeAllListeners(event?: string): this;
+          emit(event: string, ...args: unknown[]): boolean;
+          listeners(event: string): Function[];
+          rawListeners(event: string): Function[];
+          listenerCount(event: string): number;
+          eventNames(): string[];
+          setMaxListeners(count: number): this;
+          getMaxListeners(): number;
+        }
+        export interface Widget {
+          render(): string;
+          defineAttr(name: string, alias?: string, applier?: (view: NativeViewHandle, name: string, value: string, defineSetter: () => void) => unknown): void;
+          defineAttr(name: string, applier: (view: NativeViewHandle, name: string, value: string, defineSetter: () => void) => unknown): void;
+          defineAttr(name: string, getter: (view: NativeViewHandle, name: string) => unknown, setter: (view: NativeViewHandle, name: string, value: string, defineSetter: () => void) => unknown): void;
+          hasAttr(name: string): boolean;
+          getAttr(view: NativeViewHandle, name: string, ...args: unknown[]): unknown;
+          setAttr(view: NativeViewHandle, name: string, value: string): unknown;
+          onViewCreated?(view: NativeViewHandle): unknown;
+          onFinishInflation?(view: NativeViewHandle): unknown;
+        }
+        export interface WidgetConstructor {
+          new(): Widget;
+          (): Widget;
+          readonly prototype: Widget;
         }
     }
 
@@ -7516,6 +7890,13 @@ declare module "autojs6:bun-host" {
         }
         type Props<N extends ComponentName> = Catalog[N] & SharedProps;
         interface Node<N extends ComponentName = ComponentName> {
+            // Rhino ComposeNode's own members and shortcut accessors (api-coverage P3.3, Q104 / Q106); writing an accessor is set.
+            readonly type: N; readonly key: string | number | null; readonly nodeId: number;
+            /** The node this one was appended to (or a slot of), else null. */
+            readonly parent: Node | null; readonly children: readonly Node[];
+            w: ComposeDpInput | undefined; h: ComposeDpInput | undefined; padding: ComposePaddingInput | undefined; bg: ComposeColorInput | undefined;
+            weight: number | undefined; alpha: number | undefined; testTag: string | undefined; contentDescription: string | null | undefined;
+            toString(): string;
             set(value: Partial<Props<N>>): this;
             get<K extends keyof Props<N>>(name: K): Props<N>[K];
             append(value: Child): this; insert(index: number, value: Child): this; remove(value: Node | number): this;
@@ -7524,6 +7905,15 @@ declare module "autojs6:bun-host" {
             focus(): Promise<void>; blur(): Promise<void>;
             scrollTo(target: number | { index?: number; offset?: number }): Promise<void>;
             edit(value: { text?: string; selection?: { start: number; end: number } }): Promise<void>;
+        }
+        /** Rhino's ComposeError (code INVALID_ARGUMENT for facade argument errors; plugin codes from the host). */
+        interface ComposeError extends Error {
+            readonly name: "ComposeError"; code: string; nodeId: number | null; prop: string | null; cause: unknown; retryable: boolean;
+        }
+        interface ComposeErrorConstructor {
+            new(message?: string, code?: string, nodeId?: number | null, prop?: string | null, cause?: unknown): ComposeError;
+            (message?: string, code?: string, nodeId?: number | null, prop?: string | null, cause?: unknown): ComposeError;
+            readonly prototype: ComposeError;
         }
         interface Theme { seed?: ComposeColorInput; colors?: Readonly<Record<string, ComposeColorInput>>; dark?: boolean | 'system'; dynamicColor?: boolean; typography?: { fontFamily?: string; scale?: number } }
         interface Options { theme?: Theme }
@@ -7545,6 +7935,8 @@ declare module "autojs6:bun-host" {
             setPosition(x: number, y: number): Promise<void>; setSize(width: number, height: number): Promise<void>;
             requestFocus(): Promise<void>; disableFocus(): Promise<void>; setTouchable(touchable: boolean): Promise<void>;
             getX(): Promise<number>; getY(): Promise<number>; getWidth(): Promise<number>; getHeight(): Promise<number>;
+            /** No adjustment frame (as Rhino raw windows): false is a no-op, true rejects with ComposeError INVALID_ARGUMENT. */
+            setAdjustEnabled(enabled: boolean): Promise<void>;
         }
         interface Modifier {
             padding(all: ComposeDpInput): Modifier;
@@ -8136,6 +8528,7 @@ declare module "autojs6:bun-host" {
             version(): Promise<{ plugin: number; contract: number; compose: string }>;
             theme(): Theme | undefined; theme(value: Theme): Theme;
             readonly sessions: readonly Session[];
+            readonly ComposeError: ComposeErrorConstructor;
         }
         type Api = Core & { readonly [N in ComponentName]: (props?: Props<N> | null, ...children: Child[]) => Node<N> };
     }
