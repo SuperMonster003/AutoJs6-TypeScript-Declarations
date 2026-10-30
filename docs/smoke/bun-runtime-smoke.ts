@@ -264,8 +264,10 @@ async function checkBunSensors() {
   const sample: import('autojs6:bun-host').RuntimeSensors.SensorEvent = await host.sensors.once('accelerometer');
   const sub=host.sensors.subscribe('light',e=>{const values:readonly number[]=e.values;},{signal:new AbortController().signal,samplingIntervalMs:250});
   await sub.ready;sub.on('error',error=>{}).once('event',e=>{const type:string=e.type;});await sub.close();
-  // @ts-expect-error Only the three supported Android sensor types are available.
+  // Rhino's sensor names are sensor types (Q147 (a)).
   await host.sensors.once('pressure');
+  // @ts-expect-error Unsupported sensor type.
+  await host.sensors.once('heart_rate');
   // @ts-expect-error Samples are immutable snapshots.
   sample.values.push(1);
 }
@@ -300,8 +302,10 @@ async function checkBunDeviceDialogs(){
   const text:string|null=await host.dialogs.prompt('Input',{negative:'Cancel'});
   const selected:readonly number[]=await host.dialogs.multiChoice('Pick',[true,2,'a'],[0]);
   const progress:import('autojs6:bun-host').RuntimeDialogs.ProgressHandle=await host.dialogs.progress.show({max:10,value:2});await progress.update({value:8});await progress.dismiss();
-  // @ts-expect-error Bun uses live async device getters, not Node startup properties.
-  host.device.width;
+  // Rhino's snapshot members are synchronous with device.info and absent without it (Q154 (a)).
+  const snapshotWidth:number|undefined=host.device.width;
+  // @ts-expect-error A snapshot member may be absent.
+  const strictWidth:number=host.device.width;
   // @ts-expect-error Dialog choices must be an array.
   host.dialogs.select('Pick','a');
 }

@@ -1,6 +1,6 @@
 /** Types for the explicit SDK module at process.env.AUTOJS6_HOST_CLIENT_MODULE. */
 export declare const SDK_VERSION: 1;
-export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control"
+export type HostCapability = "agent.control" | "ai.control" | "flow.control" | "mail.control" | "epub.control" | "speech.control" | "tts.control" | "java.interop" | "android.objects" | "tasks.control" | "device.control" | "device.power" | "device.audio" | "device.identifiers" | "media.control" | "media.library" | "dialogs.control" | "events.observe" | "events.notification" | "events.toast" | "events.key" | "notifications.post" | "notifications.settings" | "database.control" | "shell.control" | "shell.root" | "shell.shizuku" | "sensors.control" | "files.control" | "storage.control" | "mediainfo.control" | "app.control" | "accessibility.control" | "accessibility.gesture" | "clipboard.control" | "ui.layout" | "ui.compose" | "screen.record.microphone" | "screen.record.playback" | "ui.toast" | "device.info" | "text.pinyin" | "text.pinyin4j" | "text.opencc" | "image.process" | "image.files" | "screen.capture" | "screen.record" | "screen.metrics" | "console.control"
   | "autojs.control" | "autojs.manage" | "settings.control" | "settings.write" | "sysprops.control" | "memory.control" | "memory.dump"
   | "installer.control" | "installer.mutate" | "engines.control" | "engines.exec" | "plugintools.control"
   /** Not a grant: offered with every host bridge, a Worker's exit / stop ends the execution through it (host 6.8.0). */
@@ -415,27 +415,70 @@ export interface DeviceInfo {
   readonly supportedAbis: readonly string[];
 }
 /**
- * Rhino's synchronous device fields from android.os.Build at script startup (api-coverage P4.1c), offered with the
- * device.info grant (on by default) like the info() snapshot and absent without it. buildId is Build.DISPLAY, as in Rhino.
+ * Rhino's synchronous device members from the startup snapshot (api-coverage P4.1c, Q151 (a) / Q154 (a)): the Build fields
+ * (buildId is Build.DISPLAY, as in Rhino), width / height, density, pageSize, digest, getMarketName, isManufacturer and the
+ * manufacturers / brands / roms checks. They come with the device.info grant (on by default) like the info() snapshot and are
+ * absent without it; roms then keeps only isBackgroundStartGranted, a device.control route.
  */
-export interface DeviceBuildFields {
-  readonly sdkInt?: number;
-  readonly release?: string;
-  readonly model?: string;
-  readonly brand?: string;
-  readonly product?: string;
-  readonly board?: string;
-  readonly bootloader?: string;
-  readonly hardware?: string;
-  readonly fingerprint?: string;
-  readonly buildId?: string;
-  readonly buildDisplay?: string;
-  readonly manufacturer?: string;
-  readonly device?: string;
-  readonly incremental?: string;
-  readonly baseOS?: string;
-  readonly securityPatch?: string;
-  readonly codename?: string;
+export type DeviceSnapshotMember = "sdkInt" | "width" | "height" | "density" | "densityDpi" | "release" | "model" | "brand" | "product"
+  | "board" | "bootloader" | "hardware" | "fingerprint" | "buildId" | "buildDisplay" | "manufacturer" | "device" | "incremental"
+  | "baseOS" | "securityPatch" | "codename" | "pageSize" | "digest" | "getMarketName" | "isManufacturer" | "manufacturers" | "brands";
+export type DeviceSnapshotFields = Partial<Pick<RuntimeDevice.DeviceModule, DeviceSnapshotMember>> & {
+  readonly roms: Partial<RuntimeDevice.DeviceRoms> & Pick<RuntimeDevice.DeviceRoms, "isBackgroundStartGranted">;
+};
+/**
+ * Rhino's media module with Node's playback sessions (autojs6:media; api-coverage P4.1c, Q149 (a) / Q152 (a)). Playback needs
+ * media.control, scanFile media.library; the host stops the playback when the execution ends.
+ */
+export interface PlaybackOptions extends AutomationCallOptions {
+  /** A playback session, its id or a status object; the active session when absent. */
+  readonly session?: string | { readonly id: string };
+  readonly id?: string;
+}
+export interface PlaybackStatus {
+  readonly id: string | null;
+  readonly active: boolean;
+  readonly playing?: boolean;
+  readonly path?: string | null;
+  readonly positionMs?: number;
+  readonly durationMs?: number;
+  readonly looping?: boolean;
+  readonly volume?: number;
+  readonly [key: string]: JsonValue | undefined;
+}
+export interface PlaybackSession {
+  readonly id: string;
+  readonly path: string | null;
+  readonly looping: boolean;
+  readonly volume: number | null;
+  status(options?: AutomationCallOptions): Promise<PlaybackStatus>;
+  pause(options?: AutomationCallOptions): Promise<PlaybackStatus>;
+  resume(options?: AutomationCallOptions): Promise<PlaybackStatus>;
+  stop(options?: AutomationCallOptions): Promise<PlaybackStatus>;
+  seekTo(positionMs: number, options?: AutomationCallOptions): Promise<PlaybackStatus>;
+}
+export interface MediaModule {
+  /** volume 0..1. */
+  play(path: string, options?: AutomationCallOptions & { readonly volume?: number; readonly looping?: boolean }): Promise<PlaybackSession>;
+  pause(options?: PlaybackOptions): Promise<PlaybackStatus>;
+  resume(options?: PlaybackOptions): Promise<PlaybackStatus>;
+  stop(options?: PlaybackOptions): Promise<PlaybackStatus>;
+  seekTo(positionMs: number, options?: PlaybackOptions): Promise<PlaybackStatus>;
+  getPlaybackStatus(options?: PlaybackOptions): Promise<PlaybackStatus>;
+  /** Rhino's media.playMusic; resolves the playback session. */
+  playMusic(path: string, volume?: number, looping?: boolean, options?: AutomationCallOptions): Promise<PlaybackSession>;
+  pauseMusic(options?: PlaybackOptions): Promise<void>;
+  resumeMusic(options?: PlaybackOptions): Promise<void>;
+  stopMusic(options?: PlaybackOptions): Promise<void>;
+  musicSeekTo(positionMs: number, options?: PlaybackOptions): Promise<void>;
+  /** false without an active session. */
+  isMusicPlaying(options?: PlaybackOptions): Promise<boolean>;
+  /** 0 without an active session. */
+  getMusicDuration(options?: PlaybackOptions): Promise<number>;
+  /** -1 without an active session. */
+  getMusicCurrentPosition(options?: PlaybackOptions): Promise<number>;
+  /** Asks the media scanner to index the file; resolves whether the host scanned it. */
+  scanFile(path: string, options?: AutomationCallOptions & { readonly mimeType?: string }): Promise<boolean>;
 }
 // BEGIN GENERATED AUTOMATION TYPES
 export interface AutomationCallOptions { readonly timeoutMs?: number; readonly signal?: AbortSignal }
@@ -879,7 +922,9 @@ export namespace RuntimeSqlite {
 
 // BEGIN GENERATED SENSORS TYPES
 export namespace RuntimeSensors {
-    export type SensorType = "accelerometer" | "gyroscope" | "light";
+    /** Rhino's sensor names (RuntimeDatabase.register / getSensor also take any lower-case Sensor.TYPE_ name, e.g. "step_counter"). */
+    export type SensorType = "accelerometer" | "gyroscope" | "light" | "ambient_temperature" | "gravity" | "linear_acceleration"
+      | "magnetic_field" | "orientation" | "pressure" | "proximity" | "relative_humidity" | "temperature";
 
     export interface SensorInfo {
       readonly type: SensorType;
@@ -900,6 +945,8 @@ export namespace RuntimeSensors {
     }
 
     export interface SensorOptions extends AutomationCallOptions {
+      /** Rhino's RuntimeDatabase.delay (0..3); replaces samplingIntervalMs. */
+      delay?: number;
       samplingIntervalMs?: number;
       intervalMs?: number;
       maxQueueSize?: number;
@@ -923,7 +970,73 @@ export namespace RuntimeSensors {
       close(options?: AutomationCallOptions): Promise<void>;
     }
 
-    export interface SensorsModule {
+    /** The default sensor of a name in the startup snapshot (the bean properties of android.hardware.Sensor). */
+    export interface RhinoSensorInfo {
+      readonly name: string;
+      readonly vendor: string;
+      readonly version: number;
+      readonly type: number;
+      readonly stringType: string;
+      readonly maximumRange: number;
+      readonly resolution: number;
+      readonly power: number;
+      readonly minDelay: number;
+      readonly maxDelay: number;
+      readonly reportingMode: number;
+      readonly wakeUpSensor: boolean;
+      readonly fifoMaxEventCount: number;
+      readonly fifoReservedEventCount: number;
+    }
+
+    /** The first argument of "change": the sample with its sensor. */
+    export interface RhinoSensorEvent extends SensorEvent {
+      readonly sensor: RhinoSensorInfo;
+    }
+
+    /** Rhino's Timer surface over this thread's timers (numeric ids). */
+    export interface RhinoTimer {
+      setTimeout(callback: (...args: any[]) => void, delay?: number, ...args: any[]): number;
+      clearTimeout(id: number): boolean;
+      setInterval(callback: (...args: any[]) => void, interval?: number, ...args: any[]): number;
+      clearInterval(id: number): boolean;
+      setImmediate(callback: (...args: any[]) => void, ...args: any[]): number;
+      clearImmediate(id: number): boolean;
+      hasPendingCallbacks(): boolean;
+      removeAllCallbacks(): void;
+    }
+
+    /**
+     * Rhino's EventEmitter (org.autojs.autojs.core.eventloop.EventEmitter): listeners run in order when emitted, a sticky
+     * event reaches listeners added later, at most getMaxListeners() listeners per event (0: no limit), and newListener /
+     * removeListener events are emitted.
+     */
+    export interface RhinoEventEmitter {
+      on(eventName: string, listener: (...args: any[]) => void): this;
+      addListener(eventName: string, listener: (...args: any[]) => void): this;
+      prependListener(eventName: string, listener: (...args: any[]) => void): this;
+      prependOnceListener(eventName: string, listener: (...args: any[]) => void): this;
+      removeListener(eventName: string, listener: (...args: any[]) => void): this;
+      removeAllListeners(eventName?: string): this;
+      emit(eventName: string, ...args: any[]): boolean;
+      emitSticky(eventName: string, ...args: any[]): boolean;
+      eventNames(): string[];
+      listenerCount(eventName: string): number;
+      listeners(eventName: string): Array<(...args: any[]) => void>;
+      getMaxListeners(): number;
+      setMaxListeners(maxListeners: number): this;
+      getTimer(): RhinoTimer;
+    }
+
+    /** Returned by RuntimeDatabase.register: "change" (event, ...values), "accuracy_change" (accuracy), "error" (host failures). */
+    export interface SensorEventEmitter extends RhinoEventEmitter {
+      once(eventName: string, listener: (...args: any[]) => void): this;
+      on(eventName: "change", listener: (event: RhinoSensorEvent, ...values: number[]) => void): this;
+      on(eventName: "accuracy_change", listener: (accuracy: number) => void): this;
+      on(eventName: string, listener: (...args: any[]) => void): this;
+      unregister(): void;
+    }
+
+    export interface SensorsModule extends RhinoEventEmitter {
       readonly policy: {
         readonly maxSubscriptions: number;
         readonly minSamplingIntervalMs: number;
@@ -938,6 +1051,21 @@ export namespace RuntimeSensors {
       getAvailableSensors(options?: AutomationCallOptions): Promise<readonly SensorInfo[]>;
       /** Uses a temporary subscription; releases it on sample, timeout or abort. */
       once(type: SensorType, options?: SensorOptions): Promise<SensorEvent>;
+      /** Rhino's EventEmitter once when the second argument is a function. */
+      once(eventName: string, listener: (...args: any[]) => void): this;
+      /** Rhino's delay constants: normal 3, ui 2, game 1, fastest 0 (sampled at the game rate). */
+      readonly delay: { readonly normal: 3; readonly ui: 2; readonly game: 1; readonly fastest: 0 };
+      /** When true, register of a missing sensor emits "unsupported_sensor" and returns an emitter that never fires. */
+      ignoresUnsupportedSensor: boolean;
+      /**
+       * Rhino's RuntimeDatabase.register (requires sensors): null when the device has no such sensor. delay is one of RuntimeDatabase.delay
+       * (default normal) or a sampling period in microseconds. Host failures reach the emitter's "error" listeners, else a
+       * console warning; at most policy.maxSubscriptions sensors are active at once.
+       */
+      register(sensorName: string, delay?: number): SensorEventEmitter | null;
+      unregister(emitter: SensorEventEmitter | null | undefined): void;
+      unregisterAll(): void;
+      getSensor(sensorName: string): RhinoSensorInfo | null;
       subscribe(type: SensorType, callback?: (event: SensorEvent) => void, options?: SensorOptions): SensorSubscription;
     }
   }
@@ -1332,8 +1460,11 @@ export namespace RuntimeNotifications {
 export namespace RuntimeDevice {
     export interface DeviceModule {
       readonly sdkInt: number;
+      /** The whole display's short side in pixels (Rhino's device.width; the same in both orientations). */
       readonly width: number;
+      /** The whole display's long side in pixels. */
       readonly height: number;
+      /** Density in dpi, as Rhino (densityDpi); the scale factor is DisplayMetrics.density of info().screen. */
       readonly density: number;
       readonly densityDpi: number;
       readonly release: string;
@@ -1344,7 +1475,74 @@ export namespace RuntimeDevice {
       readonly bootloader: string;
       readonly hardware: string;
       readonly fingerprint: string;
+      /** Build.DISPLAY, as Rhino's device.buildId; getBuildId() resolves Build.ID. */
       readonly buildId: string;
+      readonly buildDisplay: string;
+      readonly manufacturer: string;
+      readonly device: string;
+      readonly incremental: string;
+      readonly baseOS: string;
+      readonly securityPatch: string;
+      readonly codename: string;
+      /** The native page size in bytes (4096 or 16384). */
+      readonly pageSize: number;
+      /** "brand (manufacturer) / device (model) / release (sdkInt)", each suffix only when it differs. */
+      digest(): string;
+      /** ro.product.marketname, ro.semc.product.name, ro.config.marketing_name, ro.product.model, else model. */
+      getMarketName(): string;
+      /** Case-insensitive comparison with Build.MANUFACTURER. */
+      isManufacturer(manufacturer: string): boolean;
+      readonly manufacturers: DeviceManufacturers;
+      readonly brands: DeviceBrands;
+      readonly roms: DeviceRoms;
+      /** Each read asks the host (Display.getRotation(): 0..3). */
+      readonly rotation: Promise<number>;
+      /** Each read asks the host (Configuration.ORIENTATION_*: 1 portrait, 2 landscape, 0 undefined). */
+      readonly orientation: Promise<number>;
+      /** Requires device.identifiers; null without the phone state permission. */
+      readonly imei: Promise<string | null>;
+      /** Requires device.identifiers. */
+      readonly serial: Promise<string | null>;
+      summary(options?: AutomationCallOptions): Promise<string>;
+      getOrientation(options?: AutomationCallOptions): Promise<number>;
+      getRotation(options?: AutomationCallOptions): Promise<number>;
+      isScreenOff(options?: AutomationCallOptions): Promise<boolean>;
+      isScreenPortrait(options?: AutomationCallOptions): Promise<boolean>;
+      isScreenLandscape(options?: AutomationCallOptions): Promise<boolean>;
+      isPowerSourceAC(options?: AutomationCallOptions): Promise<boolean>;
+      isPowerSourceUSB(options?: AutomationCallOptions): Promise<boolean>;
+      isPowerSourceWireless(options?: AutomationCallOptions): Promise<boolean>;
+      isPowerSourceDock(options?: AutomationCallOptions): Promise<boolean>;
+      getIpAddress(useIPv4?: boolean, options?: AutomationCallOptions): Promise<string>;
+      getIpv6Address(options?: AutomationCallOptions): Promise<string>;
+      getGatewayAddress(options?: AutomationCallOptions): Promise<string>;
+      isActiveNetworkMetered(options?: AutomationCallOptions): Promise<boolean>;
+      isConnectedOrConnecting(options?: AutomationCallOptions): Promise<boolean>;
+      isWifiAvailable(options?: AutomationCallOptions): Promise<boolean>;
+      isPointerLocationEnabled(options?: AutomationCallOptions): Promise<boolean>;
+      isPointerLocationDisabled(options?: AutomationCallOptions): Promise<boolean>;
+      /** Requires device.power; Root or Shizuku toggles the setting. Resolves whether the state is the requested one. */
+      setPointerLocation(enabled: boolean, options?: AutomationCallOptions): Promise<boolean>;
+      setPointerLocationEnabled(options?: AutomationCallOptions): Promise<boolean>;
+      setPointerLocationDisabled(options?: AutomationCallOptions): Promise<boolean>;
+      togglePointerLocation(options?: AutomationCallOptions): Promise<boolean>;
+      hasReadPhoneStatePermission(options?: AutomationCallOptions): Promise<boolean>;
+      /** Rejects when AutoJs6 lacks the phone state permission. */
+      ensureReadPhoneStatePermission(options?: AutomationCallOptions): Promise<void>;
+      /** The hardware identifiers require device.identifiers (never implied by device). */
+      getIMEI(options?: AutomationCallOptions): Promise<string | null>;
+      getSerial(options?: AutomationCallOptions): Promise<string | null>;
+      getAndroidId(useSystemId?: boolean, options?: AutomationCallOptions): Promise<string>;
+      getMacAddress(options?: AutomationCallOptions): Promise<string | null>;
+      getSharedDeviceId(options?: AutomationCallOptions): Promise<string | null>;
+      /** Requires device.power. PowerManager wake lock flags; without a timeout the lock is held until cancelKeepingAwake or the end of the execution. */
+      keepAwake(flags: number, timeoutMs?: number, options?: AutomationCallOptions): Promise<void>;
+      keepAwake(flags: number, options?: AutomationCallOptions): Promise<void>;
+      /** Requires device.power. Keeps the screen on at a dimmed level. */
+      keepScreenDim(timeoutMs?: number, options?: AutomationCallOptions): Promise<void>;
+      keepScreenDim(options?: AutomationCallOptions): Promise<void>;
+      wakeUpIfNeeded(options?: AutomationCallOptions): Promise<void>;
+      cancelVibration(options?: AutomationCallOptions): Promise<void>;
       /** Live host snapshot. Synchronous properties above describe script startup. */
       info(options?: AutomationCallOptions): Promise<DeviceInfo>;
       /** Full live snapshot, also available in Bun without changing its legacy info() format. */
@@ -1372,8 +1570,9 @@ export namespace RuntimeDevice {
       /** Requires device.power and Android's modify-system-settings permission; value 0..255. */
       setBrightness(value: number, options?: AutomationCallOptions): Promise<void>;
       setBrightnessMode(mode: 0 | 1, options?: AutomationCallOptions): Promise<void>;
-      /** Requires device.power. Positive timeout; script exit also releases the wake lock. */
-      keepScreenOn(timeoutMs: number, options?: AutomationCallOptions): Promise<void>;
+      /** Requires device.power. Without a timeout the lock is held until cancelKeepingAwake; script exit also releases it. */
+      keepScreenOn(timeoutMs?: number, options?: AutomationCallOptions): Promise<void>;
+      keepScreenOn(options?: AutomationCallOptions): Promise<void>;
       cancelKeepingAwake(options?: AutomationCallOptions): Promise<void>;
       /** Audio helpers delegate to media and require media + media.audio. */
       getMusicVolume(options?: AutomationCallOptions): Promise<number>;
@@ -1387,9 +1586,59 @@ export namespace RuntimeDevice {
       setAlarmVolume(value: number, options?: AutomationCallOptions): Promise<void>;
       isScreenOn(options?: AutomationCallOptions): Promise<boolean>;
       wakeUp(options?: AutomationCallOptions): Promise<void>;
-      vibrate(durationMs: number, options?: AutomationCallOptions): Promise<void>;
+      /** One duration (at most 10 s), a timing array starting with the delay, or a morse code string, as Rhino. */
+      vibrate(pattern: number | readonly number[] | string, options?: AutomationCallOptions): Promise<void>;
+      /** (off, millis), (timingsWithoutOff, off) or (morseCode, delay). */
+      vibrate(pattern: number | readonly number[] | string, second: number, options?: AutomationCallOptions): Promise<void>;
       isIgnoringBatteryOptimizations(options?: AutomationCallOptions): Promise<boolean>;
       openBatteryOptimizationSettings(options?: DevicePowerSettingsOptions): Promise<DevicePowerSettingsResult>;
+    }
+
+    /** Rhino's device.manufacturers: Build.MANUFACTURER checks of the startup snapshot. */
+    export interface DeviceManufacturers {
+      isHtc(): boolean;
+      isLG(): boolean;
+      isOnePlus(): boolean;
+      isSamsung(): boolean;
+      isZte(): boolean;
+      isLetv(): boolean;
+      /** Huawei, Nova or Honor. */
+      isHuawei(): boolean;
+      isNova(): boolean;
+      isHonor(): boolean;
+      /** Xiaomi, or brands.isRedmi() / isMiMix(). */
+      isXiaomi(): boolean;
+      isOppo(): boolean;
+      /** Sony, or brands.isXperia(). */
+      isSony(): boolean;
+      isVivo(): boolean;
+      isLenovo(): boolean;
+      /** Manufacturer "yulong". */
+      isCoolpad(): boolean;
+      isSmartisan(): boolean;
+      isMeizu(): boolean;
+    }
+
+    /** Rhino's device.brands (system properties of the startup snapshot). */
+    export interface DeviceBrands {
+      isXperia(): boolean;
+      isRedmi(): boolean;
+      isMiMix(): boolean;
+    }
+
+    /** Rhino's device.roms (system properties of the startup snapshot). */
+    export interface DeviceRoms {
+      isMiui(): boolean;
+      isEmui(): boolean;
+      isOppo(): boolean;
+      isSmartisan(): boolean;
+      isVivo(): boolean;
+      isGionee(): boolean;
+      isLenovo(): boolean;
+      isFlyme(): boolean;
+      isQiku(): boolean;
+      /** Asks the host whether AutoJs6 may start activities from the background (MIUI / vivo permission, ColorOS overlay permission, else true). */
+      isBackgroundStartGranted(options?: AutomationCallOptions): Promise<boolean>;
     }
 
     export interface DeviceInfo {
@@ -5775,9 +6024,11 @@ export interface HostClient {
   toast(text: string, duration?: "short" | "long"): Promise<{ shown: boolean }>;
   /**
    * Async device methods; info() preserves the original small snapshot, getInfo() returns the full live snapshot. The
-   * Build fields are synchronous with device.info (DeviceBuildFields).
+   * snapshot members are synchronous with device.info (DeviceSnapshotFields).
    */
-  readonly device: Omit<RuntimeDevice.DeviceModule, "info" | "sdkInt" | "width" | "height" | "density" | "densityDpi" | "release" | "model" | "brand" | "product" | "board" | "bootloader" | "hardware" | "fingerprint" | "buildId"> & DeviceBuildFields & { info(): Promise<DeviceInfo> };
+  readonly device: Omit<RuntimeDevice.DeviceModule, "info" | "roms" | DeviceSnapshotMember> & DeviceSnapshotFields & { info(): Promise<DeviceInfo> };
+  /** Rhino's media module and the playback sessions (MediaModule). */
+  readonly media: MediaModule;
   readonly dialogs: RuntimeDialogs.DialogsModule;
   readonly ui: RuntimeUi.UiModule;
   readonly compose: RuntimeCompose.Api;
