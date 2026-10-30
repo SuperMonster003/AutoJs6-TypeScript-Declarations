@@ -34,6 +34,24 @@ declare module "autojs6:system" {
       /** Rhino's getClip / setClip: the system clipboard (capability clipboard). */
       getClip(options?: AutoJs6Node.BridgeCallOptions): Promise<string>;
       setClip(text: unknown, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
+      /** Rhino's sleep (api-coverage P3.4): a random pause in [min, max] ms; an interrupted threads task rejects. */
+      sleep(min: number, max?: number): Promise<void>;
+      readonly wait: RhinoWait;
+    }
+    export interface RhinoWaitCallback<T = unknown> {
+      then?(value: T): unknown;
+      else?(value: T): unknown;
+    }
+    /**
+     * Rhino's wait: a function (sync or async) or a selector checked until satisfied. A limit below 100 counts checks,
+     * otherwise it is a timeout in ms (10000 by default); interval 200 ms; callback.then / else get the last check and a
+     * value they return replaces the boolean result.
+     */
+    export interface RhinoWait {
+      (condition: (() => unknown) | import("autojs6:selector").Target, limit?: number | RhinoWaitCallback, interval?: number | RhinoWaitCallback,
+        callback?: RhinoWaitCallback): Promise<unknown>;
+      /** flow.waitAsync. */
+      readonly async: import("flow").Wait;
     }
   }
 
@@ -63,3 +81,5 @@ declare function requiresAutojsVersion(version: string | number): void;
 declare function setScreenMetrics(width: number, height: number): void;
 declare function getClip(options?: AutoJs6Node.BridgeCallOptions): Promise<string>;
 declare function setClip(text: unknown, options?: AutoJs6Node.BridgeCallOptions): Promise<void>;
+declare function sleep(min: number, max?: number): Promise<void>;
+declare const wait: import("autojs6:system").RhinoWait;

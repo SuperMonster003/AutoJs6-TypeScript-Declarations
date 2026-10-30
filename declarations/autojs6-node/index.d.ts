@@ -85,6 +85,7 @@
 /// <reference path="./tts.d.ts" />
 
 /// <reference path="./flow.d.ts" />
+/// <reference path="./automation.d.ts" />
 /// <reference path="./ai.d.ts" />
 /// <reference path="./mail.d.ts" />
 /// <reference path="./epub.d.ts" />
