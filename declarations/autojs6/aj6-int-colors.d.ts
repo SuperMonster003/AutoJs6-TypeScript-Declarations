@@ -6095,7 +6095,7 @@ declare namespace Internal {
             algorithm?: DetectionAlgorithm;
         }): boolean;
 
-        isEqual(colorA: OmniColor, colorB: OmniColor, alphaMatters?: boolean): boolean;
+        isEqual(colorA: OmniColor, colorB: OmniColor, alphaMatters?: boolean | null): boolean;
 
         /**
          * Distance between two colors on the same scale as the color matching threshold,

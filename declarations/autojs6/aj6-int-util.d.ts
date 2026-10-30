@@ -367,6 +367,7 @@ declare namespace Internal {
 
         /**
          * @deprecated Not available for Auto.js 4.1.1 Alpha2 (marked by SuperMonster003 on Aug 7, 2020)
+         * AutoJs6 only writes a warning to the console: the arguments are not read and no wrapped function is returned.
          * @example Source code summary (zh-CN: 源代码摘要)
          * exports.deprecate = function (fn, msg) {
          *     // Allow for deprecating things in the process of starting up.
@@ -395,7 +396,7 @@ declare namespace Internal {
          *     return deprecated;
          * };
          */
-        deprecate(fn: Func, msg: string): Func;
+        deprecate(...args: any[]): void;
 
         /**
          * @deprecated Not available for Auto.js 4.1.1 Alpha2 (marked by SuperMonster003 on Aug 7, 2020)

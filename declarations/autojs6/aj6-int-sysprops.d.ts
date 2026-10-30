@@ -14,13 +14,13 @@
 declare namespace Internal {
 
     interface SysProps {
-        (propName: string, defaultValue?: string): string | null;
+        (propName: string, defaultValue?: string | null): string | null;
 
-        get(propName: string, defaultValue?: string): string | null;
+        get(propName: string, defaultValue?: string | null): string | null;
 
         getInt(propName: string, defaultValue?: number): number | null;
 
-        getBoolean(propName: string, defaultValue?: boolean): boolean | null;
+        getBoolean(propName: string, defaultValue?: boolean | null): boolean | null;
 
         getAll(): SysProps.Properties;
         getAll(filter: SysProps.Filter | SysProps.FilterOptions): SysProps.Properties;

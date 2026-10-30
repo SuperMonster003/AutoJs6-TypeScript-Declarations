@@ -451,7 +451,7 @@ declare namespace Internal {
          * @see org.autojs.autojs.pio.PWritableTextFile
          * @see java.nio.charset.Charset
          */
-        open(path: string, mode?: 'r', encoding?: StandardCharsets, bufferSize?: number): org.autojs.autojs.pio.PReadableTextFile;
+        open(path: string, mode?: 'r' | null, encoding?: StandardCharsets, bufferSize?: number): org.autojs.autojs.pio.PReadableTextFile;
 
         /**
          * @param path
@@ -1244,7 +1244,7 @@ declare namespace Files {
  * };
  * @see org.autojs.autojs.runtime.api.Files.open
  */
-declare function open(path: string, mode?: 'r', encoding?: StandardCharsets, bufferSize?: number): org.autojs.autojs.pio.PReadableTextFile;
+declare function open(path: string, mode?: 'r' | null, encoding?: StandardCharsets, bufferSize?: number): org.autojs.autojs.pio.PReadableTextFile;
 /**
  * @example Source code summary (zh-CN: 源代码摘要)
  * const fs = __runtime__.files;

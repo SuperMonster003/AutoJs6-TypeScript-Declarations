@@ -14,7 +14,7 @@
 declare namespace Internal {
 
     interface NanoID {
-        (size?: number): string;
+        (size?: number | null): string;
     }
 
 }

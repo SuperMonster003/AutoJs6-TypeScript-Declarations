@@ -44,14 +44,14 @@ declare namespace Internal {
 
         removeTask<T extends TimedTask$ | IntentTask$ | null | undefined>(task: T): T;
 
-        removeTimedTask(id: number): TimedTask$ | null;
+        removeTimedTask(id: number, options?: null): TimedTask$ | null;
 
         removeTimedTask<TResult = TimedTask$ | null>(
             id: number,
             options: Tasks.Fulfillment<TimedTask$ | null, TResult>,
         ): Tasks.FulfillmentResult<TimedTask$ | null, TResult>;
 
-        removeIntentTask(id: number): IntentTask$ | null;
+        removeIntentTask(id: number, options?: null): IntentTask$ | null;
 
         removeIntentTask<TResult = IntentTask$ | null>(
             id: number,
@@ -60,9 +60,9 @@ declare namespace Internal {
 
         updateTask<T extends TimedTask$ | IntentTask$ | null | undefined>(task: T): Tasks.NullishToNull<T>;
 
-        queryTimedTasks(options?: Tasks.Query.Timed): TimedTask$[];
+        queryTimedTasks(options?: Tasks.Query.Timed | null): TimedTask$[];
 
-        queryIntentTasks(options?: Tasks.Query.Intent): IntentTask$[];
+        queryIntentTasks(options?: Tasks.Query.Intent | null): IntentTask$[];
 
         timeFlagToDays(flag: number): number[];
 

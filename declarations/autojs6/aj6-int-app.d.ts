@@ -266,11 +266,11 @@ declare namespace Internal {
 
         getAppByAlias(alias: App.Alias | string): org.autojs.autojs.util.App | null;
 
-        getInstalledApps(options?: App.PackageManagerOptions): App.AppInfo[];
+        getInstalledApps(options?: App.PackageManagerOptions | null): App.AppInfo[];
 
-        getInstalledPackages(options?: App.PackageManagerOptions): App.InstalledPackageInfo[];
+        getInstalledPackages(options?: App.PackageManagerOptions | null): App.InstalledPackageInfo[];
 
-        getApkInfo(path: string, options?: App.PackageManagerOptions): android.content.pm.PackageInfo | null;
+        getApkInfo(path: string, options?: App.PackageManagerOptions | null): android.content.pm.PackageInfo | null;
 
         /**
          * @example

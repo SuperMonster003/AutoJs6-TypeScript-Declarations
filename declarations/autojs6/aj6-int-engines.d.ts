@@ -88,7 +88,7 @@ declare namespace Internal {
          * }
          * @see org.autojs.autojs.engine.ScriptEngineService
          */
-        public stopAllAndToast(): void;
+        public stopAllAndToast(): number;
 
         /**
          * @example without extended module

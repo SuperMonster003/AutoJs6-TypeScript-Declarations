@@ -429,7 +429,7 @@ declare namespace Flow {
     }
 
     /** A selector-like condition: the `pickup` selector forms (a string is a content match), or a node to refresh. zh-CN: 选择器类条件: `pickup` 的各种选择器形式 (字符串为内容匹配), 或待刷新的节点. */
-    type SelectorCond = Pickup.Selector | number | UiObject;
+    type SelectorCond = NonNullable<Pickup.Selector> | number | UiObject;
 
     /** Any wait condition. zh-CN: 任意等待条件. */
     type Cond<T = any> = SelectorCond | (() => T) | Flow<T> | PromiseLike<T>;

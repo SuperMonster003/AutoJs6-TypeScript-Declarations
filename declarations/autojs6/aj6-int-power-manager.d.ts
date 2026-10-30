@@ -17,7 +17,7 @@ declare namespace Internal {
 
         isIgnoringBatteryOptimizations(packageName?: string | null): boolean;
 
-        requestIgnoreBatteryOptimizations(forceRequest?: boolean, packageName?: string | null): void;
+        requestIgnoreBatteryOptimizations(forceRequest?: boolean | null, packageName?: string | null): void;
 
     }
 

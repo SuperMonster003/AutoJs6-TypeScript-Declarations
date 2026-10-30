@@ -45,7 +45,7 @@ declare namespace Internal {
          *     return cont;
          * };
          */
-        create(scope?: org.mozilla.javascript.Scriptable): Continuation.Creator;
+        create(scope?: org.mozilla.javascript.Scriptable | null): Continuation.Creator;
 
         /**
          * @example Source code summary (zh-CN: 源代码摘要)

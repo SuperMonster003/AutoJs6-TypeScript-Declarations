@@ -123,7 +123,7 @@ declare namespace Internal {
 
         isEqual(otherVersion: string | number | Version): boolean;
 
-        isAtLeast(otherVersion: string | number | Version, ignoreSuffix?: boolean): boolean;
+        isAtLeast(otherVersion: string | number | Version, ignoreSuffix?: boolean | null): boolean;
 
     }
 
