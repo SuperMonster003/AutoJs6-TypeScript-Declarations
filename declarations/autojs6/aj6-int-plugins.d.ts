@@ -3,7 +3,7 @@
 // Definitions by: SuperMonster003 <https://github.com/SuperMonster003>
 // TypeScript Version: 5.1.3
 //
-// Last modified: Oct 16, 2026
+// Last modified: Oct 30, 2026
 
 /// <reference path="./index.d.ts" />
 
@@ -127,14 +127,39 @@ declare namespace Internal {
          */
         type ToolArguments = { [name: string]: any };
 
+        /**
+         * The tools of the official plugins (the official plugin tool table of the plugins page): 3-Hanzi CC 2.1.0,
+         * AutoJs6 YOLO NCNN 0.2.0, Image Quantization 1.1.0, 3-Stack Archive 3.1.0 and 3-Macaw Speech 1.2.0 / 1.3.0.
+         * Listed for completion only; which tools exist depends on the installed plugins (see list()).
+         */
+        type OfficialToolName =
+            | 'opencc_convert'
+            | 'yolo_detect'
+            | 'imagequant_quantize'
+            | 'archive_list'
+            | 'archive_read'
+            | 'archive_extract'
+            | 'speech_listen'
+            | 'speech_speak'
+            | 'speech_transcribe'
+            | 'speech_synthesize'
+            | 'speech_speaker_verify'
+            | 'speech_speaker_identify'
+            | 'speech_diarize'
+            | 'speech_detect_language'
+            | 'speech_tag';
+
+        /** An official tool name, or the name of any other tool a plugin provides. */
+        type ToolName = OfficialToolName | (string & {});
+
         interface Tools {
             list(): ToolInfo[];
 
             providers(): ToolProviderInfo[];
 
-            call(name: string, args?: ToolArguments, options?: ToolCallOptions): ToolCallResult;
+            call(name: ToolName, args?: ToolArguments, options?: ToolCallOptions): ToolCallResult;
 
-            callAsync(name: string, args?: ToolArguments, options?: ToolCallOptions): Promise<ToolCallResult>;
+            callAsync(name: ToolName, args?: ToolArguments, options?: ToolCallOptions): Promise<ToolCallResult>;
         }
 
         interface Extend {
