@@ -1335,7 +1335,8 @@ export namespace RuntimeFiles {
      * resolution (java.io.File, relative to cwd()), conversions and errors (a Java exception is an Error named after
      * its class). The file operations run synchronously in this process with node:fs, so the plugin's Android file
      * access applies; open, toFile and readAssets go through the Java facade (java_interop) and return Promises of
-     * handles the caller releases. files.batchRename goes through the Batch Rename plugin and returns Promises.
+     * handles the caller releases, and the relative paths of open and toFile resolve against the script's source directory
+     * (engines.myEngine().hostCwd), which the host can reach, not against cwd(). files.batchRename goes through the Batch Rename plugin and returns Promises.
      */
     export interface FilesModule {
       /** Batch renaming through the Batch Rename plugin (capability batch_rename). */

@@ -1,8 +1,8 @@
 /**
  * Rhino's zip module (ZipModule, Zip; zip4j in the host) on the Java facade (java_interop). The module functions
  * resolve with a Zip; argument errors Rhino raises before any work are thrown synchronously, the rest reject. Paths
- * are absolute or relative to the working directory and are opened by the host, so the host's Android file access
- * applies. Java values (FileHeader, ZipFile, ZipParameters, UnzipParameters) are facade handles the caller owns.
+ * are absolute or relative to the script's source directory (engines.myEngine().hostCwd) and are opened by the host,
+ * so the host's Android file access applies. Java values (FileHeader, ZipFile, ZipParameters, UnzipParameters) are facade handles the caller owns.
  */
 declare module "autojs6:zip" {
   namespace zip {

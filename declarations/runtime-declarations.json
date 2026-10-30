@@ -29,7 +29,7 @@
     "autojs6-node/engines.d.ts": "be623e29743ff4e5a47bdedbfc1a2c6b606890b132292aabff576b2b669f2a9b",
     "autojs6-node/epub.d.ts": "f5b88cfcd609ca6f4981d899e5c98a943f35fb180a871062e09ea387064316e1",
     "autojs6-node/fetch.d.ts": "dbb53c558ac363d5b10b2ae50f819a18a2de08e6c353281bc78ee15f89667832",
-    "autojs6-node/files.d.ts": "090cabc0ffaa20112aaa3f5c1e7a4dba992c29286beec91b0e16b2025614e066",
+    "autojs6-node/files.d.ts": "e40090cea2eb29534a33b5927413236983568c75a8921972a8dbad9e62026b9b",
     "autojs6-node/floaty.d.ts": "50b73a61deaac903246d66d98709b7b1573f742539ee2619e63250aee4d4af7d",
     "autojs6-node/flow.d.ts": "2a514ca9c25c59725b5870bdd9a9280d46f64c800b6cc3f481d1eecfd88cfe7c",
     "autojs6-node/formatter.d.ts": "9869efd83dad2d5c3fc9c81839bd5ca91259552f9a7c034234f7e7f52956f92f",
@@ -97,8 +97,8 @@
     "autojs6-node/websocket.d.ts": "f9412a8fe65abdab7d1f14f09bf75a4371a84657ba3f91de42e6c96e512a5923",
     "autojs6-node/work_manager.d.ts": "5d77db1003ae945c3ce7f9061b4e8609a29f8fe3b2a830a0c0fae051c67a2e68",
     "autojs6-node/worker_threads.d.ts": "6b29835d34c6f622309dcc6bd2c05693e8d3f66820be9ba6583313e004b0c9a3",
-    "autojs6-node/zip.d.ts": "01b3a4dbf057b6bced41d9e50b3ad8c1580a65b4a6ad914e442c9e5bcde6ed1c",
-    "autojs6-bun/host-client.d.mts": "590b4ff8b8495e4c692c0086d741679d7d09133c01e45169452ebe114709416b",
-    "autojs6-bun/index.d.ts": "615146d861d27d154b20974c262d188c709c16ecd6beb3a174ac20ce66b94863"
+    "autojs6-node/zip.d.ts": "f52e600d2fb5f6546ff994636bb03621cde1c334503c7446223bf0f20390a351",
+    "autojs6-bun/host-client.d.mts": "d590d763780ae1ae070e2e072109e3cb641f792e14cd24f00df714fa180778c2",
+    "autojs6-bun/index.d.ts": "5f48b736f24ff2516d47a180c896255bedf7a8be2368374a522f0a8e51bdfeef"
   }
 }
