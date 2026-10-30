@@ -145,6 +145,8 @@ declare namespace Internal {
             readonly confidence: number;
             /** The bounding rectangle of the recognized text. */
             readonly bounds: Android.Rect;
+            /** What the engine attaches to this result; an empty object when it attaches nothing. */
+            readonly extras: ResultExtras;
             /**
              * Reading order: negative when this result comes first, positive when it comes after, 0 at the same position.
              * Results whose vertical centers differ by less than half the taller height are on one line (left to right),
@@ -152,6 +154,20 @@ declare namespace Internal {
              */
             compareTo(other: org.autojs.autojs.runtime.api.OcrResult): number;
             toString(): string;
+        }
+
+        /**
+         * Extras of an engine result. The keys depend on the engine and plugin. Booleans and strings stay as they are,
+         * numbers become JS numbers, arrays and collections become arrays, nested bundles and maps become objects,
+         * and other values are dropped. Results merged by mergeLine keep only the keys equal in every part.
+         * @see https://docs.autojs6.com/#/dataTypes?id=p-extras
+         */
+        interface ResultExtras {
+            /** Vertices of the text quadrilateral as [x1, y1, x2, y2, ...], in the same coordinates as bounds. */
+            quad?: number[];
+            /** The execution provider that actually ran (PP-OCRv3 ONNX Runtime). */
+            executionProvider?: 'cpu' | 'nnapi' | string;
+            [key: string]: unknown;
         }
 
         type RecognizeTextMethod = (img: ImageWrapper) => string[];
@@ -170,7 +186,16 @@ declare namespace Internal {
             imageFormat?: Images.Format | string;
             engineId?: string;
             engine?: string;
+            /**
+             * Engine variant. PP-OCRv3 of Paddle OCR has "v3" (ONNX Runtime) and "v3-paddle-lite" (Paddle Lite).
+             * Without engineId, variant and profile, the highest version number wins, then the plugin declared as
+             * the mobile default (the ONNX Runtime Chinese pack for PP-OCRv3), then the package name.
+             */
             variant?: string;
+            /**
+             * Plugin profile, which takes part in plugin matching: only plugins declaring the same profile match.
+             * PP-OCRv3 language packs: "zh", "en", "zh-hant", "ja", "ko".
+             */
             profile?: string;
         }
 
@@ -189,9 +214,17 @@ declare namespace Internal {
 
             /**
              * 是否使用轻量化模型.
+             * PP-OCRv3 的 ONNX Runtime 版使用 int8 量化模型, Paddle Lite 版使用官方 slim 模型.
              * @default true
              */
             useSlim?: boolean;
+
+            /**
+             * Run the text direction classifier before recognition, which corrects upside-down text and takes about
+             * 5-10% more time. Only plugins with a classifier use it; left unset, the plugin keeps its own default.
+             * @default false
+             */
+            useCls?: boolean;
 
             /**
              * CPU 线程数.
@@ -200,7 +233,8 @@ declare namespace Internal {
             cpuThreadNum?: number;
 
             /**
-             * Whether to enable OpenCL in Paddle OCR.
+             * Whether to enable OpenCL in Paddle OCR. PP-OCRv3 ONNX Runtime maps it to the NNAPI execution provider
+             * and falls back to the CPU below API 27 or when NNAPI fails; see extras.executionProvider of the results.
              * @default false
              */
             useOpenCL?: boolean;
