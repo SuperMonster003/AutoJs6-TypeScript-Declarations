@@ -248,8 +248,10 @@ async function checkWorkerSensors(){
   const sample:import('sensors').SensorEvent=await workerSensors.once('gyroscope',{timeoutMs:5000});
   const sub:import('sensors').SensorSubscription=workerSensors.subscribe('accelerometer',event=>{const value:number=event.values[0];});
   await sub.ready;sub.once('accuracy',event=>{});await sub.close();
-  // @ts-expect-error Unsupported sensor type.
+  // Rhino's sensor names are sensor types (Q147 (a)).
   await workerSensors.once('pressure');
+  // @ts-expect-error Unsupported sensor type.
+  await workerSensors.once('heart_rate');
 }
 
 import hostShell = require('autojs6:shell');
