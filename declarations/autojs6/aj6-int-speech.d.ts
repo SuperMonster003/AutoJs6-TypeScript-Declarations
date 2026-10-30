@@ -178,9 +178,11 @@ declare namespace Internal {
 
         /**
          * The spoken language of an audio file (feature `languageId`, 3-Macaw Speech 1.3.0 and
-         * later): the plugin cuts the speech into windows of at most 30 seconds and votes over the
-         * first `windows` of them. The file follows the rules of {@link recognize} (a path only);
-         * a file without speech fails with `AUDIO_TOO_SHORT`. Blocking; refuses the UI thread.
+         * later): the plugin cuts the speech into windows of at most 30 seconds and judges the
+         * first `windows` of them, sentence by sentence since 3-Macaw Speech 1.4.0 (a sentence of
+         * less than 1.25 seconds joins a neighbor; 1.3.0 answers one language per window). The
+         * file follows the rules of {@link recognize} (a path only); a file without speech fails
+         * with `AUDIO_TOO_SHORT`. Blocking; refuses the UI thread.
          * @since 6.8.0
          * @example
          * let detected = speech.detectLanguage('./voice.mp3', { windows: 5 });
@@ -852,7 +854,7 @@ declare namespace Internal {
         interface DetectLanguageOptions extends AnalysisOptions {
             /** Language identification model id (kind `langid`); default the default `langid` model. */
             model?: string;
-            /** Speech windows to vote over, an integer from 1 to 60 (default 3); 60 windows cover 30 minutes. */
+            /** Speech windows to judge, an integer from 1 to 60 (default 3); 60 windows cover 30 minutes. */
             windows?: number;
         }
 
@@ -863,11 +865,11 @@ declare namespace Internal {
         }
 
         interface LanguageDetection {
-            /** The language most windows voted for, a Whisper code such as `'zh'`, `'en'` or `'ja'`; a tie goes to the earliest window. */
+            /** The language spoken longest over {@link segments} (3-Macaw Speech 1.3.0: of most windows), a Whisper code such as `'zh'`, `'en'` or `'ja'`; a tie goes to the language heard first. */
             readonly language: string;
-            /** Every language voted for with its share of the windows (0 to 1, four decimals), most voted first. */
+            /** Every language heard with its share of the speaking time (3-Macaw Speech 1.3.0: of the windows; 0 to 1, four decimals), the largest first. */
             readonly candidates: { readonly language: string; readonly score: number }[];
-            /** One entry per window that voted. */
+            /** One entry per sentence (3-Macaw Speech 1.3.0: per window); a joined sentence spans the silence inside it. */
             readonly segments: LanguageSegment[];
             /** Length of the decoded audio. */
             readonly durationMillis: number;
