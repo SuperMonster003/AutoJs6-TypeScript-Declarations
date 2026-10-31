@@ -194,7 +194,9 @@ declare namespace Internal {
             variant?: string;
             /**
              * Plugin profile, which takes part in plugin matching: only plugins declaring the same profile match.
-             * PP-OCRv3 language packs: "zh", "en", "zh-hant", "ja", "ko".
+             * PP-OCRv3 language packs: "zh", "en", "zh-hant", "ja", "ko", "latin", "arabic", "cyrillic", "devanagari",
+             * "te", "ka", "ta". Results of "arabic" come in right-to-left reading order. The models of "devanagari",
+             * "te", "ka" and "ta" read ligatures and vowel signs written before a consonant poorly.
              */
             profile?: string;
         }
@@ -255,7 +257,8 @@ declare namespace Internal {
             scoreThreshold?: number;
 
             /**
-             * Merge adjacent recognition boxes on the same visual line.
+             * Merge adjacent recognition boxes on the same visual line in reading order, from the right for
+             * right-to-left text such as the "arabic" profile.
              * Ignored when word segmentation is enabled.
              * @default false
              */
