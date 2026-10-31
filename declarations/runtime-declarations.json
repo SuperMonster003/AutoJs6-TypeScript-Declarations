@@ -31,7 +31,7 @@
     "autojs6-node/fetch.d.ts": "dbb53c558ac363d5b10b2ae50f819a18a2de08e6c353281bc78ee15f89667832",
     "autojs6-node/files.d.ts": "e40090cea2eb29534a33b5927413236983568c75a8921972a8dbad9e62026b9b",
     "autojs6-node/floaty.d.ts": "50b73a61deaac903246d66d98709b7b1573f742539ee2619e63250aee4d4af7d",
-    "autojs6-node/flow.d.ts": "2a514ca9c25c59725b5870bdd9a9280d46f64c800b6cc3f481d1eecfd88cfe7c",
+    "autojs6-node/flow.d.ts": "076dbf51c70b795fc0db8f50eaa2c4cadea029312c91e8ba11aa071175c11180",
     "autojs6-node/formatter.d.ts": "9869efd83dad2d5c3fc9c81839bd5ca91259552f9a7c034234f7e7f52956f92f",
     "autojs6-node/gallery.d.ts": "e8bab9ea9830d51016b0f7f58f5c7a5fdda89110654c2d49bed50a12b878afb5",
     "autojs6-node/global.d.ts": "c31e7bc6ea881637de93710ac9a915fbbcfeb43bba5983431efbc8b7d6b55ee1",
@@ -98,7 +98,7 @@
     "autojs6-node/work_manager.d.ts": "5d77db1003ae945c3ce7f9061b4e8609a29f8fe3b2a830a0c0fae051c67a2e68",
     "autojs6-node/worker_threads.d.ts": "6b29835d34c6f622309dcc6bd2c05693e8d3f66820be9ba6583313e004b0c9a3",
     "autojs6-node/zip.d.ts": "f52e600d2fb5f6546ff994636bb03621cde1c334503c7446223bf0f20390a351",
-    "autojs6-bun/host-client.d.mts": "d590d763780ae1ae070e2e072109e3cb641f792e14cd24f00df714fa180778c2",
-    "autojs6-bun/index.d.ts": "5f48b736f24ff2516d47a180c896255bedf7a8be2368374a522f0a8e51bdfeef"
+    "autojs6-bun/host-client.d.mts": "25ac0501918cf68131fed096312fbaae05deaf742c2a02ba3744f4b230649f67",
+    "autojs6-bun/index.d.ts": "0179a2a4b0c1283f98486038ea915b264afb329a956e07af5c952bc6e53074e5"
   }
 }

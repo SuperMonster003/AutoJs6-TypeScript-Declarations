@@ -5208,6 +5208,10 @@ export namespace RuntimeFlow {
       repeatUntil(action: (attempt: number) => unknown, selector: Selector | string | RegExp, options?: RepeatOptions): Flow<S, S>;
       cancel(): boolean;
       toPromise(): Promise<T>;
+      /** The Promise of the settlement. Rhino waits in a continuation; here the script thread goes on, so use `await flow.await()`. */
+      await(): Promise<T>;
+      /** The Promise of the settlement. Rhino blocks the thread; here it never does, so use `await flow.sync()`. Past `timeout` (milliseconds, unbounded by default) it rejects with a TIMEOUT FlowError whose step and reason are "sync", and the chain keeps running. */
+      sync(timeout?: number): Promise<T>;
       toString(): string;
     }
     interface FlowConstructor {
