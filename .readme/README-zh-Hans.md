@@ -178,6 +178,20 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.86.0
+
+###### 2026/11/01
+
+* `新增` autojs6-node 与 autojs6-bun 声明跟随 Node.js Runtime 2.1.0 与 Bun Runtime 0.22.0: app, shell, 系统信息, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events 等模块与 AutoJs6 脚本一致的成员及其返回对象
+* `新增` Flow 对象的 await() 与 sync(timeout) 进入 Node.js 与 Bun 的声明, 两者都返回 Promise
+* `新增` plugins.tools.call / callAsync 补全官方插件的 15 个工具名 (OfficialToolName), 其他工具名仍可传入
+* `新增` OcrResult 补全 extras, ocr 选项补全 useCls, PP-OCRv3 的 variant / profile 与 mergeLine 的说明
+* `修复` ocr.detect 与 barcode / qrcode detect 的结果类型缺少成员的问题 (Ocr.Result 的 text, label, confidence, bounds, compareTo 与 WrappedBarcode 的成员)
+* `修复` 参数与返回类型按 AutoJs6 脚本模块修正: engines.stopAllAndToast 返回请求停止的引擎数, util.deprecate 接受任意参数且无返回值, Flow 的选择器条件不接受 null, 可传 null 的可选参数与任务选项补上 null
+* `修复` 参数个数按 AutoJs6 脚本模块修正: auto.registerEvent 的 listener, 手势的 stroke, colors 的 color, http 的 options 与 postJson 的 data 必填, dialogs.build, engines 配置与 console.trace 的可选参数
+* `优化` events, sensors, device, console, shizuku, threads, timers 和 ui 的 Java 原型成员写进模块类型, 不依赖生成的 Java 声明也能补全
+* `优化` speech.detectLanguage 的说明按 3-Macaw Speech 1.4.0 改为按句判断语种
+
 ### v4.85.0
 
 ###### 2026/10/29
@@ -194,12 +208,6 @@ npm update @sm003/autojs6-dts
 * `新增` 选择器声明补全 normalize 与 prefer: 全局函数, 链式方法与对象选择器的键, 含 Selector.NormalizeOptions 与 Selector.PreferKey 类型 (AutoJs6 6.8.0 起)
 * `新增` auto 声明补全 clearFlags 方法, setFlags 的 ! 前缀与 noFastPath / noRefreshOnHit 标志; explain 可传入罗盘与结果类型, 结果含 target / trail / result 等字段; stats 补全 fastPath 与 queries.refinds (AutoJs6 6.8.0 起)
 * `优化` pickup / detect 的结果类型 Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams 改由 AutoJs6 的节点方法注册表生成, 包含全部 206 个可调用的方法名及带参数的重载, 并补全 ## / $$ / .. 与数组形式的结果类型
-
-### v4.83.0
-
-###### 2026/10/24
-
-* `新增` sqlite 声明补全 onDowngrade 回调: 打开数据库时请求的 version 低于现有版本时调用 (AutoJs6 6.8.0 起), 未实现时降级不执行任何操作, 保留表与数据
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

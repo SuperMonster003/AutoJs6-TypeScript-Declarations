@@ -18,6 +18,47 @@
     "adjustment": "调整"
   },
   "$data": {
+    "v4.86.0": {
+      "released_date": "2026/11/01",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "autojs6-node 与 autojs6-bun 声明跟随 Node.js Runtime 2.1.0 与 Bun Runtime 0.22.0: app, shell, 系统信息, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events 等模块与 AutoJs6 脚本一致的成员及其返回对象"
+        },
+        {
+          "category": "feature",
+          "text": "Flow 对象的 await() 与 sync(timeout) 进入 Node.js 与 Bun 的声明, 两者都返回 Promise"
+        },
+        {
+          "category": "feature",
+          "text": "plugins.tools.call / callAsync 补全官方插件的 15 个工具名 (OfficialToolName), 其他工具名仍可传入"
+        },
+        {
+          "category": "feature",
+          "text": "OcrResult 补全 extras, ocr 选项补全 useCls, PP-OCRv3 的 variant / profile 与 mergeLine 的说明"
+        },
+        {
+          "category": "fix",
+          "text": "ocr.detect 与 barcode / qrcode detect 的结果类型缺少成员的问题 (Ocr.Result 的 text, label, confidence, bounds, compareTo 与 WrappedBarcode 的成员)"
+        },
+        {
+          "category": "fix",
+          "text": "参数与返回类型按 AutoJs6 脚本模块修正: engines.stopAllAndToast 返回请求停止的引擎数, util.deprecate 接受任意参数且无返回值, Flow 的选择器条件不接受 null, 可传 null 的可选参数与任务选项补上 null"
+        },
+        {
+          "category": "fix",
+          "text": "参数个数按 AutoJs6 脚本模块修正: auto.registerEvent 的 listener, 手势的 stroke, colors 的 color, http 的 options 与 postJson 的 data 必填, dialogs.build, engines 配置与 console.trace 的可选参数"
+        },
+        {
+          "category": "improvement",
+          "text": "events, sensors, device, console, shizuku, threads, timers 和 ui 的 Java 原型成员写进模块类型, 不依赖生成的 Java 声明也能补全"
+        },
+        {
+          "category": "improvement",
+          "text": "speech.detectLanguage 的说明按 3-Macaw Speech 1.4.0 改为按句判断语种"
+        }
+      ]
+    },
     "v4.85.0": {
       "released_date": "2026/10/29",
       "entries": [
