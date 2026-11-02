@@ -13,6 +13,28 @@
 - Русский [ru] # текущий
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.87.0
+
+###### 2026/11/02
+
+* `Функция` Модуль imgui добавлен в декларации AutoJs6: для AutoJs6 Plugin ImGui 1.18.x типы и описания охватывают глобальные функции imgui и $imgui, сеансы окон и возвращаемые объекты; эти декларации предназначены только для скриптов Rhino
+* `Исправление` Описание fontScale сеансов ImGui ссылалось на несуществующий ui.getFontSize()
+
+# v4.86.0
+
+###### 2026/11/01
+
+* `Функция` Декларации autojs6-node и autojs6-bun соответствуют Node.js Runtime 2.1.0 и Bun Runtime 0.22.0: члены и возвращаемые объекты, совпадающие со скриптами AutoJs6, для app, shell, системной информации, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events и других модулей
+* `Функция` Методы await() и sync(timeout) объекта Flow добавлены в декларации Node.js и Bun; оба возвращают Promise
+* `Функция` plugins.tools.call / callAsync дополняют 15 имен инструментов официальных плагинов (OfficialToolName), сохраняя возможность передавать другие имена
+* `Функция` В OcrResult добавлено extras, в параметры OCR добавлено useCls, дополнены описания variant / profile PP-OCRv3 и mergeLine
+* `Исправление` Отсутствующие члены типов результатов ocr.detect и barcode / qrcode detect (text, label, confidence, bounds, compareTo в Ocr.Result и члены WrappedBarcode)
+* `Исправление` Типы параметров и возвращаемых значений приведены в соответствие с модулями скриптов AutoJs6: engines.stopAllAndToast возвращает число движков, для которых запрошена остановка, util.deprecate принимает произвольные аргументы без возвращаемого значения, условия селекторов Flow не допускают null, а необязательные параметры и параметры задач, допускающие null, включают null
+* `Исправление` Число параметров приведено в соответствие с модулями скриптов AutoJs6: listener в auto.registerEvent, stroke жестов, color в colors, options в http и data в postJson обязательны; исправлены необязательные параметры dialogs.build, настройки engines и console.trace
+* `Улучшение` Члены Java-прототипов events, sensors, device, console, shizuku, threads, timers и ui включены в типы модулей, обеспечивая автодополнение без сгенерированных деклараций Java
+* `Улучшение` Описание speech.detectLanguage приведено в соответствие с 3-Macaw Speech 1.4.0: язык определяется для каждого предложения
+* `Улучшение` В сведения о моделях speech.models.list добавлены updateAvailable и latestVersionCode (требуется 3-Macaw Speech 1.4.0 или новее), с одинаковыми декларациями для Rhino, Node.js и Bun
+
 # v4.85.0
 
 ###### 2026/10/29

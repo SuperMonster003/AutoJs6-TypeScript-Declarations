@@ -13,6 +13,28 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.87.0
+
+###### 2026/11/02
+
+* `기능` AutoJs6 선언에 imgui 모듈 추가: AutoJs6 Plugin ImGui 1.18.x에 맞춰 전역 imgui와 $imgui 함수, 창 세션 및 반환 객체의 타입과 설명을 제공하며 이 선언은 Rhino 스크립트 전용
+* `수정` ImGui 세션의 fontScale 설명에서 존재하지 않는 ui.getFontSize()를 언급하던 문제
+
+# v4.86.0
+
+###### 2026/11/01
+
+* `기능` autojs6-node와 autojs6-bun 선언을 Node.js Runtime 2.1.0 및 Bun Runtime 0.22.0에 맞춤: app, shell, 시스템 정보, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events 등 모듈의 AutoJs6 스크립트와 일치하는 멤버 및 반환 객체
+* `기능` Flow 객체의 await()와 sync(timeout)을 Node.js 및 Bun 선언에 추가하며 둘 다 Promise를 반환
+* `기능` plugins.tools.call / callAsync에서 공식 플러그인의 도구 이름 15개 (OfficialToolName)를 자동 완성하며 다른 도구 이름도 계속 허용
+* `기능` OcrResult에 extras, OCR 옵션에 useCls를 추가하고 PP-OCRv3의 variant / profile 및 mergeLine 설명 보완
+* `수정` ocr.detect 및 barcode / qrcode detect 결과 타입에 멤버가 없던 문제 (Ocr.Result의 text, label, confidence, bounds, compareTo 및 WrappedBarcode 멤버)
+* `수정` 매개변수와 반환 타입을 AutoJs6 스크립트 모듈에 맞게 수정: engines.stopAllAndToast는 중지를 요청한 엔진 수를 반환하고 util.deprecate는 임의 인수를 받으며 반환값이 없음. Flow 선택기 조건은 null을 허용하지 않고 null을 허용하는 선택 매개변수와 작업 옵션에는 null 추가
+* `수정` 매개변수 개수를 AutoJs6 스크립트 모듈에 맞게 수정: auto.registerEvent의 listener, 제스처의 stroke, colors의 color, http의 options, postJson의 data는 필수이며 dialogs.build, engines 설정 및 console.trace의 선택 매개변수 수정
+* `개선` events, sensors, device, console, shizuku, threads, timers 및 ui의 Java 프로토타입 멤버를 모듈 타입에 포함하여 생성된 Java 선언 없이도 자동 완성 가능
+* `개선` speech.detectLanguage 설명을 3-Macaw Speech 1.4.0에 맞춰 문장별 언어 판별로 변경
+* `개선` speech.models.list 모델 정보에 updateAvailable 및 latestVersionCode 추가 (3-Macaw Speech 1.4.0 이상 필요), Rhino, Node.js 및 Bun 선언을 일치시킴
+
 # v4.85.0
 
 ###### 2026/10/29

@@ -178,6 +178,28 @@ npm update @sm003/autojs6-dts
 
 ## 更新日誌
 
+### v4.87.0
+
+###### 2026/11/02
+
+* `新增` imgui 模組進入 AutoJs6 宣告: 配合 AutoJs6 Plugin ImGui 1.18.x, 全域性 imgui 與 $imgui 的函式, 視窗會話和返回物件都有型別與說明, 這些宣告只用於 Rhino 指令碼
+* `修復` ImGui 會話的 fontScale 說明提到了不存在的 ui.getFontSize() 的問題
+
+### v4.86.0
+
+###### 2026/11/01
+
+* `新增` autojs6-node 與 autojs6-bun 宣告跟隨 Node.js Runtime 2.1.0 與 Bun Runtime 0.22.0: app, shell, 系統資訊, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events 等模組與 AutoJs6 指令碼一致的成員及其返回物件
+* `新增` Flow 物件的 await() 與 sync(timeout) 進入 Node.js 與 Bun 的宣告, 兩者都返回 Promise
+* `新增` plugins.tools.call / callAsync 補全官方外掛的 15 個工具名 (OfficialToolName), 其他工具名仍可傳入
+* `新增` OcrResult 補全 extras, ocr 選項補全 useCls, PP-OCRv3 的 variant / profile 與 mergeLine 的說明
+* `修復` ocr.detect 與 barcode / qrcode detect 的結果型別缺少成員的問題 (Ocr.Result 的 text, label, confidence, bounds, compareTo 與 WrappedBarcode 的成員)
+* `修復` 引數與返回型別按 AutoJs6 指令碼模組修正: engines.stopAllAndToast 返回請求停止的引擎數, util.deprecate 接受任意引數且無返回值, Flow 的選擇器條件不接受 null, 可傳 null 的可選引數與任務選項補上 null
+* `修復` 引數個數按 AutoJs6 指令碼模組修正: auto.registerEvent 的 listener, 手勢的 stroke, colors 的 color, http 的 options 與 postJson 的 data 必填, dialogs.build, engines 配置與 console.trace 的可選引數
+* `最佳化` events, sensors, device, console, shizuku, threads, timers 和 ui 的 Java 原型成員寫進模組型別, 不依賴生成的 Java 宣告也能補全
+* `最佳化` speech.detectLanguage 的說明按 3-Macaw Speech 1.4.0 改為按句判斷語種
+* `最佳化` speech.models.list 的模型資訊補全 updateAvailable 和 latestVersionCode (需要 3-Macaw Speech 1.4.0 或以上), Rhino, Node.js 和 Bun 的宣告一致
+
 ### v4.85.0
 
 ###### 2026/10/29
@@ -186,20 +208,6 @@ npm update @sm003/autojs6-dts
 * `新增` speech 宣告補全 speech.speaker 語者辨識: enroll, verify, identify 及其 Async 形式, list 與 remove, 以及錯誤碼 SPEAKER_NOT_FOUND 與 AUDIO_TOO_SHORT (AutoJs6 6.8.0 起, 需要 3-Macaw Speech 1.3.0)
 * `最佳化` Speech.Feature 增加 'speaker', 'diarization', 'languageId' 與 'audioTagging'; Speech.Kind 增加 'speaker', 'segment', 'langid' 與 'tagger' 四種模型類別, models.list, setDefault 與 getDefault 可使用這些類別
 * `最佳化` speech.models.importFile 的 ImportOptions.kind 收窄為 'asr', 'kws' 與 'tts': 以使用者匯入身分登記目錄以外的模型時只能是這三類, 'vad', 'speaker', 'segment', 'langid' 與 'tagger' 只有目錄模型 (與 3-Macaw Speech 的實際行為一致)
-
-### v4.84.0
-
-###### 2026/10/29
-
-* `新增` 選擇器宣告補全 normalize 與 prefer: 全域函式, 鏈式方法與物件選擇器的鍵, 含 Selector.NormalizeOptions 與 Selector.PreferKey 型別 (AutoJs6 6.8.0 起)
-* `新增` auto 宣告補全 clearFlags 方法, setFlags 的 ! 前綴與 noFastPath / noRefreshOnHit 旗標; explain 可傳入羅盤與結果型別, 結果含 target / trail / result 等欄位; stats 補全 fastPath 與 queries.refinds (AutoJs6 6.8.0 起)
-* `最佳化` pickup / detect 的結果型別 Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams 改由 AutoJs6 的節點方法登錄表產生, 包含全部 206 個可呼叫的方法名稱及帶參數的多載, 並補全 ## / $$ / .. 與陣列形式的結果型別
-
-### v4.83.0
-
-###### 2026/10/24
-
-* `新增` sqlite 宣告補全 onDowngrade 回呼: 開啟資料庫時請求的 version 低於現有版本時呼叫 (AutoJs6 6.8.0 起), 未實作時降級不執行任何操作, 保留資料表與資料
 
 [完整更新日誌](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hant-TW.md)
 

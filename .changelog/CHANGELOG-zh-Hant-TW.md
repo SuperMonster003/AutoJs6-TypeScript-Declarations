@@ -13,6 +13,28 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.87.0
+
+###### 2026/11/02
+
+* `新增` imgui 模組進入 AutoJs6 宣告: 配合 AutoJs6 Plugin ImGui 1.18.x, 全域性 imgui 與 $imgui 的函式, 視窗會話和返回物件都有型別與說明, 這些宣告只用於 Rhino 指令碼
+* `修復` ImGui 會話的 fontScale 說明提到了不存在的 ui.getFontSize() 的問題
+
+# v4.86.0
+
+###### 2026/11/01
+
+* `新增` autojs6-node 與 autojs6-bun 宣告跟隨 Node.js Runtime 2.1.0 與 Bun Runtime 0.22.0: app, shell, 系統資訊, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events 等模組與 AutoJs6 指令碼一致的成員及其返回物件
+* `新增` Flow 物件的 await() 與 sync(timeout) 進入 Node.js 與 Bun 的宣告, 兩者都返回 Promise
+* `新增` plugins.tools.call / callAsync 補全官方外掛的 15 個工具名 (OfficialToolName), 其他工具名仍可傳入
+* `新增` OcrResult 補全 extras, ocr 選項補全 useCls, PP-OCRv3 的 variant / profile 與 mergeLine 的說明
+* `修復` ocr.detect 與 barcode / qrcode detect 的結果型別缺少成員的問題 (Ocr.Result 的 text, label, confidence, bounds, compareTo 與 WrappedBarcode 的成員)
+* `修復` 引數與返回型別按 AutoJs6 指令碼模組修正: engines.stopAllAndToast 返回請求停止的引擎數, util.deprecate 接受任意引數且無返回值, Flow 的選擇器條件不接受 null, 可傳 null 的可選引數與任務選項補上 null
+* `修復` 引數個數按 AutoJs6 指令碼模組修正: auto.registerEvent 的 listener, 手勢的 stroke, colors 的 color, http 的 options 與 postJson 的 data 必填, dialogs.build, engines 配置與 console.trace 的可選引數
+* `最佳化` events, sensors, device, console, shizuku, threads, timers 和 ui 的 Java 原型成員寫進模組型別, 不依賴生成的 Java 宣告也能補全
+* `最佳化` speech.detectLanguage 的說明按 3-Macaw Speech 1.4.0 改為按句判斷語種
+* `最佳化` speech.models.list 的模型資訊補全 updateAvailable 和 latestVersionCode (需要 3-Macaw Speech 1.4.0 或以上), Rhino, Node.js 和 Bun 的宣告一致
+
 # v4.85.0
 
 ###### 2026/10/29

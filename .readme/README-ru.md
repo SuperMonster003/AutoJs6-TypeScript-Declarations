@@ -178,6 +178,28 @@ npm update @sm003/autojs6-dts
 
 ## Журнал изменений
 
+### v4.87.0
+
+###### 2026/11/02
+
+* `Функция` Модуль imgui добавлен в декларации AutoJs6: для AutoJs6 Plugin ImGui 1.18.x типы и описания охватывают глобальные функции imgui и $imgui, сеансы окон и возвращаемые объекты; эти декларации предназначены только для скриптов Rhino
+* `Исправление` Описание fontScale сеансов ImGui ссылалось на несуществующий ui.getFontSize()
+
+### v4.86.0
+
+###### 2026/11/01
+
+* `Функция` Декларации autojs6-node и autojs6-bun соответствуют Node.js Runtime 2.1.0 и Bun Runtime 0.22.0: члены и возвращаемые объекты, совпадающие со скриптами AutoJs6, для app, shell, системной информации, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events и других модулей
+* `Функция` Методы await() и sync(timeout) объекта Flow добавлены в декларации Node.js и Bun; оба возвращают Promise
+* `Функция` plugins.tools.call / callAsync дополняют 15 имен инструментов официальных плагинов (OfficialToolName), сохраняя возможность передавать другие имена
+* `Функция` В OcrResult добавлено extras, в параметры OCR добавлено useCls, дополнены описания variant / profile PP-OCRv3 и mergeLine
+* `Исправление` Отсутствующие члены типов результатов ocr.detect и barcode / qrcode detect (text, label, confidence, bounds, compareTo в Ocr.Result и члены WrappedBarcode)
+* `Исправление` Типы параметров и возвращаемых значений приведены в соответствие с модулями скриптов AutoJs6: engines.stopAllAndToast возвращает число движков, для которых запрошена остановка, util.deprecate принимает произвольные аргументы без возвращаемого значения, условия селекторов Flow не допускают null, а необязательные параметры и параметры задач, допускающие null, включают null
+* `Исправление` Число параметров приведено в соответствие с модулями скриптов AutoJs6: listener в auto.registerEvent, stroke жестов, color в colors, options в http и data в postJson обязательны; исправлены необязательные параметры dialogs.build, настройки engines и console.trace
+* `Улучшение` Члены Java-прототипов events, sensors, device, console, shizuku, threads, timers и ui включены в типы модулей, обеспечивая автодополнение без сгенерированных деклараций Java
+* `Улучшение` Описание speech.detectLanguage приведено в соответствие с 3-Macaw Speech 1.4.0: язык определяется для каждого предложения
+* `Улучшение` В сведения о моделях speech.models.list добавлены updateAvailable и latestVersionCode (требуется 3-Macaw Speech 1.4.0 или новее), с одинаковыми декларациями для Rhino, Node.js и Bun
+
 ### v4.85.0
 
 ###### 2026/10/29
@@ -186,20 +208,6 @@ npm update @sm003/autojs6-dts
 * `Функция` объявления speech добавляют speech.speaker для распознавания говорящего: enroll, verify и identify с их формами Async, list и remove, а также коды ошибок SPEAKER_NOT_FOUND и AUDIO_TOO_SHORT (AutoJs6 6.8.0 или новее, нужен 3-Macaw Speech 1.3.0)
 * `Улучшение` в Speech.Feature добавлены 'speaker', 'diarization', 'languageId' и 'audioTagging'; в Speech.Kind добавлены типы моделей 'speaker', 'segment', 'langid' и 'tagger', которые принимают models.list, setDefault и getDefault
 * `Улучшение` ImportOptions.kind в speech.models.importFile сужен до 'asr', 'kws' и 'tts': модель вне каталога можно импортировать только как один из этих трех видов, а у 'vad', 'speaker', 'segment', 'langid' и 'tagger' есть только модели каталога (как и работает 3-Macaw Speech)
-
-### v4.84.0
-
-###### 2026/10/29
-
-* `Функция` Объявления селекторов normalize и prefer: глобальные функции, методы цепочки и ключи объектного селектора, с типами Selector.NormalizeOptions и Selector.PreferKey (AutoJs6 6.8.0 и новее)
-* `Функция` Объявления auto: метод clearFlags, префикс ! в setFlags и флаги noFastPath / noRefreshOnHit; explain принимает компас и тип результата, а его результат содержит поля target / trail / result и другие; stats содержит fastPath и queries.refinds (AutoJs6 6.8.0 и новее)
-* `Улучшение` Типы результатов pickup / detect (Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams) генерируются из реестра методов узлов AutoJs6: все 206 вызываемых имён методов и их перегрузки с параметрами, а также типы результатов ## / $$ / .. и формы массивов
-
-### v4.83.0
-
-###### 2026/10/24
-
-* `Функция` Объявления sqlite с обратным вызовом onDowngrade: вызывается, когда запрошенная version ниже версии существующей базы данных (AutoJs6 6.8.0 и новее); без него понижение версии ничего не делает и сохраняет таблицы и данные
 
 [Полный журнал изменений](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 

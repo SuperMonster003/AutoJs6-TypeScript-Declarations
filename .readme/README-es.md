@@ -178,6 +178,28 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 
 ## Registro de cambios
 
+### v4.87.0
+
+###### 2026/11/02
+
+* `Función` El módulo imgui se incorpora a las declaraciones de AutoJs6: con AutoJs6 Plugin ImGui 1.18.x, las funciones globales imgui y $imgui, las sesiones de ventana y los objetos devueltos tienen tipos y descripciones; estas declaraciones solo se aplican a scripts Rhino
+* `Corrección` La documentación de fontScale de las sesiones ImGui mencionaba ui.getFontSize(), que no existe
+
+### v4.86.0
+
+###### 2026/11/01
+
+* `Función` Las declaraciones autojs6-node y autojs6-bun siguen Node.js Runtime 2.1.0 y Bun Runtime 0.22.0: miembros y objetos devueltos coherentes con los scripts AutoJs6 para app, shell, información del sistema, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events y otros módulos
+* `Función` Flow.await() y Flow.sync(timeout) se incorporan a las declaraciones de Node.js y Bun; ambos devuelven una Promise
+* `Función` plugins.tools.call / callAsync completan los 15 nombres de herramientas de los plugins oficiales (OfficialToolName), sin dejar de aceptar otros nombres
+* `Función` OcrResult incorpora extras, las opciones OCR incorporan useCls, y se documentan variant / profile de PP-OCRv3 y mergeLine
+* `Corrección` Miembros ausentes en los tipos de resultados de ocr.detect y barcode / qrcode detect (text, label, confidence, bounds, compareTo de Ocr.Result y miembros de WrappedBarcode)
+* `Corrección` Los tipos de parámetros y retorno se ajustan a los módulos de script AutoJs6: engines.stopAllAndToast devuelve el número de motores cuya detención se solicitó, util.deprecate acepta argumentos arbitrarios sin devolver un valor, las condiciones de selector de Flow no aceptan null, y los parámetros opcionales y las opciones de tarea que admiten nulos incluyen null
+* `Corrección` El número de parámetros se ajusta a los módulos de script AutoJs6: listener de auto.registerEvent, stroke de los gestos, color de colors, options de http y data de postJson son obligatorios; se corrigen los parámetros opcionales de dialogs.build, la configuración de engines y console.trace
+* `Mejora` Los miembros de los prototipos Java de events, sensors, device, console, shizuku, threads, timers y ui se incluyen en los tipos de módulo para permitir el autocompletado sin las declaraciones Java generadas
+* `Mejora` La documentación de speech.detectLanguage sigue 3-Macaw Speech 1.4.0 y describe la identificación del idioma por oración
+* `Mejora` La información de modelos de speech.models.list incorpora updateAvailable y latestVersionCode (requiere 3-Macaw Speech 1.4.0 o posterior), con declaraciones coherentes para Rhino, Node.js y Bun
+
 ### v4.85.0
 
 ###### 2026/10/29
@@ -186,20 +208,6 @@ Normalmente, el proyecto de archivos de declaración se actualiza junto con las 
 * `Función` las declaraciones de speech añaden speech.speaker para el reconocimiento de hablantes: enroll, verify e identify con sus formas Async, list y remove, y los códigos de error SPEAKER_NOT_FOUND y AUDIO_TOO_SHORT (AutoJs6 6.8.0 o posterior, requiere 3-Macaw Speech 1.3.0)
 * `Mejora` Speech.Feature añade 'speaker', 'diarization', 'languageId' y 'audioTagging'; Speech.Kind añade los tipos de modelo 'speaker', 'segment', 'langid' y 'tagger', que aceptan models.list, setDefault y getDefault
 * `Mejora` ImportOptions.kind de speech.models.importFile se limita a 'asr', 'kws' y 'tts': un modelo fuera del catálogo solo se puede importar como uno de estos tres tipos, y 'vad', 'speaker', 'segment', 'langid' y 'tagger' solo tienen modelos del catálogo (como hace 3-Macaw Speech)
-
-### v4.84.0
-
-###### 2026/10/29
-
-* `Función` Declaraciones de los selectores normalize y prefer: funciones globales, métodos encadenados y claves del selector de objeto, con los tipos Selector.NormalizeOptions y Selector.PreferKey (AutoJs6 6.8.0 o posterior)
-* `Función` Declaraciones de auto: el método clearFlags, el prefijo ! de setFlags y los indicadores noFastPath / noRefreshOnHit; explain acepta una brújula y un tipo de resultado, y su resultado declara target / trail / result y otros campos; stats declara fastPath y queries.refinds (AutoJs6 6.8.0 o posterior)
-* `Mejora` Los tipos de resultado de pickup / detect (Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams) se generan a partir del registro de métodos de nodo de AutoJs6: los 206 nombres de métodos invocables y sus sobrecargas con parámetros, además de los tipos de resultado ## / $$ / .. y las formas de array
-
-### v4.83.0
-
-###### 2026/10/24
-
-* `Función` Declaraciones de sqlite con la devolución de llamada onDowngrade: se llama cuando la version solicitada es inferior a la de la base de datos existente (AutoJs6 6.8.0 o posterior); sin ella, la degradación no hace nada y conserva las tablas y los datos
 
 [Registro completo](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-es.md)
 

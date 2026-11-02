@@ -178,6 +178,28 @@ npm update @sm003/autojs6-dts
 
 ## 変更履歴
 
+### v4.87.0
+
+###### 2026/11/02
+
+* `機能` imgui モジュールを AutoJs6 の型宣言に追加: AutoJs6 Plugin ImGui 1.18.x に対応し, グローバルの imgui と $imgui の関数, ウィンドウセッション, 戻り値オブジェクトに型と説明を提供. これらの宣言は Rhino スクリプト専用
+* `修正` ImGui セッションの fontScale の説明が存在しない ui.getFontSize() を参照していた問題
+
+### v4.86.0
+
+###### 2026/11/01
+
+* `機能` autojs6-node と autojs6-bun の宣言を Node.js Runtime 2.1.0 と Bun Runtime 0.22.0 に対応: app, shell, システム情報, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events などのモジュールについて, AutoJs6 スクリプトと一致するメンバーと戻り値オブジェクトを提供
+* `機能` Flow オブジェクトの await() と sync(timeout) を Node.js と Bun の宣言に追加. どちらも Promise を返す
+* `機能` plugins.tools.call / callAsync で公式プラグインの 15 個のツール名 (OfficialToolName) を補完. その他のツール名も引き続き指定可能
+* `機能` OcrResult に extras, OCR オプションに useCls を追加し, PP-OCRv3 の variant / profile と mergeLine の説明を補完
+* `修正` ocr.detect と barcode / qrcode detect の結果型でメンバーが欠けていた問題 (Ocr.Result の text, label, confidence, bounds, compareTo と WrappedBarcode のメンバー)
+* `修正` 引数と戻り値の型を AutoJs6 のスクリプトモジュールに合わせて修正: engines.stopAllAndToast は停止を要求したエンジン数を返し, util.deprecate は任意の引数を受け取り戻り値を持たない. Flow のセレクター条件は null を受け付けず, null を許容する省略可能な引数とタスクオプションには null を追加
+* `修正` 引数の数を AutoJs6 のスクリプトモジュールに合わせて修正: auto.registerEvent の listener, ジェスチャーの stroke, colors の color, http の options, postJson の data を必須とし, dialogs.build, engines 設定, console.trace の省略可能な引数を修正
+* `改善` events, sensors, device, console, shizuku, threads, timers, ui の Java プロトタイプメンバーをモジュール型に記載し, 生成された Java 宣言がなくても補完可能
+* `改善` speech.detectLanguage の説明を 3-Macaw Speech 1.4.0 に合わせ, 文単位で言語を判定する内容に変更
+* `改善` speech.models.list のモデル情報に updateAvailable と latestVersionCode を追加 (3-Macaw Speech 1.4.0 以降が必要). Rhino, Node.js, Bun の宣言を統一
+
 ### v4.85.0
 
 ###### 2026/10/29
@@ -186,20 +208,6 @@ npm update @sm003/autojs6-dts
 * `機能` speech の宣言に話者認識の speech.speaker を追加: enroll, verify, identify とその Async 形式, list, remove, エラーコード SPEAKER_NOT_FOUND と AUDIO_TOO_SHORT (AutoJs6 6.8.0 以降, 3-Macaw Speech 1.3.0 が必要)
 * `改善` Speech.Feature に 'speaker', 'diarization', 'languageId', 'audioTagging' を追加; Speech.Kind にモデル種別 'speaker', 'segment', 'langid', 'tagger' を追加し, models.list, setDefault, getDefault で使用可能
 * `改善` speech.models.importFile の ImportOptions.kind を 'asr', 'kws', 'tts' に限定: カタログ外のモデルはこの 3 種類としてのみインポートでき, 'vad', 'speaker', 'segment', 'langid', 'tagger' はカタログのモデルのみ (3-Macaw Speech の実際の動作に合わせた)
-
-### v4.84.0
-
-###### 2026/10/29
-
-* `機能` セレクターの宣言に normalize と prefer を追加: グローバル関数, チェーンメソッド, オブジェクトセレクターのキー; Selector.NormalizeOptions, Selector.PreferKey 型を追加 (AutoJs6 6.8.0 以降)
-* `機能` auto の宣言に clearFlags メソッド, setFlags の ! プレフィックス, noFastPath / noRefreshOnHit フラグを追加; explain はコンパスと結果タイプを受け取り, 結果に target / trail / result などのフィールドを追加; stats に fastPath と queries.refinds を追加 (AutoJs6 6.8.0 以降)
-* `改善` pickup / detect の結果タイプ Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams を AutoJs6 のノードメソッドレジストリから生成し, 呼び出し可能な 206 個のメソッド名と引数付きオーバーロードをすべて収録; ## / $$ / .. と配列形式の結果タイプも追加
-
-### v4.83.0
-
-###### 2026/10/24
-
-* `機能` sqlite の宣言に onDowngrade コールバックを追加: 要求した version が既存データベースのバージョンより低いときに呼ばれる (AutoJs6 6.8.0 以降); 未実装の場合, ダウングレードは何もせず, テーブルとデータを保持
 
 [すべての変更履歴](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ja.md)
 

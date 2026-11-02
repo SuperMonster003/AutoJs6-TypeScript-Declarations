@@ -18,6 +18,64 @@
     "adjustment": "調整"
   },
   "$data": {
+    "v4.87.0": {
+      "released_date": "2026/11/02",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "imgui モジュールを AutoJs6 の型宣言に追加: AutoJs6 Plugin ImGui 1.18.x に対応し, グローバルの imgui と $imgui の関数, ウィンドウセッション, 戻り値オブジェクトに型と説明を提供. これらの宣言は Rhino スクリプト専用"
+        },
+        {
+          "category": "fix",
+          "text": "ImGui セッションの fontScale の説明が存在しない ui.getFontSize() を参照していた問題"
+        }
+      ]
+    },
+    "v4.86.0": {
+      "released_date": "2026/11/01",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "autojs6-node と autojs6-bun の宣言を Node.js Runtime 2.1.0 と Bun Runtime 0.22.0 に対応: app, shell, システム情報, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events などのモジュールについて, AutoJs6 スクリプトと一致するメンバーと戻り値オブジェクトを提供"
+        },
+        {
+          "category": "feature",
+          "text": "Flow オブジェクトの await() と sync(timeout) を Node.js と Bun の宣言に追加. どちらも Promise を返す"
+        },
+        {
+          "category": "feature",
+          "text": "plugins.tools.call / callAsync で公式プラグインの 15 個のツール名 (OfficialToolName) を補完. その他のツール名も引き続き指定可能"
+        },
+        {
+          "category": "feature",
+          "text": "OcrResult に extras, OCR オプションに useCls を追加し, PP-OCRv3 の variant / profile と mergeLine の説明を補完"
+        },
+        {
+          "category": "fix",
+          "text": "ocr.detect と barcode / qrcode detect の結果型でメンバーが欠けていた問題 (Ocr.Result の text, label, confidence, bounds, compareTo と WrappedBarcode のメンバー)"
+        },
+        {
+          "category": "fix",
+          "text": "引数と戻り値の型を AutoJs6 のスクリプトモジュールに合わせて修正: engines.stopAllAndToast は停止を要求したエンジン数を返し, util.deprecate は任意の引数を受け取り戻り値を持たない. Flow のセレクター条件は null を受け付けず, null を許容する省略可能な引数とタスクオプションには null を追加"
+        },
+        {
+          "category": "fix",
+          "text": "引数の数を AutoJs6 のスクリプトモジュールに合わせて修正: auto.registerEvent の listener, ジェスチャーの stroke, colors の color, http の options, postJson の data を必須とし, dialogs.build, engines 設定, console.trace の省略可能な引数を修正"
+        },
+        {
+          "category": "improvement",
+          "text": "events, sensors, device, console, shizuku, threads, timers, ui の Java プロトタイプメンバーをモジュール型に記載し, 生成された Java 宣言がなくても補完可能"
+        },
+        {
+          "category": "improvement",
+          "text": "speech.detectLanguage の説明を 3-Macaw Speech 1.4.0 に合わせ, 文単位で言語を判定する内容に変更"
+        },
+        {
+          "category": "improvement",
+          "text": "speech.models.list のモデル情報に updateAvailable と latestVersionCode を追加 (3-Macaw Speech 1.4.0 以降が必要). Rhino, Node.js, Bun の宣言を統一"
+        }
+      ]
+    },
     "v4.85.0": {
       "released_date": "2026/10/29",
       "entries": [

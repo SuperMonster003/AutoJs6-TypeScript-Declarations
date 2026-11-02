@@ -178,6 +178,28 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 
 ## Changelog
 
+### v4.87.0
+
+###### 2026/11/02
+
+* `Feature` The imgui module joins the AutoJs6 declarations: for AutoJs6 Plugin ImGui 1.18.x, types and documentation cover the global imgui and $imgui functions, window sessions and returned objects; these declarations apply only to Rhino scripts
+* `Fix` The fontScale documentation for ImGui sessions referred to the nonexistent ui.getFontSize()
+
+### v4.86.0
+
+###### 2026/11/01
+
+* `Feature` autojs6-node and autojs6-bun declarations follow Node.js Runtime 2.1.0 and Bun Runtime 0.22.0: members and returned objects matching AutoJs6 scripts for app, shell, system information, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events and other modules
+* `Feature` Flow.await() and Flow.sync(timeout) join the Node.js and Bun declarations; both return a Promise
+* `Feature` plugins.tools.call / callAsync complete the 15 official plugin tool names (OfficialToolName), while still accepting other tool names
+* `Feature` OcrResult gains extras, OCR options gain useCls, and documentation covers PP-OCRv3 variant / profile and mergeLine
+* `Fix` Missing members in ocr.detect and barcode / qrcode detect result types (Ocr.Result text, label, confidence, bounds, compareTo and WrappedBarcode members)
+* `Fix` Parameter and return types now match the AutoJs6 script modules: engines.stopAllAndToast returns the number of engines requested to stop, util.deprecate accepts arbitrary arguments and returns nothing, Flow selector conditions reject null, and nullable optional parameters and task options include null
+* `Fix` Parameter counts now match the AutoJs6 script modules: listener in auto.registerEvent, gesture stroke, color in colors, options in http and data in postJson are required; optional parameters are corrected for dialogs.build, engines configuration and console.trace
+* `Improvement` Java prototype members of events, sensors, device, console, shizuku, threads, timers and ui are included in the module types, allowing completion without generated Java declarations
+* `Improvement` speech.detectLanguage documentation follows 3-Macaw Speech 1.4.0 and describes language identification per sentence
+* `Improvement` speech.models.list model information gains updateAvailable and latestVersionCode (requires 3-Macaw Speech 1.4.0 or later), with matching declarations for Rhino, Node.js and Bun
+
 ### v4.85.0
 
 ###### 2026/10/29
@@ -186,20 +208,6 @@ The declarations are usually updated alongside new releases of [AutoJs6](http://
 * `Feature` speech declarations add speech.speaker for speaker recognition: enroll, verify and identify with their Async forms, list and remove, and the SPEAKER_NOT_FOUND and AUDIO_TOO_SHORT error codes (AutoJs6 6.8.0 or later, needs 3-Macaw Speech 1.3.0)
 * `Improvement` Speech.Feature gains 'speaker', 'diarization', 'languageId' and 'audioTagging'; Speech.Kind gains the model kinds 'speaker', 'segment', 'langid' and 'tagger', which models.list, setDefault and getDefault accept
 * `Improvement` ImportOptions.kind of speech.models.importFile is narrowed to 'asr', 'kws' and 'tts': a model outside the catalog can be imported only as one of these three kinds, and 'vad', 'speaker', 'segment', 'langid' and 'tagger' have catalog models only (as 3-Macaw Speech behaves)
-
-### v4.84.0
-
-###### 2026/10/29
-
-* `Feature` Selector declarations for normalize and prefer: global functions, chained methods and object selector keys, with the Selector.NormalizeOptions and Selector.PreferKey types (AutoJs6 6.8.0 or later)
-* `Feature` auto declarations add the clearFlags method, the ! prefix of setFlags and the noFastPath / noRefreshOnHit flags; explain takes a compass and a result type, and its result declares target / trail / result and more; stats declares fastPath and queries.refinds (AutoJs6 6.8.0 or later)
-* `Improvement` The result types of pickup / detect (Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams) are generated from the node method registry of AutoJs6: all 206 callable method names and their overloads with parameters, plus the ## / $$ / .. result types and the array forms
-
-### v4.83.0
-
-###### 2026/10/24
-
-* `Feature` sqlite declarations add the onDowngrade callback: called when the requested version is lower than the version of the existing database (AutoJs6 6.8.0 or later); without it, the downgrade does nothing and keeps the tables and data
 
 [Full changelog](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-en.md)
 

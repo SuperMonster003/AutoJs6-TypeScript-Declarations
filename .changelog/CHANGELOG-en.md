@@ -13,6 +13,28 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.87.0
+
+###### 2026/11/02
+
+* `Feature` The imgui module joins the AutoJs6 declarations: for AutoJs6 Plugin ImGui 1.18.x, types and documentation cover the global imgui and $imgui functions, window sessions and returned objects; these declarations apply only to Rhino scripts
+* `Fix` The fontScale documentation for ImGui sessions referred to the nonexistent ui.getFontSize()
+
+# v4.86.0
+
+###### 2026/11/01
+
+* `Feature` autojs6-node and autojs6-bun declarations follow Node.js Runtime 2.1.0 and Bun Runtime 0.22.0: members and returned objects matching AutoJs6 scripts for app, shell, system information, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events and other modules
+* `Feature` Flow.await() and Flow.sync(timeout) join the Node.js and Bun declarations; both return a Promise
+* `Feature` plugins.tools.call / callAsync complete the 15 official plugin tool names (OfficialToolName), while still accepting other tool names
+* `Feature` OcrResult gains extras, OCR options gain useCls, and documentation covers PP-OCRv3 variant / profile and mergeLine
+* `Fix` Missing members in ocr.detect and barcode / qrcode detect result types (Ocr.Result text, label, confidence, bounds, compareTo and WrappedBarcode members)
+* `Fix` Parameter and return types now match the AutoJs6 script modules: engines.stopAllAndToast returns the number of engines requested to stop, util.deprecate accepts arbitrary arguments and returns nothing, Flow selector conditions reject null, and nullable optional parameters and task options include null
+* `Fix` Parameter counts now match the AutoJs6 script modules: listener in auto.registerEvent, gesture stroke, color in colors, options in http and data in postJson are required; optional parameters are corrected for dialogs.build, engines configuration and console.trace
+* `Improvement` Java prototype members of events, sensors, device, console, shizuku, threads, timers and ui are included in the module types, allowing completion without generated Java declarations
+* `Improvement` speech.detectLanguage documentation follows 3-Macaw Speech 1.4.0 and describes language identification per sentence
+* `Improvement` speech.models.list model information gains updateAvailable and latestVersionCode (requires 3-Macaw Speech 1.4.0 or later), with matching declarations for Rhino, Node.js and Bun
+
 # v4.85.0
 
 ###### 2026/10/29

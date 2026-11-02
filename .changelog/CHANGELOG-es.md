@@ -13,6 +13,28 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.87.0
+
+###### 2026/11/02
+
+* `Función` El módulo imgui se incorpora a las declaraciones de AutoJs6: con AutoJs6 Plugin ImGui 1.18.x, las funciones globales imgui y $imgui, las sesiones de ventana y los objetos devueltos tienen tipos y descripciones; estas declaraciones solo se aplican a scripts Rhino
+* `Corrección` La documentación de fontScale de las sesiones ImGui mencionaba ui.getFontSize(), que no existe
+
+# v4.86.0
+
+###### 2026/11/01
+
+* `Función` Las declaraciones autojs6-node y autojs6-bun siguen Node.js Runtime 2.1.0 y Bun Runtime 0.22.0: miembros y objetos devueltos coherentes con los scripts AutoJs6 para app, shell, información del sistema, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events y otros módulos
+* `Función` Flow.await() y Flow.sync(timeout) se incorporan a las declaraciones de Node.js y Bun; ambos devuelven una Promise
+* `Función` plugins.tools.call / callAsync completan los 15 nombres de herramientas de los plugins oficiales (OfficialToolName), sin dejar de aceptar otros nombres
+* `Función` OcrResult incorpora extras, las opciones OCR incorporan useCls, y se documentan variant / profile de PP-OCRv3 y mergeLine
+* `Corrección` Miembros ausentes en los tipos de resultados de ocr.detect y barcode / qrcode detect (text, label, confidence, bounds, compareTo de Ocr.Result y miembros de WrappedBarcode)
+* `Corrección` Los tipos de parámetros y retorno se ajustan a los módulos de script AutoJs6: engines.stopAllAndToast devuelve el número de motores cuya detención se solicitó, util.deprecate acepta argumentos arbitrarios sin devolver un valor, las condiciones de selector de Flow no aceptan null, y los parámetros opcionales y las opciones de tarea que admiten nulos incluyen null
+* `Corrección` El número de parámetros se ajusta a los módulos de script AutoJs6: listener de auto.registerEvent, stroke de los gestos, color de colors, options de http y data de postJson son obligatorios; se corrigen los parámetros opcionales de dialogs.build, la configuración de engines y console.trace
+* `Mejora` Los miembros de los prototipos Java de events, sensors, device, console, shizuku, threads, timers y ui se incluyen en los tipos de módulo para permitir el autocompletado sin las declaraciones Java generadas
+* `Mejora` La documentación de speech.detectLanguage sigue 3-Macaw Speech 1.4.0 y describe la identificación del idioma por oración
+* `Mejora` La información de modelos de speech.models.list incorpora updateAvailable y latestVersionCode (requiere 3-Macaw Speech 1.4.0 o posterior), con declaraciones coherentes para Rhino, Node.js y Bun
+
 # v4.85.0
 
 ###### 2026/10/29

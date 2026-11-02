@@ -18,6 +18,64 @@
     "adjustment": "Adjustment"
   },
   "$data": {
+    "v4.87.0": {
+      "released_date": "2026/11/02",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "The imgui module joins the AutoJs6 declarations: for AutoJs6 Plugin ImGui 1.18.x, types and documentation cover the global imgui and $imgui functions, window sessions and returned objects; these declarations apply only to Rhino scripts"
+        },
+        {
+          "category": "fix",
+          "text": "The fontScale documentation for ImGui sessions referred to the nonexistent ui.getFontSize()"
+        }
+      ]
+    },
+    "v4.86.0": {
+      "released_date": "2026/11/01",
+      "entries": [
+        {
+          "category": "feature",
+          "text": "autojs6-node and autojs6-bun declarations follow Node.js Runtime 2.1.0 and Bun Runtime 0.22.0: members and returned objects matching AutoJs6 scripts for app, shell, system information, device, sensors, media, colors, files, zip, ui, floaty, web, terminal, compose, automator, auto, ocr, threads, timers, events and other modules"
+        },
+        {
+          "category": "feature",
+          "text": "Flow.await() and Flow.sync(timeout) join the Node.js and Bun declarations; both return a Promise"
+        },
+        {
+          "category": "feature",
+          "text": "plugins.tools.call / callAsync complete the 15 official plugin tool names (OfficialToolName), while still accepting other tool names"
+        },
+        {
+          "category": "feature",
+          "text": "OcrResult gains extras, OCR options gain useCls, and documentation covers PP-OCRv3 variant / profile and mergeLine"
+        },
+        {
+          "category": "fix",
+          "text": "Missing members in ocr.detect and barcode / qrcode detect result types (Ocr.Result text, label, confidence, bounds, compareTo and WrappedBarcode members)"
+        },
+        {
+          "category": "fix",
+          "text": "Parameter and return types now match the AutoJs6 script modules: engines.stopAllAndToast returns the number of engines requested to stop, util.deprecate accepts arbitrary arguments and returns nothing, Flow selector conditions reject null, and nullable optional parameters and task options include null"
+        },
+        {
+          "category": "fix",
+          "text": "Parameter counts now match the AutoJs6 script modules: listener in auto.registerEvent, gesture stroke, color in colors, options in http and data in postJson are required; optional parameters are corrected for dialogs.build, engines configuration and console.trace"
+        },
+        {
+          "category": "improvement",
+          "text": "Java prototype members of events, sensors, device, console, shizuku, threads, timers and ui are included in the module types, allowing completion without generated Java declarations"
+        },
+        {
+          "category": "improvement",
+          "text": "speech.detectLanguage documentation follows 3-Macaw Speech 1.4.0 and describes language identification per sentence"
+        },
+        {
+          "category": "improvement",
+          "text": "speech.models.list model information gains updateAvailable and latestVersionCode (requires 3-Macaw Speech 1.4.0 or later), with matching declarations for Rhino, Node.js and Bun"
+        }
+      ]
+    },
     "v4.85.0": {
       "released_date": "2026/10/29",
       "entries": [

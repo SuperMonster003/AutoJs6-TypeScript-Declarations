@@ -13,6 +13,28 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - العربية [ar] # الحالية
 
+# v4.87.0
+
+###### 2026/11/02
+
+* `ميزة` إضافة وحدة imgui إلى تعريفات AutoJs6: مع AutoJs6 Plugin ImGui 1.18.x تتوفر الأنواع والأوصاف لدوال imgui و $imgui العامة وجلسات النوافذ والكائنات المعادة; وهذه التعريفات مخصصة لسكربتات Rhino فقط
+* `إصلاح` وصف fontScale لجلسات ImGui كان يشير إلى ui.getFontSize() غير الموجودة
+
+# v4.86.0
+
+###### 2026/11/01
+
+* `ميزة` تعريفات autojs6-node و autojs6-bun تواكب Node.js Runtime 2.1.0 و Bun Runtime 0.22.0: الأعضاء والكائنات المعادة المتوافقة مع سكربتات AutoJs6 لوحدات app و shell ومعلومات النظام و device و sensors و media و colors و files و zip و ui و floaty و web و terminal و compose و automator و auto و ocr و threads و timers و events وغيرها
+* `ميزة` إضافة await() و sync(timeout) للكائن Flow إلى تعريفات Node.js و Bun; وكلتاهما تعيد Promise
+* `ميزة` إكمال أسماء الأدوات الرسمية الخمسة عشر (OfficialToolName) في plugins.tools.call / callAsync مع استمرار قبول أسماء الأدوات الأخرى
+* `ميزة` إضافة extras إلى OcrResult و useCls إلى خيارات OCR واستكمال وصف variant / profile في PP-OCRv3 و mergeLine
+* `إصلاح` أعضاء مفقودة في أنواع نتائج ocr.detect و barcode / qrcode detect (text و label و confidence و bounds و compareTo في Ocr.Result وأعضاء WrappedBarcode)
+* `إصلاح` تصحيح أنواع المعاملات والقيم المعادة وفقا لوحدات سكربت AutoJs6: تعيد engines.stopAllAndToast عدد المحركات التي طلب إيقافها, وتقبل util.deprecate أي معاملات دون قيمة معادة, ولا تقبل شروط محددات Flow القيمة null, وتضاف null إلى المعاملات الاختيارية وخيارات المهام التي تقبلها
+* `إصلاح` تصحيح عدد المعاملات وفقا لوحدات سكربت AutoJs6: listener في auto.registerEvent و stroke للإيماءات و color في colors و options في http و data في postJson إلزامية; وتصحيح المعاملات الاختيارية في dialogs.build وإعدادات engines و console.trace
+* `تحسين` تضمين أعضاء نماذج Java الأولية لوحدات events و sensors و device و console و shizuku و threads و timers و ui في أنواع الوحدات لتمكين الإكمال دون الاعتماد على تعريفات Java المولدة
+* `تحسين` تحديث وصف speech.detectLanguage وفقا لـ 3-Macaw Speech 1.4.0 ليحدد اللغة لكل جملة
+* `تحسين` إضافة updateAvailable و latestVersionCode إلى معلومات نماذج speech.models.list (يتطلب 3-Macaw Speech 1.4.0 أو أحدث), مع توحيد تعريفات Rhino و Node.js و Bun
+
 # v4.85.0
 
 ###### 2026/10/29
