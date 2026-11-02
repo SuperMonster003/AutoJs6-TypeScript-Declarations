@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -33,10 +33,14 @@ for (const directory of directories) {
 }
 const bunTypes = readFileSync(resolve(root, 'declarations/autojs6-bun/host-client.d.mts'), 'utf8');
 const declaredCapabilities = new Set([...bunTypes.match(/export type HostCapability = ([^;]+);/)[1].matchAll(/"([^"]+)"/g)].map(match => match[1]));
-const sdk = readFileSync(resolve(root, '../AutoJs6-Plugin-Bun-Runtime/app/src/main/assets/autojs6/host-client.mjs'), 'utf8');
-const methodsText = sdk.slice(sdk.indexOf('export const HOST_API_METHODS'), sdk.indexOf('});', sdk.indexOf('export const HOST_API_METHODS')));
-for (const [, name] of methodsText.matchAll(/^  "([^"]+)":/gm))
-    assert(declaredCapabilities.has(name), 'Bun capability literal missing: ' + name);
+// This repository's own CI has no sibling checkouts; the host's api-coverage workflow has them and runs this script too.
+const sdkPath = resolve(root, '../AutoJs6-Plugin-Bun-Runtime/app/src/main/assets/autojs6/host-client.mjs');
+if (existsSync(sdkPath)) {
+    const sdk = readFileSync(sdkPath, 'utf8');
+    const methodsText = sdk.slice(sdk.indexOf('export const HOST_API_METHODS'), sdk.indexOf('});', sdk.indexOf('export const HOST_API_METHODS')));
+    for (const [, name] of methodsText.matchAll(/^  "([^"]+)":/gm))
+        assert(declaredCapabilities.has(name), 'Bun capability literal missing: ' + name);
+}
 
 const result = [];
 const imageMembers = new Map();
