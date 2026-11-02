@@ -191,6 +191,7 @@ npm update @sm003/autojs6-dts
 * `修复` 参数个数按 AutoJs6 脚本模块修正: auto.registerEvent 的 listener, 手势的 stroke, colors 的 color, http 的 options 与 postJson 的 data 必填, dialogs.build, engines 配置与 console.trace 的可选参数
 * `优化` events, sensors, device, console, shizuku, threads, timers 和 ui 的 Java 原型成员写进模块类型, 不依赖生成的 Java 声明也能补全
 * `优化` speech.detectLanguage 的说明按 3-Macaw Speech 1.4.0 改为按句判断语种
+* `优化` speech.models.list 的模型信息补全 updateAvailable 和 latestVersionCode (需要 3-Macaw Speech 1.4.0 或以上), Rhino, Node.js 和 Bun 的声明一致
 
 ### v4.85.0
 

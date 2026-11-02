@@ -3607,6 +3607,10 @@ export namespace RuntimeSpeech {
             readonly isDefault: boolean;
             readonly recommended: boolean;
             readonly version: number;
+            /** Whether the catalog offers a newer version of an installed model (3-Macaw Speech 1.4.0+); install updates it. */
+            readonly updateAvailable?: boolean;
+            /** The newest version the catalog offers, or `version` when it offers none (3-Macaw Speech 1.4.0+). */
+            readonly latestVersionCode?: number;
             readonly source: 'catalog' | 'imported';
             readonly license: License;
             /** TTS models: number of speakers. */

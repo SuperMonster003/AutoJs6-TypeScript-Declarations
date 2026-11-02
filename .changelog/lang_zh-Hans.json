@@ -56,6 +56,10 @@
         {
           "category": "improvement",
           "text": "speech.detectLanguage 的说明按 3-Macaw Speech 1.4.0 改为按句判断语种"
+        },
+        {
+          "category": "improvement",
+          "text": "speech.models.list 的模型信息补全 updateAvailable 和 latestVersionCode (需要 3-Macaw Speech 1.4.0 或以上), Rhino, Node.js 和 Bun 的声明一致"
         }
       ]
     },
