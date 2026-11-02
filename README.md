@@ -178,6 +178,13 @@ npm update @sm003/autojs6-dts
 
 ## 更新日志
 
+### v4.87.0
+
+###### 2026/11/02
+
+* `新增` imgui 模块进入 AutoJs6 声明: 配合 AutoJs6 Plugin ImGui 1.18.x, 全局 imgui 与 $imgui 的函数, 窗口会话和返回对象都有类型与说明, 这些声明只用于 Rhino 脚本
+* `修复` ImGui 会话的 fontScale 说明提到了不存在的 ui.getFontSize() 的问题
+
 ### v4.86.0
 
 ###### 2026/11/01
@@ -201,14 +208,6 @@ npm update @sm003/autojs6-dts
 * `新增` speech 声明补全 speech.speaker 说话人识别: enroll, verify, identify 及其 Async 形态, list 与 remove, 以及错误码 SPEAKER_NOT_FOUND 与 AUDIO_TOO_SHORT (AutoJs6 6.8.0 起, 需要 3-Macaw Speech 1.3.0)
 * `优化` Speech.Feature 增加 'speaker', 'diarization', 'languageId' 与 'audioTagging'; Speech.Kind 增加 'speaker', 'segment', 'langid' 与 'tagger' 四种模型类别, models.list, setDefault 与 getDefault 可使用这些类别
 * `优化` speech.models.importFile 的 ImportOptions.kind 收窄为 'asr', 'kws' 与 'tts': 以用户导入身份登记目录以外的模型时只能是这三类, 'vad', 'speaker', 'segment', 'langid' 与 'tagger' 只有目录模型 (与 3-Macaw Speech 的实际行为一致)
-
-### v4.84.0
-
-###### 2026/10/29
-
-* `新增` 选择器声明补全 normalize 与 prefer: 全局函数, 链式方法与对象选择器的键, 含 Selector.NormalizeOptions 与 Selector.PreferKey 类型 (AutoJs6 6.8.0 起)
-* `新增` auto 声明补全 clearFlags 方法, setFlags 的 ! 前缀与 noFastPath / noRefreshOnHit 标志; explain 可传入罗盘与结果类型, 结果含 target / trail / result 等字段; stats 补全 fastPath 与 queries.refinds (AutoJs6 6.8.0 起)
-* `优化` pickup / detect 的结果类型 Detect.ResultTypeFuncWithoutParams / ResultTypeFuncWithParams 改由 AutoJs6 的节点方法注册表生成, 包含全部 206 个可调用的方法名及带参数的重载, 并补全 ## / $$ / .. 与数组形式的结果类型
 
 [完整更新日志](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-zh-Hans.md)
 

@@ -13,6 +13,13 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-TypeScript-Declarations/blob/main/.changelog/CHANGELOG-ar.md)
 
+# v4.87.0
+
+###### 2026/11/02
+
+* `新增` imgui 模块进入 AutoJs6 声明: 配合 AutoJs6 Plugin ImGui 1.18.x, 全局 imgui 与 $imgui 的函数, 窗口会话和返回对象都有类型与说明, 这些声明只用于 Rhino 脚本
+* `修复` ImGui 会话的 fontScale 说明提到了不存在的 ui.getFontSize() 的问题
+
 # v4.86.0
 
 ###### 2026/11/01

@@ -1769,7 +1769,7 @@ declare namespace ImGui {
         readonly density: number;
         /**
          * Font scale of the session, 0.5..3, default 1, from setFontScale or a pinch (WindowOptions.pinchZoom). It
-         * multiplies the size of every font and leaves the style sizes alone; ui.getFontSize() returns the result.
+         * multiplies the size of every font and leaves the style sizes alone.
          */
         readonly fontScale: number;
         /** Display width in dp. */
