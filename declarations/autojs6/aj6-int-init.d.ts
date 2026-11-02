@@ -81,6 +81,10 @@ declare let $i18n: Internal.I18n;
 declare let images: Internal.Images;
 declare let $images: Internal.Images;
 
+/** The ImGui API of the external AutoJs6 Plugin ImGui, Rhino scripts only. Available since AutoJs6 6.8.0. */
+declare let imgui: ImGui.Api;
+declare let $imgui: ImGui.Api;
+
 /** The installer API of the external 3-Setup Installer plugin. Available since AutoJs6 6.8.0. */
 declare let installer: Internal.Installer;
 declare let $installer: Internal.Installer;

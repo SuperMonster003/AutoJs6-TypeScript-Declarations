@@ -26,6 +26,7 @@
 /// <reference path="./aj6-int-third-party.d.ts" />
 /// <reference path="./aj6-int-http.d.ts" />
 /// <reference path="./aj6-int-images.d.ts" />
+/// <reference path="./aj6-int-imgui.d.ts" />
 /// <reference path="./aj6-int-i18n.d.ts" />
 /// <reference path="./aj6-int-init.d.ts" />
 /// <reference path="./aj6-int-installer.d.ts" />

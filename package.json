@@ -32,6 +32,7 @@
     "docs:test": "python -m unittest discover -s .python/tests",
     "test:api": "node tools/verify-api-coverage.mjs",
     "test:runtimes": "node tools/verify-runtime-declarations.mjs",
+    "test:imgui": "node tools/verify-imgui-examples.mjs",
     "sync:runtimes": "node tools/sync-runtime-declarations.mjs"
   },
   "publishConfig": {
